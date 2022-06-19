@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      形式语义03 Lambda 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">形式语义03 Lambda</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-09-16 11:36:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>$\lambda$-calculus # Background 首先这是一种编程语言，在1930s被Alonzo Church和Stephen Cole Kleene发明（两位都是听说过的明星人物） 还是一种计算模型，在1937年被Alan Turing证明其和图灵机的表达能力等价（这位更是重量级） $\lambda$ 演算是函数式编程的基础，同时它简单的特点也使得很适合用于研究PL的各个领域（回忆IDFS中的$\lambda$ 表达式作为transfer function） PL的东西有点乱，大家的说法和记号也都不一样，这里选择了可能算是比较好理解又简洁的一种 # Syntax 定义 $\mathcal V$ 是无穷变量集合，$\Sigma&#x3D;\mathcal V\cup\left\{(,),\lambda,.\right\}$ 为字符集，那么定义一个term为$\Sigma$上满足的某些约束的有穷串 $\lambda$ calculus term组成的集合 $\Lambda\subseteq \Sigma^*$ 定义为**满足如下条件的最小集合**： 1. 若 $x\in\mathcal V$，那么 $x\in\Lambda$ 2. 若 $M,N\in\Lambda$，那么 $(MN)\in\Lambda$，此时称 $N$ 是**parameter** 3. 若 $x\in\mathcal V$ 且 $M\in\Lambda$，那么 $(\lambda x.M)\in\Lambda$，此时称 $M$ 为这个term的**body** 上面三种形式分别叫做**variable**、**application**、**$\lambda$ abstraction(function)** 为了简略（这也太简略了），有一些约定俗成的优先级和结合律： 1. 最外层括号可以省略不写，例如 $(\lambda x.x^2)&#x3D;\lambda x.x^2$ 2. Application形式是左结合的，即 $f\;x\;y\;z&#x3D;((f\;x)\;y)\;z$ 3. 一个$\lambda$的约束范围(scope)向右延伸，body的范围尽可能长。例如 $\lambda x. x+y&#x3D;\lambda x.(x+y)\neq(\lambda x. x)+y$ 4. 多个$\lambda$ 可以写在一起。例如 $\lambda x.\lambda y.\lambda z.&#x3D;\lambda xyz.$ # Semantics ## Bound &amp; Free Variables 对于一个形如 $\lambda x.N$ 的term，我们就说 $N$ 中出现的 $x$ 都被绑定(binding)到了 $\lambda x.$ 上，并把 $\lambda x.$ 叫做binder 注意绑定是可以嵌套的，例如 $\lambda x. (\lambda f.\lambda x.f\; x)+x$，最里面的 $x$ 被绑定到了第二个 $\lambda x.$，而最后一个 $x$ 则被绑定到了第一个 $\lambda x.$ 这个规则和C的作用域是很相似的 如果一个变量没有被绑定，就被称为自由变量(free variables) 一个bound variable是可以被换名字而不改变term的含义的，类似于C function中形参的名字其实是任意的（但仍然有限制，后面会说）。而free variable则不能随意换名字。因此我们主要关注一个term $M$ 中具体的free variables有哪些，用 $FV(M)$ 这个记号来表示 容易有如下规则： 1. $FV(x)&#x3D;\left\{\;x\;\right\},\; x\in\mathcal V$ 2. $FV(\lambda x.M)&#x3D;FV(M)-\left\{\;x\;\right\}$ 3. $FV(M N)&#x3D;FV(M)\cup FV(N)$ 也就是结构归纳 ## Substitution 这里的substitution和直接替换是有区别的，注意我们substitute的必须是free variable 我们用 $M[x&#x2F;y]$ 或者 $M\left\{x&#x2F;y\right\}$、$M[y:&#x3D;x]$ 来表示用 $x$ 替换掉term $M$ 中的 $y$ 的结果，并把一次substitution记作 $M\rightarrow M[x&#x2F;y]$ 考虑如下C代码 ```c int x&#x3D;1; int y&#x3D;2; int foo(int z) { return x + y + z; } ``` 这里第5行中，`x,y`是free variable，`z`被绑定到形参`int z` 前面说到对函数的形参可以任意换名但是有条件。考虑以下三种情况： 1. 作替换$[x&#x2F;z]$，这时候第5行变为`return x + y + x;`，且这里的两个`x`都被绑定到形参`int x`上（形参也被替换了），含义和原文显然是不同的 2. 作替换$[u&#x2F;z]$，这时候`u`从未出现过（称为fresh variable），这个替换就没有任何问题 3. 作替换$[z&#x2F;x]$，这时候`x`从free variable变成了bound variable，含义也发生了变化 基于如上考虑，我们给出substitution的递归定义： 1. $x[N&#x2F;x]\overset{\text{def} } &#x3D;N$ 2. $y[N&#x2F;x]\overset{\text{def} }&#x3D;y$ 3. $(M N)[P&#x2F;x]&#x3D;(M[P&#x2F;x])(N[P&#x2F;x])$ 4. $\lambda x.M[N&#x2F;x]&#x3D;\lambda x.M$ 5. 若 $y\not\in FV(N)$，那么 $(\lambda y.M)[N&#x2F;x]&#x3D;\lambda y.(M[N&#x2F;x])$ 6. 若 $y\in FV(N)$，那么 $(\lambda y.M)[N&#x2F;x]&#x3D;\lambda z.(M[z&#x2F;y][N&#x2F;x])$ 1234都好理解，主要说说56 5的意思是如果 $[N&#x2F;x]$ 不会引入新的 与当前形参重名的free variable，那么就直接换 6的意思是如果非要换，那么就得先把 $M$ 中被绑定到当前 $\lambda y.$ 上的 $y$ 都换成一个fresh variable $z$，此时就规约成5的情况了。最开始我以为也可以先换掉 $N$ 中的 $y$，但是注意free variable的含义，如果换掉了的话语义就变了。 ## $\alpha$-conversion 也叫$\alpha$-renaming，意思是我们把形如 $\lambda x. M$ 这样的term的body中与binder同名的变量连同binder一起改名字（改成一个从未出现过的变量）得到的term和原来等价。这样的等价关系叫做$\alpha$-equivalence、$\alpha$-congruence。 ## $\beta$-reduction 讲的是如何reduce一个term。递归定义如下： 1. $(\lambda x. M)N\rightarrow M[N&#x2F;x]$，这就是基本的$\beta$-reduction 2. 如果 $M\rightarrow M’$，那么 $\lambda x.M\rightarrow\lambda x.M’$ 3. 如果 $M\rightarrow M’$，那么 $M N\rightarrow M’ N$，$N M\rightarrow N M’$ $\beta$-reduction是满足上述条件的最小二元关系，显然是自反、传递的 再定义 $\overset*\rightarrow$ 是 $\beta$-reduction的自反传递闭包，这个在后面会用来刻画confluence性质 ## $\beta$-redex 和 $\beta$-normal form 引入这俩的意图是为了判断reduction何时停止 $\beta$-redex&#x3D;$\beta$-reduction expression，意思是形如 $(\lambda x.M)N$ 这样的term。这样的形式仍然可以根据$\beta$-reduction rule来进一步化简 $\beta$-normal form指的是不含$\beta$-redex的项，注意到所有的reduction都是基于$\beta$-reduction定义的，不含$\beta$-redex意味着不能再reduce。如果我们把reduction看成映射，那么就可以认为是到达了一个reduction操作下的不动点 ## $\eta$-reduction 这个主要是利用了函数的*外延性等价*。意思是说，如果两个函数对于相同的输入有相同的输出，那么它们就可以互相替换 一个例子也是从sicp中来的。假如我们要构造有理分数这一数据类型，并打算用pair来构造，那么可以写成如下形式： ```scheme (define (make-rat a b) (cons a b)) ``` 也可以这么写： ```scheme (define make-rat cons) ``` 具体到$\lambda$-calculus就是： 若 $f&#x3D;g$，那么 $\lambda x. f\; x&#x3D;\lambda x.g\; x$ ## Confluence Church-Rosser Confluence Theorem： **对于任意的term $M$，若存在两个不同的reduction序列使得 $M\overset*\rightarrow A$，$M\overset*\rightarrow B$，那么就必然存在一个term $N$ 使得 $A\overset*\rightarrow N$ 且 $B\overset*\rightarrow N$**。注意$A$、$B$、$N$都有可能相等 推论：在$\alpha$-equivalence下，每个term如果存在$\beta$-normal form，那么这个形式是唯一的 反证即可，如果存在两个那么就违反了上述定理。 需要**注意**的是，这里并没有说“任意推导序列都能得到normal form”，只是说 1. 如果从同一个term开始推导，那么两个推导序列中将会存在一个公共项（不一定是normal form） 2. 如果一个term开始推导能得到一个normal form，那么这个形式在$\alpha$-equivalence意义下唯一 ## Reduction Strategies 回忆scheme求值的正则序和应用序（即先代换形参还是先对实参求值）策略，正好对应了$\lambda$-calculus的不同reduction”路径”，也就是策略。 实际上就是取 $\rightarrow_\beta$ 这个二元关系的一个子集，在**牺牲一些推导能力的前提下使每步推导确定下来** 之所以会出现策略的不同，是因为一个term可能存在多个$\beta$-redex，每一步的选取就造成了化简序列的差异。而虽然我们知道normal form唯一，但**并不是所有的推导序列都能终止**，**也并不是所有的term都有normal form**。 一个比较好玩的例子就是 $(\lambda x.x\; x)(\lambda x.x\; x)$，这就是没有normal form的term 利用上面的例子可以构造出如下式子 $(\lambda u.\lambda v.v)((\lambda x.x\; x)(\lambda x.x\; x))$，它就存在一个无法终止的推导序列 ### Normal-order reduction 每次选择最左、最外的redex 有定理：Normal-order reduction一定能找到normal form（如果存在的话） ### Applicative-order reduction 每次选择最左、最内的redex 这两种规约的效率谁更优是不一定的 ## Evaluation Strategy 好像搜了很多地方都没有找到类似的定义，可能这是村规 Evaluation和Reduction的区别在于 1. Evaluation只要求最后是一个特殊的形式(canonical form) 2. Evaluation会尽可能避免对function body化简 ### Canonical Form 意思是形如 $\lambda x. M$ 这样的term 一个Closed Normal Form一定是Canonical Form（所有变量都bounded，且不能再规约，意味着最外面是$\lambda x. M$ 的形式），反之则不然（很显然一个CF仍然可能被规约简化） ### Normal Order Evaluation Rules 注意到，如果normal order reduction停止了，那么在规约过程中一定存在一个canonical form。因此提出normal order evaluation的求值策略，规则如下 1. $\lambda x. M\Rightarrow \lambda x.M$，意思是在此处停止 2. 如果$M\Rightarrow\lambda x. M’$，且$M’[N&#x2F;x]\Rightarrow $P，那么$M\; N\Rightarrow P$，意思是先把function body规约成canonical form(也就是一个标准的function形式)，再带入parameter，最后整体化简 ### Eager Evaluation Rules 这个考虑的则是applicative order reduction的evaluation，即先把parameter化成CF，再进行形参代换 1. $\lambda x. M\Rightarrow \lambda x. M$ 2. 若$M\Rightarrow \lambda x.M’$，$N\Rightarrow N’$，$M’[N’&#x2F;x]\Rightarrow P$，那么 $M\; N\Rightarrow P$，注意观察与上面的不同 ## Fun Func 给几个好玩的例子吧，可以在lambda calculus interpreter里面玩一玩 ### Bool $True&#x3D;\lambda x.\lambda y. x$ $False&#x3D;\lambda x.\lambda y. y $ 编码其实是任意的，类比函数等价定义的外延性（在相同输入下有相同输出），数据等价定义为**它们在相同操作下有相同的行为** negate就比较取巧了 $negate &#x3D; \forall b. b\;False\;True$ 然后可以写一个mux，可以方便后面的二元函数 即$if(A)then(B)else(C)&#x3D;(A\;B)\;C$ 于是就可以很容易地写出and和or和xor，实际上只需要写出三个中的一个就完备了 $and&#x3D;\lambda x.\lambda y. if(x)then(y)else(False)$ $or&#x3D;\lambda x.\lambda y.if(x)then(True)else(y)$ $xor&#x3D;\lambda x.\lambda y.if(x)then(negate\; y)else(y)$ ### Natural 如何判断一个自然数是$0$ $isZero&#x3D;\lambda n.(n\;(\lambda x.False)\;True)$ 注意到当$n&#x3D;0$时得到的是单位函数，否则得到常函数$False$ 其他部分都快写烂了，跳 ### Recursion 这个比较好玩，之前算是没怎么搞懂 还是那个玩烂了的例子，我们要算阶乘 很容易写出 $fact&#x3D;\lambda n.if (isZero\;n)then(1)else(mult\;n\;(fact\;(pred\; n)))$ 问题在于等式两侧都出现了$fact$，在具体语言中就表现为我们必须给递归函数一个**名字**才能调用递归 接下来就是很神奇的操作了 考虑这个函数 $Func&#x3D;\lambda f.\lambda n.if (isZero\;n)then(1)else(f\;n\;(f\;(pred\; n)))$，它接受一个函数 $f$，返回一个$f$的递归调用。那么上面的定义就可以解释为**$fact$是函数$Func$的不动点**，即$Func\;fact&#x3D;fact$ 也就是说，虽然我们不能给$fact$命名，但是我们可以通过一个不含$fact$的式子把它算出来 算不动点也是很神奇的操作 回忆之前的神奇表达式 $\Omega&#x3D;(\lambda x.x\; x)\,(\lambda x.x\; x)$，可以构造（怎么想到的？！）一个新的函数 $Y&#x3D;\lambda F.(\lambda x.F(x\;x))\,(\lambda x.F(x\;x))$ 观察 $YF&#x3D;(\lambda x.F(x\; x))\,(\lambda x.F(x\;x))&#x3D;F((\lambda x.F(x\;x))\,(\lambda x. F(x\;x)))&#x3D;F(YF)$ 大概的idea就是我们希望每次apply完之后，前面多出一个$F$而后面保持不变，这样就可以得到不动点 那么阶乘就可以写成 $\lambda n.if(isZero\; n)then(1)else(mult\;n\;((Y\;(\lambda f.\lambda n.if (isZero\;n)then(1)else(f\;n\;(f\;(pred\; n))))\; (pred\; n)))))$</p>
+<!-- more -->
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-09-16 11:36:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903%20Lambda + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F09%2F16%2F%25E5%25BD%25A2%25E5%25BC%258F%25E8%25AF%25AD%25E4%25B9%258903-Lambda%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

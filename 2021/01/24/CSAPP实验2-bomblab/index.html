@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      CSAPP实验2 : bomblab 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">CSAPP实验2 : bomblab</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-01-24 00:41:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>观察之后还可以发现有所谓的`secret_phase`和`func7`之类的东西，但是感觉差不太多了也就不太想做…就这样吧 # 前置姿势&#x2F;技能 — 这里记一下做lab需要的前置姿势&#x2F;技能,尽量不和理论方面的东西重叠吧… 编译实际上就是把源代码变成一堆CPU指令的过程(在这里到这个程度就够了) GCC使用的是叫`ATT`格式的汇编,和`Intel`格式的汇编有很多不一样,最显著的就是操作元素的顺序…看文档的时候要小心 编译产生`.s`文件: ```gcc -Og -S file.c``` 编译产生`.o`文件: ```gcc -Og -c file.c``` 以上`-Og`是为了避免过度优化使得程序的执行顺序和结构发生变化 反汇编得到一堆指令: ```objdump -d file``` gdb打印寄存器内容: ```i registers``` gdb打印内存内容: ``` x &#x2F; ``` &gt; n、f、u 为可选参数，其中n 表示显示内存的长度，也就是说从当前地址向后显示几个地址的内容；f 表示显示的格式(b)；u 表示将多少个字节作为一个值取出来，如果不指定的话，GDB默认是4个bytes，如果不指定的话，默认是4个bytes。当我们指定了字节长度后，GDB会从指内存定的内存地址开始，读写指定字节，并把其当作一个值取出来。为起始内存地址。 参数 f 的可选值： x 按十六进制格式显示变量。 d 按十进制格式显示变量。 u 按十六进制格式显示无符号整型。 o 按八进制格式显示变量。 t 按二进制格式显示变量。 a 按十六进制格式显示变量。 c 按字符格式显示变量。 f 按浮点数格式显示变量。 参数 u 的可选值： b 表示单字节 h 表示双字节 w 表示四字节 g 表示八字节 上面的内容摘自[GDB查看内存](<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/7470.html">http://c.biancheng.net/view/7470.html</a>) 这个非常有用,事实上知道了这个我才做出了Phase_1,用了这么久gdb还是只会fileqlsrb真是惭愧… 打印`PC`寄存器往后5条指令，在做lab3的时候比较有用 `x &#x2F;5i $pc` 有些程序运行需要参数，就可以用这个命令来设置 `set args xxx` ## Phase_1 — 终于做完了第一个QUQ 读代码 ``` 0000000000400ee0 : 400ee0: 48 83 ec 08 sub $0x8,%rsp 400ee4: be 00 24 40 00 mov $0x402400,%esi ; 这里给出了第二个参数,实际上就是要和input比较的字符串常量 400ee9: e8 4a 04 00 00 callq 401338 400eee: 85 c0 test %eax,%eax 400ef0: 74 05 je 400ef7 ; 如果返回值是0则安全 400ef2: e8 43 05 00 00 callq 40143a 400ef7: 48 83 c4 08 add $0x8,%rsp 400efb: c3 retq ``` 重点在于函数名strings_not_equal和400ee4的位置给出了%esi 我们知道%rdi和%rsi表示传入的前两个参数,而%rdi是输入的串的起始字符的地址,那么%rsi就是目标串的起始字符的地址了 知道了这个地址就可以进GDB扫内存，这里扫出来结果是 ``` (gdb) x &#x2F;60db 0x402400 0x402400: 66 111 114 100 101 114 32 114 0x402408: 101 108 97 116 105 111 110 115 0x402410: 32 119 105 116 104 32 67 97 0x402418: 110 97 100 97 32 104 97 118 0x402420: 101 32 110 101 118 101 114 32 0x402428: 98 101 101 110 32 98 101 116 0x402430: 116 101 114 46 0 0 0 0 0x402438: 87 111 119 33 ``` 很显然到0就停止了,剩下的就是把这个字符序列由ascii码变成字符就完了,现在看看不是太难的…难点在于不要被绕晕 ## Phase_2 — 有了第一个铺垫第二个就比较简单了(bushi) 还是先贴代码,这里把关键的循环抠出来了 ``` 400f0a: 83 3c 24 01 cmpl $0x1,(%rsp) 400f0e: 74 20 je 400f30 ; if (%rsp)&#x3D;&#x3D;1 safe, a[1]&#x3D;1 400f10: e8 25 05 00 00 callq 40143a 400f15: eb 19 jmp 400f30 400f17: 8b 43 fc mov -0x4(%rbx),%eax 400f1a: 01 c0 add %eax,%eax 400f1c: 39 03 cmp %eax,(%rbx) 400f1e: 74 05 je 400f25 ; if 2*a[i]!&#x3D;a[i+1] bomb 400f20: e8 15 05 00 00 callq 40143a 400f25: 48 83 c3 04 add $0x4,%rbx 400f29: 48 39 eb cmp %rbp,%rbx 400f2c: 75 e9 jne 400f17 400f2e: eb 0c jmp 400f3c 400f30: 48 8d 5c 24 04 lea 0x4(%rsp),%rbx 400f35: 48 8d 6c 24 18 lea 0x18(%rsp),%rbp 400f3a: eb db jmp 400f17 ``` 同样函数名给的提示很多,看过课程视频&#x2F;看过书都应该知道只有前6个函数参数存在寄存器里,多余的参数都会都按照逆序插入到栈中(why?这样弹出的第一个就是最前面的参数,以此类推) 难点在于搞清楚内存分部和内存里储存的值究竟是什么,以及sscanf这个函数的返回值…. 因此只要画出内存的地址&amp;内容表格来就可以很简单地做出来了,答案是一个长为6的满足某些常数项递推条件的数列 ## Phase_3 — 感觉这个比前两个都要简单了 观察实现可以发现是对参数%rdi作0<del>7的switch-case判断,不同的%rdi对应不同的值%eax 炸弹不爆当且仅当%rsi&#x3D;%eax,因此正确的输入有8对.我试了两个都是可以的,剩下的就没试了(太困了) 关键在这一句 ``` 400f75: ff 24 c5 70 24 40 00 jmpq *0x402470(,%rax,8) ; jump to mem[0x402470+x*8] ``` 用GDB硬扫就可以了,注意用&#x2F;8xg+地址来扫 ## Phase_4 — `func_4`写出来类似这样子,看上去是个递归实际上观察phase_4的初始条件可以知道最开始带入的x&#x3D;tx,y&#x3D;0,z&#x3D;14 这里tx,ty表示读入的两个数字,再观察到所谓的q&lt;&#x3D;x且q&gt;&#x3D;x就是解一个简单的方程的条件,算出答案就可以了 ```c int func4(int x,int y,int z) { int t &#x3D; z - y; int q &#x3D; ( (unsigned) t) &gt;&gt; 31; t +&#x3D; q; t &gt;&gt;&#x3D; 1; q &#x3D; t + y; if (q &lt;&#x3D; x) { if (q &gt;&#x3D; x) return 0; return 2 * func4(x, q + 1, z) + 1; } else { return 2 * func4(x, y, q - 1); } } ``` phase_4的部分关键在这些地方 ```asm 40102e: 83 7c 24 08 0e cmpl $0xe,0x8(%rsp);if *tx&lt;14 bomb 401033: 76 05 jbe 40103a 401035: e8 00 04 00 00 callq 40143a 40103a: ba 0e 00 00 00 mov $0xe,%edx;z&#x3D;14 40103f: be 00 00 00 00 mov $0x0,%esi;y&#x3D;0 401044: 8b 7c 24 08 mov 0x8(%rsp),%edi;x&#x3D;*tx 401048: e8 81 ff ff ff callq 400fce 40104d: 85 c0 test %eax,%eax;if func4(tx,0,14)!&#x3D;0 bomb 40104f: 75 07 jne 401058 ``` ## Phase_5 — 一开始被%fs这个寄存器吓到了,往后看书才知道这个就是所谓的canary机制,在这里可以不用管</del> 剩下的就不是太难。这个函数主要实现了通过一个循环来获取一个常字符串的某些位置得到一个新的串，并将这个串和串”flyers”进行比较 关键是这个循环部分，看懂就非常简单 ``` 401089: eb 47 jmp 4010d2 40108b: 0f b6 0c 03 movzbl (%rbx,%rax,1),%ecx;此时rax为0,rbx为str,故rcx&#x3D;*str 40108f: 88 0c 24 mov %cl,(%rsp);mem[rsp]&#x3D;str[0] 401092: 48 8b 14 24 mov (%rsp),%rdx;rdx&#x3D;str[0] 401096: 83 e2 0f and $0xf,%edx;rdx&amp;&#x3D;15,此时rdx&lt;&#x3D;15 401099: 0f b6 92 b0 24 40 00 movzbl 0x4024b0(%rdx),%edx; 4010a0: 88 54 04 10 mov %dl,0x10(%rsp,%rax,1) ;mem[rsp+0x10+rax]&#x3D;mem[0x4024b0+rdx] 4010a4: 48 83 c0 01 add $0x1,%rax;rax+&#x3D;1 4010a8: 48 83 f8 06 cmp $0x6,%rax; 4010ac: 75 dd jne 40108b ;while ``` ## Phase_6 — 最后一题有点难度 首先可以把代码分成四块。 第一部分程序读入了6个数字，并检查它们是否全都不一样(否则就炸)且都在1到6之间 第二部分程序把每个a[i]都变成7-a[i] 第三部分实现了令c[i]&#x3D;b[a[i]],其中b是一个常量数组,c是一个结果 第四部分实现了判断c是否递减,否则就炸 1、2都很简单，4在搞清楚3之后也很简单 ``` ;begin loop; 401176: 48 8b 52 08 mov 0x8(%rdx),%rdx 40117a: 83 c0 01 add $0x1,%eax 40117d: 39 c8 cmp %ecx,%eax 40117f: 75 f5 jne 401176 ;end loop ``` 观察这段代码，%ecx储存了a[i]，它实际上实现了找到b中的第a[i]个数，并取出它的位置储存在%rdx中的功能 其中 ``` 4011a4: ba d0 32 60 00 mov $0x6032d0,%edx ``` 给出了b数组的起始位置，那么我们在gdb中扫就可以了，出来的结果是这样的 ![](<a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1010529/202101/1010529-20210127225348253-1280795220.png">https://img2020.cnblogs.com/blog/1010529/202101/1010529-20210127225348253-1280795220.png</a>) 第一列就是b中的值 这时候再看第四部分，可以发现这是在遍历c中的6个数字观察它们是否按照一定顺序(降序)排好了 现在就很好猜了，第三部分首先用a[i]找到第a[i]个b中的元素，再把它存储到c[i]中。中间有点绕是因为程序对第一个元素做了特殊处理，编译器对默认情况的优化有点诡异… 所以对着图里的数字排序就好了，这样就做完了Phase_6</p>
+<!-- more -->
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C1-datalab/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-01-24 00:41:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + CSAPP%E5%AE%9E%E9%AA%8C2%20%3A%20bomblab + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F01%2F24%2FCSAPP%25E5%25AE%259E%25E9%25AA%258C2-bomblab%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

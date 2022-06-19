@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      计算方法4 图的随机游走 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">计算方法4 图的随机游走</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-05-10 19:58:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>Markov Chain 的本质是概率状态机，这么想就很简单了 为了偷懒只讨论有限的情形 # 前置 离散概率分布可以表示为 $\R^n$ 上的向量 $x$，满足 $\sum_{i&#x3D;1}^n x_i&#x3D;1$ 且 $\forall i,x_i\in[0,1]$ 对于用向量表示的概率分布，可以定义两个分布的“距离”： $$ d_{TV}(p,q)&#x3D;\frac{1}{2}\norm{p-q}_1&#x3D;\frac{1}{2}\sum_{i&#x3D;1}^n\abs{p_i-q_i} $$ 这里 $d_{TV}(,)$ 表示 total variation distance。这样就可以定义一列分布的收敛性和极限了。 # Markov Chain 对于一系列数量有限的状态，给出每个状态转移到下一个状态的概率 $Pr[s_i&#x3D;y\mid s_{i-1}&#x3D;x]$，这就构成了一个状态机。把状态看成点，转移概率看成边权，就得到了一个有向带权图，并且这个图满足一些特殊的性质。 考虑怎么算出现在状态 $i$ 的概率，这本质上是一个一阶递推，写出来就是 $$ p_{k+1}&#x3D;Tp_k $$ 这里 $p_k$ 表示走了恰好 $k$ 步后，处在每个状态上的概率分布 ## 定义 ### 周期 对于状态 $i$，其周期定义为 $gcd\{t\mid {P^t}_{i,i}&gt;0\}$，记为 $period(i)$。称 Markov Chain 非周期当且仅当所有状态的周期都是 $1$ 直观理解：从 $i$ 出发后走恰好 $t$ 步回到 $i$，所有这样的圈的长度的 gcd 即为周期。 这么定义的用处可以在后面看到。 ### 不可约 有限图不可约当且仅当其为强连通图。此处强连通的定义为：任取 $x,y\in V(G)$，存在两条有向路径 $P_1,P_2$ 使得 $P_1&#x3D;x\rightsquigarrow y,P_2&#x3D;y\rightsquigarrow x$。**不要求 $P_1,P_2$ 点不相交** ## 性质 若 Markov Chain 不可约、非周期，则存在常数 $T$ 使得当 $t&gt;T$ 时，${P^t}_{i,j}&gt;0$ 对任意 $i,j$ 成立 直观理解：走了足够多步后不存在走不到的状态。 只需要证明存在常数 $L$，使得任意长度至少为 $U$ 的路径，都能在任意两点间找到。 1. 不可约，则 $i,j$ 存在有向路径 $i\rightsquigarrow j$。 2. 非周期，则存在最大的无法由两个圈线性组合出的正整数 $a\times b-a-b$ （NOIP2017，哈哈），记为 $mn(i)$，则此后的任意长度都可以由两个互质的圈线性组合出来。 3. 只需要取 $T&#x3D;n+\max\{mn(i)\}$，则此后可以在任意节点对之间游走。 ## 稳态分布 考虑给定初始分布 $p_0$，则极限 $\lim\limits_{k\to\infty} P^k p_0$ 称为 Markov Chain 的极限分布。 若分布 $\pi$ 满足 $P\pi&#x3D;\pi$，则称 $\pi$ 为平衡分布。可以证明极限分布若存在则必然为平衡分布。 设极限分布存在 $\lim\limits_{k\to\infty}P^k\pi_0&#x3D;\pi’$，那么有 $$ P\pi’&#x3D;P\lim\limits_{k\to\infty} P^k\pi_0&#x3D;\lim\limits_{k\to\infty} P^{k+1}\pi_0&#x3D;\pi’ $$ 这说明 $P\pi’&#x3D;\pi’$ 是一个平衡分布。 ## Markov Chain 基本定理 若 Markov Chain 不可约、非周期，那么 1. 存在稳态分布 $\pi$ 2. 对于任意的 $p_0$ 都有 $\lim\limits_{k\to\infty} P^k p_0&#x3D;\pi$ 3. $\pi$ 是唯一的 4. $\pi_i&#x3D;\dfrac{1}{E[H_i]}$，其中 $H_i$ 为随机变量，表示从 $i$ 出发后第一次回到 $i$ 的行走步数。$E[H_i]$ 称为期望回归时间。 出现这个结论的原因在于，足够久之后任意点出发都将能走到任何点，因此两个不同的出发状态在足够久之后将“无法区分” 具体的证明看不懂，咕咕咕 # Page Rank Google 提出的给网页打分的算法。它假设 1. 每个用户在页面 $x$ 浏览完后，将等概率点击一个 $x$ 中的超链接（即等概率走向一个邻居） 2. 每个用户在页面 $x$ 浏览完后，有一定概率直接跳转到任意一个页面 $y$ 可以发现 2 本质上就是新建超级点 $S$，然后每个点连向 $S$，再从 $S$ 连回所有点。 注意到 1 实际上就是在有向图上随机游走，转移矩阵恰好为度数导出的一个概率矩阵。2 保证了即使原图不是非周期、强连通时，用户这样的操作仍然可以使得随机游走存在一个稳态分布&#x2F;极限分布（新图是强连通&#x2F;非周期的，why？）。直觉也是符合的，每个人可能会突然停止浏览，然后从另一个完全不相关的页面重新开始冲浪。 并且这样的分数（概率分布）只与图的结构有关，与初始迭代向量没有关系。</p>
+<!-- more -->
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-05-10 19:58:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%955-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954%20%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0 + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F05%2F10%2F%25E8%25AE%25A1%25E7%25AE%2597%25E6%2596%25B9%25E6%25B3%25954-%25E5%259B%25BE%25E7%259A%2584%25E9%259A%258F%25E6%259C%25BA%25E6%25B8%25B8%25E8%25B5%25B0%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

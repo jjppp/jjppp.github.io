@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      软件分析笔记8 Datalog 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">软件分析笔记8 Datalog</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-08-13 14:29:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>Datalog &#x3D; Data + Logic，是声明式编程语言(Declarative Programming Language) Prolog的一个子集 Datalog最早作为数据库的查询语言出现，是**非**图灵完备的编程语言 ## 语法 和数理逻辑的命题逻辑、谓词逻辑基本是一致的，如果看的教材和我一样是Mathematical Logic in Computer Science的话甚至会发现很多描述的语句都是一样的 `,`表示and `;`表示or `!`表示not，这些运算可以用括号改变优先级 每条语句的最后要加`.`表示结束，这个老是忘…. ### Predicate 即谓词。谓词可以看成是一个函数，n元谓词就是一个$D^n\mapsto \left\{\;0,1\;\right\}$的函数，其中$D$是命题变元(变量)与命题常元(常量)构成的集合 在Datalog中，我们讨论的都是有限论域，因此使谓词P为真的命题有限。记$F(P)$为所有在谓词P下为真的n元组，则我们称这些元素为Facts。这样就把一个函数变成判断元素是否属于某集合的问题了。 谓词分为两类，算术谓词`x &gt;&#x3D; y`和关系谓词`Friends(x, y)`，算术谓词是Unbounded的 ### Inference Rules 即推理规则。用PPT的例子就是Datalog的推理规则形如 ```py Adult(x) &lt;- Person(x, age), age &gt;&#x3D; 18. ``` `&lt;-`可以看成是向左的箭头(好形象！)，箭头左侧的称为Head，右侧是Body。语句的意思是”若Body为真，则Head为真” 这句话的意思是”若x是age岁的人 且 age&gt;&#x3D;18 那么x是成年人” 考虑形式化命题会怎么说 $((\forall x)(Person(x)\wedge Age(x)&gt;&#x3D;18))\vdash Adult(x) $ 观察区别即可发现，如果不使用函数的概念(形式化命题里的$Age()$)，我们就需要维护某个元素所有相关的信息，即用元组 #### 求解 就是列真值表，$\prod\limits_{B\in Body} |B|$枚举所有可能的值求解$F(P)$ #### Safe Rules 既然涉及到枚举，就要看看是不是可穷尽的 考虑如下两组Rules ```py A(x) &lt;- B(y), x &gt;&#x3D; y. ``` ```py A(x) &lt;- B(y), !C(x, y). ``` 对于1. 如果我们讨论的是正整数域，且$F(B)$非空，则必然存在无穷多的x满足要求… 对于2. 由于$F(C)$有限，因此$F(!C)$有无穷多元素，因此也存在无穷多的x满足要求… 基于上述情况，Datalog对Rules作出了规定： Head中的变元必须在Body中的某个**非否定**谓词中出现过(即必须是Bounded Variable) 同样，再考虑如下Rule ```py A(x) &lt;- !A(x). ``` 很显然就不是合理的Rule，毕竟都不是重言式…因此设定Rules的时候也要考虑是否永真的问题(不能有矛盾) ### IDB &amp; EDB IDB &#x3D; Intensional DataBase 内涵谓词 EDB &#x3D; Extensional DataBase 外延谓词 大概理解就是在初始阶段会规定一些谓词，这些就是EDB 而在推理过程中出现的谓词则是IDB。Head一定是IDB，而Body可以IDB、EDB 通常EDB是不可变的(常元)，而IDB可以随着程序的进行而修改，例如如果我想表示”喜欢猫 或 喜欢狗 的人是好人”，那么我可以写 ```py Good(x) &lt;- Likes(x, “Dog”). Good(x) &lt;- Likes(x, “Cat”). ``` 当然也可以写 ```py Good(x) &lt;- Likes(x, “Dog”); Likes(x, “Cat”). ``` ### 递归 Datalog的强大之处就在于递归 考虑给定等价关系集合的传递闭包，就可以这么写 ```py Eq(x, y) &lt;- Rel(x, y) Eq(x, y) &lt;- Eq(x, z), Rel(z, y) ``` 其中`Rel(x, y)`是EDB中提前定义好的常元 ## 在指针分析中的应用 应用Datalog就能很容易翻译和实现前面讲到的Flow Insensitive &amp; Context Insensitive分析 首先规定下面几个谓词 ```py New(x, o) Assign(x, y) Store(x, f, y) Load(x, y, f) VCall(l, x, k) #l: x.k(a1,a2…an) Dispatch(o, k, m) ThisVar(m, this) Argument(l, i, ai) #ith argument at l: is ai Parameter(m, i, pi) #ith parameter at method m is pi MethodReturn(m, ret) #return var at method m is ret CallReturn(l, r) #r receives return value at l: ``` 推导规则就是翻译PPT ```py VarPointsTo(x, o) &lt;- New(x, o). VarPointsTo(x, o) &lt;- VarPointsTo(y, o), Assign(x, y). FieldPointsTo(o1, f, o2) &lt;- VarPointsTo(x, o1), VarPointsTo(y, o2), Store(x, f, y). VarPointsTo(x, o2) &lt;- VarPointsTo(y, o1), FieldPointsTo(o1, f, o2), Load(x, y, f). CallGraph(l, m), Reachable(m), VarPointsTo(this, o) &lt;- VCall(l, x, k), VarPointsTo(x, o), Dispatch(o, k, m), ThisVar(m, this). VarPointsTo(pi, o) &lt;- CallGraph(l, m), Argument(l, i, ai), Parameter(m, i, pi), VarPointsTo(ai, o). VarPointsTo(r, o) &lt;- MethodReturn(m, ret), CallGraph(l, m), CallReturn(l, r), VarPointsTo(ret, o). ``` 全程序分析还要加上一个默认的入口方法，没了</p>
+<!-- more -->
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-08-13 14:29:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B09-CFL-R-IFDS/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B08%20Datalog + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F08%2F13%2F%25E8%25BD%25AF%25E4%25BB%25B6%25E5%2588%2586%25E6%259E%2590%25E7%25AC%2594%25E8%25AE%25B08-Datalog%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B08-Datalog/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

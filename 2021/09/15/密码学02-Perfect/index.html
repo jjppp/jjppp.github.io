@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      密码学02 Perfect 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">密码学02 Perfect</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-09-15 01:26:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>## 概率论前置技能 其实就三个公式 条件概率公式： $Pr[B|A]&#x3D;\dfrac{Pr[A\wedge B]}{Pr[A]}$，这个是定义 贝叶斯公式 $Pr[B|A]&#x3D;\dfrac{Pr[A|B]\cdot Pr[B]}{Pr[A]}$，这个只需要按照上面的展开就可以证明 全概率公式 $Pr[A]&#x3D;Pr[A|B_1]\cdot Pr[B_1]+Pr[A|B_2]\cdot Pr[B_2]+\cdots +Pr[A|B_n]\cdot Pr[B_n]$，意思是把整个概率空间作划分，然后分别考虑这些划分内部事件 $A$ 的那部分，最后合并在一起 ## 获取随机数 注意到一套encryption scheme包括一个Gen()操作生成一个key，我们会需要一个随机生成数据的方法来产生密钥 首先我们需要收集若干high-entropy的数据，然后通过特殊的处理来生成nearly independent and unbiased bits high-entropy意味着高不确定性，而nearly independent and unbiased则对最终产生的数据有一些要求 一个例子就是扔硬币。假设每次扔硬币事件独立，正反面概率分别为 $p,1-p$，那么我们可以扔很多次，然后： 如果出现连续的”正反”，就写下一个”1”；如果出现连续的”反正”，就写下一个”0” 注意到它们的概率都是 $p(1-p)$，因此就得到了一个uniformly distributed output 通常用作cryptography的随机数算法有特殊的要求，因此不是所有的随机数生成器都可以用于特定的加密算法的，这一点需要注意（也即正确使用加密算法的注意事项） ## 一些定义 $\mathcal {K,M,C}$ 分别表示密钥、消息、密文空间（即集合），$\text{Gen,Dec,Enc}$ 分别表示密钥生成器、解密器、加密器三个算法&#x2F;函数。通常我们规定 $|\mathcal M|&gt;1$，这是因为如果你要发送的信息永远只有一种，那就没有破译的必要而只存在是否发送这一区别了….即信息是不确定性的度量，因此消息空间必须具有不确定性（每次可能传送的消息不止一种） $\text{Gen}$ 会随机产生一个key，而 $\Im \text{ Gen}&#x3D;\mathcal K$ $\text{Enc}$ 会输入一个 $m\in\mathcal M$，并根据key $k$ 产生一个密文 $c\in\mathcal C$。我们允许 $\text{Enc}$ 是probabilistic的，即每次都按照一定概率生成出不同的密文。通常写作 $c\leftarrow \text{Enc}_k(m)$。这是一个functionality $\text{Dec}$ 会将给定的密文 $c\in\mathcal C$ 根据key $k$ 产生对应的原文 $m$，我们要求即使 $\text{Enc}$ 并非是确定性的，也应该有 $\text{Dec}(\text{Enc}_k(m))&#x3D;m$ 成立 我们传统上认为一段原文应该是确定的，但事实并非如此。一个独特的视角是，原文 $m$ 可以看成是对 $\mathcal M$ 上具有特定概率分布的随机变量 $M$ 进行采样得到的结果，这是站在攻击者的视角考虑的。 $\mathcal M$ 上的概率分布与加密策略无关，而只由使用者决定。 我们通常假设 $K$ 和 $M$ 这两个随机变量是独立的，意思是发送消息的人的消息分布不应该受到他所使用的加密策略的影响。 如果我们确定了加密策略和发送消息的人（即 $\mathcal M$ 上的概率分布），那么就确定了 $\mathcal C$ 上的概率分布。 ## Perfect Secrecy 一些关于攻击者的假设： 1. 攻击者可以窃听密文 2. 攻击者**可以**知道所有可能发送消息的集合和消息空间的概率分布 3. 同时这个攻击者也知道加密策略 4. 但他仅仅只是不知道具体哪条消息被发送了而已 Perfect Secrecy的意思就是，攻击者无法通过密文来改变他对 $\mathcal M$ 上的概率分布的认识 形式化写出来就是： $\forall m\in\mathcal M,c\in\mathcal C:Pr[M&#x3D;m\;|\; C&#x3D;c]&#x3D;Pr[M&#x3D;m]$ 这里要求 $Pr[C&#x3D;c]&gt;0$ 用条件概率拆开就是 $Pr[M&#x3D;m\wedge C&#x3D;c]&#x3D;Pr[M&#x3D;m]\times Pr[C&#x3D;c]$ 另一种等价表述是这样的： $\forall m,m’\in\mathcal M, c\in\mathcal C:Pr[\text{Enc}(m)&#x3D;c]&#x3D;Pr[\text{Enc}(m’)&#x3D;c] \text{ (1)}$ 也就是说，对于给定的任意的密文 c，我们都无法区分是明文m加密成了它还是明文m’加密成了它 有引理：加密策略是perfectly secret的当且仅当它满足$(1)$ 式 $\Rightarrow$ 需要注意到这样一个等式：$Pr[C&#x3D;c|M&#x3D;m]&#x3D;Pr[c&#x3D;\text{Enc}_k(m)]$ 意思是说，如果我们已经知道了 $M&#x3D;m$ 的条件，那么 $C&#x3D;c$ 的概率就是 $c&#x3D;\text{Enc}_k(m)$ 的概率。因为原文已经作为条件给出，因此我们可以这么做 于是就有 $Pr[c&#x3D;\text{Enc}_k(m)]&#x3D;Pr[C&#x3D;c|M&#x3D;m]&#x3D;\frac{Pr[M&#x3D;m|C&#x3D;c]\times Pr[C&#x3D;c]}{Pr[M&#x3D;m]}$ 又根据perfectly secret的定义我们有 $Pr[M&#x3D;m|C&#x3D;c]&#x3D;Pr[M&#x3D;m]$，因此带入上式就有 $Pr[c&#x3D;\text{Enc}_k(m)]&#x3D;Pr[C&#x3D;c]$ 注意到此处 $m$ 是任意的，因此自然满足等式$(1)$，证毕。 反方向类似，贝叶斯公式拆开再用那个观察到的等式和全概率就可以啦 ### Perfect adversarial indistinguishability 好长的名字… 第三个等价的，用一个game表述的perfect secrecy是这样的： 有一个假设拥有任意算力的攻击者 $\mathcal A$，他可以选择两个明文 $m_0,m_1\in\mathcal M$，然后交给一个决策者 决策者会随机一个$0&#x2F;1$比特 $b$，然后把 $c&#x3D;\text{Enc}_k(m_b)$ 交给 $\mathcal A$，由 $\mathcal A$ 判断这是哪个明文加密形成的 对于一个加密策略，我们用三元组 $\Pi&#x3D;(\text{Gen, Enc, Dec} )$ 表示，并用 $\text{PrivK}^{eav}_{\mathcal A,\Pi} &#x3D;1$ 表示某一轮猜测的结果正确，用 $0$ 表示猜测错误 一个很naive的策略就是一直猜$0$，那么这样正确率就是$\frac{1}{2}$的，因为 $b$ 是随机的。 若对于任意的 $\mathcal A$，都有 $Pr[\text{PrivK}^{eav}_{\mathcal A,\Pi}&#x3D;1]&#x3D;\frac{1}{2}$，那么我们称这个加密策略是perfectly adversarial indistinguishable的 可以证明这个定义和perfect secrecy的定义是等价的。因为是作业内容所以就不放证明了 这里的 $\mathcal A$ 并不一定要是具体的人，当然也可以是某种算法、某段程序。 ### One Time Pad 这个策略的perfect secrecy是由大名鼎鼎的香农证明的。 给出构造如下： 对于一个固定的正整数 $l$，我们规定 $\mathcal M&#x3D;\mathcal C&#x3D;\mathcal K&#x3D;\left\{\;0,1\;\right\}^l$ $\text{Gen}$ 等概率从 $\mathcal K$ 中选取一个串，$\text{Enc}$ 则输出key和m按位异或的结果，$\text{Dec}&#x3D;\text{Enc}$ 很显然这个策略满足我们对加密策略一般性的要求，也不难证明这是perfectly secret的 对于任意的 $c\in\mathcal C,m\in\mathcal M$，我们固定这样的 $c,m$，于是 $Pr[C&#x3D;c|M&#x3D;m]&#x3D;Pr[\text{Enc}_k(m)&#x3D;c]&#x3D;Pr[m\oplus K&#x3D;c]&#x3D;Pr[K&#x3D;c\oplus m]$ $K$ 是key的随机变量，而 $c,m$ 是任意定的串，于是这个式子就是从key space中取出一个特定串 $c\oplus m$，概率即为 $\frac{1}{2^l}$ 又 $Pr[C&#x3D;c]&#x3D;\sum\limits_{m\in\mathcal M}Pr[C&#x3D;c|M&#x3D;m]\times Pr[M&#x3D;m]&#x3D;\frac{1}{2^l}\sum\limits_{m\in\mathcal M}Pr[M&#x3D;m]&#x3D;\frac{1}{2^l}$ 于是我们的老朋友贝叶斯公式又来了 $Pr[M&#x3D;m|C&#x3D;c]&#x3D;\frac{Pr[C&#x3D;c|M&#x3D;m]\cdot Pr[M&#x3D;m]}{Pr[C&#x3D;c]}&#x3D;Pr[M&#x3D;m]$，就证明完了 这个加密策略确实很牛逼，但是存在一些问题使得现在很少用它。 1. Key太长了，实际上必须和m等长。如果可以安全运输这么长的key，为啥不直接运输m呢？ 2. Key必须是One-time的。假设一个攻击者连续获取到了两次用同样key的信息$c_1,c_2$，那么根据$\text{Enc}(x)&#x3D;x\oplus k$，很容易就能得到 $c_1\oplus c_2&#x3D;m_1\oplus k\oplus m_2\oplus k&#x3D;m_1\oplus m_2$，这就泄露了部分信息。结合1使得这个方法变得非常昂贵 ### Limitations 有如下定理： 给定perfectly secret scheme $\Pi&#x3D;(\text{Gen, Enc, Dec})$，则 $|\mathcal K|\geqslant |\mathcal M|$ 由反证法，假设 $|\mathcal K|&lt;|\mathcal M|$，那么取如下集合： $\mathcal M(c)&#x3D;\left\{\;m\;|\;\text{Dec}_k(c)&#x3D;m\text{ for some }k\in\mathcal K\;\right\}$ 注意到 $\text{Dec}$ 是一个函数，因此 $|\mathcal M(c)|\leqslant|\mathcal K|&lt;|\mathcal M|$ 即 $\mathcal M(c)\subseteq\mathcal M$。取 $m’\in\mathcal M\backslash\mathcal M(c)$，那么就有 $Pr[M&#x3D;m’]\neq0$，但是 $Pr[M&#x3D;m’|C&#x3D;c]&#x3D;0$，因为 $c$ 不可能被解密为 $m’$ 这个结论很厉害，直接把这条路封死了。</p>
+<!-- more -->
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8901-Intro/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-09-15 01:26:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%AF%86%E7%A0%81%E5%AD%A602%20Perfect + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F09%2F15%2F%25E5%25AF%2586%25E7%25A0%2581%25E5%25AD%25A602-Perfect%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

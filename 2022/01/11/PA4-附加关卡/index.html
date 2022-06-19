@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      PA4 附加关卡 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">PA4 附加关卡</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-01-11 01:05:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>## 试验进度 我完成了全部必做内容，最后可以用F1、F2、F3分别玩nterm、pal和bird，默认初始打开的是nterm ## 思考题 ### 为什么不叫”内核进程”? 可以发现，内核中所有正在执行的函数都共用一个虚拟地址空间——也就是内核地址空间，这是线程和进程最大的区别，因为每个进程都将会有自己的地址空间。 这也是为什么会说线程更轻，因为构造虚拟地址空间需要时间开销。 ### 虚存管理中PIC的好处 可以只保存一份程序而将其映射到不同虚拟空间中。因为PIC可以被加载到任意地方执行，因此也就可以被任意映射到不同的虚拟地址空间中，这样就可以省去静态链接时耗费的共有代码所占用的空间。 ### 理解分页细节 1. 为什么只有20位？因为一页是4KiB，因此就是12位。页表只需要指出页到页的映射关系，因此只需要说出这是2^20页中的哪一页就好了，所以只需要20位 2. 为什么要用物理地址？因为虚拟地址到物理地址需要翻译，并且非平凡的翻译需要依靠查阅页表来实现，所以如果CR3也用了虚拟地址，就会出现“访问自己的物理地址需要先知道自己的物理地址”的问题。当然这里的物理地址不是必须的，如果能够实现一个**比较简单的不依赖页表的**翻译（例如说把x映射到MAX-x这样的映射）也是可以的，这样仍然是虚拟地址，但是没有什么意义，也不够物理地址来的简单。 3. 为什么不采用一级页表？注意到一个页表项是32位，也就是4字节，所以一页只能存放2^10^&#x3D;1024项。假设只有一级页表，那么就只能储存1024页，也就是只支持1024\*4KiB&#x3D;4MiB的物理地址。而如果采用两级，就可以做到2^10^\*2^10^\*4KiB&#x3D;4GiB的物理内存了。 ### 空指针真的是”空”的吗? 不是，只是因为0在虚拟地址空间中没有映射&#x2F;有较高的访问权限，所以在进行地址转换的时候会产生异常，异常处理程序则会杀死越权访问的进程（也就是产生了段错误） 解引用的时候：获得变量的值-&gt;访问0地址-&gt;mmu进行地址转换-&gt;在页表中找不到&#x2F;没有对应权限-&gt;引发异常，进入异常处理程序-&gt;进程被杀死 ### 内核映射的作用 回忆课本上的虚拟地址空间的布局图就可以发现，每个进程都包含了内核部分的地址映射（高地址的部分留给操作系统内核） 这是很好理解的，在用户程序请求系统调用服务的时候，需要陷入内核态执行内核的代码。假如没有这一段内核映射的复制，那么就需要在trap的时候进行地址空间的切换，这样的开销是很大的。 ### native的VME实现 可以看到用到了`hsearch_r`，也就是一个利用了hash函数实现的查找表。因为map实际上就是一个映射关系，因此用hash实现虚拟页地址到物理页地址的映射就能很自然的实现了。在完成翻译层面的map之后，还要调用mmap来把物理地址和虚拟地址联系起来 ### 中断和用户进程初始化 可以 时钟中断的特点是： 1. 中断发生后，陷入前的处理器状态与返回后的处理器状态完全相同 2. 此时已经进入用户态，ksp有值，即使sp是0也可以正确保存上下文，从而使得1的性质成立 3. 所以无论在中断到来时有没有sp，都相当于没有中断，因此可以正常初始化 ### 用户态和栈指针 只需要注意到用户虚拟地址空间和内核虚拟地址空间存在差异，并且内核栈必然不在用户地址空间内即可。因此如果栈指针在内核空间而不在用户空间，就说明当前有访问内核数据的权限，因此处于内核态；否则处于用户态。 ### 如何在操作系统中实现fork()? 注意到状态机的“状态”由CPU+内存决定，而外部设备则不在考虑范围内 1. 复制地址空间的映射 2. 复制CPU状态 ## 一些记录 12月1号就已经写完了PA3+Lab4+报告，实际上一直等到了1月6号才开始着手写PA4.2后面的内容，因为手册上明明白白写着“这是最难的Phase了” 记录几个重大bug吧 ### STRACE的bug 我之前在nanos-lite的syscall中添加过一段用于识别系统调用号、并输出对应参数的调试代码，这样就可以在OS层面观察用户程序的一些行为：例如申请了多少内存、打开了哪些文件。而将调用号转变为字符串的过程我是用数组实现的（就是实现`Int-&gt;String`的函数）。对于后面添加的一些系统调用没有及时增加对应的映射，就导致会以空指针为参数调用`printf`，这样就会在`vsprintf_r`里面挂掉。 我发现这个问题是因为在打开STRACE后，程序crash的地点发生了变化，于是就开始观察测试代码，通过给测试代码打断点的方法定位crash的地方，最后发现是调用`gettimeofday`之后引发了问题，原因是我没有给`gettimeofday`的调用号分配对应的字符串 ### loader的bug（1） 其实一共有两个，每个都是惊天地泣鬼神的bug（其实并不） 背景是这样的：在执行用户程序的时候，用户程序会通过`brk`系统调用来设置program break，以此向OS动态申请内存。我们的OS就需要通过`mm_brk`来动态申请物理页，然后把对应新的虚拟地址页映射到物理页上。 第一个bug是这么观察到的：在执行用户程序的时候，`mm_brk`会一直分配物理页直到物理页耗尽！通过STRACE可以发现它第一次就用一个非常大的参数调用了`brk`（大概是0x81…..），这就让nanos-lite拼了命也搞不出足够的内存（欲求不满啊） 问题出在哪里呢？通过ITRACE我也只能发现问题现场在`malloc_r`函数里。经过一番激烈的思想斗争，我就开始翻阅libc里面的`malloc`函数的具体实现。最后发现问题是这样的：`malloc`函数会通过一个全局变量来记录已经分配了多少空间，这个全局变量应该是`.bss`节的，出现这样的问题是因为我的loader没有正确的实现对`.bss`的处理——而在没有VME的时候是可以的。 回去看loader就会发现问题是什么了：虽然同样是PT_LOAD段，但是并不是所有的页都需要写入内容，只需要改一改就可以解决了。 ### loader的bug（2） 第二个问题其实发生在很后面了，是我在写完了PA4.3之后尝试运行bird时发现的bug 背景是这样的：bird调用了库函数`hsearch`来进行一些快速的映射和查找，而在这个库里面有一个全局变量`__default_hash`，用来记录一个默认的hash函数选择。按照常理，用户的代码段应该是0x40…的一个地址，但是这个全局变量在`hsearch_r`函数里被load出来之后，再用`jal`命令跳转一下，就跑到了一个0x00…的一个地址。我百思不得其解，就开始怀疑自己的ldst写错了 中途我尝试在`BirdMain.cpp`中输出一下这个变量——做法是`extern …`，然后直接在用户程序里`printf`，这样就得到了正确的结果，并且也可以正常玩bird 因为这样的调试可能改动了代码段和数据段，因此就开始用readelf命令观察前后两份二进制文件。在写出了不同段的地址和`__default_hash`的地址之后就可以发现：这个变量位于数据段的最后四个字节！如果观察一下错误的跳转地址就可以发现，只有最高位那个4神秘消失了！ 于是就开始回头看loader，果然是loader写错了：我没有正确处理好最后一页的最后一个字节的读取问题，这样就刚好丢掉了`__default_hash`的最后一个字节，在小端机上就表现为最高位的4被吃掉了。 其实中途也怀疑过loader，不过当时想的是两个数据段相互重叠导致某些页被映射了两次，但是实际上段是不相交的，不存在这样的问题。 ### mstatus.MIE的bug 在PA4.3的时候加入了时钟中断，并且引入了中断屏蔽的机制。也就是说，在产生一个中断&#x2F;异常之后，我们需要屏蔽CPU的中断引脚（通过mstatus的某两个bit实现）防止出现中断的嵌套，例如防止在进行上下文切换时，时钟中断到来使得正在恢复的上下文丢失之类的情况。 结合PA3中启动新进程的做法：我们通过在栈上放置一个上下文，然后将栈指针移动到这个栈上来引用上下文，并通过一段汇编代码来实现上下文的恢复。这就使得我们需要在上下文中恰当地实现mstatus的功能。注意到恢复上下文的途中仍然不能响应中断，而必须等到`mret`指令执行完才能恢复响应，因此mstatus的实现就很重要了。具体的不多说，这里我写错了，就导致了这样的问题。并且关掉时钟中断后不会复发、每次出错现场不确定，属于比较难调的bug ### trap.S的bug 这里的bug似乎不太好直说，不然就没有乐趣<del>痛苦</del>了 `asm_trap`算是整个PA比较核心的部分了，并且对它的修改也需要比较清楚了解整个系统的工作原理，也是最容易出bug的地方 具体的不多说，大概可以这么check你的实现： 1. 对于非进程切换的trap，都有 进入状态&#x3D;&#x3D;离开状态； 2. 对于所有的进程切换的trap，都可以在对应的`ecall`指令中通过log获得对应时刻的上下文信息，然后肉眼check是否正确恢复。 形式化地说，就是每个进程有一个颜色，一个切换A-&gt;B就是一个颜色为A的左括号和一个颜色为B的右括号，我们希望任意时刻同颜色的括号构成的子序列是匹配的（左右括号匹配当且仅当颜色相同且对应硬件上下文完全一样） 这样一旦发现了上下文不匹配的情况，就可以立刻发现了。这里可以通过两个简单的用户程序来回`yield`观察一些行为，然后debug ### kcontext的bug 原本的上下文是统一存放在栈上的（新进程和内核线程在内核栈上，而中断到来时的用户上下文则放在用户栈上），在PA4中我们改变了这一点，通过一通操作使得在进入`irq_handle`之前，上下文先被储存到内核栈上。然后从`irq_handle`返回之后，先从内核栈上恢复上下文，再把指针恢复到用户栈上（如果是用户程序的话） 与上面出现的bug不同，这里是产生一个新的上下文需要的东西，因此不好用`assert`，需要想清楚再下手 注意到手册给出的实现做出了一些变量的合并，因此需要在`kcontext`和`ucontext`中注意上下文结构的构造，使得在返回时不会出现栈指针乱飞的情况。不过查出来也很简单，只需要对着`trap.S`慢慢看就好了</p>
+<!-- more -->
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-01-11 01:05:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + PA4%20%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1 + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F01%2F11%2FPA4-%25E9%2599%2584%25E5%258A%25A0%25E5%2585%25B3%25E5%258D%25A1%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

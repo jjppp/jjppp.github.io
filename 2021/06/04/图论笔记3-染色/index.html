@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      图论笔记3 染色 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">图论笔记3 染色</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-06-04 16:12:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>## 图染色(Coloring) #### 染色数(Coloring Index) 图的染色分为点染色(vertex coloring)和边染色(edge coloring) 点染色指的是构造映射 $f_k\colon V(G)\mapsto \left\{\;1,2,\ldots k\;\right\}$，一个合法的染色(proper coloring) 则要求映射满足 $\forall xy\in E(G)\Rightarrow f_k(x)\neq f_k(y)$，记 $k$ 为这个染色方案的染色数(chromatic number)。通常我们只关心最小的染色数，记作 $\chi(G)$ 下面讨论的染色都指的是proper coloring 边染色则是类似地构造 $f_k\colon E(G)\mapsto \left\{\;1,2,\ldots k\;\right\}$，proper的则要求满足 $\forall e_1,e_2\in E(G),\; e_1\cap e_2\neq\varnothing\Rightarrow f_k(e_1)\neq f_k(e_2)$ 类似地定义 $\chi\prime (G)$ 为最小的边染色数 关于染色最经典的问题就是著名的“四色定理”的证明。定理的证明非常长…..有兴趣也不会去看的 #### 团(clique)和独立集(independent set) 团的定义为 $G$ 的完全子图，即 $H\subseteq G$ 且 $2||H||&#x3D;|H|(|H|-1)$ 定义clique number为最大团的大小，记为 $\omega(G)&#x3D;\max \left\{\;H \text{ is a clique}\mid H\subseteq G\;\right\}$ 定义反团(co-clique)为 $\overline G$ 的团，即 $G$ 的一个独立集。同样定义 co-clique number 为最大独立集的大小，记为 $\alpha(G)$ 容易有如下数量关系： 1. $\alpha(G)\cdot \chi(G)\geqslant |G|$ 2. $n-\alpha(G)\geqslant \chi(G)-1$ 3. $\chi(G)\geqslant \omega(G)$ 4. $\binom{\chi(G)}{2}\geqslant ||G||$ 1直接由每个独立集染上同一种颜色得到 2的意思是给最大的独立集染上一种颜色，剩下的点用 $\chi(G)-1$ 种颜色染 3的意思是团内部的颜色互不相同 4的意思是同色点之间不能连边，因此至多连 $\binom{\chi(G)}{2}$ 条边 ### 图的色多项式 对图 $G$ 用 $k$ 种颜色染色(我们认为每个节点都不一样)的方案数是关于 $G$ 和 $k$ 的函数，我们不妨记作 $F(G,k)$ 对 $|G|$ 进行归纳。当 $|G|&#x3D;1$ 的时候 $F(G,k)&#x3D;k$ 设当 $|G|i,\;v_j\in N(v_i)$。 为了好记我把这个叫排列引理 只需要构造出这样的序列即可。我们取 $G$ 中以 $s$ 为根的生成树 $T$，每次从 $T$ 中取出叶子，这样就能保证每个点在被放进序列时都有至少一个邻居在它的后面，且根是一定放在最后的。 这样结合贪心染色可以得到 $\chi(G)\leqslant \max\left\{\;\text{deg}(s)+1,\Delta(G-s)\;\right\}$ #### 引理二 若非完全图 $G$ 满足 $\delta(G)\geqslant 3$ 且 $\kappa(G)\geqslant 2$，那么 $\exists x,y\in V(G)$ 使得 $\exists v\in V(G),\; xv,yv\in E(G)\text{ and } xy\not\in E(G)$ 并且有 $G-\left\{\;x,y\;\right\}$ 仍然连通。 取 $G$ 的一个极小分隔集 $T$，则 $|T|&#x3D;\kappa(G)\geqslant 2$。记 $C$ 为 $G-T$ 形成的连通分支的集合，那么有 $\forall x\in T$，$\forall c_i\in C,\; N_G(x)\cap c_i\neq\varnothing$ 于是取 $v\in T$，令 $x,y$ 分别取自不同的分支，那么必然有 $xy\not\in E(G)\text{ and } xv,yv\in E(G)$。 并且删去 $x,y$ 后它们所属的分支仍然连通($\kappa(c_x)\geqslant 2\text { and }\kappa(c_y)\geqslant 2$)，$\left\{\;c_x,c_y,x\;\right\}$ 仍然连通($\text{deg}(x)\geqslant 3$)，得到一个矛盾 ### 染色数的平凡上界 任意图 $G$ 都有 $\chi(G)\leqslant \Delta (G)+1$。 这个上界直接由贪心算法得到。 ### Brooks Theorem $G$ 是连通图，那么 $\chi(G)&#x3D;\Delta(G) + [G \text{ is complete or an odd cycle}]$，其中 $[x]&#x3D;1$ 当且仅当表达式 $x$ 为真。 首先 $G$ 是完全图的情况很显然，奇数圈的情况也很简单，反证法就可以说明不存在方案了。 然后 $\Delta(G)\leqslant 2$ 的情况也很好讨论，就是一个圈，因此下面讨论的都是 $\Delta(G)\geqslant3$ 的图。 对于 $G$ 不是完全图也不是奇数圈的情况我们对 $|G|$ 归纳证明： 当 $|G|&#x3D;3$ 时，$G$ 不是完全图也不是圈，因此 $G$ 只能是链，染色就很显然了； 设当 $|G|&lt; k$ 时命题成立，则取 $|G|&#x3D;k$ 的图，分如下几种情况讨论： 1. $\kappa(G)&#x3D;1$，即 $G$ 存在一个割点 $x$，则 $G&#x3D;G_1\cup G_2$，其中 $G_1\cap G_2&#x3D;\left\{\;x\;\right\}$。那么我们对 $G_1$、$G_2$ 分别染色，由归纳假设得到他们方案的并就是 $G$ 的一个合法染色方案，因此 $\chi(G)&#x3D;\max\left\{\;\chi(G_1),\chi(G_2)\;\right\}\leqslant\max\left\{\;\Delta(G_1),\Delta(G_2)\;\right\}\leqslant \Delta(G)$ 得证。 2. $\kappa(G) \geqslant 2$，且存在 $x\in V(G)$ 使得 $\text{deg}(x)&lt;\Delta(G)$，则根据引理一构造 $x$ 在最后的序列并贪心染色，这样就有 $\chi(G)\leqslant\Delta(G)$ 3. $\kappa(G)\geqslant 2$，且 $\forall x\in V(G)$ 都有 $\text{deg}(x)&#x3D;\Delta(G)&#x3D;\delta(G)$，则根据引理二存在 $x,y,v\in V(G)$ 使得 $xv,yv\in E(G)$ 且 $xy\not\in E(G)$。我们把 $x,y$ 染上同种颜色，根据引理一把 $v$ 放在序列末尾，这样就可以贪心地染出 $\chi(G)\leqslant \Delta(G)$ 了。 ### 图的定向(orientation) 图定向的严格定义是构造映射 $f\colon E(G)\mapsto V(G)\times V(G)$，简单地说就是给无向边定方向 我们称有向无环图(Directed Acyclic Graph) 为DAG，DAG有许多优秀的性质 #### DAG的染色算法 对于给定的有向无环图 $G$，我们给出如下染色算法步骤： 1. 我们需要维护一个映射 $g\colon V(G)\mapsto \mathbb N^+$，$g(x)$ 表示以节点 $x$ 为终点的最长路长度。 2. 找到 $x\in V(G)$ 使得 $x$ 的入度为0，在 $N_G(x)$ 中找到已经走过的点中 $g(v)$ 的最大值，令 $g(x)&#x3D;g(v)+1$ 3. 删去 $x$，标记 $x$ 已经走过了。若还有未经过的点则返回步骤2 细心的朋友们很快就可以发现这是一个拓扑排序上的计数。很显然 $g$ 下任意相邻节点的函数值都不相等。于是我们caim：找到的映射 $g$ 就是一个染色方案。 不妨记 $p(G)$ 表示DAG图 $G$ 中最长路的长度，那么有 $\chi(G)\leqslant p(G)$ 复杂度是可以做到 $\Theta(n+m)$ 的 ### 利用图定向给出染色数的紧界 不妨设 $H$ 是图 $G$ 的任意一个定向，$K$ 是 $H$ 极大的不含有向圈的子图，那么有： $\chi(G)\leqslant p(K)$，并且存在一个定向使得它们**恰好相等** 这个结论是很强的。不等号的部分在DAG的染色中已经给出，我们只需要考虑 $E(G)\backslash E(K)$ 中的边加入后会不会产生相同颜色的相邻节点就好了。由 $K$ 的定义可知 $\forall uv\in (E(G)\backslash E(K))$，有 $K+uv$ 会产生一个有向圈，即 $K$ 中存在一条 $v-u$ 有向路，这保证了 $g(v)\neq g(u)$ 下面证明存在一个定向的极大无圈子图 $K$ 使得 $p(K)&#x3D;\chi(G)$。我们只需要证明 $p(K)\leqslant\chi(G)$ 首先用 $\chi(G)$ 给 $G$ 染色，然后对 $G$ 定向：若 $uv\in E(G)$ 有 $c(u)</p>
+<!-- more -->
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/06/01/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-06-04 16:12:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B01-Intro/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03%20%E6%9F%93%E8%89%B2 + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F06%2F04%2F%25E5%259B%25BE%25E8%25AE%25BA%25E7%25AC%2594%25E8%25AE%25B03-%25E6%259F%2593%25E8%2589%25B2%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

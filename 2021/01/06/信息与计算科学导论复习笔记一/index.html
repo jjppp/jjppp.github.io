@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      信息与计算科学导论复习笔记一 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">信息与计算科学导论复习笔记一</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-01-06 22:43:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>信息与计算科学导论一 ##罗素悖论 考虑这么一个集合： $S&#x3D;\left\{T|T\not\in S\right\}$ 考虑一个集合内的元素$x$，若$x\in S$，则根据定义$x\not\in S$，矛盾 若$x\not\in S$，则根据定义有$x\in S$，矛盾 我们找不到这样一个集合，这就是大名鼎鼎的罗素悖论 ##公理集合论 悖论的源头在于构建集合的描述性方法，我们在使用这个方法的时候出现了所谓“自引用”的情况 为了体系的和谐与自洽，数学家们提出了公理集合论，创造了“类”(class)的概念。 一个集合是一个类，但是所有的类不都是集合。对于那些不是集合的类我们称之为真类(proper class) 可以存在set的set但是不能存在class的class，这样就可以比较和谐地处理一些问题了 关于公理集合论的的具体内容可以看wiki，这里给了一个比较重要的公理——正则公理 若$S$为一集合，要么$S&#x3D;\varnothing$，要么$\exists x\in S$使得$x\cap S&#x3D;\varnothing$ 这排除了一些看起来是集合然而不太和谐的真类，比如说$\left\{\left\{\left\{\dots\right\}\right\}\right\}$ 例子：不存在集合$A$，$B$使得$A\in B$且$B\in A$ 证明：假设存在集合，由集合公理得到$\left\{A,B\right\}$也是一个集合，这个集合与正则公理矛盾 例子：不存在$\left\{S_0,S_1,S_2,\dots\right\}$使得$\forall i\in\mathbb N$都有$S_i\in S_{i+1}$ 证明：和上面的例子类似，反证然后用正则公理推出矛盾 ##集合运算 然后介绍了差集(set difference)的概念，即$A\backslash B&#x3D;A\backslash \left(A\cap B\right)&#x3D;A\cap \overline B$ 差集没有交换律，考虑这个例子：$A\cap B&#x3D;\varnothing$，显然$A\backslash B\neq B\backslash A$ 差集也没有结合律，考虑这个：$A\cap B\neq \varnothing$，$A\neq B&#x3D;C$，则显然$A\backslash\left(B\backslash C\right)\neq\left(A\backslash B\right)\backslash C$ 然后介绍了De Morgan Law：$A\backslash\left(B\cup C\right)&#x3D;\left(A\backslash B\right)\cap\left(A\backslash C\right)$ 证明：考虑用上面差集定义，那么$A\backslash\left(B\cup C\right)&#x3D;A\cap\left({\overline{B\cup C} }\right)&#x3D;A\cap\left({\overline B\cap\overline C}\right)\\&#x3D;\left(A\cap\overline B\right)\cap\left(A\cap\overline C\right)&#x3D;\left(A\backslash B\right)\cap\left(A\backslash C\right)$ 当然证明左右互相为对面的子集也是可以的 接下来引入了笛卡尔积(cartesian product)的概念 定义$A\times B&#x3D;\left\{\left(x,y\right)|x\in A, y\in B\right\}$ 其中$\left(x,y\right)$是一个有序二元组(tuple)，它的集合定义是$\left\{x,\left\{x,y\right\}\right\}$或$\left\{\left\{\varnothing, \left\{x\right\}\right\},\left\{\left\{y\right\}\right\}\right\}$ 但是n元组却不能简单地类似定义，例如$\left(x,\left(y,z\right)\right)$和$\left(\left(x,y\right),z\right)$是等价的3元组，但是在这种嵌套方式下它们不等价，所以很多时候数学的表达方式都不是最严谨的。。(比如说zhongsheng老湿的lecture notes) ##关系 定义在集合$A$上的二元关系(binary relation)指$R&#x3D;A\times A&#x3D;A^2$，类比还有n元关系 关系有一下四种性质，不同的关系满足其中一个或多个 1. 自反性(reflexive)：若$x\in A\Rightarrow\left(x,x\right)\in R$，则称这个关系具有自反性 2. 对称性(symmetric)：若$\left(x,y\right)\in R\iff \left(y,x\right)\in R$ 3. 反对称性(anti-symmetric)：若$\left(x,y\right)\in R$且$\left(y,x\right)\in R\Rightarrow x&#x3D;y$ 4. 强反对称性(strongly anti-symmetric)：若$\left(x,y\right)\in R\Rightarrow \left(y,x\right)\not\in R$ 5. 传递性(transitive)：若$\left(x,y\right),\left(y,z\right)\in R\Rightarrow \left(x,z\right)\in R$ ##传递闭包 然后讲了传递闭包，也就是所谓的$Warshall- Floyd$算法，也就是最短路。。 <del>证明思路留坑，反正也不难</del>，来填坑了 $Warshall$算法的过程可以表述如下： 1. 枚举一个中间元素$k$ 2. 枚举一个元素$i$ 3. 枚举一个元素$j$ 4. 若$\left(i,k\right)\in R$且$\left(k,j\right)\in R$，则将$\left(i,j\right)$加入$R$ 5. 最后得到的$R&#x3D;R^\star$ 由于$k$是递增的，我们就可以根据$k$来归纳。我们说一条路径$&lt; a , b &gt;$指的是$\left(a,c_1\right),\left(c_1,c_2\right),\dots,\left(c_m,b\right)$这样首尾相连的关系链，再定义$k$-路径为除了首尾以外的点编号都不超过k的路径，记为$&lt; a, b &gt;_k$ 那么第0次循环时，所有的路径都是0-路径，这个很简单 假设做到了第k+1次循环，那么对于$R^\star$中的关系有两种情况： 1. 这条路径上的最大点小于k+1，那么这条路径已经在前面的循环中被找出来加入$R$了 2. 这条路径上的最大点恰好等于k+1，那么此时从k+1处断开，剩下的两条链都已经在前面的循环中被加入了$R$，于是这里可以一步做完 3. 大于k+1，什么都没有发生…… ##等价类的概念 如果一个集合$X$上的二元关系是自反的、对称的、传递的，那么这个关系就可以被称为一个等价关系(equivalence relation) 定理：集合$X$上的一个等价关系提供了$X$的一个划分(partition) 称$X$的一个划分为$Y$，当且仅当$\forall x,y\in Y$都有$x\cap y&#x3D;\varnothing$，且$\cup Y&#x3D;X$ 若两个元素有等价关系，则我们称它们属于同一个等价类(equivalent class) 证明：首先由自反性可知等价关系至少包含了所有元素，因此只需要证明这些等价类不相交就可以了 反证法：假设存在一个元素$z$同时属于等价类$X$和$Y$且$X\neq Y$ 任取$x\in X,y\in Y$，则$\left(x,z\right)\in R$且$\left(y,z\right)\in R$，由传递性可知$\left(x,y\right)\in R$，即$X&#x3D;Y$，矛盾 ##函数 接下来是函数基于二元关系的新定义。即$f: A\mapsto D$可以理解为$A\times D$的一个子集，满足每个A(定义域)中的元素只出现了一次 单射(injective)、双射(bijective)、满射(surjective)都很好理解，不说 函数的复合、求逆也很好理解，只需要注意复合运算的顺序就行了 再然后介绍了函数的函数(算子、泛函)的概念，提了一嘴函数式编程(functional programming)，只要知道lambda验算和图灵机是等价的应该就行了 需要注意的是，计算一个函数有时候是一件很难的事情(难以找到确定关系、复杂度不可接受) 还有非确定函数的概念(functionality)，这个在密码学中运用的比较广泛。比如给出一个输入$L$，输出一个长度为$L$的随机二进制串使得它满足一定的概率分布等等</p>
+<!-- more -->
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-01-06 22:43:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80 + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F01%2F06%2F%25E4%25BF%25A1%25E6%2581%25AF%25E4%25B8%258E%25E8%25AE%25A1%25E7%25AE%2597%25E7%25A7%2591%25E5%25AD%25A6%25E5%25AF%25BC%25E8%25AE%25BA%25E5%25A4%258D%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%25E4%25B8%2580%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

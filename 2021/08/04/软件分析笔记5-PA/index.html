@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      软件分析笔记5 PA 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">软件分析笔记5 PA</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-08-04 23:45:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>PA&#x3D;Pointer Analysis 指针分析 ## Motivation CHA方法实际上没有利用足够的信息(即实际上变量可能指向的对象所从属的类的范围可以进一步缩小),会引入假的调用边 ## Pointer Analysis PA是一种基础的静态分析,它要回答的问题是”某个指针p的值域可能是啥” 对于OO语言来说,其实就是回答某个指针可能指向哪些对象(对于非OO语言的指针则可以直接指向内存) 很显然这是一个may analysis, 用over-approximation ### Alias Analysis 这个叫别名分析,关注的是某一个对象是否会被两个指针指向 ## 实现 程序的实际运行情况复杂，因此一种简单的对对象建立的建模就是“我们认为每个new语句只会建立一个唯一的对象”，也叫allocation site abstract 通常分析分为流敏感(flow sensitive)和不敏感分析，即考量是否考虑语句间的执行顺序(即控制流)来分类。这里采用的是流不敏感的技术，即我们认为代码整体是由若干语句组成的集合 定义pt(x)表示变量x所可能指向的对象的集合，并根据不同的赋值语句对对象的流动情况进行建模 大概可以分为几类： 1. x &#x3D; new Obj(); &#x2F;&#x2F;令pt(x).insert(Obj); 2. x &#x3D; y; &#x2F;&#x2F;pt(x).insert(pt(y)); 3. x.f &#x3D; y; &#x2F;&#x2F;for (Obj in pt(x)) pt(Obj.f).insert(pt(y)) 4. x &#x3D; y.f; &#x2F;&#x2F;for (Obj in pt(y)) pt(x).insert(pt(Obj.f)) 容易发现，四条规则对应了四种集合关系的限制，因此指针分析的一种看法就是解一类限制方程(Anderson Style Analysis) ## PFG Pointer Flow Graph 一个有向图，用来描述指针所指向对象的流向信息 ### 点 变量、对象及其field的表示 变量就标号。对象的field用二元组(o,f)表示，表示对象o的域f ### 边 有向边x-&gt;y表示pt(x)中元素的更新**可能**影响pt(y)的元素 如果我们知道了PFG，再把所有new都分配到对应的点上，那么指针分析就变成简单的传递闭包问题了! 但是建图的过程也依赖于求pt(x)的问题，因此这是一个边算边建图的过程….. 大概伪代码是这样的 ```c void addEdge(Q,G,x,y) { G.addEdge(x,y); Q.push(pts(x),y); } void solve(Code C) { Queue Q; Graph G; for (i in C) if (i.type&#x3D;&#x3D;NEW) { &#x2F;&#x2F; x &#x3D; new Obj(); at line i Q.push(x,{oi}); } for (i in C) if (i.type&#x3D;&#x3D;ASSIGN) { &#x2F;&#x2F; x &#x3D; y; addEdge(Q,G,x,y); } while (!Q.empty()) { (x,P)&#x3D;Q.top(); Q.pop(); P&#x3D;P-pts(x); if (!P.empty()) { pts(x).insert(P); for (y in adjacent(G,x)) { Q.push(y,P); } } for (i in C) if (i.type&#x3D;&#x3D;load) { &#x2F;&#x2F; y &#x3D; x.f; &#x2F;&#x2F; for (o in pts(x)) { &#x2F;&#x2F; 已经加过了的边不必再加 for (o in P) { addEdge(Q,G,o.f,y); } } for (i in C) if (i.type&#x3D;&#x3D;store) { &#x2F;&#x2F; x.f &#x3D; y; for (o in pts(x)) { &#x2F;&#x2F; 同上 addEdge(Q,G,y,o.f); } } for (i in C) if (i.type&#x3D;&#x3D;store) { &#x2F;&#x2F; y.f &#x3D; x; &#x2F;&#x2F; 这种写法和上面是等价的 for (o in pts(y)) { &#x2F;&#x2F; 同上 addEdge(Q,G,x,o.f); } } } } ``` 一开始没有看明白为什么pts(x)发生变动时只考虑了`y&#x3D;x.f`和`x.f&#x3D;y` 考虑所有的情况只有四种： 1. `y&#x3D;x.f` 2. `x.f&#x3D;y` 3. `y.f&#x3D;x` 4. `x&#x3D;y.f` 可以发现情况4在pts(x)发生变化时不需要更新后继点 而情况3和情况1是对称的…因此写法是任意的 ### Inter-Procedural Analysis 考虑方法调用的指针分析，就是要考虑形如 ``` a&#x3D;b.f(r1,r2…) ``` 这样的语句如何建模。同样也是建Call Graph 在前面用到的CHA方法并不准确，因为我们并没有考虑指针实际可能指向的对象域的情况。注意到这恰好是PA在做的事情，因此可以结合着指针分析进行CG的建立 实际上就是枚举pts(b)中的对象o，通过dispatch(o,f)来找到实际调用的方法m，然后枚举所有实参的指针域流向方法m中的对应形参，返回值的指针域流向a。同时类的this指针也不能忽略，因此也要把o流到m的this去(这里我们认为每个方法都有它自己的this指针) 在建PFG的时候，我们会对参数、返回值进行连边，而this则不会连边(why?) 考虑如下代码片段： ```java class A { T foo() { this; } } class B extends A { T foo() { this; } } class C extends A { T foo() { this; } } ``` 那么给定下列指针域和调用 ```java pts(x)&#x3D;{A, B, C}; x.foo(); ``` 当x分别指向A,B,C时，对应应该流向A.foo.this,B.foo.this,C.foo.this 也就是说，对某一段方法调用代码片而言，LHS变量的指针域中的每个对象只会流向唯一的方法的this指针(这是由dispatch的唯一性保证的)。假若我们为LHS变量到所有可能方法都连上了边，那么就会出现不必要的精度损失。 具体的实现可以看PPT</p>
+<!-- more -->
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B04-CGC/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-08-04 23:45:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B06-CSA/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05%20PA + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F08%2F04%2F%25E8%25BD%25AF%25E4%25BB%25B6%25E5%2588%2586%25E6%259E%2590%25E7%25AC%2594%25E8%25AE%25B05-PA%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
