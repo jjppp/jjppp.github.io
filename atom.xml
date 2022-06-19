@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>jjppp</title>
+  <icon>http://example.com/icon.png</icon>
+  <subtitle>Blog of jjppp</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-06-19T05:32:30.945Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>jpwang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算方法7 电阻网络</title>
+    <link href="http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%957-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/"/>
+    <id>http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%957-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/</id>
+    <published>2022-06-15T06:21:00.000Z</published>
+    <updated>2022-06-19T05:32:30.945Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;越发觉得自己物理学得烂了...&lt;/p&gt;
+&lt;h1 id=&quot;前置&quot;&gt;前置&lt;/h1&gt;
+&lt;p&gt;前置的物理定律包括如下两条：&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;欧姆定律，即 &lt;span class=&quot;math</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算方法6 FFT</title>
+    <link href="http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/"/>
+    <id>http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/</id>
+    <published>2022-06-14T06:49:00.000Z</published>
+    <updated>2022-06-19T05:30:25.016Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;据助教说不考这么麻烦的计算，我就摸了&lt;/p&gt;
+&lt;h1 id=&quot;多项式的表示&quot;&gt;多项式的表示&lt;/h1&gt;
+&lt;p&gt;最熟悉的是系数表示法，例如 &lt;span class=&quot;math inline&quot;&gt;\(P(x)=\sum_{i=0}^n a_i</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>博弈论2 零和游戏</title>
+    <link href="http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA2-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/"/>
+    <id>http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA2-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/</id>
+    <published>2022-06-09T12:34:00.000Z</published>
+    <updated>2022-06-19T05:32:30.953Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;zero-sum-games&quot;&gt;Zero Sum Games&lt;/h1&gt;
+&lt;p&gt;即原本讨论的收益矩阵有两个，分别对应于玩家1和玩家2。零和游戏保证了 &lt;span class=&quot;math</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统 Lab2 kmt</title>
+    <link href="http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab2-kmt/"/>
+    <id>http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab2-kmt/</id>
+    <published>2022-05-28T08:06:00.000Z</published>
+    <updated>2022-06-19T05:30:25.044Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;lab2-kmt&quot;&gt;Lab2-kmt&lt;/h1&gt;
+&lt;p&gt;花了整个五一三天假期，最后是听了答疑才知道怎么解决栈的数据竞争的....&lt;/p&gt;
+&lt;p&gt;痛苦的部分主要是多核 logging 和怎么用 qemu debug</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统 Lab1 pmm</title>
+    <link href="http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab1-pmm/"/>
+    <id>http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab1-pmm/</id>
+    <published>2022-05-28T08:03:00.000Z</published>
+    <updated>2022-06-19T05:30:25.028Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算方法5 图的代数性质</title>
+    <link href="http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%955-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/"/>
+    <id>http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%955-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/</id>
+    <published>2022-05-10T12:48:00.000Z</published>
+    <updated>2022-06-19T05:32:30.925Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;感觉这部分穿插的有些怪&lt;/p&gt;
+&lt;p&gt;upd：最后两节课突然就悟了，因为tcs组主要是做这个的...看了看感觉就是硬广，那就学着吧。&lt;/p&gt;
+&lt;h1 id=&quot;courant-fischer&quot;&gt;Courant-Fischer&lt;/h1&gt;
+&lt;p&gt;对于实对称矩阵 &lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算方法4 图的随机游走</title>
+    <link href="http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/"/>
+    <id>http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/</id>
+    <published>2022-05-10T11:58:00.000Z</published>
+    <updated>2022-06-19T05:30:25.012Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Markov Chain 的本质是概率状态机，这么想就很简单了&lt;/p&gt;
+&lt;p&gt;为了偷懒只讨论有限的情形&lt;/p&gt;
+&lt;h1 id=&quot;前置&quot;&gt;前置&lt;/h1&gt;
+&lt;p&gt;离散概率分布可以表示为 &lt;span class=&quot;math inline&quot;&gt;\(\R^n\)&lt;/span&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算方法3 线性方程组求解</title>
+    <link href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/"/>
+    <id>http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/</id>
+    <published>2022-05-08T06:33:00.000Z</published>
+    <updated>2022-06-19T05:32:30.933Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前置&quot;&gt;前置&lt;/h1&gt;
+&lt;p&gt;这一节主要是玩矩阵，为了偷懒只讨论实线性空间&lt;/p&gt;
+&lt;h1 id=&quot;前置-1&quot;&gt;前置&lt;/h1&gt;
+&lt;p&gt;这一节主要是玩矩阵，为了偷懒只讨论实线性空间&lt;/p&gt;
+&lt;h2 id=&quot;内积&quot;&gt;内积&lt;/h2&gt;
+&lt;p&gt;二元函数 &lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算方法2 插值与函数逼近</title>
+    <link href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%952-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/"/>
+    <id>http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%952-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/</id>
+    <published>2022-05-08T03:33:00.000Z</published>
+    <updated>2022-06-19T05:30:25.016Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;心态崩了，这个 latex 公式支持也太迷幻了。但是不太想管，等啥时候有空整个自己的吧(flag++)&lt;/p&gt;
+&lt;h1 id=&quot;函数逼近&quot;&gt;函数逼近&lt;/h1&gt;
+&lt;p&gt;考虑的是对于给定函数 &lt;span class=&quot;math inline&quot;&gt;\(f\)&lt;/span&gt; 和度量</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>博弈论1 策略游戏</title>
+    <link href="http://example.com/2022/03/12/%E5%8D%9A%E5%BC%88%E8%AE%BA1-%E7%AD%96%E7%95%A5%E6%B8%B8%E6%88%8F/"/>
+    <id>http://example.com/2022/03/12/%E5%8D%9A%E5%BC%88%E8%AE%BA1-%E7%AD%96%E7%95%A5%E6%B8%B8%E6%88%8F/</id>
+    <published>2022-03-12T14:29:00.000Z</published>
+    <updated>2022-06-19T05:32:30.953Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;pure-strategy-games&quot;&gt;Pure Strategy</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu下的数电实验环境配置</title>
+    <link href="http://example.com/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    <id>http://example.com/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</id>
+    <published>2022-03-08T05:06:00.000Z</published>
+    <updated>2022-06-19T05:30:25.020Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;针对南京大学 数字逻辑与计算机组成实验 课程的环境配置，本机是Ubuntu 21.10&lt;/p&gt;
+&lt;h1 id=&quot;section&quot;&gt;1&lt;/h1&gt;
+&lt;p&gt;访问 &lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算方法1 函数求根</title>
+    <link href="http://example.com/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%951-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/"/>
+    <id>http://example.com/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%951-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/</id>
+    <published>2022-03-07T15:26:00.000Z</published>
+    <updated>2022-06-19T05:30:25.008Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;严格写就太累了，这个就当是随手的笔记得了。大概看看原理，不求甚解。&lt;/p&gt;
+&lt;h2 id=&quot;fixpoint-theorem&quot;&gt;Fixpoint Theorem&lt;/h2&gt;
+&lt;p&gt;定义函数 &lt;span class=&quot;math inline&quot;&gt;\(f\)&lt;/span&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数理逻辑03 一阶逻辑</title>
+    <link href="http://example.com/2022/02/13/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9103-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/"/>
+    <id>http://example.com/2022/02/13/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9103-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/</id>
+    <published>2022-02-13T04:04:00.000Z</published>
+    <updated>2022-06-19T05:32:30.937Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
+&lt;p&gt;命题逻辑（或者</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数理逻辑02 推演系统</title>
+    <link href="http://example.com/2022/01/24/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9102-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://example.com/2022/01/24/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9102-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/</id>
+    <published>2022-01-24T10:53:00.000Z</published>
+    <updated>2022-06-19T05:30:25.036Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
+&lt;p&gt;在上一章给出了命题逻辑的语法、语义，公理化的定义，以及一种判定公式是否可满足/永真的算法，但是这还不够，因为：&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;并不是所有逻辑都有Decision</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数理逻辑习题乱做</title>
+    <link href="http://example.com/2022/01/21/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/"/>
+    <id>http://example.com/2022/01/21/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/</id>
+    <published>2022-01-21T15:44:00.000Z</published>
+    <updated>2022-06-19T05:30:25.028Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;做习题，不保证对，不保证全&lt;/p&gt;
+&lt;h2 id=&quot;section&quot;&gt;2.10&lt;/h2&gt;
+&lt;p&gt;证明只有 &lt;span class=&quot;math inline&quot;&gt;\(\uparrow,\downarrow\)&lt;/span&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数理逻辑01 命题逻辑</title>
+    <link href="http://example.com/2022/01/20/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9101-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/"/>
+    <id>http://example.com/2022/01/20/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9101-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/</id>
+    <published>2022-01-20T10:31:00.000Z</published>
+    <updated>2022-06-19T05:30:25.040Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
+&lt;p&gt;第一次看这本书的时候看得比较急，也没有一个big picture的把握，所以在细节上面耗费了很多时间....现在算是重构一次笔记了&lt;/p&gt;
+&lt;p&gt;我们知道，形式逻辑是对推理的形式化（mathematical logic</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>用haskell写brainfuck解释器</title>
+    <link href="http://example.com/2022/01/17/%E7%94%A8haskell%E5%86%99brainfuck%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
+    <id>http://example.com/2022/01/17/%E7%94%A8haskell%E5%86%99brainfuck%E8%A7%A3%E9%87%8A%E5%99%A8/</id>
+    <published>2022-01-17T15:51:00.000Z</published>
+    <updated>2022-06-19T05:30:25.020Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近在看 Learn you a haskell for great</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>大二上躺平经验</title>
+    <link href="http://example.com/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/"/>
+    <id>http://example.com/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/</id>
+    <published>2022-01-10T18:17:00.000Z</published>
+    <updated>2022-06-19T05:30:25.016Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;大二上躺平经验&quot;&gt;大二上躺平经验&lt;/h2&gt;
+&lt;p&gt;2021年的记忆都停留在了五六月份...现在不是很想回忆，但是那段时间确实又欣喜又自卑，随后的七八月一直在学校里过着昼夜颠倒的生活。再往后就没什么印象了，那之后也不怎么拍照，人是越活越不明白了&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PA4 附加关卡</title>
+    <link href="http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/"/>
+    <id>http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/</id>
+    <published>2022-01-10T17:05:00.000Z</published>
+    <updated>2022-06-19T05:30:25.044Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;试验进度&quot;&gt;试验进度&lt;/h2&gt;
+&lt;p&gt;我完成了全部必做内容，最后可以用F1、F2、F3分别玩nterm、pal和bird，默认初始打开的是nterm&lt;/p&gt;
+&lt;h2 id=&quot;思考题&quot;&gt;思考题&lt;/h2&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>密码学07 OWF&amp;HC</title>
+    <link href="http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/"/>
+    <id>http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/</id>
+    <published>2021-12-21T12:15:00.000Z</published>
+    <updated>2022-06-19T05:30:25.048Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这一章比较轻松，主要是科普一些东西，都是概念性的&lt;/p&gt;
+&lt;h2 id=&quot;one-way-function&quot;&gt;One-way</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
