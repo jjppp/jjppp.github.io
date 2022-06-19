@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title"></div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-06-19 12:52:30
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <hr />
+<p>title: 图论习题乱做 tags: [] excerpt: "图论中常常关心有限图，这样的图通常可以取最值、可以归纳，有一些比较好的性质(但是我也说不出几条来)，或者说不好翻译，就偷懒了(### 证明：任意图<span class="math inline">\(G\)</span>都存在长度为<span class="math inline">\(\\delta(G)+1\)</span>的path，存在长度为<span class="math inline">\(\\delta(G)\)</span>的circle<span class="math inline">\(P\)</span>，考虑<span class="math inline">\(P\)</span>的一个端点<span class="math inline">\(a\)</span>，则必然有<span class="math inline">\(N_G(a)\\subseteq P\)</span>，否则我们可以找到另一个点扩展<span class="math inline">\(P\)</span>使得它更长；<span class="math inline">\(|P|\\ge |N_G(a)|+1\\ge\\delta(G)+1\)</span>；<span class="math inline">\(b\\in N_G(a)\)</span>使得<span class="math inline">\(b\)</span>在<span class="math inline">\(P\)</span>上最远离<span class="math inline">\(a\)</span>，则<span class="math inline">\(ap_0p_1\\dots b\)</span>至少有<span class="math inline">\(\\delta(G)\)</span>个点，这个circle长度为<span class="math inline">\(\\delta(G)\)</span>### 任意包含至少一个circle的图<span class="math inline">\(G\)</span>满足<span class="math inline">\(g(G)\\le 2diamG+1\)</span><span class="math inline">\(g(G)\)</span>指的是<span class="math inline">\(G\)</span>中的最小circle的长度，<span class="math inline">\(diam G\)</span>指的是<span class="math inline">\(G\)</span>的直径(任意两点的最长距离)<span class="math inline">\(G\)</span>中的最小circle，记为<span class="math inline">\(C\)</span>，则<span class="math inline">\(diam G=\\max\\limits_{\\forall x,y\\in V(G)} dist(x,y)\\ge\\max\\limits_{\\forall x,y\\in V(C)}{dist(x,y)}\\ge\\lfloor\\frac{|C|}{2}\\rfloor=\\lfloor\\frac{g(G)}{2}\\rfloor\)</span>### 对任意图<span class="math inline">\(G\)</span>有<span class="math inline">\(rad G\\le diam G\\le 2rad G\)</span><span class="math inline">\(rad G\)</span>是图<span class="math inline">\(G\)</span>的半径，定义为<span class="math inline">\(\\min\\limits_{x\\in V(G)}\\max\\limits_{y\\in V(G)} dist(x,y)\)</span>。同时可定义中心点<span class="math inline">\(v\)</span>为取到<span class="math inline">\(rad G\)</span>时的<span class="math inline">\(x\)</span>，半径不会超过直径；<span class="math inline">\(v\)</span>，则<span class="math inline">\(\\forall x,y\\in V(G)\)</span>，有<span class="math inline">\(dist(x,y)\\le dist(x,v)+dist(v,y)\\le rad G+rad G=2rad G\)</span>，算是一个小技巧吧。同时涉及半径的问题往往要设出中心点来### <span class="math inline">\(\\star\)</span>设图<span class="math inline">\(G\)</span>半径至多为<span class="math inline">\(k\)</span>，且最大度至多为<span class="math inline">\(d\\ge 3\)</span>，则<span class="math inline">\(G\)</span>的点数不超过<span class="math inline">\(\\frac{d}{d-2}{\\left(d-1\\right)}^k\)</span>，想不到不过可以学习<span class="math inline">\(G\)</span>中的中心点<span class="math inline">\(x\)</span>，定义<span class="math inline">\(D_0=\\left\\{x\\right\\}\)</span>，<span class="math inline">\(D_n=N_G(\\cup_{i=0}^{n-1}{D_i})\)</span><span class="math inline">\(G\)</span>以<span class="math inline">\(x\)</span>为中心点，按照到<span class="math inline">\(x\)</span>的距离分成了若干“层”，且<span class="math inline">\(|D_0|=1\)</span>，<span class="math inline">\(|D_1|=d\)</span><span class="math inline">\(\\Delta(G)=d\)</span>可知，<span class="math inline">\(|D_n|\\le (d-1)|D_{n-1}|\)</span>，因为<span class="math inline">\(D_{n-1}\)</span>中的每个点至少和<span class="math inline">\(D_{n-2}\)</span>中的点有一条边，因此还剩下至多<span class="math inline">\(d-1\)</span>条<span class="math inline">\(|V(G)|=\\sum\\limits_{i=0}^{k}{D_i}\\le 1+\\sum\\limits_{i=1}^k{d{\\left(d-1\\right)}^{i-1} }=\\frac{d{\\left(d-1\\right)}^{k} }{d-2}\)</span><span class="math inline">\(rad G\)</span>和<span class="math inline">\(\\delta(G)\)</span>都很大，那么这个图也会很大### 完全图<span class="math inline">\(K^n\)</span>有<span class="math inline">\(\\frac{n(n-1)}{2}\)</span>个点### 若<span class="math inline">\(G\)</span>中有长度为奇数的closed walk，则必存在一个长度为奇数的odd cycle<span class="math inline">\(G\)</span>中最短的、长度为奇数的closed walk，记为<span class="math inline">\(W\)</span><span class="math inline">\(W\)</span>写出来就是<span class="math inline">\(W=v_0e_0v_1e_1\\dots e_{t-1}v_t\)</span>. 若<span class="math inline">\(W\)</span>中任意节点都只出现了一次，则据定义可知这就是一个cycle，且长度为奇数；. 否则<span class="math inline">\(\\exists i&lt;j\)</span>使得<span class="math inline">\(v_i=v_j\)</span>，此时<span class="math inline">\(v_ie_i\\dots v_j\)</span>是<span class="math inline">\(W\)</span>中的一个closed walk，不妨记为<span class="math inline">\(W&#39;\)</span>。于是有<span class="math inline">\(|W&#39;|\)</span>与<span class="math inline">\(|W-W&#39;|\)</span>二者必有一个为奇数(由<span class="math inline">\(|W|\)</span>为奇数立即得到)，因此存在一个更短的、长度为奇数的closed walk，矛盾“取最值”的证明手法会非常常见### 证明：一棵树<span class="math inline">\(T\)</span>至少有<span class="math inline">\(\\Delta(G)\)</span>个叶子<span class="math inline">\(T\)</span>在<span class="math inline">\(|V(T)|\\ge 2\)</span>时至少有两个叶子：<span class="math inline">\(|V(T)|=2\)</span>和<span class="math inline">\(|V(T)|=3\)</span>的时候结论是显然的；<span class="math inline">\(T\)</span>没有叶子，则<span class="math inline">\(\\delta(G)\\ge 2\)</span>，由推论可知<span class="math inline">\(T\)</span>中存在长度至少为<span class="math inline">\(3\)</span>的circle，矛盾；<span class="math inline">\(T\)</span>恰好只有一个叶子，记为<span class="math inline">\(v_l\)</span>，则图<span class="math inline">\(T&#39;=T-v_l\)</span>仍然是一棵树(保持连通性、不会引入环)，且<span class="math inline">\(T&#39;\)</span>叶子的数量<span class="math inline">\(\\le 1\)</span><span class="math inline">\(T&#39;\)</span>没有叶子，则矛盾；假设<span class="math inline">\(2\\le |V(T)|\\le 3\)</span>，则也矛盾；故<span class="math inline">\(T&#39;\)</span>必有一个叶子，重复上述操作<span class="math inline">\(|V(T)|\)</span>有限可知，上述过程必然会产生矛盾，故<span class="math inline">\(T\)</span>至少有<span class="math inline">\(2\)</span>个叶子<span class="math inline">\(deg(v)=\\Delta(T)\)</span>的点，构造<span class="math inline">\(T&#39;&#39;=T-v\)</span>，则<span class="math inline">\(T&#39;&#39;\)</span>不连通、<span class="math inline">\(T&#39;&#39;\)</span>中的每个component都是树，这样共有<span class="math inline">\(\\Delta(G)\)</span>棵新树，此时至少有<span class="math inline">\(2\\Delta(G)\)</span>个叶子<span class="math inline">\(\\Delta(G)\)</span>个叶子是删除了<span class="math inline">\(v\)</span>造成的，于是<span class="math inline">\(T=T&#39;&#39;+v\)</span>中至少有<span class="math inline">\(\\Delta(G)\)</span>个叶子### 证明：<span class="math inline">\(G\)</span>是二分图<span class="math inline">\(\\iff G\)</span>中无odd cycle<span class="math inline">\(\\Rightarrow\)</span>是很好证明的<span class="math inline">\(G\)</span>存在长度为奇数的cycle，记为<span class="math inline">\(C\)</span>，写出来就是<span class="math inline">\(v_0e_0v_1\\dots v_{2k}e_{2k}v_0\)</span><span class="math inline">\(G\)</span>是二分图，则<span class="math inline">\(\\exists V_0,V_1\\subseteq V(G)\)</span>使得<span class="math inline">\(\\left\\{V_0,V_1\\right\\}\)</span>是<span class="math inline">\(V(G)\)</span>的一个划分，且<span class="math inline">\(\\forall x,y\\in V_0, xy\\not\\in E(G)\\and \\forall x,y\\in V_1,xy\\not \\in E(G)\)</span>。<span class="math inline">\(v_0\\in V_0\)</span>，则<span class="math inline">\(v_1\\in V_1,v_2\\in V_0,\\dots,v_{2i}\\in V_0,v_{2i+1}\\in V_1,\\dots\)</span>，则<span class="math inline">\(v_{2k}\\in V_0\)</span>，即<span class="math inline">\(e_{2k}\)</span>的两端都在<span class="math inline">\(V_0\)</span>中，矛盾；<span class="math inline">\(\\Leftarrow\)</span>的证明要构造一个解<span class="math inline">\(G\)</span>中无奇数cycle，任取<span class="math inline">\(r\\in V(G)\)</span>，<span class="math inline">\(\\forall v\\in V(G)\)</span>我们规定：. 若<span class="math inline">\(dist(r,v)\)</span>是奇数，则<span class="math inline">\(v\\in V_1\)</span>. 否则<span class="math inline">\(v\\in V_0\)</span><span class="math inline">\(e=xy\)</span>，若<span class="math inline">\(x\\in V_1\\and y\\in V_1\)</span>，那么取<span class="math inline">\(x\\sim r\\sim yex\)</span>得到一条closed walk，且长度为奇数(奇+奇+1)，故<span class="math inline">\(G\)</span>一定存在odd cycle，矛盾；<span class="math inline">\(x\\in V_0\\and y\\in V_0\)</span>的情况也可以得到矛盾；于是不存在<span class="math inline">\(V_0\)</span>和<span class="math inline">\(V_1\)</span>内部的边### 连通图<span class="math inline">\(G\)</span>中含有长度至少为<span class="math inline">\(\\min\\left\\{2\\delta(G),|V(G)|\\right\\}\)</span>的path或cycle，不妨假设我们取出了<span class="math inline">\(G\)</span>中最长的path或cycle，记为<span class="math inline">\(P\)</span>。<span class="math inline">\(P\)</span>为cycle的情况：<span class="math inline">\(|P|=|G|\)</span>则这就是最长的path或cycle；否则<span class="math inline">\(\\exists v_0\\in G\\and v_0\\not\\in P\)</span>，由连通性可知存在<span class="math inline">\(v_1\)</span>使得<span class="math inline">\(v_0-v_1\)</span>是一条不在<span class="math inline">\(P\)</span>上的path且<span class="math inline">\(v_1\\in P\)</span>，于是就可以沿着<span class="math inline">\(v_0\\dots v_1P\)</span>走出一条长度不变的path<span class="math inline">\(P\)</span>为path的情况：<span class="math inline">\(P=v_0\\dots v_1\)</span>，于是<span class="math inline">\(N_G(v_0)\\subseteq P\\and N_G(v_1)\\subseteq P\)</span>。这个可以用反证法得到(否则会有一条更长的path)：我们取出<span class="math inline">\(R_P(N_G(v_0))\)</span>，这里<span class="math inline">\(R_P(S)=\\left\\{x|xy\\in P\\and y\\in S\\right\\}\)</span>，<span class="math inline">\(S\\subseteq P\)</span>表示取出<span class="math inline">\(S\)</span>在<span class="math inline">\(P\)</span>中的前驱。：<span class="math inline">\(R_p(S)\\cap N_G(v_0)=\\varnothing\)</span>。证明只需要假设它们相交，则可以将<span class="math inline">\(P\)</span>连成一个长度+1的cycle，这与<span class="math inline">\(P\)</span>最长矛盾；<span class="math inline">\(|P|\\ge |R_P\\left({N_G\\left(v_0\\right)}\\right)|+|N_G(v_1)|+|\\left\\{v_1\\right\\}|=|N_G(v_0)|+|N_G(v_1)|+1=2\\delta(G)+1\)</span>，于是由path中点数和边数的关系就可以知道<span class="math inline">\(P\)</span>的长度至少为<span class="math inline">\(2\\delta(G)\)</span>### 证明树<span class="math inline">\(T\)</span>的自同构必存在不动点/不动边<span class="math inline">\(|T|=n\)</span>作归纳<span class="math inline">\(n=1\)</span>时必存在不动点；<span class="math inline">\(n=2\)</span>时必存在不动边；<span class="math inline">\(n&lt;=k\)</span>时命题成立，则当<span class="math inline">\(|T|=n=k+1\)</span>时，记<span class="math inline">\(L=\\left\\{v\\mid v\\in V(T)\\and deg(v)=1\\right\\}\)</span><span class="math inline">\(T\)</span>的自同构<span class="math inline">\(\\sigma\)</span>，则必有<span class="math inline">\(\\sigma (L)=L\)</span>。. 若<span class="math inline">\(L\)</span>在<span class="math inline">\(\\sigma\)</span>下存在不动点或不动边，则<span class="math inline">\(T\)</span>在<span class="math inline">\(\\sigma\)</span>下存在不动点或不动边，命题成立；. 若<span class="math inline">\(L\)</span>在<span class="math inline">\(\\sigma\)</span>下不存在不动点和不动边，则<span class="math inline">\(T/L\)</span>非空且仍为一棵树，由归纳假设可知<span class="math inline">\(T/L\)</span>存在不动点或不动边，于是命题也成立；，<span class="math inline">\(T\)</span>是一棵树<span class="math inline">\(\\Rightarrow T\)</span>的自同构存在不动点或不动边 对<span class="math inline">\(\\forall k\\in\\N^+\)</span>成立<span class="math inline">\(\\blacksquare\)</span>### Let <span class="math inline">\(W\)</span> be a closed walk of length at least 1 that does not contain a circle. Prove that some edge of <span class="math inline">\(W\)</span> repeats immediately (one in each direction)<span class="math inline">\(|W|=2n,\\; n\\in\\N^+\)</span>，否则将存在一个odd cycle；<span class="math inline">\(|W|=2\)</span>时，显然成立；<span class="math inline">\(|W|&lt; k\)</span>时成立，下面将证明<span class="math inline">\(|W|=k\)</span>时仍然成立<span class="math inline">\(W\)</span>无环，可知<span class="math inline">\(\\exists v\\in W\\and v\\neq st\)</span>使得<span class="math inline">\(v\)</span>被经过了两次（否则可得<span class="math inline">\(W\)</span>是一个cycle）<span class="math inline">\(v\)</span>为起点和终点的walk <span class="math inline">\(W&#39;\)</span>，由归纳假设可知<span class="math inline">\(W&#39;\)</span>满足条件，于是<span class="math inline">\(W\)</span>也满足条件。### Let <span class="math inline">\(v\)</span> be a cut-vertex of a simple graph <span class="math inline">\(G\)</span>. Prove that <span class="math inline">\(\\overline G-v\)</span> is connected.:'s easy to see that <span class="math inline">\(\\overline G-v=\\overline{G-v}\)</span><span class="math inline">\(G\)</span> is connected. Since <span class="math inline">\(v\)</span> is a cut-vertex, <span class="math inline">\(\\exists \\left\\{\\,{A,B}\\,\\right\\}\)</span> is a partition of <span class="math inline">\(V(G-v)\)</span> s.t <span class="math inline">\(\\forall x\\in A\\and y\\in B\)</span> we have <span class="math inline">\(xy\\not\\in E(G)\)</span>means <span class="math inline">\(\\forall x\\in A\\and y\\in B\)</span>, <span class="math inline">\(xy\\in E(\\overline G)\)</span>on <span class="math inline">\(|A\\cup B|\)</span> will easily prove <span class="math inline">\(\\overline{G-v}\)</span> is connected, thus <span class="math inline">\(\\overline G-v\)</span> is connected.<span class="math inline">\(G\)</span> is not connected, assume it has <span class="math inline">\(k\)</span> components <span class="math inline">\(C_1,C_2\\dots C_k\)</span>, by proof above we know that <span class="math inline">\(C_i\)</span> in <span class="math inline">\(\\overline G-v\)</span> is connected for all <span class="math inline">\(1\\leqslant i\\leqslant k\)</span><span class="math inline">\(\\forall 1\\leqslant x&lt;y\\leqslant k\)</span>, we have <span class="math inline">\(C_xC_y\\not\\subseteq E(G)\)</span>, thus <span class="math inline">\(C_xC_y\\subseteq E(\\overline G-v)\)</span>on <span class="math inline">\(k\)</span> will easily prove <span class="math inline">\(\\overline {G-v}\)</span> is connected, thus <span class="math inline">\(\\overline G-v\)</span> is connected.### Prove: <span class="math inline">\(G\)</span> is bipartite iff <span class="math inline">\(\\forall x\\in G\)</span>, <span class="math inline">\(\\forall y\\in N_G(x)\)</span>, <span class="math inline">\(\\exists z\\in G\)</span> s.t. <span class="math inline">\(dis(x,z)\\neq dis(y,z)\)</span><span class="math inline">\(\\Rightarrow\)</span>：<span class="math inline">\(\\exists x\\in G\)</span>, <span class="math inline">\(\\exists y\\in N_G(x)\)</span>, <span class="math inline">\(\\forall z\\in G\)</span> 都有 <span class="math inline">\(dis(x,z)=dis(y,z)\)</span>walk <span class="math inline">\(P(x,z)P(z,y)x\)</span>，这是一个长度为奇数的 closed walk，必然存在一个odd cycle，这和<span class="math inline">\(G\)</span> bipartite 矛盾。故假设不成立<span class="math inline">\(\\Leftarrow\)</span>：<span class="math inline">\(G\)</span>不是 bipartite，那么必然存在极小odd cycle，记为<span class="math inline">\(C\)</span><span class="math inline">\(xy\\in C\)</span>，我们 claim 对于<span class="math inline">\(dis(x,z)=\\frac{|C|-1}{2}\)</span> 的 <span class="math inline">\(z\)</span> 就是使得 <span class="math inline">\(dis(x,z)=dis(y,z)\)</span> 的点, 矛盾### 证明：若 <span class="math inline">\(\\text{diam}(G)\\geqslant 3\)</span>，那么 <span class="math inline">\(\\text{diam}(\\bar G)\\leqslant 3\)</span><span class="math inline">\(u,v\\in V(G)\)</span> 且 <span class="math inline">\(dist(u,v)\\geqslant 3\)</span>，考虑所有与 <span class="math inline">\(u\)</span> 距离为 <span class="math inline">\(1\)</span> 的顶点与 <span class="math inline">\(u\)</span> 构成的集合，记为 <span class="math inline">\(V_u\)</span>，同理取 <span class="math inline">\(V_v\)</span><span class="math inline">\(dist(u,v)\\geqslant 3\)</span>，因此 <span class="math inline">\(V_u\\cap V_v=\\varnothing\)</span>，否则将得到 <span class="math inline">\(dist(u,v)=2\)</span>，矛盾；<span class="math inline">\(V(G)-V_u-V_v=V&#39;\)</span>，此时有 <span class="math inline">\(\\left\\{V_u,V_v,V&#39;\\right\\}\)</span> 是 <span class="math inline">\(V(G)\)</span> 的一个划分<span class="math inline">\(\\bar G\)</span> 中这些顶点集的连边情况：. <span class="math inline">\(V_u,V&#39;\)</span>：由 <span class="math inline">\(V_u\)</span> 的定义可知，任意 <span class="math inline">\(V&#39;\)</span> 中的顶点都与 <span class="math inline">\(u\)</span> 不相邻，因此在 <span class="math inline">\(\\bar G\)</span> 中存在 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(V&#39;\)</span> 中任意顶点的边。又因为任意 <span class="math inline">\(V_u\)</span> 中的顶点与 <span class="math inline">\(u\)</span> 距离至多为 <span class="math inline">\(1\)</span>，因此 <span class="math inline">\(\\forall x\\in V_u,\\forall y\\in V&#39;\)</span> 都有 <span class="math inline">\(dist(x,y)\\leqslant 2\)</span>. <span class="math inline">\(V_v,V&#39;\)</span>：理由同上. <span class="math inline">\(V_u,V_v\)</span>：在 <span class="math inline">\(\\bar G\)</span> 中 <span class="math inline">\(V_u-\\left\\{u\\right\\}\)</span> 与 <span class="math inline">\(v\)</span> 有边直接相连，同理在 <span class="math inline">\(\\bar G\)</span> 中 <span class="math inline">\(V_v-\\left\\{v\\right\\}\)</span> 与 <span class="math inline">\(u\)</span> 有边直接相连（否则它们在 <span class="math inline">\(G\)</span> 中直接相连，根据 <span class="math inline">\(V_u\\cap V_v=\\varnothing\)</span> 可得矛盾）。并且 <span class="math inline">\(u-v\\in E(\\bar G)\)</span> （否则同样违背 <span class="math inline">\(G\)</span> 中两点的距离限制） 因此 <span class="math inline">\(\\forall x\\in V_u,\\forall y\\in V_v\)</span> 都有 <span class="math inline">\(dist(x,y)\\leqslant dist(x,v)+dist(v,u)+dist(u,y)\\leqslant3\)</span>. <span class="math inline">\(V_u\)</span> 内部的点对：<span class="math inline">\(\\forall x,y\\in V_u\)</span>，都有 <span class="math inline">\(dist(x,y)\\leqslant dist(x,v)+dist(v,y)\\leqslant 2\)</span>. <span class="math inline">\(V_v\)</span> 内部的点对理由同上. <span class="math inline">\(V&#39;\)</span> 内部的点对：<span class="math inline">\(\\forall x,y\\in V&#39;\)</span>，都有 <span class="math inline">\(dist(x,y)\\leqslant dist(x,u)+dist(u,y)\\leqslant 2\)</span>，因此 <span class="math inline">\(\\forall x,y\\in V(\\bar G)\)</span> 都有 <span class="math inline">\(dist(x,y)\\leqslant 3\)</span>，即 <span class="math inline">\(\\text{diam}(\\bar G)\\leqslant 3\)</span>"</p>
+<p>图论中常常关心有限图，这样的图通常可以取最值、可以归纳，有一些比较好的性质(但是我也说不出几条来) 有些东西不会翻译，或者说不好翻译，就偷懒了( ### 证明：任意图<span class="math inline">\(G\)</span>都存在长度为<span class="math inline">\(\\delta(G)+1\)</span>的path，存在长度为<span class="math inline">\(\\delta(G)\)</span>的circle 从图中取出最长的path <span class="math inline">\(P\)</span>，考虑<span class="math inline">\(P\)</span>的一个端点<span class="math inline">\(a\)</span>，则必然有<span class="math inline">\(N\_G(a)\\subseteq P\)</span>，否则我们可以找到另一个点扩展<span class="math inline">\(P\)</span>使得它更长； 也就是说<span class="math inline">\(|P|\\ge |N\_G(a)|+1\\ge\\delta(G)+1\)</span>； 再从中取出<span class="math inline">\(b\\in N\_G(a)\)</span>使得<span class="math inline">\(b\)</span>在<span class="math inline">\(P\)</span>上最远离<span class="math inline">\(a\)</span>，则<span class="math inline">\(ap\_0p\_1\\dots b\)</span>至少有<span class="math inline">\(\\delta(G)\)</span>个点，这个circle长度为<span class="math inline">\(\\delta(G)\)</span> ### 任意包含至少一个circle的图<span class="math inline">\(G\)</span>满足<span class="math inline">\(g(G)\\le 2diamG+1\)</span> 这里<span class="math inline">\(g(G)\)</span>指的是<span class="math inline">\(G\)</span>中的最小circle的长度，<span class="math inline">\(diam G\)</span>指的是<span class="math inline">\(G\)</span>的直径(任意两点的最长距离) 不妨取出<span class="math inline">\(G\)</span>中的最小circle，记为<span class="math inline">\(C\)</span>，则<span class="math inline">\(diam G=\\max\\limits\_{\\forall x,y\\in V(G)} dist(x,y)\\ge\\max\\limits\_{\\forall x,y\\in V(C)}{dist(x,y)}\\ge\\lfloor\\frac{|C|}{2}\\rfloor=\\lfloor\\frac{g(G)}{2}\\rfloor\)</span> 于是就有题目给的式子了 ### 对任意图<span class="math inline">\(G\)</span>有<span class="math inline">\(rad G\\le diam G\\le 2rad G\)</span> 这里<span class="math inline">\(rad G\)</span>是图<span class="math inline">\(G\)</span>的半径，定义为<span class="math inline">\(\\min\\limits\_{x\\in V(G)}\\max\\limits\_{y\\in V(G)} dist(x,y)\)</span>。同时可定义中心点<span class="math inline">\(v\)</span>为取到<span class="math inline">\(rad G\)</span>时的<span class="math inline">\(x\)</span> 不等式的前半是显然的，半径不会超过直径； 考虑取出中心点<span class="math inline">\(v\)</span>，则<span class="math inline">\(\\forall x,y\\in V(G)\)</span>，有<span class="math inline">\(dist(x,y)\\le dist(x,v)+dist(v,y)\\le rad G+rad G=2rad G\)</span> 这也被称为图上的三角不等式，算是一个小技巧吧。同时涉及半径的问题往往要设出中心点来 ### <span class="math inline">\(\\star\)</span>设图<span class="math inline">\(G\)</span>半径至多为<span class="math inline">\(k\)</span>，且最大度至多为<span class="math inline">\(d\\ge 3\)</span>，则<span class="math inline">\(G\)</span>的点数不超过<span class="math inline">\(\\frac{d}{d-2}{\\left(d-1\\right)}^k\)</span> 这个构造就比较巧妙，想不到不过可以学习 首先取出<span class="math inline">\(G\)</span>中的中心点<span class="math inline">\(x\)</span>，定义<span class="math inline">\(D\_0=\\left\\{x\\right\\}\)</span>，<span class="math inline">\(D\_n=N\_G(\\cup\_{i=0}^{n-1}{D\_i})\)</span> 这样就把图<span class="math inline">\(G\)</span>以<span class="math inline">\(x\)</span>为中心点，按照到<span class="math inline">\(x\)</span>的距离分成了若干“层”，且<span class="math inline">\(|D\_0|=1\)</span>，<span class="math inline">\(|D\_1|=d\)</span> 由<span class="math inline">\(\\Delta(G)=d\)</span>可知，<span class="math inline">\(|D\_n|\\le (d-1)|D\_{n-1}|\)</span>，因为<span class="math inline">\(D\_{n-1}\)</span>中的每个点至少和<span class="math inline">\(D\_{n-2}\)</span>中的点有一条边，因此还剩下至多<span class="math inline">\(d-1\)</span>条 于是<span class="math inline">\(|V(G)|=\\sum\\limits\_{i=0}^{k}{D\_i}\\le 1+\\sum\\limits\_{i=1}^k{d{\\left(d-1\\right)}^{i-1} }=\\frac{d{\\left(d-1\\right)}^{k} }{d-2}\)</span> 这个式子告诉我们如果<span class="math inline">\(rad G\)</span>和<span class="math inline">\(\\delta(G)\)</span>都很大，那么这个图也会很大 ### 完全图<span class="math inline">\(K^n\)</span>有<span class="math inline">\(\\frac{n(n-1)}{2}\)</span>个点 这个太简单了 ### 若<span class="math inline">\(G\)</span>中有长度为奇数的closed walk，则必存在一个长度为奇数的odd cycle 不妨取出<span class="math inline">\(G\)</span>中最短的、长度为奇数的closed walk，记为<span class="math inline">\(W\)</span> 把<span class="math inline">\(W\)</span>写出来就是<span class="math inline">\(W=v\_0e\_0v\_1e\_1\\dots e\_{t-1}v\_t\)</span> 1. 若<span class="math inline">\(W\)</span>中任意节点都只出现了一次，则据定义可知这就是一个cycle，且长度为奇数； 2. 否则$\exists i <span id="more"></span></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/06/19/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-06-19 12:52:30
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/06/19/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' +  + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F06%2F19%2F%25E5%259B%25BE%25E8%25AE%25BA%25E4%25B9%25A0%25E9%25A2%2598%25E4%25B9%25B1%25E5%2581%259A%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2022/06/19/%E5%9B%BE%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

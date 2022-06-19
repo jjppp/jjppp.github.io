@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title"></div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-06-19 12:52:30
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <hr />
+<p>title: 软件分析笔记7 Security tags: [] excerpt: "下面几节课都比较轻松，内容偏科普性质## Security&gt; Achieving some goals in the presence of adversaries：. Injection Errors. Information leaks，因此就自然引出信息流安全的问题和分析## Information Flow....前面指针分析本质上是对数据流的分析，而数据流正是信息流的一种infowmation flow，即本应该流向x处的信息流向了y处，举个例子就是本来应该发给plmm的情书一不小心塞进了好基友的书包里....，我们的目标就是阻止非法信息流### Access Control，每次获取信息的时候要求通行权限，而不关心后续对信息操作的流程。可以认为是点上的安全措施，AC就是基友在任何东西进包之前都要检查这东西能不能进包，以此来阻止上述情况，因此又被叫做端到端的安全措施### Information Flow Security(1)把变量分成若干安全等级，并(2)规定流动法则。最简单的分级就是分成高、低安全等级#### Security Level：绝密&gt;机密&gt;秘密&gt;公开，比如公司内两个部门可以不互通内部信息，但是最高决策者应当看到所有的信息#### Flow Policypolicy，它要求"高等级的信息不应该影响(流向)低级信息"，这里的“影响”或许要从信息论的角度来理解。例如a=b+c，若a、b均为低级，则c不能为高级(否则可以通过获取a和b来计算出c的值)#### Confidentiality#### Integrity(不应被低等级信息污染)、完整性(不应该丢失)、一致性(在传输过程中不应该变化)，就是要防止危险信息的流入(例如各种注入攻击)/写的保护### Implicit Flow，且这段受影响的控制流有着对L信息的不同的副作用，那么显然可以通过监听L信息的变化来判断控制流的流向，并间接推断出H信息<code>cpp\nswitch (high) &#123;\n\tcase 1: case 2: &#123;\n\t\tlow = 0;\n\t\tbreak;\n\t&#125;\n\tcase 3: &#123;\n\t\tlow = 1;\n\t\tbreak;\n\t&#125;\n\tcase 4: &#123;\n\t\tlow = 2;\n\t\tbreak;\n\t&#125;\n\tdefault: &#123;\n\t\tlow = 3;\n\t&#125;\n&#125;\n</code><code>low</code>即可得到<code>high</code>的信息### Convert/Hidden Channels(channels)，但最终它传递了某种信息，则称为这是一个隐藏信道#### Implicit Flows<code>cpp\nif (high &lt; 0) low = 1;\nelse low = 2;\n</code>#### Termination Channels(运行状态)泄露信息<code>cpp\nwhile (high&lt;0) &#123;...&#125;\n</code>#### Timing Channels<code>cpp\nif(high&gt;0) SPEND_A_LONG_TIME();\n</code>#### Exceptions<code>cpp\nif (high&gt;0) throw new Exception(\"exception\");\n</code>，一些听起来就很牛逼的比如观察缓存命中率来推断一些关键信息(这个要怎么做啊好想知道啊看起来好好玩啊洗礼太洗礼太)flow和implicit flow我们可以发现. explicit flow泄露的信息不会更少(毕竟全露了)。举例就是在if的控制流泄露中，implicit只泄露了1bit的信息量. implicit flow很难实现数据的更改，往往只能获得信息因此目前的主要研究对象就是显式流的规避## Taint Analysis：感兴趣的数据则打上标记，否则没有标记/方法标记为source，表示污点数据会以函数的返回值进入程序，表示这些是我们关注的关键部分：是否有污点数据从source流向了sink？..."</p>
+<p>下面几节课都比较轻松，内容偏科普性质 ## Security &gt; Achieving some goals in the presence of adversaries 这个概括可以说是很简练了 统计意义下最常见的两类漏洞： 1. Injection Errors 2. Information leaks 这两者本质上都是信息流的错误流动，因此就自然引出信息流安全的问题和分析 ## Information Flow 字面意思....前面指针分析本质上是对数据流的分析，而数据流正是信息流的一种 IF的安全问题在于出现了unwanted infowmation flow，即本应该流向x处的信息流向了y处，举个例子就是本来应该发给plmm的情书一不小心塞进了好基友的书包里.... 那么想要保持安全，我们的目标就是阻止非法信息流 ### Access Control 即对信息上锁，每次获取信息的时候要求通行权限 AC主要关心信息是否被获取，而不关心后续对信息操作的流程。可以认为是点上的安全措施 同样用情书举例，AC就是基友在任何东西进包之前都要检查这东西能不能进包，以此来阻止上述情况 而信息流安全则关注的是不同节点之间的联系以及互动，因此又被叫做端到端的安全措施 ### Information Flow Security IFS会(1)把变量分成若干安全等级，并(2)规定流动法则。最简单的分级就是分成高、低安全等级 #### Security Level 举例中国保密的四级：绝密&gt;机密&gt;秘密&gt;公开 同时等级并不一定是全序的，比如公司内两个部门可以不互通内部信息，但是最高决策者应当看到所有的信息 这意味着我们可以用lattice对等级进行建模 #### Flow Policy 经典方法是Noninterference policy，它要求"高等级的信息不应该影响(流向)低级信息" 这句话比较抽象，这里的“影响”或许要从信息论的角度来理解。例如a=b+c，若a、b均为低级，则c不能为高级(否则可以通过获取a和b来计算出c的值) 同时还提到了两个概念 #### Confidentiality 就是要防止机密信息泄露 #### Integrity 保证Integrity的广义要求是保证数据的准确性(不应被低等级信息污染)、完整性(不应该丢失)、一致性(在传输过程中不应该变化) 狭义地讲，就是要防止危险信息的流入(例如各种注入攻击) 这两种保护可以看成是分别对读/写的保护 泄露的情况又分为两种 ### Implicit Flow 考虑如果H信息对程序的控制流产生了影响，且这段受影响的控制流有着对L信息的不同的副作用，那么显然可以通过监听L信息的变化来判断控制流的流向，并间接推断出H信息 例如这样一段代码 ```cpp switch (high) { case 1: case 2: { low = 0; break; } case 3: { low = 1; break; } case 4: { low = 2; break; } default: { low = 3; } } ``` 只需观测`low`即可得到`high`的信息 ### Convert/Hidden Channels 在计算机系统中传输信息的组件被称为信道(channels) 如果某段代码本来目的并不是传输信息，但最终它传递了某种信息，则称为这是一个隐藏信道 PPT给了四个例子 #### Implicit Flows 通过控制流泄露信息 ```cpp if (high &lt; 0) low = 1; else low = 2; ``` #### Termination Channels 通过是否结束(运行状态)泄露信息 ```cpp while (high&lt;0) {...} ``` #### Timing Channels 通过运行时间泄露信息 ```cpp if(high&gt;0) SPEND_A_LONG_TIME(); ``` #### Exceptions 通过异常泄露信息 ```cpp if (high&gt;0) throw new Exception("exception"); ``` 此外还有很多，一些听起来就很牛逼的比如观察缓存命中率来推断一些关键信息(这个要怎么做啊好想知道啊看起来好好玩啊洗礼太洗礼太) 通过对比explicit flow和implicit flow我们可以发现 1. explicit flow泄露的信息不会更少(毕竟全露了)。举例就是在if的控制流泄露中，implicit只泄露了1bit的信息量 2. implicit flow很难实现数据的更改，往往只能获得信息 因此目前的主要研究对象就是显式流的规避 ## Taint Analysis 污点分析首先对数据分类：感兴趣的数据则打上标记，否则没有标记 然后将一些函数/方法标记为source，表示污点数据会以函数的返回值进入程序 将一些方法标记为sink，表示这些是我们关注的关键部分 那么这个分析要回答的问题就是：是否有污点数据从source流向了sink？ 可以类比一下动物学中的标志法求群体迁徙路线... <span id="more"></span></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/06/19/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-06-19 12:52:30
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/06/19/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' +  + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F06%2F19%2F%25E8%25BD%25AF%25E4%25BB%25B6%25E5%2588%2586%25E6%259E%2590%25E7%25AC%2594%25E8%25AE%25B07-Security%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2022/06/19/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

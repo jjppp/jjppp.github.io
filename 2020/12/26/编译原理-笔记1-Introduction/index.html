@@ -121,7 +121,7 @@
   <!-- LaTex Display -->
 
   
-    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   
   <script>
     MathJax = {
@@ -168,14 +168,179 @@
         
       </div>
       <div class="markdown-body">
-        <p>看的是英文版的龙书,各种翻译看看就好... 大概前半段是课本，后半段是网课的笔记。因为课程好像都不讲Chap. 2，所以下一节的笔记大概就没有课堂内容了 # 1.1 Language Processors 词汇: intermediate 中间的 compile 编译 interpret 解释 assemble 汇编 relocatable 可重定位的 编译器指的是将源代码翻译成等价的另一种语言的程序的程序(饶舌) 编译器的一项重要职责是检测error 编译语言的编译和执行是分开的: 1. 源代码-&gt;[编译]-&gt;程序 2. 输入-&gt;[执行程序]-&gt;输出 解释器是另一种语言处理器,解释语言没有编译过程: 1. 源代码+输入-&gt;[解释]-&gt;输出 通常来讲编译器要比解释器快得多(显然) 而解释器通常能更好的检测error(解释器一步步执行) Java语言结合了翻译(Translate)和解释(Interpret): 1. 源代码-&gt;[翻译]-&gt;字节码(bytecode) 2. 字节码+输入-&gt;[虚拟机]-&gt;输出 这里的字节码是一种中间程序(intermediate program),其好处在于可以在编译后跨平台解释 有些java编译器直接把字节码翻译成机器语言来加速 从源代码到可执行文件之间不止需要编译器一个程序(过程) 源代码(source code)-&gt;[预处理器(preprocessor)]-&gt;修改过的源代码(modified sourcecode)-&gt;[**编译器(compiler)**]-&gt;汇编语言(assembly program)-&gt;[汇编(assembler)]-&gt;可重定位机器码(relocatable machine code)-&gt;[链接(Linker/Loader)]-&gt;目标机器码(target machine code) 通常情况下源代码有多个,它们先被**预处理器**处理(宏展开 代码替换等)得到修改过的源代码 修改过的源代码然后被给了编译器,编译后得到汇编程序(较抽象 方便调试) 汇编程序传给汇编器后得到relocatable machine code.编译过程中可能会有多个源代码,这时候就要把它们(还有一些需要的部分)链接起来,最后才得到可执行的程序(executable program) ## Exercise for 1.1 1. 编译器和解释器的区别？ 笔记里有 2. 编译器和解释器的优劣？ 笔记里有 3. 编译器为什么产生汇编程序而不直接得到机器语言？ 1. Assembly language is easier to produce as output 2. It is easier to debug (there may be more than one source codes) 4. 把一种高级语言翻译成另一种高级语言的的编译器叫做“source-to-source translator”.那么用C作为目标语言的编译器有什么好处？ C语言比较通用、易于阅读(compared to other intermediate languages)...C语言的优势都算 5. 描述一下assembler的任务 笔记里有 # 1.2 The Structure of a Compiler 词汇: grammar 语法 lexical 词法的 syntax syntactical 句法 句法的 semantic 语义的 synthesis 合成 constituent 组成的 impose 施加 sound 合理的 coercions 强制类型转换 judicious 明智的 phase 阶段 pass 通路 syntax-directed translation 前面讲了整个编译的过程,后面主要讲Compiler这一部分 编译可以分成两个部分:分析(Analysis)和合成(Synthesis) ## Analysis: compiler的**前端**(front end) 把源代码分解成若干小部分,再用这些部分构建语法结构,并利用语法结构来建立一种中间表达(Intermediate Representation = IR) 如果Analysis过程中检测到了error(语法错误、语义错误)compiler能够及时报错 同时Analysis过程中compiler会收集一些信息储存在symbol table(一种数据结构)中,并连同IR一起传递给Synthesis过程 ##　Synthesis: compiler的**后端**(back end) 接收IR和symbol table,并据此产生目标程序 compiler的流程一套下来大概是这样的: characters-&gt;[lexical analysis]()-&gt;tokens-&gt;[syntax analysis]()-&gt;syntax tree(语法树)-&gt;[semantic analysis]()-&gt;decorated syntax tree-&gt;[Intermediate code generator]()-&gt;IR-&gt;[optimizer1]()-&gt;IR-&gt;[code generator]()-&gt;machine code-&gt;[optimizer2]()-&gt;machine code 其中symbol table全程在线,随时可用 流程里的optimizer不一定都有,不一定没有,都属于可选项 ### Lexical Analysis 这是compiler的第一部分,这个部分compiler会读取字符流中的字符,然后得到若干词语(lexeme)组成的序列 每个lexeme都可以表示为形式如下的token: 书中举了这样一个例子: ```cpp position = initial + rate * 60; ``` 就会被翻译成类似 ```cpp &lt;=&gt; &lt;+&gt; &lt;*&gt; ``` 这样的语句.此时symbol table就会变成这个样子 ```cpp 1 position 20 2 initial 12 3 rate 0.25 ``` 我们看到的 ```cpp ``` 就可以理解成从symbol table中的第x个元素,其余的类似(如果学过汇编可能会理解得好一点) 如果出现了无法识别的字符/词语,那么编译器就会报错 否则Lexical Analysis就会把若干这样的tokens传递给下一个环节 ### Syntax Analysis/Parsing 在这一环节parser会利用前面的tokens建立一个树形结构来表示语法结构 一个例子是语法树(syntax tree).语法树的每一个节点都代表一个操作(operator),节点的儿子是操作的对象. 语法树的结构有利于维持传统运算的优先级顺序,也就是说它直观上是很好理解的 ### Semantic Analysis 这一环节semantic analyzer会根据语言的规范，利用语法树和symbol table中的信息来检查源代码的语义.一个具体的检查例子就是typecheck 有的时候语言还有隐式的类型转换，这种时候compiler就需要判断出转换的类型，一个简单的例子是(int x = 60.0 * 2;) 同时，这一阶段还会收集变量的类型等各种信息用于后续过程 ### IR Generation 在编译过程中可能出现不止一种、不止一次IR，语法树只是其中常用的一种 在词法分析、语法分析、语义分析后，compiler通常会产生一种特殊的IR 它较低级(low-level)，靠近机器语言(machine-like)，所以 1. 容易生成 2. 容易翻译成目标机器语言 #### 3AC 3AC(3-adress code)是IR一个例子 (这个东西的形式很像寄存器的各种操作，通常有各种中间变量) 一条常见的3AC指令形如: A = B opt C 1. 至多一个操作符(可以没有:赋值操作)，**至多**两个操作变量 2. 所有操作按固定顺序执行 ### Opimization 喜闻乐见的优化环节 优化分两种，机器无关(machine dependent)/机器相关(machine independent)，通常指的是运行速度优化 优化还可能包括(更少的能耗/更小的程序) 对IR的优化属于机器无关的优化(为什么?)，其意图在于减少语句的同时保证所有的语句仍然符合IR规范 现代编译器的区别主要在于optimization环节，致力于optimization的compiler被称为"optimizing compilers" ### Code Generation 这个环节compiler将IR转变为机器代码(直接操作寄存器、内存)的序列 这一步的重点在于明智地分配寄存器和高效代码的生成 本书到目前为止忽略了identifier(变量)的储存分配，现在只需要知道这在生成IR的环节或这一环节完成就行 ### Symbol Table Management 这个数据结构记录了变量、变量类型、使用位置、函数等等信息，并且应该支持快速的查找和修改各种信息 (怎么看怎么像BST囧,哪来的table) ### Grouping Phases into Passes 一个流程的各逻辑阶段叫做Phases。在实际操作中可能会把多个Phases同时实现(例如同时实现词法和语法分析) 一个读入一段文件并输出一段文件的流程叫做Pass，是流程的实际阶段分割 这一段讲的是compiler的组织结构和模块化 在上面把compiler分为front end和back end的好处在于 1. 可以用一个语言的前端配上不同机器的后端 2. 可以用不同语言的前端配上特定机器的后端 ## 语言发展史 机器语言-&gt;汇编-&gt;Fortran、Cobol、Lisp、C、C++-&gt;NOMAD、SQL、Postscript-&gt;Prolog、OPS5 一些概念(哪哪都是这几位) ### 命令式语言(Imperative) 描述操作过程的语言 ### 声明式语言(Declarative) 描述操作目的的语言 ### 冯诺依曼语言 所有以冯诺依曼体系结构为基础的语言都是。基于lambda验算的语言则不是 ### 脚本语言 逐行执行，无需全文编译即可运行的语言 ## Name&amp;Variable&amp;Identifier Identifier是一段字符，用来表示某个实体(entity) Name指的是**代码**中的某个静态实体，可以是函数/变量/其它。所有的Id都是Name，但Name不都是Id(例如Id.Id也可以表示一个Name) Variable用来指代运行时Name的动态含义(某个Name究竟指内存中的哪段数据)。 ## 静态/动态 如果一个问题需要运行程序才能得到答案，那么这个问题就是"动态的"，否则是"静态的" 一个经典的问题就是静态/动态的作用域。作用域设计的问题是：在某处提及的Name `x`究竟是在何处被声明的 `x`？ 静态的作用域很好理解；动态作用域的一个例子出现在OOP中。例如对于父类和子类都实现了的方法`method()`，`x.method();`究竟dispatch到哪一个，就依赖于`x`动态指向的对象。 ## Environment&amp;State 环境：从Name到储存位置的映射(左值) 状态：从储存位置到值的映射(右值) 那么上面说到的"OOP中函数的作用域由环境决定"的说法就可以理解了，即类中函数的作用域由receiver object在储存中的位置决定。 从这个角度看，Allocation Site Abstraction就是在用Name对Variable建模 <!-- more --></p>
+        <p>看的是英文版的龙书,各种翻译看看就好...</p>
+<p>大概前半段是课本，后半段是网课的笔记。因为课程好像都不讲Chap. 2，所以下一节的笔记大概就没有课堂内容了</p>
+<p># 1.1 Language Processors</p>
+<p>词汇:</p>
+<p>intermediate 中间的</p>
+<p>compile 编译</p>
+<p>interpret 解释</p>
+<p>assemble 汇编</p>
+<p>relocatable 可重定位的</p>
+<p>编译器指的是将源代码翻译成等价的另一种语言的程序的程序(饶舌)</p>
+<p>编译器的一项重要职责是检测error</p>
+<p>编译语言的编译和执行是分开的:</p>
+<ol type="1">
+<li><p>源代码-&gt;[编译]-&gt;程序</p></li>
+<li><p>输入-&gt;[执行程序]-&gt;输出</p></li>
+</ol>
+<p>解释器是另一种语言处理器,解释语言没有编译过程:</p>
+<ol type="1">
+<li>源代码+输入-&gt;[解释]-&gt;输出</li>
+</ol>
+<p>通常来讲编译器要比解释器快得多(显然)</p>
+<p>而解释器通常能更好的检测error(解释器一步步执行)</p>
+<p>Java语言结合了翻译(Translate)和解释(Interpret):</p>
+<ol type="1">
+<li><p>源代码-&gt;[翻译]-&gt;字节码(bytecode)</p></li>
+<li><p>字节码+输入-&gt;[虚拟机]-&gt;输出 这里的字节码是一种中间程序(intermediate program),其好处在于可以在编译后跨平台解释 有些java编译器直接把字节码翻译成机器语言来加速</p></li>
+</ol>
+<p>从源代码到可执行文件之间不止需要编译器一个程序(过程)</p>
+<p>源代码(source code)-&gt;[预处理器(preprocessor)]-&gt;修改过的源代码(modified sourcecode)-&gt;[<strong>编译器(compiler)</strong>]-&gt;汇编语言(assembly program)-&gt;[汇编(assembler)]-&gt;可重定位机器码(relocatable machine code)-&gt;[链接(Linker/Loader)]-&gt;目标机器码(target machine code)</p>
+<p>通常情况下源代码有多个,它们先被<strong>预处理器</strong>处理(宏展开 代码替换等)得到修改过的源代码</p>
+<p>修改过的源代码然后被给了编译器,编译后得到汇编程序(较抽象 方便调试)</p>
+<p>汇编程序传给汇编器后得到relocatable machine code.编译过程中可能会有多个源代码,这时候就要把它们(还有一些需要的部分)链接起来,最后才得到可执行的程序(executable program)</p>
+<p>## Exercise for 1.1</p>
+<ol type="1">
+<li>编译器和解释器的区别？ 笔记里有</li>
+<li>编译器和解释器的优劣？ 笔记里有</li>
+<li>编译器为什么产生汇编程序而不直接得到机器语言？
+<ol type="1">
+<li>Assembly language is easier to produce as output</li>
+<li>It is easier to debug (there may be more than one source codes)</li>
+</ol></li>
+<li>把一种高级语言翻译成另一种高级语言的的编译器叫做“source-to-source translator”.那么用C作为目标语言的编译器有什么好处？ C语言比较通用、易于阅读(compared to other intermediate languages)...C语言的优势都算</li>
+<li>描述一下assembler的任务 笔记里有</li>
+</ol>
+<p># 1.2 The Structure of a Compiler</p>
+<p>词汇:</p>
+<p>grammar 语法</p>
+<p>lexical 词法的</p>
+<p>syntax syntactical 句法 句法的</p>
+<p>semantic 语义的</p>
+<p>synthesis 合成</p>
+<p>constituent 组成的</p>
+<p>impose 施加</p>
+<p>sound 合理的</p>
+<p>coercions 强制类型转换</p>
+<p>judicious 明智的</p>
+<p>phase 阶段</p>
+<p>pass 通路</p>
+<p>syntax-directed translation</p>
+<p>前面讲了整个编译的过程,后面主要讲Compiler这一部分</p>
+<p>编译可以分成两个部分:分析(Analysis)和合成(Synthesis)</p>
+<p>## Analysis:</p>
+<p>compiler的<strong>前端</strong>(front end)</p>
+<p>把源代码分解成若干小部分,再用这些部分构建语法结构,并利用语法结构来建立一种中间表达(Intermediate Representation = IR)</p>
+<p>如果Analysis过程中检测到了error(语法错误、语义错误)compiler能够及时报错</p>
+<p>同时Analysis过程中compiler会收集一些信息储存在symbol table(一种数据结构)中,并连同IR一起传递给Synthesis过程</p>
+<p>##　Synthesis:</p>
+<p>compiler的<strong>后端</strong>(back end)</p>
+<p>接收IR和symbol table,并据此产生目标程序</p>
+<p>compiler的流程一套下来大概是这样的:</p>
+<p>characters-&gt;<a href="">lexical analysis</a>-&gt;tokens-&gt;<a href="">syntax analysis</a>-&gt;syntax tree(语法树)-&gt;<a href="">semantic analysis</a>-&gt;decorated syntax tree-&gt;<a href="">Intermediate code generator</a>-&gt;IR-&gt;<a href="">optimizer1</a>-&gt;IR-&gt;<a href="">code generator</a>-&gt;machine code-&gt;<a href="">optimizer2</a>-&gt;machine code</p>
+<p>其中symbol table全程在线,随时可用</p>
+<p>流程里的optimizer不一定都有,不一定没有,都属于可选项</p>
+<p>### Lexical Analysis</p>
+<p>这是compiler的第一部分,这个部分compiler会读取字符流中的字符,然后得到若干词语(lexeme)组成的序列</p>
+<p>每个lexeme都可以表示为形式如下的token:</p>
+<p>&lt;token-name, value&gt;</p>
+<p>书中举了这样一个例子:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>position = initial + rate * <span class="dv">60</span>;</span></code></pre></div>
+<p>就会被翻译成类似</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>&lt;id, <span class="dv">1</span>&gt; &lt;=&gt; &lt;id, <span class="dv">2</span>&gt; &lt;+&gt; &lt;id, <span class="dv">3</span>&gt; &lt;*&gt; &lt;num, <span class="dv">60</span>&gt;</span></code></pre></div>
+<p>这样的语句.此时symbol table就会变成这个样子</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="dv">1</span> position <span class="dv">20</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="dv">2</span> initial <span class="dv">12</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="dv">3</span> rate <span class="fl">0.25</span></span></code></pre></div>
+<p>我们看到的</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>&lt;id, x&gt;</span></code></pre></div>
+<p>就可以理解成从symbol table中的第x个元素,其余的类似(如果学过汇编可能会理解得好一点)</p>
+<p>如果出现了无法识别的字符/词语,那么编译器就会报错</p>
+<p>否则Lexical Analysis就会把若干这样的tokens传递给下一个环节</p>
+<p>### Syntax Analysis/Parsing</p>
+<p>在这一环节parser会利用前面的tokens建立一个树形结构来表示语法结构</p>
+<p>一个例子是语法树(syntax tree).语法树的每一个节点都代表一个操作(operator),节点的儿子是操作的对象.</p>
+<p>语法树的结构有利于维持传统运算的优先级顺序,也就是说它直观上是很好理解的</p>
+<p>### Semantic Analysis</p>
+<p>这一环节semantic analyzer会根据语言的规范，利用语法树和symbol table中的信息来检查源代码的语义.一个具体的检查例子就是typecheck</p>
+<p>有的时候语言还有隐式的类型转换，这种时候compiler就需要判断出转换的类型，一个简单的例子是(int x = 60.0 * 2;)</p>
+<p>同时，这一阶段还会收集变量的类型等各种信息用于后续过程</p>
+<p>### IR Generation</p>
+<p>在编译过程中可能出现不止一种、不止一次IR，语法树只是其中常用的一种</p>
+<p>在词法分析、语法分析、语义分析后，compiler通常会产生一种特殊的IR</p>
+<p>它较低级(low-level)，靠近机器语言(machine-like)，所以</p>
+<ol type="1">
+<li><p>容易生成</p></li>
+<li><p>容易翻译成目标机器语言</p></li>
+</ol>
+<p>#### 3AC</p>
+<p>3AC(3-adress code)是IR一个例子 (这个东西的形式很像寄存器的各种操作，通常有各种中间变量)</p>
+<p>一条常见的3AC指令形如: A = B opt C</p>
+<ol type="1">
+<li><p>至多一个操作符(可以没有:赋值操作)，<strong>至多</strong>两个操作变量</p></li>
+<li><p>所有操作按固定顺序执行</p></li>
+</ol>
+<p>### Opimization</p>
+<p>喜闻乐见的优化环节</p>
+<p>优化分两种，机器无关(machine dependent)/机器相关(machine independent)，通常指的是运行速度优化</p>
+<p>优化还可能包括(更少的能耗/更小的程序)</p>
+<p>对IR的优化属于机器无关的优化(为什么?)，其意图在于减少语句的同时保证所有的语句仍然符合IR规范</p>
+<p>现代编译器的区别主要在于optimization环节，致力于optimization的compiler被称为"optimizing compilers"</p>
+<p>### Code Generation</p>
+<p>这个环节compiler将IR转变为机器代码(直接操作寄存器、内存)的序列</p>
+<p>这一步的重点在于明智地分配寄存器和高效代码的生成</p>
+<p>本书到目前为止忽略了identifier(变量)的储存分配，现在只需要知道这在生成IR的环节或这一环节完成就行</p>
+<p>### Symbol Table Management</p>
+<p>这个数据结构记录了变量、变量类型、使用位置、函数等等信息，并且应该支持快速的查找和修改各种信息</p>
+<p>(怎么看怎么像BST囧,哪来的table)</p>
+<p>### Grouping Phases into Passes</p>
+<p>一个流程的各逻辑阶段叫做Phases。在实际操作中可能会把多个Phases同时实现(例如同时实现词法和语法分析)</p>
+<p>一个读入一段文件并输出一段文件的流程叫做Pass，是流程的实际阶段分割</p>
+<p>这一段讲的是compiler的组织结构和模块化</p>
+<p>在上面把compiler分为front end和back end的好处在于</p>
+<ol type="1">
+<li><p>可以用一个语言的前端配上不同机器的后端</p></li>
+<li><p>可以用不同语言的前端配上特定机器的后端</p></li>
+</ol>
+<p>## 语言发展史</p>
+<p>机器语言-&gt;汇编-&gt;Fortran、Cobol、Lisp、C、C++-&gt;NOMAD、SQL、Postscript-&gt;Prolog、OPS5</p>
+<p>一些概念(哪哪都是这几位)</p>
+<p>### 命令式语言(Imperative)</p>
+<p>描述操作过程的语言</p>
+<p>### 声明式语言(Declarative)</p>
+<p>描述操作目的的语言</p>
+<p>### 冯诺依曼语言</p>
+<p>所有以冯诺依曼体系结构为基础的语言都是。基于lambda验算的语言则不是</p>
+<p>### 脚本语言</p>
+<p>逐行执行，无需全文编译即可运行的语言</p>
+<p>## Name&amp;Variable&amp;Identifier</p>
+<p>Identifier是一段字符，用来表示某个实体(entity)</p>
+<p>Name指的是<strong>代码</strong>中的某个静态实体，可以是函数/变量/其它。所有的Id都是Name，但Name不都是Id(例如Id.Id也可以表示一个Name)</p>
+<p>Variable用来指代运行时Name的动态含义(某个Name究竟指内存中的哪段数据)。</p>
+<p>## 静态/动态</p>
+<p>如果一个问题需要运行程序才能得到答案，那么这个问题就是"动态的"，否则是"静态的"</p>
+<p>一个经典的问题就是静态/动态的作用域。作用域设计的问题是：在某处提及的Name <code>x</code>究竟是在何处被声明的 <code>x</code>？</p>
+<p>静态的作用域很好理解；动态作用域的一个例子出现在OOP中。例如对于父类和子类都实现了的方法<code>method()</code>，<code>x.method();</code>究竟dispatch到哪一个，就依赖于<code>x</code>动态指向的对象。</p>
+<p>## Environment&amp;State</p>
+<p>环境：从Name到储存位置的映射(左值)</p>
+<p>状态：从储存位置到值的映射(右值)</p>
+<p>那么上面说到的"OOP中函数的作用域由环境决定"的说法就可以理解了，即类中函数的作用域由receiver object在储存中的位置决定。</p>
+<p>从这个角度看，Allocation Site Abstraction就是在用Name对Variable建模 excerpt: &gt;-</p>
+<p>看的是英文版的龙书,各种翻译看看就好... 大概前半段是课本，后半段是网课的笔记。因为课程好像都不讲Chap. 2，所以下一节的笔记大概就没有课堂内容了 # 1.1 Language Processors 词汇: intermediate 中间的 compile 编译 interpret 解释 assemble 汇编 relocatable 可重定位的 编译器指的是将源代码翻译成等价的另一种语言的程序的程序(饶舌) 编译器的一项重要职责是检测error 编译语言的编译和执行是分开的: 1. 源代码-&gt;[编译]-&gt;程序 2. 输入-&gt;[执行程序]-&gt;输出 解释器是另一种语言处理器,解释语言没有编译过程: 1. 源代码+输入-&gt;[解释]-&gt;输出 通常来讲编译器要比解释器快得多(显然) 而解释器通常能更好的检测error(解释器一步步执行) Java语言结合了翻译(Translate)和解释(Interpret): 1. 源代码-&gt;[翻译]-&gt;字节码(bytecode) 2. 字节码+输入-&gt;[虚拟机]-&gt;输出 这里的字节码是一种中间程序(intermediate program),其好处在于可以在编译后跨平台解释 有些java编译器直接把字节码翻译成机器语言来加速 从源代码到可执行文件之间不止需要编译器一个程序(过程) 源代码(source code)-&gt;[预处理器(preprocessor)]-&gt;修改过的源代码(modified sourcecode)-&gt;[**编译器(compiler)**]-&gt;汇编语言(assembly program)-&gt;[汇编(assembler)]-&gt;可重定位机器码(relocatable machine code)-&gt;[链接(Linker/Loader)]-&gt;目标机器码(target machine code) 通常情况下源代码有多个,它们先被**预处理器**处理(宏展开 代码替换等)得到修改过的源代码 修改过的源代码然后被给了编译器,编译后得到汇编程序(较抽象 方便调试) 汇编程序传给汇编器后得到relocatable machine code.编译过程中可能会有多个源代码,这时候就要把它们(还有一些需要的部分)链接起来,最后才得到可执行的程序(executable program) ## Exercise for 1.1 1. 编译器和解释器的区别？ 笔记里有 2. 编译器和解释器的优劣？ 笔记里有 3. 编译器为什么产生汇编程序而不直接得到机器语言？ 1. Assembly language is easier to produce as output 2. It is easier to debug (there may be more than one source codes) 4. 把一种高级语言翻译成另一种高级语言的的编译器叫做“source-to-source translator”.那么用C作为目标语言的编译器有什么好处？ C语言比较通用、易于阅读(compared to other intermediate languages)...C语言的优势都算 5. 描述一下assembler的任务 笔记里有 # 1.2 The Structure of a Compiler 词汇: grammar 语法 lexical 词法的 syntax syntactical 句法 句法的 semantic 语义的 synthesis 合成 constituent 组成的 impose 施加 sound 合理的 coercions 强制类型转换 judicious 明智的 phase 阶段 pass 通路 syntax-directed translation 前面讲了整个编译的过程,后面主要讲Compiler这一部分 编译可以分成两个部分:分析(Analysis)和合成(Synthesis) ## Analysis: compiler的**前端**(front end) 把源代码分解成若干小部分,再用这些部分构建语法结构,并利用语法结构来建立一种中间表达(Intermediate Representation = IR) 如果Analysis过程中检测到了error(语法错误、语义错误)compiler能够及时报错 同时Analysis过程中compiler会收集一些信息储存在symbol table(一种数据结构)中,并连同IR一起传递给Synthesis过程 ##　Synthesis: compiler的**后端**(back end) 接收IR和symbol table,并据此产生目标程序 compiler的流程一套下来大概是这样的: characters-&gt;[lexical analysis]()-&gt;tokens-&gt;[syntax analysis]()-&gt;syntax tree(语法树)-&gt;[semantic analysis]()-&gt;decorated syntax tree-&gt;[Intermediate code generator]()-&gt;IR-&gt;[optimizer1]()-&gt;IR-&gt;[code generator]()-&gt;machine code-&gt;[optimizer2]()-&gt;machine code 其中symbol table全程在线,随时可用 流程里的optimizer不一定都有,不一定没有,都属于可选项 ### Lexical Analysis 这是compiler的第一部分,这个部分compiler会读取字符流中的字符,然后得到若干词语(lexeme)组成的序列 每个lexeme都可以表示为形式如下的token: 书中举了这样一个例子: ```cpp position = initial + rate * 60; ``` 就会被翻译成类似 ```cpp &lt;=&gt; &lt;+&gt; &lt;*&gt; ``` 这样的语句.此时symbol table就会变成这个样子 ```cpp 1 position 20 2 initial 12 3 rate 0.25 ``` 我们看到的 ```cpp ``` 就可以理解成从symbol table中的第x个元素,其余的类似(如果学过汇编可能会理解得好一点) 如果出现了无法识别的字符/词语,那么编译器就会报错 否则Lexical Analysis就会把若干这样的tokens传递给下一个环节 ### Syntax Analysis/Parsing 在这一环节parser会利用前面的tokens建立一个树形结构来表示语法结构 一个例子是语法树(syntax tree).语法树的每一个节点都代表一个操作(operator),节点的儿子是操作的对象. 语法树的结构有利于维持传统运算的优先级顺序,也就是说它直观上是很好理解的 ### Semantic Analysis 这一环节semantic analyzer会根据语言的规范，利用语法树和symbol table中的信息来检查源代码的语义.一个具体的检查例子就是typecheck 有的时候语言还有隐式的类型转换，这种时候compiler就需要判断出转换的类型，一个简单的例子是(int x = 60.0 * 2;) 同时，这一阶段还会收集变量的类型等各种信息用于后续过程 ### IR Generation 在编译过程中可能出现不止一种、不止一次IR，语法树只是其中常用的一种 在词法分析、语法分析、语义分析后，compiler通常会产生一种特殊的IR 它较低级(low-level)，靠近机器语言(machine-like)，所以 1. 容易生成 2. 容易翻译成目标机器语言 #### 3AC 3AC(3-adress code)是IR一个例子 (这个东西的形式很像寄存器的各种操作，通常有各种中间变量) 一条常见的3AC指令形如: A = B opt C 1. 至多一个操作符(可以没有:赋值操作)，**至多**两个操作变量 2. 所有操作按固定顺序执行 ### Opimization 喜闻乐见的优化环节 优化分两种，机器无关(machine dependent)/机器相关(machine independent)，通常指的是运行速度优化 优化还可能包括(更少的能耗/更小的程序) 对IR的优化属于机器无关的优化(为什么?)，其意图在于减少语句的同时保证所有的语句仍然符合IR规范 现代编译器的区别主要在于optimization环节，致力于optimization的compiler被称为"optimizing compilers" ### Code Generation 这个环节compiler将IR转变为机器代码(直接操作寄存器、内存)的序列 这一步的重点在于明智地分配寄存器和高效代码的生成 本书到目前为止忽略了identifier(变量)的储存分配，现在只需要知道这在生成IR的环节或这一环节完成就行 ### Symbol Table Management 这个数据结构记录了变量、变量类型、使用位置、函数等等信息，并且应该支持快速的查找和修改各种信息 (怎么看怎么像BST囧,哪来的table) ### Grouping Phases into Passes 一个流程的各逻辑阶段叫做Phases。在实际操作中可能会把多个Phases同时实现(例如同时实现词法和语法分析) 一个读入一段文件并输出一段文件的流程叫做Pass，是流程的实际阶段分割 这一段讲的是compiler的组织结构和模块化 在上面把compiler分为front end和back end的好处在于 1. 可以用一个语言的前端配上不同机器的后端 2. 可以用不同语言的前端配上特定机器的后端 ## 语言发展史 机器语言-&gt;汇编-&gt;Fortran、Cobol、Lisp、C、C++-&gt;NOMAD、SQL、Postscript-&gt;Prolog、OPS5 一些概念(哪哪都是这几位) ### 命令式语言(Imperative) 描述操作过程的语言 ### 声明式语言(Declarative) 描述操作目的的语言 ### 冯诺依曼语言 所有以冯诺依曼体系结构为基础的语言都是。基于lambda验算的语言则不是 ### 脚本语言 逐行执行，无需全文编译即可运行的语言 ## Name&amp;Variable&amp;Identifier Identifier是一段字符，用来表示某个实体(entity) Name指的是**代码**中的某个静态实体，可以是函数/变量/其它。所有的Id都是Name，但Name不都是Id(例如Id.Id也可以表示一个Name) Variable用来指代运行时Name的动态含义(某个Name究竟指内存中的哪段数据)。 ## 静态/动态 如果一个问题需要运行程序才能得到答案，那么这个问题就是"动态的"，否则是"静态的" 一个经典的问题就是静态/动态的作用域。作用域设计的问题是：在某处提及的Name `x`究竟是在何处被声明的 `x`？ 静态的作用域很好理解；动态作用域的一个例子出现在OOP中。例如对于父类和子类都实现了的方法`method()`，`x.method();`究竟dispatch到哪一个，就依赖于`x`动态指向的对象。 ## Environment&amp;State 环境：从Name到储存位置的映射(左值) 状态：从储存位置到值的映射(右值) 那么上面说到的"OOP中函数的作用域由环境决定"的说法就可以理解了，即类中函数的作用域由receiver object在储存中的位置决定。 从这个角度看，Allocation Site Abstraction就是在用Name对Variable建模 <span id="more"></span></p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2020/12/25/BF%E8%A7%A3%E9%87%8A%E5%99%A8%E5%92%8C%E5%87%A0%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A5%E5%8F%8A%E5%85%B3%E4%BA%8E%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/" target="_self">
+              <a href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -190,7 +355,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+              <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>

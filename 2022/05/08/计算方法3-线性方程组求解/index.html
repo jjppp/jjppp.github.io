@@ -121,7 +121,7 @@
   <!-- LaTex Display -->
 
   
-    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   
   <script>
     MathJax = {
@@ -168,7 +168,151 @@
         
       </div>
       <div class="markdown-body">
-        <p># 前置 这一节主要是玩矩阵，为了偷懒只讨论实线性空间 # 前置 这一节主要是玩矩阵，为了偷懒只讨论实线性空间 ## 内积 二元函数 <span class="math inline">\(\\left&lt;,\\right&gt;\)</span> 被称为内积，则其满足： 1. <span class="math inline">\(\\left\=\\left\)</span> 2. <span class="math inline">\(\\left\=a\\left+b\\left\)</span> 3. <span class="math inline">\(\\left\\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\\bold{0}\)</span> 时取到 ## 向量范数 一元函数 <span class="math inline">\(\\norm{\\cdot}\)</span> 被称为范数，则其满足： 1. <span class="math inline">\(\\norm{x}\\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\\bold0\)</span> 时取到 2. <span class="math inline">\(\\norm{kx}=\\abs{k}\\norm{x}\)</span> 3. <span class="math inline">\(\\norm{x+y}\\leq \\norm{x}+\\norm{y}\)</span> 在内积空间上有一个天然的范数 <span class="math inline">\(\\norm{x}=\\sqrt{\\left}\)</span>，容易验证满足上述三条要求。 ## 矩阵范数 ### 算子范数 矩阵可以看成线性变换，因此可以由向量范数来衡量矩阵作为线性变换（算子）的“长度”。定义为 <span class="math display">\[ \\norm{A}=\\max\_{\\norm{x}=1} \\norm{Ax} \]</span> 注意这里的 <span class="math inline">\(Ax,x\)</span> 都是向量，因此 RHS 出现的全都是向量范数，LHS 则是定义出来的算子范数。 有了这个定义，我们就可以写出这样的不等式 <span class="math display">\[ \\norm{Ax}\\leq \\norm{A}\\norm{x} \]</span> 同时会引入新的定义，称满足下述要求的算子范数具有**相容性**： <span class="math display">\[ \\norm{AB}\\le \\norm{A}\\norm{B} \]</span> 有了相容性同样可以做一些界的估计 ### 矩阵范数 矩阵同样也可以看成线性空间中的元素，因此可以单独赋予范数的定义，当然这就和向量范数没什么关系了。 一个例子是这样的，容易验证其满足三条要求 <span class="math display">\[ \\norm{A}=\\sum\_{i,j}\\abs{A\_{i,j} } \]</span> # 高斯消元 对于给定的线性方程组 <span class="math inline">\(Ax=b\)</span>，可以用简单 <span class="math inline">\(O(n^3)\)</span> 的高斯消元法来求解。并且这样可以很容易地求出解空间的一组基，进而得到所有解。 ## 解的稳定性 不妨假设 <span class="math inline">\(A=xb\)</span> 中 <span class="math inline">\(\\abs{A}\\neq0\)</span>，则有 <span class="math inline">\(x=A^{-1}b\)</span> 通常 <span class="math inline">\(A\)</span> 是给定的，而 <span class="math inline">\(b\)</span> 是若干计算和观察的结果，因此解的误差主要来源于 <span class="math inline">\(b\)</span> 引入的误差，可以写成 <span class="math display">\[ \\hat x=A^{-1}\\hat b \]</span> 考虑相对误差的计算，即为 <span class="math display">\[ \\max\_{\\hat b,b\\neq0} {\\frac{\\norm{A^{-1}\\hat b} }{\\norm{A^{-1}b} } }/{\\frac{\\norm{\\hat b} }{\\norm{b} } } \]</span> 即后向相对误差与前向相对误差的比值，称这个值为方程组 <span class="math inline">\(A\)</span>（矩阵 <span class="math inline">\(A\)</span>）的条件数 <span class="math inline">\(\\text{cond}(A)\)</span> <span class="math display">\[ \\begin{aligned} \\text{cond}(A)&amp;=\\max\_{\\hat b,b\\neq 0} {\\frac{\\norm{A^{-1}\\hat b} }{\\norm{A^{-1}b} } }/{\\frac{\\norm{\\hat b} }{\\norm{b} } } \\\\ &amp;=\\max\_{\\hat b\\neq 0} \\frac{\\norm{A^{-1}\\hat b} }{\\norm{\\hat b} }\\max\_{b\\neq 0}\\frac{\\norm{b} }{\\norm{A^{-1}b} } \\end{aligned} \]</span> 注意到 <span class="math inline">\(A^{-1}b=x\)</span>，且 <span class="math inline">\(b=Ax\)</span>，带入即得 <span class="math display">\[ \\begin{aligned} \\text{cond}(A)&amp;=\\max\_{\\hat b\\neq 0}\\frac{\\norm{A^{-1}\\hat b} }{\\norm{\\hat b} }\\max\_{x\\neq 0} \\frac{\\norm{Ax} }{\\norm{x} } \\\\ &amp;=\\norm{A^{-1} }\\norm{A} \\end{aligned} \]</span> 矩阵的条件数反映了矩阵所对应线性方程组的不稳定程度。条件数越大则不稳定程度越大，误差的传递放大也就越严重。 # 迭代算法 <span class="math inline">\(O(n^3)\)</span> 太昂贵，考虑迭代算法。一般而言迭代的次数是人为规定的，不少算法能够保证在 <span class="math inline">\(\\Omega(n)\)</span> 次迭代之后必然得到精确解。 ## Jacobi 迭代 对于矩阵 <span class="math inline">\(A\)</span>，将其分解为 <span class="math inline">\(A=L+D+U\)</span>，其中 <span class="math inline">\(L,U\)</span> 分别为上三角矩阵和下三角矩阵，<span class="math inline">\(D\)</span> 为对角阵。 那么有 <span class="math display">\[ Ax=(L+U+D)x=b \\\\ x\_{k+1}=D^{-1}(b-(L+U)x\_k) \]</span> ### 收敛性 给出一个充分条件：若 <span class="math inline">\(A\)</span> 是主对角线占优矩阵，则迭代必然收敛。 只需联立如下方程 <span class="math display">\[ \\left\\{ \\begin{aligned} x^\*&amp;=D^{-1}(b-(L+U)x^\*) \\\\ x\_{k+1}&amp;=D^{-1}(b-(L+U)x\_{k}) \\end{aligned} \\right. \]</span> 两式相减即得 <span class="math display">\[ x\_{k+1}-x^\*=-D^{-1}(L+U)(x\_k-x^\*) \]</span> 记 <span class="math inline">\(W=D^{-1}(L+U)\)</span>，由对角占优可知 <span class="math inline">\(Wx\)</span> 的每一项绝对值严格小于 <span class="math inline">\(x\)</span>，因此迭代收敛。 ### 正确性 假设收敛，则有不动点 <span class="math inline">\(x\)</span>，简单替换即得不动点 <span class="math inline">\(x\)</span> 是原方程的一个解。 结合收敛性的充分条件即得：若 <span class="math inline">\(A\)</span> 为主对角线占优矩阵，则解唯一（<span class="math inline">\(A\)</span> 可逆），且迭代收敛至唯一解。 看起来还是比较好的。 ## Gauss-Seidel 迭代 用到了一个观察，即在计算解向量 <span class="math inline">\(x\_{k+1}\)</span> 的第 <span class="math inline">\(r\)</span> 项时，它的前 <span class="math inline">\(r-1\)</span> 项都已经算出来了（废话） 因此可以写成 <span class="math display">\[ x\_{k+1}=D^{-1}(b-Ux\_k-Lx\_{k+1}) \]</span> 证明和上面是类似的，结论也是类似的。 写代码可以发现这两个方法没有绝对的好坏之分，迭代速度也没有一般性的结论（至少俺不知道）。 ## 谱半径 为了分析一类迭代算法的收敛性，引入谱半径的概念 定义 <span class="math inline">\(A\)</span> 的谱半径为其绝对值最大的特征值 <span class="math inline">\(\\abs{\\lambda\_\\max}\)</span>，记为 <span class="math inline">\(\\rho(A)\)</span> 对于这样的迭代算法 <span class="math display">\[ x\_{k+1}=Ax\_k+b \]</span> 取不动点做差得 <span class="math display">\[ x\_k-x^\*=A^k(x\_0-x^\*) \]</span> 如果能说明 <span class="math inline">\(\\lim\\limits\_{k\\to\\infty} A^k=O\)</span>，那么就能说明迭代是收敛的，且收敛到方程组的解。 有定理：<span class="math inline">\(\\lim\\limits\_{k\\to\\infty}A^k=O\)</span> 当且仅当 <span class="math inline">\(\\rho(A)&lt;1\)</span> 分析 Jacobi 和 Gauss-Seidel 迭代矩阵的谱半径可以知道，当系数矩阵 <span class="math inline">\(A\)</span> 是严格对角占优时，这两个算法以任意初始向量开始迭代都会收敛。 ## 伪逆 对于满秩矩阵 <span class="math inline">\(A\)</span>，方程组 <span class="math inline">\(Ax=b\)</span> 的解是显然存在的。但是对于非满秩的矩阵 <span class="math inline">\(B\)</span> 来说就不一定了。在最小二乘法中可以求得一个二范数最小的“逼近”解，实际上是解了一个方程 <span class="math inline">\(A^\\intercal Ax=A^\\intercal b\)</span>，即 <span class="math inline">\(x=(A^\\intercal A)^{-1}A^\\intercal b\)</span> 问题的关键在于 <span class="math inline">\(A^{-1}\)</span> 不一定存在，这使得 <span class="math inline">\(Ax=b\)</span> 不一定存在唯一解。因此引入记号 <span class="math inline">\(A^\\dagger=(A^\\intercal A)^{-1}A^\\intercal\)</span>，称为 <span class="math inline">\(A\)</span> 的伪逆（pseudo inverse），那么最小二乘法可以写成 <span class="math inline">\(x=A^\\dagger b\)</span>，形式与满秩方程组 <span class="math inline">\(x=A^{-1}b\)</span> 是一致的。这样求出的解为最佳平方逼近解。 当 <span class="math inline">\(A\)</span> 的列线性无关时，<span class="math inline">\(A^\\intercal A\)</span> 满秩，<span class="math inline">\(A^\\dagger=(A^\\intercal A)^{-1}A^\\intercal\)</span> 存在。此时原方程组 <span class="math inline">\(Ax=b\)</span> 无解（超定方程组） 由反证法假设存在 <span class="math inline">\(x\\neq 0\)</span> 使得 <span class="math inline">\(A^\\intercal Ax=0\)</span>，那么 <span class="math inline">\((Ax)^\\intercal (Ax)=0\)</span>，根据内积的正定性可知 <span class="math inline">\(Ax=0\)</span>，这说明存在列的线性组合为 <span class="math inline">\(0\)</span>，这与列线性无关矛盾；故假设不成立。 类似取 <span class="math inline">\(A^\\intercal\)</span> 可知，当 <span class="math inline">\(A\)</span> 的行线性无关时，<span class="math inline">\(A^\\intercal\)</span> 列线性无关，<span class="math inline">\(AA^\\intercal\)</span> 满秩，<span class="math inline">\(A^\\dagger=((A^\\intercal)^\\dagger)^\\intercal=A^\\intercal(AA^\\intercal)^{-1}\)</span>。此时方程组 <span class="math inline">\(Ax=b\)</span> 有多解（欠定方程组），但是我不知道有啥意义，因为 <span class="math inline">\(A^\\dagger\)</span> 是个右逆.... <!-- more --></p>
+        <p># 前置</p>
+<p>这一节主要是玩矩阵，为了偷懒只讨论实线性空间</p>
+<p># 前置</p>
+<p>这一节主要是玩矩阵，为了偷懒只讨论实线性空间</p>
+<p>## 内积</p>
+<p>二元函数 <span class="math inline">\(\left&lt;,\right&gt;\)</span> 被称为内积，则其满足：</p>
+<ol type="1">
+<li><p><span class="math inline">\(\left&lt;x,y\right&gt;=\left&lt;y,x\right&gt;\)</span></p></li>
+<li><p><span class="math inline">\(\left&lt;ax+by,z\right&gt;=a\left&lt;x,z\right&gt;+b\left&lt;y,z\right&gt;\)</span></p></li>
+<li><p><span class="math inline">\(\left&lt;x,x\right&gt;\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\bold{0}\)</span> 时取到</p></li>
+</ol>
+<p>## 向量范数</p>
+<p>一元函数 <span class="math inline">\(\norm{\cdot}\)</span> 被称为范数，则其满足：</p>
+<ol type="1">
+<li><p><span class="math inline">\(\norm{x}\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\bold0\)</span> 时取到</p></li>
+<li><p><span class="math inline">\(\norm{kx}=\abs{k}\norm{x}\)</span></p></li>
+<li><p><span class="math inline">\(\norm{x+y}\leq \norm{x}+\norm{y}\)</span></p></li>
+</ol>
+<p>在内积空间上有一个天然的范数 <span class="math inline">\(\norm{x}=\sqrt{\left&lt;x,x\right&gt;}\)</span>，容易验证满足上述三条要求。</p>
+<p>## 矩阵范数</p>
+<p>### 算子范数</p>
+<p>矩阵可以看成线性变换，因此可以由向量范数来衡量矩阵作为线性变换（算子）的“长度”。定义为</p>
+<p>$$</p>
+<p>=_{=1} </p>
+<p>$$</p>
+<p>注意这里的 <span class="math inline">\(Ax,x\)</span> 都是向量，因此 RHS 出现的全都是向量范数，LHS 则是定义出来的算子范数。</p>
+<p>有了这个定义，我们就可以写出这样的不等式</p>
+<p>$$</p>
+<p></p>
+<p>$$</p>
+<p>同时会引入新的定义，称满足下述要求的算子范数具有<strong>相容性</strong>：</p>
+<p>$$</p>
+<p></p>
+<p>$$</p>
+<p>有了相容性同样可以做一些界的估计</p>
+<p>### 矩阵范数</p>
+<p>矩阵同样也可以看成线性空间中的元素，因此可以单独赋予范数的定义，当然这就和向量范数没什么关系了。</p>
+<p>一个例子是这样的，容易验证其满足三条要求</p>
+<p>$$</p>
+<p>=_{i,j}</p>
+<p>$$</p>
+<p># 高斯消元</p>
+<p>对于给定的线性方程组 <span class="math inline">\(Ax=b\)</span>，可以用简单 <span class="math inline">\(O(n^3)\)</span> 的高斯消元法来求解。并且这样可以很容易地求出解空间的一组基，进而得到所有解。</p>
+<p>## 解的稳定性</p>
+<p>不妨假设 <span class="math inline">\(A=xb\)</span> 中 <span class="math inline">\(\abs{A}\neq0\)</span>，则有 <span class="math inline">\(x=A^{-1}b\)</span></p>
+<p>通常 <span class="math inline">\(A\)</span> 是给定的，而 <span class="math inline">\(b\)</span> 是若干计算和观察的结果，因此解的误差主要来源于 <span class="math inline">\(b\)</span> 引入的误差，可以写成</p>
+<p>$$</p>
+<p>x=A^{-1}b</p>
+<p>$$</p>
+<p>考虑相对误差的计算，即为</p>
+<p>$$</p>
+<p>_{b,b} { }/{ }</p>
+<p>$$</p>
+<p>即后向相对误差与前向相对误差的比值，称这个值为方程组 <span class="math inline">\(A\)</span>（矩阵 <span class="math inline">\(A\)</span>）的条件数 <span class="math inline">\(\text{cond}(A)\)</span></p>
+<p>$$</p>
+<span class="math display">\[\begin{aligned}
+
+  \text{cond}(A)&amp;=\max_{\hat b,b\neq 0}  {\frac{\norm{A^{-1}\hat b}
+  }{\norm{A^{-1}b} } }/{\frac{\norm{\hat b} }{\norm{b} } }
+
+  \\
+
+  &amp;=\max_{\hat b\neq 0} \frac{\norm{A^{-1}\hat b} }{\norm{\hat b} }\max_{b\neq
+  0}\frac{\norm{b} }{\norm{A^{-1}b} }
+
+  \end{aligned}\]</span>
+<p>$$</p>
+<p>注意到 <span class="math inline">\(A^{-1}b=x\)</span>，且 <span class="math inline">\(b=Ax\)</span>，带入即得</p>
+<p>$$</p>
+<span class="math display">\[\begin{aligned}
+
+  \text{cond}(A)&amp;=\max_{\hat b\neq 0}\frac{\norm{A^{-1}\hat b} }{\norm{\hat b}
+  }\max_{x\neq 0} \frac{\norm{Ax} }{\norm{x} }
+
+  \\
+
+  &amp;=\norm{A^{-1} }\norm{A}
+
+  \end{aligned}\]</span>
+<p>$$</p>
+<p>矩阵的条件数反映了矩阵所对应线性方程组的不稳定程度。条件数越大则不稳定程度越大，误差的传递放大也就越严重。</p>
+<p># 迭代算法</p>
+<p><span class="math inline">\(O(n^3)\)</span> 太昂贵，考虑迭代算法。一般而言迭代的次数是人为规定的，不少算法能够保证在 <span class="math inline">\(\Omega(n)\)</span> 次迭代之后必然得到精确解。</p>
+<p>## Jacobi 迭代</p>
+<p>对于矩阵 <span class="math inline">\(A\)</span>，将其分解为 <span class="math inline">\(A=L+D+U\)</span>，其中 <span class="math inline">\(L,U\)</span> 分别为上三角矩阵和下三角矩阵，<span class="math inline">\(D\)</span> 为对角阵。</p>
+<p>那么有</p>
+<p>$$</p>
+<p>Ax=(L+U+D)x=b</p>
+<p>\</p>
+<p>x_{k+1}=D^{-1}(b-(L+U)x_k)</p>
+<p>$$</p>
+<p>### 收敛性</p>
+<p>给出一个充分条件：若 <span class="math inline">\(A\)</span> 是主对角线占优矩阵，则迭代必然收敛。</p>
+<p>只需联立如下方程</p>
+<p>$$</p>
+<p>{</p>
+<span class="math display">\[\begin{aligned}
+
+  x^*&amp;=D^{-1}(b-(L+U)x^*)
+
+  \\
+
+  x_{k+1}&amp;=D^{-1}(b-(L+U)x_{k})
+
+  \end{aligned}\]</span>
+<p>.</p>
+<p>$$</p>
+<p>两式相减即得</p>
+<p>$$</p>
+<p>x_{k+1}-x^<em>=-D<sup>{-1}(L+U)(x_k-x</sup></em>)</p>
+<p>$$</p>
+<p>记 <span class="math inline">\(W=D^{-1}(L+U)\)</span>，由对角占优可知 <span class="math inline">\(Wx\)</span> 的每一项绝对值严格小于 <span class="math inline">\(x\)</span>，因此迭代收敛。</p>
+<p>### 正确性</p>
+<p>假设收敛，则有不动点 <span class="math inline">\(x\)</span>，简单替换即得不动点 <span class="math inline">\(x\)</span> 是原方程的一个解。</p>
+<p>结合收敛性的充分条件即得：若 <span class="math inline">\(A\)</span> 为主对角线占优矩阵，则解唯一（<span class="math inline">\(A\)</span> 可逆），且迭代收敛至唯一解。</p>
+<p>看起来还是比较好的。</p>
+<p>## Gauss-Seidel 迭代</p>
+<p>用到了一个观察，即在计算解向量 <span class="math inline">\(x_{k+1}\)</span> 的第 <span class="math inline">\(r\)</span> 项时，它的前 <span class="math inline">\(r-1\)</span> 项都已经算出来了（废话）</p>
+<p>因此可以写成</p>
+<p>$$</p>
+<p>x_{k+1}=D^{-1}(b-Ux_k-Lx_{k+1})</p>
+<p>$$</p>
+<p>证明和上面是类似的，结论也是类似的。</p>
+<p>写代码可以发现这两个方法没有绝对的好坏之分，迭代速度也没有一般性的结论（至少俺不知道）。</p>
+<p>## 谱半径</p>
+<p>为了分析一类迭代算法的收敛性，引入谱半径的概念</p>
+<p>定义 <span class="math inline">\(A\)</span> 的谱半径为其绝对值最大的特征值 <span class="math inline">\(\abs{\lambda_\max}\)</span>，记为 <span class="math inline">\(\rho(A)\)</span></p>
+<p>对于这样的迭代算法</p>
+<p>$$</p>
+<p>x_{k+1}=Ax_k+b</p>
+<p>$$</p>
+<p>取不动点做差得</p>
+<p>$$</p>
+<p>x_k-x^<em>=A<sup>k(x_0-x</sup></em>)</p>
+<p>$$</p>
+<p>如果能说明 <span class="math inline">\(\lim\limits_{k\to\infty} A^k=O\)</span>，那么就能说明迭代是收敛的，且收敛到方程组的解。</p>
+<p>有定理：<span class="math inline">\(\lim\limits_{k\to\infty}A^k=O\)</span> 当且仅当 <span class="math inline">\(\rho(A)&lt;1\)</span></p>
+<p>分析 Jacobi 和 Gauss-Seidel 迭代矩阵的谱半径可以知道，当系数矩阵 <span class="math inline">\(A\)</span> 是严格对角占优时，这两个算法以任意初始向量开始迭代都会收敛。</p>
+<p>## 伪逆</p>
+<p>对于满秩矩阵 <span class="math inline">\(A\)</span>，方程组 <span class="math inline">\(Ax=b\)</span> 的解是显然存在的。但是对于非满秩的矩阵 <span class="math inline">\(B\)</span> 来说就不一定了。在最小二乘法中可以求得一个二范数最小的“逼近”解，实际上是解了一个方程 <span class="math inline">\(A^\intercal Ax=A^\intercal b\)</span>，即 <span class="math inline">\(x=(A^\intercal A)^{-1}A^\intercal b\)</span></p>
+<p>问题的关键在于 <span class="math inline">\(A^{-1}\)</span> 不一定存在，这使得 <span class="math inline">\(Ax=b\)</span> 不一定存在唯一解。因此引入记号 <span class="math inline">\(A^\dagger=(A^\intercal  A)^{-1}A^\intercal\)</span>，称为 <span class="math inline">\(A\)</span> 的伪逆（pseudo inverse），那么最小二乘法可以写成 <span class="math inline">\(x=A^\dagger  b\)</span>，形式与满秩方程组 <span class="math inline">\(x=A^{-1}b\)</span> 是一致的。这样求出的解为最佳平方逼近解。</p>
+<p>当 <span class="math inline">\(A\)</span> 的列线性无关时，<span class="math inline">\(A^\intercal A\)</span> 满秩，<span class="math inline">\(A^\dagger=(A^\intercal A)^{-1}A^\intercal\)</span> 存在。此时原方程组 <span class="math inline">\(Ax=b\)</span> 无解（超定方程组）</p>
+<p>由反证法假设存在 <span class="math inline">\(x\neq 0\)</span> 使得 <span class="math inline">\(A^\intercal Ax=0\)</span>，那么 <span class="math inline">\((Ax)^\intercal (Ax)=0\)</span>，根据内积的正定性可知 <span class="math inline">\(Ax=0\)</span>，这说明存在列的线性组合为 <span class="math inline">\(0\)</span>，这与列线性无关矛盾；故假设不成立。</p>
+<p>类似取 <span class="math inline">\(A^\intercal\)</span> 可知，当 <span class="math inline">\(A\)</span> 的行线性无关时，<span class="math inline">\(A^\intercal\)</span> 列线性无关，<span class="math inline">\(AA^\intercal\)</span> 满秩，<span class="math inline">\(A^\dagger=((A^\intercal)^\dagger)^\intercal=A^\intercal(AA^\intercal)^{-1}\)</span>。此时方程组 <span class="math inline">\(Ax=b\)</span> 有多解（欠定方程组），但是我不知道有啥意义，因为 <span class="math inline">\(A^\dagger\)</span> 是个右逆.... excerpt: &gt;-</p>
+<p># 前置 这一节主要是玩矩阵，为了偷懒只讨论实线性空间 # 前置 这一节主要是玩矩阵，为了偷懒只讨论实线性空间 ## 内积 二元函数 <span class="math inline">\(\\left&lt;,\\right&gt;\)</span> 被称为内积，则其满足： 1. <span class="math inline">\(\\left\=\\left\)</span> 2. <span class="math inline">\(\\left\=a\\left+b\\left\)</span> 3. <span class="math inline">\(\\left\\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\\bold{0}\)</span> 时取到 ## 向量范数 一元函数 <span class="math inline">\(\\norm{\\cdot}\)</span> 被称为范数，则其满足： 1. <span class="math inline">\(\\norm{x}\\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\\bold0\)</span> 时取到 2. <span class="math inline">\(\\norm{kx}=\\abs{k}\\norm{x}\)</span> 3. <span class="math inline">\(\\norm{x+y}\\leq \\norm{x}+\\norm{y}\)</span> 在内积空间上有一个天然的范数 <span class="math inline">\(\\norm{x}=\\sqrt{\\left}\)</span>，容易验证满足上述三条要求。 ## 矩阵范数 ### 算子范数 矩阵可以看成线性变换，因此可以由向量范数来衡量矩阵作为线性变换（算子）的“长度”。定义为 <span class="math display">\[ \\norm{A}=\\max\_{\\norm{x}=1} \\norm{Ax} \]</span> 注意这里的 <span class="math inline">\(Ax,x\)</span> 都是向量，因此 RHS 出现的全都是向量范数，LHS 则是定义出来的算子范数。 有了这个定义，我们就可以写出这样的不等式 <span class="math display">\[ \\norm{Ax}\\leq \\norm{A}\\norm{x} \]</span> 同时会引入新的定义，称满足下述要求的算子范数具有**相容性**： <span class="math display">\[ \\norm{AB}\\le \\norm{A}\\norm{B} \]</span> 有了相容性同样可以做一些界的估计 ### 矩阵范数 矩阵同样也可以看成线性空间中的元素，因此可以单独赋予范数的定义，当然这就和向量范数没什么关系了。 一个例子是这样的，容易验证其满足三条要求 <span class="math display">\[ \\norm{A}=\\sum\_{i,j}\\abs{A\_{i,j} } \]</span> # 高斯消元 对于给定的线性方程组 <span class="math inline">\(Ax=b\)</span>，可以用简单 <span class="math inline">\(O(n^3)\)</span> 的高斯消元法来求解。并且这样可以很容易地求出解空间的一组基，进而得到所有解。 ## 解的稳定性 不妨假设 <span class="math inline">\(A=xb\)</span> 中 <span class="math inline">\(\\abs{A}\\neq0\)</span>，则有 <span class="math inline">\(x=A^{-1}b\)</span> 通常 <span class="math inline">\(A\)</span> 是给定的，而 <span class="math inline">\(b\)</span> 是若干计算和观察的结果，因此解的误差主要来源于 <span class="math inline">\(b\)</span> 引入的误差，可以写成 <span class="math display">\[ \\hat x=A^{-1}\\hat b \]</span> 考虑相对误差的计算，即为 <span class="math display">\[ \\max\_{\\hat b,b\\neq0} {\\frac{\\norm{A^{-1}\\hat b} }{\\norm{A^{-1}b} } }/{\\frac{\\norm{\\hat b} }{\\norm{b} } } \]</span> 即后向相对误差与前向相对误差的比值，称这个值为方程组 <span class="math inline">\(A\)</span>（矩阵 <span class="math inline">\(A\)</span>）的条件数 <span class="math inline">\(\\text{cond}(A)\)</span> <span class="math display">\[ \\begin{aligned} \\text{cond}(A)&amp;=\\max\_{\\hat b,b\\neq 0} {\\frac{\\norm{A^{-1}\\hat b} }{\\norm{A^{-1}b} } }/{\\frac{\\norm{\\hat b} }{\\norm{b} } } \\\\ &amp;=\\max\_{\\hat b\\neq 0} \\frac{\\norm{A^{-1}\\hat b} }{\\norm{\\hat b} }\\max\_{b\\neq 0}\\frac{\\norm{b} }{\\norm{A^{-1}b} } \\end{aligned} \]</span> 注意到 <span class="math inline">\(A^{-1}b=x\)</span>，且 <span class="math inline">\(b=Ax\)</span>，带入即得 <span class="math display">\[ \\begin{aligned} \\text{cond}(A)&amp;=\\max\_{\\hat b\\neq 0}\\frac{\\norm{A^{-1}\\hat b} }{\\norm{\\hat b} }\\max\_{x\\neq 0} \\frac{\\norm{Ax} }{\\norm{x} } \\\\ &amp;=\\norm{A^{-1} }\\norm{A} \\end{aligned} \]</span> 矩阵的条件数反映了矩阵所对应线性方程组的不稳定程度。条件数越大则不稳定程度越大，误差的传递放大也就越严重。 # 迭代算法 <span class="math inline">\(O(n^3)\)</span> 太昂贵，考虑迭代算法。一般而言迭代的次数是人为规定的，不少算法能够保证在 <span class="math inline">\(\\Omega(n)\)</span> 次迭代之后必然得到精确解。 ## Jacobi 迭代 对于矩阵 <span class="math inline">\(A\)</span>，将其分解为 <span class="math inline">\(A=L+D+U\)</span>，其中 <span class="math inline">\(L,U\)</span> 分别为上三角矩阵和下三角矩阵，<span class="math inline">\(D\)</span> 为对角阵。 那么有 <span class="math display">\[ Ax=(L+U+D)x=b \\\\ x\_{k+1}=D^{-1}(b-(L+U)x\_k) \]</span> ### 收敛性 给出一个充分条件：若 <span class="math inline">\(A\)</span> 是主对角线占优矩阵，则迭代必然收敛。 只需联立如下方程 <span class="math display">\[ \\left\\{ \\begin{aligned} x^\*&amp;=D^{-1}(b-(L+U)x^\*) \\\\ x\_{k+1}&amp;=D^{-1}(b-(L+U)x\_{k}) \\end{aligned} \\right. \]</span> 两式相减即得 <span class="math display">\[ x\_{k+1}-x^\*=-D^{-1}(L+U)(x\_k-x^\*) \]</span> 记 <span class="math inline">\(W=D^{-1}(L+U)\)</span>，由对角占优可知 <span class="math inline">\(Wx\)</span> 的每一项绝对值严格小于 <span class="math inline">\(x\)</span>，因此迭代收敛。 ### 正确性 假设收敛，则有不动点 <span class="math inline">\(x\)</span>，简单替换即得不动点 <span class="math inline">\(x\)</span> 是原方程的一个解。 结合收敛性的充分条件即得：若 <span class="math inline">\(A\)</span> 为主对角线占优矩阵，则解唯一（<span class="math inline">\(A\)</span> 可逆），且迭代收敛至唯一解。 看起来还是比较好的。 ## Gauss-Seidel 迭代 用到了一个观察，即在计算解向量 <span class="math inline">\(x\_{k+1}\)</span> 的第 <span class="math inline">\(r\)</span> 项时，它的前 <span class="math inline">\(r-1\)</span> 项都已经算出来了（废话） 因此可以写成 <span class="math display">\[ x\_{k+1}=D^{-1}(b-Ux\_k-Lx\_{k+1}) \]</span> 证明和上面是类似的，结论也是类似的。 写代码可以发现这两个方法没有绝对的好坏之分，迭代速度也没有一般性的结论（至少俺不知道）。 ## 谱半径 为了分析一类迭代算法的收敛性，引入谱半径的概念 定义 <span class="math inline">\(A\)</span> 的谱半径为其绝对值最大的特征值 <span class="math inline">\(\\abs{\\lambda\_\\max}\)</span>，记为 <span class="math inline">\(\\rho(A)\)</span> 对于这样的迭代算法 <span class="math display">\[ x\_{k+1}=Ax\_k+b \]</span> 取不动点做差得 <span class="math display">\[ x\_k-x^\*=A^k(x\_0-x^\*) \]</span> 如果能说明 <span class="math inline">\(\\lim\\limits\_{k\\to\\infty} A^k=O\)</span>，那么就能说明迭代是收敛的，且收敛到方程组的解。 有定理：<span class="math inline">\(\\lim\\limits\_{k\\to\\infty}A^k=O\)</span> 当且仅当 <span class="math inline">\(\\rho(A)&lt;1\)</span> 分析 Jacobi 和 Gauss-Seidel 迭代矩阵的谱半径可以知道，当系数矩阵 <span class="math inline">\(A\)</span> 是严格对角占优时，这两个算法以任意初始向量开始迭代都会收敛。 ## 伪逆 对于满秩矩阵 <span class="math inline">\(A\)</span>，方程组 <span class="math inline">\(Ax=b\)</span> 的解是显然存在的。但是对于非满秩的矩阵 <span class="math inline">\(B\)</span> 来说就不一定了。在最小二乘法中可以求得一个二范数最小的“逼近”解，实际上是解了一个方程 <span class="math inline">\(A^\\intercal Ax=A^\\intercal b\)</span>，即 <span class="math inline">\(x=(A^\\intercal A)^{-1}A^\\intercal b\)</span> 问题的关键在于 <span class="math inline">\(A^{-1}\)</span> 不一定存在，这使得 <span class="math inline">\(Ax=b\)</span> 不一定存在唯一解。因此引入记号 <span class="math inline">\(A^\\dagger=(A^\\intercal A)^{-1}A^\\intercal\)</span>，称为 <span class="math inline">\(A\)</span> 的伪逆（pseudo inverse），那么最小二乘法可以写成 <span class="math inline">\(x=A^\\dagger b\)</span>，形式与满秩方程组 <span class="math inline">\(x=A^{-1}b\)</span> 是一致的。这样求出的解为最佳平方逼近解。 当 <span class="math inline">\(A\)</span> 的列线性无关时，<span class="math inline">\(A^\\intercal A\)</span> 满秩，<span class="math inline">\(A^\\dagger=(A^\\intercal A)^{-1}A^\\intercal\)</span> 存在。此时原方程组 <span class="math inline">\(Ax=b\)</span> 无解（超定方程组） 由反证法假设存在 <span class="math inline">\(x\\neq 0\)</span> 使得 <span class="math inline">\(A^\\intercal Ax=0\)</span>，那么 <span class="math inline">\((Ax)^\\intercal (Ax)=0\)</span>，根据内积的正定性可知 <span class="math inline">\(Ax=0\)</span>，这说明存在列的线性组合为 <span class="math inline">\(0\)</span>，这与列线性无关矛盾；故假设不成立。 类似取 <span class="math inline">\(A^\\intercal\)</span> 可知，当 <span class="math inline">\(A\)</span> 的行线性无关时，<span class="math inline">\(A^\\intercal\)</span> 列线性无关，<span class="math inline">\(AA^\\intercal\)</span> 满秩，<span class="math inline">\(A^\\dagger=((A^\\intercal)^\\dagger)^\\intercal=A^\\intercal(AA^\\intercal)^{-1}\)</span>。此时方程组 <span class="math inline">\(Ax=b\)</span> 有多解（欠定方程组），但是我不知道有啥意义，因为 <span class="math inline">\(A^\\dagger\)</span> 是个右逆.... <span id="more"></span></p>
 
       </div>
       

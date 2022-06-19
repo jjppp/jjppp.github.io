@@ -121,7 +121,7 @@
   <!-- LaTex Display -->
 
   
-    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   
   <script>
     MathJax = {
@@ -168,14 +168,92 @@
         
       </div>
       <div class="markdown-body">
-        <p>越发觉得自己物理学得烂了... # 前置 前置的物理定律包括如下两条： 1. 欧姆定律，即 <span class="math inline">\(\\phi\_i-\\phi\_j=U\_{i,j}=I\_{i,j}R\)</span>。定义电导率为 <span class="math inline">\(w=R^{-1}\)</span>，那么有 <span class="math inline">\(I\_{i,j}=U\_{i,j}w\)</span>。 2. 基尔霍夫定律，即对于电阻网络的任意节点 <span class="math inline">\(v\)</span>，流入的电流等于流出的电流 。 # 电路网络与 <span class="math inline">\(L\)</span> 对于单位电阻组成的电路网络 <span class="math inline">\(G\)</span>，其拉普拉斯矩阵 <span class="math inline">\(L\)</span> 可以通过上面两条物理定律和电流联系起来。 考虑电路网络内部的节点 <span class="math inline">\(x\)</span>，根据基尔霍夫定律有 <span class="math display">\[ b\_x=\\sum\_{y\\in N(x)} I\_{x,y}=\\sum\_{y\\in N(x)} (\\phi\_x-\\phi\_y)w \]</span> 为了方便讨论，一般会规定电源电势为 <span class="math inline">\(1V\)</span>，或流入电路网络的电流总量为 <span class="math inline">\(1A\)</span>，此处采用第二个约定。 对于单位电阻有 <span class="math inline">\(w=1\)</span>，此时上述方程组可以写成 <span class="math display">\[ L\\phi=b \]</span> 其中 <span class="math inline">\(b\_x\)</span> 表示流入 <span class="math inline">\(x\)</span> 的电流（流入为正，流出为负）。将电源接在图上任意两点间（不妨设为 <span class="math inline">\(s,tttt\)</span>），其含义为向量 <span class="math inline">\(b\)</span> 满足 <span class="math inline">\(b\_s=1,b\_t=-1\)</span>，其余均为 <span class="math inline">\(0\)</span>。 再考虑欧姆定律，有 <span class="math display">\[ B^\\intercal \\phi=I \]</span> 其中 <span class="math inline">\(B\)</span> 为图 <span class="math inline">\(G\)</span> 的 <span class="math inline">\(n\\times m\)</span> 关联矩阵，形如 <span class="math inline">\(\\begin{bmatrix}\\cdots&amp;\\cdots&amp;\\cdots \\\\ \\cdots&amp; 1&amp; \\cdots \\\\ \\cdots&amp;\\cdots&amp;\\cdots \\\\ \\cdots&amp; -1&amp; \\cdots\\\\\\cdots&amp;\\cdots&amp;\\cdots\\end{bmatrix}\)</span>，第 <span class="math inline">\(i\)</span> 列表示边 <span class="math inline">\(e\_i\)</span> 关联哪两条边，正负表示方向。<span class="math inline">\(m\)</span> 维向量 <span class="math inline">\(I\)</span> 表示每条边上电流的流量。 如果要考虑非单位电阻的矩阵，那么需要引入 <span class="math inline">\(m\\times m\)</span> 的对角阵 <span class="math inline">\(W=\\text{diag}\\set{w\_{e\_1},w\_{e\_2}\\ldots w\_{e\_m} }\)</span> 来分别建模每条边的电导率，在需要的时候乘上就行了。 考虑 <span class="math inline">\(L\)</span> 的另一形式有 <span class="math display">\[ L=\\sum\_{e\\in E(G)} L\_e=\\sum\_{e\\in E(G)} w\_e b\_e{b\_e}^\\intercal=BWB^\\intercal \]</span> 因此还可以写成 <span class="math display">\[ L\\phi=BWB^\\intercal \\phi=BWI=b \]</span> 这也是很直观的，对边上的电流分布做一次图上的按邻居求和，就能得到一个节点上的全局电流分布 <span class="math inline">\(b\)</span>。 ## 电路方程的解 定理： 若 <span class="math inline">\(L\\phi=b\)</span> 有解当且仅当 <span class="math inline">\(b\\perp \\bold1\)</span> "<span class="math inline">\(\\Rightarrow\)</span>" 注意到 <span class="math inline">\(L\)</span> 实对称，取一组由 <span class="math inline">\(\\bold1\)</span> 扩充而来的正交基 <span class="math inline">\(\\Set{v\_i}\)</span>，则 <span class="math inline">\(\\phi=a\_1\\bold1 + \\sum\_{i=2}^n a\_i v\_i\)</span> 此时 <span class="math inline">\(L\\phi=L\\left(a\_1\\bold1+\\sum\_{i=2}^n a\_iv\_i\\right)=\\sum\_{i=2}^n a\_i\\lambda\_i v\_i\)</span>，根据正交基可知 <span class="math inline">\(L\\phi\\perp b\)</span> 直观含义为电阻网络流入的电流要等于流出的电流。 "<span class="math inline">\(\\Leftarrow\)</span>" 若 <span class="math inline">\(b\\perp\\bold1\)</span>，那么 <span class="math inline">\(b=\\sum\_{i=2}^n b\_iv\_i\)</span> 此时取 <span class="math inline">\(\\phi=\\sum\_{i=2}^n \\frac{b\_i}{\\lambda\_i}v\_i\)</span> 即为一个解。 直观含义为对于一组外部电流的电势解，可以任意整体平移得到同方程的其余解（因为电流只和电势差有关）。在固定某个点电势为 <span class="math inline">\(0\)</span> 的前提下，就能得到唯一解。 上面关于 "<span class="math inline">\(\\Leftarrow\)</span>" 方向的证明用到了一个构造，实际上可以写成 <span class="math display">\[ \\phi^\*=L^\\dagger b \]</span> 其中 <span class="math display">\[ \\begin{aligned} L^\\dagger&amp;=\\sum\_{i=2}^n {\\lambda\_i}^{-1}v\_i{v\_i}^\\intercal \\\\ b&amp;=\\sum\_{i=2}^n {\\lambda\_i} v\_i \\end{aligned} \]</span> 这意味着，当 <span class="math inline">\(b\)</span> 是一个合法的电流（满足 <span class="math inline">\(b\\perp \\bold1\)</span>）时，<span class="math inline">\(L\)</span> 存在伪逆。并且 <span class="math inline">\(L\\phi=b\)</span> 的解集为 <span class="math inline">\(\\Set{L^\\dagger b + k\\bold1\\mid k\\in \\mathbb R}\)</span> ## 电势能和等效电阻 同样只考虑单位电阻。 考虑令 <span class="math inline">\(b\)</span> 流入单位电流，电路网络为单位电阻，那么整个电路的等效电阻就是 <span class="math inline">\(s,t\)</span> 间的电势差，即 <span class="math display">\[ R\_{\\text{eff} }=\\phi\_s-\\phi\_t=b^\\intercal\\phi=b^\\intercal L^\\dagger b \]</span> 对于电势能同样可以通过等效电阻来算。注意到通的是单位电流，并且电阻为 <span class="math inline">\(R\_{\\text{eff} }\)</span>，因此电势能就是 <span class="math inline">\(R\_{\\text{eff} }\)</span>。 另一种对每条边单独推导的方法如下： <span class="math display">\[ E=\\sum\_{e\\in E(G)} E\_e=\\sum\_{(x,y)\\in E(G)} {\\left({\\phi\_x-\\phi\_y}\\right)}^2 \]</span> 回忆关于 <span class="math inline">\(L\)</span> 的二次型，有 <span class="math display">\[ E=\\phi^\\intercal L\\phi=R\_{\\text{eff} } \]</span> 并且有结论：对与任意的 <span class="math inline">\(s,t\)</span> 流，其电势能不会比 <span class="math inline">\(R\_{\\text{eff} }\)</span> 更小。即这样的电势分布会最小化单位流的能量损耗，非常神奇的物理意义。 <!-- more --></p>
+        <p>越发觉得自己物理学得烂了...</p>
+<p># 前置</p>
+<p>前置的物理定律包括如下两条：</p>
+<ol type="1">
+<li><p>欧姆定律，即 <span class="math inline">\(\phi_i-\phi_j=U_{i,j}=I_{i,j}R\)</span>。定义电导率为 <span class="math inline">\(w=R^{-1}\)</span>，那么有 <span class="math inline">\(I_{i,j}=U_{i,j}w\)</span>。</p></li>
+<li><p>基尔霍夫定律，即对于电阻网络的任意节点 <span class="math inline">\(v\)</span>，流入的电流等于流出的电流 。</p></li>
+</ol>
+<p># 电路网络与 <span class="math inline">\(L\)</span></p>
+<p>对于单位电阻组成的电路网络 <span class="math inline">\(G\)</span>，其拉普拉斯矩阵 <span class="math inline">\(L\)</span> 可以通过上面两条物理定律和电流联系起来。</p>
+<p>考虑电路网络内部的节点 <span class="math inline">\(x\)</span>，根据基尔霍夫定律有</p>
+<p>$$</p>
+<p>b_x=<em>{yN(x)} I</em>{x,y}=_{yN(x)} (_x-_y)w</p>
+<p>$$</p>
+<p>为了方便讨论，一般会规定电源电势为 <span class="math inline">\(1V\)</span>，或流入电路网络的电流总量为 <span class="math inline">\(1A\)</span>，此处采用第二个约定。</p>
+<p>对于单位电阻有 <span class="math inline">\(w=1\)</span>，此时上述方程组可以写成</p>
+<p>$$</p>
+<p>L=b</p>
+<p>$$</p>
+<p>其中 <span class="math inline">\(b_x\)</span> 表示流入 <span class="math inline">\(x\)</span> 的电流（流入为正，流出为负）。将电源接在图上任意两点间（不妨设为 <span class="math inline">\(s,tttt\)</span>），其含义为向量 <span class="math inline">\(b\)</span> 满足 <span class="math inline">\(b_s=1,b_t=-1\)</span>，其余均为 <span class="math inline">\(0\)</span>。</p>
+<p>再考虑欧姆定律，有</p>
+<p>$$</p>
+<p>B^=I</p>
+<p>$$</p>
+<p>其中 <span class="math inline">\(B\)</span> 为图 <span class="math inline">\(G\)</span> 的 <span class="math inline">\(n\times m\)</span> 关联矩阵，形如 <span class="math inline">\(\begin{bmatrix}\cdots&amp;\cdots&amp;\cdots \\  \cdots&amp; 1&amp; \cdots \\ \cdots&amp;\cdots&amp;\cdots \\ \cdots&amp; -1&amp;  \cdots\\\cdots&amp;\cdots&amp;\cdots\end{bmatrix}\)</span>，第 <span class="math inline">\(i\)</span> 列表示边 <span class="math inline">\(e_i\)</span> 关联哪两条边，正负表示方向。<span class="math inline">\(m\)</span> 维向量 <span class="math inline">\(I\)</span> 表示每条边上电流的流量。</p>
+<p>如果要考虑非单位电阻的矩阵，那么需要引入 <span class="math inline">\(m\times m\)</span> 的对角阵 <span class="math inline">\(W=\text{diag}\set{w_{e_1},w_{e_2}\ldots  w_{e_m} }\)</span> 来分别建模每条边的电导率，在需要的时候乘上就行了。</p>
+<p>考虑 <span class="math inline">\(L\)</span> 的另一形式有</p>
+<p>$$</p>
+<p>L=<em>{eE(G)} L_e=</em>{eE(G)} w_e b_e{b_e}<sup>=BWB</sup></p>
+<p>$$</p>
+<p>因此还可以写成</p>
+<p>$$</p>
+<p>L=BWB^=BWI=b</p>
+<p>$$</p>
+<p>这也是很直观的，对边上的电流分布做一次图上的按邻居求和，就能得到一个节点上的全局电流分布 <span class="math inline">\(b\)</span>。</p>
+<p>## 电路方程的解</p>
+<p>定理：</p>
+<p>若 <span class="math inline">\(L\phi=b\)</span> 有解当且仅当 <span class="math inline">\(b\perp \bold1\)</span></p>
+<p>"<span class="math inline">\(\Rightarrow\)</span>"</p>
+<p>注意到 <span class="math inline">\(L\)</span> 实对称，取一组由 <span class="math inline">\(\bold1\)</span> 扩充而来的正交基 <span class="math inline">\(\Set{v_i}\)</span>，则 <span class="math inline">\(\phi=a_1\bold1 +  \sum_{i=2}^n a_i v_i\)</span></p>
+<p>此时 <span class="math inline">\(L\phi=L\left(a_1\bold1+\sum_{i=2}^n a_iv_i\right)=\sum_{i=2}^n  a_i\lambda_i v_i\)</span>，根据正交基可知 <span class="math inline">\(L\phi\perp b\)</span></p>
+<p>直观含义为电阻网络流入的电流要等于流出的电流。</p>
+<p>"<span class="math inline">\(\Leftarrow\)</span>"</p>
+<p>若 <span class="math inline">\(b\perp\bold1\)</span>，那么 <span class="math inline">\(b=\sum_{i=2}^n b_iv_i\)</span></p>
+<p>此时取 <span class="math inline">\(\phi=\sum_{i=2}^n \frac{b_i}{\lambda_i}v_i\)</span> 即为一个解。</p>
+<p>直观含义为对于一组外部电流的电势解，可以任意整体平移得到同方程的其余解（因为电流只和电势差有关）。在固定某个点电势为 <span class="math inline">\(0\)</span> 的前提下，就能得到唯一解。</p>
+<p>上面关于 "<span class="math inline">\(\Leftarrow\)</span>" 方向的证明用到了一个构造，实际上可以写成</p>
+<p>$$</p>
+<p>^*=L^b</p>
+<p>$$</p>
+<p>其中</p>
+<p>$$</p>
+<span class="math display">\[\begin{aligned}
+
+  L^\dagger&amp;=\sum_{i=2}^n {\lambda_i}^{-1}v_i{v_i}^\intercal
+
+  \\
+
+  b&amp;=\sum_{i=2}^n {\lambda_i} v_i
+
+  \end{aligned}\]</span>
+<p>$$</p>
+<p>这意味着，当 <span class="math inline">\(b\)</span> 是一个合法的电流（满足 <span class="math inline">\(b\perp \bold1\)</span>）时，<span class="math inline">\(L\)</span> 存在伪逆。并且 <span class="math inline">\(L\phi=b\)</span> 的解集为 <span class="math inline">\(\Set{L^\dagger b + k\bold1\mid k\in \mathbb R}\)</span></p>
+<p>## 电势能和等效电阻</p>
+<p>同样只考虑单位电阻。</p>
+<p>考虑令 <span class="math inline">\(b\)</span> 流入单位电流，电路网络为单位电阻，那么整个电路的等效电阻就是 <span class="math inline">\(s,t\)</span> 间的电势差，即</p>
+<p>$$</p>
+<p>R_{ }=_s-_t=b<sup>=b</sup>L^b</p>
+<p>$$</p>
+<p>对于电势能同样可以通过等效电阻来算。注意到通的是单位电流，并且电阻为 <span class="math inline">\(R_{\text{eff} }\)</span>，因此电势能就是 <span class="math inline">\(R_{\text{eff}  }\)</span>。</p>
+<p>另一种对每条边单独推导的方法如下：</p>
+<p>$$</p>
+<p>E=<em>{eE(G)} E_e=</em>{(x,y)E(G)} {({_x-_y})}^2</p>
+<p>$$</p>
+<p>回忆关于 <span class="math inline">\(L\)</span> 的二次型，有</p>
+<p>$$</p>
+<p>E=^L=R_{ }</p>
+<p>$$</p>
+<p>并且有结论：对与任意的 <span class="math inline">\(s,t\)</span> 流，其电势能不会比 <span class="math inline">\(R_{\text{eff} }\)</span> 更小。即这样的电势分布会最小化单位流的能量损耗，非常神奇的物理意义。 excerpt: &gt;-</p>
+<p>越发觉得自己物理学得烂了... # 前置 前置的物理定律包括如下两条： 1. 欧姆定律，即 <span class="math inline">\(\\phi\_i-\\phi\_j=U\_{i,j}=I\_{i,j}R\)</span>。定义电导率为 <span class="math inline">\(w=R^{-1}\)</span>，那么有 <span class="math inline">\(I\_{i,j}=U\_{i,j}w\)</span>。 2. 基尔霍夫定律，即对于电阻网络的任意节点 <span class="math inline">\(v\)</span>，流入的电流等于流出的电流 。 # 电路网络与 <span class="math inline">\(L\)</span> 对于单位电阻组成的电路网络 <span class="math inline">\(G\)</span>，其拉普拉斯矩阵 <span class="math inline">\(L\)</span> 可以通过上面两条物理定律和电流联系起来。 考虑电路网络内部的节点 <span class="math inline">\(x\)</span>，根据基尔霍夫定律有 <span class="math display">\[ b\_x=\\sum\_{y\\in N(x)} I\_{x,y}=\\sum\_{y\\in N(x)} (\\phi\_x-\\phi\_y)w \]</span> 为了方便讨论，一般会规定电源电势为 <span class="math inline">\(1V\)</span>，或流入电路网络的电流总量为 <span class="math inline">\(1A\)</span>，此处采用第二个约定。 对于单位电阻有 <span class="math inline">\(w=1\)</span>，此时上述方程组可以写成 <span class="math display">\[ L\\phi=b \]</span> 其中 <span class="math inline">\(b\_x\)</span> 表示流入 <span class="math inline">\(x\)</span> 的电流（流入为正，流出为负）。将电源接在图上任意两点间（不妨设为 <span class="math inline">\(s,tttt\)</span>），其含义为向量 <span class="math inline">\(b\)</span> 满足 <span class="math inline">\(b\_s=1,b\_t=-1\)</span>，其余均为 <span class="math inline">\(0\)</span>。 再考虑欧姆定律，有 <span class="math display">\[ B^\\intercal \\phi=I \]</span> 其中 <span class="math inline">\(B\)</span> 为图 <span class="math inline">\(G\)</span> 的 <span class="math inline">\(n\\times m\)</span> 关联矩阵，形如 <span class="math inline">\(\\begin{bmatrix}\\cdots&amp;\\cdots&amp;\\cdots \\\\ \\cdots&amp; 1&amp; \\cdots \\\\ \\cdots&amp;\\cdots&amp;\\cdots \\\\ \\cdots&amp; -1&amp; \\cdots\\\\\\cdots&amp;\\cdots&amp;\\cdots\\end{bmatrix}\)</span>，第 <span class="math inline">\(i\)</span> 列表示边 <span class="math inline">\(e\_i\)</span> 关联哪两条边，正负表示方向。<span class="math inline">\(m\)</span> 维向量 <span class="math inline">\(I\)</span> 表示每条边上电流的流量。 如果要考虑非单位电阻的矩阵，那么需要引入 <span class="math inline">\(m\\times m\)</span> 的对角阵 <span class="math inline">\(W=\\text{diag}\\set{w\_{e\_1},w\_{e\_2}\\ldots w\_{e\_m} }\)</span> 来分别建模每条边的电导率，在需要的时候乘上就行了。 考虑 <span class="math inline">\(L\)</span> 的另一形式有 <span class="math display">\[ L=\\sum\_{e\\in E(G)} L\_e=\\sum\_{e\\in E(G)} w\_e b\_e{b\_e}^\\intercal=BWB^\\intercal \]</span> 因此还可以写成 <span class="math display">\[ L\\phi=BWB^\\intercal \\phi=BWI=b \]</span> 这也是很直观的，对边上的电流分布做一次图上的按邻居求和，就能得到一个节点上的全局电流分布 <span class="math inline">\(b\)</span>。 ## 电路方程的解 定理： 若 <span class="math inline">\(L\\phi=b\)</span> 有解当且仅当 <span class="math inline">\(b\\perp \\bold1\)</span> "<span class="math inline">\(\\Rightarrow\)</span>" 注意到 <span class="math inline">\(L\)</span> 实对称，取一组由 <span class="math inline">\(\\bold1\)</span> 扩充而来的正交基 <span class="math inline">\(\\Set{v\_i}\)</span>，则 <span class="math inline">\(\\phi=a\_1\\bold1 + \\sum\_{i=2}^n a\_i v\_i\)</span> 此时 <span class="math inline">\(L\\phi=L\\left(a\_1\\bold1+\\sum\_{i=2}^n a\_iv\_i\\right)=\\sum\_{i=2}^n a\_i\\lambda\_i v\_i\)</span>，根据正交基可知 <span class="math inline">\(L\\phi\\perp b\)</span> 直观含义为电阻网络流入的电流要等于流出的电流。 "<span class="math inline">\(\\Leftarrow\)</span>" 若 <span class="math inline">\(b\\perp\\bold1\)</span>，那么 <span class="math inline">\(b=\\sum\_{i=2}^n b\_iv\_i\)</span> 此时取 <span class="math inline">\(\\phi=\\sum\_{i=2}^n \\frac{b\_i}{\\lambda\_i}v\_i\)</span> 即为一个解。 直观含义为对于一组外部电流的电势解，可以任意整体平移得到同方程的其余解（因为电流只和电势差有关）。在固定某个点电势为 <span class="math inline">\(0\)</span> 的前提下，就能得到唯一解。 上面关于 "<span class="math inline">\(\\Leftarrow\)</span>" 方向的证明用到了一个构造，实际上可以写成 <span class="math display">\[ \\phi^\*=L^\\dagger b \]</span> 其中 <span class="math display">\[ \\begin{aligned} L^\\dagger&amp;=\\sum\_{i=2}^n {\\lambda\_i}^{-1}v\_i{v\_i}^\\intercal \\\\ b&amp;=\\sum\_{i=2}^n {\\lambda\_i} v\_i \\end{aligned} \]</span> 这意味着，当 <span class="math inline">\(b\)</span> 是一个合法的电流（满足 <span class="math inline">\(b\\perp \\bold1\)</span>）时，<span class="math inline">\(L\)</span> 存在伪逆。并且 <span class="math inline">\(L\\phi=b\)</span> 的解集为 <span class="math inline">\(\\Set{L^\\dagger b + k\\bold1\\mid k\\in \\mathbb R}\)</span> ## 电势能和等效电阻 同样只考虑单位电阻。 考虑令 <span class="math inline">\(b\)</span> 流入单位电流，电路网络为单位电阻，那么整个电路的等效电阻就是 <span class="math inline">\(s,t\)</span> 间的电势差，即 <span class="math display">\[ R\_{\\text{eff} }=\\phi\_s-\\phi\_t=b^\\intercal\\phi=b^\\intercal L^\\dagger b \]</span> 对于电势能同样可以通过等效电阻来算。注意到通的是单位电流，并且电阻为 <span class="math inline">\(R\_{\\text{eff} }\)</span>，因此电势能就是 <span class="math inline">\(R\_{\\text{eff} }\)</span>。 另一种对每条边单独推导的方法如下： <span class="math display">\[ E=\\sum\_{e\\in E(G)} E\_e=\\sum\_{(x,y)\\in E(G)} {\\left({\\phi\_x-\\phi\_y}\\right)}^2 \]</span> 回忆关于 <span class="math inline">\(L\)</span> 的二次型，有 <span class="math display">\[ E=\\phi^\\intercal L\\phi=R\_{\\text{eff} } \]</span> 并且有结论：对与任意的 <span class="math inline">\(s,t\)</span> 流，其电势能不会比 <span class="math inline">\(R\_{\\text{eff} }\)</span> 更小。即这样的电势分布会最小化单位流的能量损耗，非常神奇的物理意义。 <span id="more"></span></p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/" target="_self">
+              <a href="/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab2-kmt/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -190,7 +268,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2022/06/19/hello_world/" target="_self">
+              <a href="/2022/06/19/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>

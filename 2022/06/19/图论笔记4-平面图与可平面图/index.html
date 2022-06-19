@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title"></div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-06-19 12:52:30
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <hr />
+<p>title: 图论笔记4 平面图与可平面图 tags: [] excerpt: &gt; 本来应该(被)科普一些拓扑的姿势的，但是目前好像也不太用得上，就先咕了吧。</p>
+<p>本文假设读者有一定的图结构知识，比较新的概念俺会努力解释的</p>
+<p>这里的内容都比较入门，大佬轻喷(</p>
+<p># 平面图(Plane Graph)</p>
+<p>我们称具有如下性质的图 <span class="math inline">\(G\)</span> 为平面图：</p>
+<ol type="1">
+<li><p><span class="math inline">\(V(G)\subseteq \mathbb R^2\)</span>，<span class="math inline">\(E(G)\subseteq \mathbb R^2\)</span> 毕竟是"平面"图</p></li>
+<li><p><span class="math inline">\(\forall e_1,e_2\in E(G)\)</span>, <span class="math inline">\(st(e_1)\neq st(e_2)\text{ and } ed(e_1)\neq  ed(e_2)\)</span></p></li>
+<li><p><span class="math inline">\(\forall e_1,e_2\in E(G)\)</span>, <span class="math inline">\(e_1\cap e_2\in  \left(V(G)\cup\varnothing\right)\)</span></p></li>
+<li><p><span class="math inline">\(\forall e\in E(G)\)</span>, <span class="math inline">\(e=(x,y)\)</span> 是连通 <span class="math inline">\(x,\;y\)</span> 的一段弧(arc)。</p></li>
+</ol>
+<p>在一般图中，我们认为 <span class="math inline">\(E(G)\)</span> 中的元素是若干二元组。在平面图中，我们认为图的边 <span class="math inline">\(e=(x,y)\)</span> 是连通 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的一段弧(arc)，即一个点集。此时 <span class="math inline">\(G\)</span> 就可以代表由所有顶点以及边上的点构成的点集。</p>
+<p>考虑点集 <span class="math inline">\(S=\mathbb R^2\backslash G\)</span>，<span class="math inline">\(S\)</span> 中存在着若干不相交的区域(region)。我们记 <span class="math inline">\(F(G)\)</span> 为 <span class="math inline">\(S\)</span> 中的所有区域，将这些区域称为图 <span class="math inline">\(G\)</span> 的面(face)。若 <span class="math inline">\(f\in F(G)\)</span> 是无界的(unbounded)，则记为外面，否则记为内面。</p>
+<p>### 平面图的欧拉定理</p>
+<p>对于平面图 <span class="math inline">\(G=(V,E)\)</span>，<span class="math inline">\(F=F(G)\)</span>，则有 <span class="math inline">\(|V|-|E|+|F|=2\)</span></p>
+<p>考虑对 <span class="math inline">\(|E|\)</span> 归纳。</p>
+<ol type="1">
+<li><p>当 <span class="math inline">\(|E|=|V|-1\)</span> 且 <span class="math inline">\(G\)</span> 连通时，<span class="math inline">\(G\)</span> 是树，此时 <span class="math inline">\(|V|=|E|+1\)</span>，<span class="math inline">\(|F|=1\)</span>，带入成立。</p></li>
+<li><p>设当 <span class="math inline">\(|E|&lt;k\)</span> 时成立，则对于 <span class="math inline">\(||G||=k\)</span>，必然存在一个圈 <span class="math inline">\(C\)</span>。取 <span class="math inline">\(e\in E(C)\)</span>，考虑 <span class="math inline">\(G&#39;=G-e\)</span>。则必然存在两个面 <span class="math inline">\(f_1,f_2\)</span>，满足 <span class="math inline">\(f_1\neq f_2\)</span> 且 <span class="math inline">\(e\subseteq(\partial f_1\cap\partial f_2)\)</span>。记 <span class="math inline">\(f=f_1\cup f_2\cup (\partial f_1\cap\partial f_2)\)</span>，则 <span class="math inline">\(F(G&#39;)=F(G)-f_1-f_2+f\)</span>。于是可以由 <span class="math inline">\(|V(G&#39;)|-|E(G&#39;)|+|F(G&#39;)|=2\)</span> 得到 <span class="math inline">\(|V(G)|-|E(G)|+|F(G)|=|V(G&#39;)|-|E(G&#39;)|-1+|F(G&#39;)|+1=2\)</span></p></li>
+</ol>
+<p>于是对于任意有限的平面图，平面图欧拉定理成立。</p>
+<p>### 三角剖分定理</p>
+<p>若对于平面图 <span class="math inline">\(G\)</span> 中的每个面 <span class="math inline">\(f\)</span>，<span class="math inline">\(\partial f\)</span> 上都只有三个点，则 <span class="math inline">\(G\)</span> 是一个三角剖分图(triangulation graph)</p>
+<p>极大平面图(maximal plane graph)定义为 <span class="math inline">\(\forall x,y\in V(G)\)</span>，<span class="math inline">\(G+(x,y)\)</span> 都不是平面图。</p>
+<p>我们有：平面图 <span class="math inline">\(G\)</span> 是极大平面的当且仅当它是一个三角剖分</p>
+<p><span class="math inline">\(\Rightarrow\)</span>：</p>
+<p>取 <span class="math inline">\(f\in F(G)\)</span>，则 <span class="math inline">\(\partial f\)</span> 是一个圈 <span class="math inline">\(C\)</span>。观察到必然有 <span class="math inline">\(|C|\leqslant 3\)</span> (否则可以选取 <span class="math inline">\(C\)</span> 上两个不相邻的顶点连边使得仍然是平面图，这与极大平面矛盾)</p>
+<p>且由平面图的定义可知 <span class="math inline">\(|C|&gt;2\)</span> (否则存在重边)，因此 <span class="math inline">\(|C|=3\)</span>。由 <span class="math inline">\(f\)</span> 的任意性可知 <span class="math inline">\(G\)</span> 是一个三角剖分。</p>
+<p><span class="math inline">\(\Leftarrow\)</span>：</p>
+<p>由反证法，假设存在 <span class="math inline">\(x,y\in V(G)\)</span> 使得 <span class="math inline">\(xy\)</span> 的内部在某一区域 <span class="math inline">\(f\)</span> 内，那么必然有 <span class="math inline">\(x,y\in\partial f\)</span>。而由 <span class="math inline">\(G\)</span> 是三角剖分可知 <span class="math inline">\(|V(\partial f)|=3\)</span>，故 <span class="math inline">\(x,y\)</span> 必相邻，这与 <span class="math inline">\(G\)</span> 不含重边矛盾。故命题成立。</p>
+<p>### 平面图的必要条件</p>
+<p>若图 <span class="math inline">\(G=(V,E)\)</span> 是平面图，则 <span class="math inline">\(|E|\leqslant 3|V|-6\)</span></p>
+<p>对三角剖分的边和面计数，则有 <span class="math inline">\(\frac{3|F|}{2}=|E|\)</span> (每个面的边界上有三条边，每条边的两侧恰好为两个面)，带入平面图欧拉公式就有 <span class="math inline">\(|E|=3|V|-6\)</span>。</p>
+<p>若不含三角形的(triangle-free graph)的图 <span class="math inline">\(G=(V,E)\)</span> 为平面图，则 <span class="math inline">\(|E|\leqslant2|V|-4\)</span></p>
+<p>证明和上面类似，每个面的边界有四条边</p>
+<p>### 子式和拓扑子式</p>
+<p>#### 拓扑子式</p>
+<p>考虑一个固定的图 <span class="math inline">\(X\)</span>，我们用若干不相交的路替换掉 <span class="math inline">\(X\)</span> 的边得到新的图 <span class="math inline">\(X&#39;\)</span>，则我们称 <span class="math inline">\(X&#39;\)</span> 是 <span class="math inline">\(X\)</span> 的一个细分，也记作 <span class="math inline">\(X&#39;=TX\)</span></p>
+<p>我们把 <span class="math inline">\(V(X)\cap V(TX)\)</span> 称作 <span class="math inline">\(X\)</span> 的<strong>分支顶点</strong>，把 <span class="math inline">\(V(TX)\backslash V(X)\)</span> 称作 <span class="math inline">\(X\)</span> 的细分顶点。很显然细分顶点度数都是 <span class="math inline">\(2\)</span></p>
+<p>若 <span class="math inline">\(TX\subseteq G\)</span>，则我们称 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(G\)</span> 的<strong>拓扑子式</strong></p>
+<p>#### 子式</p>
+<p>考虑一个固定的图 <span class="math inline">\(X\)</span>，我们用若干不相交的连通图 <span class="math inline">\(G_x\)</span> 替换掉 <span class="math inline">\(X\)</span> 中的顶点，对于 <span class="math inline">\(xy\in E(X)\)</span> 则用 <span class="math inline">\(G_x-G_y\)</span> 路替换掉，这样得到的图记作 <span class="math inline">\(X&#39;\)</span>，那么我们记作 <span class="math inline">\(X&#39;=IX\)</span></p>
+<p>若 <span class="math inline">\(IX\subseteq G\)</span>，则我们称 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(G\)</span> 的<strong>收缩子式</strong>，记作 <span class="math inline">\(X\preceq G\)</span></p>
+<p>### Kuratowski定理</p>
+<p>这个定理很强，但是证明非常麻烦....这里打算<del>摸了</del>只给出结论，具体证明可以参考任意一本找得到这个定理的图论教材~</p>
+<p>对于图 <span class="math inline">\(G\)</span>，下列叙述等价：</p>
+<ol type="1">
+<li><p><span class="math inline">\(G\)</span> 可平面</p></li>
+<li><p><span class="math inline">\(G\)</span> 不包含 <span class="math inline">\(K_5\)</span> 或 <span class="math inline">\(K_{3,3}\)</span> 作为子式</p></li>
+<li><p><span class="math inline">\(G\)</span> 不包含 <span class="math inline">\(K_5\)</span> 或 <span class="math inline">\(K_{3,3}\)</span> 作为拓扑子式</p></li>
+</ol>
+<p>### 极大可平面图是三连通图</p>
+<p>这是作业里需要证明的一个小引理，不过很有用，也放上来吧</p>
+<p>要用到三连通图的收缩列</p>
+<p>#### 引理1：<span class="math inline">\(\exists uv\in E(T_n)\)</span> 使得 <span class="math inline">\(\left|{N(u)\cap N(v)}\right|=2\)</span></p>
+<p>首先 <span class="math inline">\(\forall x\in V(T_n)\)</span>，都有 <span class="math inline">\(deg(x)\geqslant 3\)</span>。任取边 <span class="math inline">\(uv\in E(T_n)\)</span>，<span class="math inline">\(uv\)</span> 恰好在两个面 <span class="math inline">\(f_1,f_2\)</span> 的边界上。而由三角剖分的定义可知 <span class="math inline">\(f_1,f_2\)</span> 的边界是两个三角形。因此 <span class="math inline">\(\forall uv\in E(T_n)\)</span> 都有 <span class="math inline">\(|N(u)\cap N(V)|\geqslant 2\)</span>。</p>
+<p>由反证法，不妨假设 <span class="math inline">\(\forall uv\in E(T_n)\)</span> 都有 <span class="math inline">\(|N(u)\cap N(v)|\geqslant 3\)</span>，则易知 <span class="math inline">\(|N(u)|\geqslant 4\)</span> 且 <span class="math inline">\(|N(v)|\geqslant 4\)</span></p>
+<p>不妨记 <span class="math inline">\(N(u)=\left\{\;x_1,x_2,x_3,x_4\;\right\}\)</span>，则由 <span class="math inline">\(|N(u)\cap N(x_1)|\geqslant  3\)</span> 可得 <span class="math inline">\(x_1x_2,x_1x_3,x_1x_4\in E(T_n)\)</span></p>
+<p>同理有 <span class="math inline">\(x_2x_3,x_2x_4,x_3x_4\in E(T_n)\)</span>，故 <span class="math inline">\(u\cup N(u)\)</span> 的导出子图是 <span class="math inline">\(K_5\)</span>，这与 <span class="math inline">\(T_n\)</span> 可平面矛盾。</p>
+<p>因此 <span class="math inline">\(\exists uv\in E(T_n)\)</span> 使得 <span class="math inline">\(|N(u)\cap N(v)|=2\)</span>。证明对图的阶没有要求，因此引理对 <span class="math inline">\(T_n\)</span>，<span class="math inline">\(n\geqslant 4\)</span> 成立。</p>
+<p>#### 极大可平面图是3-连通图</p>
+<p>对极大可平面图 <span class="math inline">\(T_n\)</span> 的阶作数学归纳法。</p>
+<p>当 <span class="math inline">\(n=4\)</span> 时，<span class="math inline">\(T_4=K_4\)</span> 是三连通图；</p>
+<p>设当 <span class="math inline">\(n=k\)</span> 时 <span class="math inline">\(T_k\)</span> 是三连通图，则取 <span class="math inline">\(k+1\)</span> 阶极大可平面图 <span class="math inline">\(T_{k+1}\)</span>，由引理1可知 <span class="math inline">\(\exists uv\in  E(T_{k+1})\)</span> 使得 <span class="math inline">\(|N(u)\cap N(v)|=2\)</span>。</p>
+<p>作图的收缩，记 <span class="math inline">\(G=T_{k+1}\circ uv\)</span>，容易发现 <span class="math inline">\(||G||=||T_{k+1}||-|\left\{\;uv\;\right\}|-|N(u)\cap N(v)|\)</span></p>
+<p>又因为 <span class="math inline">\(T_{k+1}\)</span> 是三角剖分，所以 <span class="math inline">\(||G||=3(k+1)-6-1-2=3k-6=3|G|-6\)</span></p>
+<p>又因为 <span class="math inline">\(G\)</span> 仍然是平面图，所以 <span class="math inline">\(G\)</span> 也是极大可平面图。由归纳假设，<span class="math inline">\(G\)</span> 是三连通图，存在一个保持三连通性的收缩。因此 <span class="math inline">\(T_{k+1}\)</span> 也是三连通图。</p>
+<p>本来应该(被)科普一些拓扑的姿势的，但是目前好像也不太用得上，就先咕了吧。 本文假设读者有一定的图结构知识，比较新的概念俺会努力解释的 这里的内容都比较入门，大佬轻喷( # 平面图(Plane Graph) 我们称具有如下性质的图 <span class="math inline">\(G\)</span> 为平面图： 1. <span class="math inline">\(V(G)\\subseteq \\mathbb R^2\)</span>，<span class="math inline">\(E(G)\\subseteq \\mathbb R^2\)</span> 毕竟是"平面"图 2. <span class="math inline">\(\\forall e\_1,e\_2\\in E(G)\)</span>, <span class="math inline">\(st(e\_1)\\neq st(e\_2)\\text{ and } ed(e\_1)\\neq ed(e\_2)\)</span> 3. <span class="math inline">\(\\forall e\_1,e\_2\\in E(G)\)</span>, <span class="math inline">\(e\_1\\cap e\_2\\in \\left(V(G)\\cup\\varnothing\\right)\)</span> 4. <span class="math inline">\(\\forall e\\in E(G)\)</span>, <span class="math inline">\(e=(x,y)\)</span> 是连通 <span class="math inline">\(x,\\;y\)</span> 的一段弧(arc)。 在一般图中，我们认为 <span class="math inline">\(E(G)\)</span> 中的元素是若干二元组。在平面图中，我们认为图的边 <span class="math inline">\(e=(x,y)\)</span> 是连通 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的一段弧(arc)，即一个点集。此时 <span class="math inline">\(G\)</span> 就可以代表由所有顶点以及边上的点构成的点集。 考虑点集 <span class="math inline">\(S=\\mathbb R^2\\backslash G\)</span>，<span class="math inline">\(S\)</span> 中存在着若干不相交的区域(region)。我们记 <span class="math inline">\(F(G)\)</span> 为 <span class="math inline">\(S\)</span> 中的所有区域，将这些区域称为图 <span class="math inline">\(G\)</span> 的面(face)。若 <span class="math inline">\(f\\in F(G)\)</span> 是无界的(unbounded)，则记为外面，否则记为内面。 ### 平面图的欧拉定理 对于平面图 <span class="math inline">\(G=(V,E)\)</span>，<span class="math inline">\(F=F(G)\)</span>，则有 <span class="math inline">\(|V|-|E|+|F|=2\)</span> 考虑对 <span class="math inline">\(|E|\)</span> 归纳。 1. 当 <span class="math inline">\(|E|=|V|-1\)</span> 且 <span class="math inline">\(G\)</span> 连通时，<span class="math inline">\(G\)</span> 是树，此时 <span class="math inline">\(|V|=|E|+1\)</span>，<span class="math inline">\(|F|=1\)</span>，带入成立。 2. 设当 <span class="math inline">\(|E|2\)</span> (否则存在重边)，因此 <span class="math inline">\(|C|=3\)</span>。由 <span class="math inline">\(f\)</span> 的任意性可知 <span class="math inline">\(G\)</span> 是一个三角剖分。 <span class="math inline">\(\\Leftarrow\)</span>： 由反证法，假设存在 <span class="math inline">\(x,y\\in V(G)\)</span> 使得 <span class="math inline">\(xy\)</span> 的内部在某一区域 <span class="math inline">\(f\)</span> 内，那么必然有 <span class="math inline">\(x,y\\in\\partial f\)</span>。而由 <span class="math inline">\(G\)</span> 是三角剖分可知 <span class="math inline">\(|V(\\partial f)|=3\)</span>，故 <span class="math inline">\(x,y\)</span> 必相邻，这与 <span class="math inline">\(G\)</span> 不含重边矛盾。故命题成立。 ### 平面图的必要条件 若图 <span class="math inline">\(G=(V,E)\)</span> 是平面图，则 <span class="math inline">\(|E|\\leqslant 3|V|-6\)</span> 对三角剖分的边和面计数，则有 <span class="math inline">\(\\frac{3|F|}{2}=|E|\)</span> (每个面的边界上有三条边，每条边的两侧恰好为两个面)，带入平面图欧拉公式就有 <span class="math inline">\(|E|=3|V|-6\)</span>。 若不含三角形的(triangle-free graph)的图 <span class="math inline">\(G=(V,E)\)</span> 为平面图，则 <span class="math inline">\(|E|\\leqslant2|V|-4\)</span> 证明和上面类似，每个面的边界有四条边 ### 子式和拓扑子式 #### 拓扑子式 考虑一个固定的图 <span class="math inline">\(X\)</span>，我们用若干不相交的路替换掉 <span class="math inline">\(X\)</span> 的边得到新的图 <span class="math inline">\(X&#39;\)</span>，则我们称 <span class="math inline">\(X&#39;\)</span> 是 <span class="math inline">\(X\)</span> 的一个细分，也记作 <span class="math inline">\(X&#39;=TX\)</span> 我们把 <span class="math inline">\(V(X)\\cap V(TX)\)</span> 称作 <span class="math inline">\(X\)</span> 的**分支顶点**，把 <span class="math inline">\(V(TX)\\backslash V(X)\)</span> 称作 <span class="math inline">\(X\)</span> 的细分顶点。很显然细分顶点度数都是 <span class="math inline">\(2\)</span> 若 <span class="math inline">\(TX\\subseteq G\)</span>，则我们称 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(G\)</span> 的**拓扑子式** #### 子式 考虑一个固定的图 <span class="math inline">\(X\)</span>，我们用若干不相交的连通图 <span class="math inline">\(G\_x\)</span> 替换掉 <span class="math inline">\(X\)</span> 中的顶点，对于 <span class="math inline">\(xy\\in E(X)\)</span> 则用 <span class="math inline">\(G\_x-G\_y\)</span> 路替换掉，这样得到的图记作 <span class="math inline">\(X&#39;\)</span>，那么我们记作 <span class="math inline">\(X&#39;=IX\)</span> 若 <span class="math inline">\(IX\\subseteq G\)</span>，则我们称 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(G\)</span> 的**收缩子式**，记作 <span class="math inline">\(X\\preceq G\)</span> ### Kuratowski定理 这个定理很强，但是证明非常麻烦....这里打算<del>摸了</del>只给出结论，具体证明可以参考任意一本找得到这个定理的图论教材~ 对于图 <span class="math inline">\(G\)</span>，下列叙述等价： 1. <span class="math inline">\(G\)</span> 可平面 2. <span class="math inline">\(G\)</span> 不包含 <span class="math inline">\(K\_5\)</span> 或 <span class="math inline">\(K\_{3,3}\)</span> 作为子式 3. <span class="math inline">\(G\)</span> 不包含 <span class="math inline">\(K\_5\)</span> 或 <span class="math inline">\(K\_{3,3}\)</span> 作为拓扑子式 ### 极大可平面图是三连通图 这是作业里需要证明的一个小引理，不过很有用，也放上来吧 要用到三连通图的收缩列 #### 引理1：<span class="math inline">\(\\exists uv\\in E(T\_n)\)</span> 使得 <span class="math inline">\(\\left|{N(u)\\cap N(v)}\\right|=2\)</span> 首先 <span class="math inline">\(\\forall x\\in V(T\_n)\)</span>，都有 <span class="math inline">\(deg(x)\\geqslant 3\)</span>。任取边 <span class="math inline">\(uv\\in E(T\_n)\)</span>，<span class="math inline">\(uv\)</span> 恰好在两个面 <span class="math inline">\(f\_1,f\_2\)</span> 的边界上。而由三角剖分的定义可知 <span class="math inline">\(f\_1,f\_2\)</span> 的边界是两个三角形。因此 <span class="math inline">\(\\forall uv\\in E(T\_n)\)</span> 都有 <span class="math inline">\(|N(u)\\cap N(V)|\\geqslant 2\)</span>。 由反证法，不妨假设 <span class="math inline">\(\\forall uv\\in E(T\_n)\)</span> 都有 <span class="math inline">\(|N(u)\\cap N(v)|\\geqslant 3\)</span>，则易知 <span class="math inline">\(|N(u)|\\geqslant 4\)</span> 且 <span class="math inline">\(|N(v)|\\geqslant 4\)</span> 不妨记 <span class="math inline">\(N(u)=\\left\\{\\;x\_1,x\_2,x\_3,x\_4\\;\\right\\}\)</span>，则由 <span class="math inline">\(|N(u)\\cap N(x\_1)|\\geqslant 3\)</span> 可得 <span class="math inline">\(x\_1x\_2,x\_1x\_3,x\_1x\_4\\in E(T\_n)\)</span> 同理有 <span class="math inline">\(x\_2x\_3,x\_2x\_4,x\_3x\_4\\in E(T\_n)\)</span>，故 <span class="math inline">\(u\\cup N(u)\)</span> 的导出子图是 <span class="math inline">\(K\_5\)</span>，这与 <span class="math inline">\(T\_n\)</span> 可平面矛盾。 因此 <span class="math inline">\(\\exists uv\\in E(T\_n)\)</span> 使得 <span class="math inline">\(|N(u)\\cap N(v)|=2\)</span>。证明对图的阶没有要求，因此引理对 <span class="math inline">\(T\_n\)</span>，<span class="math inline">\(n\\geqslant 4\)</span> 成立。 #### 极大可平面图是3-连通图 对极大可平面图 <span class="math inline">\(T\_n\)</span> 的阶作数学归纳法。 当 <span class="math inline">\(n=4\)</span> 时，<span class="math inline">\(T\_4=K\_4\)</span> 是三连通图； 设当 <span class="math inline">\(n=k\)</span> 时 <span class="math inline">\(T\_k\)</span> 是三连通图，则取 <span class="math inline">\(k+1\)</span> 阶极大可平面图 <span class="math inline">\(T\_{k+1}\)</span>，由引理1可知 <span class="math inline">\(\\exists uv\\in E(T\_{k+1})\)</span> 使得 <span class="math inline">\(|N(u)\\cap N(v)|=2\)</span>。 作图的收缩，记 <span class="math inline">\(G=T\_{k+1}\\circ uv\)</span>，容易发现 <span class="math inline">\(||G||=||T\_{k+1}||-|\\left\\{\\;uv\\;\\right\\}|-|N(u)\\cap N(v)|\)</span> 又因为 <span class="math inline">\(T\_{k+1}\)</span> 是三角剖分，所以 <span class="math inline">\(||G||=3(k+1)-6-1-2=3k-6=3|G|-6\)</span> 又因为 <span class="math inline">\(G\)</span> 仍然是平面图，所以 <span class="math inline">\(G\)</span> 也是极大可平面图。由归纳假设，<span class="math inline">\(G\)</span> 是三连通图，存在一个保持三连通性的收缩。因此 <span class="math inline">\(T\_{k+1}\)</span> 也是三连通图。 <span id="more"></span></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/06/19/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-06-19 12:52:30
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/06/19/Java%E9%80%9F%E6%88%90%E7%AC%94%E8%AE%B0/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' +  + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F06%2F19%2F%25E5%259B%25BE%25E8%25AE%25BA%25E7%25AC%2594%25E8%25AE%25B04-%25E5%25B9%25B3%25E9%259D%25A2%25E5%259B%25BE%25E4%25B8%258E%25E5%258F%25AF%25E5%25B9%25B3%25E9%259D%25A2%25E5%259B%25BE%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2022/06/19/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

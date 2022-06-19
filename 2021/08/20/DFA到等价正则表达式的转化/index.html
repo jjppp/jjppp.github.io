@@ -121,7 +121,7 @@
   <!-- LaTex Display -->
 
   
-    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   
   <script>
     MathJax = {
@@ -168,14 +168,76 @@
         
       </div>
       <div class="markdown-body">
-        <p>## 思考题的引入 首先看这样一道思考题： &gt; 如何用**正则表达式**识别所有是三的倍数的二进制串？ 考虑最暴力的做法。用一个变量`rem`表示一个串的前缀作为二进制对3的余数，对新进来的字符讨论： 1. 进来一个`0`，则`rem=(rem&lt;&lt;1)%3;`，因为我们是从高位向低位读的 2. 进来一个`1`，则`rem=((rem&lt;&lt;1)+1)%3` 那么只需要判断最终`rem`是否为0就好了 ## 自动机的做法 在做这题之前，可以先想想这样的一个问题： &gt; 如何用**自动机**识别所有是三的倍数的二进制串？ 或者说 &gt; 如何用**自动机**表示上述暴力做法？ 注意到`rem`的取值只能为`0,1,2`，因此可以建3个点，每个点两条出边表示对不同字符的处理转移，那么建出来的图如下 ![image](https://img2020.cnblogs.com/blog/1010529/202108/1010529-20210820110746913-1492292485.png) 其中节点1,2,3分别表示`rem`对应为0,1,2的状态。 "但是问题还没完啊，你不是要正则表达式吗" 做到这一点需要一些前置姿势 ## 正则表达式代数 没错！正则表达式也是有代数结构的！ 为了方便，我们规定连接运算(concatenation)用`.`符号表示 | 符号 | 性质 | | ------------ | ------------ | | \| | 结合律，交换律，对.的分配率 | | . | 结合律 | | ^ | 幂等律 | 它们的优先级从上到下**递增** 那么自然应该想到，列出正则表达式的代数方程，也是可以解方程的 ### Arden's Theorem 定理的内容很简单，即对于形如 <span class="math inline">\(x=A|xB\)</span> 的方程，<span class="math inline">\(x\)</span> 的解都是 <span class="math inline">\(AB^\*\)</span> 的形式 对解的长度进行归纳。当 <span class="math inline">\(n=1\)</span>， <span class="math inline">\(x\_1=A\)</span> 是原方程的一个解，满足 <span class="math inline">\(x=AB^\*\)</span> 的形式 设当 $n <!-- more --></p>
+        <p>## 思考题的引入</p>
+<p>首先看这样一道思考题：</p>
+<blockquote>
+<p>如何用<strong>正则表达式</strong>识别所有是三的倍数的二进制串？</p>
+</blockquote>
+<p>考虑最暴力的做法。用一个变量<code>rem</code>表示一个串的前缀作为二进制对3的余数，对新进来的字符讨论：</p>
+<ol type="1">
+<li><p>进来一个<code>0</code>，则<code>rem=(rem&lt;&lt;1)%3;</code>，因为我们是从高位向低位读的</p></li>
+<li><p>进来一个<code>1</code>，则<code>rem=((rem&lt;&lt;1)+1)%3</code></p></li>
+</ol>
+<p>那么只需要判断最终<code>rem</code>是否为0就好了</p>
+<p>## 自动机的做法</p>
+<p>在做这题之前，可以先想想这样的一个问题：</p>
+<blockquote>
+<p>如何用<strong>自动机</strong>识别所有是三的倍数的二进制串？</p>
+</blockquote>
+<p>或者说</p>
+<blockquote>
+<p>如何用<strong>自动机</strong>表示上述暴力做法？</p>
+</blockquote>
+<p>注意到<code>rem</code>的取值只能为<code>0,1,2</code>，因此可以建3个点，每个点两条出边表示对不同字符的处理转移，那么建出来的图如下</p>
+<figure>
+<img src="https://img2020.cnblogs.com/blog/1010529/202108/1010529-20210820110746913-1492292485.png" alt="" /><figcaption>image</figcaption>
+</figure>
+<p>其中节点1,2,3分别表示<code>rem</code>对应为0,1,2的状态。</p>
+<p>"但是问题还没完啊，你不是要正则表达式吗"</p>
+<p>做到这一点需要一些前置姿势</p>
+<p>## 正则表达式代数</p>
+<p>没错！正则表达式也是有代数结构的！</p>
+<p>为了方便，我们规定连接运算(concatenation)用<code>.</code>符号表示</p>
+<p>| 符号 | 性质 |</p>
+<p>| ------------ | ------------ |</p>
+<p>| | | 结合律，交换律，对.的分配率 |</p>
+<p>| . | 结合律 |</p>
+<p>| ^ | 幂等律 |</p>
+<p>它们的优先级从上到下<strong>递增</strong></p>
+<p>那么自然应该想到，列出正则表达式的代数方程，也是可以解方程的</p>
+<p>### Arden's Theorem</p>
+<p>定理的内容很简单，即对于形如 <span class="math inline">\(x=A|xB\)</span> 的方程，<span class="math inline">\(x\)</span> 的解都是 <span class="math inline">\(AB^*\)</span> 的形式</p>
+<p>对解的长度进行归纳。当 <span class="math inline">\(n=1\)</span>， <span class="math inline">\(x_1=A\)</span> 是原方程的一个解，满足 <span class="math inline">\(x=AB^*\)</span> 的形式</p>
+<p>设当 <span class="math inline">\(n&lt;k\)</span> 时成立，则 <span class="math inline">\(x_{n-1}=A\overbrace{B\ldots B}^{n-1\text{个}B}\)</span>，带入方程右侧就有 <span class="math inline">\(x_n=x_{n-1}B=A\overbrace{B\ldots B}^{n\text{个}B}\)</span></p>
+<p>由数学归纳法可知原方程的解都是 <span class="math inline">\(x=AB^*\)</span> 的形式，并且容易验证形如 <span class="math inline">\(AB^*\)</span> 的串都是方程的解。</p>
+<p>类似的也有对 <span class="math inline">\(x=A|Bx\)</span> 的结论</p>
+<p>## 自动机到正则表达式的转换</p>
+<p>我们知道，自动机的每个状态都对应着一个接受串的集合(从初始状态到当前状态所有路径组成的串的并)，而不同状态之间存在转移关系</p>
+<p>那么就可以设未知数列方程辣！</p>
+<p>对于最开始的那个DFA，我们可以设它的三个状态对应的接受串的正则表达式为<span class="math inline">\(x_0,x_1,x_2\)</span>，那么有如下关系</p>
+<p>$$</p>
+<span class="math display">\[\begin{cases}
+          x_0 &amp;=&amp; x_00|x_11 \\
+          x_1 &amp;=&amp; x_01|x_20 \\ 
+          x_2 &amp;=&amp; x_10|x_21 \\
+      \end{cases}\]</span>
+<p>$$</p>
+<p>对式3用Arden's Theorem得到<span class="math inline">\(x_2=x_101^*\)</span></p>
+<p>代入式2得到 <span class="math inline">\(x_1=x_01|x_101^*0=x_01(01^*0)^*\)</span></p>
+<p>代入式1得到 <span class="math inline">\(x_0=x_00|x_01(01^*0)^*=x_0(0|1(01^*0)^*)=(0|1(01^*0)^*)^*\)</span></p>
+<p>于是就得到了与该自动机等价的正则表达式</p>
+<p>需要注意的是，在这个表达式中，我们认为可以有任意的前缀零，并且空串和任意长度的0串都是3的倍数</p>
+<p>## 升华一下</p>
+<p>如果你乐于思考，就会发现我们上述"消元"过程意味着什么——我们在化简自动机的状态！</p>
+<p>也就是说，假如我们要求得表示DFA从起点到终点e的串的集合的正则表达式，那么我们只需要合并掉除起点和e以外的所有状态即可。 excerpt: &gt;-</p>
+<p>## 思考题的引入 首先看这样一道思考题： &gt; 如何用**正则表达式**识别所有是三的倍数的二进制串？ 考虑最暴力的做法。用一个变量`rem`表示一个串的前缀作为二进制对3的余数，对新进来的字符讨论： 1. 进来一个`0`，则`rem=(rem&lt;&lt;1)%3;`，因为我们是从高位向低位读的 2. 进来一个`1`，则`rem=((rem&lt;&lt;1)+1)%3` 那么只需要判断最终`rem`是否为0就好了 ## 自动机的做法 在做这题之前，可以先想想这样的一个问题： &gt; 如何用**自动机**识别所有是三的倍数的二进制串？ 或者说 &gt; 如何用**自动机**表示上述暴力做法？ 注意到`rem`的取值只能为`0,1,2`，因此可以建3个点，每个点两条出边表示对不同字符的处理转移，那么建出来的图如下 ![image](https://img2020.cnblogs.com/blog/1010529/202108/1010529-20210820110746913-1492292485.png) 其中节点1,2,3分别表示`rem`对应为0,1,2的状态。 "但是问题还没完啊，你不是要正则表达式吗" 做到这一点需要一些前置姿势 ## 正则表达式代数 没错！正则表达式也是有代数结构的！ 为了方便，我们规定连接运算(concatenation)用`.`符号表示 | 符号 | 性质 | | ------------ | ------------ | | \| | 结合律，交换律，对.的分配率 | | . | 结合律 | | ^ | 幂等律 | 它们的优先级从上到下**递增** 那么自然应该想到，列出正则表达式的代数方程，也是可以解方程的 ### Arden's Theorem 定理的内容很简单，即对于形如 <span class="math inline">\(x=A|xB\)</span> 的方程，<span class="math inline">\(x\)</span> 的解都是 <span class="math inline">\(AB^\*\)</span> 的形式 对解的长度进行归纳。当 <span class="math inline">\(n=1\)</span>， <span class="math inline">\(x\_1=A\)</span> 是原方程的一个解，满足 <span class="math inline">\(x=AB^\*\)</span> 的形式 设当 $n <span id="more"></span></p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+              <a href="/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -190,7 +252,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" target="_self">
+              <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>

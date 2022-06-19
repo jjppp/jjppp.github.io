@@ -121,7 +121,7 @@
   <!-- LaTex Display -->
 
   
-    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   
   <script>
     MathJax = {
@@ -168,14 +168,95 @@
         
       </div>
       <div class="markdown-body">
-        <p>## Types 首先要说明什么是Type Types可以看成是对数据的分类、一种约定，即我们用一个界来描述一类数据构成的集合，用不同的界区分不同的数据种类。对于untyped的语言，我们则可以看成是只有唯一一种包罗万象的type 类型实际上有很多作用，可以进行针对性的优化、可以提供部分代码的信息、可以作为接口分离各模块的逻辑、可以保证程序的正确执行..... 如果写过Coq的话，还会知道类型可以与逻辑系统中的元素建立对应关系，从而可以利用类型推导工具来进行定理的证明（虽然我感觉这是绕了一个大弯，毕竟类型系统本来就应该看成一类特殊的逻辑系统），也就是Curry-Howard morphism 这一节讲的就是在<span class="math inline">\(\\lambda\)</span>-calculus中引入type ## Errors 分为trapped errors和untrapped errors trapped意思是就是出现使得程序停止的错误（除0） untrapped意思是程序虽然继续运行，但是状态被破坏了（回想注入攻击） forbidden-error则指的是一个untrapped errors的超集 ## Safe &amp; Well-behaved 我们称一个程序是safe的，当且仅当它执行过程中不会出现untrapped error。如果一个语言的所有合法程序都是safe的，那么我们就称这个语言是safe的 我们称一个程序是well-behave的，当且仅当它在执行过程中不会出现forbidden-errors。 于是就可以定义type safe了。如果一个语言经过了type system检查的程序都是safe的，那么我们称这个语言就是type safe的 实践中通常不明确定义forbidden-errors、well-behave以及safe，一般混着来，不过不影响理解 ## Annotations 把变量 <span class="math inline">\(x\)</span> 的类型为 <span class="math inline">\(\\tau\)</span> 记作 <span class="math inline">\(x:\\tau\)</span> 把"以类型 <span class="math inline">\(\\tau\_1\)</span> 作为输入、<span class="math inline">\(\\tau\_2\)</span> 作为输出"的函数 <span class="math inline">\(f\)</span> 的类型记作 <span class="math inline">\(f:\\tau\_1\\rightarrow \\tau\_2\)</span> 有些变量的类型由环境决定，例如表达式 <span class="math inline">\(f\\;1\)</span>，在 <span class="math inline">\(f:\\text{int}\\rightarrow\\text{int}\)</span> 和 <span class="math inline">\(f:\\text{int}\\rightarrow\\text{double}\)</span> 两种情况下的类型就不一样，因此需要引入环境的概念，用函数 <span class="math inline">\(\\Gamma:\\text{Types}^\\text{var}\)</span> 表示，意思是给free variable分配类型，也可以理解成*假设* 在Simply Typed <span class="math inline">\(\\lambda\)</span>-calculus里，类型仅由基本类型以及通过函数对基本类型进行复合两种方法得到。很显然类型的数量是可数的 以及若干推导规则： 1. <span class="math inline">\(\\Gamma,x:\\tau\_1\\vdash e:\\tau\_2\\Rightarrow \\Gamma,x\_1:\\tau\_1\\vdash \\lambda x.e:\\tau\_1\\rightarrow\\tau\_2\)</span>，意思是函数的类型由参数类型和返回值类型确定。 2. $\Gamma,x:\tau\vdash x:\tau $，意思是在相同环境下，同名变量有相同类型 3. <span class="math inline">\(\\Gamma,e\_1:\\tau\_1\\rightarrow\\tau\_2,e\_2:\\tau\_1\\vdash e\_1\\;e\_2:\\tau\_2\)</span>，意思是给一个函数传入参数就可以得到返回值的类型 可以发现，一个类型系统类似一个逻辑系统，我们有若干公理（变量类型）、推导规则，并且我们希望所有的命题都可以通过推理得到，也都有相应的语义含义 ## Soundness &amp; Completeness 也有叫Consistency的 如果一段代码能给所有表达式标上类型：即每个表达式的类型都可以在类型系统中推导得到，那么就称类型系统accept了这段代码 我们称类型系统sound，当且仅当所有通过的代码都不会出错 我们称类型系统complete，当且仅当所有不会出错的代码都能通过检查 很快就能反应过来对于递归可枚举的图灵完备的语言而言，这个问题是不可判定的。因此通常的做法是牺牲completeness追求soundness，意思是也许你的做法是对的，但我们建议用其它可以通过检查的方法来写；并且所有通过的代码都必须是安全的 在Simply Typed <span class="math inline">\(\\lambda\)</span>-calculus中，不出错就意味着： 如果 <span class="math inline">\(\\vdash M:\\tau\)</span> 并且 <span class="math inline">\(M\\overset \*\\rightarrow M&#39;\)</span>，那么就有 <span class="math inline">\(\\vdash M&#39;:\\tau\)</span> 并且要么 <span class="math inline">\(M&#39;\)</span> 是一个value，要么 <span class="math inline">\(M&#39;\)</span> 可以继续规约。这里value通常就定义为normal form *上面两条分别对应了下面的两个定理* 一个证明上述type system不complete的例子如下： <span class="math inline">\((\\lambda x.(x\\; (\\lambda y.y))(x\\;3))(\\lambda z.z)\)</span> 关键就在于对于同一个 <span class="math inline">\(x\)</span>，它既作用于 <span class="math inline">\((\\lambda y.y)\)</span>，又作用于 <span class="math inline">\(3\)</span>，因此我们不能推导得到 <span class="math inline">\(x\)</span> 的类型，因此也就无法通过类型系统的检查 但是稍微规约一下就可以得到 <span class="math inline">\((\\lambda y.y)\\;3=3\)</span>，最终是可以停止并得到值的，意思是这段代码不会出错 ### Progress TH 如果 <span class="math inline">\(\\vdash e:\\tau\)</span>，那么要么 <span class="math inline">\(e\)</span> 是value，要么存在 <span class="math inline">\(e\\rightarrow e&#39;\)</span> 证明这个只需要对推导次数进行归纳就可以了 引理1：如果一个拥有 <span class="math inline">\(\\tau\_1\\rightarrow\\tau\_2\)</span> 类型的表达式 <span class="math inline">\(e\)</span> 是value，那么它一定是 <span class="math inline">\(\\lambda x.E\)</span> 的形式 引理1的证明：观察类型推导的规则就可以发现，能够给出 <span class="math inline">\(\\tau\_1\\rightarrow\\tau\_2\)</span> 类型的规则只有一条。反证即可说明 Progress的证明： base case 是很简单的，这里就不写了 设当推导次数 <span class="math inline">\(n=k\)</span> 时命题成立，分类讨论第 <span class="math inline">\(k+1\)</span> 次推导时表达式 <span class="math inline">\(e\)</span> 的结构： 1. 常量，此时 <span class="math inline">\(e\)</span> 是value，符合； 2. <span class="math inline">\(e=x\)</span>，此时环境为空，不可能有 <span class="math inline">\(\\vdash x:\\tau\)</span> 3. <span class="math inline">\(e=\\lambda x.E\)</span>，此时 <span class="math inline">\(e\)</span> 是value，符合； 4. <span class="math inline">\(e=e\_1\\;e\_2\)</span>，分类讨论 <span class="math inline">\(e\_1,e\_2\)</span> 1. <span class="math inline">\(e\_1\)</span> 不是value，那么由归纳假设，存在 <span class="math inline">\(e\_1&#39;\)</span> 使得 <span class="math inline">\(e\_1\\rightarrow e\_1&#39;\)</span>，符合； 2. <span class="math inline">\(e\_1\)</span> 是value，<span class="math inline">\(e\_2\)</span> 不是value，那么同理存在 <span class="math inline">\(e\_2\\rightarrow e\_2&#39;\)</span>，符合； 3. <span class="math inline">\(e\_1,e\_2\)</span> 都是value，根据引理有 <span class="math inline">\(e\_1=\\lambda x.E\)</span>，于是有 <span class="math inline">\(e\_1\\;e\_2\\rightarrow E\[e\_2/x\]\)</span>，符合； 由数学归纳法得命题对任意自然数次的推理成立 关键在于为什么需要引理，以及何时使用引理 ## Preservation TH 意思是如果 <span class="math inline">\(\\vdash e:\\tau\)</span> 且 <span class="math inline">\(e\\rightarrow e&#39;\)</span>，那么有 <span class="math inline">\(\\vdash e&#39;:\\tau\)</span> 引理2：若 <span class="math inline">\(\\Gamma,x:\\sigma\\vdash E:\\tau\)</span>，且 <span class="math inline">\(\\Gamma\\vdash e:\\sigma\)</span>，那么 <span class="math inline">\(\\Gamma\\vdash E\[e/x\]:\\tau\)</span> 证明比较简单，只需要对 <span class="math inline">\(e\)</span> 推导归纳再分类讨论就好了 仍然对推理次数进行归纳，同样省去base case 对 <span class="math inline">\(e\)</span> 的结构分类讨论： 1. <span class="math inline">\(e\)</span> 是常量，那么不存在 <span class="math inline">\(e&#39;\)</span>； 2. <span class="math inline">\(e=x\)</span>，那么不存在 <span class="math inline">\(e&#39;\)</span> 3. <span class="math inline">\(e=\\lambda x.E\)</span>，那么不存在 <span class="math inline">\(e&#39;\)</span> 4. <span class="math inline">\(e=e\_1\\;e\_2\)</span>，那么就有 <span class="math inline">\(\\vdash e\_1\\;e\_2:\\tau\)</span>，并且 <span class="math inline">\(\\vdash e\_1:\\sigma\\rightarrow \\tau,e\_2:\\sigma\)</span> 1. 存在 <span class="math inline">\(e\_1\\rightarrow e\_1&#39;\)</span>，那么就有 <span class="math inline">\(e\\rightarrow e\_1&#39;\\;e\_2\)</span>。根据归纳假设有 <span class="math inline">\(\\vdash e\_1&#39;:\\sigma\\rightarrow\\tau\)</span>，又根据类型推导规则有 <span class="math inline">\(\\vdash e\_1&#39;\\;e\_2:\\tau\)</span>，归纳步骤成立； 2. 存在 <span class="math inline">\(e\_2\\rightarrow e\_2&#39;\)</span>，那么就有 <span class="math inline">\(e\\rightarrow e\_1\\;e\_2&#39;\)</span>。根据归纳假设有 <span class="math inline">\(\\vdash e\_2&#39;:\\sigma\)</span>，再根据类型推导规则有 <span class="math inline">\(\\vdash e\_1\\;e\_2&#39;:\\tau\)</span> 3. <span class="math inline">\(e\_1,e\_2\)</span> 都是normal form，那么根据引理1有 <span class="math inline">\(e\_1=\\lambda x.E\)</span> 的形式，于是 <span class="math inline">\(e=e\_1\\;e\_2=\\lambda x.E\\; e\_2\)</span>。此时显然有 <span class="math inline">\(e\\rightarrow E\[e\_2/x\]\)</span>，根据引理2有 <span class="math inline">\(\\vdash E\[e\_2/x\]:\\tau\)</span> 于是就证完了 <!-- more --></p>
+        <p>## Types</p>
+<p>首先要说明什么是Type</p>
+<p>Types可以看成是对数据的分类、一种约定，即我们用一个界来描述一类数据构成的集合，用不同的界区分不同的数据种类。对于untyped的语言，我们则可以看成是只有唯一一种包罗万象的type</p>
+<p>类型实际上有很多作用，可以进行针对性的优化、可以提供部分代码的信息、可以作为接口分离各模块的逻辑、可以保证程序的正确执行.....</p>
+<p>如果写过Coq的话，还会知道类型可以与逻辑系统中的元素建立对应关系，从而可以利用类型推导工具来进行定理的证明（虽然我感觉这是绕了一个大弯，毕竟类型系统本来就应该看成一类特殊的逻辑系统），也就是Curry-Howard morphism</p>
+<p>这一节讲的就是在<span class="math inline">\(\lambda\)</span>-calculus中引入type</p>
+<p>## Errors</p>
+<p>分为trapped errors和untrapped errors</p>
+<p>trapped意思是就是出现使得程序停止的错误（除0）</p>
+<p>untrapped意思是程序虽然继续运行，但是状态被破坏了（回想注入攻击）</p>
+<p>forbidden-error则指的是一个untrapped errors的超集</p>
+<p>## Safe &amp; Well-behaved</p>
+<p>我们称一个程序是safe的，当且仅当它执行过程中不会出现untrapped error。如果一个语言的所有合法程序都是safe的，那么我们就称这个语言是safe的</p>
+<p>我们称一个程序是well-behave的，当且仅当它在执行过程中不会出现forbidden-errors。</p>
+<p>于是就可以定义type safe了。如果一个语言经过了type system检查的程序都是safe的，那么我们称这个语言就是type safe的</p>
+<p>实践中通常不明确定义forbidden-errors、well-behave以及safe，一般混着来，不过不影响理解</p>
+<p>## Annotations</p>
+<p>把变量 <span class="math inline">\(x\)</span> 的类型为 <span class="math inline">\(\tau\)</span> 记作 <span class="math inline">\(x:\tau\)</span></p>
+<p>把"以类型 <span class="math inline">\(\tau_1\)</span> 作为输入、<span class="math inline">\(\tau_2\)</span> 作为输出"的函数 <span class="math inline">\(f\)</span> 的类型记作 <span class="math inline">\(f:\tau_1\rightarrow \tau_2\)</span></p>
+<p>有些变量的类型由环境决定，例如表达式 <span class="math inline">\(f\;1\)</span>，在 <span class="math inline">\(f:\text{int}\rightarrow\text{int}\)</span> 和 <span class="math inline">\(f:\text{int}\rightarrow\text{double}\)</span> 两种情况下的类型就不一样，因此需要引入环境的概念，用函数 <span class="math inline">\(\Gamma:\text{Types}^\text{var}\)</span> 表示，意思是给free variable分配类型，也可以理解成<em>假设</em></p>
+<p>在Simply Typed <span class="math inline">\(\lambda\)</span>-calculus里，类型仅由基本类型以及通过函数对基本类型进行复合两种方法得到。很显然类型的数量是可数的</p>
+<p>以及若干推导规则：</p>
+<ol type="1">
+<li><p><span class="math inline">\(\Gamma,x:\tau_1\vdash e:\tau_2\Rightarrow \Gamma,x_1:\tau_1\vdash \lambda  x.e:\tau_1\rightarrow\tau_2\)</span>，意思是函数的类型由参数类型和返回值类型确定。</p></li>
+<li><p>$,x:x:$，意思是在相同环境下，同名变量有相同类型</p></li>
+<li><p><span class="math inline">\(\Gamma,e_1:\tau_1\rightarrow\tau_2,e_2:\tau_1\vdash  e_1\;e_2:\tau_2\)</span>，意思是给一个函数传入参数就可以得到返回值的类型</p></li>
+</ol>
+<p>可以发现，一个类型系统类似一个逻辑系统，我们有若干公理（变量类型）、推导规则，并且我们希望所有的命题都可以通过推理得到，也都有相应的语义含义</p>
+<p>## Soundness &amp; Completeness</p>
+<p>也有叫Consistency的</p>
+<p>如果一段代码能给所有表达式标上类型：即每个表达式的类型都可以在类型系统中推导得到，那么就称类型系统accept了这段代码</p>
+<p>我们称类型系统sound，当且仅当所有通过的代码都不会出错</p>
+<p>我们称类型系统complete，当且仅当所有不会出错的代码都能通过检查</p>
+<p>很快就能反应过来对于递归可枚举的图灵完备的语言而言，这个问题是不可判定的。因此通常的做法是牺牲completeness追求soundness，意思是也许你的做法是对的，但我们建议用其它可以通过检查的方法来写；并且所有通过的代码都必须是安全的</p>
+<p>在Simply Typed <span class="math inline">\(\lambda\)</span>-calculus中，不出错就意味着：</p>
+<p>如果 <span class="math inline">\(\vdash M:\tau\)</span> 并且 <span class="math inline">\(M\overset *\rightarrow M&#39;\)</span>，那么就有 <span class="math inline">\(\vdash M&#39;:\tau\)</span></p>
+<p>并且要么 <span class="math inline">\(M&#39;\)</span> 是一个value，要么 <span class="math inline">\(M&#39;\)</span> 可以继续规约。这里value通常就定义为normal form</p>
+<p><em>上面两条分别对应了下面的两个定理</em></p>
+<p>一个证明上述type system不complete的例子如下：</p>
+<p><span class="math inline">\((\lambda x.(x\; (\lambda y.y))(x\;3))(\lambda z.z)\)</span></p>
+<p>关键就在于对于同一个 <span class="math inline">\(x\)</span>，它既作用于 <span class="math inline">\((\lambda y.y)\)</span>，又作用于 <span class="math inline">\(3\)</span>，因此我们不能推导得到 <span class="math inline">\(x\)</span> 的类型，因此也就无法通过类型系统的检查</p>
+<p>但是稍微规约一下就可以得到 <span class="math inline">\((\lambda y.y)\;3=3\)</span>，最终是可以停止并得到值的，意思是这段代码不会出错</p>
+<p>### Progress TH</p>
+<p>如果 <span class="math inline">\(\vdash e:\tau\)</span>，那么要么 <span class="math inline">\(e\)</span> 是value，要么存在 <span class="math inline">\(e\rightarrow e&#39;\)</span></p>
+<p>证明这个只需要对推导次数进行归纳就可以了</p>
+<p>引理1：如果一个拥有 <span class="math inline">\(\tau_1\rightarrow\tau_2\)</span> 类型的表达式 <span class="math inline">\(e\)</span> 是value，那么它一定是 <span class="math inline">\(\lambda x.E\)</span> 的形式</p>
+<p>引理1的证明：观察类型推导的规则就可以发现，能够给出 <span class="math inline">\(\tau_1\rightarrow\tau_2\)</span> 类型的规则只有一条。反证即可说明</p>
+<p>Progress的证明：</p>
+<p>base case 是很简单的，这里就不写了</p>
+<p>设当推导次数 <span class="math inline">\(n=k\)</span> 时命题成立，分类讨论第 <span class="math inline">\(k+1\)</span> 次推导时表达式 <span class="math inline">\(e\)</span> 的结构：</p>
+<ol type="1">
+<li><p>常量，此时 <span class="math inline">\(e\)</span> 是value，符合；</p></li>
+<li><p><span class="math inline">\(e=x\)</span>，此时环境为空，不可能有 <span class="math inline">\(\vdash x:\tau\)</span></p></li>
+<li><p><span class="math inline">\(e=\lambda x.E\)</span>，此时 <span class="math inline">\(e\)</span> 是value，符合；</p></li>
+<li><p><span class="math inline">\(e=e_1\;e_2\)</span>，分类讨论 <span class="math inline">\(e_1,e_2\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(e_1\)</span> 不是value，那么由归纳假设，存在 <span class="math inline">\(e_1&#39;\)</span> 使得 <span class="math inline">\(e_1\rightarrow e_1&#39;\)</span>，符合；</li>
+<li><span class="math inline">\(e_1\)</span> 是value，<span class="math inline">\(e_2\)</span> 不是value，那么同理存在 <span class="math inline">\(e_2\rightarrow e_2&#39;\)</span>，符合；</li>
+<li><span class="math inline">\(e_1,e_2\)</span> 都是value，根据引理有 <span class="math inline">\(e_1=\lambda x.E\)</span>，于是有 <span class="math inline">\(e_1\;e_2\rightarrow E[e_2/x]\)</span>，符合；</li>
+</ol></li>
+</ol>
+<p>由数学归纳法得命题对任意自然数次的推理成立</p>
+<p>关键在于为什么需要引理，以及何时使用引理</p>
+<p>## Preservation TH</p>
+<p>意思是如果 <span class="math inline">\(\vdash e:\tau\)</span> 且 <span class="math inline">\(e\rightarrow e&#39;\)</span>，那么有 <span class="math inline">\(\vdash e&#39;:\tau\)</span></p>
+<p>引理2：若 <span class="math inline">\(\Gamma,x:\sigma\vdash E:\tau\)</span>，且 <span class="math inline">\(\Gamma\vdash e:\sigma\)</span>，那么 <span class="math inline">\(\Gamma\vdash E[e/x]:\tau\)</span></p>
+<p>证明比较简单，只需要对 <span class="math inline">\(e\)</span> 推导归纳再分类讨论就好了</p>
+<p>仍然对推理次数进行归纳，同样省去base case</p>
+<p>对 <span class="math inline">\(e\)</span> 的结构分类讨论：</p>
+<ol type="1">
+<li><p><span class="math inline">\(e\)</span> 是常量，那么不存在 <span class="math inline">\(e&#39;\)</span>；</p></li>
+<li><p><span class="math inline">\(e=x\)</span>，那么不存在 <span class="math inline">\(e&#39;\)</span></p></li>
+<li><p><span class="math inline">\(e=\lambda x.E\)</span>，那么不存在 <span class="math inline">\(e&#39;\)</span></p></li>
+<li><p><span class="math inline">\(e=e_1\;e_2\)</span>，那么就有 <span class="math inline">\(\vdash e_1\;e_2:\tau\)</span>，并且 <span class="math inline">\(\vdash e_1:\sigma\rightarrow  \tau,e_2:\sigma\)</span></p>
+<ol type="1">
+<li>存在 <span class="math inline">\(e_1\rightarrow e_1&#39;\)</span>，那么就有 <span class="math inline">\(e\rightarrow e_1&#39;\;e_2\)</span>。根据归纳假设有 <span class="math inline">\(\vdash e_1&#39;:\sigma\rightarrow\tau\)</span>，又根据类型推导规则有 <span class="math inline">\(\vdash e_1&#39;\;e_2:\tau\)</span>，归纳步骤成立；</li>
+<li>存在 <span class="math inline">\(e_2\rightarrow e_2&#39;\)</span>，那么就有 <span class="math inline">\(e\rightarrow e_1\;e_2&#39;\)</span>。根据归纳假设有 <span class="math inline">\(\vdash e_2&#39;:\sigma\)</span>，再根据类型推导规则有 <span class="math inline">\(\vdash e_1\;e_2&#39;:\tau\)</span></li>
+<li><span class="math inline">\(e_1,e_2\)</span> 都是normal form，那么根据引理1有 <span class="math inline">\(e_1=\lambda x.E\)</span> 的形式，于是 <span class="math inline">\(e=e_1\;e_2=\lambda x.E\; e_2\)</span>。此时显然有 <span class="math inline">\(e\rightarrow E[e_2/x]\)</span>，根据引理2有 <span class="math inline">\(\vdash E[e_2/x]:\tau\)</span></li>
+</ol></li>
+</ol>
+<p>于是就证完了 excerpt: &gt;-</p>
+<p>## Types 首先要说明什么是Type Types可以看成是对数据的分类、一种约定，即我们用一个界来描述一类数据构成的集合，用不同的界区分不同的数据种类。对于untyped的语言，我们则可以看成是只有唯一一种包罗万象的type 类型实际上有很多作用，可以进行针对性的优化、可以提供部分代码的信息、可以作为接口分离各模块的逻辑、可以保证程序的正确执行..... 如果写过Coq的话，还会知道类型可以与逻辑系统中的元素建立对应关系，从而可以利用类型推导工具来进行定理的证明（虽然我感觉这是绕了一个大弯，毕竟类型系统本来就应该看成一类特殊的逻辑系统），也就是Curry-Howard morphism 这一节讲的就是在<span class="math inline">\(\\lambda\)</span>-calculus中引入type ## Errors 分为trapped errors和untrapped errors trapped意思是就是出现使得程序停止的错误（除0） untrapped意思是程序虽然继续运行，但是状态被破坏了（回想注入攻击） forbidden-error则指的是一个untrapped errors的超集 ## Safe &amp; Well-behaved 我们称一个程序是safe的，当且仅当它执行过程中不会出现untrapped error。如果一个语言的所有合法程序都是safe的，那么我们就称这个语言是safe的 我们称一个程序是well-behave的，当且仅当它在执行过程中不会出现forbidden-errors。 于是就可以定义type safe了。如果一个语言经过了type system检查的程序都是safe的，那么我们称这个语言就是type safe的 实践中通常不明确定义forbidden-errors、well-behave以及safe，一般混着来，不过不影响理解 ## Annotations 把变量 <span class="math inline">\(x\)</span> 的类型为 <span class="math inline">\(\\tau\)</span> 记作 <span class="math inline">\(x:\\tau\)</span> 把"以类型 <span class="math inline">\(\\tau\_1\)</span> 作为输入、<span class="math inline">\(\\tau\_2\)</span> 作为输出"的函数 <span class="math inline">\(f\)</span> 的类型记作 <span class="math inline">\(f:\\tau\_1\\rightarrow \\tau\_2\)</span> 有些变量的类型由环境决定，例如表达式 <span class="math inline">\(f\\;1\)</span>，在 <span class="math inline">\(f:\\text{int}\\rightarrow\\text{int}\)</span> 和 <span class="math inline">\(f:\\text{int}\\rightarrow\\text{double}\)</span> 两种情况下的类型就不一样，因此需要引入环境的概念，用函数 <span class="math inline">\(\\Gamma:\\text{Types}^\\text{var}\)</span> 表示，意思是给free variable分配类型，也可以理解成*假设* 在Simply Typed <span class="math inline">\(\\lambda\)</span>-calculus里，类型仅由基本类型以及通过函数对基本类型进行复合两种方法得到。很显然类型的数量是可数的 以及若干推导规则： 1. <span class="math inline">\(\\Gamma,x:\\tau\_1\\vdash e:\\tau\_2\\Rightarrow \\Gamma,x\_1:\\tau\_1\\vdash \\lambda x.e:\\tau\_1\\rightarrow\\tau\_2\)</span>，意思是函数的类型由参数类型和返回值类型确定。 2. $\Gamma,x:\tau\vdash x:\tau $，意思是在相同环境下，同名变量有相同类型 3. <span class="math inline">\(\\Gamma,e\_1:\\tau\_1\\rightarrow\\tau\_2,e\_2:\\tau\_1\\vdash e\_1\\;e\_2:\\tau\_2\)</span>，意思是给一个函数传入参数就可以得到返回值的类型 可以发现，一个类型系统类似一个逻辑系统，我们有若干公理（变量类型）、推导规则，并且我们希望所有的命题都可以通过推理得到，也都有相应的语义含义 ## Soundness &amp; Completeness 也有叫Consistency的 如果一段代码能给所有表达式标上类型：即每个表达式的类型都可以在类型系统中推导得到，那么就称类型系统accept了这段代码 我们称类型系统sound，当且仅当所有通过的代码都不会出错 我们称类型系统complete，当且仅当所有不会出错的代码都能通过检查 很快就能反应过来对于递归可枚举的图灵完备的语言而言，这个问题是不可判定的。因此通常的做法是牺牲completeness追求soundness，意思是也许你的做法是对的，但我们建议用其它可以通过检查的方法来写；并且所有通过的代码都必须是安全的 在Simply Typed <span class="math inline">\(\\lambda\)</span>-calculus中，不出错就意味着： 如果 <span class="math inline">\(\\vdash M:\\tau\)</span> 并且 <span class="math inline">\(M\\overset \*\\rightarrow M&#39;\)</span>，那么就有 <span class="math inline">\(\\vdash M&#39;:\\tau\)</span> 并且要么 <span class="math inline">\(M&#39;\)</span> 是一个value，要么 <span class="math inline">\(M&#39;\)</span> 可以继续规约。这里value通常就定义为normal form *上面两条分别对应了下面的两个定理* 一个证明上述type system不complete的例子如下： <span class="math inline">\((\\lambda x.(x\\; (\\lambda y.y))(x\\;3))(\\lambda z.z)\)</span> 关键就在于对于同一个 <span class="math inline">\(x\)</span>，它既作用于 <span class="math inline">\((\\lambda y.y)\)</span>，又作用于 <span class="math inline">\(3\)</span>，因此我们不能推导得到 <span class="math inline">\(x\)</span> 的类型，因此也就无法通过类型系统的检查 但是稍微规约一下就可以得到 <span class="math inline">\((\\lambda y.y)\\;3=3\)</span>，最终是可以停止并得到值的，意思是这段代码不会出错 ### Progress TH 如果 <span class="math inline">\(\\vdash e:\\tau\)</span>，那么要么 <span class="math inline">\(e\)</span> 是value，要么存在 <span class="math inline">\(e\\rightarrow e&#39;\)</span> 证明这个只需要对推导次数进行归纳就可以了 引理1：如果一个拥有 <span class="math inline">\(\\tau\_1\\rightarrow\\tau\_2\)</span> 类型的表达式 <span class="math inline">\(e\)</span> 是value，那么它一定是 <span class="math inline">\(\\lambda x.E\)</span> 的形式 引理1的证明：观察类型推导的规则就可以发现，能够给出 <span class="math inline">\(\\tau\_1\\rightarrow\\tau\_2\)</span> 类型的规则只有一条。反证即可说明 Progress的证明： base case 是很简单的，这里就不写了 设当推导次数 <span class="math inline">\(n=k\)</span> 时命题成立，分类讨论第 <span class="math inline">\(k+1\)</span> 次推导时表达式 <span class="math inline">\(e\)</span> 的结构： 1. 常量，此时 <span class="math inline">\(e\)</span> 是value，符合； 2. <span class="math inline">\(e=x\)</span>，此时环境为空，不可能有 <span class="math inline">\(\\vdash x:\\tau\)</span> 3. <span class="math inline">\(e=\\lambda x.E\)</span>，此时 <span class="math inline">\(e\)</span> 是value，符合； 4. <span class="math inline">\(e=e\_1\\;e\_2\)</span>，分类讨论 <span class="math inline">\(e\_1,e\_2\)</span> 1. <span class="math inline">\(e\_1\)</span> 不是value，那么由归纳假设，存在 <span class="math inline">\(e\_1&#39;\)</span> 使得 <span class="math inline">\(e\_1\\rightarrow e\_1&#39;\)</span>，符合； 2. <span class="math inline">\(e\_1\)</span> 是value，<span class="math inline">\(e\_2\)</span> 不是value，那么同理存在 <span class="math inline">\(e\_2\\rightarrow e\_2&#39;\)</span>，符合； 3. <span class="math inline">\(e\_1,e\_2\)</span> 都是value，根据引理有 <span class="math inline">\(e\_1=\\lambda x.E\)</span>，于是有 <span class="math inline">\(e\_1\\;e\_2\\rightarrow E\[e\_2/x\]\)</span>，符合； 由数学归纳法得命题对任意自然数次的推理成立 关键在于为什么需要引理，以及何时使用引理 ## Preservation TH 意思是如果 <span class="math inline">\(\\vdash e:\\tau\)</span> 且 <span class="math inline">\(e\\rightarrow e&#39;\)</span>，那么有 <span class="math inline">\(\\vdash e&#39;:\\tau\)</span> 引理2：若 <span class="math inline">\(\\Gamma,x:\\sigma\\vdash E:\\tau\)</span>，且 <span class="math inline">\(\\Gamma\\vdash e:\\sigma\)</span>，那么 <span class="math inline">\(\\Gamma\\vdash E\[e/x\]:\\tau\)</span> 证明比较简单，只需要对 <span class="math inline">\(e\)</span> 推导归纳再分类讨论就好了 仍然对推理次数进行归纳，同样省去base case 对 <span class="math inline">\(e\)</span> 的结构分类讨论： 1. <span class="math inline">\(e\)</span> 是常量，那么不存在 <span class="math inline">\(e&#39;\)</span>； 2. <span class="math inline">\(e=x\)</span>，那么不存在 <span class="math inline">\(e&#39;\)</span> 3. <span class="math inline">\(e=\\lambda x.E\)</span>，那么不存在 <span class="math inline">\(e&#39;\)</span> 4. <span class="math inline">\(e=e\_1\\;e\_2\)</span>，那么就有 <span class="math inline">\(\\vdash e\_1\\;e\_2:\\tau\)</span>，并且 <span class="math inline">\(\\vdash e\_1:\\sigma\\rightarrow \\tau,e\_2:\\sigma\)</span> 1. 存在 <span class="math inline">\(e\_1\\rightarrow e\_1&#39;\)</span>，那么就有 <span class="math inline">\(e\\rightarrow e\_1&#39;\\;e\_2\)</span>。根据归纳假设有 <span class="math inline">\(\\vdash e\_1&#39;:\\sigma\\rightarrow\\tau\)</span>，又根据类型推导规则有 <span class="math inline">\(\\vdash e\_1&#39;\\;e\_2:\\tau\)</span>，归纳步骤成立； 2. 存在 <span class="math inline">\(e\_2\\rightarrow e\_2&#39;\)</span>，那么就有 <span class="math inline">\(e\\rightarrow e\_1\\;e\_2&#39;\)</span>。根据归纳假设有 <span class="math inline">\(\\vdash e\_2&#39;:\\sigma\)</span>，再根据类型推导规则有 <span class="math inline">\(\\vdash e\_1\\;e\_2&#39;:\\tau\)</span> 3. <span class="math inline">\(e\_1,e\_2\)</span> 都是normal form，那么根据引理1有 <span class="math inline">\(e\_1=\\lambda x.E\)</span> 的形式，于是 <span class="math inline">\(e=e\_1\\;e\_2=\\lambda x.E\\; e\_2\)</span>。此时显然有 <span class="math inline">\(e\\rightarrow E\[e\_2/x\]\)</span>，根据引理2有 <span class="math inline">\(\\vdash E\[e\_2/x\]:\\tau\)</span> 于是就证完了 <span id="more"></span></p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/" target="_self">
+              <a href="/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -190,7 +271,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/" target="_self">
+              <a href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>

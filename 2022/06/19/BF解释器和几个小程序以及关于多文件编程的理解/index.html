@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title"></div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-06-19 12:52:30
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <hr />
+<p>title: BF解释器和几个小程序以及关于多文件编程的理解 tags: [] excerpt: "上SICP的时候樾哥提到了一个叫图灵完备的概念，啥是图灵完备呢？简单说就是能模拟图灵机的所有操作的语言就可以说是图灵完备的，它的计算能力和图灵机至少是等价的，它有一个类似射线的有格纸带，一个可以任意移动的指针，"&lt;"、"&gt;"、","、"."、"+"、"-"分别表示左移、右移、读入、输出、增加1、减少1，这个做起来是很简单的"["和"]"，其等价于 while (pointer-&gt;value != 0) {do sth...}。纸带等价于一个双向链表，这些都不是很难写。，把自己实现的stack和list放在了两个.h文件里，学到很多.jpg<del>关于.h文件的用法还没有很好的掌握，这里先不管了…</del>，我们通常只能提交一个源代码文件，因此多文件编程并不是必须的(或者说是必须禁止的)，我们不可能写一个长达几千行的源文件。首先这对代码能力有很高的要求，其次这阻止了多人协作/同时工作，最后只有一个源文件意味着每次修改都要重新完整地编译，我们把一个程序分成若干部分。例如本项目里就可以把stack和list的实现分离出去，这样也有利于代码以后复用.h文件和.c文件在项目中承担的角色不一样：.c文件主要负责实现，也就是定义函数；.h文件主要负责声明，比如函数声明、宏定义等。这些不是C语法规定的内容，而是约定成俗的规范.h头文件的事实标准：可以声明函数，但不可以定义函数。可以声明常量，但不可以定义变量。可以“定义”一个宏函数。注意：宏函数很像函数，但却不是函数。其实还是一个声明。结构的定义、自定义数据类型一般也放在头文件中。除了主文件（有 main() 函数的文件），其他的 .c 文件一般只定义函数，并向外暴露（可以使用 extern，也可以不使用）。可以将一个或多个相关的函数定义在一个 .c 文件。(https://www.cnblogs.com/chunlanse2014/articles/4423281.html)，.h文件只负责提供接口的作用，而接口两端的物品在编译时是各自独立的，有一些是自己写的，可能有更好的写法<code>c\n\n// ,&gt;,[-&lt;+&gt;] // a plus b\n// ,&gt;,[-&lt;-&gt;] // a minus b\n// ,&gt;&gt;,&lt;&lt;[-&gt;&gt;[-&lt;+&gt;&gt;+&lt;]&gt;[-&lt;+&gt;]&lt;&lt;&lt;]&gt;. //a times b\n// ++++++++++[&gt;+++++++&gt;++++++++++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;++.&gt;+.+++++++..+++.&gt;++.&lt;&lt;+++++++++++++++.&gt;.+++.------.--------.&gt;+.&gt;. // Hello World!\n\n\n// BFcompiler.c\n#include &lt;stdio.h&gt;\n#include &lt;string.h&gt;\n#include &lt;stdlib.h&gt;\n#include \"stack.h\"\n#include \"list.h\"\n\n#define MAX_LENGTH 200005\n\nchar seq[MAX_LENGTH];\n\nint FindNextPos(char *s, int pos) &#123;\n\tfor (; s[pos] != ']'; ) pos ++;\n\treturn pos;\n&#125;\n\nint main(void) &#123;\n\tscanf(\"%s\", seq);\n\tint len = strlen(seq);\n\tNode* current_pointer = (Node*) malloc(sizeof(Node));\n\tNodeInit(current_pointer);\n\tStack* stack = (Stack*) malloc(sizeof(Stack));\n\tStackInit(stack);\n\tfor (int i = 0; i &lt; len; ++ i) &#123;\n\t\tswitch (seq[i]) &#123;\n\t\t\tcase '+': &#123;\n\t\t\t\tadd(current_pointer, 1);\n\t\t\t\tbreak;\n\t\t\t&#125;\n\t\t\tcase '-': &#123;\n\t\t\t\tadd(current_pointer, -1);\n\t\t\t\tbreak;\n\t\t\t&#125;\n\t\t\tcase '&gt;': &#123;\n\t\t\t\tmoveRight(&amp;current_pointer);\n\t\t\t\tbreak;\n\t\t\t&#125;\n\t\t\tcase '&lt;': &#123;\n\t\t\t\tmoveLeft(&amp;current_pointer);\n\t\t\t\tbreak;\n\t\t\t&#125;\n\t\t\tcase ',': &#123;\n\t\t\t\tscanf(\"%d\", &amp;(current_pointer-&gt;value));\n\t\t\t\tbreak;\n\t\t\t&#125;\n\t\t\tcase '.': &#123;\n\t\t\t\tprintf(\"%c\", current_pointer-&gt;value);\n\t\t\t\tbreak;\n\t\t\t&#125;\n\t\t\tcase '[': &#123;\n\t\t\t\tif (current_pointer-&gt;value != 0) &#123;\n\t\t\t\t\tStackPush(stack, i);\n\t\t\t\t&#125; else &#123;\n\t\t\t\t\ti = FindNextPos(seq, i);\n\t\t\t\t&#125;\n\t\t\t\tbreak;\n\t\t\t&#125;\n\t\t\tcase ']': &#123;\n\t\t\t\tif (current_pointer-&gt;value != 0) &#123;\n\t\t\t\t\ti = StackTop(stack);\n\t\t\t\t&#125; else &#123;\n\t\t\t\t\tStackPop(stack);\n\t\t\t\t&#125;\n\t\t\t\tbreak;\n\t\t\t&#125;\n\t\t&#125;\n\t&#125;\n\treturn 0;\n&#125;\n\n\n\n// stack.h\n#ifndef STACK_HEADER_FILE\n#define STACK_HEADER_FILE\n\n#define INF 0x3f3f3f3f\n\ntypedef struct tmpStackNode &#123;\n\tstruct tmpStackNode *next;\n\tint value;\n&#125; StackNode;\n\ntypedef struct &#123;\n\tStackNode *top;\n\tint size;\n&#125; Stack;\n\nvoid StackNodeInit(StackNode *p);\n\nvoid StackInit(Stack *stack);\n\nvoid StackPush(Stack *stack, int value);\n\nvoid StackPop(Stack *stack);\n\nint StackTop(Stack *stack);\n\n#endif\n\n\n//stack.c\n#include &lt;stddef.h&gt;\n#include &lt;stdlib.h&gt;\n#include \"stack.h\"\n\nvoid StackNodeInit(StackNode *p) &#123;\n\tp-&gt;next = NULL;\n\tp-&gt;value = 0;\n&#125;\n\nvoid StackInit(Stack *stack) &#123;\n\tstack-&gt;top = (StackNode*) malloc(sizeof(StackNode*));\n\tStackNodeInit(stack-&gt;top);\n\tstack-&gt;size = 0;\n&#125;\n\nvoid StackPush(Stack *stack, int value) &#123;\n\tStackNode *tmp = (StackNode*) malloc(sizeof(StackNode));\n\tStackNodeInit(tmp);\n\ttmp-&gt;value = value;\n\ttmp-&gt;next = stack-&gt;top;\n\tstack-&gt;top = tmp;\n\tstack-&gt;size += 1;\n&#125;\n\nvoid StackPop(Stack *stack) &#123;\n\tif (stack-&gt;size &lt; 1) return ;\n\tStackNode *tmp = stack-&gt;top;\n\tstack-&gt;top = stack-&gt;top-&gt;next;\n\tstack-&gt;size -= 1;\n\tfree(tmp);\n\ttmp = NULL;\n&#125;\n\nint StackTop(Stack *stack) &#123;\n\tif (stack-&gt;size &lt; 1) return INF;\n\treturn stack-&gt;top-&gt;value;\n&#125;\n\n\n// list.h\n#ifndef LIST_HEADER_FILE\n#define LIST_HEADER_FILE\n\ntypedef struct tmpNode &#123;\n\tstruct tmpNode *next, *prev;\n\tint value;\n&#125; Node;\n\nvoid NodeInit(Node *p);\n\nvoid add(Node *p, int value);\n\nvoid moveLeft(Node **p);\n\nvoid moveRight(Node **p);\n\n#endif\n\n//list.c\n#include &lt;stddef.h&gt;\n#include &lt;stdlib.h&gt;\n#include \"list.h\"\n\nvoid NodeInit(Node *p) &#123;\n\tp-&gt;next = p-&gt;prev = NULL;\n\tp-&gt;value = 0;\n&#125;\n\nvoid add(Node *p, int value) &#123;\n\tp-&gt;value += value;\n&#125;\n\nvoid moveLeft(Node **p) &#123;\n\tif ((*p)-&gt;prev == NULL) return ;\n\t(*p) = (*p)-&gt;prev;\n&#125;\n\nvoid moveRight(Node **p) &#123;\n\tif ((*p)-&gt;next == NULL) &#123;\n\t\t(*p)-&gt;next = (Node*) malloc(sizeof(Node));\n\t\tNodeInit((*p)-&gt;next);\n\t\t(*p)-&gt;next-&gt;prev = (*p);\n\t&#125;\n\t(*p) = (*p)-&gt;next;\n&#125;\n</code>"</p>
+<p>上SICP的时候樾哥提到了一个叫图灵完备的概念，啥是图灵完备呢？简单说就是能模拟图灵机的所有操作的语言就可以说是图灵完备的，它的计算能力和图灵机至少是等价的 然后有这么一个很小的语言Brainfuck，它有一个类似射线的有格纸带，一个可以任意移动的指针 规定，"&lt;"、"&gt;"、","、"."、"+"、"-"分别表示左移、右移、读入、输出、增加1、减少1，这个做起来是很简单的 然后是"["和"]"，其等价于 while (pointer-&gt;value != 0) {do sth...} 要实现这个操作只需要用一个栈记录所有的左括号就可以了。纸带等价于一个双向链表，这些都不是很难写。 特意用C写了这个东西的解释器，把自己实现的stack和list放在了两个.h文件里，学到很多.jpg <del>关于.h文件的用法还没有很好的掌握，这里先不管了…</del> 在oi中，我们通常只能提交一个源代码文件，因此多文件编程并不是必须的(或者说是必须禁止的) 然而在实际生产生活中，我们不可能写一个长达几千行的源文件。首先这对代码能力有很高的要求，其次这阻止了多人协作/同时工作，最后只有一个源文件意味着每次修改都要重新完整地编译 一个解决的方案比把过程分为函数更彻底，我们把一个程序分成若干部分。例如本项目里就可以把stack和list的实现分离出去，这样也有利于代码以后复用 .h文件和.c文件在项目中承担的角色不一样：.c文件主要负责实现，也就是定义函数；.h文件主要负责声明，比如函数声明、宏定义等。这些不是C语法规定的内容，而是约定成俗的规范 下面是关于.h头文件的事实标准： 可以声明函数，但不可以定义函数。 可以声明常量，但不可以定义变量。 可以“定义”一个宏函数。注意：宏函数很像函数，但却不是函数。其实还是一个声明。 结构的定义、自定义数据类型一般也放在头文件中。 除了主文件（有 main() 函数的文件），其他的 .c 文件一般只定义函数，并向外暴露（可以使用 extern，也可以不使用）。 可以将一个或多个相关的函数定义在一个 .c 文件。 上面的内容摘自[C语言模块化编程 chunlanse2014](https://www.cnblogs.com/chunlanse2014/articles/4423281.html) 个人的理解是，.h文件只负责提供接口的作用，而接口两端的物品在编译时是各自独立的 这里附赠几个个小程序，有一些是自己写的，可能有更好的写法 ```c // ,&gt;,[-&lt;+&gt;] // a plus b // ,&gt;,[-&lt;-&gt;] // a minus b // ,&gt;&gt;,&lt;&lt;[-&gt;&gt;[-&lt;+&gt;&gt;+&lt;]&gt;[-&lt;+&gt;]&lt;&lt;&lt;]&gt;. //a times b // ++++++++++[&gt;+++++++&gt;++++++++++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;++.&gt;+.+++++++..+++.&gt;++.&lt;&lt;+++++++++++++++.&gt;.+++.------.--------.&gt;+.&gt;. // Hello World! // BFcompiler.c #include #include #include #include "stack.h" #include "list.h" #define MAX_LENGTH 200005 char seq[MAX_LENGTH]; int FindNextPos(char *s, int pos) { for (; s[pos] != ']'; ) pos ++; return pos; } int main(void) { scanf("%s", seq); int len = strlen(seq); Node* current_pointer = (Node*) malloc(sizeof(Node)); NodeInit(current_pointer); Stack* stack = (Stack*) malloc(sizeof(Stack)); StackInit(stack); for (int i = 0; i &lt; len; ++ i) { switch (seq[i]) { case '+': { add(current_pointer, 1); break; } case '-': { add(current_pointer, -1); break; } case '&gt;': { moveRight(¤t_pointer); break; } case '&lt;': { moveLeft(¤t_pointer); break; } case ',': { scanf("%d", &amp;(current_pointer-&gt;value)); break; } case '.': { printf("%c", current_pointer-&gt;value); break; } case '[': { if (current_pointer-&gt;value != 0) { StackPush(stack, i); } else { i = FindNextPos(seq, i); } break; } case ']': { if (current_pointer-&gt;value != 0) { i = StackTop(stack); } else { StackPop(stack); } break; } } } return 0; } // stack.h #ifndef STACK_HEADER_FILE #define STACK_HEADER_FILE #define INF 0x3f3f3f3f typedef struct tmpStackNode { struct tmpStackNode *next; int value; } StackNode; typedef struct { StackNode *top; int size; } Stack; void StackNodeInit(StackNode *p); void StackInit(Stack *stack); void StackPush(Stack *stack, int value); void StackPop(Stack *stack); int StackTop(Stack *stack); #endif //stack.c #include #include #include "stack.h" void StackNodeInit(StackNode *p) { p-&gt;next = NULL; p-&gt;value = 0; } void StackInit(Stack *stack) { stack-&gt;top = (StackNode*) malloc(sizeof(StackNode*)); StackNodeInit(stack-&gt;top); stack-&gt;size = 0; } void StackPush(Stack *stack, int value) { StackNode *tmp = (StackNode*) malloc(sizeof(StackNode)); StackNodeInit(tmp); tmp-&gt;value = value; tmp-&gt;next = stack-&gt;top; stack-&gt;top = tmp; stack-&gt;size += 1; } void StackPop(Stack *stack) { if (stack-&gt;size &lt; 1) return ; StackNode *tmp = stack-&gt;top; stack-&gt;top = stack-&gt;top-&gt;next; stack-&gt;size -= 1; free(tmp); tmp = NULL; } int StackTop(Stack *stack) { if (stack-&gt;size &lt; 1) return INF; return stack-&gt;top-&gt;value; } // list.h #ifndef LIST_HEADER_FILE #define LIST_HEADER_FILE typedef struct tmpNode { struct tmpNode *next, *prev; int value; } Node; void NodeInit(Node *p); void add(Node *p, int value); void moveLeft(Node **p); void moveRight(Node **p); #endif //list.c #include #include #include "list.h" void NodeInit(Node *p) { p-&gt;next = p-&gt;prev = NULL; p-&gt;value = 0; } void add(Node *p, int value) { p-&gt;value += value; } void moveLeft(Node **p) { if ((*p)-&gt;prev == NULL) return ; (*p) = (*p)-&gt;prev; } void moveRight(Node **p) { if ((*p)-&gt;next == NULL) { (*p)-&gt;next = (Node*) malloc(sizeof(Node)); NodeInit((*p)-&gt;next); (*p)-&gt;next-&gt;prev = (*p); } (*p) = (*p)-&gt;next; } ``` <span id="more"></span></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/06/19/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-06-19 12:52:30
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/06/19/SICP-%E4%BD%9C%E4%B8%9A2-5/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' +  + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F06%2F19%2FBF%25E8%25A7%25A3%25E9%2587%258A%25E5%2599%25A8%25E5%2592%258C%25E5%2587%25A0%25E4%25B8%25AA%25E5%25B0%258F%25E7%25A8%258B%25E5%25BA%258F%25E4%25BB%25A5%25E5%258F%258A%25E5%2585%25B3%25E4%25BA%258E%25E5%25A4%259A%25E6%2596%2587%25E4%25BB%25B6%25E7%25BC%2596%25E7%25A8%258B%25E7%259A%2584%25E7%2590%2586%25E8%25A7%25A3%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2022/06/19/BF%E8%A7%A3%E9%87%8A%E5%99%A8%E5%92%8C%E5%87%A0%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A5%E5%8F%8A%E5%85%B3%E4%BA%8E%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
