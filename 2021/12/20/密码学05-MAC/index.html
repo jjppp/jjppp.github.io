@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>## Message Authentication Code 简称MAC。通常我们不仅希望保证一条消息的内容没有被泄露（例如你向女神告白的信的内容），还希望我们发出去的消息没有被篡改过（例如你给女神的告白信不会被换成&#x2F;修改成除了告白信之外的别的东西）。前者属于secrecy的范畴，后者则是integrity的范畴。 之所以会出现这样的需求，是因为我们开始考虑更“强大”的adversary了。原本的EAV-secure模型只能对窃听者进行建模，而通常我们的adversary不仅可以看（窃听），还可以摸（篡改消息）。并且我们发现原有的加密算法是无法保证integrity的。以OTP为例，攻击者在得到密文 $c$ 后，可以通过翻转 $c$ 任意的比特来实现篡改出任意可能的信息。即使他不知道消息本身是什么，他也可以伪造出任意的消息——反正任意的定长比特串都是合法消息 于是就有了MAC的闪亮登场！这样你给女神的真情表白就不会变成痴汉发言，战书，或者是别的什么东西了。 ## 定义 一个MAC包括三个PPT算法，$\text{MAC&#x3D;(Gen,Mac,Vrfy)}$，其中 $\text{Gen}$ 负责生成一个密钥 $k$，$\text{Mac}_k(m)&#x3D;t$ 负责根据 $m,k$ 生成一个标签(tag)，$\text{Vrfy}_k(m,t)$ 则会在 $t$ 是 $m$ 的一个合法tag时输出 $1$，否则输出 $0$ 这里的 $\text{Vrfy}$ 是确定性算法，而 $\text{Mac}$ 则没有要求。这点是很显然，因为要保证： 1. 正确的tag能被识别 2. 错误的tag能被报出来 也就又是所谓的sound&amp;complete了 看起来很像私钥加密，但是又不太一样：$\text{Vrfy}$ 是需要借助 $m$ 来确认tag的正确性的，因此MAC往往不会单独使用，这里的 $m$ 还需要加密保护起来。 然后就定义了几个性质 ### Correctness $\forall k&#x3D;\text{Gen}(1^n): \text{Vrfy}_k(m,\text{Mac}_k(m))&#x3D;1$ 没啥好说的，这个性质提示我们： 如果我们的 $\text{Mac}$ 是确定性算法，那么我们的 $\text{Vrfy}$ 就可以通过重新计算一次 $\text{Mac}_k(m)$，然后比较 $\text{Mac}_k(m)$ 和 $t$ 是否相同来判断这个tag是否合法。这被称为**canonical way** ### Secrecy 其实就是如何保证我们的消息被篡改后，能从tag中反馈出来？ 密码学给出的回答是这样的：如果任何PPT算法都不能造出一个对应的message-tag pair出来，那么我们就可以认为没有人能够给一个修改过后的消息 $m$ 伪造tag，也即不存在消息被篡改后仍然能通过 $\text{Vrfy}$ 了 形式化地写出来是一个 $\text{Mac-forge}_{\cal A,\Pi}$ game： 1. 首先生成一个 $k$，然后给一个 $\text{Mac}_k$ 的oracle给adversary $\cal A$ 2. $\cal A$ 可以任意查询oracle，然后输出一对答案 $(m,t)$。期间我们会维护一个集合 $\cal Q$，表示 $\cal A$ 查询过的所有消息 3. 检查 $\text{Vrfy}_k(m,t)$，如果满足1. $\text{Vrfy}_k(m,t)&#x3D;1$ 且 2. $m\not\in \cal Q$，就得到结果 $1$，否则为 $0$ 我们称一个MAC scheme $\Pi$ 是安全的，当且仅当 $Pr\left[\text{Mac-forge}_{\cal A,\Pi}(n)&#x3D;1\right]\leqslant\text{negl}(n)$。这个安全性的全称也叫being existentially unforgeable under an adaptive chosen-message attack 这个定义就是很好地抓住(capture)了“不能伪造tag”这句话，看下来是很自然的。 如果细心一点可以发现，这里的 $\text{Mac}$ 不一定是确定性算法，因此可以有一个 $m$ 对应多个不同的 $t$，这说明上述定义会出现一些问题——Adversary完全可以给一条已经查询过的消息 $m$ 构造出一个全新的tag。于是自然引出strongly secure MAC的定义： 太懒了，只需要把上面的 $m\not\in\cal Q$ 改成 $(m,t)\not\in\cal Q$ 就好了 结合canonical way的MAC可知，对所有canonical MAC有：如果它是secure的，那么它自然地就是strongly secure的 注意到这个strong secure的安全性要求仍然是很弱的。我们甚至并不要求Adversary输出的消息有含义，而只需要能构造出一条消息和对应的tag就好了。 ## 构造 ### fixed-length MAC 构造一个定长MAC是比较简单的，只需要用一个PRF就好了。安全性的证明可以通过反证，然后构造一个区分PRF和真随机函数的攻击者 $\cal A$ 来完成，细节就留做习题吧~ ### arbitrary-length MAC 只讲讲怎么做到任意 $l(n)$ 的整数倍长度，其中 $l$ 是单个 $\text{MAC}$ 的extension factor（回忆上面说的用PRF构造MAC） 假设现在给了 $n$ 个消息块，每个块都能单独用MAC构造tag，那么我们可以这么构造一个整体的tag： 1. 规定 $t_0&#x3D;IV$，其中通常 $IV&#x3D;0$，initial vector的意思 2. 规定 $t_i&#x3D;MAC(t_{i-1}\oplus m_i)$ 最后输出 $t_n$ 就好了 安全性的证明比较简单，只需要对着 $n$ 做数学归纳法就好了，可以发现每次都没法伪造的Adversary对于整体的tag束手无策</p>

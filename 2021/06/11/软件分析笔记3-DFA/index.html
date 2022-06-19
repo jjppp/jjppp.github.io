@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>这里的DFA可不是有限状态自动机（ ## Data Flow Analysis 这一部分是比较重的重点…要好好看 或许需要补一补lattice(事实证明这一部分非常简单…) Data Flow Analysis 实际是要通过 How **Application-Specific Data** **Flows** through the **Nodes &amp; Edges** on CFG 这句话中三个加粗部分理解 #### ASD 这里的ASD可以看作是根据研究性质抽象(Abstraction)出来的变量值域 #### Flows Approximation 建CFG的时候实际上是考虑了**所有可能的**的控制流,这是一种over-approximation,即考虑尽可能全面 这种以over-approximation为手段的分析也叫may analysis(finds out what may be true)事实上大部分的静态分析都属于这一类 同理就会有must analysis(finds out what must be true),这时候的手段就叫under-approximation 这两者分别对应lec1的soundness和completeness,在实际应用中都有必要 在不引入歧义的情况下，两者可统称为safe-approximation,即safe的定义对于特定问题来讲是不同的 #### Nodes &amp; Edges 注意到3AC的性质，对Node的分析就是定义一套在ASD上的运算法则 对Edge的分析实际上就是定义一套分支合并的法则 通常来说，不同的静态分析算法，各自上述三个部分有不同的设计 ## In &amp; Out States 实际上就是一条IR的执行会导致程序状态的变化,我们把语句前后的状态分别称为这个节点的In&amp;Out States 在分支和并处需要合并不同分支的Out状态来生成当前位置的In状态,这里引入了$\wedge$符号(读作meet)来表示将两个状态合并(可以是并交差补…) 为了研究的方便，我们在不同语句之间插入特殊节点(称为program states),这样In&#x2F;Out States就都有了载体.具体的理解可以想想GDB的用法和操作步骤,这个是一样的 在每一个DFA应用中，我们要给每个program states赋一个抽象的状态表示(例如:用5进制vector来表示+-0bt) 此时再引入domain(定义域)的概念，即我们针对感兴趣的问题抽象出的数据范围D,那么总共含有n个变量的抽象的状态表示就可以用一个D^n向量表示 也就是说DFA的另一精确定义为:在若干经过safe-approximation后的限制条件下找到每个program state的解.这里的限制包括: 1. 定义操作(transfer functions) 2. 控制流(control flow merging) ## transfer function 的一些概念 forward analysis,就是符合直觉的顺序分析,我们将指令s看成函数fs，并且立即得到fs(in[s])&#x3D;out[s] 结合block的特点和性质,fb就是block b中所有f的复合(注意顺序),in[b]就是b中第一条的in,out[b]就是最后一条的out,对于分支处理和上面单条语句的处理是一致的 类似的还有backward analysis,就是反向分析,容易发现这里取fs’&#x3D;fs^{-1}就好了.或者反向建图做forward也是一样的 ## Reaching Definition 这是一个分析的例子，即把definition作为ASD来分析 a definition of v: a statement that assigns a value to v,通常用statement的位置表示(这是我的理解) 我们说一个位于p的变量v的definition d reaches q 当且仅当存在一条p到q的path且path上不存在别的v的definition.实际上有点像SSA的变量作用域 一个简单的应用就是在st节点给每个变量来个definition,然后所有变量第一次reach到的点如果出现了对变量的使用说明**可能**出现了”used before definition”错 基于以上事实，很自然就需要求出各个点能被哪些definition给reach.课程给出的寻找算法非常平凡,直接状压就好了… 课程中间给了一个例子理解: D: v &#x3D; x op y 这个语句kill掉了前面关于v的definition,同时reach到所有的后续状态,也就是多了一个(当前的变量的reach)同时少了一个(kill掉前面的definition) ppt的例子有点怪，因为正式的定义是block B需要kill掉所有其中变量在所有其余地方的definition,即使这些definition没有在当前的状态集中 看到后面就可以敏锐地发现所谓迭代法就是在跑一个bellman-ford,我的第一反应其实是用队列更新,那么这个就是在跑SPFA了…这也太憨了 算法步骤的有限性可以通过观察集合size的单调性(单调不减)轻松得出 ## Live Variables Analysis 其实就是变量v是否能在某个节点p的后继(不一定相邻)被使用 一个应用场景就是在生成汇编的时候需要做寄存器分配,这种时候就需要保留live的变量而尽量使用dead变量的寄存器 此处的ASD就是用状压表示live的变量,并且容易想到反向建图维护的操作 感觉没啥好说的 ## Available Expressions Analysis 一个表达式x op y在点p被称为是available的当且仅当: 1. 所有起点到p的路径都经过这个表达式(支配点) 2. 在表达式到p之间不存在redefinition idea是非常直观的，即我们可以提前计算好这个值来优化 ASD同样是状压,区别在于merge的时候要取&amp;操作(考虑available的条件2) 感觉这一部分也没啥好说的 ## Lattice &amp; Partial Order 偏序的部分上学期已经讲得很多了…这里主要普及一下(较为简单的)Lattice.之所以这么说是因为离散课程中提到的Lattice是Minkowski Lattice,和这个不太一样 有了这些就可以形式化地验证所谓迭代算法的正确性了 对于有n个点的CFG,每个点都有一个ASD的元素作为函数值,那么这个图的状态就可以写成ASD^n中的一个元素 那么每次迭代可以看成是从ASD^n到ASD^n的函数 事实上只需要定义ASD^n上的包含关系为每个元素对应包含即可得到一个lattice (我在写上面这句话的时候还没有看到后面的product lattice,事实上这个东西也很直观…没啥好说的) 也就是说，严格的DFA算法可以用三元组(D,L,F)描述，即分别为direction, lattice, function 分别表示分析方向,值域(通常是格),格上的状态转换函数.而通过证明这个转换函数是单调的即可说明我们的迭代算法必然存在且能找到解 ## Precision Analysis #### Meet All Paths Solution(MOP) 一条path的transfer function就是路径上function的复合 MOP实际上就是枚举到达当前点的所有Path,然后合并这些path的函数值 MOP存在几个问题(事实上也是图论中的经典问题) 1. 有些path实际上不会被执行,即我们的分析并不精确.这是从保守分析的出发点得到的.例如condition和path互斥的collision path 2. 路径长度不确定(存在圈),路的数量不可枚举 但是经过比较迭代法和MOP,我们可以发现MOP要更精确.实际上就是F(x\cup y)&lt;&#x3D;F(x)\cup F(y)的关系 当transfer function存在分配律时,等号成立.容易验证前面提到的三个分析都是可分配的. ## Constant Propagation 所谓常数替换优化，这个是第一次的作业 我们需要判断某个变量v在某一处p是否值**一定**为常量 类似的仍然采用状压，即用变量集合bitvector $V$ 和值域集合bitvector $D$ 得到笛卡尔积 $V\times D$，那么这个就可以作为单个点的ASD了。考虑到实现的问题，作业中给出的框架代码用的是map 做起来也不是很难，对于合并变量的情况只需要分类讨论，合并flow的时候遍历Keys，求值的时候需要分类讨论递归求某个表达式的值就好了</p>

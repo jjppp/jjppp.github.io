@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>## 词法分析的作用 1. 读取字符流，输出词法单元给语法分析器 2. 在1的过程中去掉不必要的内容(空白符、注释)，查错报错 3. 与符号表交互，插入符号的相关内容 4. 虽然词法分析和语法分析是两个独立的部分，但它们通常在同一趟 ### 为什么要独立词法分析 1. 模块化 2. 词法分析很简单，实现也很简单 3. PPT把1+2又说了一遍…. 4. 词法分析和语法分析依赖的算法不同(有限状态自动机VS下推自动机) ## Token&amp;Pattern&amp;Lexeme Token是词法单元的抽象符号，可以理解成具体单词所属的**类** Pattern是对一类词法单元形式的描述，它说明了这类词法单元“长啥样” Lexeme则是一个具体的词法单元(词素) 举例： Tokens:猫和狗 对应Pattern:会喵喵叫和会汪汪叫 对应Lexeme:我家的一只狸花和校门口的大黄 这也说明了为什么token需要额外的信息来标记，因为光凭token不能知道lexeme具体的内容 ## 词法单元的形式规定(正则表达式) ### 串和语言 学一下形式化的定义…. 首先定义字符表(alphabet)为有限集$S$​​，那么字符表$S$​​上的串就定义为n元有序对$L&#x3D;\cup_{i\in\mathbb {N} }{S^i}$​​的集合中的元素 串$s$的长度定义为$|s|$，即$s$中符号的数量。我们称$L$为字符表$S$​上的语言。语言是可数的(可数个有限集的并仍然可数)，但不一定是有限的 对于特殊的长度为0的串记作$\epsilon$ 前缀：从串的尾部删除0个或多个字符得到的串 后缀：从串的前部删除0个或多个字符得到的串 子串：从串的前部和尾部删除0个或多个字符得到的串 子序列：从串中删除0个或多个字符得到的串 #### 串操作 连接(concatenation)：把串y放在x后得到xy，注意这是不可交换的运算。串x自身的n次连接可以简记作x^n^。特殊地，我们规定x^0^&#x3D;$\epsilon$ #### 语言操作 L和M的并：$L\cup M&#x3D;\left\{\;s|s\in L\text{ or }s\in M\;\right\}$ L和M的连接：$LM&#x3D;\left\{\;st|s\in L\text{ and }t\in M\;\right\}$，同样L自己的连接记作$L^k$ L的Kleene闭包：$L^*&#x3D;\cup_{i&#x3D;0}^{+\infty}L^i$，即将L重复0次或多次​ L的正闭包：$L^+&#x3D;\cup_{i&#x3D;1}^{+\infty}L^i$，即将L重复至少一次 这样我们就有了构建复杂语言的工具了。 ### 正则表达式 递归定义 1. $\epsilon$是正则表达式，$L(\epsilon)&#x3D;\varnothing$ 2. 若$a\in S$，则$L(a)&#x3D;\left\{\;a\;\right\}$ 3. 若$a,b$都是正则表达式，则$(a)|(b)$也是正则表达式，且$L((a)|(b))&#x3D;L(a)\cup L(b)$ 4. 若$a,b$都是正则表达式，则$(a)(b)$也是正则表达式，且$L((a)(b))&#x3D;L(a)L(b)$ 5. 若$a$都是正则表达式，则$(a)$也是正则表达式，$L((a))&#x3D;L(a)$ 可以用正则表达式定义的语言被称为**正则集合** 为了方便，可以给正则表达式命名。例如给表达式r命名为d，则写作`d-&gt;r` 还有一些其它的运算(语法糖) `r+`&#x3D;&#x3D;`rr*` `r?`&#x3D;&#x3D;`e|r` `[a1a2a3]`&#x3D;&#x3D;`a1|a2|a3` `[a-z]`&#x3D;&#x3D;`[abcdefg…wxyz]` ## 词法单元的识别(状态转换图) 图的节点表示状态，边表示状态转换函数，边上的符号表示输入的符号与之相等时从这条边进入下一个状态。 必然有初始和接受状态 ### 关键字的处理 关键字也会被识别成identifier，解决方案有两种 1. 提前把关键字插入符号表 2. 为关键字建立单独的状态转换图 ## 词法分析器生成工具及设计 就讲了一波flex的用法….看文档！ ## 有限状态自动机 事实上有限状态自动机有两种，分别是确定状态自动机(Deterministic Finite Automata)和非确定状态自动机(Nondeterministic Finite Automata)，即DFA和NFA 自动机的形式化定义为一个五元组$(\Sigma,S,f,start,E)$​，分别表示字符集、状态集、转移函数、初始状态、接受状态 ### DFA 其中$f:S\times\Sigma\mapsto S$​ 和 $E\subseteq S$​​ 比较特别。 对于字符$c$​ 和一个状态 $s$​，我们称自动机 $D$​ 接受 $c$​ 后的状态为 $s’$​ 当且仅当 $f((s,c))$​有定义，且$f((s,c))&#x3D;s’$​。对于DFA我们特殊规定 $f((s,\epsilon))&#x3D;s$，NFA后面再说 对于字符串$str&#x3D;c_1c_2c_3\ldots c_n$ 和一个状态 $s$，我们称自动机$D$ 接受$str$ 后的状态为$s’’$ 当且仅当 $f(f(\ldots f(f(s,c_1),c_2)\ldots,c_{n-1}),c_n)$ 有定义且等于$s’’$ 很显然，若字符串 $str&#x3D;s_1s_2$，其中 $s_1s_2$ 都是串，那么有 $f(f(state,s_1),s_2)&#x3D;f(state,s_1s_2)&#x3D;f(state,str)$ 对于一个特定的DFA $D&#x3D;(\Sigma,S,f,start,E)$​，给定一个串 $str$​，我们称 $D$​ 接受串 $str$​ 当且仅当 $f^*(start,str)\in E$​ 记 $L(D)&#x3D;\left\{\;str\mid f^*(start,str)\in E\;\right\}$​，则$L(D)$​ 称为 $D$​ 的语言 ### NFA 与DFA的区别在于，$f:S\times(\Sigma\cup\left\{\;\epsilon\;\right\})\mapsto 2^S$ 转移函数的目标是若干状态组成的集合，表示这些状态都可以是当前状态加上某个字符后的后继状态 说人话就是造出来的图可以有$\epsilon$ 作为标号的边，并且一条标号的边可以连接多个后继状态。 有几个等价关系 #### 自动机等价 直观地，对于自动机 $D_1,D_2$，我们称它们等价当且仅当 $L(D_1)&#x3D;L(D_2)$ #### 状态等价 对于状态 $s_1,s_2\in S$，我们称它们等价当且仅当对任意的串 $str$，都有 $f^*(s_1,str)&#x3D;f^*(s_2,str)$ 于是自然要问：这两种不一样的自动机表达语言的能力相同吗？ 很显然DFA是一种特殊的NFA，因此NFA不会比DFA弱。 考虑用DFA对NFA进行模拟。 注意到不确定性的引入使得某一时刻NFA所处的状态可能有不止一个，因此可以用$2^n$​状压枚举所有可能的状态，并对字符集连边 构造如下： 给定NFA $N&#x3D;(\Sigma,S,f,start,E)$ #### $\epsilon\text{-closure}$ 首先规定一个函数 $c(S)&#x3D;T$​​​​，满足 $S\subseteq T$​​，且 $\forall x\in T$​​ 都 $\exists y\in T$​​ 使得 $f(y,\epsilon)&#x3D;x$​​。我们称 $c(S)$​​ 是 $S$​​ 的 $\epsilon\text{-closure}$​​。 函数$c$的存在性是可以构造证明的。首先令 $T_0&#x3D;S$，对于自然数$k$，我们任意地选取 $T_k$ 中的元素 $x$，若$f(x,\epsilon)\not\in T_k$，则令 $f(x,\epsilon)\in T_{k+1}$ 再规定对任意的自然数$k$都有 $T_k\subseteq T_{k+1}$，那么 $T_0\subsetneq T_1\subsetneq T_2\ldots T_u$，由于总的状态集有限，且集合列的大小递增，故算法必然停止，这样就找到了$c(S)$ #### 转移函数 对于任意状态$s\in 2^S$​，我们规定$g(s,ch)&#x3D;c\left({\cup_{x\in s}{f\left(x,ch\right)} }\right)$​，容易用反证法证明函数$g$​是well defined的 #### 初始&#x2F;接受状态 规定 $s\in 2^S$ 为接受状态当且仅当 $\exists x\in s$ 使得 $x$是接受状态，初始状态则是$c(\left\{start\right\})$ 下面证明这是一个DFA： 首先对于任意状态$s\in 2^S$​，$\epsilon\text{-closure}$的过程确保了不存在$\epsilon$的边，而 $g$ 的良定义确保了不存在多条同标号的边连向不同的后继状态 然后证明其与$N$等价： 只需要证明二者的接受状态集等价，且两个状态等价当且仅当它们输入同一个字符后得到的两个后继状态仍然等价，然后归纳即可。 这样就证明了二者的表达能力是等价的….大概 容易发现，给出DFA则很容易判断某个串是否能被其接受，而NFA则不好直接模拟。因此根据上面的证明可以想到用一个DFA去模拟NFA ## 应用 说了这么多有啥用呢，就是我们可以通过将正则表达式转化为一个NFA，再将NFA转化为DFA的流程来实现用正则表达式识别字符流的目的，也就是写一个自己的lexer 注意到正则表达式实际上和一般的代数表达式没有本质区别，也是由一般字符(数字)和特殊字符(运算符)组成的，运算符又包括单目运算符(*号)、二元运算(|号，还有看不到的连接号) 因此可以用两个栈生成表达式的语法树，然后在语法树上根据递归构造的正则表达式规则来建立NFA，然后根据上面的构造把NFA变成DFA 我自己写了一下，写了大概一天一夜…..写得人都傻了但是停不下来 最开始打算用cpp写，后来发现OOP只会java的写法(什么居然没有instanceof要用)….更糟糕的是类之间的层次设计基本抓瞎，于是就转战c了。不过收货还是有的，不能说完全没学到东西。 尝试了一下程序的结构设计，分了几个`struct`和文件来保证这些部分可以单独改动，有些地方考虑得很粗暴，后面有时间再修修吧 生成NFA和DFA之后还会导出一个`.gv`文件用于graphviz绘图，这样就可以直观看自己的DFA和NFA长啥样啦！</p>

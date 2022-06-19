@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>Markov Chain 的本质是概率状态机，这么想就很简单了 为了偷懒只讨论有限的情形 # 前置 离散概率分布可以表示为 $\R^n$ 上的向量 $x$，满足 $\sum_{i&#x3D;1}^n x_i&#x3D;1$ 且 $\forall i,x_i\in[0,1]$ 对于用向量表示的概率分布，可以定义两个分布的“距离”： $$ d_{TV}(p,q)&#x3D;\frac{1}{2}\norm{p-q}_1&#x3D;\frac{1}{2}\sum_{i&#x3D;1}^n\abs{p_i-q_i} $$ 这里 $d_{TV}(,)$ 表示 total variation distance。这样就可以定义一列分布的收敛性和极限了。 # Markov Chain 对于一系列数量有限的状态，给出每个状态转移到下一个状态的概率 $Pr[s_i&#x3D;y\mid s_{i-1}&#x3D;x]$，这就构成了一个状态机。把状态看成点，转移概率看成边权，就得到了一个有向带权图，并且这个图满足一些特殊的性质。 考虑怎么算出现在状态 $i$ 的概率，这本质上是一个一阶递推，写出来就是 $$ p_{k+1}&#x3D;Tp_k $$ 这里 $p_k$ 表示走了恰好 $k$ 步后，处在每个状态上的概率分布 ## 定义 ### 周期 对于状态 $i$，其周期定义为 $gcd\{t\mid {P^t}_{i,i}&gt;0\}$，记为 $period(i)$。称 Markov Chain 非周期当且仅当所有状态的周期都是 $1$ 直观理解：从 $i$ 出发后走恰好 $t$ 步回到 $i$，所有这样的圈的长度的 gcd 即为周期。 这么定义的用处可以在后面看到。 ### 不可约 有限图不可约当且仅当其为强连通图。此处强连通的定义为：任取 $x,y\in V(G)$，存在两条有向路径 $P_1,P_2$ 使得 $P_1&#x3D;x\rightsquigarrow y,P_2&#x3D;y\rightsquigarrow x$。**不要求 $P_1,P_2$ 点不相交** ## 性质 若 Markov Chain 不可约、非周期，则存在常数 $T$ 使得当 $t&gt;T$ 时，${P^t}_{i,j}&gt;0$ 对任意 $i,j$ 成立 直观理解：走了足够多步后不存在走不到的状态。 只需要证明存在常数 $L$，使得任意长度至少为 $U$ 的路径，都能在任意两点间找到。 1. 不可约，则 $i,j$ 存在有向路径 $i\rightsquigarrow j$。 2. 非周期，则存在最大的无法由两个圈线性组合出的正整数 $a\times b-a-b$ （NOIP2017，哈哈），记为 $mn(i)$，则此后的任意长度都可以由两个互质的圈线性组合出来。 3. 只需要取 $T&#x3D;n+\max\{mn(i)\}$，则此后可以在任意节点对之间游走。 ## 稳态分布 考虑给定初始分布 $p_0$，则极限 $\lim\limits_{k\to\infty} P^k p_0$ 称为 Markov Chain 的极限分布。 若分布 $\pi$ 满足 $P\pi&#x3D;\pi$，则称 $\pi$ 为平衡分布。可以证明极限分布若存在则必然为平衡分布。 设极限分布存在 $\lim\limits_{k\to\infty}P^k\pi_0&#x3D;\pi’$，那么有 $$ P\pi’&#x3D;P\lim\limits_{k\to\infty} P^k\pi_0&#x3D;\lim\limits_{k\to\infty} P^{k+1}\pi_0&#x3D;\pi’ $$ 这说明 $P\pi’&#x3D;\pi’$ 是一个平衡分布。 ## Markov Chain 基本定理 若 Markov Chain 不可约、非周期，那么 1. 存在稳态分布 $\pi$ 2. 对于任意的 $p_0$ 都有 $\lim\limits_{k\to\infty} P^k p_0&#x3D;\pi$ 3. $\pi$ 是唯一的 4. $\pi_i&#x3D;\dfrac{1}{E[H_i]}$，其中 $H_i$ 为随机变量，表示从 $i$ 出发后第一次回到 $i$ 的行走步数。$E[H_i]$ 称为期望回归时间。 出现这个结论的原因在于，足够久之后任意点出发都将能走到任何点，因此两个不同的出发状态在足够久之后将“无法区分” 具体的证明看不懂，咕咕咕 # Page Rank Google 提出的给网页打分的算法。它假设 1. 每个用户在页面 $x$ 浏览完后，将等概率点击一个 $x$ 中的超链接（即等概率走向一个邻居） 2. 每个用户在页面 $x$ 浏览完后，有一定概率直接跳转到任意一个页面 $y$ 可以发现 2 本质上就是新建超级点 $S$，然后每个点连向 $S$，再从 $S$ 连回所有点。 注意到 1 实际上就是在有向图上随机游走，转移矩阵恰好为度数导出的一个概率矩阵。2 保证了即使原图不是非周期、强连通时，用户这样的操作仍然可以使得随机游走存在一个稳态分布&#x2F;极限分布（新图是强连通&#x2F;非周期的，why？）。直觉也是符合的，每个人可能会突然停止浏览，然后从另一个完全不相关的页面重新开始冲浪。 并且这样的分数（概率分布）只与图的结构有关，与初始迭代向量没有关系。</p>

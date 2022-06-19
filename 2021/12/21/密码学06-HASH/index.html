@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>## Cryptographic Hash Function 所谓Hash，就是一个实现“压缩”比特序列的函数（有时也叫摘要）。与普通的散列和哈希不同，密码学上的hash要求要更严格一些： 1. 要是抗碰撞(collision resistant)的 2. 最好还有PRF的性质 类似PRF，Hash也是一个keyed function，只不过更多的时候 $k$ 是由某种方法选出来的固化公开常量，而非随机选出来的。 ## 定义 Hash $\Pi&#x3D;(\text{Gen,H})$ 是一对PPT算法，满足： 1. $k&#x3D;\text{Gen}(n)$ 是一个**公开**的参数 2. $H(k,x)&#x3D;H^k(x)\in\left\{0,1\right\}^{l(n)}$，其中 $l(n)$ 是expansion factor 如果有 $l(n)</p>

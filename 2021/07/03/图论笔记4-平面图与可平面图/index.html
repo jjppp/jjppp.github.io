@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>本来应该(被)科普一些拓扑的姿势的，但是目前好像也不太用得上，就先咕了吧。 本文假设读者有一定的图结构知识，比较新的概念俺会努力解释的 这里的内容都比较入门，大佬轻喷( # 平面图(Plane Graph) 我们称具有如下性质的图 $G$ 为平面图： 1. $V(G)\subseteq \mathbb R^2$，$E(G)\subseteq \mathbb R^2$ 毕竟是”平面”图 2. $\forall e_1,e_2\in E(G)$, $st(e_1)\neq st(e_2)\text{ and } ed(e_1)\neq ed(e_2)$ 3. $\forall e_1,e_2\in E(G)$, $e_1\cap e_2\in \left(V(G)\cup\varnothing\right)$ 4. $\forall e\in E(G)$, $e&#x3D;(x,y)$ 是连通 $x,\;y$ 的一段弧(arc)。 在一般图中，我们认为 $E(G)$ 中的元素是若干二元组。在平面图中，我们认为图的边 $e&#x3D;(x,y)$ 是连通 $x$ 和 $y$ 的一段弧(arc)，即一个点集。此时 $G$ 就可以代表由所有顶点以及边上的点构成的点集。 考虑点集 $S&#x3D;\mathbb R^2\backslash G$，$S$ 中存在着若干不相交的区域(region)。我们记 $F(G)$ 为 $S$ 中的所有区域，将这些区域称为图 $G$ 的面(face)。若 $f\in F(G)$ 是无界的(unbounded)，则记为外面，否则记为内面。 ### 平面图的欧拉定理 对于平面图 $G&#x3D;(V,E)$，$F&#x3D;F(G)$，则有 $|V|-|E|+|F|&#x3D;2$ 考虑对 $|E|$ 归纳。 1. 当 $|E|&#x3D;|V|-1$ 且 $G$ 连通时，$G$ 是树，此时 $|V|&#x3D;|E|+1$，$|F|&#x3D;1$，带入成立。 2. 设当 $|E|2$ (否则存在重边)，因此 $|C|&#x3D;3$。由 $f$ 的任意性可知 $G$ 是一个三角剖分。 $\Leftarrow$： 由反证法，假设存在 $x,y\in V(G)$ 使得 $xy$ 的内部在某一区域 $f$ 内，那么必然有 $x,y\in\partial f$。而由 $G$ 是三角剖分可知 $|V(\partial f)|&#x3D;3$，故 $x,y$ 必相邻，这与 $G$ 不含重边矛盾。故命题成立。 ### 平面图的必要条件 若图 $G&#x3D;(V,E)$ 是平面图，则 $|E|\leqslant 3|V|-6$ 对三角剖分的边和面计数，则有 $\frac{3|F|}{2}&#x3D;|E|$ (每个面的边界上有三条边，每条边的两侧恰好为两个面)，带入平面图欧拉公式就有 $|E|&#x3D;3|V|-6$。 若不含三角形的(triangle-free graph)的图 $G&#x3D;(V,E)$ 为平面图，则 $|E|\leqslant2|V|-4$ 证明和上面类似，每个面的边界有四条边 ### 子式和拓扑子式 #### 拓扑子式 考虑一个固定的图 $X$，我们用若干不相交的路替换掉 $X$ 的边得到新的图 $X’$，则我们称 $X’$ 是 $X$ 的一个细分，也记作 $X’&#x3D;TX$ 我们把 $V(X)\cap V(TX)$ 称作 $X$ 的**分支顶点**，把 $V(TX)\backslash V(X)$ 称作 $X$ 的细分顶点。很显然细分顶点度数都是 $2$ 若 $TX\subseteq G$，则我们称 $X$ 是 $G$ 的**拓扑子式** #### 子式 考虑一个固定的图 $X$，我们用若干不相交的连通图 $G_x$ 替换掉 $X$ 中的顶点，对于 $xy\in E(X)$ 则用 $G_x-G_y$ 路替换掉，这样得到的图记作 $X’$，那么我们记作 $X’&#x3D;IX$ 若 $IX\subseteq G$，则我们称 $X$ 是 $G$ 的**收缩子式**，记作 $X\preceq G$ ### Kuratowski定理 这个定理很强，但是证明非常麻烦….这里打算<del>摸了</del>只给出结论，具体证明可以参考任意一本找得到这个定理的图论教材~ 对于图 $G$，下列叙述等价： 1. $G$ 可平面 2. $G$ 不包含 $K_5$ 或 $K_{3,3}$ 作为子式 3. $G$ 不包含 $K_5$ 或 $K_{3,3}$ 作为拓扑子式 ### 极大可平面图是三连通图 这是作业里需要证明的一个小引理，不过很有用，也放上来吧 要用到三连通图的收缩列 #### 引理1：$\exists uv\in E(T_n)$ 使得 $\left|{N(u)\cap N(v)}\right|&#x3D;2$ 首先 $\forall x\in V(T_n)$，都有 $deg(x)\geqslant 3$。任取边 $uv\in E(T_n)$，$uv$ 恰好在两个面 $f_1,f_2$ 的边界上。而由三角剖分的定义可知 $f_1,f_2$ 的边界是两个三角形。因此 $\forall uv\in E(T_n)$ 都有 $|N(u)\cap N(V)|\geqslant 2$。 由反证法，不妨假设 $\forall uv\in E(T_n)$ 都有 $|N(u)\cap N(v)|\geqslant 3$，则易知 $|N(u)|\geqslant 4$ 且 $|N(v)|\geqslant 4$ 不妨记 $N(u)&#x3D;\left\{\;x_1,x_2,x_3,x_4\;\right\}$，则由 $|N(u)\cap N(x_1)|\geqslant 3$ 可得 $x_1x_2,x_1x_3,x_1x_4\in E(T_n)$ 同理有 $x_2x_3,x_2x_4,x_3x_4\in E(T_n)$，故 $u\cup N(u)$ 的导出子图是 $K_5$，这与 $T_n$ 可平面矛盾。 因此 $\exists uv\in E(T_n)$ 使得 $|N(u)\cap N(v)|&#x3D;2$。证明对图的阶没有要求，因此引理对 $T_n$，$n\geqslant 4$ 成立。 #### 极大可平面图是3-连通图 对极大可平面图 $T_n$ 的阶作数学归纳法。 当 $n&#x3D;4$ 时，$T_4&#x3D;K_4$ 是三连通图； 设当 $n&#x3D;k$ 时 $T_k$ 是三连通图，则取 $k+1$ 阶极大可平面图 $T_{k+1}$，由引理1可知 $\exists uv\in E(T_{k+1})$ 使得 $|N(u)\cap N(v)|&#x3D;2$。 作图的收缩，记 $G&#x3D;T_{k+1}\circ uv$，容易发现 $||G||&#x3D;||T_{k+1}||-|\left\{\;uv\;\right\}|-|N(u)\cap N(v)|$ 又因为 $T_{k+1}$ 是三角剖分，所以 $||G||&#x3D;3(k+1)-6-1-2&#x3D;3k-6&#x3D;3|G|-6$ 又因为 $G$ 仍然是平面图，所以 $G$ 也是极大可平面图。由归纳假设，$G$ 是三连通图，存在一个保持三连通性的收缩。因此 $T_{k+1}$ 也是三连通图。</p>

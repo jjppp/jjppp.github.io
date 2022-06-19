@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>## Background 前面提到的perfect secrecy虽然好，但有着理论上的局限：key太长、key太多等等，用起来不是那么方便 一个idea就是，我们放弃部分安全性来换取更实用的密码。这里要回答几个问题：放弃哪些？放弃多少？放弃之后的安全性如何衡量？ 注意，接下来的讨论如无特殊说明，都以eavesdropper作为threat model ## Computational Security 首先回答”放弃哪些”，这部分直接产生了Computational Security的概念 perfect secrecy要求即使是有**无穷算力**的窃听者也**不能得到任何**关于明文的信息（概率分布不变），而Computational Security就妥协了加粗的两处： 1. 仅考虑一个比较强的窃听者，意思是窃听者虽然有一定计算资源，但并不是无上限的。并且在给定足够时间的条件下，窃听者可以威胁到信息安全。但是如果我们能把破译所需的算力要求设定得很高，那么我们就可以保证在一段时间内明文的安全 2. 窃听者能够以一个概率成功破译。如果我们能让这个概率很低，那么就可以让窃听者破译成为极小概率事件 ## Informally Define Security Levels 既然作出了妥协，那么最好能明确说明”究竟要放弃多少”，这部分主要有两个方法 ### Concrete Approach 这个很好理解，所有的concrete approach都可以理解为如下句式： “在窃听者破译花费时间不超过$T_0$时，他破译的成功率至多为$P_0$”，这样的密码也被称为$(T_0,P_0)$-secure的密码 这么做的好处和坏处都是显然的。一句话就是，通常这个结果是**不够普遍**，但**具体有用**的 好处是很直观，把最直接应用的条件给出来了 坏处是这只是一个关于时间上界的一个概率上界，我们不能知道更多的信息（如果花费了更多时间概率是多少？如果只花费一半时间概率又会是多少？不知道）。当然还要明确各种技术进步的影响、计时的衡量等等。 ### Asymptotic Approach 意思是我们给每个密码策略赋予一个整数的security parameter，通常记作$n$。而一个密码策略被攻破的概率就可以写成$n$的函数$P(n)$，而一个窃听者的计算就可以用计算复杂度函数$T(n)$来表示 #### Negligible Function 如果一个函数$F(n)$有：$\forall c,\exists N\in\mathbb N^+$ 使得当 $n&gt;N$ 时恒有 $F(n)&lt;\dfrac{1}{n^c}$，那么我们就称 $F(n)$ 是negligible的 其实可以换个方式理解，如果$\dfrac{1}{F(n)}$在渐进意义下比任何多项式函数都要大，那么$F(n)$就是可忽略的 negligible有很好的性质： $\forall F(n)\in\text{neg}$，任取**正**多项式函数 $p(n)$，我们有 $p(n)\cdot F(n)\in\text{neg}$ 这个只需要证明$\text{neg}$乘上常数、乘上$x^k$、任意加减仍然是$\text{neg}$就好了 #### Probabilistic Polynomial Time(PPT) Polynomial意思是存在一个多项式$p(n)$作为bound，使得任意情况下这个算法的复杂度不超过$p(n)$ Probabilistic意思是这个算法可以获得真随机数源，即它可以获得任意多的均匀0&#x2F;1随机比特 有了如上介绍，给出Asymptotic Approach的定义： 对于给定的$n$而言，如果任意概率多项式复杂度的算法都不能以高于的negligible函数的概率破解该密码，那么我们就称这个密码是安全的 同样列一下pros&amp;cons 好处就是我们可以通过调整parameter来构造出针对不同需求的（即对应于concrete method）密码，并且可以很好评估一个密码的性能 好像没啥坏处，因为concrete method可以看成是这个的特殊情况。 事实上efficient adversary和概率的界定从某种程度上来说是任意的，这里选择PPT和negligible有几个原因 1. 在计算理论中多项式复杂度有特殊地位，这类算法被认为是高效的，并且Church-Turing命题保证了不同计算模型上多项式算法的不同实现仍然至多有多项式级别的差距，意思是还是多项式的 2. 多项式函数具有一定的闭包性质(closure)，多项式的复合、四则运算仍然得到多项式 3. negligible也有很好的性质，任意多项式个$\text{neg}$得到的仍然是一个$\text{neg}$，意味着如果单次破译的概率是$\text{neg}$的话，在多项式次尝试后破译概率仍然是$\text{neg}$的 ## Private-key Encryption Scheme 一个私钥加密由一个PPT算法上的三元组构成 $(\text{Gen, Enc, Dec})$ 1. $\text{Gen}$会输入一个表示parameter的参数（通常用一个unary number $1^n$表示parameter为 $n$），然后生成一个key。通常我们会假设 $|k|\geqslant n$ 2. $\text{Enc}$会输入一个表示明文的串$m\in\left\{0,1\right\}^*$和$k$，然后得到一个密文$c\in\left\{0,1\right\}^*$ 3. $\text{Dec}$会输入$c,k$，然后得到对应的明文$m$。注意$\text{Dec}$是deterministic的函数，并且$\text{Dec}_k(\text{Enc}_k(m))&#x3D;m$。如果输入的密文在对应key下不能得到任何明文，还要求返回一个错误值 如果密码对$m$的长度有固定要求$\mathscr l(n)$，那么我们称这是固定长度$\mathscr l(n)$的私钥加密 ### Security Goal Definition semantic security是最早用来形式化computational security的定义。因为比较复杂所以咕咕咕 这里用的实际上仍然是adversary game的定义方式 #### Distinguish Game 1. $\mathcal A$ 选取两条**等长**消息 $m_0,m_1$，记 $n&#x3D;|m_0|$，把消息发出去 2. 我们获得一个随机比特$b$，设定parameter为$n$得到一个key，并加密 $m_b$ 发给 $\mathcal A$ 3. $\mathcal A$ 猜 $c$ 对应哪条明文，输出一个结果。$\mathcal A$ 猜测的正确性用 $\text{PrivK}^{\text{eav} }_{\mathcal A,\Pi}(n)$，表示（$1$正确$0$错误） 记一个密码 $\Pi&#x3D;(\text{Gen, Enc, Dec})$ 若对于任意PPT的算法$\mathcal A$ 都有 $\left|Pr[\text{PrivK}^{\text{eav} }_{\mathcal A,\prod}(n)&#x3D;1]-\dfrac 1 2\right|&lt;\text{neg}(n)$，那么我们就称 $\Pi$ 是EAV-secure的 这个定义很直观，意思是无论我用什么PPT的策略猜，在多项式时间内最多也只能够比随机猜要好出一个 $\text{neg}$ 注意到perfect secrecy的定义是这个的特例，对比可以发现妥协了恰好就是上面提到的两项 另一个等价定义： 定义 $\text{out}_{\mathcal A}(n,b)$ 表示一次固定了 $b$ 的 $\mathcal A$ 的输出，那么EAV-secure 等价于 $\left|{Pr[\text{out}_{\mathcal A}(n,0)&#x3D;1]-Pr[\text{out}_{\mathcal A}(n,1)&#x3D;1]}\right|&lt;\text{neg}(n)$ 意思是对于一个adversary，它在$b$不同的情况下表现几乎一致。注意到 $\mathcal A$ 的功能仅仅是输出一个bit，因此”表现”意味着输出结果是什么，而”几乎一致”则可以用仅仅相差 $\text{neg}$ 衡量 证明它们的等价性只需要注意到 $Pr[\text{PrivK}^\text{eav}_{\mathcal A,\Pi}(n)&#x3D;1]&#x3D;\dfrac1 2Pr[\text{out}_\mathcal A(n,0)&#x3D;0|b&#x3D;0]+\dfrac1 2Pr[\text{out}_\mathcal A(n,1)&#x3D;1|b&#x3D;1]$ 以及 $Pr[\text{PrivK}^\text{eav}_{\mathcal A,\Pi}(n)&#x3D;1]+Pr[\text{PrivK}^\text{eav}_{\mathcal A,\Pi}(n)&#x3D;0]&#x3D;1$ 即可</p>

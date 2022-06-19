@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>这一节主要讨论针对CFG中的路径的优化 ## Feasible &amp; Realizable Paths &gt; Infeasible Paths: paths that do not correspond to actual executions &gt; &gt; Unrealizable Paths: paths whose “returns” are not matched with corresponding “calls” 定义的引入很直观，动态运行时并非所有路都会被执行，因此需要区分各类假边。IP是一类难以鉴别的路(why?)，而UP是我们定义出的一类较简单就能判定的路(用带标号的括号序即可)。很显然$UP\subseteq IP$，即call和ret不匹配的路必然不会被动态执行。那么我们就可以针对UP进行优化来达到减少IP的目的。 于是我们就可以通过在边上加标号的方式来获得某path的标号序列，并通过这个序列来判断其Realizability 如果用上下文无关语言(CFL&#x3D;Context Free Language)对括号序列(合法Call序列)进行识别，那么这样的可达性就叫做CFL-Reachability 注意到CFL可以用一个有限状态自动机(DFA)的接受集表示，因此只需要对CFL建出DFA，然后在传播状态的时候顺便传一下DFA的状态就可以无缝升级原来的做法了 ## IFDS IFDS &#x3D; Interprocedural,Finite,Distributive,Subset Problem IFDS是一个分析框架，用于一类满足上述四个要求的分析问题 IFDS提供了MRP(Meet-over-all-Realizable-Paths)问题的解 作为对比，最早的朴素迭代算法提供了MOP(Meet-Over-all-Paths)问题的解 ### Overview 给定程序P，数据流分析问题Q，IFDS的流程如下 1. 对P建supergraph $G^*$​ 并根据具体问题Q定义边上的flow function 2. 对P建exploded supergraph(听起来就好中二) $G^{\sharp}$​ 3. 对Q的求解就转化为对$G^{\sharp}$​应用tabulation algorithm求图可达性问题(MRP Solutions) 分配律的定义： $f(A\sqcup B)&#x3D;f(A)\sqcup f(B)$​ 通常证明不符合只需要找范例就行了。尝试证明Constprop和Pointer Analysis的分配性质： 在Constprop中，令$A&#x3D;\left\{\;(x,1)\;\right\}$，$B&#x3D;\left\{\;(y,2)\;\right\}$，处理语句 `z&#x3D;x+y;` 则$f(A)\sqcup f(B)&#x3D;\left\{\;(x,1),(z,\text{NAC})\;\right\}\sqcup\left\{\;(y,2),(z,\text{NAC})\;\right\}&#x3D;\left\{\;(x,1),(y,2),(z,\text{NAC})\;\right\}$​​ 而$f(A\sqcup B)&#x3D;f(\left\{\;(x,1),(y,2)\;\right\})&#x3D;\left\{\;(x,1),(y,2),(z,3)\;\right\}$​，不符合分配律 PPT给了一个简单的判断法则：若求一个结果需要考虑多个(大于一个)元素的值，则不是可分配的。 在Pointer Analysis中，对变量的转移函数需要实现对象的别名分析(即语句`x&#x3D;y;`需要考虑变量`y`指向对象的所有别名)，这样就涉及到了多个变量，根据简单的判断法则是不可分配的。 看完Overview有一个**猜测**，大概的想法如下： 1. 既然解决的是集合问题，那么就可以对每个点拆点。 2. supergraph的定义使得一条边能连接多个点，这样就可以表述集合之间的transfer关系 3. 根据分配律可以把**集合的映射**变为**单独元素的映射构成的集合**，这样就可以对点连边了 4. 这样CFG中一个点n是否包含元素x就变成了$G^{\sharp}$中\点是否从起点可达 猜完继续看视频 ### Supergraph 首先定义一个单独过程p的flow graph $G_p$： 1. $G_p$ 是一个有向图，除basic blocks外，还包含一对唯一的起点 $start_p$ 和终点 $end_p$，函数&#x2F;方法调用以一对相邻节点 $call_m$ 和 $ret_m$​​​ 表示 2. $G_p$ 中的边除正常函数内的控制流连边外，还包含三类跨函数的边($call_m\rightarrow start_m$，$end_m\rightarrow ret_m$，$call_m\rightarrow ret_m$) $G^*$ 由一系列图 $G_1,G_2\ldots$ 和跨函数间的边组成，即每个函数&#x2F;过程都有自己的图 发现确实猜对了…..感觉就索然无味 需要注意的一个小细节就是拆点的时候空集需要特殊处理。为了方便可以加入特殊点$\varnothing$表示空集 注意到如下事实： 1. $A\sqcup\varnothing&#x3D;A$ 2. $f(A\sqcup\varnothing)&#x3D;f(A)\sqcup f(\varnothing)$ 3. $f(A)\sqcup\varnothing&#x3D;f(A)$ 因此可以**认为**任意作用在非空集合$A$​​上的函数$f(A)$​​实际上为$f(A\sqcup\varnothing)&#x3D;f(A)\sqcup f(\varnothing)$​​，而$A$​中**不可再**分离出$\varnothing$​ 这就表示我们需要连$\varnothing\rightarrow\varnothing$的边，同时在其余的$f(A)$中去掉$f(\varnothing)$​中的元素 有一些常数的小优化。比如说假设做完了方法p的方法内分析，那么对于所有调用了方法p的连通性其实都已经确定了</p>

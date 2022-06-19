@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>## 前话 开了SICP的坑，记一下lisp的方言scheme的一些东西 我的笔记本是manjaro，本来折腾了半天装不上mit-scheme，后面发现直接自带guile就蛮能用的(能用就行) 一个很重要的点就是求值的时候有两种规则：正则序和应用序，分别表示先替换后计算和先计算后替换。 一般的scheme解释器用的都是应用序，这样可以减少一部分重复运算(具体例子见后) ## 基本操作 记一个操作为 `op`，则 `(op a1 a2 … an)` 的值就是分别递归对 `a1, a2 … an` 求值，然后将 `op` 作用于它们的值 比如说 `(&#x2F; 3 2)` 就是 `3&#x2F;2`。scheme中的整数相除默认是有理分数 ## 分支 ```scheme (cond ((cond1) (exp1)) ((cond2) (exp2)) (else (exp3))) ``` ```scheme (if (cond1) (exp1) (exp2)) ``` 与一般的过程不同，这俩都是从上到下分别对 `(cond)` 表达式求值，然后选择第一个为真的入口对 `exp ` 求值 ## 过程&#x2F;函数 ```scheme (define (max a b) (if (&lt; a b)) b a) ``` 与 `cond` 和 `if` 不同，函数在解释器中的行为是：先求值，后替换，即使是 `cond` 和 `if` 的封装也是这样。**因此会出现一些不同的行为** `define` 同样可以用来定义变量，比如说 ```scheme (define PI 3.1415926) ``` 但我更愿意把这个看成是一个**常函数** 有了这些就足够写出和一般C程序设计基础课程里会出现的、等价的程序了！ 然后就涉及到了一个素数测试的小程序 ## 费马小定理 $p\text{ is prime}\Rightarrow a^p\equiv a\pmod p\text{, }\forall 1\leqslant a&lt; p$ 定理的初等证明比较麻烦，但是在群论里就能很简单地说明 记 ${\mathbb Z_p}^*&#x3D;\left\{\;a|0\leqslant a来控制递增&#x2F;递减 ```scheme (define (sort rel ls) (define (merge la lb) (cond ((null? la) lb) ((null? lb) la) ((rel (car la) (car lb)) (cons (car la) (merge (cdr la) lb))) (else (cons (car lb) (merge la (cdr lb)))))) (define (split predicate lst) (if (null? lst) (cons #nil #nil) (let ((cur (car lst)) (result (split predicate (cdr lst)))) (if (predicate cur) (cons (cons cur (car result)) (cdr result)) (cons (car result) (cons cur (cdr result))))))) (if (not (&lt; 1 (length ls))) ls (let ((res-pair (split (lambda (x) (not (rel x (car ls)))) ls))) (merge (cons (caar res-pair) (sort rel (cdar res-pair))) (sort rel (cdr res-pair)))))) ``` ## 符号求导 是’的用法的最后作业，写了完全括号的中缀求导(加法、乘法、幂函数法则) 不完全括号的写法大概是和sum-snd取列表的rest是一样的，因此这里先没写 ```scheme (define (sum? exp) (and (pair? exp) (eq? ‘+ (cadr exp)))) (define (mul? exp) (and (pair? exp) (eq? ‘* (cadr exp)))) (define (exponentiation? exp) (and (pair? exp) (eq? ‘** (cadr exp)))) (define (&#x3D;num? a b) (and (number? a) (number? b) (&#x3D; a b))) (define (make-sum a b) (cond ((&#x3D;num? a 0) b) ((&#x3D;num? b 0) a) ((and (number? a) (number? b)) (+ a b)) (else (list a ‘+ b)))) (define (make-mul a b) (cond ((&#x3D;num? a 1) b) ((&#x3D;num? b 1) a) ((or (&#x3D;num? a 0) (&#x3D;num? b 0)) 0) (else (list a ‘* b)))) (define (make-exponentiation base exponent) (cond ((&#x3D;num? exponent 0) 1) ((&#x3D;num? exponent 1) base) (else (list base ‘** exponent)))) (define (sum-fst exp) (car exp)) (define (sum-snd exp) (caddr exp)) (define mul-fst sum-fst) (define (mul-snd exp) (caddr exp)) (define base sum-fst) (define (exponent exp) (caddr exp)) (define (deriv exp var) (cond ((number? exp) 0) ((symbol? exp) (if (eq? exp var) 1 0)) ((exponentiation? exp) (make-mul (make-mul (exponent exp) (make-exponentiation (base exp) (- (exponent exp) 1))) (deriv (base exp) var))) ((sum? exp) (make-sum (deriv (sum-fst exp) var) (deriv (sum-snd exp) var))) ((mul? exp) (make-sum (make-mul (deriv (mul-fst exp) var) (mul-snd exp)) (make-mul (mul-fst exp) (deriv (mul-snd exp) var)))))) ``` ## eq?和equal? 书里面讲得比较奇怪，有点玄学 其实就和java里判断两个引用指向的对象是否相等是一样的 `pA &#x3D;&#x3D; pB` 表示`pA`和`pB`指向同一个对象，这就和`eq?`的语义相同 `pA.equals(pB)`表示`pA`和`pB`指向的对象在内容意义上是相等的，在scheme中指的就是结构和对应位置的内容是同一个对象，也就是`euqal?`的含义 这也是为什么判断两个list用`eq?`会得到`#f`，这是因为两个list是不同的对象 ## 数据导向的程序设计和可加性 这部分讲得挺好的。在写软件分析作业的时候就遇到了要判断某个对象`Obj`的类，然后分类操作的情况。然后那个lab要对11种子类进行讨论….这种时候简单的`if-else-if`分支就很麻烦了，对后期的维护和可读性都没有好处 书上讲的是对数据打标签来实现分流处理，事实上在OO语言就是把过程写进每个类的内部，然后用一个统一的覆写方法，这样实际上就是封装</p>

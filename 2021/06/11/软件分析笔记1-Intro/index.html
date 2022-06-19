@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>决定要好好开干了，于是有了这个系列的笔记 真是绝了，我连淑芬都没有专门的笔记 回想上学期的考试周开了CSAPP的大锅，这次考试周开了软件分析的大锅，考试周真是除了考试都好玩 ## 术语 PLT &#x3D; Programming language theory 编程语言理论 Static Analysis 静态分析 computable function 可计算函数 property $\text{P is trivial}\iff (\forall xP(x))\text{ or } (\forall x\neg P(x))$ r.e. &#x3D; recurrence enumerate 递归可枚举的 ## 什么是PLT &gt; **Programming language theory** (**PLT**) is a branch of [computer science](<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Computer/_science">https://en.wikipedia.org/wiki/Computer\_science</a>) that deals with the design, implementation, analysis, characterization, and classification of [programming languages](<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Programming/_language">https://en.wikipedia.org/wiki/Programming\_language</a>) and of their individual [features](<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Programming/_language#Elements">https://en.wikipedia.org/wiki/Programming\_language#Elements</a>). It falls within the discipline of computer science, both depending on and affecting [mathematics](<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mathematics">https://en.wikipedia.org/wiki/Mathematics</a>), [software engineering](<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Software/_engineering">https://en.wikipedia.org/wiki/Software\_engineering</a>), [linguistics](<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Linguistics">https://en.wikipedia.org/wiki/Linguistics</a>) and even [cognitive science](<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cognitive/_science">https://en.wikipedia.org/wiki/Cognitive\_science</a>). It has become a well-recognized branch of computer science, and an active research area, with results published in numerous [journals](<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Academic/_journal">https://en.wikipedia.org/wiki/Academic\_journal</a>) dedicated to PLT, as well as in general computer science and engineering publications. 对语言及其特性的设计、实现、分析、描述和分类的科学 课程给出了如下分类： 1. 理论：设计语言 design, type system, semantics and logics… 2. 环境：让语言跑起来 compilers, runtime system… 3. 应用：验证语言 analysis, verification, synthesis(综合)… 看了一波感觉理论和验证比较好玩 ## 什么是静态分析(Static Analysis) 在程序**运行之前**判断其行为和是否满足某些性质 也就是用程序分析程序(老爹语气) ## 静态分析的背景 语言的三大分类： 1. 命令式(imperative) 2. 函数式(functional) 3. 逻辑式(logical)&#x2F;声明式(declarative) 静态分析的背景: 1. 新的语言很多, 但它们的内核差异很小 2. 软件变得复杂, 需要有效分析 ## 静态分析的应用场景 1. reliability: 检测空指针解引用… 2. security: 预防注入攻击… 3. optimization: 编译后端的优化… 4. development: IDE的补全, 提示, 类型提醒… ## Soundness &amp; Completeness, 取 &amp; 舍 There is no such approach to determine whther P satisfies such non-trivial properties, i.e., giving exact answer: Yes or No. Any non-trivial property of the behavior of programs in a r.e. language is undecidable. 也即: PERFECT static analysis 不存在 由此自然引出sound和complete的概念, 其实就是充分性和必要性的讨论… 三者的关系是 $\text{complete}\subsetneq \text{truth}\subsetneq\text{sound}$ 于是又自然引出了sound和complete的取舍&#x2F;妥协问题 PPT的红绿颜色是反的…看了两回才意识到 根据定义有点怪，这里不讲妥协换一种追求的说法 追求soundness会引入truth之外的报错，这一部分称为false positive(假阳性) 追求completeness会遗漏truth内的报错，这一部分称为false negative(假阴性) (考虑比较”宁可错杀一千也不放过一个”和”宁可放过一千也不错杀一个”) 事实上绝大部分的分析器追求 sound but not fully-precise anlysis,即要保证任意情况下程序的正确性 类似的还有precision和efficiency的取舍问题,于是给出static anlysis的进一步定义:ensure soundness while making trade-offs between precision and speed. PPT在这里给了一个栗子，实际上就是在做霍尔逻辑($P{S}Q$)的判别 ## Abstraction &amp; Over-approximation 与运行时分析不同，静态分析通常将数据作**同态映射**到一个小集合(例:PPT里的{+-0U}),集合的构造与我们在乎的性质相关 好像这句话就足够把abstract的部分讲完了 over-approximation依赖于control flows的分析，在分支合并的地方需要合并数据映射 结合两种方法，我们实际上构造了程序P到一个近似程序P’的同态映射，因此只需要研究P’的性质就可以得到P的一些性质了.针对不同的感兴趣的性质，则可以构造不同的映射</p>

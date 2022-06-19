@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>## Pseudo Random Generator 真的随机性是要求很强的东西，上一章是对安全性的适当弱化，而这一章就是对随机性的适当弱化，使得我们可以得到一个“不那么随机但是可以当成随机数用的随机数” 也就是伪随机性 ### 定义 这里的随机性指的是一个比特串的分布的随机性，通常用 $\text{Dist}$ 表示 为了使用，这个分布通常是计算出来的，即有一个**多项式确定性**算法 $G$，可以通过一个真随机种子 $s$ 得到一个伪随机串 $G(s)$ 通常我们要求 $G(s)$ 的输出要比输入长（否则一个平凡的伪随机函数可以取 $G(s)&#x3D;s$，这没有意义；），因为在前面我们知道OTP的一大缺陷就在于双方需要共享很长（与密文等长）的秘钥。假若我们可以通过 $G(\cdot)$ 和一个较短的真随机数 $s$ 来获得一个较长的（和密文等长）的比特串，那么就可以部分解决OTP的问题了 我们称一个 $G(\cdot)$ 是伪随机函数，当且仅当对于任意PPT的算法 $D$，都有 $|Pr\left[D(G(s))&#x3D;1\right]-Pr[D(r)&#x3D;1]|\leqslant\text{negl}(n)$，这里 $r$ 是一个真随机串，其中 $D$ 输出 $1$ 表示算法认为这是一个伪随机函数。 这个式子的含义是：如果任何**高效**的算法都无法以一个大于 $\text{negl}$ 的概率区分出我们的$G(\cdot)$和真随机的比特串，那么我们就可以认为这个生成器有比较好的随机性——即伪随机性 注意到定义中我们没有对伪随机生成函数做出任何行为上的定义，即这样的函数其实是理想的模型，定义并不是构造的。通常我们可以认为目前已有的一些随机数生成器具有PRG的性质，即”某样东西是PRG”属于安全性证明前提中的假设部分 ### 实现 具体的典型PRG实现一般通过一个有限状态自动机来完成，即我们的每一步构造其实都是确定性的，但是每一步都依赖于随机种子 $s$ 一类比较经典的PRG其实可以生成任意长的比特串，然后再根据需要连续截取来获得不同的随机串 ### 应用 如果把OTP的真随机变成这里的PRG，那么就可以得到一个Computationally Secure的加密策略。注意到与原本需要共享与明文等长的key不同，此处只需要双方共享PRG的key，而根据PRG的定义这个key是要比明文的长度短的。这样就通过牺牲一些安全性（多了一个$\text{negl}$）解决了key太长的问题 ## Multiple Encryptions 前面的EAV-secure都是基于一个假设的：每次通讯只会传输一条密文。这个假设显然是不够强的——我们肯定会有多条消息传输的需求，在这种情况下，之前的某些安全加密策略就变得不安全了 同样先定义一个游戏 $Priv^\text{mult}_{\mathcal A,\Pi}(n)$ 如下： 1. 首先生成一个key 2. $\mathcal A$ 给出两条**明文向量** $\vec{m_0},\vec{m_1}$ 3. Challenger随机一个比特 $b$，把 $\vec{c_b}$ 发回给 $\mathcal A$ 4. $\mathcal A$ 来猜 $b$ 如果 $Pr[Priv^\text{mult}_{\mathcal A,\Pi}(n)&#x3D;1]\leqslant\dfrac1 2+\text{negl}(n)$，那么就称策略 $\Pi$ 是mult-secure的（这个词是我自己发明的….囧） 一个很重要的观察是，如果加密算法是确定性的，那么这个策略一定不是mult-secure的，攻击构造如下： 1. $\mathcal A$ 只需要给出 $\vec{m_0}&#x3D;(M_1,M_1)$，$\vec{m_1}&#x3D;(M_1,M_2)$，其中 $M_1\neq M_2$ 2. 对于接收到的 $\vec{c_b}&#x3D;(C_1,C_2)$，若 $C_1&#x3D;C_2$ 就猜 $b&#x3D;0$，否则猜 $b&#x3D;1$ 用这个 $\mathcal A$ 去玩上面的游戏正确率是$1$，因此这个策略不是mult-secure的。我们还可以发现前面讲过的弱化OTP也是确定性的，因此做不到mult-secure 这提醒我们要给加密算法引入随机性，引入随机性的方法就是PRF ## Pseudo random Functions 首先要引入functionality的概念，即一个概率的函数。对于函数 $\hat F$，若对于某输入 $x$ 而言，其结果 $\hat F(x)$ 满足某概率分布，那么我们就称其为一个 functionality。可以发现传统的definite function也是一类特殊的functionality 所谓PRF类似PRG，就是期望通过一类确定性的算法来模拟出随机函数的行为。因此概率的引入就全部在于密钥 $k$ 了 也就是说我们有一个函数的集合(A family of functions) $Func$，我们可以通过一个密钥 $k$ 来实例化出一个具体的函数 $F_k$，这是一个确定性的函数。 由于 $k$ 是完全随机的，所以在Adversary 眼中 $F_k$ 的行为也**应该**是完全随机的。但是因为我们的生成算法是多项式的，因此 $|Func|$ 也是多项式的，即 $Func$ 只能做到非常有限的采样，因此 $F_k$ 又**不可能**是完全随机的（这一段要体会一下） 我们称一个函数集（族）是伪随机函数当且仅当对于任意PPT的算法 $D$，都有 $\left|Pr\left[D^{F_k(\cdot)}(1^n)&#x3D;1\right]-Pr\left[D^{f(\cdot)}(1^n)&#x3D;1\right]\right|\leqslant\text{negl}(n)$ 成立。其中 $D$ 输出 $1$ 表示算法猜这**是**一个伪随机函数 这个式子的随机性引入来自两方面：1. $k$ 的选取 2. $f$ 是一个真随机函数 这里之所以把 $F$ 写在右上角是习惯问题，意思是 $D$ 不需要自己计算函数值，而是通过访问我们人为提供的oracle（谕示机，这名字好屌）来瞬间得到答案 这么做是因为如果我们把某个函数作为参数传入，则可能会需要处理指数级的信息，这与多项式时间复杂度是矛盾的。 ### 实现 对PRG进行定长采样就可以得到一个PRF了 ### 应用 可以构造如下加密策略： 1. $\text{Enc}(m)$ 会随机生成一个 $r$，然后把 $\left$ 作为密文输出 2. $\text{Dec}(\left)$ 则通过计算 $c\oplus F_k(r)&#x3D;m\oplus F_k(r)\oplus F_k(r)&#x3D;m$ 就能得到明文 这个策略的安全性的保障在于，对于Adversary而言 $k$ 是未知的，而 $F$ 是PRF。要证明也很简单，只需要把 PRF换成真随机函数，这样就可以确保 $\mathcal A$ 只有 $\dfrac12$ 的成功率(why?)，而一个能**有效**攻击PRF策略的算法，必然也能用于**有效**区分PRF和真随机函数（证明这一点需要构造一下），这与PRF的定义矛盾，因此是不存在这样的策略的。 ## Weakly Pseudo random Function 密码学的一个套路就是先引入一个问题，然后通过实践或者需求来强化&#x2F;弱化某些条件，再猜想&#x2F;证明这些情况下的构造仍然具有一些良好的性质 所谓Weakly Pseudo random的意思就是，对于任意的PPT算法 $D$，都有 $\left|Pr\left[D^{F_k^\$(\cdot)}(1^n)&#x3D;1\right]-Pr\left[D^{f^\$(\cdot)}(1^n)&#x3D;1\right]\right|\leqslant\text{negl}(n)$ 对任意的 $\text{negl}(n)$ 成立 和PRF的区别在于，这里我们给 $D$ 的是一个概率oracle，即每次 $D$ 向oracle查询的时候，会由oracle生成一个随机数 $r$，然后把 $\left$ 给 $D$ 意思是虽然 $D$ 有能力知道一些 $F$ 的取值，但是具体取到哪些 $x$ 并不由 $D$ 决定 有一个定理：一个PRF一定是WPRF，但反之不一定成立。证明比较简单，因为是课后习题所以不放具体证明了 一个经典的构造如下：如果我们有一个PRF $F$，那么我们就可以构造一个WPRF $F’(x)&#x3D;\left\{\begin{aligned}F(y)&amp;,&amp;x&#x3D;y||0\\F(y)&amp;,&amp;x&#x3D;y||1\end{aligned}\right.$ 根据这个例子可以发现，构造同样长度的PRF要比WPRF简单的多，因为我们只需要一个更短的PRF就可以弱化得到一个更长的WPRF了</p>

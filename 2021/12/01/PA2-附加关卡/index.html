@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>完成了声卡的实现，可以流畅播放If I Could Tell Her~ 但是玩litenes就只有23帧，用fceux就卡得声音都变成了儿童鞋垫 ## 收货 讲几个主要的 假设需要同时定义很多个东西，同时这些东西又有着相同的模式，并且我们希望能够方便地修改、添加这些东西（只需要维护一份唯一的列表），那么就可以这么做： ```c #define LIST(F) F(item1) F(item2) … #define FUNC(X) &#x2F;&#x2F;blablabla LIST(FUNC) ``` 这样非常像fp的写法，并且我们只需要维护一份item表，套用不同的模式生成函数就可以得到不同模式的列表了（这句话有点绕），其实就是一个X-macro 一系列trace能够使得debug非常简便，但是最强的还是difftest，通常只需要找到第一处diff就能查出错误了。 然后还想讲一个匪夷所思、困扰了我一整周的bug。NEMU默认通过一个`get_time()`函数获取宿主机时间，并且提供了两个选项：`gettimeofday()`和`clock_gettime()`。STFW之后可以发现，`gettimeofday()`是通过vdso实现的，即并没有真的系统调用，因此性能很高。并且使用的是tsc时钟源，所以精度也很高，是获取时间的首选方法。然而在我的笔记本上（机械革命Code01）同时安装了windows10和ubuntu21.04，在win10休眠后启动ubuntu，就会出现tsc时钟源无法访问的情况，这时候再调用`gettimeofday()`，最终仍然会通过`clock_gettime()`获取时间，从而花费更多时间，导致NEMU性能下降。STFW之后发现速度大约能差17倍，这也和我跑分400-&gt;23的变化趋势大致相符合。YZH的建议是让我看看为什么会频繁调用gettimeofday，但是我在callgrind之后发现，二者的区别仅仅在于调用所消耗时间，而调用次数则一模一样 解决方案就更那啥了，只需要重启进入win10，点击关机，然后再进入ubuntu即可。通过命令`cat &#x2F;sys&#x2F;devices&#x2F;system&#x2F;clocksource&#x2F;clocksource0&#x2F;available_clocksource` 可以观察是否有tsc ## 思考题 ### 为什么不需要rtl_muls_lo 对于有符号乘法的低32位，结果来源于两个操作数的低16位，此时指令的行为和无符号整数的乘法行为一致 ### 为什么执行了未实现指令会出现上述报错信息 在`special.h`中定义了`inv`指令，所有的指令模式匹配失败后最后会返回`inv`表示invalid opcode，在`inv`的辅助执行函数中就打印了错误信息 ### 指令名对照 可以以关键词”expand”、”expansion”、”pseudo”来搜索伪指令，或者直接通过伪指令的二进制序列来搜索真正对应的指令。之所以能这么做是因为伪指令是软件层面的约定，伪指令最终对应什么指令由它的二进制序列决定 ### stdarg是如何实现的? 我能想到的一个实现方式是传入一个链表的表头作为参数，这样通过更改链表的长度就可以实现任意数量的参数传参了。而取参数的操作则是通过遍历链表完成的 ### 消失的符号 宏在预处理时就被展开了，因此不会出现在符号表中 局部变量在链接时是不可见的，因此也不会出现在符号表中 一个符号要可以被跨文件使用，因此不能是局部变量。 — update： 上完课之后理解更深了一点 所谓符号，必须是有确定地址的实体，这就是为什么macro和局部变量不是符号——macro不存在地址，直接被展开；局部变量分配在栈上，甚至连地址都不是确定的。 ### 冗余的符号表 之所以会出现这样的情况，是因为ELF文件在运行时，并不需要符号表中的信息，只需要映射对应的段到虚拟内存的不同地址中即可。 而对于可重定位文件，符号表则是必不可少的——否则链接将无法进行，链接器对符号的查找也将无从下手。 ### 寻找”Hello World!” 在`.rodata`段，因为`.strtab`虽然叫字符串表，但储存的是符号的名字的字符串，而不是程序中的字符串。程序中的字符串是以数据的形式储存着的 ### 不匹配的函数调用和返回 `f0`和`f1`是尾递归，可以用一次`ret`代替连续的一整段`ret` 通过vscode的查找，可以发现`f2`和`f3`的call和ret是匹配的，而所有的`f1`只有在递归的base case处有ret，`f2`也是类似的。通过查找可以发现call的数量与check的数字一致，因此call一定不会少，少的就只能是ret了。再继续查找所有对`f`函数的call，刚好能对应上`recursion.c`最后的`check`中的常数，这就有力地证明了我生成的ftrace是正确的实现（至少对所有的call都有了正确的处理） ### 如何生成native的可执行文件 关键在于`CFLAGS`中的`-D`选项，根据传入`ARCH`参数的不同，`Makefile`会通过`gcc`的参数传入不同的宏定义，以此来产生不同平台上的编译产物 ### 这是如何实现的？ 在定义了`__NATIVE_USE_KLIB__`之后，klib的库函数将会有函数体，因此成为强符号，在链接时所有对库函数的调用都将指向klib中的库函数 ### 实现DiffTest 实际上我并不是RTFSC找到的这个顺序，而是直接翻阅了Spike的官方手册得到了这一顺序… Spike本身就是按照ABI的顺序来的，因此我的代码不需要改变就可以按顺序比对寄存器 ### 捕捉死循环(有点难度) 我没有实现，但我猜可以通过记录程序的状态，然后如果多次经过一个位置就比对此时寄存器状态和上一次经过时的寄存器状态，如果相同则很有可能陷入了死循环 不过这样好像会漏掉一些死循环的情况…. ### 理解volatile关键字 感觉这里的优化过于激进了 关键在于这里的`_end`是`extern`变量，因此`p`指向的内存可能被其它函数&#x2F;程序修改，从而导致 1. 仅从函数`func()`来看，`*p`是定值 2. 但是考虑了其它情况后，`*p`不是定值 这里显式地写出，是为了不让编译器做过度优化，从而保证可执行文件的行为与程序语言的描述一致 ### 理解mainargs `am-kernels&#x2F;kernels&#x2F;hello&#x2F;`目录下的Makefile会include `$AM_HOME&#x2F;`目录下的Makefile `$AM_HOME&#x2F;`目录下的Makefile则会include对应架构的`($ARCH).mk`文件，然后分别include硬件架构和软件平台的两份`.mk`文件 #### nemu 只需要观察`abstract-machine&#x2F;scripts&#x2F;platform&#x2F;nemu.mk`中的`run`规则 这里会通过`-DMAINARGS&#x3D;\“$(mainargs)\“`传入一个宏`MAINARGS&#x3D;”xxx”`，这里双引号内的字符串将会在`abstract-machine&#x2F;am&#x2F;src&#x2F;platform&#x2F;nemu&#x2F;trm.c`中被作为`static const char mainargs[]`的值初始化，然后这个字符串会被传入`main`中，也就是我们的`hello.c`中的`main`函数 #### native 这个和上面比起来就要简单一些 使用`-nB`命令就可以发现，最终的`hello-native`由`hello.o`一个`am-native.a`文件链接而成，寻找这个`am-native.a`就可以发现它源于`platform.o`这个文件，观察`platform.o`就可以发现在函数`init_platform()`中有`const char *args&#x3D;getenv(“mainargs”)`这样一行代码 STFW即可发现，`getenv(const char *)`用于找到特定名称的环境变量的值，在这里就是我们在编译时写下的`mainargs&#x3D;xxx`了 ### 神奇的调色板 只需要改变调色板的亮度，就可以不改变显示而实现渐暗效果了</p>

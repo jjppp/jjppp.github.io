@@ -43,6 +43,26 @@
     
 
     
+      
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    
     
     <div class="post-md">
         <p>心态崩了，这个 latex 公式支持也太迷幻了。但是不太想管，等啥时候有空整个自己的吧(flag++) # 函数逼近 考虑的是对于给定函数 $f$ 和度量 $\norm{\cdot}$，求一个多项式函数 $p$ 使得 $\norm{f-p}$ 尽可能小。这里不关注特定点上的值，而更在意两个函数总体的距离。 ## Weierstrass 逼近定理 若 $f\in C[a,b]$，那么存在多项式列 $\left\{F_n\right\}$，使得 $\norm{\lim\limits_{n\rightarrow\infty} F_n -f}_{\infty}&#x3D;0$ $\norm{f}_{\infty}$ 的含义是 $\sup R(f)$，即值域的上确界。 注意到 $[a,b]$ 是任意的。为了便于讨论，一般通过伸缩平移到 $[-1,1]$ 上考虑。 Bernstein（又是他）给了一个构造性的证明，他构造出的多项式即为大名鼎鼎的Bernstein多项式。证明的技巧比较强，这里就不放了，感觉再抄一遍也没啥用…. ## Chebyshev 多项式 特殊的多项式族，规定了 $n$ 次多项式一致逼近的误差下界。 ### 定义 是一组多项式列 $\left\{T_n\right\}$，其中 $T_n$ 是次数为 $n$ 的多项式 $$ T_n(x)&#x3D;\cos(n\arccos x) $$ 令 $\arccos x&#x3D;\theta$ 注意到 $$ T_{n+1}(x)&#x3D;\cos((n+1)\theta)&#x3D;\cos n\theta\cos\theta-\sin n\theta\sin\theta \\ T_{n-1}(x)&#x3D;\cos((n-1)\theta)&#x3D;\cos n\theta\cos\theta+\sin n\theta\sin\theta $$ 可得等价的递推式如下 $$ \begin{aligned} T_0(x)&amp;&#x3D;1 \\ T_1(x)&amp;&#x3D;x \\ \cdots \\ T_{n+1}(x)&amp;&#x3D;2xT_n(x)-T_{n-1}(x) \end{aligned} $$ ### 性质 1. $T_n(x)$ 是 $n$ 次多项式，首项系数为 $2^{n-1}$。归纳可得。 2. $T_n(x)$ 的值域为 $[-1,1]$。这是个 $\cos$ 函数。 3. $T_n(x)$ 的零点恰好为 $n\arccos x&#x3D;\dfrac{\pi}{2}+k\pi$ 的解，解恰有 $n$ 个。 4. $T_n(x)$ 在 $[-1,1]$ 之间震荡，并恰好变号 $n+1$ 次。 5. $T_n(x)&#x3D;\prod_{i&#x3D;1}^n (x-x_i)$，其中 $x_i$ 是性质 3 中的第 $i$ 个解。 并且有：任给 $n$ 次首一多项式 $P_n(x)$，都有 $\norm{\frac{1}{2^{n-1} }T_n(x)}_\infty\leq \norm{P_n(x)}_\infty$，且 $\norm{\frac{1}{2^{n-1} }T_n(x)}_\infty&#x3D;\frac{1}{2^{n-1} }$ 由反证法，假设存在更小的 $P’_n(x)$，则 $\Delta(x)&#x3D;\frac{1}{2^{n-1} }T_n(x)-P’_n(x)$ 将会存在至少 $n$ 个零点。而 $\Delta(x)$ 至多是 $n-1$ 次多项式，这说明 $\Delta(x)\equiv 0$ Chebyshev 多项式给了我们一个最小化形如 $\prod (x-x_i)$ 这样多项式的办法：设定 $x_i$ 的值为 Chebyshev 多项式的零点，这样本身就得到了一个 Chebyshev 多项式。由其性质即得多项式的最值是同次首一多项式中最小的。 # 函数插值 ## Lagrange Interpolation 假设给了 $n$ 个二维平面上的点对 $\left\{(x_i,y_i)\right\}$，如何求出一个函数恰好经过这 $n$ 个点？ 考虑这么一个函数 $L_i^*(x)&#x3D;\prod_{j\neq i}(x-x_j)&#x3D; (x-x_1)(x-x_2)\cdots(x-x_{i-1})(x-x_{i+1})\cdots(x-x_n)$，它有如下性质： 1. $\deg L_i^*(x)\leqslant n-1$ 2. $L_i^*(x_j)&#x3D;0,i\neq j$ 3. $L_i^*(x_i)&#x3D;(x_i-x_1)(x_i-x_2)\cdots(x_i-x_{i-1})(x_i-x_{i+1})\cdots(x_i-x_n)$ 为了方便我们可以配上一个系数，那么就得到 $L_i(x)&#x3D;\dfrac{L_i^*(x)}{L_i^*(x_i)}$ 于是就有 $L_i(x_j)&#x3D;\delta_{i,j}$，其中 $\delta_{i,j}$ 为kronecker记号。 再继续构造 $F(x)&#x3D;\sum\limits_{i&#x3D;1}^n y_iL_i(x)$，根据上面的性质可知 $\forall i\in[n],F(x_i)&#x3D;y_i$ 这样拉格朗日就得到了这么一个经过 $n$ 个点的多项式，且 $F(x)$ 是多项式，有 $\deg F(x)\leqslant n-1$ ## 唯一性 假设存在多项式 $G$ 使得 $F(x)\neq G(x)$ 且 $\deg G(x)\leqslant n-1$，但 $\forall i\in [n], G(x_i)&#x3D;F(x_i)&#x3D;y_i$ 此时构造 $H(x)&#x3D;F(x)-G(x)$，则 $H(x)$ 至多 $n-1$ 次且有至少 $n$ 个零点，由代数基本定理可知 $H(x)\equiv 0$，这与 $G\neq F$ 矛盾。 ## 误差分析 不妨假设 $x_0\le x_1\le\cdots \le x_n$ $$ R_n(x)&#x3D;f(x)-P_n(x)&#x3D;\frac{f^{(n+1)}(\xi)}{(n+1)!} {\prod_{i&#x3D;0}^{n} (x-x_i)} $$ 其中 $\xi\in(x_0,x_n)$，$f\in C^{n+1}[x_0,x_n]$ 固定一个 $x$，构造关于变元 $t$ 的函数 $$ \varphi(t)&#x3D;f(t)-P_n(t)-R_n(x) $$ 则 $\varphi(t)$ 在 $[x_0,x_n]$ 上有至少 $n+2$ 个零点： 1. $t&#x3D;x_i$，$\varphi(x_i)&#x3D;f(x_i)-P_n(x_i)-R_n(x)&#x3D;0$ 2. $t&#x3D;x$，$\varphi(x)&#x3D;f(x)-P_n(x)-R_n(x)&#x3D;0$ 因此相邻的两个零点两两用中值定理即得 $\varphi^{(n+1)}(t)$ 在 $[x_0,x_n]$ 上有至少一个零点，展开即为 $R_n(x)$ 的形式。 ## 最小化误差 即我们既想插值，又想让插值多项式与目标函数尽量逼近。 回顾插值余项 $R_n(x)$ 的定义，令 $\omega_n(x)&#x3D;\prod_{i&#x3D;0}^n (x-x_i)$，最小化 $\omega_n$ 即可最小化 $R_n$，这一点通过选取特殊的插值点来实现。 回想 Chebyshev 多项式的性质，我们只需要选取 $\{x_i\}$ 使得 $n\arccos x_i&#x3D;\dfrac{\pi}{2}+k\pi$ 即可。这样插值出来的多项式被称为 Chebyshev 插值多项式。 # 最小二乘法 很多时候度量的选取是任意的，例如上面就选择了 $\norm{}_\infty$ 作为函数逼近的度量。在选取 $\norm{}_2$ 作为度量时，则可以使用最小二乘法的办法来找到最佳平方逼近。 我们知道次数至多为 $n$ 的多项式函数构成了 $n+1$ 维线性空间。最小二乘法的本意即为用一个低维的线性空间来最佳地表征高维空间中的向量（或者反过来，求一个高维向量在低维空间中的投影），这样用于求平方逼近就是很自然的想法了。 为了方便坐标表示和运算，通常要求出一组多项式的正交基，然后就可以在坐标下讨论多项式逼近了。</p>
