@@ -170,6 +170,8 @@
       <div class="markdown-body">
         <h1 id="前置">前置</h1>
 <p>这一节主要是玩矩阵，为了偷懒只讨论实线性空间</p>
+<h1 id="前置-1">前置</h1>
+<p>这一节主要是玩矩阵，为了偷懒只讨论实线性空间</p>
 <h2 id="内积">内积</h2>
 <p>二元函数 <span class="math inline">\(\left&lt;,\right&gt;\)</span> 被称为内积，则其满足：</p>
 <ol type="1">
@@ -181,7 +183,7 @@
 <p>一元函数 <span class="math inline">\(\left\lVert\cdot\right\rVert\)</span> 被称为范数，则其满足：</p>
 <ol type="1">
 <li><p><span class="math inline">\(\left\lVert x\right\rVert\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\bold0\)</span> 时取到</p></li>
-<li><p><span class="math inline">\(\left\lVert kx\right\rVert=\abs{k}\left\lVert x\right\rVert\)</span></p></li>
+<li><p><span class="math inline">\(\left\lVert kx\right\rVert=\left\lvert k\right\rvert\left\lVert x\right\rVert\)</span></p></li>
 <li><p><span class="math inline">\(\left\lVert x+y\right\rVert\leq \left\lVert x\right\rVert+\left\lVert y\right\rVert\)</span></p></li>
 </ol>
 <p>在内积空间上有一个天然的范数 <span class="math inline">\(\left\lVert x\right\rVert=\sqrt{\left&lt;x,x\right&gt;}\)</span>，容易验证满足上述三条要求。</p>
@@ -212,13 +214,13 @@
 <p>一个例子是这样的，容易验证其满足三条要求</p>
 <span class="math display">\[\begin{aligned}
 
-\left\lVert A\right\rVert=\sum_{i,j}\abs{A_{i,j} }
+\left\lVert A\right\rVert=\sum_{i,j}\left\lvert A_{i,j} \right\rvert
 
 \end{aligned}\]</span>
 <h1 id="高斯消元">高斯消元</h1>
 <p>对于给定的线性方程组 <span class="math inline">\(Ax=b\)</span>，可以用简单 <span class="math inline">\(O(n^3)\)</span> 的高斯消元法来求解。并且这样可以很容易地求出解空间的一组基，进而得到所有解。</p>
 <h2 id="解的稳定性">解的稳定性</h2>
-<p>不妨假设 <span class="math inline">\(A=xb\)</span> 中 <span class="math inline">\(\abs{A}\neq0\)</span>，则有 <span class="math inline">\(x=A^{-1}b\)</span></p>
+<p>不妨假设 <span class="math inline">\(A=xb\)</span> 中 <span class="math inline">\(\left\lvert A\right\rvert\neq0\)</span>，则有 <span class="math inline">\(x=A^{-1}b\)</span></p>
 <p>通常 <span class="math inline">\(A\)</span> 是给定的，而 <span class="math inline">\(b\)</span> 是若干计算和观察的结果，因此解的误差主要来源于 <span class="math inline">\(b\)</span> 引入的误差，可以写成</p>
 <span class="math display">\[\begin{aligned}
 
@@ -321,7 +323,7 @@ x_{k+1}=D^{-1}(b-Ux_k-Lx_{k+1})
 <p>写代码可以发现这两个方法没有绝对的好坏之分，迭代速度也没有一般性的结论（至少俺不知道）。</p>
 <h2 id="谱半径">谱半径</h2>
 <p>为了分析一类迭代算法的收敛性，引入谱半径的概念</p>
-<p>定义 <span class="math inline">\(A\)</span> 的谱半径为其绝对值最大的特征值 <span class="math inline">\(\abs{\lambda_\max}\)</span>，记为 <span class="math inline">\(\rho(A)\)</span></p>
+<p>定义 <span class="math inline">\(A\)</span> 的谱半径为其绝对值最大的特征值 <span class="math inline">\(\left\lvert\lambda_\max\right\rvert\)</span>，记为 <span class="math inline">\(\rho(A)\)</span></p>
 <p>对于这样的迭代算法</p>
 <span class="math display">\[\begin{aligned}
 
@@ -381,7 +383,7 @@ x_k-x^*=A^k(x_0-x^*)
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE"><span class="toc-text">前置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%A7%AF"><span class="toc-text">内积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E8%8C%83%E6%95%B0"><span class="toc-text">向量范数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0"><span class="toc-text">矩阵范数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E5%AD%90%E8%8C%83%E6%95%B0"><span class="toc-text">算子范数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0-1"><span class="toc-text">矩阵范数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83"><span class="toc-text">高斯消元</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-text">解的稳定性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95"><span class="toc-text">迭代算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3"><span class="toc-text">Jacobi 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-text">收敛性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="toc-text">正确性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gauss-seidel-%E8%BF%AD%E4%BB%A3"><span class="toc-text">Gauss-Seidel 迭代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%B1%E5%8D%8A%E5%BE%84"><span class="toc-text">谱半径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E9%80%86"><span class="toc-text">伪逆</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE"><span class="toc-text">前置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE-1"><span class="toc-text">前置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%A7%AF"><span class="toc-text">内积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E8%8C%83%E6%95%B0"><span class="toc-text">向量范数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0"><span class="toc-text">矩阵范数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E5%AD%90%E8%8C%83%E6%95%B0"><span class="toc-text">算子范数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0-1"><span class="toc-text">矩阵范数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83"><span class="toc-text">高斯消元</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-text">解的稳定性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95"><span class="toc-text">迭代算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3"><span class="toc-text">Jacobi 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-text">收敛性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="toc-text">正确性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gauss-seidel-%E8%BF%AD%E4%BB%A3"><span class="toc-text">Gauss-Seidel 迭代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%B1%E5%8D%8A%E5%BE%84"><span class="toc-text">谱半径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E9%80%86"><span class="toc-text">伪逆</span></a></li></ol></li></ol>
       
     </div>
   </div>
