@@ -42,6 +42,8 @@
         </div>
     
 
+    
+    
     <div class="post-md">
         <p>写了很多代码，更宝贵的应该是这些思考和经验，所以就放上来了 必做题会被删去，和具体实验相关的内容也会被处理掉，应该看起来是不存在剧透的（大概） ## 收货 PA1主要是在做一些预备工作，例如阅读NEMU的主体框架，添加一些表达式求值、打断点之类的小功能，以及一些测试程序正确性的方法介绍 在提到表达式解析的时候引入了CFG的概念，还用到了正则匹配tokens，写起来不算太难。处理的时候要用一些库函数，也算是练练手 做`gen-expr.c`的时候，手册给了一个把表达式打印到一段代码中然后编译这段代码的方法来获得一个表达式的值——也就是说，我们在利用GCC替我们实现了表达式求值！再加上下面对于除0的排除，这样仅仅通过popen就可以快速测试我们的表达式解析器了。同时还学到一个小技巧：如果不会用sed awk之类的命令行工具，还可以通过管道连接python -c ‘xxx’ 的方法利用python来进行字符串的小处理，这样还是更方便一些的 ## 思考题 ### 计算机可以没有寄存器吗 STFW得到一个叫做stack oriented programming的编程范式 这样的编程范式依赖于一种叫stack machine的机器 当然,如果在内存中预留出数量固定的地址代替原本寄存器的功能,好像也就免去了寄存器的用处了 ### 为什么 init_monitor() 中全是函数调用 把具体的操作按照阶段分成若干部分,再封装成函数,是抽象的一种 可以方便后期修改(不同函数间相对独立或几乎不相关),方便后期调试(方便打断点调试某个阶段的功能),可以把不必要的细节隐藏起来,提升代码的可读性 ### argc 和 **argv 的来头 猜想肯定是调用这个程序的人给的参数,在命令行敲就是命令行给的参数,被别的程序调用就是调用者给的参数 STFW得到如下结果 On Linux, a program is started by execve(2) and that system call passes argument to main . 也就是说调用者通过系统调用来运行别的程序,传参的过程实际上是操作系统完成的 又去看了CSAPP,得知值传参是通过寄存器传递值完成的,而具体字符串的参数则储存在栈上,实际上操作系统做的就是传递 argc 和 **argv 两个值,然后把参数压入栈中 ### 究竟要执行多久? 观察到传入形参的类型是 uint64_t ,因此传入 -1 的意思就是传入一个MAX 继续观察,后面的循环是 for (;n&gt;0;n–) ,因此传入 -1 的时候就要执行MAX次 ### 传入 -1 是UB吗 翻到了手册… &gt; 6.3.1.3 Signed and unsigned integers &gt; &gt; 2. Otherwise, if the new type is unsigned, the value is converted by repeatedly &gt; adding or subtracting one more than the maximum value that can be &gt; represented in the new type until the value is in the range of the new type. &gt; 这里的adding和subtracting都指的是数学上的操作,和类型无关,是unbounded的 也就是说传入 -1 的时候究竟执行多少次取决于无符号形参的类型,这不是UB ### 为什么 printf 后要加 \n 首先是为了可读性,所有输出挤在同一行很难看 接着STFW得到如下解释 Very often, if you don’t end your printf format string with a \n , some of the output stays in the stdout buffer, and you need to call fflush to get all the output shown. 标准输出利用output buffer来暂时保存一整行的输出, printf(“\n”) 实际上实行了刷新buffer的功能 如果不刷新buffer,那么标准输出的行为就不能保证是即时的 类似的还STFW到这样的说法 Standard output is line buffered if it can be detected to refer to an interactive device, otherwise it’s fully buffered. ### 除0的确切行为 在开启较高级编译优化的情况下,常亮表达式的计算将会是编译期行为,因此最终编译器会得到一个 expr&#x2F;0 的表达式,就会报warning 所以只需要修改编译的命令,加上 -O2 -Wall -Werror 就可以让编译器在编译期就得到表达式的值,并 且把warning变成error,然后根据GCC的返回值是否为 0 就可以判断是否存在除 0 行为了,如果存在 error就直接再生成一个 update: 事实上好像直接看 popen 的返回值就好了,我当时在想什么… ### static 关键字 1. static 变量储存在静态区,生命周期和全局变量一样,但是作用域和局部变量一样 2. static 变量只会被初始化一次 3. static 修饰的变量和函数对其他编译单元是不可见的 这里用的是性质3,提供了类似 class 中 private 成员函数的功能 ### 随心所欲的断点 因为每次解析指令的时候都是从 $pc 开始的,并且 $pc 只会经历所有指令的首尾,所以从指令的中间设置断点会跳过这个断点</p>
 <!-- more -->
@@ -49,6 +51,7 @@
     </div>
 
 </div>
+
                 <div class="footer">
     <span>Copyright © 2022 jjppp</span>
     <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>

@@ -42,6 +42,8 @@
         </div>
     
 
+    
+    
     <div class="post-md">
         <p>## Cryptographic Hash Function 所谓Hash，就是一个实现“压缩”比特序列的函数（有时也叫摘要）。与普通的散列和哈希不同，密码学上的hash要求要更严格一些： 1. 要是抗碰撞(collision resistant)的 2. 最好还有PRF的性质 类似PRF，Hash也是一个keyed function，只不过更多的时候 $k$ 是由某种方法选出来的固化公开常量，而非随机选出来的。 ## 定义 Hash $\Pi&#x3D;(\text{Gen,H})$ 是一对PPT算法，满足： 1. $k&#x3D;\text{Gen}(n)$ 是一个**公开**的参数 2. $H(k,x)&#x3D;H^k(x)\in\left\{0,1\right\}^{l(n)}$，其中 $l(n)$ 是expansion factor 如果有 $l(n)</p>
 <!-- more -->
@@ -49,6 +51,7 @@
     </div>
 
 </div>
+
                 <div class="footer">
     <span>Copyright © 2022 jjppp</span>
     <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>

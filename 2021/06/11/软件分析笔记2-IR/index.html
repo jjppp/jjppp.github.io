@@ -42,6 +42,8 @@
         </div>
     
 
+    
+    
     <div class="post-md">
         <p>## 术语 IR &#x3D; Intermediate Representation 代码的中间形式 AST &#x3D; Abstract Semantic Tree 抽象语法树 ## IR 上节讲到的同态映射需要一个具体的载体,类比我们常常将n维线性空间同构到R^n上考虑,这里就引入了IR IR也是一种语言，可以作任意语言到IR的同态映射,静态分析通常建立在IR的基础上,也就是分析的实际上是IR 回顾编译的流程: | | | ———————————————————— | | source code - scanner - 词法分析 regular expression | | tokens - parser - 语法分析 context free grammar | | AST - type check- 语义分析 attribute grammar | | D-AST - translate - 转换 | | IR - optimize - 优化 | | IR - code gen - 生成机器码 | | | SA通常在出现IR的环节发挥作用,也即是前后端之间 3AC是一种特殊的IR,它和汇编是非常像的 ## 3AC vs. AST AST的结构与语法高度相关,通常和语言高度相关,缺少控制流的信息 3AC相反,且有简洁和形式简单的优点 ## java call invokespecial: call constructor, superclass methods, private methods invokevirtual: instance methods(virtual dispatch) invokeinterface: same as virtual but cannot optimize and checks interface implementation() invokestatic: call static methods invokedynamic: JVM在若干版本之后支持各种语言,这东西让dynamic language方便地在JVM上跑起来 一对尖括号&lt;&gt;内的内容叫做method的signature(签名), 包含 class name, ret type, 方法名字(可选), param type 格式形如 `InstanceName.(params, …)` ## java constructor init是动态的构造函数,clinit是静态构造函数 具体的可能还要后面补,我尽量… ## SSA 是一种特殊的3AC,满足: 每个**重复使用的**变量都会有不同的名字(而不改变语义) 会有特殊的情况,比如说3AC ``` 1: x &#x3D; 3 2: if x &lt; 5 goto 5: 3: y &#x3D; 0 4: goto 6: 5: y &#x3D; 1 6: z &#x3D; y ``` 可以发现,经过不同的分支得到的y的别名应该是不同的,即在控制流合并的地方会出现多个别名取其一的情况,这种时候引入$\phi$函数来选取 即 ``` 1: x1 &#x3D; 3 2: if x1 &lt; 5 goto 5: 3: y1 &#x3D; 0 4: goto 6: 5: y2 &#x3D; 1 6: y3 &#x3D; phi(y1, y2) 7: z1 &#x3D; y3 ``` SSA的优势 1. 程序流的信息可以从变量下标中抽取(即可以用变量定位代码位置),从而可以打乱3AC的顺序而保持部分流的信息(或许可以并行?) 2. 变量的定义&#x2F;使用成对,有利于**某些**任务 劣势 1. 会引入多余的变量和phi函数 2. 变量变多了,性能会受影响(感觉和1重了) ## CFG 即control flow graph,是静态分析的基本结构 图的节点通常是若干语句(可以是单条)打包形成的blocks(basic blocks&#x3D;BB) ### BB BB是极大的, 连续的, 满足(这个block的入口只能在第一条)这一性质的 3AC指令的序列 定义比较好理解,我们用BB造出来一个图G,再用所有的3AC造一个图G’,那么G’就是G的一个图的细分 根据定义很容易给出BB的一个寻找算法,只需要注意到: 1. 有非平凡出边的点一定是某个block的bottom 2. 有非平凡入边的点一定是某个block的top 3. 每个block的bottom一定紧接下一个block的top 就好了</p>
 <!-- more -->
@@ -49,6 +51,7 @@
     </div>
 
 </div>
+
                 <div class="footer">
     <span>Copyright © 2022 jjppp</span>
     <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>

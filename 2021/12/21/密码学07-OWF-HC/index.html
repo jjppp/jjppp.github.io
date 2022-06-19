@@ -42,6 +42,8 @@
         </div>
     
 
+    
+    
     <div class="post-md">
         <p>这一章比较轻松，主要是科普一些东西，都是概念性的 ## One-way function 注意到密码学中的很多构造都是不对称的：我们希望加密是简单的而解密是困难的、我们希望PRG是很容易产生的但是很难被区分的……这些不对称性归根结底都可以通过OWF来导出，这个概念还是很抓住了关键的 但是到目前为止，是否存在OWF仍然是未知的….因此存在OWF本身就是一个密码学假设，当然目前种种迹象看来这么假设是没有太大问题的。 ## 定义 我们称函数 $f\colon\left\{0,1\right\}^*\mapsto\left\{0,1\right\}^*$ 是OWF，当且仅当它满足： 1. 存在PPT算法 $M_f$ 使得 $\forall x\in Dom(f): f(x)&#x3D;M_f(x)$ 2. 对于任意的PPT算法 $\cal A$，有 $Pr\left[{\cal A}(1^n,f(x))\in f^{-1}(f(x))\right]\leqslant\text{negl}(n)$，其中 $x\overset{$}\leftarrow\left\{0,1\right\}^*$ 有几个值得注意的地方：首先OWF的计算非常容易，但是对于**随机均匀**选取的定义域中的比特串，将其映射过后再求它的任意一个原象就很难（不一定是单射，逆是一个集合） 这里对 $x$ 的选取说明求逆的难度是平均意义上的，可以存在某些点非常好求的情况。并且只需要求得任意一个逆就可以了，不需要全部求得。 这里的hardness同样可以定义成game $\text{Invert}_{\cal A,f}(n)$，我们称一个函数是OWF当且仅当对于任意的PPT攻击者 $\cal A$ 都有 $Pr\left[\text{Invert}_{\cal A,f}(n)&#x3D;1\right]\leqslant\text{negl}(n)$ 成立 ## 两个例子 ### 因数分解 最著名的OWF当然要属乘法函数了。这个函数写出来是这样的 $f:\mathbb N\times\mathbb N\mapsto\mathbb N,\; f(x,y)&#x3D;x\cdot y$，通常会规定 $x,y$ 是 $n\text{-bit}$ 质数 ### 离散对数 也就是OI里面讲过的BSGS算法用来解决的问题，规定 $f:\mathbb N\times \mathbb N\mapsto\mathbb N,\; f(g,x)&#x3D;g^x\pmod p$，其中 $p$ 是一个给定的 $n\text{-bit}$ 质数 ## Hard-core predicate 所谓predicate，就是一个值域为 $\left\{0,1\right\}$ 的函数，记为 $hc\left(\cdot\right)$，通常还要求 $hc(\cdot)$ 要满足可以被PPT算法计算出来 如果对于任意的PPT算法 $\cal A$，都有 $Pr[{\cal A}(1^n,f(x))&#x3D;hc(x)]\leqslant\frac12+\text{negl}(n)$，其中 $x\overset{$}\leftarrow\left\{0,1\right\}^n$ 上面说到OWF的单向性是通过容易计算、难于求逆定义的，那么自然就要问：求逆的难度能不能量化？ 很显然OWF内部仍然有很多区别，例如说一个OWF可以是难以计算逆的，但是仍然泄漏了一些原象的信息（例如说你和女神每天的对话，虽然内容难以计算，但是永远以“呵呵我去洗澡了”这样的字眼结束） hc就是这样一个最低限度的”防止泄漏”的量化——我们关注某个函数是否能够隐藏最小单位的信息，也就是一个比特 需要注意的是，上述定义并不要求 $f$ 是OWF，一个例子是定义 $f(x_1x_2\ldots x_n)&#x3D;x_2x_3\ldots x_n$，很显然它的一个hc就是比特串的第一位，并且这个函数不是OWF（猜对的概率是$\frac12$） ### Goldreich-Levin THeorem 如果OWF成立，那么存在一个OWF $g$ 和一个 $hc$，使得 $hc$ 是 $g$ 的硬核谓词 证明咕咕咕，这个结论的意义更大一些，有这个结论就可以更充分地相信hc的存在性了 ## OWF for PRG 假设 $f$ 是一个OWF，$hc$ 是 $f$ 的一个hc，那么 $G(s)&#x3D;f(s)||hc(s)$ 是一个PRG，expansion factor 为 $n+1$ 证明可以通过反证法，则存在一个区分 $G(s)$ 和 $r$ 的 $\cal A$，那么就可以通过这个 $\cal A$ 来构造一个区分 $hc(s)$ 和真随机比特的 $\cal A’$，从而得到与 $hc$ 性质的矛盾。 注意到这个只“生长”了一位，实际上可以生长出任意poly(n)的长度，构造如下： $\hat G(s)&#x3D;hc(s)||hc(f(s))||\ldots||hc(f^k(s))||f^k(s)$ 可以把最后的 $s$ 看作某个内部状态，前缀都是由状态产生的一个结果，这个前缀的PRG性质则是通过hc来保证的 随机性的证明可以通过差分构造若干个后缀完全一样，前缀完全随机的假的PRG，然后证明它们两两无法区分，最后用三角不等式叠加起来就好了。根据 $\text{negl}(n)$ 的性质可知，拓展poly次之后不等式的右端仍然是一个 $\text{negl}(n)$</p>
 <!-- more -->
@@ -49,6 +51,7 @@
     </div>
 
 </div>
+
                 <div class="footer">
     <span>Copyright © 2022 jjppp</span>
     <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>

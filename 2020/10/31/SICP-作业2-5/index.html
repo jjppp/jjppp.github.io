@@ -42,6 +42,8 @@
         </div>
     
 
+    
+    
     <div class="post-md">
         <p># 初探 — 九乡河文理学院开设了SICP这门课，但很显然我是抢不到也上不了的，因此只能自己写写作业看PPT了。考虑到另一边导论实验的程设比较简单，感觉双开也是没问题的。所幸课程有对应开放的oj，我的部分作业经过测试后也就有了一定的可信度。具体的课程文件可以在cs61a找到，毕竟这门课也是我校搬过来的。。 先说函数式编程是什么。与面向过程、面向对象的程序设计不同，函数式编程几乎不存在变量的概念，而只有常量，程序的主体也由函数构成，函数在这里甚至可以代替变量作为输入、输出，也就有了“函数的函数”的概念。 # Church numerals — 逻辑学家Church发明了一个仅用函数来表示自然数的运算系统，其中各种函数唯一对应了一个自然数，且他们之间可以作加、乘、乘方（其实都是加法的拓展） 题目给了初始的一段代码定义系统中的两个函数zero 和 successor，他们长这样 ```python def zero(f): return lambda x: x def successor(n): return lambda f: lambda x: f(n(f)(x)) ``` 考虑zero的含义，zero定义了一个函数，它会返回一个单位映射。 观察successor(zero)，我们可以发现它会返回一个函数f(g)，这个函数会返回参数g表示的函数。也就是f(g)(x)&#x3D;g(x)，根据定义这就是one 再看successor(one)，不难得到two就是f(g)&#x3D;g(g(x))这个函数，也就是给定一个函数，我们会把它嵌套两次 于是第一题就很明显了，one(f)&#x3D;lambda x: f(x)，two(f)&#x3D;lambda x: f(f(x)) 然后考虑转成数字的问题。以数字four为例子，four(f)&#x3D;f(f(f(f(x))))，我们现在的任务就是找到一个合适的函数f，使得f(f(f(f(x))))&#x3D;4。很快就能想到如果我们令f(x)&#x3D;x+1，则four(f)(0)&#x3D;f(f(f(f(0))))&#x3D;0+1+1+1+1&#x3D;4，简单归纳可以知道这样是符合全体正整数的 然后考虑a+b的问题。考虑到successor(x)就是把x再套一个f，那么我们可以简单地改写 ```python def add(n, m): return lambda f: lambda x: m(f)(n(f)(x)) ``` 这段代码是什么意思呢？也就是当输入的函数为f时，我们会先把f嵌套n次，再拿这个结果**作为f嵌套m次后形成的函数的自变量**，这样得到的才是n+m。如果我们**将嵌套了n次的f作为自变量输入m这个函数**，那么得到的就是n*m。这一段很重要，要好好理解 对于乘方a^b，我们只要把a这个函数套b次就可以了，实际上就是将b作为f丢进a中 ## scheme 又写了一个scm的，大意是一样的 ```scheme (define zero (lambda (f) (lambda (x) x))) (define (add-1 n) (lambda (f) (lambda (x) (f ((n f) x))))) (define one (lambda (f) (lambda (x) (f x)))) (define two (lambda (f) (lambda (x) (f (f x))))) (define (add n m) (lambda (f) (lambda (x) ((n f) ((m f) x))))) (define (mul n m) (lambda (f) (lambda (x) ((n (m f)) x)))) (define (pow n m) (lambda (f) (lambda (x) (((m n) f) x)))) ```</p>
 <!-- more -->
@@ -49,6 +51,7 @@
     </div>
 
 </div>
+
                 <div class="footer">
     <span>Copyright © 2022 jjppp</span>
     <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>

@@ -42,6 +42,8 @@
         </div>
     
 
+    
+    
     <div class="post-md">
         <p># Zero Sum Games 即原本讨论的收益矩阵有两个，分别对应于玩家1和玩家2。零和游戏保证了 $A+B&#x3D;O$，这说明只需要一个唯一的矩阵即可建模游戏收益，通常规定为玩家1的收益 考虑一个混合策略outcome $(p,q)$，对于玩家1而言收益就是 $p^\intercal Aq$，玩家2就是 $-p^\intercal Aq$。对于纯策略只需要让概率分布坍缩为一个点就行了。 # Min-Max 以下只讨论玩家1，玩家2是类似的。 对于任意的玩家2的混合策略 $q$，玩家1必然会选择使得 $p^\intercal Aq$ 最大化的 $p$，即 $p&#x3D;\text{argmax } p^\intercal Aq$ 而对于任意玩家1的混合策略 $p$，玩家2必然会选择使得 $p^\intercal Aq$ 最小化的 $q$，这说明 $p&#x3D;\text{argmax}_p\min_qp^\intercal Aq$ ## 定理1 $$ \min_q \max_p U(p,q)\geq \max_p \min_q U(p,q) $$ 证明比较玄妙，就是一堆绕来绕去的min-max 首先对于 $U(p,q)$ 将其视为关于 $q$ 的函数，那么有函数在任意点处的函数值不小于其最小值 $$ U(p,q)\ge \min_q U(p,q) $$ 此时将 $U(p,q)$ 和 $\min_q U(p,q)$ 视为 $p$ 的函数，那么两侧加上关于 $p$ 的最大值仍然成立 $$ \max_p U(p,q)\geq \max_p \min_q U(p,q) $$ 此时RHS是一个数，LHS是一个关于 $q$ 的函数，这说明函数的最小值至少为RHS，即 $$ \min_q \max_p U(p,q)\geq \max_p \min_q U(p,q) $$ ## 定理2 若 $p^*,q^*$ 分别是min-max和max-min时，有如下定理： $(p^*,q^*)$ 是MNE当且仅当它们得到的收益相等。 证明是某次作业 ## 定理3 有限策略游戏的混合策略纳什均衡必然存在。 这说明必然存在 $(p^*,q^*)$ 这样的均衡局面，且这样的局面分别是min-max和max-min ## 定理4 在对称零和游戏中，均衡点必然收益为 $0$。 这是显然的，对称零和说明 $A^\intercal&#x3D;B&#x3D;-A$，即对角线上收益为 $0$。对于正收益的局面，玩家2总能移动到对角线上获得一个更高的收益；负收益局面玩家1同理。 ## 求解 对于玩家1而言即为求解 $\max_p \min_q p^\intercal Aq$，可以等价地转化为如下线性规划： $$ \text{maximize }v \\ \text{s.t.} \\ p^\intercal A\geq v\bold1 \\ \text{where $p$ is a distribution over all strategies} $$</p>
 <!-- more -->
@@ -49,6 +51,7 @@
     </div>
 
 </div>
+
                 <div class="footer">
     <span>Copyright © 2022 jjppp</span>
     <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>

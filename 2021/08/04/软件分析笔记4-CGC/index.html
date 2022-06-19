@@ -42,6 +42,8 @@
         </div>
     
 
+    
+    
     <div class="post-md">
         <p>CGC&#x3D;Call Graph Construction ## Motivation 如果只做method内的分析，则任何包含function call的语句都需要保守分析(例如说默认不是常数) 这样是不利于进一步做优化的,因此引入Call Graph图对CFG作拓展 ## java call invokestatic: call static methods, 对应的方法唯一且在编译时确定 invokespecial: call constructor, superclass methods, private methods, 对应的方法唯一且在编译时确定 invokevirtual: instance methods(virtual dispatch)，后面这俩是运行时决定的,对应的方法可以不止一个(polymorphism) invokeinterface: same as virtual but cannot optimize and checks interface implementation() invokedynamic: JVM在若干版本之后支持各种语言,这东西让dynamic language方便地在JVM上跑起来 一对尖括号&lt;&gt;内的内容叫做method的signature(签名), 包含 class name, ret type, 方法名字(可选), param type 格式形如 `InstanceName.(params, …)` 可以发现前两种call都是唯一确定的,因此问题的难点在于如何对virtual call建图 在运行时,virtual(的目标方法)由两点决定: 1. receiver object的类型 2. method signature 考虑到Java的继承&#x2F;方法覆写特性,我们可以用一个递归函数来求某个类中的方法的主体究竟是什么 dispatch(c,m)表示求c类中的方法m的主体,那么分别讨论m是否在c中,然后看情况往父类爬就好了 ## Class Hierarchy Algorithm 我们需要解决的问题就是求解dispatch,那么做这个的经典方法是CHA 做CHA有一个保守的假设,即任意指针指向的对象可以是他所有子类的对象(即子树中的一个点) 这时需要计算一个函数resolve(a.method).这里a是class A的引用变量,那么根据java的多态a可以指向所有A的子类的对象. 根据上面的保守假设,我们需要找到a所有可能指向的对象的method调用的dispatch值.这就是resolve的定义 ## Interprocedural Control Flow Graph 有了上面的resolve,我们就可以很方便地通过一个method call找到其所有可能调用的方法(的位置),然后连方法之间的边 方法间的边的transfer function实际上就是处理传参的过程. 需要注意的是,我们并不需要干掉caller位置的边,而是利用这条边来引导本地变量(数据流),没必要流进整个callee method 在caller位置的边的transfer function要干掉LHS变量,这是为了防止method call前后LHS变量的值发生变化使得分析精度下降 于是乎这样建出来的图就包含过程间的信息了,直接用和之前一样的方法做就好了 ### Reachability 方法间的调用形成了以main方法为起点的有向图，因此我们只需要分析可达的方法。在CGC的过程中可达性逐渐明确，因此可达范围也是不断增加的。</p>
 <!-- more -->
@@ -49,6 +51,7 @@
     </div>
 
 </div>
+
                 <div class="footer">
     <span>Copyright © 2022 jjppp</span>
     <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
