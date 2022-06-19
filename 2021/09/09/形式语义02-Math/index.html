@@ -168,59 +168,58 @@
         
       </div>
       <div class="markdown-body">
-        <p>## Basic Set Theory</p>
+        <h2 id="basic-set-theory">Basic Set Theory</h2>
 <p>没啥好讲的</p>
 <p><span class="math inline">\(\bigcap S=\left\{\;x\;|\; \forall T\in S,x\in T \;\right\}\)</span></p>
-<p>记 <span class="math inline">\(R=\bigcap\emptyset\)</span>，则 <span class="math inline">\(\forall x. \forall T\in\emptyset\wedge x\in  T\rightarrow x\in R\)</span></p>
+<p>记 <span class="math inline">\(R=\bigcap\emptyset\)</span>，则 <span class="math inline">\(\forall x. \forall T\in\emptyset\wedge x\in T\rightarrow x\in R\)</span></p>
 <p>注意到命题的前件为假，因此 <span class="math inline">\(R\)</span> 是"a set of everything"</p>
 <p>根据幂集公理这是不成立的，因此我们规定它无意义。</p>
-<p>## Relations</p>
+<h2 id="relations">Relations</h2>
 <p>没啥好讲的</p>
-<p>## Functions</p>
-<p><span class="math inline">\(f\subseteq D(f)\times R(f)\)</span>，且 <span class="math inline">\(\forall x,y,y&#39;\)</span>，<span class="math inline">\((x,y)\in f\wedge (x,y&#39;)\in  f\Rightarrow y=y&#39;\)</span></p>
-<p>### Total Functions <span class="math inline">\(f\)</span> on <span class="math inline">\(A\times B\)</span></p>
+<h2 id="functions">Functions</h2>
+<p><span class="math inline">\(f\subseteq D(f)\times R(f)\)</span>，且 <span class="math inline">\(\forall x,y,y&#39;\)</span>，<span class="math inline">\((x,y)\in f\wedge (x,y&#39;)\in f\Rightarrow y=y&#39;\)</span></p>
+<h3 id="total-functions-f-on-atimes-b">Total Functions <span class="math inline">\(f\)</span> on <span class="math inline">\(A\times B\)</span></h3>
 <p><span class="math inline">\(A=D(f)\)</span></p>
-<p>### Partial Functions <span class="math inline">\(f\)</span> on <span class="math inline">\(A\times B\)</span></p>
+<h3 id="partial-functions-f-on-atimes-b">Partial Functions <span class="math inline">\(f\)</span> on <span class="math inline">\(A\times B\)</span></h3>
 <p><span class="math inline">\(D(f)\subseteq A\)</span></p>
-<p>### <span class="math inline">\(\lambda\)</span>-Expression</p>
+<h3 id="lambda-expression"><span class="math inline">\(\lambda\)</span>-Expression</h3>
 <p><span class="math inline">\(\lambda x\in D. f(x)\)</span> 和 <span class="math inline">\(\left\{\;(x,f(x))\;|\;x\in D\;\right\}\)</span> 是等价的</p>
-<p>### Function Variant</p>
+<h3 id="function-variant">Function Variant</h3>
 <p>我们用 <span class="math inline">\(f\left\{x\leadsto y\right\}\)</span> 记号表示 <span class="math inline">\(f\cup (x,y)\)</span> 这个新的函数，此处的 <span class="math inline">\(x\in D(f)\)</span> 不一定成立</p>
 <p>显然 <span class="math inline">\(D(f\left\{x\leadsto y\right\})=D(f)\cup\left\{\;x\;\right\}\)</span></p>
-<p>### Function Type</p>
+<h3 id="function-type">Function Type</h3>
 <p>我们用 <span class="math inline">\(A\rightarrow B\)</span> 表示 <span class="math inline">\(A\mapsto B\)</span> 的所有函数，且规定 <span class="math inline">\(\rightarrow\)</span> 右结合</p>
-<p>即 <span class="math inline">\(A\rightarrow B\rightarrow C=A\rightarrow (B\rightarrow C)\)</span> ，表明这是一个 <span class="math inline">\(A\times  B\mapsto C\)</span> 的函数，或者 <span class="math inline">\(A\mapsto (B\mapsto C)\)</span> 的函数</p>
+<p>即 <span class="math inline">\(A\rightarrow B\rightarrow C=A\rightarrow (B\rightarrow C)\)</span> ，表明这是一个 <span class="math inline">\(A\times B\mapsto C\)</span> 的函数，或者 <span class="math inline">\(A\mapsto (B\mapsto C)\)</span> 的函数</p>
 <p>这里给出的 Function Type 默认是对应集合的 Total Function.</p>
-<p>很显然 <span class="math inline">\(A_1\mapsto A_2\mapsto \cdots\mapsto A_n\mapsto R\)</span> 的表达能力要强于 <span class="math inline">\(A_1\times  A_2\times\cdots\times A_n\mapsto R\)</span>，即我们可以先后给出参数</p>
+<p>很显然 <span class="math inline">\(A_1\mapsto A_2\mapsto \cdots\mapsto A_n\mapsto R\)</span> 的表达能力要强于 <span class="math inline">\(A_1\times A_2\times\cdots\times A_n\mapsto R\)</span>，即我们可以先后给出参数</p>
 <p>表达能力的弱化无需额外做什么，而强化则需要currying操作</p>
-<p>### Tuples as Functions</p>
+<h3 id="tuples-as-functions">Tuples as Functions</h3>
 <p>二元组 <span class="math inline">\((x,y),\, x,y\in D\)</span> 可以看成是 <span class="math inline">\(\left\{\;0,1\;\right\}\mapsto D\)</span> 的<strong>一个</strong>函数，即 <span class="math inline">\(f(0)=x,f(1)=y\)</span>，<span class="math inline">\(D\times D\)</span> 就可以看成是 <span class="math inline">\(\left\{\;0,1\;\right\}\mapsto D\)</span> 的<strong>所有</strong>函数</p>
-<p>形式化地写出来就是 <span class="math inline">\(A\times B=\left\{\;f\;|\;D(f)=\left\{\;0,1\;\right\}\wedge f(0)\in  A\wedge f(1)\in B\;\right\}\)</span></p>
-<p>于是自然，<span class="math inline">\(A_0\times A_1\times\cdots\times A_{n-1}\)</span> 就可以看成是 <span class="math inline">\(\left\{\;0,1,2\ldots  n-1\;\right\}\mapsto D\)</span> 的所有函数，其中 <span class="math inline">\(D=\bigcup\limits_{i=0}^{n-1} A_i\)</span></p>
-<p>写出来就是 <span class="math inline">\(\prod\limits_{i=0}^{n-1} A_i=\left\{\;f\;|\;D(f)=[0..n-1]\wedge\forall  i\in[0..n-1].f(i)\in A_i\;\right\}\)</span></p>
-<p>再进一步就是 <span class="math inline">\(\prod\limits_{i\in I}S_i=\left\{\;f\;|\;D(f)=I\wedge\forall i\in  I.f(i)\in S_i\;\right\}\)</span></p>
-<p>### Product of Functions</p>
+<p>形式化地写出来就是 <span class="math inline">\(A\times B=\left\{\;f\;|\;D(f)=\left\{\;0,1\;\right\}\wedge f(0)\in A\wedge f(1)\in B\;\right\}\)</span></p>
+<p>于是自然，<span class="math inline">\(A_0\times A_1\times\cdots\times A_{n-1}\)</span> 就可以看成是 <span class="math inline">\(\left\{\;0,1,2\ldots n-1\;\right\}\mapsto D\)</span> 的所有函数，其中 <span class="math inline">\(D=\bigcup\limits_{i=0}^{n-1} A_i\)</span></p>
+<p>写出来就是 <span class="math inline">\(\prod\limits_{i=0}^{n-1} A_i=\left\{\;f\;|\;D(f)=[0..n-1]\wedge\forall i\in[0..n-1].f(i)\in A_i\;\right\}\)</span></p>
+<p>再进一步就是 <span class="math inline">\(\prod\limits_{i\in I}S_i=\left\{\;f\;|\;D(f)=I\wedge\forall i\in I.f(i)\in S_i\;\right\}\)</span></p>
+<h3 id="product-of-functions">Product of Functions</h3>
 <p>现在，我们令 <span class="math inline">\(\theta: \alpha\mapsto \left\{\;S_\alpha\;\right\}\)</span>，即是以 <span class="math inline">\(\alpha\)</span> 为指标集的一个集合族，<span class="math inline">\(\theta\)</span> 将一个下标映射到集合族里对应下标的某个集合</p>
 <p>我们同样可以定义 <span class="math inline">\(\theta\)</span> 上的乘积(product)</p>
-<p>即 <span class="math inline">\(\sqcap\theta=\left\{\;f\;|\;D(f)=\alpha\wedge \forall  x\in\alpha.f(x)\in\theta(x)\;\right\}\)</span>，其中 <span class="math inline">\(\alpha=D(\theta),\;\theta(x)=S_x\)</span></p>
-<p>当 <span class="math inline">\(\theta\)</span> 是常函数时，<span class="math inline">\(\forall x. \theta(x)=S\)</span>，那么 <span class="math inline">\(\sqcup\theta=\left\{\;f\;|\;D(f)=\alpha\wedge\forall x\in\alpha. f(x)\in  S\;\right\}=\prod\limits_{i\in\alpha}S=S^\alpha=\left\{\;f\;|\;f:\alpha\mapsto  S\;\right\}\)</span></p>
+<p>即 <span class="math inline">\(\sqcap\theta=\left\{\;f\;|\;D(f)=\alpha\wedge \forall x\in\alpha.f(x)\in\theta(x)\;\right\}\)</span>，其中 <span class="math inline">\(\alpha=D(\theta),\;\theta(x)=S_x\)</span></p>
+<p>当 <span class="math inline">\(\theta\)</span> 是常函数时，<span class="math inline">\(\forall x. \theta(x)=S\)</span>，那么 <span class="math inline">\(\sqcup\theta=\left\{\;f\;|\;D(f)=\alpha\wedge\forall x\in\alpha. f(x)\in S\;\right\}=\prod\limits_{i\in\alpha}S=S^\alpha=\left\{\;f\;|\;f:\alpha\mapsto S\;\right\}\)</span></p>
 <p>大概的意思是说，我们有一个定义域 <span class="math inline">\(\alpha\)</span> 到若干集合的映射 <span class="math inline">\(\theta\)</span>，现在把每个 <span class="math inline">\(\alpha\)</span> 中的元素 <span class="math inline">\(x\)</span> 的像限制到 <span class="math inline">\(\theta(x)\)</span> 里的一个具体元素，就可以得到一个具体的 <span class="math inline">\(D(\theta)\rightarrow \bigcup R(\theta)\)</span> 函数。如果我们取遍所有可能的像，那么就恰好遍历完了所有这样的函数。</p>
 <p>具体到程序设计语言，就是若干个 Type 经过这样的操作，就可以得到一个 Product Type. 即我们把一个 Type 看成是一个<strong>单点函数</strong>的集合，那么就可以通过简单的 Product 操作复合得到新的 Type.</p>
-<p>### Sum of Functions</p>
+<h3 id="sum-of-functions">Sum of Functions</h3>
 <p>对于任意集合 <span class="math inline">\(A,B\)</span>，规定</p>
 <p><span class="math inline">\(A+B=\left\{\;0\;\right\}\times A\cup\left\{\;1\;\right\}\times B\)</span></p>
 <p>称 <span class="math inline">\(A+B\)</span> 为 <span class="math inline">\(A,B\)</span> 的不交并。</p>
-<p>自然就有 <span class="math inline">\(\sum\limits_{i\in \alpha} S(i)=\left\{\;(i,x)\;|\;i\in\alpha\wedge x\in  S(i)\;\right\}\)</span></p>
-<p>同样的，如果我们把 <span class="math inline">\(\theta\)</span> 看作是 <span class="math inline">\(\alpha\rightarrow  \bigcup\limits_{i\in\alpha}S(i)\)</span>，那么就有 <span class="math inline">\(\Sigma\theta=\left\{\;(i,x)\;|\;i\in\alpha\wedge x\in S(i)\;\right\}\)</span></p>
-<p>当 <span class="math inline">\(\theta\)</span> 是常函数 <span class="math inline">\(\theta(i)=S\)</span> 的时候，<span class="math inline">\(\Sigma\theta=\sum\limits_{x\in\alpha}S=\left\{\;(x,y)\;|\;x\in\alpha\wedge  y\in S\;\right\}=\alpha\times S=\alpha\rightarrow S\)</span></p>
+<p>自然就有 <span class="math inline">\(\sum\limits_{i\in \alpha} S(i)=\left\{\;(i,x)\;|\;i\in\alpha\wedge x\in S(i)\;\right\}\)</span></p>
+<p>同样的，如果我们把 <span class="math inline">\(\theta\)</span> 看作是 <span class="math inline">\(\alpha\rightarrow \bigcup\limits_{i\in\alpha}S(i)\)</span>，那么就有 <span class="math inline">\(\Sigma\theta=\left\{\;(i,x)\;|\;i\in\alpha\wedge x\in S(i)\;\right\}\)</span></p>
+<p>当 <span class="math inline">\(\theta\)</span> 是常函数 <span class="math inline">\(\theta(i)=S\)</span> 的时候，<span class="math inline">\(\Sigma\theta=\sum\limits_{x\in\alpha}S=\left\{\;(x,y)\;|\;x\in\alpha\wedge y\in S\;\right\}=\alpha\times S=\alpha\rightarrow S\)</span></p>
 <p>这个的意思是，我们可以通过若干 Type 得到 Sum Type，新的 Sum Type 中的变量只能是组成它的若干 Type 中的某一个。</p>
-<p>### 感想</p>
+<h3 id="感想">感想</h3>
 <p>写着写着就突然悟了，注意到一个编程语言中的类型可以看成是值域 <span class="math inline">\(R\)</span> 构成的集合</p>
-<p>而带<strong>类型</strong>的变量可以看成是单点函数的集合 <span class="math inline">\(\left\{\;f\;|\;f:\left\{\;var\;\right\}\rightarrow  R\;\right\}\)</span>，变量的一个具体<strong>取值</strong>则对应一个具体的单点函数。需要说明的是，我们这里不妨规定变量两两不重名(否则可以很容易用自然数命名而不改变程序的行为)</p>
+<p>而带<strong>类型</strong>的变量可以看成是单点函数的集合 <span class="math inline">\(\left\{\;f\;|\;f:\left\{\;var\;\right\}\rightarrow R\;\right\}\)</span>，变量的一个具体<strong>取值</strong>则对应一个具体的单点函数。需要说明的是，我们这里不妨规定变量两两不重名(否则可以很容易用自然数命名而不改变程序的行为)</p>
 <p>那么上面说的 Sum 和 Product 实际上就是通过简单类型构造出复杂类型的两类方法</p>
 <p>而我们知道，一个程序的所有状态由所有变量的取值组成，那么一个程序的特定状态就可以表达成一个具体的函数 <span class="math inline">\(P:\left\{\;\;|\;x\text{ is
-  variable}\;\right\}\)</span> excerpt: &gt;-</p>
-<p>## Basic Set Theory 没啥好讲的 <span class="math inline">\(\\bigcap S=\\left\\{\\;x\\;|\\; \\forall T\\in S,x\\in T \\;\\right\\}\)</span> 记 <span class="math inline">\(R=\\bigcap\\emptyset\)</span>，则 <span class="math inline">\(\\forall x. \\forall T\\in\\emptyset\\wedge x\\in T\\rightarrow x\\in R\)</span> 注意到命题的前件为假，因此 <span class="math inline">\(R\)</span> 是"a set of everything" 根据幂集公理这是不成立的，因此我们规定它无意义。 ## Relations 没啥好讲的 ## Functions <span class="math inline">\(f\\subseteq D(f)\\times R(f)\)</span>，且 <span class="math inline">\(\\forall x,y,y&#39;\)</span>，<span class="math inline">\((x,y)\\in f\\wedge (x,y&#39;)\\in f\\Rightarrow y=y&#39;\)</span> ### Total Functions <span class="math inline">\(f\)</span> on <span class="math inline">\(A\\times B\)</span> <span class="math inline">\(A=D(f)\)</span> ### Partial Functions <span class="math inline">\(f\)</span> on <span class="math inline">\(A\\times B\)</span> <span class="math inline">\(D(f)\\subseteq A\)</span> ### <span class="math inline">\(\\lambda\)</span>-Expression <span class="math inline">\(\\lambda x\\in D. f(x)\)</span> 和 <span class="math inline">\(\\left\\{\\;(x,f(x))\\;|\\;x\\in D\\;\\right\\}\)</span> 是等价的 ### Function Variant 我们用 <span class="math inline">\(f\\left\\{x\\leadsto y\\right\\}\)</span> 记号表示 <span class="math inline">\(f\\cup (x,y)\)</span> 这个新的函数，此处的 <span class="math inline">\(x\\in D(f)\)</span> 不一定成立 显然 <span class="math inline">\(D(f\\left\\{x\\leadsto y\\right\\})=D(f)\\cup\\left\\{\\;x\\;\\right\\}\)</span> ### Function Type 我们用 <span class="math inline">\(A\\rightarrow B\)</span> 表示 <span class="math inline">\(A\\mapsto B\)</span> 的所有函数，且规定 <span class="math inline">\(\\rightarrow\)</span> 右结合 即 <span class="math inline">\(A\\rightarrow B\\rightarrow C=A\\rightarrow (B\\rightarrow C)\)</span> ，表明这是一个 <span class="math inline">\(A\\times B\\mapsto C\)</span> 的函数，或者 <span class="math inline">\(A\\mapsto (B\\mapsto C)\)</span> 的函数 这里给出的 Function Type 默认是对应集合的 Total Function. 很显然 <span class="math inline">\(A\_1\\mapsto A\_2\\mapsto \\cdots\\mapsto A\_n\\mapsto R\)</span> 的表达能力要强于 <span class="math inline">\(A\_1\\times A\_2\\times\\cdots\\times A\_n\\mapsto R\)</span>，即我们可以先后给出参数 表达能力的弱化无需额外做什么，而强化则需要currying操作 ### Tuples as Functions 二元组 <span class="math inline">\((x,y),\\, x,y\\in D\)</span> 可以看成是 <span class="math inline">\(\\left\\{\\;0,1\\;\\right\\}\\mapsto D\)</span> 的**一个**函数，即 <span class="math inline">\(f(0)=x,f(1)=y\)</span>，<span class="math inline">\(D\\times D\)</span> 就可以看成是 <span class="math inline">\(\\left\\{\\;0,1\\;\\right\\}\\mapsto D\)</span> 的**所有**函数 形式化地写出来就是 <span class="math inline">\(A\\times B=\\left\\{\\;f\\;|\\;D(f)=\\left\\{\\;0,1\\;\\right\\}\\wedge f(0)\\in A\\wedge f(1)\\in B\\;\\right\\}\)</span> 于是自然，<span class="math inline">\(A\_0\\times A\_1\\times\\cdots\\times A\_{n-1}\)</span> 就可以看成是 <span class="math inline">\(\\left\\{\\;0,1,2\\ldots n-1\\;\\right\\}\\mapsto D\)</span> 的所有函数，其中 <span class="math inline">\(D=\\bigcup\\limits\_{i=0}^{n-1} A\_i\)</span> 写出来就是 <span class="math inline">\(\\prod\\limits\_{i=0}^{n-1} A\_i=\\left\\{\\;f\\;|\\;D(f)=\[0..n-1\]\\wedge\\forall i\\in\[0..n-1\].f(i)\\in A\_i\\;\\right\\}\)</span> 再进一步就是 <span class="math inline">\(\\prod\\limits\_{i\\in I}S\_i=\\left\\{\\;f\\;|\\;D(f)=I\\wedge\\forall i\\in I.f(i)\\in S\_i\\;\\right\\}\)</span> ### Product of Functions 现在，我们令 <span class="math inline">\(\\theta: \\alpha\\mapsto \\left\\{\\;S\_\\alpha\\;\\right\\}\)</span>，即是以 <span class="math inline">\(\\alpha\)</span> 为指标集的一个集合族，<span class="math inline">\(\\theta\)</span> 将一个下标映射到集合族里对应下标的某个集合 我们同样可以定义 <span class="math inline">\(\\theta\)</span> 上的乘积(product) 即 <span class="math inline">\(\\sqcap\\theta=\\left\\{\\;f\\;|\\;D(f)=\\alpha\\wedge \\forall x\\in\\alpha.f(x)\\in\\theta(x)\\;\\right\\}\)</span>，其中 <span class="math inline">\(\\alpha=D(\\theta),\\;\\theta(x)=S\_x\)</span> 当 <span class="math inline">\(\\theta\)</span> 是常函数时，<span class="math inline">\(\\forall x. \\theta(x)=S\)</span>，那么 <span class="math inline">\(\\sqcup\\theta=\\left\\{\\;f\\;|\\;D(f)=\\alpha\\wedge\\forall x\\in\\alpha. f(x)\\in S\\;\\right\\}=\\prod\\limits\_{i\\in\\alpha}S=S^\\alpha=\\left\\{\\;f\\;|\\;f:\\alpha\\mapsto S\\;\\right\\}\)</span> 大概的意思是说，我们有一个定义域 <span class="math inline">\(\\alpha\)</span> 到若干集合的映射 <span class="math inline">\(\\theta\)</span>，现在把每个 <span class="math inline">\(\\alpha\)</span> 中的元素 <span class="math inline">\(x\)</span> 的像限制到 <span class="math inline">\(\\theta(x)\)</span> 里的一个具体元素，就可以得到一个具体的 <span class="math inline">\(D(\\theta)\\rightarrow \\bigcup R(\\theta)\)</span> 函数。如果我们取遍所有可能的像，那么就恰好遍历完了所有这样的函数。 具体到程序设计语言，就是若干个 Type 经过这样的操作，就可以得到一个 Product Type. 即我们把一个 Type 看成是一个**单点函数**的集合，那么就可以通过简单的 Product 操作复合得到新的 Type. ### Sum of Functions 对于任意集合 <span class="math inline">\(A,B\)</span>，规定 <span class="math inline">\(A+B=\\left\\{\\;0\\;\\right\\}\\times A\\cup\\left\\{\\;1\\;\\right\\}\\times B\)</span> 称 <span class="math inline">\(A+B\)</span> 为 <span class="math inline">\(A,B\)</span> 的不交并。 自然就有 <span class="math inline">\(\\sum\\limits\_{i\\in \\alpha} S(i)=\\left\\{\\;(i,x)\\;|\\;i\\in\\alpha\\wedge x\\in S(i)\\;\\right\\}\)</span> 同样的，如果我们把 <span class="math inline">\(\\theta\)</span> 看作是 <span class="math inline">\(\\alpha\\rightarrow \\bigcup\\limits\_{i\\in\\alpha}S(i)\)</span>，那么就有 <span class="math inline">\(\\Sigma\\theta=\\left\\{\\;(i,x)\\;|\\;i\\in\\alpha\\wedge x\\in S(i)\\;\\right\\}\)</span> 当 <span class="math inline">\(\\theta\)</span> 是常函数 <span class="math inline">\(\\theta(i)=S\)</span> 的时候，<span class="math inline">\(\\Sigma\\theta=\\sum\\limits\_{x\\in\\alpha}S=\\left\\{\\;(x,y)\\;|\\;x\\in\\alpha\\wedge y\\in S\\;\\right\\}=\\alpha\\times S=\\alpha\\rightarrow S\)</span> 这个的意思是，我们可以通过若干 Type 得到 Sum Type，新的 Sum Type 中的变量只能是组成它的若干 Type 中的某一个。 ### 感想 写着写着就突然悟了，注意到一个编程语言中的类型可以看成是值域 <span class="math inline">\(R\)</span> 构成的集合 而带**类型**的变量可以看成是单点函数的集合 <span class="math inline">\(\\left\\{\\;f\\;|\\;f:\\left\\{\\;var\\;\\right\\}\\rightarrow R\\;\\right\\}\)</span>，变量的一个具体**取值**则对应一个具体的单点函数。需要说明的是，我们这里不妨规定变量两两不重名(否则可以很容易用自然数命名而不改变程序的行为) 那么上面说的 Sum 和 Product 实际上就是通过简单类型构造出复杂类型的两类方法 而我们知道，一个程序的所有状态由所有变量的取值组成，那么一个程序的特定状态就可以表达成一个具体的函数 <span class="math inline">\(P:\\left\\{\\;\\;|\\;x\\text{ is variable}\\;\\right\\}\)</span> <span id="more"></span></p>
+variable}\;\right\}\)</span></p>
 
       </div>
       
@@ -252,6 +251,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#basic-set-theory"><span class="toc-text">Basic Set Theory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#relations"><span class="toc-text">Relations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functions"><span class="toc-text">Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#total-functions-f-on-atimes-b"><span class="toc-text">Total Functions \(f\) on \(A\times B\)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#partial-functions-f-on-atimes-b"><span class="toc-text">Partial Functions \(f\) on \(A\times B\)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lambda-expression"><span class="toc-text">\(\lambda\)-Expression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#function-variant"><span class="toc-text">Function Variant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#function-type"><span class="toc-text">Function Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tuples-as-functions"><span class="toc-text">Tuples as Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#product-of-functions"><span class="toc-text">Product of Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sum-of-functions"><span class="toc-text">Sum of Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%84%9F%E6%83%B3"><span class="toc-text">感想</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

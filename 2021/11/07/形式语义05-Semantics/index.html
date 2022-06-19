@@ -168,7 +168,7 @@
         
       </div>
       <div class="markdown-body">
-        <p>## Formal Semantic</p>
+        <h2 id="formal-semantic">Formal Semantic</h2>
 <p>一般分三种</p>
 <ol type="1">
 <li><p>Operational Semantic，操作语义</p></li>
@@ -176,24 +176,42 @@
 <li><p>Axiomatic Semantic，公理语义</p></li>
 </ol>
 <p>主要记一下操作语义</p>
-<p>## Operational Semantic</p>
+<h2 id="operational-semantic">Operational Semantic</h2>
 <p>对命令式语言而言，一个程序的运行状态可以用 状态<span class="math inline">\(\times\)</span>当前语句地址 二元组确定，那么就可以用 <span class="math inline">\(\left&lt;c,\sigma\right&gt;\)</span> 描述一个执行状况，表示接下来要执行 <span class="math inline">\(c\)</span>，目前的状态为 <span class="math inline">\(\sigma\)</span></p>
 <p>状态一般指的是 <span class="math inline">\(\text{Value}^\text{Var}\)</span> 的函数，这里规定 <span class="math inline">\(\text{Var}\)</span> 表示变量的集合，<span class="math inline">\(\text{Value}\)</span> 表示值（常量）的集合。注意这里的集合内都是符号，与语义无关。例如我们说<span class="math inline">\(23456\)</span>是一个值，但它的具体含义是什么在这里并不关心。具体给值的符号赋予含义的操作，一般由另外的函数进行，例如说 <span class="math inline">\(\text{Meaning}:\text{Value}\mapsto \mathbb N\)</span> 就是一个给所有Integer Tokens赋予具体整数含义的映射</p>
 <p>操作语义一般分为大步语义（<span class="math inline">\(\Downarrow\)</span>Big-Step）和小步语义（<span class="math inline">\(\rightarrow\)</span>Small-Step），分别用于不同目的的研究。一般操作语义要依靠语法结构进行，即它是Syntax Directed的。因此有时候也叫做SOS（Structural Operational Semantics）</p>
 <p>通常讲语义会基于一个具体的语言给一些例子，建议直接找PLDI和POPL的形式语义论文看</p>
-<p>### Evaluation</p>
-<p>$$</p>
-<p></p>
-<p>\</p>
-<p>\</p>
-<p></p>
-<p>\</p>
-<p>\</p>
-<p></p>
-<p>\</p>
-<p>\</p>
-<p></p>
-<p>$$</p>
+<h3 id="evaluation">Evaluation</h3>
+<span class="math display">\[\begin{aligned}
+
+\frac{\left&lt;x,\sigma\right&gt;\rightarrow\left&lt;{\rm{n_1}
+},\sigma&#39;\right&gt;}{\left&lt;x+y,\sigma\right&gt;\rightarrow\left&lt;{\rm{n_1}
+}+y,\sigma&#39;\right&gt;}
+
+\\
+
+\\
+
+\frac{\left&lt;y,\sigma&#39;\right&gt;\rightarrow \left&lt;{\rm{n_2}
+},\sigma&#39;&#39;\right&gt;}{\left&lt;{\rm{n_1} }+y,\sigma&#39;\right&gt;\rightarrow\left&lt;{\rm
+n_1+n_2},\sigma&#39;&#39;\right&gt;}
+
+\\
+
+\\
+
+\frac{x\in\text{Var}
+}{\left&lt;x,\sigma\right&gt;\rightarrow\left&lt;\sigma(x),\sigma\right&gt;}
+
+\\
+
+\\
+
+\frac{\text{Meaning}({\rm n_1})+\text{Meaning}({\rm n_2})=\text{Meaning}({\rm
+n_3})}{\left&lt;{\rm n_1+n_2},\sigma\right&gt;\rightarrow\left&lt;{\rm
+n_3},\sigma\right&gt;}
+
+\end{aligned}\]</span>
 <p>注意这里<span class="math inline">\(\text{Meaning}\)</span>映射后的加法实际上是正整数的加法，而二元组中的<span class="math inline">\(+\)</span>仅作为符号，具体含义由<span class="math inline">\(\text{Meaning}\)</span>决定</p>
 <p>以求值为例，来展示一下小步语义的特点</p>
 <p>给出的求值语义有一些比较好的性质：</p>
@@ -205,27 +223,47 @@
 <p>对于上面给出的例子，可以用写表达式求值辅助：对于给定的表达式<strong>二叉树</strong>（why 二叉？），我们规定必须先算左子树，再算右子树。如果遇到了变量，就替换为它在环境中的值；如果遇到了常量+常量，就把token转化为整数，计算之后再变回token。</p>
 <p>到这里就又可以发现一些事情。操作语义几乎就是在模拟一个具体的算法、一个抽象计算机上编程语言的执行过程、一个解释执行的解释器。反过来，有了操作语义，我们也可以以此指导编译器、解释器的实现，规范具体细节。</p>
 <p>这有什么用？用JYY的话说，我们就可以用一个<strong>甚至还没有被实现的</strong>语言来编写程序、模拟执行，并且预测这些程序的结果、证明它的细节了。这是多酷的一件事情！</p>
-<p>### While</p>
-<p>$$</p>
-<p></p>
-<p>\</p>
-<p>\</p>
-<p></p>
-<p>\</p>
-<p>\</p>
-<p></p>
-<p>\</p>
-<p>\</p>
-<p></p>
-<p>\</p>
-<p>\</p>
-<p></p>
-<p>$$</p>
+<h3 id="while">While</h3>
+<span class="math display">\[\begin{aligned}
+
+\frac{[\![exp]\!]\sigma=\bold{true} }{\left&lt;{\bold{while}
+}\;exp\;\bold{do}\;stmt,\sigma\right&gt;\rightarrow\left&lt;stmt\bold;\;\bold{while}\;exp\;\bold{do}\;stmt,\sigma\right&gt;}
+
+\\
+
+\\
+
+\frac{[\![exp]\!]\sigma=\bold{false} }{\left&lt;{\bold{while}
+}\;exp\;\bold{do}\;stmt,\sigma\right&gt;\rightarrow\left&lt;\bold{skip},\sigma\right&gt;}
+
+\\
+
+\\
+
+\frac{\left&lt;stmt_1,\sigma\right&gt;\rightarrow
+\left&lt;stmt_1&#39;,\sigma&#39;\right&gt;}{\left&lt;stmt_1\bold;\;stmt_2,\sigma\right&gt;\rightarrow\left&lt;stmt_1&#39;\bold;\;stmt_2,\sigma&#39;\right&gt;}
+
+\\
+
+\\
+
+\frac{}{\left&lt;\bold{skip;}\;stmt,\sigma\right&gt;\rightarrow\left&lt;stmt,\sigma\right&gt;}
+
+\\
+
+\\
+
+\frac{}{\left&lt;\bold{skip},\sigma\right&gt;\rightarrow\left&lt;\bold{skip},\sigma\right&gt;}
+
+\end{aligned}\]</span>
 <p>这里主要想讲 <span class="math inline">\([\![exp]\!]\sigma\)</span> 这个符号的用法。这里表示在环境 <span class="math inline">\(\sigma\)</span> 下，表达式求出的值是什么。其具体含义与操作语义的求值相同，但是注意到操作语义在执行的过程中会丢失表达式的结构信息（我们在一步步化简），因此通常需要把求值和化简分开，这里表现为用单独的函数表示求值操作，以此简化<span class="math inline">\(\bold{while}\;\ldots\;\bold{do}\)</span> 的操作语义规则，否则我们得这么写：</p>
-<p>$$</p>
-<p></p>
-<p>$$</p>
-<p>### Evaluation Context</p>
+<span class="math display">\[\begin{aligned}
+
+\frac{}{\left&lt;{\bold{while}
+}\;exp\;\bold{do}\;stmt,\sigma\right&gt;\rightarrow\left&lt;\bold{if}\;exp\;\bold{then}\;(stmt\bold;\;\bold{while}\;exp\;\bold{do}\;stmt)\;\bold{else}\;\bold{skip},\sigma\right&gt;}
+
+\end{aligned}\]</span>
+<h3 id="evaluation-context">Evaluation Context</h3>
 <p>人总喜欢偷懒，观察到上面的操作语义其实在做很重复的事情：</p>
 <ol type="1">
 <li><p>我们写一堆加法的rules，然后获得了加法操作</p></li>
@@ -236,21 +274,36 @@
 <p>可以发现，既然这些都是二元运算，那么能不能给所有的二元运算定义一次求值顺序（e.g. 最左推导、确定性blabla），然后只需要根据不同情况带入具体算符就可以了？</p>
 <p>这就是所谓的Evaluation Context了</p>
 <p>仍然以Evaluation为例，可以规定</p>
-<p>$$</p>
-<p>{E}:=[;]{,|,}{E}+exp{,|,}{}+{E}{, |,}{E}-exp{,|,}{}-{E}</p>
-<p>$$</p>
+<span class="math display">\[\begin{aligned}
+
+{\cal E}:=[\;]{\,\Big |\,}{\cal E}+exp{\,\Big |\,}{\rm n}+{\cal E}{\,\Big
+|\,}{\cal E}-exp{\,\Big |\,}{\rm n}-{\cal E}
+
+\end{aligned}\]</span>
 <p>这里我们称 <span class="math inline">\(\cal E\)</span> 为Evaluation Context，对于带入其中的项 <span class="math inline">\(r\)</span> 称为Redex</p>
 <p>那么我们只需要如下几条rules，就足够表达出带有加减法的表达式求值语法：</p>
-<p>$$</p>
-<p></p>
-<p>\</p>
-<p>\</p>
-<p></p>
-<p>\</p>
-<p>\</p>
-<p></p>
-<p>$$ excerpt: &gt;</p>
-<p>## Formal Semantic 一般分三种 1. Operational Semantic，操作语义 2. Denotational Semantic，指称语义 3. Axiomatic Semantic，公理语义 主要记一下操作语义 ## Operational Semantic 对命令式语言而言，一个程序的运行状态可以用 状态<span class="math inline">\(\\times\)</span>当前语句地址 二元组确定，那么就可以用 <span class="math inline">\(\\left\)</span> 描述一个执行状况，表示接下来要执行 <span class="math inline">\(c\)</span>，目前的状态为 <span class="math inline">\(\\sigma\)</span> 状态一般指的是 <span class="math inline">\(\\text{Value}^\\text{Var}\)</span> 的函数，这里规定 <span class="math inline">\(\\text{Var}\)</span> 表示变量的集合，<span class="math inline">\(\\text{Value}\)</span> 表示值（常量）的集合。注意这里的集合内都是符号，与语义无关。例如我们说<span class="math inline">\(23456\)</span>是一个值，但它的具体含义是什么在这里并不关心。具体给值的符号赋予含义的操作，一般由另外的函数进行，例如说 <span class="math inline">\(\\text{Meaning}:\\text{Value}\\mapsto \\mathbb N\)</span> 就是一个给所有Integer Tokens赋予具体整数含义的映射 操作语义一般分为大步语义（<span class="math inline">\(\\Downarrow\)</span>Big-Step）和小步语义（<span class="math inline">\(\\rightarrow\)</span>Small-Step），分别用于不同目的的研究。一般操作语义要依靠语法结构进行，即它是Syntax Directed的。因此有时候也叫做SOS（Structural Operational Semantics） 通常讲语义会基于一个具体的语言给一些例子，建议直接找PLDI和POPL的形式语义论文看 ### Evaluation <span class="math display">\[ \\frac{\\left\\rightarrow\\left&lt;{\\rm{n\_1} },\\sigma&#39;\\right&gt;}{\\left\\rightarrow\\left&lt;{\\rm{n\_1} }+y,\\sigma&#39;\\right&gt;} \\\\ \\\\ \\frac{\\left\\rightarrow \\left&lt;{\\rm{n\_2} },\\sigma&#39;&#39;\\right&gt;}{\\left&lt;{\\rm{n\_1} }+y,\\sigma&#39;\\right&gt;\\rightarrow\\left&lt;{\\rm n\_1+n\_2},\\sigma&#39;&#39;\\right&gt;} \\\\ \\\\ \\frac{x\\in\\text{Var} }{\\left\\rightarrow\\left&lt;\\sigma(x),\\sigma\\right&gt;} \\\\ \\\\ \\frac{\\text{Meaning}({\\rm n\_1})+\\text{Meaning}({\\rm n\_2})=\\text{Meaning}({\\rm n\_3})}{\\left&lt;{\\rm n\_1+n\_2},\\sigma\\right&gt;\\rightarrow\\left&lt;{\\rm n\_3},\\sigma\\right&gt;} \]</span> 注意这里<span class="math inline">\(\\text{Meaning}\)</span>映射后的加法实际上是正整数的加法，而二元组中的<span class="math inline">\(+\)</span>仅作为符号，具体含义由<span class="math inline">\(\\text{Meaning}\)</span>决定 以求值为例，来展示一下小步语义的特点 给出的求值语义有一些比较好的性质： 1. 可以看到上面给出的求值语义是确定的(Deterministic)，这**并不是**所有语言必备的 2. 并且我们对代码、状态二元组的推导只能通过每次寻找当前语句的结构中，最左的可推导的句子，这**也不是**所有语言必备的； 到这里就可以发现一些情况了。所谓的形式语义无非是刻画某些东西性质的一类工具，具体只能作为解决问题的帮手，而本身只起到一种规范的作用，也就是Reference Manual了。并且这种语义是建立在数学符号上的，**可以**与具体的实现无关（当然也可以有关，但这并不是我们希望的），可以非常容易地进行推理 对于上面给出的例子，可以用写表达式求值辅助：对于给定的表达式**二叉树**（why 二叉？），我们规定必须先算左子树，再算右子树。如果遇到了变量，就替换为它在环境中的值；如果遇到了常量+常量，就把token转化为整数，计算之后再变回token。 到这里就又可以发现一些事情。操作语义几乎就是在模拟一个具体的算法、一个抽象计算机上编程语言的执行过程、一个解释执行的解释器。反过来，有了操作语义，我们也可以以此指导编译器、解释器的实现，规范具体细节。 这有什么用？用JYY的话说，我们就可以用一个**甚至还没有被实现的**语言来编写程序、模拟执行，并且预测这些程序的结果、证明它的细节了。这是多酷的一件事情！ ### While <span class="math display">\[ \\frac{\[\\!\[exp\]\\!\]\\sigma=\\bold{true} }{\\left&lt;{\\bold{while} }\\;exp\\;\\bold{do}\\;stmt,\\sigma\\right&gt;\\rightarrow\\left} \\\\ \\\\ \\frac{\[\\!\[exp\]\\!\]\\sigma=\\bold{false} }{\\left&lt;{\\bold{while} }\\;exp\\;\\bold{do}\\;stmt,\\sigma\\right&gt;\\rightarrow\\left&lt;\\bold{skip},\\sigma\\right&gt;} \\\\ \\\\ \\frac{\\left\\rightarrow \\left}{\\left\\rightarrow\\left} \\\\ \\\\ \\frac{}{\\left&lt;\\bold{skip;}\\;stmt,\\sigma\\right&gt;\\rightarrow\\left} \\\\ \\\\ \\frac{}{\\left&lt;\\bold{skip},\\sigma\\right&gt;\\rightarrow\\left&lt;\\bold{skip},\\sigma\\right&gt;} \]</span> 这里主要想讲 <span class="math inline">\(\[\\!\[exp\]\\!\]\\sigma\)</span> 这个符号的用法。这里表示在环境 <span class="math inline">\(\\sigma\)</span> 下，表达式求出的值是什么。其具体含义与操作语义的求值相同，但是注意到操作语义在执行的过程中会丢失表达式的结构信息（我们在一步步化简），因此通常需要把求值和化简分开，这里表现为用单独的函数表示求值操作，以此简化<span class="math inline">\(\\bold{while}\\;\\ldots\\;\\bold{do}\)</span> 的操作语义规则，否则我们得这么写： <span class="math display">\[ \\frac{}{\\left&lt;{\\bold{while} }\\;exp\\;\\bold{do}\\;stmt,\\sigma\\right&gt;\\rightarrow\\left&lt;\\bold{if}\\;exp\\;\\bold{then}\\;(stmt\\bold;\\;\\bold{while}\\;exp\\;\\bold{do}\\;stmt)\\;\\bold{else}\\;\\bold{skip},\\sigma\\right&gt;} \]</span> ### Evaluation Context 人总喜欢偷懒，观察到上面的操作语义其实在做很重复的事情： 1. 我们写一堆加法的rules，然后获得了加法操作 2. 再写一堆乘法的rules 3. 再写一堆减法的rules 4. 再写一堆二元运算的rules.... 可以发现，既然这些都是二元运算，那么能不能给所有的二元运算定义一次求值顺序（e.g. 最左推导、确定性blabla），然后只需要根据不同情况带入具体算符就可以了？ 这就是所谓的Evaluation Context了 仍然以Evaluation为例，可以规定 <span class="math display">\[ {\\cal E}:=\[\\;\]{\\,\\Big |\\,}{\\cal E}+exp{\\,\\Big |\\,}{\\rm n}+{\\cal E}{\\,\\Big |\\,}{\\cal E}-exp{\\,\\Big |\\,}{\\rm n}-{\\cal E} \]</span> 这里我们称 <span class="math inline">\(\\cal E\)</span> 为Evaluation Context，对于带入其中的项 <span class="math inline">\(r\)</span> 称为Redex 那么我们只需要如下几条rules，就足够表达出带有加减法的表达式求值语法： <span class="math display">\[ \\frac{\\text{Meaning}({\\rm n\_1})+\\text{Meaning}({\\rm n\_2})=\\text{Meaning}({\\rm n\_3})}{\\left&lt;{\\rm n\_1+n\_2},\\sigma\\right&gt;\\rightarrow\\left&lt;{\\rm n\_3},\\sigma\\right&gt;} \\\\ \\\\ \\frac{\\text{Meaning}({\\rm n\_1})-\\text{Meaning}({\\rm n\_2})=\\text{Meaning}({\\rm n\_3})}{\\left&lt;{\\rm n\_1-n\_2},\\sigma\\right&gt;\\rightarrow\\left&lt;{\\rm n\_3},\\sigma\\right&gt;} \\\\ \\\\ \\frac{\\left\\rightarrow \\left}{\\left&lt;{\\cal E}\[s\],\\sigma\\right&gt;\\rightarrow\\left&lt;{\\cal E}\[t\],\\sigma&#39;\\right&gt;} \]</span> <span id="more"></span></p>
+<span class="math display">\[\begin{aligned}
+
+\frac{\text{Meaning}({\rm n_1})+\text{Meaning}({\rm n_2})=\text{Meaning}({\rm
+n_3})}{\left&lt;{\rm n_1+n_2},\sigma\right&gt;\rightarrow\left&lt;{\rm
+n_3},\sigma\right&gt;}
+
+\\
+
+\\
+
+\frac{\text{Meaning}({\rm n_1})-\text{Meaning}({\rm n_2})=\text{Meaning}({\rm
+n_3})}{\left&lt;{\rm n_1-n_2},\sigma\right&gt;\rightarrow\left&lt;{\rm
+n_3},\sigma\right&gt;}
+
+\\
+
+\\
+
+\frac{\left&lt;s,\sigma\right&gt;\rightarrow \left&lt;t,\sigma\right&gt;}{\left&lt;{\cal
+E}[s],\sigma\right&gt;\rightarrow\left&lt;{\cal E}[t],\sigma&#39;\right&gt;}
+
+\end{aligned}\]</span>
 
       </div>
       
@@ -282,6 +335,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#formal-semantic"><span class="toc-text">Formal Semantic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#operational-semantic"><span class="toc-text">Operational Semantic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#evaluation"><span class="toc-text">Evaluation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while"><span class="toc-text">While</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#evaluation-context"><span class="toc-text">Evaluation Context</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

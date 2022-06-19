@@ -169,7 +169,7 @@
       </div>
       <div class="markdown-body">
         <p>这一节主要讨论针对CFG中的路径的优化</p>
-<p>## Feasible &amp; Realizable Paths</p>
+<h2 id="feasible-realizable-paths">Feasible &amp; Realizable Paths</h2>
 <blockquote>
 <p>Infeasible Paths: paths that do not correspond to actual executions</p>
 </blockquote>
@@ -179,16 +179,16 @@
 <blockquote>
 <p>Unrealizable Paths: paths whose "returns" are not matched with corresponding "calls"</p>
 </blockquote>
-<p>定义的引入很直观，动态运行时并非所有路都会被执行，因此需要区分各类假边。IP是一类难以鉴别的路(why?)，而UP是我们定义出的一类较简单就能判定的路(用带标号的括号序即可)。很显然<span class="math inline">\(UP\subseteq  IP\)</span>，即call和ret不匹配的路必然不会被动态执行。那么我们就可以针对UP进行优化来达到减少IP的目的。</p>
+<p>定义的引入很直观，动态运行时并非所有路都会被执行，因此需要区分各类假边。IP是一类难以鉴别的路(why?)，而UP是我们定义出的一类较简单就能判定的路(用带标号的括号序即可)。很显然<span class="math inline">\(UP\subseteq IP\)</span>，即call和ret不匹配的路必然不会被动态执行。那么我们就可以针对UP进行优化来达到减少IP的目的。</p>
 <p>于是我们就可以通过在边上加标号的方式来获得某path的标号序列，并通过这个序列来判断其Realizability</p>
 <p>如果用上下文无关语言(CFL=Context Free Language)对括号序列(合法Call序列)进行识别，那么这样的可达性就叫做CFL-Reachability</p>
 <p>注意到CFL可以用一个有限状态自动机(DFA)的接受集表示，因此只需要对CFL建出DFA，然后在传播状态的时候顺便传一下DFA的状态就可以无缝升级原来的做法了</p>
-<p>## IFDS</p>
+<h2 id="ifds">IFDS</h2>
 <p>IFDS = Interprocedural,Finite,Distributive,Subset Problem</p>
 <p>IFDS是一个分析框架，用于一类满足上述四个要求的分析问题</p>
 <p>IFDS提供了MRP(Meet-over-all-Realizable-Paths)问题的解</p>
 <p>作为对比，最早的朴素迭代算法提供了MOP(Meet-Over-all-Paths)问题的解</p>
-<p>### Overview</p>
+<h3 id="overview">Overview</h3>
 <p>给定程序P，数据流分析问题Q，IFDS的流程如下</p>
 <ol type="1">
 <li><p>对P建supergraph <span class="math inline">\(G^*\)</span>​ 并根据具体问题Q定义边上的flow function</p></li>
@@ -199,8 +199,8 @@
 <p><span class="math inline">\(f(A\sqcup B)=f(A)\sqcup f(B)\)</span>​</p>
 <p>通常证明不符合只需要找范例就行了。尝试证明Constprop和Pointer Analysis的分配性质：</p>
 <p>在Constprop中，令<span class="math inline">\(A=\left\{\;(x,1)\;\right\}\)</span>，<span class="math inline">\(B=\left\{\;(y,2)\;\right\}\)</span>，处理语句 <code>z=x+y;</code></p>
-<p>则<span class="math inline">\(f(A)\sqcup  f(B)=\left\{\;(x,1),(z,\text{NAC})\;\right\}\sqcup\left\{\;(y,2),(z,\text{NAC})\;\right\}=\left\{\;(x,1),(y,2),(z,\text{NAC})\;\right\}\)</span>​​</p>
-<p>而<span class="math inline">\(f(A\sqcup  B)=f(\left\{\;(x,1),(y,2)\;\right\})=\left\{\;(x,1),(y,2),(z,3)\;\right\}\)</span>​，不符合分配律</p>
+<p>则<span class="math inline">\(f(A)\sqcup f(B)=\left\{\;(x,1),(z,\text{NAC})\;\right\}\sqcup\left\{\;(y,2),(z,\text{NAC})\;\right\}=\left\{\;(x,1),(y,2),(z,\text{NAC})\;\right\}\)</span>​​</p>
+<p>而<span class="math inline">\(f(A\sqcup B)=f(\left\{\;(x,1),(y,2)\;\right\})=\left\{\;(x,1),(y,2),(z,3)\;\right\}\)</span>​，不符合分配律</p>
 <p>PPT给了一个简单的判断法则：若求一个结果需要考虑多个(大于一个)元素的值，则不是可分配的。</p>
 <p>在Pointer Analysis中，对变量的转移函数需要实现对象的别名分析(即语句<code>x=y;</code>需要考虑变量<code>y</code>指向对象的所有别名)，这样就涉及到了多个变量，根据简单的判断法则是不可分配的。</p>
 <p>看完Overview有一个<strong>猜测</strong>，大概的想法如下：</p>
@@ -211,11 +211,11 @@
 <li><p>这样CFG中一个点n是否包含元素x就变成了<span class="math inline">\(G^{\sharp}\)</span>中&lt;n,x&gt;点是否从起点可达</p></li>
 </ol>
 <p>猜完继续看视频</p>
-<p>### Supergraph</p>
+<h3 id="supergraph">Supergraph</h3>
 <p>首先定义一个单独过程p的flow graph <span class="math inline">\(G_p\)</span>：</p>
 <ol type="1">
 <li><p><span class="math inline">\(G_p\)</span> 是一个有向图，除basic blocks外，还包含一对唯一的起点 <span class="math inline">\(start_p\)</span> 和终点 <span class="math inline">\(end_p\)</span>，函数/方法调用以一对相邻节点 <span class="math inline">\(call_m\)</span> 和 <span class="math inline">\(ret_m\)</span>​​​ 表示</p></li>
-<li><p><span class="math inline">\(G_p\)</span> 中的边除正常函数内的控制流连边外，还包含三类跨函数的边(<span class="math inline">\(call_m\rightarrow  start_m\)</span>，<span class="math inline">\(end_m\rightarrow ret_m\)</span>，<span class="math inline">\(call_m\rightarrow ret_m\)</span>)</p></li>
+<li><p><span class="math inline">\(G_p\)</span> 中的边除正常函数内的控制流连边外，还包含三类跨函数的边(<span class="math inline">\(call_m\rightarrow start_m\)</span>，<span class="math inline">\(end_m\rightarrow ret_m\)</span>，<span class="math inline">\(call_m\rightarrow ret_m\)</span>)</p></li>
 </ol>
 <p><span class="math inline">\(G^*\)</span> 由一系列图 <span class="math inline">\(G_1,G_2\ldots\)</span> 和跨函数间的边组成，即每个函数/过程都有自己的图</p>
 <p>发现确实猜对了.....感觉就索然无味</p>
@@ -226,10 +226,9 @@
 <li><p><span class="math inline">\(f(A\sqcup\varnothing)=f(A)\sqcup f(\varnothing)\)</span></p></li>
 <li><p><span class="math inline">\(f(A)\sqcup\varnothing=f(A)\)</span></p></li>
 </ol>
-<p>因此可以<strong>认为</strong>任意作用在非空集合<span class="math inline">\(A\)</span>​​上的函数<span class="math inline">\(f(A)\)</span>​​实际上为<span class="math inline">\(f(A\sqcup\varnothing)=f(A)\sqcup  f(\varnothing)\)</span>​​，而<span class="math inline">\(A\)</span>​中<strong>不可再</strong>分离出<span class="math inline">\(\varnothing\)</span>​</p>
+<p>因此可以<strong>认为</strong>任意作用在非空集合<span class="math inline">\(A\)</span>​​上的函数<span class="math inline">\(f(A)\)</span>​​实际上为<span class="math inline">\(f(A\sqcup\varnothing)=f(A)\sqcup f(\varnothing)\)</span>​​，而<span class="math inline">\(A\)</span>​中<strong>不可再</strong>分离出<span class="math inline">\(\varnothing\)</span>​</p>
 <p>这就表示我们需要连<span class="math inline">\(\varnothing\rightarrow\varnothing\)</span>的边，同时在其余的<span class="math inline">\(f(A)\)</span>中去掉<span class="math inline">\(f(\varnothing)\)</span>​中的元素</p>
-<p>有一些常数的小优化。比如说假设做完了方法p的方法内分析，那么对于所有调用了方法p的连通性其实都已经确定了 excerpt: &gt;-</p>
-<p>这一节主要讨论针对CFG中的路径的优化 ## Feasible &amp; Realizable Paths &gt; Infeasible Paths: paths that do not correspond to actual executions &gt; &gt; Unrealizable Paths: paths whose "returns" are not matched with corresponding "calls" 定义的引入很直观，动态运行时并非所有路都会被执行，因此需要区分各类假边。IP是一类难以鉴别的路(why?)，而UP是我们定义出的一类较简单就能判定的路(用带标号的括号序即可)。很显然<span class="math inline">\(UP\\subseteq IP\)</span>，即call和ret不匹配的路必然不会被动态执行。那么我们就可以针对UP进行优化来达到减少IP的目的。 于是我们就可以通过在边上加标号的方式来获得某path的标号序列，并通过这个序列来判断其Realizability 如果用上下文无关语言(CFL=Context Free Language)对括号序列(合法Call序列)进行识别，那么这样的可达性就叫做CFL-Reachability 注意到CFL可以用一个有限状态自动机(DFA)的接受集表示，因此只需要对CFL建出DFA，然后在传播状态的时候顺便传一下DFA的状态就可以无缝升级原来的做法了 ## IFDS IFDS = Interprocedural,Finite,Distributive,Subset Problem IFDS是一个分析框架，用于一类满足上述四个要求的分析问题 IFDS提供了MRP(Meet-over-all-Realizable-Paths)问题的解 作为对比，最早的朴素迭代算法提供了MOP(Meet-Over-all-Paths)问题的解 ### Overview 给定程序P，数据流分析问题Q，IFDS的流程如下 1. 对P建supergraph <span class="math inline">\(G^\*\)</span>​ 并根据具体问题Q定义边上的flow function 2. 对P建exploded supergraph(听起来就好中二) <span class="math inline">\(G^{\\sharp}\)</span>​ 3. 对Q的求解就转化为对<span class="math inline">\(G^{\\sharp}\)</span>​应用tabulation algorithm求图可达性问题(MRP Solutions) 分配律的定义： <span class="math inline">\(f(A\\sqcup B)=f(A)\\sqcup f(B)\)</span>​ 通常证明不符合只需要找范例就行了。尝试证明Constprop和Pointer Analysis的分配性质： 在Constprop中，令<span class="math inline">\(A=\\left\\{\\;(x,1)\\;\\right\\}\)</span>，<span class="math inline">\(B=\\left\\{\\;(y,2)\\;\\right\\}\)</span>，处理语句 `z=x+y;` 则<span class="math inline">\(f(A)\\sqcup f(B)=\\left\\{\\;(x,1),(z,\\text{NAC})\\;\\right\\}\\sqcup\\left\\{\\;(y,2),(z,\\text{NAC})\\;\\right\\}=\\left\\{\\;(x,1),(y,2),(z,\\text{NAC})\\;\\right\\}\)</span>​​ 而<span class="math inline">\(f(A\\sqcup B)=f(\\left\\{\\;(x,1),(y,2)\\;\\right\\})=\\left\\{\\;(x,1),(y,2),(z,3)\\;\\right\\}\)</span>​，不符合分配律 PPT给了一个简单的判断法则：若求一个结果需要考虑多个(大于一个)元素的值，则不是可分配的。 在Pointer Analysis中，对变量的转移函数需要实现对象的别名分析(即语句`x=y;`需要考虑变量`y`指向对象的所有别名)，这样就涉及到了多个变量，根据简单的判断法则是不可分配的。 看完Overview有一个**猜测**，大概的想法如下： 1. 既然解决的是集合问题，那么就可以对每个点拆点。 2. supergraph的定义使得一条边能连接多个点，这样就可以表述集合之间的transfer关系 3. 根据分配律可以把**集合的映射**变为**单独元素的映射构成的集合**，这样就可以对点连边了 4. 这样CFG中一个点n是否包含元素x就变成了<span class="math inline">\(G^{\\sharp}\)</span>中\点是否从起点可达 猜完继续看视频 ### Supergraph 首先定义一个单独过程p的flow graph <span class="math inline">\(G\_p\)</span>： 1. <span class="math inline">\(G\_p\)</span> 是一个有向图，除basic blocks外，还包含一对唯一的起点 <span class="math inline">\(start\_p\)</span> 和终点 <span class="math inline">\(end\_p\)</span>，函数/方法调用以一对相邻节点 <span class="math inline">\(call\_m\)</span> 和 <span class="math inline">\(ret\_m\)</span>​​​ 表示 2. <span class="math inline">\(G\_p\)</span> 中的边除正常函数内的控制流连边外，还包含三类跨函数的边(<span class="math inline">\(call\_m\\rightarrow start\_m\)</span>，<span class="math inline">\(end\_m\\rightarrow ret\_m\)</span>，<span class="math inline">\(call\_m\\rightarrow ret\_m\)</span>) <span class="math inline">\(G^\*\)</span> 由一系列图 <span class="math inline">\(G\_1,G\_2\\ldots\)</span> 和跨函数间的边组成，即每个函数/过程都有自己的图 发现确实猜对了.....感觉就索然无味 需要注意的一个小细节就是拆点的时候空集需要特殊处理。为了方便可以加入特殊点<span class="math inline">\(\\varnothing\)</span>表示空集 注意到如下事实： 1. <span class="math inline">\(A\\sqcup\\varnothing=A\)</span> 2. <span class="math inline">\(f(A\\sqcup\\varnothing)=f(A)\\sqcup f(\\varnothing)\)</span> 3. <span class="math inline">\(f(A)\\sqcup\\varnothing=f(A)\)</span> 因此可以**认为**任意作用在非空集合<span class="math inline">\(A\)</span>​​上的函数<span class="math inline">\(f(A)\)</span>​​实际上为<span class="math inline">\(f(A\\sqcup\\varnothing)=f(A)\\sqcup f(\\varnothing)\)</span>​​，而<span class="math inline">\(A\)</span>​中**不可再**分离出<span class="math inline">\(\\varnothing\)</span>​ 这就表示我们需要连<span class="math inline">\(\\varnothing\\rightarrow\\varnothing\)</span>的边，同时在其余的<span class="math inline">\(f(A)\)</span>中去掉<span class="math inline">\(f(\\varnothing)\)</span>​中的元素 有一些常数的小优化。比如说假设做完了方法p的方法内分析，那么对于所有调用了方法p的连通性其实都已经确定了 <span id="more"></span></p>
+<p>有一些常数的小优化。比如说假设做完了方法p的方法内分析，那么对于所有调用了方法p的连通性其实都已经确定了</p>
 
       </div>
       
@@ -261,6 +260,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#feasible-realizable-paths"><span class="toc-text">Feasible &amp; Realizable Paths</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ifds"><span class="toc-text">IFDS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#overview"><span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supergraph"><span class="toc-text">Supergraph</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

@@ -169,21 +169,21 @@
       </div>
       <div class="markdown-body">
         <p>做习题，不保证对，不保证全</p>
-<p>## 2.10</p>
+<h2 id="section">2.10</h2>
 <p>证明只有 <span class="math inline">\(\uparrow,\downarrow\)</span> 能单独定义所有的单目和二元运算</p>
 <p>首先考虑如何表示 <span class="math inline">\(\neg\)</span>。</p>
 <p><span class="math inline">\(\circ\)</span> 这个二元运算能表示 <span class="math inline">\(\neg\)</span> 的定义为，对于任意公式 <span class="math inline">\(A\)</span> 都有 <span class="math inline">\(\neg A=A\circ A\circ A\cdots A\)</span> 成立</p>
 <p>取解释 <span class="math inline">\(\scr I\)</span> 使得 <span class="math inline">\({\scr I}(A)=T\)</span>，代入上式有 <span class="math inline">\(F=T\circ T\circ T\cdots T\)</span></p>
-<p>这里可以发现，对于 <span class="math inline">\(\circ\)</span> 运算必然有 <span class="math inline">\(T\circ T=F\)</span> 成立。否则假设 <span class="math inline">\(T\circ T=T\)</span>，那么简单归纳就有 <span class="math inline">\(F=T\circ  T\circ T\cdots T=T\)</span>，矛盾。</p>
+<p>这里可以发现，对于 <span class="math inline">\(\circ\)</span> 运算必然有 <span class="math inline">\(T\circ T=F\)</span> 成立。否则假设 <span class="math inline">\(T\circ T=T\)</span>，那么简单归纳就有 <span class="math inline">\(F=T\circ T\circ T\cdots T=T\)</span>，矛盾。</p>
 <p>同理可以知道必然有 <span class="math inline">\(F\circ F=T\)</span>。那么就可以知道 <span class="math inline">\(\circ\)</span> 只能是 <span class="math inline">\(\uparrow\)</span>，<span class="math inline">\(\downarrow\)</span>，投影，投影取反</p>
 <p>假设 <span class="math inline">\(\circ\)</span> 是投影，那么根据投影的性质简单归纳可知投影的复合还是投影，这就与它能表示任意二元运算矛盾了。投影取反同理。因此就只能是 <span class="math inline">\(\uparrow,\downarrow\)</span></p>
-<p>然后可以构造 <span class="math inline">\(A\uparrow A=\neg A\)</span>，<span class="math inline">\((A\uparrow B)\uparrow(A\uparrow B)=\neg(A\uparrow  B)=A\and B\)</span>，这样就实现了一个完备集，搞定！</p>
-<p>## 2.11</p>
+<p>然后可以构造 <span class="math inline">\(A\uparrow A=\neg A\)</span>，<span class="math inline">\((A\uparrow B)\uparrow(A\uparrow B)=\neg(A\uparrow B)=A\and B\)</span>，这样就实现了一个完备集，搞定！</p>
+<h2 id="section-1">2.11</h2>
 <p>证明 <span class="math inline">\(\wedge\)</span> 和 <span class="math inline">\(\vee\)</span> 不是完备符号集</p>
 <p>很显然单个的 <span class="math inline">\(\wedge\)</span> 和 <span class="math inline">\(\vee\)</span> 不是完备集（参照2.10），下面证明 <span class="math inline">\(\left\{\wedge,\vee\right\}\)</span> 不是完备集</p>
 <p>类似上面的证明，取 <span class="math inline">\(\neg A=A\wedge A\vee A\cdots A\)</span>，右侧可以任意加减括号</p>
 <p>取解释 <span class="math inline">\(\scr I\)</span> 使得 <span class="math inline">\({\scr I}(A)=T\)</span>，那么有 <span class="math inline">\(F=T\wedge T\vee T\cdots T=T\)</span>，矛盾。</p>
-<p>## 2.12</p>
+<h2 id="section-2">2.12</h2>
 <p>证明 <span class="math inline">\(\left\{\neg,\leftrightarrow\right\}\)</span> 不是完备集</p>
 <p>考虑某个投影运算 <span class="math inline">\(\circ\)</span>，其定义为 <span class="math inline">\(A\circ B=A\)</span>，那么假设这是一个完备集，根据定义有</p>
 <p><span class="math inline">\(A\circ A=(A\leftrightarrow A)\leftrightarrow\neg(\cdots\)</span></p>
@@ -196,80 +196,81 @@
 </ol>
 <p>即上述等式的右侧将会是一个常量（<span class="math inline">\(T\)</span> 或 <span class="math inline">\(F\)</span>），即 <span class="math inline">\(A\circ A=T\)</span> 或 <span class="math inline">\(A\circ A=F\)</span>，二者只能取其一。</p>
 <p>然而根据投影的定义有 <span class="math inline">\(A\circ A=A=T\)</span>，在使得 <span class="math inline">\(A\)</span> 为 <span class="math inline">\(F\)</span> 的解释下就找到了一个矛盾，因此这不是完备集。</p>
-<p>## 2.17</p>
+<h2 id="section-3">2.17</h2>
 <p>设 <span class="math inline">\(\scr U\)</span> 是一个公理集，记 <span class="math inline">\({\scr T}(\scr U)\)</span> 是其导出的理论集，证明 <span class="math inline">\(\scr T(U)\)</span> 在 <span class="math inline">\(\models\)</span> 下是封闭的。</p>
-<p>由反证法假设其不封闭，则存在 <span class="math inline">\(A\not\in {\scr T(U)}\)</span>，满足 <span class="math inline">\({\scr T(U)}\models A\)</span>，即 <span class="math inline">\(\models  \bigwedge{\scr T(U)}\rightarrow A\)</span>。</p>
-<p>根据 <span class="math inline">\(\scr T(U)\)</span> 的定义有 <span class="math inline">\(\forall F\in{\scr T(U)}\)</span> 都有 <span class="math inline">\({\scr U}\models F\)</span>，即对于任意 <span class="math inline">\(\scr T(U)\)</span> 中的公式 <span class="math inline">\(F\)</span> 都有 <span class="math inline">\(\models \bigwedge{\scr U}\rightarrow F\)</span>，因此有 <span class="math inline">\(\models  \bigwedge{\scr U}\rightarrow \bigwedge{\scr T(U)}\)</span></p>
+<p>由反证法假设其不封闭，则存在 <span class="math inline">\(A\not\in {\scr T(U)}\)</span>，满足 <span class="math inline">\({\scr T(U)}\models A\)</span>，即 <span class="math inline">\(\models \bigwedge{\scr T(U)}\rightarrow A\)</span>。</p>
+<p>根据 <span class="math inline">\(\scr T(U)\)</span> 的定义有 <span class="math inline">\(\forall F\in{\scr T(U)}\)</span> 都有 <span class="math inline">\({\scr U}\models F\)</span>，即对于任意 <span class="math inline">\(\scr T(U)\)</span> 中的公式 <span class="math inline">\(F\)</span> 都有 <span class="math inline">\(\models \bigwedge{\scr U}\rightarrow F\)</span>，因此有 <span class="math inline">\(\models \bigwedge{\scr U}\rightarrow \bigwedge{\scr T(U)}\)</span></p>
 <p>结合上面两条就有 <span class="math inline">\(\models \bigwedge{\scr U}\rightarrow A\)</span>，即 <span class="math inline">\({\scr U}\models A\)</span>，根据 <span class="math inline">\(\scr T(U)\)</span> 的定义有 <span class="math inline">\(A\in{\scr T(U)}\)</span>，这与假设矛盾；故假设不成立，即 <span class="math inline">\(\scr T(U)\)</span> 在 <span class="math inline">\(\models\)</span> 下封闭</p>
-<p>## 3.18</p>
+<h2 id="section-4">3.18</h2>
 <p>称公式集是极大一致的，当且仅当它的所有真超集都是不一致的。设 <span class="math inline">\(S\)</span> 是一极大一致的可数公式集，证明：</p>
 <ol type="1">
 <li><p><span class="math inline">\(S\)</span> 的所有有限子集都是可满足的</p></li>
 <li><p>对于任意公式 <span class="math inline">\(A\)</span>，<span class="math inline">\(S\cup\left\{A\right\}\)</span> 和 <span class="math inline">\(S\cup\left\{\neg A\right\}\)</span> 二者至少有一个是一致的</p></li>
 <li><p><span class="math inline">\(S\)</span> 可以被拓展为极大一致的公式集</p></li>
 </ol>
-<p>### 1</p>
+<h3 id="section-5">1</h3>
 <p>显然对于公式集 <span class="math inline">\(S\)</span> 的有限子集 <span class="math inline">\(T\)</span>，<span class="math inline">\(T\)</span> 是一致的（否则将得出 <span class="math inline">\(S\)</span> 不一致的矛盾）</p>
 <p>由反证法，设 <span class="math inline">\(T\)</span> 不可满足，则任意解释下 <span class="math inline">\(T\)</span> 中存在值为 <span class="math inline">\(F\)</span> 的公式。因此根据 <span class="math inline">\(\models\)</span> 的定义，对于任意的公式 <span class="math inline">\(A\)</span> 都有 <span class="math inline">\(T\models A\)</span>，即 <span class="math inline">\(\models \bigvee T\rightarrow A\)</span></p>
 <p>又根据 <span class="math inline">\(\scr H\)</span> 的可靠性和完备性有 <span class="math inline">\(\vdash \bigvee T\rightarrow A\)</span>，即 <span class="math inline">\(T\vdash A\)</span> 对任意公式 <span class="math inline">\(A\)</span> 都成立。因此 <span class="math inline">\(T\)</span> 不一致，这与假设矛盾。故 <span class="math inline">\(T\)</span> 可满足。</p>
 <p>中间跳了一些步骤</p>
-<p>### 2</p>
+<h3 id="section-6">2</h3>
 <p>假设都不一致，那么有 <span class="math inline">\(S\vdash A\)</span> 并且 <span class="math inline">\(S\vdash\neg A\)</span>，根据定义有 <span class="math inline">\(S\)</span> 不一致，与假设矛盾。故 至少有一个是一致的</p>
-<p>### 3</p>
-<p>注意到 <span class="math inline">\(S\cup \left\{A\right\}\)</span> 和 <span class="math inline">\(S\cup\left\{\neg A\right\}\)</span> 二者至少有一个保持了一致性，并且2中的证明只用到了 <span class="math inline">\(S\)</span> 的一致性，所以用2中的结论一直往里面加公式就好了，这样就会得到 <span class="math inline">\(\forall  A\in{\scr F}\text{, either $A\in S$ or $\neg A\in S$}\)</span></p>
-<p>## Prob 1</p>
+<h3 id="section-7">3</h3>
+<p>注意到 <span class="math inline">\(S\cup \left\{A\right\}\)</span> 和 <span class="math inline">\(S\cup\left\{\neg A\right\}\)</span> 二者至少有一个保持了一致性，并且2中的证明只用到了 <span class="math inline">\(S\)</span> 的一致性，所以用2中的结论一直往里面加公式就好了，这样就会得到 <span class="math inline">\(\forall A\in{\scr F}\text{, either $A\in S$ or $\neg A\in S$}\)</span></p>
+<h2 id="prob-1">Prob 1</h2>
 <p>证明 <span class="math inline">\(|PROP|=\aleph_0\)</span></p>
-<p>### 证明1</p>
+<h3 id="证明1">证明1</h3>
 <p>构造 <span class="math inline">\(P_k=\overbrace{PS\times PS\times\cdots PS}^{k个}\)</span>，其中 <span class="math inline">\(PS\times PS\)</span> 定义为集合的笛卡尔积运算</p>
 <p>定义 <span class="math inline">\(P=\bigcup_{k\in\mathbb N^+} P_k\)</span>，有 <span class="math inline">\(PROP\subseteq P\)</span></p>
 <p>并且对于任意正整数 <span class="math inline">\(k\)</span>，有 <span class="math inline">\(P_k\)</span> 是可数集，因此 <span class="math inline">\(P\)</span> 是可数个可数集之并，易证 <span class="math inline">\(|P|=\aleph_0\)</span>，因此 <span class="math inline">\(|PROP|\leqslant\aleph_0\)</span></p>
 <p>又注意到如下命题构造序列：<span class="math inline">\(A,\neg A,\neg\neg A\ldots\)</span>，易得 <span class="math inline">\(|PROP|\geqslant\aleph_0\)</span></p>
 <p>结合就有 <span class="math inline">\(|PROP|=\aleph_0\)</span></p>
-<p>### 证明2</p>
+<h3 id="证明2">证明2</h3>
 <p>考虑构造如下映射 <span class="math inline">\(f\)</span>：</p>
-<p>$$</p>
-<p><span class="math display">\[\begin{equation}
+<span class="math display">\[\begin{aligned}
 
-  f(x)=\left\{
+\begin{equation}
 
-  \begin{aligned}
+f(x)=\left\{
 
-  0002&amp;,&amp;   x&amp;=\neg\\
+\begin{aligned}
 
-  0012&amp;,&amp;   x&amp;=\wedge\\
+0002&amp;,&amp;   x&amp;=\neg\\
 
-  0102&amp;,&amp;  x&amp;=\vee\\
+0012&amp;,&amp;   x&amp;=\wedge\\
 
-  0112&amp;,&amp;  x&amp;=\rightarrow\\
+0102&amp;,&amp;  x&amp;=\vee\\
 
-  1002&amp;,&amp; x&amp;=(\\
+0112&amp;,&amp;  x&amp;=\rightarrow\\
 
-  1012&amp;,&amp; x&amp;=)\\
+1002&amp;,&amp; x&amp;=(\\
 
-  bit(x)0002&amp;,&amp; x&amp;\in PS\\
+1012&amp;,&amp; x&amp;=)\\
 
-  \end{aligned}
+bit(x)0002&amp;,&amp; x&amp;\in PS\\
 
-  \right.
+\end{aligned}
 
-  \end{equation}\]</span></p>
-<p>$$</p>
+\right.
+
+\end{equation}
+
+\end{aligned}\]</span>
 <p>其中 <span class="math inline">\(bit(x)\)</span> 将自然数 <span class="math inline">\(x\)</span> 转化为其二进制表示的字符串。</p>
 <p>很显然 <span class="math inline">\(f:PROP\mapsto \mathbb N\)</span> 是一个单射，这里可以把结果串解释为三进制数，故有 <span class="math inline">\(|PROP|\leqslant\aleph_0\)</span></p>
 <p>另一个不等式是显然的</p>
-<p>## Prob 2</p>
+<h2 id="prob-2">Prob 2</h2>
 <p>证明括号引理</p>
 <p>其实就是结构归纳的简单应用。</p>
-<p>### Base Case</p>
+<h3 id="base-case">Base Case</h3>
 <p>考虑 <span class="math inline">\(A\in PS\)</span>，此时左括号的数量等于右括号的数量</p>
-<p>### Step Case</p>
+<h3 id="step-case">Step Case</h3>
 <ol type="1">
 <li><p><span class="math inline">\(A=(\neg B)\)</span>，而 <span class="math inline">\(B\)</span> 是命题，则根据归纳假设 <span class="math inline">\(B\)</span> 满足括号引理，因此 <span class="math inline">\(A\)</span> 仍然满足</p></li>
 <li><p><span class="math inline">\(A = (B\wedge C)\)</span>，根据归纳假设 <span class="math inline">\(B,C\)</span> 满足括号引理，此时 <span class="math inline">\(A\)</span> 仍然满足</p></li>
 <li><p>剩下的几个是类似的</p></li>
 </ol>
-<p>根据结构归纳法，所有由上述方法定义出的命题都满足括号引理。又因为命题仅限于此，因此对于所有的命题括号引理都成立。证毕。 excerpt: &gt;-</p>
-<p>做习题，不保证对，不保证全 ## 2.10 证明只有 <span class="math inline">\(\\uparrow,\\downarrow\)</span> 能单独定义所有的单目和二元运算 首先考虑如何表示 <span class="math inline">\(\\neg\)</span>。 <span class="math inline">\(\\circ\)</span> 这个二元运算能表示 <span class="math inline">\(\\neg\)</span> 的定义为，对于任意公式 <span class="math inline">\(A\)</span> 都有 <span class="math inline">\(\\neg A=A\\circ A\\circ A\\cdots A\)</span> 成立 取解释 <span class="math inline">\(\\scr I\)</span> 使得 <span class="math inline">\({\\scr I}(A)=T\)</span>，代入上式有 <span class="math inline">\(F=T\\circ T\\circ T\\cdots T\)</span> 这里可以发现，对于 <span class="math inline">\(\\circ\)</span> 运算必然有 <span class="math inline">\(T\\circ T=F\)</span> 成立。否则假设 <span class="math inline">\(T\\circ T=T\)</span>，那么简单归纳就有 <span class="math inline">\(F=T\\circ T\\circ T\\cdots T=T\)</span>，矛盾。 同理可以知道必然有 <span class="math inline">\(F\\circ F=T\)</span>。那么就可以知道 <span class="math inline">\(\\circ\)</span> 只能是 <span class="math inline">\(\\uparrow\)</span>，<span class="math inline">\(\\downarrow\)</span>，投影，投影取反 假设 <span class="math inline">\(\\circ\)</span> 是投影，那么根据投影的性质简单归纳可知投影的复合还是投影，这就与它能表示任意二元运算矛盾了。投影取反同理。因此就只能是 <span class="math inline">\(\\uparrow,\\downarrow\)</span> 然后可以构造 <span class="math inline">\(A\\uparrow A=\\neg A\)</span>，<span class="math inline">\((A\\uparrow B)\\uparrow(A\\uparrow B)=\\neg(A\\uparrow B)=A\\and B\)</span>，这样就实现了一个完备集，搞定！ ## 2.11 证明 <span class="math inline">\(\\wedge\)</span> 和 <span class="math inline">\(\\vee\)</span> 不是完备符号集 很显然单个的 <span class="math inline">\(\\wedge\)</span> 和 <span class="math inline">\(\\vee\)</span> 不是完备集（参照2.10），下面证明 <span class="math inline">\(\\left\\{\\wedge,\\vee\\right\\}\)</span> 不是完备集 类似上面的证明，取 <span class="math inline">\(\\neg A=A\\wedge A\\vee A\\cdots A\)</span>，右侧可以任意加减括号 取解释 <span class="math inline">\(\\scr I\)</span> 使得 <span class="math inline">\({\\scr I}(A)=T\)</span>，那么有 <span class="math inline">\(F=T\\wedge T\\vee T\\cdots T=T\)</span>，矛盾。 ## 2.12 证明 <span class="math inline">\(\\left\\{\\neg,\\leftrightarrow\\right\\}\)</span> 不是完备集 考虑某个投影运算 <span class="math inline">\(\\circ\)</span>，其定义为 <span class="math inline">\(A\\circ B=A\)</span>，那么假设这是一个完备集，根据定义有 <span class="math inline">\(A\\circ A=(A\\leftrightarrow A)\\leftrightarrow\\neg(\\cdots\)</span> 考虑公式的所有二元运算的叶子： 1. 形如 <span class="math inline">\(A\\leftrightarrow A\)</span>，其与 <span class="math inline">\(\\top\)</span> 逻辑等价，值为 <span class="math inline">\(T\)</span> 2. 形如 <span class="math inline">\(\\neg A\\leftrightarrow A\)</span>，其与 <span class="math inline">\(\\bot\)</span> 逻辑等价，值为 <span class="math inline">\(F\)</span> 3. 形如 <span class="math inline">\(A\\leftrightarrow\\neg A\)</span>，其与 <span class="math inline">\(\\bot\)</span> 逻辑等价，值为 <span class="math inline">\(F\)</span> 4. 形如 <span class="math inline">\(\\neg A\\leftrightarrow \\neg A\)</span>，其与 <span class="math inline">\(\\top\)</span> 逻辑等价，值为 <span class="math inline">\(T\)</span> 即上述等式的右侧将会是一个常量（<span class="math inline">\(T\)</span> 或 <span class="math inline">\(F\)</span>），即 <span class="math inline">\(A\\circ A=T\)</span> 或 <span class="math inline">\(A\\circ A=F\)</span>，二者只能取其一。 然而根据投影的定义有 <span class="math inline">\(A\\circ A=A=T\)</span>，在使得 <span class="math inline">\(A\)</span> 为 <span class="math inline">\(F\)</span> 的解释下就找到了一个矛盾，因此这不是完备集。 ## 2.17 设 <span class="math inline">\(\\scr U\)</span> 是一个公理集，记 <span class="math inline">\({\\scr T}(\\scr U)\)</span> 是其导出的理论集，证明 <span class="math inline">\(\\scr T(U)\)</span> 在 <span class="math inline">\(\\models\)</span> 下是封闭的。 由反证法假设其不封闭，则存在 <span class="math inline">\(A\\not\\in {\\scr T(U)}\)</span>，满足 <span class="math inline">\({\\scr T(U)}\\models A\)</span>，即 <span class="math inline">\(\\models \\bigwedge{\\scr T(U)}\\rightarrow A\)</span>。 根据 <span class="math inline">\(\\scr T(U)\)</span> 的定义有 <span class="math inline">\(\\forall F\\in{\\scr T(U)}\)</span> 都有 <span class="math inline">\({\\scr U}\\models F\)</span>，即对于任意 <span class="math inline">\(\\scr T(U)\)</span> 中的公式 <span class="math inline">\(F\)</span> 都有 <span class="math inline">\(\\models \\bigwedge{\\scr U}\\rightarrow F\)</span>，因此有 <span class="math inline">\(\\models \\bigwedge{\\scr U}\\rightarrow \\bigwedge{\\scr T(U)}\)</span> 结合上面两条就有 <span class="math inline">\(\\models \\bigwedge{\\scr U}\\rightarrow A\)</span>，即 <span class="math inline">\({\\scr U}\\models A\)</span>，根据 <span class="math inline">\(\\scr T(U)\)</span> 的定义有 <span class="math inline">\(A\\in{\\scr T(U)}\)</span>，这与假设矛盾；故假设不成立，即 <span class="math inline">\(\\scr T(U)\)</span> 在 <span class="math inline">\(\\models\)</span> 下封闭 ## 3.18 称公式集是极大一致的，当且仅当它的所有真超集都是不一致的。设 <span class="math inline">\(S\)</span> 是一极大一致的可数公式集，证明： 1. <span class="math inline">\(S\)</span> 的所有有限子集都是可满足的 2. 对于任意公式 <span class="math inline">\(A\)</span>，<span class="math inline">\(S\\cup\\left\\{A\\right\\}\)</span> 和 <span class="math inline">\(S\\cup\\left\\{\\neg A\\right\\}\)</span> 二者至少有一个是一致的 3. <span class="math inline">\(S\)</span> 可以被拓展为极大一致的公式集 ### 1 显然对于公式集 <span class="math inline">\(S\)</span> 的有限子集 <span class="math inline">\(T\)</span>，<span class="math inline">\(T\)</span> 是一致的（否则将得出 <span class="math inline">\(S\)</span> 不一致的矛盾） 由反证法，设 <span class="math inline">\(T\)</span> 不可满足，则任意解释下 <span class="math inline">\(T\)</span> 中存在值为 <span class="math inline">\(F\)</span> 的公式。因此根据 <span class="math inline">\(\\models\)</span> 的定义，对于任意的公式 <span class="math inline">\(A\)</span> 都有 <span class="math inline">\(T\\models A\)</span>，即 <span class="math inline">\(\\models \\bigvee T\\rightarrow A\)</span> 又根据 <span class="math inline">\(\\scr H\)</span> 的可靠性和完备性有 <span class="math inline">\(\\vdash \\bigvee T\\rightarrow A\)</span>，即 <span class="math inline">\(T\\vdash A\)</span> 对任意公式 <span class="math inline">\(A\)</span> 都成立。因此 <span class="math inline">\(T\)</span> 不一致，这与假设矛盾。故 <span class="math inline">\(T\)</span> 可满足。 中间跳了一些步骤 ### 2 假设都不一致，那么有 <span class="math inline">\(S\\vdash A\)</span> 并且 <span class="math inline">\(S\\vdash\\neg A\)</span>，根据定义有 <span class="math inline">\(S\)</span> 不一致，与假设矛盾。故 至少有一个是一致的 ### 3 注意到 <span class="math inline">\(S\\cup \\left\\{A\\right\\}\)</span> 和 <span class="math inline">\(S\\cup\\left\\{\\neg A\\right\\}\)</span> 二者至少有一个保持了一致性，并且2中的证明只用到了 <span class="math inline">\(S\)</span> 的一致性，所以用2中的结论一直往里面加公式就好了，这样就会得到 $\forall A\in{\scr F}\text{, either <span class="math inline">\(A\\in S\)</span> or <span class="math inline">\(\\neg A\\in S\)</span>}$ ## Prob 1 证明 <span class="math inline">\(|PROP|=\\aleph\_0\)</span> ### 证明1 构造 <span class="math inline">\(P\_k=\\overbrace{PS\\times PS\\times\\cdots PS}^{k个}\)</span>，其中 <span class="math inline">\(PS\\times PS\)</span> 定义为集合的笛卡尔积运算 定义 <span class="math inline">\(P=\\bigcup\_{k\\in\\mathbb N^+} P\_k\)</span>，有 <span class="math inline">\(PROP\\subseteq P\)</span> 并且对于任意正整数 <span class="math inline">\(k\)</span>，有 <span class="math inline">\(P\_k\)</span> 是可数集，因此 <span class="math inline">\(P\)</span> 是可数个可数集之并，易证 <span class="math inline">\(|P|=\\aleph\_0\)</span>，因此 <span class="math inline">\(|PROP|\\leqslant\\aleph\_0\)</span> 又注意到如下命题构造序列：<span class="math inline">\(A,\\neg A,\\neg\\neg A\\ldots\)</span>，易得 <span class="math inline">\(|PROP|\\geqslant\\aleph\_0\)</span> 结合就有 <span class="math inline">\(|PROP|=\\aleph\_0\)</span> ### 证明2 考虑构造如下映射 <span class="math inline">\(f\)</span>： <span class="math display">\[ \\begin{equation} f(x)=\\left\\{ \\begin{aligned} 0002&amp;,&amp; x&amp;=\\neg\\\\ 0012&amp;,&amp; x&amp;=\\wedge\\\\ 0102&amp;,&amp; x&amp;=\\vee\\\\ 0112&amp;,&amp; x&amp;=\\rightarrow\\\\ 1002&amp;,&amp; x&amp;=(\\\\ 1012&amp;,&amp; x&amp;=)\\\\ bit(x)0002&amp;,&amp; x&amp;\\in PS\\\\ \\end{aligned} \\right. \\end{equation} \]</span> 其中 <span class="math inline">\(bit(x)\)</span> 将自然数 <span class="math inline">\(x\)</span> 转化为其二进制表示的字符串。 很显然 <span class="math inline">\(f:PROP\\mapsto \\mathbb N\)</span> 是一个单射，这里可以把结果串解释为三进制数，故有 <span class="math inline">\(|PROP|\\leqslant\\aleph\_0\)</span> 另一个不等式是显然的 ## Prob 2 证明括号引理 其实就是结构归纳的简单应用。 ### Base Case 考虑 <span class="math inline">\(A\\in PS\)</span>，此时左括号的数量等于右括号的数量 ### Step Case 1. <span class="math inline">\(A=(\\neg B)\)</span>，而 <span class="math inline">\(B\)</span> 是命题，则根据归纳假设 <span class="math inline">\(B\)</span> 满足括号引理，因此 <span class="math inline">\(A\)</span> 仍然满足 2. <span class="math inline">\(A = (B\\wedge C)\)</span>，根据归纳假设 <span class="math inline">\(B,C\)</span> 满足括号引理，此时 <span class="math inline">\(A\)</span> 仍然满足 3. 剩下的几个是类似的 根据结构归纳法，所有由上述方法定义出的命题都满足括号引理。又因为命题仅限于此，因此对于所有的命题括号引理都成立。证毕。 <span id="more"></span></p>
+<p>根据结构归纳法，所有由上述方法定义出的命题都满足括号引理。又因为命题仅限于此，因此对于所有的命题括号引理都成立。证毕。</p>
 
       </div>
       
@@ -301,6 +302,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#section"><span class="toc-text">2.10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#section-1"><span class="toc-text">2.11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#section-2"><span class="toc-text">2.12</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#section-3"><span class="toc-text">2.17</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#section-4"><span class="toc-text">3.18</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#section-5"><span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#section-6"><span class="toc-text">2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#section-7"><span class="toc-text">3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prob-1"><span class="toc-text">Prob 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%98%8E1"><span class="toc-text">证明1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%98%8E2"><span class="toc-text">证明2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prob-2"><span class="toc-text">Prob 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#base-case"><span class="toc-text">Base Case</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step-case"><span class="toc-text">Step Case</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

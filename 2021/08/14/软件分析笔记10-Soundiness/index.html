@@ -168,25 +168,25 @@
         
       </div>
       <div class="markdown-body">
-        <p>## Soundness</p>
+        <h2 id="soundness">Soundness</h2>
 <p>Conservative approximation: captures all program behaviors, or the analysis result models all possible executions of the program</p>
 <p>然鹅</p>
-<p>### Academia</p>
+<h3 id="academia">Academia</h3>
 <p>Virtually all published whole-program analyses are unsound when applied to real programming languages.</p>
-<p>### Industries</p>
+<h3 id="industries">Industries</h3>
 <p>Virtually all realistic whole-program static analysis tools have to make unsound choices.</p>
-<p>## Hard-to-analyze Language Features</p>
+<h2 id="hard-to-analyze-language-features">Hard-to-analyze Language Features</h2>
 <p>不同的语言存在一些难以分析的特性，如果对这些特性采取过于保守的措施，那么我们将会得到正确但无用的分析</p>
 <p>PPT给了几个例子，发现自己除了C的几个都不会....提上日程！</p>
-<p>#### Java</p>
+<h4 id="java">Java</h4>
 <p>Reflection, native code, dynamic class loading</p>
-<p>#### JavaScript</p>
+<h4 id="javascript">JavaScript</h4>
 <p>eval, document object model(DOM)</p>
-<p>#### C/C++</p>
+<h4 id="cc">C/C++</h4>
 <p>Pointer arithmetic, function pointers</p>
 <p>这就导致了许多声称sound的做法只是保证了核心语法的sound，而对部分功能的sound有所取舍(说白了就是挑结果发论文，坠入生化环材的灌水之路)。</p>
 <p>学术圈出现的乱象，需要正义的铁拳！(大雾，于是就有了一个Manifesto宣言，提出了Soundiness的概念</p>
-<p>## Soundiness</p>
+<h2 id="soundiness">Soundiness</h2>
 <p>造词来自Truthiness</p>
 <blockquote>
 <p>Truthiness: a truthful or seemingly truthful quality that is claimed for something not because of supporting facts or evidence but because of a feeling that it is true or a desire for it to be true</p>
@@ -201,7 +201,7 @@
 </ul>
 <p>也就是以后的论文必须要明确分析自己哪里准了，哪里还不准，以及原因。</p>
 <p>然后讲了两个具体的例子来对reflection和native code分析</p>
-<p>## Reflection</p>
+<h2 id="reflection">Reflection</h2>
 <p>难点在于class、method和field的具体对象是运行时确定的，并且是由一段字符串决定的，因此对于非静态决定的字符串难以求解上面的三个东西</p>
 <p>动态的字符串可能来自</p>
 <ul>
@@ -213,10 +213,9 @@
 <p>这些因素都使得反射机制难以静态分析</p>
 <p>最早的做法是通过结合指针分析来对静态字符串进行分析，进而推断出一些目标方法。而另一个想法就是，我们不在求解定义时寻找对应的方法，而是在使用它的时候寻找。大意就是在调用方法的时候通过参数的类型和数量来推断可能的目标方法。</p>
 <p>还有一些complete方法，例如说跑几个测试用例来找到一些必然真的目标方法。</p>
-<p>## Native Code</p>
+<h2 id="native-code">Native Code</h2>
 <p>Java在需要和OS交互的时候，需要调用一些C/C++代码，这样的代码称为Native Code</p>
-<p>Native Code难以分析比较好理解，因为语言不同，导致需要不同的分析策略。一种方法是根据函数的语义对常用的函数进行建模。PPT给的例子就是一个<code>ArrCopy()</code>可以建模成一整段的<code>for</code>+赋值 excerpt: &gt;-</p>
-<p>## Soundness Conservative approximation: captures all program behaviors, or the analysis result models all possible executions of the program 然鹅 ### Academia Virtually all published whole-program analyses are unsound when applied to real programming languages. ### Industries Virtually all realistic whole-program static analysis tools have to make unsound choices. ## Hard-to-analyze Language Features 不同的语言存在一些难以分析的特性，如果对这些特性采取过于保守的措施，那么我们将会得到正确但无用的分析 PPT给了几个例子，发现自己除了C的几个都不会....提上日程！ #### Java Reflection, native code, dynamic class loading #### JavaScript eval, document object model(DOM) #### C/C++ Pointer arithmetic, function pointers 这就导致了许多声称sound的做法只是保证了核心语法的sound，而对部分功能的sound有所取舍(说白了就是挑结果发论文，坠入生化环材的灌水之路)。 学术圈出现的乱象，需要正义的铁拳！(大雾，于是就有了一个Manifesto宣言，提出了Soundiness的概念 ## Soundiness 造词来自Truthiness &gt; Truthiness: a truthful or seemingly truthful quality that is claimed for something not because of supporting facts or evidence but because of a feeling that it is true or a desire for it to be true 也就是把原本的Soundness升华(?)了 A soundy analysis means that the analysis is mostly sound, with well-identified unsound treatments to hard/specific language features. 区分之后的三级分类 * A sound analysis requires to capture all dynamic behaviors * A soundy analysis aims to capture all dynamic behaviors with certain hard language features unsoundly handled within reason * An unsound analysis deliberately ignores certain behaviors in its design for better efficiency, precision or accessibility. 也就是以后的论文必须要明确分析自己哪里准了，哪里还不准，以及原因。 然后讲了两个具体的例子来对reflection和native code分析 ## Reflection 难点在于class、method和field的具体对象是运行时确定的，并且是由一段字符串决定的，因此对于非静态决定的字符串难以求解上面的三个东西 动态的字符串可能来自 * 终端输入 * 配置文件 * 可能含有加密解密信息 * 网络 这些因素都使得反射机制难以静态分析 最早的做法是通过结合指针分析来对静态字符串进行分析，进而推断出一些目标方法。而另一个想法就是，我们不在求解定义时寻找对应的方法，而是在使用它的时候寻找。大意就是在调用方法的时候通过参数的类型和数量来推断可能的目标方法。 还有一些complete方法，例如说跑几个测试用例来找到一些必然真的目标方法。 ## Native Code Java在需要和OS交互的时候，需要调用一些C/C++代码，这样的代码称为Native Code Native Code难以分析比较好理解，因为语言不同，导致需要不同的分析策略。一种方法是根据函数的语义对常用的函数进行建模。PPT给的例子就是一个`ArrCopy()`可以建模成一整段的`for`+赋值 <span id="more"></span></p>
+<p>Native Code难以分析比较好理解，因为语言不同，导致需要不同的分析策略。一种方法是根据函数的语义对常用的函数进行建模。PPT给的例子就是一个<code>ArrCopy()</code>可以建模成一整段的<code>for</code>+赋值</p>
 
       </div>
       
@@ -248,6 +247,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#soundness"><span class="toc-text">Soundness</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#academia"><span class="toc-text">Academia</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#industries"><span class="toc-text">Industries</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hard-to-analyze-language-features"><span class="toc-text">Hard-to-analyze Language Features</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#java"><span class="toc-text">Java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#javascript"><span class="toc-text">JavaScript</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cc"><span class="toc-text">C&#x2F;C++</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#soundiness"><span class="toc-text">Soundiness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reflection"><span class="toc-text">Reflection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#native-code"><span class="toc-text">Native Code</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

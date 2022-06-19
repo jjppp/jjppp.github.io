@@ -168,32 +168,32 @@
         
       </div>
       <div class="markdown-body">
-        <p>## Cryptographic Hash Function</p>
+        <h2 id="cryptographic-hash-function">Cryptographic Hash Function</h2>
 <p>所谓Hash，就是一个实现“压缩”比特序列的函数（有时也叫摘要）。与普通的散列和哈希不同，密码学上的hash要求要更严格一些：</p>
 <ol type="1">
 <li><p>要是抗碰撞(collision resistant)的</p></li>
 <li><p>最好还有PRF的性质</p></li>
 </ol>
 <p>类似PRF，Hash也是一个keyed function，只不过更多的时候 <span class="math inline">\(k\)</span> 是由某种方法选出来的固化公开常量，而非随机选出来的。</p>
-<p>## 定义</p>
+<h2 id="定义">定义</h2>
 <p>Hash <span class="math inline">\(\Pi=(\text{Gen,H})\)</span> 是一对PPT算法，满足：</p>
 <ol type="1">
 <li><p><span class="math inline">\(k=\text{Gen}(n)\)</span> 是一个<strong>公开</strong>的参数</p></li>
 <li><p><span class="math inline">\(H(k,x)=H^k(x)\in\left\{0,1\right\}^{l(n)}\)</span>，其中 <span class="math inline">\(l(n)\)</span> 是expansion factor</p></li>
 </ol>
 <p>如果有 <span class="math inline">\(l(n)&lt;n\)</span>，那么我们就称 <span class="math inline">\(H\)</span> 是一个压缩映射(compression function)</p>
-<p>### Collision resistant</p>
+<h3 id="collision-resistant">Collision resistant</h3>
 <p>首先要定义一个game <span class="math inline">\(\text{Hash-coll}_{\cal A,\Pi}(n)\)</span>，这个game很直白，就直接说了：</p>
 <p>我们公开Hash的参数 <span class="math inline">\(s\)</span>，然后让Adversary输出一对比特串 <span class="math inline">\((x_1,x_2)\)</span>。若有 <span class="math inline">\(H^s(x_1)=H^s(x_2)\)</span>，我们就说Adversary找到了一个碰撞(collision)</p>
-<p>称一个Hash scheme是c.r.的，当且仅当有 <span class="math inline">\(Pr\left[\text{Hash-coll}_{\cal  A,\Pi}(n)=1\right]\leqslant\text{negl}(n)\)</span> 对任意的PPT Adversary成立</p>
+<p>称一个Hash scheme是c.r.的，当且仅当有 <span class="math inline">\(Pr\left[\text{Hash-coll}_{\cal A,\Pi}(n)=1\right]\leqslant\text{negl}(n)\)</span> 对任意的PPT Adversary成立</p>
 <p>此外还有一些更弱的对Hash的要求</p>
-<p>### Second preimage resistant</p>
+<h3 id="second-preimage-resistant">Second preimage resistant</h3>
 <p>如果给定了参数 <span class="math inline">\(s\)</span> 和一个比特串 <span class="math inline">\(x\)</span>，有任意的PPT Adversary都不能找到 <span class="math inline">\(x&#39;\neq x\)</span> 使得 <span class="math inline">\(H^s(x)=H^s(x&#39;)\)</span>，就称这个Hash scheme是2nd p.r.的</p>
 <p>注意到如果Adversary没法对Hash找到任意一对碰撞（满足c.r.），那么它一定无法对一个给定的比特串找到碰撞（满足2nd p.r.），因此有 c.r. <span class="math inline">\(\Rightarrow\)</span> 2nd p.r.</p>
-<p>### Preimage resistant</p>
+<h3 id="preimage-resistant">Preimage resistant</h3>
 <p>如果给定了参数 <span class="math inline">\(s\)</span> 和一个比特串 <span class="math inline">\(y\)</span>，有任意的PPT Adversary都不能找到 <span class="math inline">\(x\)</span> 使得 <span class="math inline">\(H^s(x)=y\)</span>，就称这个Hash scheme是p.r.的</p>
 <p>注意到如果Adversary可以对给定的 <span class="math inline">\(y\)</span> 找到原象 <span class="math inline">\(x\)</span>（not p.r.），那么它就可以通过找出 <span class="math inline">\(y\)</span> 的所有原象，从中挑一对出来就能找到一对碰撞了（not c.r.）。这是因为在Hash是压缩映射的时候，至少有一半的元素有两个原象</p>
-<p>## Merkel-Damgard Transform</p>
+<h2 id="merkel-damgard-transform">Merkel-Damgard Transform</h2>
 <p>其实很套路了。假如我们有一个定长的c.r.压缩映射，要怎么才能做到构造出一个任意长的压缩映射？</p>
 <p>不失一般性，假设我们已有的小映射是 <span class="math inline">\(\left\{0,1\right\}^{a+b}\mapsto\left\{0,1\right\}^{a}\)</span></p>
 <p>有一个很直观的图，大概是长这样的</p>
@@ -205,7 +205,7 @@
 <li><p>确定一个 <span class="math inline">\(z_0=IV\)</span>，有 <span class="math inline">\(z_i=H(z_{i-1}|| B_i)\)</span>，最终的那一块 <span class="math inline">\(z_{last}\)</span> 就是整个Hash的输出</p></li>
 </ol>
 <p>c.r.的证明可以通过反证法和归纳来得到，同样是如果能构造出大映射的碰撞，那么一定是构造出了一个小映射的碰撞，因此就矛盾了。</p>
-<p>## 和MAC的应用</p>
+<h2 id="和mac的应用">和MAC的应用</h2>
 <p>回想前一篇MAC的内容，我们没有一个很好的办法能构造任意长度的MAC。但是现在有了任意长度到固定长度的c.r.压缩映射，我们就可以用这个c.r. Hash和secure fixed-length MAC一起来构造一个任意长度的MAC了</p>
 <p>只需要规定 <span class="math inline">\(\widehat {\text{Mac} }_k(x)=\text{Mac}_k(H^s(x))\)</span> 即可，<span class="math inline">\(\text{Vrfy}\)</span> 的部分只需要用canonical方法就好了</p>
 <p>安全性的证明可以通过反证法说明：我们下面要证明这是一个secure arbitrary-length MAC</p>
@@ -214,9 +214,8 @@
 <li><p>存在一个 <span class="math inline">\(m&#39;&#39;\)</span>，使得 <span class="math inline">\(\cal A\)</span> 查询了 <span class="math inline">\(m&#39;&#39;\)</span>，并且有 <span class="math inline">\(H^s(m&#39;)=H^s(m&#39;&#39;)\)</span>。显然这与c.r.矛盾</p></li>
 <li><p>所有 <span class="math inline">\(\cal A\)</span> 查询过的消息在Hash之后都不与 <span class="math inline">\(m&#39;\)</span> 构成一对碰撞，此时意味着 <span class="math inline">\(\cal A\)</span> 构造出了一个全新的tag，这又与secure-MAC矛盾了</p></li>
 </ol>
-<p>## Hash攻击</p>
-<p>这部分暂且咕咕咕 excerpt: &gt;</p>
-<p>## Cryptographic Hash Function 所谓Hash，就是一个实现“压缩”比特序列的函数（有时也叫摘要）。与普通的散列和哈希不同，密码学上的hash要求要更严格一些： 1. 要是抗碰撞(collision resistant)的 2. 最好还有PRF的性质 类似PRF，Hash也是一个keyed function，只不过更多的时候 <span class="math inline">\(k\)</span> 是由某种方法选出来的固化公开常量，而非随机选出来的。 ## 定义 Hash <span class="math inline">\(\\Pi=(\\text{Gen,H})\)</span> 是一对PPT算法，满足： 1. <span class="math inline">\(k=\\text{Gen}(n)\)</span> 是一个**公开**的参数 2. <span class="math inline">\(H(k,x)=H^k(x)\\in\\left\\{0,1\\right\\}^{l(n)}\)</span>，其中 <span class="math inline">\(l(n)\)</span> 是expansion factor 如果有 $l(n) <span id="more"></span></p>
+<h2 id="hash攻击">Hash攻击</h2>
+<p>这部分暂且咕咕咕</p>
 
       </div>
       
@@ -248,6 +247,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cryptographic-hash-function"><span class="toc-text">Cryptographic Hash Function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#collision-resistant"><span class="toc-text">Collision resistant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#second-preimage-resistant"><span class="toc-text">Second preimage resistant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#preimage-resistant"><span class="toc-text">Preimage resistant</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#merkel-damgard-transform"><span class="toc-text">Merkel-Damgard Transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%8Cmac%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">和MAC的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hash%E6%94%BB%E5%87%BB"><span class="toc-text">Hash攻击</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

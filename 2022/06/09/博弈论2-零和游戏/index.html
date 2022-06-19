@@ -168,52 +168,67 @@
         
       </div>
       <div class="markdown-body">
-        <p># Zero Sum Games</p>
+        <h1 id="zero-sum-games">Zero Sum Games</h1>
 <p>即原本讨论的收益矩阵有两个，分别对应于玩家1和玩家2。零和游戏保证了 <span class="math inline">\(A+B=O\)</span>，这说明只需要一个唯一的矩阵即可建模游戏收益，通常规定为玩家1的收益</p>
-<p>考虑一个混合策略outcome <span class="math inline">\((p,q)\)</span>，对于玩家1而言收益就是 <span class="math inline">\(p^\intercal Aq\)</span>，玩家2就是 <span class="math inline">\(-p^\intercal  Aq\)</span>。对于纯策略只需要让概率分布坍缩为一个点就行了。</p>
-<p># Min-Max</p>
+<p>考虑一个混合策略outcome <span class="math inline">\((p,q)\)</span>，对于玩家1而言收益就是 <span class="math inline">\(p^\intercal Aq\)</span>，玩家2就是 <span class="math inline">\(-p^\intercal Aq\)</span>。对于纯策略只需要让概率分布坍缩为一个点就行了。</p>
+<h1 id="min-max">Min-Max</h1>
 <p>以下只讨论玩家1，玩家2是类似的。</p>
-<p>对于任意的玩家2的混合策略 <span class="math inline">\(q\)</span>，玩家1必然会选择使得 <span class="math inline">\(p^\intercal Aq\)</span> 最大化的 <span class="math inline">\(p\)</span>，即 <span class="math inline">\(p=\text{argmax }  p^\intercal Aq\)</span></p>
+<p>对于任意的玩家2的混合策略 <span class="math inline">\(q\)</span>，玩家1必然会选择使得 <span class="math inline">\(p^\intercal Aq\)</span> 最大化的 <span class="math inline">\(p\)</span>，即 <span class="math inline">\(p=\text{argmax } p^\intercal Aq\)</span></p>
 <p>而对于任意玩家1的混合策略 <span class="math inline">\(p\)</span>，玩家2必然会选择使得 <span class="math inline">\(p^\intercal Aq\)</span> 最小化的 <span class="math inline">\(q\)</span>，这说明 <span class="math inline">\(p=\text{argmax}_p\min_qp^\intercal Aq\)</span></p>
-<p>## 定理1</p>
-<p>$$</p>
-<p>_q _p U(p,q)_p _q U(p,q)</p>
-<p>$$</p>
+<h2 id="定理1">定理1</h2>
+<span class="math display">\[\begin{aligned}
+
+\min_q \max_p U(p,q)\geq \max_p \min_q U(p,q)
+
+\end{aligned}\]</span>
 <p>证明比较玄妙，就是一堆绕来绕去的min-max</p>
 <p>首先对于 <span class="math inline">\(U(p,q)\)</span> 将其视为关于 <span class="math inline">\(q\)</span> 的函数，那么有函数在任意点处的函数值不小于其最小值</p>
-<p>$$</p>
-<p>U(p,q)_q U(p,q)</p>
-<p>$$</p>
+<span class="math display">\[\begin{aligned}
+
+U(p,q)\ge \min_q U(p,q)
+
+\end{aligned}\]</span>
 <p>此时将 <span class="math inline">\(U(p,q)\)</span> 和 <span class="math inline">\(\min_q U(p,q)\)</span> 视为 <span class="math inline">\(p\)</span> 的函数，那么两侧加上关于 <span class="math inline">\(p\)</span> 的最大值仍然成立</p>
-<p>$$</p>
-<p>_p U(p,q)_p _q U(p,q)</p>
-<p>$$</p>
+<span class="math display">\[\begin{aligned}
+
+\max_p U(p,q)\geq \max_p \min_q U(p,q)
+
+\end{aligned}\]</span>
 <p>此时RHS是一个数，LHS是一个关于 <span class="math inline">\(q\)</span> 的函数，这说明函数的最小值至少为RHS，即</p>
-<p>$$</p>
-<p>_q _p U(p,q)_p _q U(p,q)</p>
-<p>$$</p>
-<p>## 定理2</p>
+<span class="math display">\[\begin{aligned}
+
+\min_q \max_p U(p,q)\geq \max_p \min_q U(p,q)
+
+\end{aligned}\]</span>
+<h2 id="定理2">定理2</h2>
 <p>若 <span class="math inline">\(p^*,q^*\)</span> 分别是min-max和max-min时，有如下定理：</p>
 <p><span class="math inline">\((p^*,q^*)\)</span> 是MNE当且仅当它们得到的收益相等。</p>
 <p>证明是某次作业</p>
-<p>## 定理3</p>
+<h2 id="定理3">定理3</h2>
 <p>有限策略游戏的混合策略纳什均衡必然存在。</p>
 <p>这说明必然存在 <span class="math inline">\((p^*,q^*)\)</span> 这样的均衡局面，且这样的局面分别是min-max和max-min</p>
-<p>## 定理4</p>
+<h2 id="定理4">定理4</h2>
 <p>在对称零和游戏中，均衡点必然收益为 <span class="math inline">\(0\)</span>。</p>
 <p>这是显然的，对称零和说明 <span class="math inline">\(A^\intercal=B=-A\)</span>，即对角线上收益为 <span class="math inline">\(0\)</span>。对于正收益的局面，玩家2总能移动到对角线上获得一个更高的收益；负收益局面玩家1同理。</p>
-<p>## 求解</p>
+<h2 id="求解">求解</h2>
 <p>对于玩家1而言即为求解 <span class="math inline">\(\max_p \min_q p^\intercal Aq\)</span>，可以等价地转化为如下线性规划：</p>
-<p>$$</p>
-<p>v</p>
-<p>\</p>
-<p></p>
-<p>\</p>
-<p>p^Av</p>
-<p>\</p>
-<p></p>
-<p>$$ excerpt: &gt;</p>
-<p># Zero Sum Games 即原本讨论的收益矩阵有两个，分别对应于玩家1和玩家2。零和游戏保证了 <span class="math inline">\(A+B=O\)</span>，这说明只需要一个唯一的矩阵即可建模游戏收益，通常规定为玩家1的收益 考虑一个混合策略outcome <span class="math inline">\((p,q)\)</span>，对于玩家1而言收益就是 <span class="math inline">\(p^\\intercal Aq\)</span>，玩家2就是 <span class="math inline">\(-p^\\intercal Aq\)</span>。对于纯策略只需要让概率分布坍缩为一个点就行了。 # Min-Max 以下只讨论玩家1，玩家2是类似的。 对于任意的玩家2的混合策略 <span class="math inline">\(q\)</span>，玩家1必然会选择使得 <span class="math inline">\(p^\\intercal Aq\)</span> 最大化的 <span class="math inline">\(p\)</span>，即 <span class="math inline">\(p=\\text{argmax } p^\\intercal Aq\)</span> 而对于任意玩家1的混合策略 <span class="math inline">\(p\)</span>，玩家2必然会选择使得 <span class="math inline">\(p^\\intercal Aq\)</span> 最小化的 <span class="math inline">\(q\)</span>，这说明 <span class="math inline">\(p=\\text{argmax}\_p\\min\_qp^\\intercal Aq\)</span> ## 定理1 <span class="math display">\[ \\min\_q \\max\_p U(p,q)\\geq \\max\_p \\min\_q U(p,q) \]</span> 证明比较玄妙，就是一堆绕来绕去的min-max 首先对于 <span class="math inline">\(U(p,q)\)</span> 将其视为关于 <span class="math inline">\(q\)</span> 的函数，那么有函数在任意点处的函数值不小于其最小值 <span class="math display">\[ U(p,q)\\ge \\min\_q U(p,q) \]</span> 此时将 <span class="math inline">\(U(p,q)\)</span> 和 <span class="math inline">\(\\min\_q U(p,q)\)</span> 视为 <span class="math inline">\(p\)</span> 的函数，那么两侧加上关于 <span class="math inline">\(p\)</span> 的最大值仍然成立 <span class="math display">\[ \\max\_p U(p,q)\\geq \\max\_p \\min\_q U(p,q) \]</span> 此时RHS是一个数，LHS是一个关于 <span class="math inline">\(q\)</span> 的函数，这说明函数的最小值至少为RHS，即 <span class="math display">\[ \\min\_q \\max\_p U(p,q)\\geq \\max\_p \\min\_q U(p,q) \]</span> ## 定理2 若 <span class="math inline">\(p^\*,q^\*\)</span> 分别是min-max和max-min时，有如下定理： <span class="math inline">\((p^\*,q^\*)\)</span> 是MNE当且仅当它们得到的收益相等。 证明是某次作业 ## 定理3 有限策略游戏的混合策略纳什均衡必然存在。 这说明必然存在 <span class="math inline">\((p^\*,q^\*)\)</span> 这样的均衡局面，且这样的局面分别是min-max和max-min ## 定理4 在对称零和游戏中，均衡点必然收益为 <span class="math inline">\(0\)</span>。 这是显然的，对称零和说明 <span class="math inline">\(A^\\intercal=B=-A\)</span>，即对角线上收益为 <span class="math inline">\(0\)</span>。对于正收益的局面，玩家2总能移动到对角线上获得一个更高的收益；负收益局面玩家1同理。 ## 求解 对于玩家1而言即为求解 <span class="math inline">\(\\max\_p \\min\_q p^\\intercal Aq\)</span>，可以等价地转化为如下线性规划： <span class="math display">\[ \\text{maximize }v \\\\ \\text{s.t.} \\\\ p^\\intercal A\\geq v\\bold1 \\\\ \\text{where $p$ is a distribution over all strategies} \]</span> <span id="more"></span></p>
+<span class="math display">\[\begin{aligned}
+
+\text{maximize }v
+
+\\
+
+\text{s.t.}
+
+\\
+
+p^\intercal A\geq v\bold1
+
+\\
+
+\text{where $p$ is a distribution over all strategies}
+
+\end{aligned}\]</span>
 
       </div>
       
@@ -245,6 +260,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#zero-sum-games"><span class="toc-text">Zero Sum Games</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#min-max"><span class="toc-text">Min-Max</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%861"><span class="toc-text">定理1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%862"><span class="toc-text">定理2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%863"><span class="toc-text">定理3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%864"><span class="toc-text">定理4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3"><span class="toc-text">求解</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

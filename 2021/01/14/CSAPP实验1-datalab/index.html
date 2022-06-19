@@ -174,7 +174,7 @@
 <p>这些只在本地btest过,不保证能对...如果有错或者有更好的做法欢迎指正!</p>
 <p>upd:做完了，爽耶</p>
 <p><img src="https://img2020.cnblogs.com/blog/1010529/202101/1010529-20210119235336374-403161748.png" /></p>
-<p>## tricks</p>
+<h2 id="tricks">tricks</h2>
 <hr />
 <ol type="1">
 <li><span class="math inline">\([a=b]\iff [(a \otimes b)=0]\iff [(a-b)=0]\)</span></li>
@@ -182,41 +182,41 @@
 <p>这个视能否使用"-"和"^"来选择,相当于不用if做出了判断是否相等</p>
 <ol start="2" type="1">
 <li><p><span class="math inline">\((111\dots 11)_2=(-1)_{10}\)</span> 这个...没啥好说的</p></li>
-<li><p><span class="math inline">\(f(flag,x)=\left\{ {\begin{aligned}0,flag=0\\x,flag=1\end{aligned}  }\right.\iff x\&amp;(-flag)\)</span>,结合2就可以理解,结合4很有用</p></li>
+<li><p><span class="math inline">\(f(flag,x)=\left\{ {\begin{aligned}0,flag=0\\x,flag=1\end{aligned} }\right.\iff x\&amp;(-flag)\)</span>,结合2就可以理解,结合4很有用</p></li>
 <li><p><span class="math inline">\((-x)=( (\sim x) + 1)\)</span>,这个实际上就是电路中减法的做法,这里可以看出反码在简化运算中的作用</p></li>
 </ol>
-<p>## bitXor</p>
+<h2 id="bitxor">bitXor</h2>
 <hr />
 <p>根据集合论/数理逻辑的知识可以很快想到异或的"对称差"定义</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">//1</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co"> * bitXor - x^y using only ~ and &amp; </span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co"> *   Example: bitXor(4, 5) = 1</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co"> *   Legal ops: ~ &amp;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co"> *   Max ops: 14</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co"> *   Rating: 1</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">* bitXor - x^y using only ~ and &amp;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">*   Example: bitXor(4, 5) = 1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">*   Legal ops: ~ &amp;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">*   Max ops: 14</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">*   Rating: 1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="dt">int</span> bitXor(<span class="dt">int</span> x, <span class="dt">int</span> y) &#123;</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  <span class="dt">int</span> fx = ~x, fy = ~y;</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  <span class="dt">int</span> tx = fx &amp; y, ty = fy &amp; x;</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>  <span class="cf">return</span> ~((~tx) &amp; (~ty));</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="dt">int</span> fx = ~x, fy = ~y;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="dt">int</span> tx = fx &amp; y, ty = fy &amp; x;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="cf">return</span> ~((~tx) &amp; (~ty));</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## tmin</p>
+<h2 id="tmin">tmin</h2>
 <hr />
 <p>这里的最小指的是补码对应数值最小...这个直接符号位填1就好了</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co"> * tmin - return minimum two&#39;s complement integer </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co"> *   Max ops: 4</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co"> *   Rating: 1</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">* tmin - return minimum two&#39;s complement integer</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">*   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">*   Max ops: 4</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">*   Rating: 1</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="dt">int</span> tmin(<span class="dt">void</span>) &#123;</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>  <span class="cf">return</span> (<span class="dv">1</span> &lt;&lt; <span class="dv">31</span>);</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="cf">return</span> (<span class="dv">1</span> &lt;&lt; <span class="dv">31</span>);</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## isTmax</p>
+<h2 id="istmax">isTmax</h2>
 <hr />
 <p>tmax的特点是除了符号位都是1,那么加上1就得到了tmin,取反仍然是tmax</p>
 <p>但是除了tmax还有别的数有这个性质:-1，排除掉就好了</p>
@@ -224,49 +224,49 @@
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">//2</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">/*</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co"> * isTmax - returns 1 if x is the maximum, two&#39;s complement number,</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co"> *     and 0 otherwise </span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co"> *   Legal ops: ! ~ &amp; ^ | +</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co"> *   Max ops: 10</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co"> *   Rating: 1</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">* isTmax - returns 1 if x is the maximum, two&#39;s complement number,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">*     and 0 otherwise</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">*   Legal ops: ! ~ &amp; ^ | +</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">*   Max ops: 10</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">*   Rating: 1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="dt">int</span> isTmax(<span class="dt">int</span> x) &#123;</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>  <span class="dt">int</span> t = x + <span class="dv">1</span>;</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>  <span class="cf">return</span> !( ( (~t) ^ x) | (!t));</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="dt">int</span> t = x + <span class="dv">1</span>;</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="cf">return</span> !( ( (~t) ^ x) | (!t));</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## allOddBits</p>
+<h2 id="alloddbits">allOddBits</h2>
 <hr />
 <p>lab有要求不能使用超过255的常量,那么一个想法就是把32bits分成4*8bits,</p>
 <p>我们造一个(10101010)来复制4份就可以到奇数位全为1的二进制数，然后就很简单了</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co"> * allOddBits - return 1 if all odd-numbered bits in word set to 1</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co"> *   where bits are numbered from 0 (least significant) to 31 (most significant)</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co"> *   Examples allOddBits(0xFFFFFFFD) = 0, allOddBits(0xAAAAAAAA) = 1</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co"> *   Max ops: 12</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co"> *   Rating: 2</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">* allOddBits - return 1 if all odd-numbered bits in word set to 1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co">*   where bits are numbered from 0 (least significant) to 31 (most significant)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">*   Examples allOddBits(0xFFFFFFFD) = 0, allOddBits(0xAAAAAAAA) = 1</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">*   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">*   Max ops: 12</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">*   Rating: 2</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="dt">int</span> allOddBits(<span class="dt">int</span> x) &#123;</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>  <span class="dt">int</span> t = <span class="dv">170</span> | (<span class="dv">170</span> &lt;&lt; <span class="dv">8</span>);</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>  t = t | (t &lt;&lt; <span class="dv">16</span>);</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>  <span class="cf">return</span> !((t &amp; x) ^ t);</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="dt">int</span> t = <span class="dv">170</span> | (<span class="dv">170</span> &lt;&lt; <span class="dv">8</span>);</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>t = t | (t &lt;&lt; <span class="dv">16</span>);</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="cf">return</span> !((t &amp; x) ^ t);</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## negate</p>
+<h2 id="negate">negate</h2>
 <hr />
 <p>看trick4</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co"> * negate - return -x </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co"> *   Example: negate(1) = -1.</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co"> *   Max ops: 5</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co"> *   Rating: 2</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">* negate - return -x</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">*   Example: negate(1) = -1.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">*   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">*   Max ops: 5</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">*   Rating: 2</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="dt">int</span> negate(<span class="dt">int</span> x) &#123;</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>  <span class="cf">return</span> (~x) + <span class="dv">1</span>;</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="cf">return</span> (~x) + <span class="dv">1</span>;</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## isAsciiDigit</p>
+<h2 id="isasciidigit">isAsciiDigit</h2>
 <hr />
 <p>这道题就比较灵性...</p>
 <p>观察一下asciiDigit的特点,最后6位都形如<span class="math inline">\((11xxxx)_2\)</span>,而最后4位恰好是<span class="math inline">\((0000)_2\sim (1001)_2\)</span></p>
@@ -275,59 +275,59 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">//3</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co"> * isAsciiDigit - return 1 if 0x30 &lt;= x &lt;= 0x39 (ASCII codes for characters &#39;0&#39; to &#39;9&#39;)</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co"> *   Example: isAsciiDigit(0x35) = 1.</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co"> *            isAsciiDigit(0x3a) = 0.</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co"> *            isAsciiDigit(0x05) = 0.</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="co"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co"> *   Max ops: 15</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co"> *   Rating: 3</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">* isAsciiDigit - return 1 if 0x30 &lt;= x &lt;= 0x39 (ASCII codes for characters &#39;0&#39; to &#39;9&#39;)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">*   Example: isAsciiDigit(0x35) = 1.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">*            isAsciiDigit(0x3a) = 0.</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">*            isAsciiDigit(0x05) = 0.</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="co">*   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co">*   Max ops: 15</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co">*   Rating: 3</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="dt">int</span> isAsciiDigit(<span class="dt">int</span> x) &#123;</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>  <span class="dt">int</span> A = !( (x &gt;&gt; <span class="dv">4</span>) ^ <span class="dv">3</span>);</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>  <span class="dt">int</span> B = !(x &amp; <span class="dv">8</span>);</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a>  <span class="dt">int</span> C = !(x &amp; <span class="dv">6</span>);</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>  <span class="cf">return</span> A &amp; ( B | C );</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="dt">int</span> A = !( (x &gt;&gt; <span class="dv">4</span>) ^ <span class="dv">3</span>);</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="dt">int</span> B = !(x &amp; <span class="dv">8</span>);</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="dt">int</span> C = !(x &amp; <span class="dv">6</span>);</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a><span class="cf">return</span> A &amp; ( B | C );</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## conditional</p>
+<h2 id="conditional">conditional</h2>
 <hr />
 <p>利用trick3就可以做了，构造<span class="math inline">\(f(flag,x)\otimes f(!flag,y)\)</span>就好了</p>
 <p>我在写到这里的时候没有意识到trick4可以用,所以写的比较繁琐</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="co"> * conditional - same as x ? y : z </span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co"> *   Example: conditional(2,4,5) = 4</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co"> *   Max ops: 16</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co"> *   Rating: 3</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="co">* conditional - same as x ? y : z</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co">*   Example: conditional(2,4,5) = 4</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">*   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">*   Max ops: 16</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">*   Rating: 3</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="dt">int</span> conditional(<span class="dt">int</span> x, <span class="dt">int</span> y, <span class="dt">int</span> z) &#123;</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>  <span class="dt">int</span> px1 = !x;</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>  <span class="dt">int</span> px2 = !px1;</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>  <span class="dt">int</span> ty = ( (px2 &lt;&lt; <span class="dv">31</span>) &gt;&gt; <span class="dv">31</span> ) &amp; y;</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a>  <span class="dt">int</span> tz = ( (px1 &lt;&lt; <span class="dv">31</span>) &gt;&gt; <span class="dv">31</span> ) &amp; z;</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a>  <span class="cf">return</span> ty ^ tz;</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="dt">int</span> px1 = !x;</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="dt">int</span> px2 = !px1;</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a><span class="dt">int</span> ty = ( (px2 &lt;&lt; <span class="dv">31</span>) &gt;&gt; <span class="dv">31</span> ) &amp; y;</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="dt">int</span> tz = ( (px1 &lt;&lt; <span class="dv">31</span>) &gt;&gt; <span class="dv">31</span> ) &amp; z;</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a><span class="cf">return</span> ty ^ tz;</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## isLessOrEqualTo</p>
+<h2 id="islessorequalto">isLessOrEqualTo</h2>
 <hr />
 <p>最直观就是做差,判断<span class="math inline">\(\triangle\)</span>的符号位</p>
 <p>然而当两个数异号的时候,他们的差会溢出,为了处理这种状况我们要先判掉异号的情况,这样同号运算就是在范围内的了</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co"> * isLessOrEqual - if x &lt;= y  then return 1, else return 0 </span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="co"> *   Example: isLessOrEqual(4,5) = 1.</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co"> *   Max ops: 24</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co"> *   Rating: 3</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co">* isLessOrEqual - if x &lt;= y  then return 1, else return 0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="co">*   Example: isLessOrEqual(4,5) = 1.</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co">*   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">*   Max ops: 24</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co">*   Rating: 3</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a><span class="dt">int</span> isLessOrEqual(<span class="dt">int</span> x, <span class="dt">int</span> y) &#123;</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>  <span class="dt">int</span> d = x + (<span class="dv">1</span> + (~y) );</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>  <span class="dt">int</span> fx = (x &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>;</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>  <span class="dt">int</span> fy = (y &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>;</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a>  <span class="cf">return</span> ( (!d) | ( (d &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>) | ( fx &amp; (!fy) ) ) &amp; !( (!fx) &amp; fy);</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="dt">int</span> d = x + (<span class="dv">1</span> + (~y) );</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="dt">int</span> fx = (x &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>;</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="dt">int</span> fy = (y &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>;</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="cf">return</span> ( (!d) | ( (d &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>) | ( fx &amp; (!fy) ) ) &amp; !( (!fx) &amp; fy);</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## logicalNeg</p>
+<h2 id="logicalneg">logicalNeg</h2>
 <hr />
 <p>可以发现符号位不重要,第一步先去掉符号位得到"绝对值"</p>
 <p>如果是0的话取反就会得到-1，否则都得不到-1</p>
@@ -336,19 +336,19 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">//4</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co"> * logicalNeg - implement the ! operator, using all of </span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co"> *              the legal operators except !</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co"> *   Examples: logicalNeg(3) = 0, logicalNeg(0) = 1</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co"> *   Legal ops: ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="co"> *   Max ops: 12</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="co"> *   Rating: 4 </span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co">* logicalNeg - implement the ! operator, using all of</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co">*              the legal operators except !</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co">*   Examples: logicalNeg(3) = 0, logicalNeg(0) = 1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co">*   Legal ops: ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="co">*   Max ops: 12</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="co">*   Rating: 4</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="dt">int</span> logicalNeg(<span class="dt">int</span> x) &#123;</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a>  <span class="dt">int</span> tx = (~x) | (<span class="dv">1</span> &lt;&lt; <span class="dv">31</span>);</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a>  <span class="cf">return</span> ( ~( ( ( tx + <span class="dv">1</span> ) | x ) &gt;&gt; <span class="dv">31</span> ) ) &amp; <span class="dv">1</span>;</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a><span class="dt">int</span> tx = (~x) | (<span class="dv">1</span> &lt;&lt; <span class="dv">31</span>);</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a><span class="cf">return</span> ( ~( ( ( tx + <span class="dv">1</span> ) | x ) &gt;&gt; <span class="dv">31</span> ) ) &amp; <span class="dv">1</span>;</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## howManyBits</p>
+<h2 id="howmanybits">howManyBits</h2>
 <hr />
 <p>先考虑正数,我们要找的就是最高位的1在哪(第几位)</p>
 <p>负数的情况比较特殊,因为从符号位开始连续的1序列和单独的一个符号位1等价(回忆课堂上的Sign Extension),那么我们只需要保留一个符号位,也就是只需要找到最高位的0就可以了</p>
@@ -356,30 +356,30 @@
 <p>先判断前16位是否有1,然后通过右移来调整下一次判断的区间,以此类推...就可以了</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">/* howManyBits - return the minimum number of bits required to represent x in</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co"> *             two&#39;s complement</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co"> *  Examples: howManyBits(12) = 5</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="co"> *            howManyBits(298) = 10</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="co"> *            howManyBits(-5) = 4</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="co"> *            howManyBits(0)  = 1</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="co"> *            howManyBits(-1) = 1</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="co"> *            howManyBits(0x80000000) = 32</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="co"> *  Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="co"> *  Max ops: 90</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a><span class="co"> *  Rating: 4</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co">*             two&#39;s complement</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co">*  Examples: howManyBits(12) = 5</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="co">*            howManyBits(298) = 10</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="co">*            howManyBits(-5) = 4</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="co">*            howManyBits(0)  = 1</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="co">*            howManyBits(-1) = 1</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="co">*            howManyBits(0x80000000) = 32</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="co">*  Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="co">*  Max ops: 90</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a><span class="co">*  Rating: 4</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a><span class="dt">int</span> howManyBits(<span class="dt">int</span> x) &#123;</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a>  <span class="dt">int</span> t1, L1, t2, L2, t3, L3, t4, L4, t5, L5;</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a>  <span class="dt">int</span> s = ~<span class="dv">1</span> + <span class="dv">1</span>, rx = x, cx = !x;</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a>  <span class="dt">int</span> p = (x &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>, dx = !(rx ^ s);</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a>  x ^= ~p + <span class="dv">1</span>;</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a>  t1 = s &amp; (x &gt;&gt; <span class="dv">16</span>); L1 = ( (!!t1) &lt;&lt; <span class="dv">4</span>); x &gt;&gt;= L1;</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a>  t2 = s &amp; (x &gt;&gt; <span class="dv">8</span>);  L2 = ( (!!t2) &lt;&lt; <span class="dv">3</span>); x &gt;&gt;= L2;</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a>  t3 = (x &gt;&gt; <span class="dv">4</span>) &amp; s;  L3 = ( (!!t3) &lt;&lt; <span class="dv">2</span>); x &gt;&gt;= L3;</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a>  t4 = (x &gt;&gt; <span class="dv">2</span>) &amp; s;  L4 = ( (!!t4) &lt;&lt; <span class="dv">1</span>); x &gt;&gt;= L4;</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a>  t5 = (x &gt;&gt; <span class="dv">1</span>) &amp; s;  L5 = (!!t5); x &gt;&gt;= L5;</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a>  <span class="cf">return</span> L1 + L2 + L3 + L4 + L5 + <span class="dv">2</span> + (<span class="dv">1</span> + ~cx ) + (<span class="dv">1</span> + ~dx);</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a><span class="dt">int</span> t1, L1, t2, L2, t3, L3, t4, L4, t5, L5;</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a><span class="dt">int</span> s = ~<span class="dv">1</span> + <span class="dv">1</span>, rx = x, cx = !x;</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a><span class="dt">int</span> p = (x &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>, dx = !(rx ^ s);</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a>x ^= ~p + <span class="dv">1</span>;</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a>t1 = s &amp; (x &gt;&gt; <span class="dv">16</span>); L1 = ( (!!t1) &lt;&lt; <span class="dv">4</span>); x &gt;&gt;= L1;</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a>t2 = s &amp; (x &gt;&gt; <span class="dv">8</span>);  L2 = ( (!!t2) &lt;&lt; <span class="dv">3</span>); x &gt;&gt;= L2;</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a>t3 = (x &gt;&gt; <span class="dv">4</span>) &amp; s;  L3 = ( (!!t3) &lt;&lt; <span class="dv">2</span>); x &gt;&gt;= L3;</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a>t4 = (x &gt;&gt; <span class="dv">2</span>) &amp; s;  L4 = ( (!!t4) &lt;&lt; <span class="dv">1</span>); x &gt;&gt;= L4;</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a>t5 = (x &gt;&gt; <span class="dv">1</span>) &amp; s;  L5 = (!!t5); x &gt;&gt;= L5;</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a><span class="cf">return</span> L1 + L2 + L3 + L4 + L5 + <span class="dv">2</span> + (<span class="dv">1</span> + ~cx ) + (<span class="dv">1</span> + ~dx);</span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## floatScale2</p>
+<h2 id="floatscale2">floatScale2</h2>
 <hr />
 <p>浮点数的编码很有意思</p>
 <p>分类讨论。首先判掉NaN和INF,对于denorm的形式我们只要左移frac部分,对于norm形式我们只需要增加指数exp(why?)</p>
@@ -387,69 +387,69 @@
 <div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="co">//float</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a><span class="co"> * floatScale2 - Return bit-level equivalent of expression 2*f for</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="co"> *   floating point argument f.</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a><span class="co"> *   Both the argument and result are passed as unsigned int&#39;s, but</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a><span class="co"> *   they are to be interpreted as the bit-level representation of</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a><span class="co"> *   single-precision floating point values.</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a><span class="co"> *   When argument is NaN, return argument</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a><span class="co"> *   Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. also if, while</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="co"> *   Max ops: 30</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a><span class="co"> *   Rating: 4</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a><span class="co">* floatScale2 - Return bit-level equivalent of expression 2*f for</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="co">*   floating point argument f.</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a><span class="co">*   Both the argument and result are passed as unsigned int&#39;s, but</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a><span class="co">*   they are to be interpreted as the bit-level representation of</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a><span class="co">*   single-precision floating point values.</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a><span class="co">*   When argument is NaN, return argument</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a><span class="co">*   Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. also if, while</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="co">*   Max ops: 30</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a><span class="co">*   Rating: 4</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a><span class="dt">unsigned</span> floatScale2(<span class="dt">unsigned</span> uf) &#123;</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a>  <span class="dt">unsigned</span> s = (uf &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>;</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true"></a>  <span class="dt">unsigned</span> e = (uf &gt;&gt; <span class="dv">23</span>) &amp; <span class="dv">255</span>;</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true"></a>  <span class="dt">unsigned</span> m = uf &amp; <span class="dv">8388607</span>;</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true"></a>  <span class="cf">if</span> (e == <span class="dv">0</span>) &#123;</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true"></a>    m = m * <span class="dv">2</span>;</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true"></a>  &#125; <span class="cf">else</span> <span class="cf">if</span> (e != <span class="dv">255</span>) &#123;</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true"></a>    e = e + <span class="dv">1</span>;</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true"></a>  &#125;</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true"></a>  <span class="cf">return</span> (s &lt;&lt; <span class="dv">31</span>) | (e &lt;&lt; <span class="dv">23</span>) | m;</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a><span class="dt">unsigned</span> s = (uf &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>;</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true"></a><span class="dt">unsigned</span> e = (uf &gt;&gt; <span class="dv">23</span>) &amp; <span class="dv">255</span>;</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true"></a><span class="dt">unsigned</span> m = uf &amp; <span class="dv">8388607</span>;</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true"></a><span class="cf">if</span> (e == <span class="dv">0</span>) &#123;</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true"></a>m = m * <span class="dv">2</span>;</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true"></a>&#125; <span class="cf">else</span> <span class="cf">if</span> (e != <span class="dv">255</span>) &#123;</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true"></a>e = e + <span class="dv">1</span>;</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true"></a>&#125;</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true"></a><span class="cf">return</span> (s &lt;&lt; <span class="dv">31</span>) | (e &lt;&lt; <span class="dv">23</span>) | m;</span>
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## floatFloat2Int</p>
+<h2 id="floatfloat2int">floatFloat2Int</h2>
 <hr />
 <p>试了一下,C里面的强制类型转换会截掉小数点后的部分,除非某种类似<code>1.9999999999999999999</code>的例子,在这个例子下类型转换会变成2(why?)</p>
 <p>事实上第二种情况我们不需要考虑,因此只需要把frac部分抠出来,前面添上1,按照exp-bias得到的指数位e偏移即可。很显然如果它是一个denorm/指数为负的norm的话答案就是0</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co"> * floatFloat2Int - Return bit-level equivalent of expression (int) f</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co"> *   for floating point argument f.</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co"> *   Argument is passed as unsigned int, but</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="co"> *   it is to be interpreted as the bit-level representation of a</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co"> *   single-precision floating point value.</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co"> *   Anything out of range (including NaN and infinity) should return</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co"> *   0x80000000u.</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="co"> *   Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. also if, while</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="co"> *   Max ops: 30</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co"> *   Rating: 4</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co">* floatFloat2Int - Return bit-level equivalent of expression (int) f</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co">*   for floating point argument f.</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">*   Argument is passed as unsigned int, but</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="co">*   it is to be interpreted as the bit-level representation of a</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co">*   single-precision floating point value.</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co">*   Anything out of range (including NaN and infinity) should return</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co">*   0x80000000u.</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="co">*   Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. also if, while</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="co">*   Max ops: 30</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co">*   Rating: 4</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a><span class="dt">int</span> floatFloat2Int(<span class="dt">unsigned</span> uf) &#123;</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a>  <span class="dt">int</span> s = (uf &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>;</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a>  <span class="dt">int</span> e = (uf &gt;&gt; <span class="dv">23</span>) &amp; <span class="dv">255</span>;</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true"></a>  <span class="dt">int</span> m = uf &amp; <span class="dv">8388607</span>;</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true"></a>  <span class="dt">int</span> bias = <span class="dv">127</span>, i = <span class="dv">22</span>, r = <span class="dv">1</span>;</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true"></a>  <span class="cf">if</span> (e == <span class="dv">255</span>) &#123;</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true"></a>    <span class="cf">return</span> <span class="bn">0x80000000</span><span class="bu">u</span>;</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true"></a>  &#125; <span class="cf">else</span> <span class="cf">if</span> (e == <span class="dv">0</span>) &#123;</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true"></a>  &#125; <span class="cf">else</span> &#123;</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true"></a>    e -= bias;</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true"></a>    <span class="cf">if</span> (e &lt; <span class="dv">0</span>) <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true"></a>    <span class="cf">for</span> (; i &gt;= <span class="dv">0</span>; i --) &#123;</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true"></a>      <span class="cf">if</span> ( (m &gt;&gt; i) &amp; <span class="dv">1</span>) <span class="cf">break</span>;</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true"></a>    &#125;</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true"></a>    <span class="cf">while</span> (e &gt; <span class="dv">0</span>) &#123;</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true"></a>      e -= <span class="dv">1</span>; i -= <span class="dv">1</span>; r &lt;&lt;= <span class="dv">1</span>;</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true"></a>      <span class="cf">if</span> (i &gt; <span class="dv">0</span>) r |= ( (m &gt;&gt; i) &amp; <span class="dv">1</span>);</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true"></a>      <span class="cf">if</span> (r &lt; <span class="dv">0</span>) <span class="cf">return</span> <span class="bn">0x80000000</span><span class="bu">u</span>;</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true"></a>    &#125;</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true"></a>    <span class="cf">return</span> s?(-r):r;</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true"></a>  &#125;</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a><span class="dt">int</span> s = (uf &gt;&gt; <span class="dv">31</span>) &amp; <span class="dv">1</span>;</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a><span class="dt">int</span> e = (uf &gt;&gt; <span class="dv">23</span>) &amp; <span class="dv">255</span>;</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true"></a><span class="dt">int</span> m = uf &amp; <span class="dv">8388607</span>;</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true"></a><span class="dt">int</span> bias = <span class="dv">127</span>, i = <span class="dv">22</span>, r = <span class="dv">1</span>;</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true"></a><span class="cf">if</span> (e == <span class="dv">255</span>) &#123;</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true"></a><span class="cf">return</span> <span class="bn">0x80000000</span><span class="bu">u</span>;</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true"></a>&#125; <span class="cf">else</span> <span class="cf">if</span> (e == <span class="dv">0</span>) &#123;</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true"></a><span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true"></a>&#125; <span class="cf">else</span> &#123;</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true"></a>e -= bias;</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true"></a><span class="cf">if</span> (e &lt; <span class="dv">0</span>) <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true"></a><span class="cf">for</span> (; i &gt;= <span class="dv">0</span>; i --) &#123;</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true"></a><span class="cf">if</span> ( (m &gt;&gt; i) &amp; <span class="dv">1</span>) <span class="cf">break</span>;</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true"></a>&#125;</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true"></a><span class="cf">while</span> (e &gt; <span class="dv">0</span>) &#123;</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true"></a>e -= <span class="dv">1</span>; i -= <span class="dv">1</span>; r &lt;&lt;= <span class="dv">1</span>;</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true"></a><span class="cf">if</span> (i &gt; <span class="dv">0</span>) r |= ( (m &gt;&gt; i) &amp; <span class="dv">1</span>);</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true"></a><span class="cf">if</span> (r &lt; <span class="dv">0</span>) <span class="cf">return</span> <span class="bn">0x80000000</span><span class="bu">u</span>;</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true"></a>&#125;</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true"></a><span class="cf">return</span> s?(-r):r;</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true"></a>&#125;</span>
 <span id="cb12-36"><a href="#cb12-36" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>## floatPower2</p>
+<h2 id="floatpower2">floatPower2</h2>
 <hr />
 <p>这个也挺简单的...</p>
 <p>从这个题可以看出单精度(32位)浮点数能表示的数字的范围</p>
@@ -457,37 +457,35 @@
 <p><strong>最小值</strong>是denorm形式,exp为0,frac为1,此时指数e是1-127,尾数额外提供了23位的指数,这样就得到<span class="math inline">\(2^{-149}\)</span></p>
 <p>这样直接做就可以了</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="co">/* </span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="co"> * floatPower2 - Return bit-level equivalent of the expression 2.0^x</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="co"> *   (2.0 raised to the power x) for any 32-bit integer x.</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="co"> *</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="co"> *   The unsigned value that is returned should have the identical bit</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="co"> *   representation as the single-precision floating-point number 2.0^x.</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="co"> *   If the result is too small to be represented as a denorm, return</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a><span class="co"> *   0. If too large, return +INF.</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a><span class="co"> * </span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a><span class="co"> *   Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. Also if, while </span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="co"> *   Max ops: 30 </span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a><span class="co"> *   Rating: 4</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="co">* floatPower2 - Return bit-level equivalent of the expression 2.0^x</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="co">*   (2.0 raised to the power x) for any 32-bit integer x.</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="co">*</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="co">*   The unsigned value that is returned should have the identical bit</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="co">*   representation as the single-precision floating-point number 2.0^x.</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="co">*   If the result is too small to be represented as a denorm, return</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a><span class="co">*   0. If too large, return +INF.</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a><span class="co">*</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a><span class="co">*   Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. Also if, while</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="co">*   Max ops: 30</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a><span class="co">*   Rating: 4</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a><span class="co">*/</span></span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a><span class="dt">unsigned</span> floatPower2(<span class="dt">int</span> x) &#123;</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true"></a>  <span class="dt">int</span> s = <span class="dv">0</span>, m = <span class="dv">0</span>, e = <span class="dv">127</span>;</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true"></a>  <span class="cf">if</span> (x &lt; <span class="dv">0</span>) &#123;</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true"></a>    <span class="cf">if</span> (-x &gt; <span class="dv">149</span>) <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true"></a>    <span class="cf">else</span> <span class="cf">if</span> (-x &lt;= <span class="dv">126</span>) &#123;</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true"></a>      e = <span class="dv">1</span>;</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true"></a>    &#125; <span class="cf">else</span> &#123;</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true"></a>      e = <span class="dv">0</span>;</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true"></a>      m = (<span class="bn">0x400000</span><span class="bu">u</span>) &gt;&gt; (-x - <span class="dv">126</span>);</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true"></a>    &#125;</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true"></a>  &#125; <span class="cf">else</span> <span class="cf">if</span> (x &gt; <span class="dv">0</span>) &#123;</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true"></a>    <span class="cf">if</span> (x + <span class="dv">127</span> &gt; <span class="dv">255</span>) <span class="cf">return</span> <span class="bn">0x7f800000</span>;</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true"></a>    <span class="cf">else</span> e = x + <span class="dv">127</span>;</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true"></a>  &#125;</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true"></a>  <span class="cf">return</span> (s &lt;&lt; <span class="dv">31</span>) | (e &lt;&lt; <span class="dv">23</span>) | m;</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true"></a><span class="dt">int</span> s = <span class="dv">0</span>, m = <span class="dv">0</span>, e = <span class="dv">127</span>;</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true"></a><span class="cf">if</span> (x &lt; <span class="dv">0</span>) &#123;</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true"></a><span class="cf">if</span> (-x &gt; <span class="dv">149</span>) <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true"></a><span class="cf">else</span> <span class="cf">if</span> (-x &lt;= <span class="dv">126</span>) &#123;</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true"></a>e = <span class="dv">1</span>;</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true"></a>&#125; <span class="cf">else</span> &#123;</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true"></a>e = <span class="dv">0</span>;</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true"></a>m = (<span class="bn">0x400000</span><span class="bu">u</span>) &gt;&gt; (-x - <span class="dv">126</span>);</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true"></a>&#125;</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true"></a>&#125; <span class="cf">else</span> <span class="cf">if</span> (x &gt; <span class="dv">0</span>) &#123;</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true"></a><span class="cf">if</span> (x + <span class="dv">127</span> &gt; <span class="dv">255</span>) <span class="cf">return</span> <span class="bn">0x7f800000</span>;</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true"></a><span class="cf">else</span> e = x + <span class="dv">127</span>;</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true"></a>&#125;</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true"></a><span class="cf">return</span> (s &lt;&lt; <span class="dv">31</span>) | (e &lt;&lt; <span class="dv">23</span>) | m;</span>
 <span id="cb13-30"><a href="#cb13-30" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>excerpt: &gt;-</p>
-<p>考试周除了学习什么都好玩，偶然发现了B站上的“精翻”视频，就冲了 第一章的视频还没看完(太长了quq),这里也只是写了整形的lab,写了大概有一整天 明天烤完高代就滚回来填这个lab、课程笔记、导论4、集合论习题的坑...好像有点多,不管了 这些只在本地btest过,不保证能对...如果有错或者有更好的做法欢迎指正! upd:做完了，爽耶 ![](https://img2020.cnblogs.com/blog/1010529/202101/1010529-20210119235336374-403161748.png) ## tricks --- 1. <span class="math inline">\(\[a=b\]\\iff \[(a \\otimes b)=0\]\\iff \[(a-b)=0\]\)</span> 这个视能否使用"-"和"^"来选择,相当于不用if做出了判断是否相等 2. <span class="math inline">\((111\\dots 11)\_2=(-1)\_{10}\)</span> 这个...没啥好说的 3. <span class="math inline">\(f(flag,x)=\\left\\{ {\\begin{aligned}0,flag=0\\\\x,flag=1\\end{aligned} }\\right.\\iff x\\&amp;(-flag)\)</span>,结合2就可以理解,结合4很有用 4. <span class="math inline">\((-x)=( (\\sim x) + 1)\)</span>,这个实际上就是电路中减法的做法,这里可以看出反码在简化运算中的作用 ## bitXor --- 根据集合论/数理逻辑的知识可以很快想到异或的"对称差"定义 ```c //1 /* * bitXor - x^y using only ~ and &amp; * Example: bitXor(4, 5) = 1 * Legal ops: ~ &amp; * Max ops: 14 * Rating: 1 */ int bitXor(int x, int y) { int fx = ~x, fy = ~y; int tx = fx &amp; y, ty = fy &amp; x; return <sub>((</sub>tx) &amp; (~ty)); } ``` ## tmin --- 这里的最小指的是补码对应数值最小...这个直接符号位填1就好了 ```c /* * tmin - return minimum two's complement integer * Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt; * Max ops: 4 * Rating: 1 */ int tmin(void) { return (1 &lt;&lt; 31); } ``` ## isTmax --- tmax的特点是除了符号位都是1,那么加上1就得到了tmin,取反仍然是tmax 但是除了tmax还有别的数有这个性质:-1，排除掉就好了 ```c //2 /* * isTmax - returns 1 if x is the maximum, two's complement number, * and 0 otherwise * Legal ops: ! ~ &amp; ^ | + * Max ops: 10 * Rating: 1 */ int isTmax(int x) { int t = x + 1; return !( ( (~t) ^ x) | (!t)); } ``` ## allOddBits --- lab有要求不能使用超过255的常量,那么一个想法就是把32bits分成4*8bits, 我们造一个(10101010)来复制4份就可以到奇数位全为1的二进制数，然后就很简单了 ```c /* * allOddBits - return 1 if all odd-numbered bits in word set to 1 * where bits are numbered from 0 (least significant) to 31 (most significant) * Examples allOddBits(0xFFFFFFFD) = 0, allOddBits(0xAAAAAAAA) = 1 * Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt; * Max ops: 12 * Rating: 2 */ int allOddBits(int x) { int t = 170 | (170 &lt;&lt; 8); t = t | (t &lt;&lt; 16); return !((t &amp; x) ^ t); } ``` ## negate --- 看trick4 ```c /* * negate - return -x * Example: negate(1) = -1. * Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt; * Max ops: 5 * Rating: 2 */ int negate(int x) { return (~x) + 1; } ``` ## isAsciiDigit --- 这道题就比较灵性... 观察一下asciiDigit的特点,最后6位都形如<span class="math inline">\((11xxxx)\_2\)</span>,而最后4位恰好是<span class="math inline">\((0000)\_2\\sim (1001)\_2\)</span> 我最早的做法是把后6位抠出来,用倒数第4位判掉0~8的情况,再判掉最后2位的情况 事实上做了后面的isLessOrEqual就可以发现这里的另一种做法了...不是很懂这个顺序啊 ```c //3 /* * isAsciiDigit - return 1 if 0x30 &lt;= x &lt;= 0x39 (ASCII codes for characters '0' to '9') * Example: isAsciiDigit(0x35) = 1. * isAsciiDigit(0x3a) = 0. * isAsciiDigit(0x05) = 0. * Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt; * Max ops: 15 * Rating: 3 */ int isAsciiDigit(int x) { int A = !( (x &gt;&gt; 4) ^ 3); int B = !(x &amp; 8); int C = !(x &amp; 6); return A &amp; ( B | C ); } ``` ## conditional --- 利用trick3就可以做了，构造<span class="math inline">\(f(flag,x)\\otimes f(!flag,y)\)</span>就好了 我在写到这里的时候没有意识到trick4可以用,所以写的比较繁琐 ```c /* * conditional - same as x ? y : z * Example: conditional(2,4,5) = 4 * Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt; * Max ops: 16 * Rating: 3 */ int conditional(int x, int y, int z) { int px1 = !x; int px2 = !px1; int ty = ( (px2 &lt;&lt; 31) &gt;&gt; 31 ) &amp; y; int tz = ( (px1 &lt;&lt; 31) &gt;&gt; 31 ) &amp; z; return ty ^ tz; } ``` ## isLessOrEqualTo --- 最直观就是做差,判断<span class="math inline">\(\\triangle\)</span>的符号位 然而当两个数异号的时候,他们的差会溢出,为了处理这种状况我们要先判掉异号的情况,这样同号运算就是在范围内的了 ```c /* * isLessOrEqual - if x &lt;= y then return 1, else return 0 * Example: isLessOrEqual(4,5) = 1. * Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt; * Max ops: 24 * Rating: 3 */ int isLessOrEqual(int x, int y) { int d = x + (1 + (~y) ); int fx = (x &gt;&gt; 31) &amp; 1; int fy = (y &gt;&gt; 31) &amp; 1; return ( (!d) | ( (d &gt;&gt; 31) &amp; 1) | ( fx &amp; (!fy) ) ) &amp; !( (!fx) &amp; fy); } ``` ## logicalNeg --- 可以发现符号位不重要,第一步先去掉符号位得到"绝对值" 如果是0的话取反就会得到-1，否则都得不到-1 此时加1又可以得到0,即符号位为正,而其余情况得到的都是负数 这个性质可以判掉"大部分"非0数字,特例是-2147483648,它没有绝对值(或者说,"绝对值"是0)...所以特判一下就好了 ```c //4 /* * logicalNeg - implement the ! operator, using all of * the legal operators except ! * Examples: logicalNeg(3) = 0, logicalNeg(0) = 1 * Legal ops: ~ &amp; ^ | + &lt;&lt; &gt;&gt; * Max ops: 12 * Rating: 4 */ int logicalNeg(int x) { int tx = (~x) | (1 &lt;&lt; 31); return ( ~( ( ( tx + 1 ) | x ) &gt;&gt; 31 ) ) &amp; 1; } ``` ## howManyBits --- 先考虑正数,我们要找的就是最高位的1在哪(第几位) 负数的情况比较特殊,因为从符号位开始连续的1序列和单独的一个符号位1等价(回忆课堂上的Sign Extension),那么我们只需要保留一个符号位,也就是只需要找到最高位的0就可以了 于是负数就取反,找最高位的1可以用二分(魔幻吧),想了好久才想到... 先判断前16位是否有1,然后通过右移来调整下一次判断的区间,以此类推...就可以了 ```c /* howManyBits - return the minimum number of bits required to represent x in * two's complement * Examples: howManyBits(12) = 5 * howManyBits(298) = 10 * howManyBits(-5) = 4 * howManyBits(0) = 1 * howManyBits(-1) = 1 * howManyBits(0x80000000) = 32 * Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt; * Max ops: 90 * Rating: 4 */ int howManyBits(int x) { int t1, L1, t2, L2, t3, L3, t4, L4, t5, L5; int s = ~1 + 1, rx = x, cx = !x; int p = (x &gt;&gt; 31) &amp; 1, dx = !(rx ^ s); x ^= ~p + 1; t1 = s &amp; (x &gt;&gt; 16); L1 = ( (!!t1) &lt;&lt; 4); x &gt;&gt;= L1; t2 = s &amp; (x &gt;&gt; 8); L2 = ( (!!t2) &lt;&lt; 3); x &gt;&gt;= L2; t3 = (x &gt;&gt; 4) &amp; s; L3 = ( (!!t3) &lt;&lt; 2); x &gt;&gt;= L3; t4 = (x &gt;&gt; 2) &amp; s; L4 = ( (!!t4) &lt;&lt; 1); x &gt;&gt;= L4; t5 = (x &gt;&gt; 1) &amp; s; L5 = (!!t5); x &gt;&gt;= L5; return L1 + L2 + L3 + L4 + L5 + 2 + (1 + ~cx ) + (1 + ~dx); } ``` ## floatScale2 --- 浮点数的编码很有意思 分类讨论。首先判掉NaN和INF,对于denorm的形式我们只要左移frac部分,对于norm形式我们只需要增加指数exp(why?) 这个例子大概是给你熟悉浮点数编码分类的 ```c //float /* * floatScale2 - Return bit-level equivalent of expression 2*f for * floating point argument f. * Both the argument and result are passed as unsigned int's, but * they are to be interpreted as the bit-level representation of * single-precision floating point values. * When argument is NaN, return argument * Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. also if, while * Max ops: 30 * Rating: 4 */ unsigned floatScale2(unsigned uf) { unsigned s = (uf &gt;&gt; 31) &amp; 1; unsigned e = (uf &gt;&gt; 23) &amp; 255; unsigned m = uf &amp; 8388607; if (e == 0) { m = m * 2; } else if (e != 255) { e = e + 1; } return (s &lt;&lt; 31) | (e &lt;&lt; 23) | m; } ``` ## floatFloat2Int --- 试了一下,C里面的强制类型转换会截掉小数点后的部分,除非某种类似`1.9999999999999999999`的例子,在这个例子下类型转换会变成2(why?) 事实上第二种情况我们不需要考虑,因此只需要把frac部分抠出来,前面添上1,按照exp-bias得到的指数位e偏移即可。很显然如果它是一个denorm/指数为负的norm的话答案就是0 ```c /* * floatFloat2Int - Return bit-level equivalent of expression (int) f * for floating point argument f. * Argument is passed as unsigned int, but * it is to be interpreted as the bit-level representation of a * single-precision floating point value. * Anything out of range (including NaN and infinity) should return * 0x80000000u. * Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. also if, while * Max ops: 30 * Rating: 4 */ int floatFloat2Int(unsigned uf) { int s = (uf &gt;&gt; 31) &amp; 1; int e = (uf &gt;&gt; 23) &amp; 255; int m = uf &amp; 8388607; int bias = 127, i = 22, r = 1; if (e == 255) { return 0x80000000u; } else if (e == 0) { return 0; } else { e -= bias; if (e &lt; 0) return 0; for (; i &gt;= 0; i --) { if ( (m &gt;&gt; i) &amp; 1) break; } while (e &gt; 0) { e -= 1; i -= 1; r &lt;&lt;= 1; if (i &gt; 0) r |= ( (m &gt;&gt; i) &amp; 1); if (r &lt; 0) return 0x80000000u; } return s?(-r):r; } } ``` ## floatPower2 --- 这个也挺简单的... 从这个题可以看出单精度(32位)浮点数能表示的数字的范围 **最大值**是norm形式,exp为254(再大就是NaN和INF了),frac的每一位全为1(虽然在这题里不是这样),就能得到<span class="math inline">\({\\left(2-\\epsilon\\right)}^{127}\)</span> **最小值**是denorm形式,exp为0,frac为1,此时指数e是1-127,尾数额外提供了23位的指数,这样就得到<span class="math inline">\(2^{-149}\)</span> 这样直接做就可以了 ```c /* * floatPower2 - Return bit-level equivalent of the expression 2.0^x * (2.0 raised to the power x) for any 32-bit integer x. * * The unsigned value that is returned should have the identical bit * representation as the single-precision floating-point number 2.0^x. * If the result is too small to be represented as a denorm, return * 0. If too large, return +INF. * * Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. Also if, while * Max ops: 30 * Rating: 4 */ unsigned floatPower2(int x) { int s = 0, m = 0, e = 127; if (x &lt; 0) { if (-x &gt; 149) return 0; else if (-x &lt;= 126) { e = 1; } else { e = 0; m = (0x400000u) &gt;&gt; (-x - 126); } } else if (x &gt; 0) { if (x + 127 &gt; 255) return 0x7f800000; else e = x + 127; } return (s &lt;&lt; 31) | (e &lt;&lt; 23) | m; } ``` <span id="more"></span></p>
 
       </div>
       
@@ -519,6 +517,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tricks"><span class="toc-text">tricks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bitxor"><span class="toc-text">bitXor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tmin"><span class="toc-text">tmin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#istmax"><span class="toc-text">isTmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#alloddbits"><span class="toc-text">allOddBits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#negate"><span class="toc-text">negate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#isasciidigit"><span class="toc-text">isAsciiDigit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conditional"><span class="toc-text">conditional</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#islessorequalto"><span class="toc-text">isLessOrEqualTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logicalneg"><span class="toc-text">logicalNeg</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#howmanybits"><span class="toc-text">howManyBits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#floatscale2"><span class="toc-text">floatScale2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#floatfloat2int"><span class="toc-text">floatFloat2Int</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#floatpower2"><span class="toc-text">floatPower2</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

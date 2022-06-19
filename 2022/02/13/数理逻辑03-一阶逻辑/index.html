@@ -168,10 +168,10 @@
         
       </div>
       <div class="markdown-body">
-        <p># 写在前面</p>
+        <h1 id="写在前面">写在前面</h1>
 <p>命题逻辑（或者 零阶逻辑）到一阶逻辑的变化，在于描述的粒度。命题逻辑只能描述命题之间的关系，以及它们如何构成更大的结构（新的命题）。在一阶逻辑中我们可以深入原子命题的内部，讨论命题的构成。</p>
 <p>为了做到这一点，需要引入集合上的n元关系。从集合论作为基础的角度看，这么做是比较和谐的。</p>
-<p># 命题逻辑</p>
+<h1 id="命题逻辑">命题逻辑</h1>
 <p>命题逻辑的不同之处在于，我们既可以描述一个系统内的某些运算（通过函数、变量和常元），又可以描述由这些运算的结果得到的命题（通过谓词和逻辑连接符）。</p>
 <p>一个例子就是标准算术模型 <span class="math inline">\(\scr A\)</span>：</p>
 <p>我们希望能够描述一个系统 <span class="math inline">\(\scr A\)</span>，即描述清楚</p>
@@ -182,14 +182,14 @@
 <li><p>可以把若干判断组合成一个更大的判断（通过命题构造子组合命题）</p></li>
 </ol>
 <p>注意到上述4条是有层级的，12位于系统内部，3可以根据需要构造，4在不同的系统中可以完全相同。</p>
-<p>## n元关系</p>
-<p>定义集合 <span class="math inline">\(D\)</span> 上的n元关系为n元函数 <span class="math inline">\(f\colon D^n\mapsto \left\{T,F\right\}\)</span>，取 <span class="math inline">\(P=\left\{x\mid  x\in D,f(x)=T\right\}\)</span>，那么就可以仅用集合来表示n元关系。</p>
+<h2 id="n元关系">n元关系</h2>
+<p>定义集合 <span class="math inline">\(D\)</span> 上的n元关系为n元函数 <span class="math inline">\(f\colon D^n\mapsto \left\{T,F\right\}\)</span>，取 <span class="math inline">\(P=\left\{x\mid x\in D,f(x)=T\right\}\)</span>，那么就可以仅用集合来表示n元关系。</p>
 <p>特别的，<span class="math inline">\(&lt;\)</span> 是一个二元关系。它同时是 <span class="math inline">\(\mathbb R,\mathbb N,\mathbb Z\)</span> 上的二元关系，因此可以看出n元关系的定义还要看其定义域，此处即论域</p>
-<p># 语法</p>
-<p>记 <span class="math inline">\(\scr P,C,V,F\)</span> 分别为 谓词、常量、变量、函数 符号的可数集，规定每个谓词 <span class="math inline">\(P\in{\scr P}\)</span> 和函数 <span class="math inline">\(F\in{\scr  F}\)</span> 都有arity（有多少参数）<span class="math inline">\(\mu(P),\mu(F)\in\mathbb N\)</span>。<span class="math inline">\(0\)</span> 元谓词就是命题逻辑中的命题，<span class="math inline">\(0\)</span> 元函数即为常元。</p>
+<h1 id="语法">语法</h1>
+<p>记 <span class="math inline">\(\scr P,C,V,F\)</span> 分别为 谓词、常量、变量、函数 符号的可数集，规定每个谓词 <span class="math inline">\(P\in{\scr P}\)</span> 和函数 <span class="math inline">\(F\in{\scr F}\)</span> 都有arity（有多少参数）<span class="math inline">\(\mu(P),\mu(F)\in\mathbb N\)</span>。<span class="math inline">\(0\)</span> 元谓词就是命题逻辑中的命题，<span class="math inline">\(0\)</span> 元函数即为常元。</p>
 <p>一阶逻辑中仍然存在命题构造子 <span class="math inline">\(\{\wedge,\vee,\rightarrow,\neg\}\)</span>，通常取一个完备集即可。</p>
 <p>规定<strong>量词</strong> <span class="math inline">\(\forall,\exists\)</span> 分别读作 任意 和 存在</p>
-<p>## 项</p>
+<h2 id="项">项</h2>
 <p>项集 <span class="math inline">\({\scr T}\)</span> 由如下递归定义：</p>
 <ol type="1">
 <li><p><span class="math inline">\(\scr C\subseteq T\)</span>，常元是项</p></li>
@@ -198,23 +198,25 @@
 <li><p>项仅限于此</p></li>
 </ol>
 <p>所谓的项集就是在描述系统内部的元素，产生新的项的方法只有函数作用。</p>
-<p>## 原子公式</p>
+<h2 id="原子公式">原子公式</h2>
 <p>形如 <span class="math inline">\(p(t_1,t_2\ldots t_{\mu(p)}),p\in{\scr P}\)</span> 的公式是原子公式</p>
 <p>原子公式承担了从项过度到公式（命题）的角色</p>
-<p>## 公式</p>
+<h2 id="公式">公式</h2>
 <p>给出BNF</p>
-<p>$$</p>
 <span class="math display">\[\begin{aligned}
 
-  formula &amp;:= atomic\_formula\;|\; \neg formula\;|\;formula\vee
-  formula\;|\;formula\wedge formula
+\begin{aligned}
 
-  \\
+formula &amp;:= atomic\_formula\;|\; \neg formula\;|\;formula\vee
+formula\;|\;formula\wedge formula
 
-  formula &amp;:= \exists x\,formula\;|\;\forall x\,formula
+\\
 
-  \end{aligned}\]</span>
-<p>$$</p>
+formula &amp;:= \exists x\,formula\;|\;\forall x\,formula
+
+\end{aligned}
+
+\end{aligned}\]</span>
 <p>一阶逻辑是对命题逻辑的简单拓展，仍然保持了树状结构，之前的证明套路仍然适用。</p>
 <p>在一阶逻辑中既然有变量就同样有作用域的问题。具体的定义类似<span class="math inline">\(\lambda\)</span>-演算：</p>
 <ol type="1">
@@ -223,9 +225,9 @@
 <li><p>非自由变量就称其为约束变量。</p></li>
 <li><p>若公式 <span class="math inline">\(F\)</span> 中，任意变量都是约束变量，则称 <span class="math inline">\(F\)</span> 为封闭公式（Closed Formula），宋公的书叫做句子。</p></li>
 </ol>
-<p>## 替换</p>
+<h2 id="替换">替换</h2>
 <p>和 <span class="math inline">\(\lambda\)</span>-演算中的替换是一模一样的</p>
-<p># 语义</p>
+<h1 id="语义">语义</h1>
 <p>命题逻辑的语义由<strong>解释</strong>给出，在一阶逻辑则不够</p>
 <p>回忆命题逻辑中解释的定义：<span class="math inline">\(\scr I\)</span> 是函数 <span class="math inline">\(U_A\mapsto \left\{T,F\right\}\)</span>，其中 <span class="math inline">\(U_A\)</span> 表示公式 <span class="math inline">\(A\)</span> 中全部原子命题构成的集合</p>
 <p>考虑还差了哪些。为了实现类似的效果，我们需要</p>
@@ -236,24 +238,23 @@
 <li><p>给谓词赋予含义</p></li>
 <li><p>给原子公式赋予含义</p></li>
 </ol>
-<p>## 解释</p>
+<h2 id="解释">解释</h2>
 <p>宋公的书把这个叫做结构，也行吧。</p>
-<p>规定公式 <span class="math inline">\(A\)</span> 的解释是一个三元组 <span class="math inline">\((D,\left\{R_1\ldots R_m\right\},\left\{d_1\ldots  d_k\right\})\)</span></p>
+<p>规定公式 <span class="math inline">\(A\)</span> 的解释是一个三元组 <span class="math inline">\((D,\left\{R_1\ldots R_m\right\},\left\{d_1\ldots d_k\right\})\)</span></p>
 <p>其中 <span class="math inline">\(D\)</span> 是论域，<span class="math inline">\(R_i\)</span> 是论域 <span class="math inline">\(D\)</span> 上的关系，<span class="math inline">\(d_j\)</span> 是 <span class="math inline">\(D\)</span> 中的元素，其赋予了 <span class="math inline">\(A\)</span> 中常量含义。</p>
-<p>一个例子是 <span class="math inline">\(\bold 1&lt;\bold 2\)</span> 和 <span class="math inline">\(壹&lt;贰\)</span>，此处的 <span class="math inline">\(\left\{壹，贰\right\}\)</span> 都是常量，在规定解释为 <span class="math inline">\((\mathbb  N,\left\{&lt;\right\},\left\{1,2\right\})\)</span> 时才能说等式成立（讨论其真值）。可能存在这么一个神奇的国度，它们把 <span class="math inline">\(1\)</span> 写作 <span class="math inline">\(\bold 2\)</span>，把 <span class="math inline">\(2\)</span> 写作 <span class="math inline">\(\bold 1\)</span>，那么式1在它们的国度（特定解释下）就不成立了。</p>
+<p>一个例子是 <span class="math inline">\(\bold 1&lt;\bold 2\)</span> 和 <span class="math inline">\(壹&lt;贰\)</span>，此处的 <span class="math inline">\(\left\{壹，贰\right\}\)</span> 都是常量，在规定解释为 <span class="math inline">\((\mathbb N,\left\{&lt;\right\},\left\{1,2\right\})\)</span> 时才能说等式成立（讨论其真值）。可能存在这么一个神奇的国度，它们把 <span class="math inline">\(1\)</span> 写作 <span class="math inline">\(\bold 2\)</span>，把 <span class="math inline">\(2\)</span> 写作 <span class="math inline">\(\bold 1\)</span>，那么式1在它们的国度（特定解释下）就不成立了。</p>
 <p>但这是不够的。考虑公式 <span class="math inline">\(x&lt;a\)</span>，其在任意解释下都不能讨论真值，因为自由变量 <span class="math inline">\(x\)</span> 的值无法确定，由此引入赋值的定义。</p>
-<p>## 赋值</p>
-<p>记 <span class="math inline">\({\scr I}_A\)</span> 是公式 <span class="math inline">\(A\)</span> 的解释，<span class="math inline">\(A\)</span> 的赋值 <span class="math inline">\(\sigma_{[{ {\scr I}_A}]}\)</span> 是函数 <span class="math inline">\({\scr  V}\mapsto D\)</span>，其赋予了 <span class="math inline">\(A\)</span> 中所有自由变量唯一的论域中的元素作为值。</p>
+<h2 id="赋值">赋值</h2>
+<p>记 <span class="math inline">\({\scr I}_A\)</span> 是公式 <span class="math inline">\(A\)</span> 的解释，<span class="math inline">\(A\)</span> 的赋值 <span class="math inline">\(\sigma_{[{ {\scr I}_A}]}\)</span> 是函数 <span class="math inline">\({\scr V}\mapsto D\)</span>，其赋予了 <span class="math inline">\(A\)</span> 中所有自由变量唯一的论域中的元素作为值。</p>
 <p>可以通过类似于 <span class="math inline">\(\sigma_{[{\scr I}_A]}\left\{x\rightsquigarrow v\right\}\)</span> 来对映射进行单点修改，非常熟悉的味道</p>
-<p>## 项的语义</p>
+<h2 id="项的语义">项的语义</h2>
 <p>base case都很简单，需要注意的只有这么一点：项集是必然可数的，因此项的解释必然是可数的。</p>
 <p>大概可以这么理解：对于实数 <span class="math inline">\(\R\)</span>，我们必然没法用一阶语言来遍历（穷举）它，因为一阶的语言必然是可数的。</p>
 <p>这里就出现了一个gap，我们对任意的项进行解释，不一定能得到整个论域。</p>
-<p>## 公式的语义</p>
+<h2 id="公式的语义">公式的语义</h2>
 <p>base case都很简单，需要注意</p>
 <p><span class="math inline">\(\forall x.P\)</span> 的解释为：对于一切 <span class="math inline">\(t\in d\)</span> 都有 <span class="math inline">\(P[\frac{d}{x}]\)</span> 为真。</p>
-<p>没了，就这么简单。 excerpt: &gt;-</p>
-<p># 写在前面 命题逻辑（或者 零阶逻辑）到一阶逻辑的变化，在于描述的粒度。命题逻辑只能描述命题之间的关系，以及它们如何构成更大的结构（新的命题）。在一阶逻辑中我们可以深入原子命题的内部，讨论命题的构成。 为了做到这一点，需要引入集合上的n元关系。从集合论作为基础的角度看，这么做是比较和谐的。 # 命题逻辑 命题逻辑的不同之处在于，我们既可以描述一个系统内的某些运算（通过函数、变量和常元），又可以描述由这些运算的结果得到的命题（通过谓词和逻辑连接符）。 一个例子就是标准算术模型 <span class="math inline">\(\\scr A\)</span>： 我们希望能够描述一个系统 <span class="math inline">\(\\scr A\)</span>，即描述清楚 1. 系统内部存在一些元素（自然数） 2. 这些元素互相可以通过运算（加法、后继）得到新的自然数 3. 可以判断两个元素的大小关系（<span class="math inline">\(&lt;\)</span> 是二元谓词）、相等关系（<span class="math inline">\(=\)</span> 是二元谓词） 4. 可以把若干判断组合成一个更大的判断（通过命题构造子组合命题） 注意到上述4条是有层级的，12位于系统内部，3可以根据需要构造，4在不同的系统中可以完全相同。 ## n元关系 定义集合 <span class="math inline">\(D\)</span> 上的n元关系为n元函数 <span class="math inline">\(f\\colon D^n\\mapsto \\left\\{T,F\\right\\}\)</span>，取 <span class="math inline">\(P=\\left\\{x\\mid x\\in D,f(x)=T\\right\\}\)</span>，那么就可以仅用集合来表示n元关系。 特别的，<span class="math inline">\(&lt;\)</span> 是一个二元关系。它同时是 <span class="math inline">\(\\mathbb R,\\mathbb N,\\mathbb Z\)</span> 上的二元关系，因此可以看出n元关系的定义还要看其定义域，此处即论域 # 语法 记 <span class="math inline">\(\\scr P,C,V,F\)</span> 分别为 谓词、常量、变量、函数 符号的可数集，规定每个谓词 <span class="math inline">\(P\\in{\\scr P}\)</span> 和函数 <span class="math inline">\(F\\in{\\scr F}\)</span> 都有arity（有多少参数）<span class="math inline">\(\\mu(P),\\mu(F)\\in\\mathbb N\)</span>。<span class="math inline">\(0\)</span> 元谓词就是命题逻辑中的命题，<span class="math inline">\(0\)</span> 元函数即为常元。 一阶逻辑中仍然存在命题构造子 <span class="math inline">\(\\{\\wedge,\\vee,\\rightarrow,\\neg\\}\)</span>，通常取一个完备集即可。 规定**量词** <span class="math inline">\(\\forall,\\exists\)</span> 分别读作 任意 和 存在 ## 项 项集 <span class="math inline">\({\\scr T}\)</span> 由如下递归定义： 1. <span class="math inline">\(\\scr C\\subseteq T\)</span>，常元是项 2. <span class="math inline">\(\\scr V\\subseteq T\)</span>，变量是项 3. <span class="math inline">\(f\\in{\\scr F},f(t\_1,t\_2\\ldots t\_{\\mu(f)})\\in{\\scr T}\)</span>，由若干项作为实参的函数作用是项 4. 项仅限于此 所谓的项集就是在描述系统内部的元素，产生新的项的方法只有函数作用。 ## 原子公式 形如 <span class="math inline">\(p(t\_1,t\_2\\ldots t\_{\\mu(p)}),p\\in{\\scr P}\)</span> 的公式是原子公式 原子公式承担了从项过度到公式（命题）的角色 ## 公式 给出BNF <span class="math display">\[ \\begin{aligned} formula &amp;:= atomic\\\_formula\\;|\\; \\neg formula\\;|\\;formula\\vee formula\\;|\\;formula\\wedge formula \\\\ formula &amp;:= \\exists x\\,formula\\;|\\;\\forall x\\,formula \\end{aligned} \]</span> 一阶逻辑是对命题逻辑的简单拓展，仍然保持了树状结构，之前的证明套路仍然适用。 在一阶逻辑中既然有变量就同样有作用域的问题。具体的定义类似<span class="math inline">\(\\lambda\)</span>-演算： 1. 公式 <span class="math inline">\(\\forall x\\, F\)</span>，<span class="math inline">\(\\exists x\\, F\)</span> 中，<span class="math inline">\(x\)</span> 的作用域为公式 <span class="math inline">\(F\)</span>，<span class="math inline">\(F\)</span> 不要求有 <span class="math inline">\(x\)</span> 出现 2. 称变量 <span class="math inline">\(x\)</span> 是公式 <span class="math inline">\(F\)</span> 中的自由变量，当且仅当 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(F\)</span> 中出现，且不在限定 <span class="math inline">\(x\)</span> 的任何作用域中。 3. 非自由变量就称其为约束变量。 4. 若公式 <span class="math inline">\(F\)</span> 中，任意变量都是约束变量，则称 <span class="math inline">\(F\)</span> 为封闭公式（Closed Formula），宋公的书叫做句子。 ## 替换 和 <span class="math inline">\(\\lambda\)</span>-演算中的替换是一模一样的 # 语义 命题逻辑的语义由**解释**给出，在一阶逻辑则不够 回忆命题逻辑中解释的定义：<span class="math inline">\(\\scr I\)</span> 是函数 <span class="math inline">\(U\_A\\mapsto \\left\\{T,F\\right\\}\)</span>，其中 <span class="math inline">\(U\_A\)</span> 表示公式 <span class="math inline">\(A\)</span> 中全部原子命题构成的集合 考虑还差了哪些。为了实现类似的效果，我们需要 1. 给常量赋予含义 2. 给变量赋予含义 3. 给项赋予含义 4. 给谓词赋予含义 5. 给原子公式赋予含义 ## 解释 宋公的书把这个叫做结构，也行吧。 规定公式 <span class="math inline">\(A\)</span> 的解释是一个三元组 <span class="math inline">\((D,\\left\\{R\_1\\ldots R\_m\\right\\},\\left\\{d\_1\\ldots d\_k\\right\\})\)</span> 其中 <span class="math inline">\(D\)</span> 是论域，<span class="math inline">\(R\_i\)</span> 是论域 <span class="math inline">\(D\)</span> 上的关系，<span class="math inline">\(d\_j\)</span> 是 <span class="math inline">\(D\)</span> 中的元素，其赋予了 <span class="math inline">\(A\)</span> 中常量含义。 一个例子是 <span class="math inline">\(\\bold 1&lt;\\bold 2\)</span> 和 <span class="math inline">\(壹&lt;贰\)</span>，此处的 <span class="math inline">\(\\left\\{壹，贰\\right\\}\)</span> 都是常量，在规定解释为 <span class="math inline">\((\\mathbb N,\\left\\{&lt;\\right\\},\\left\\{1,2\\right\\})\)</span> 时才能说等式成立（讨论其真值）。可能存在这么一个神奇的国度，它们把 <span class="math inline">\(1\)</span> 写作 <span class="math inline">\(\\bold 2\)</span>，把 <span class="math inline">\(2\)</span> 写作 <span class="math inline">\(\\bold 1\)</span>，那么式1在它们的国度（特定解释下）就不成立了。 但这是不够的。考虑公式 $x <span id="more"></span></p>
+<p>没了，就这么简单。</p>
 
       </div>
       
@@ -285,6 +286,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91"><span class="toc-text">命题逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#n%E5%85%83%E5%85%B3%E7%B3%BB"><span class="toc-text">n元关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9"><span class="toc-text">项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E5%85%AC%E5%BC%8F"><span class="toc-text">原子公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F"><span class="toc-text">公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2"><span class="toc-text">替换</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89"><span class="toc-text">语义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A"><span class="toc-text">解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC"><span class="toc-text">赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9A%84%E8%AF%AD%E4%B9%89"><span class="toc-text">项的语义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AD%E4%B9%89"><span class="toc-text">公式的语义</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
