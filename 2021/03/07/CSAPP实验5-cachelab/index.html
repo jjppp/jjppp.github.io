@@ -1,285 +1,495 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<html lang="zh-CN" color-mode="light">
 
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      CSAPP实验5: cachelab 
+      
+      
+      |
+    
+     jjppp
+  </title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="~~理论上还有第个perflab....~~  ## Part A  之前寒假的时候beginend说过cachelab很难，但是感觉做下来还行？也可能是他把malloclab记错成了cachelab也说不定(  不管了。Part A就是要按照书上cache memory的组织结构写一个简单的判断器，即给定若干读和写，来判断每次对内存的操作是&#x2F;否命中缓存。事实上开一个三维数组就好了(如果不实现Bl">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CSAPP实验5: cachelab">
-<meta property="og:url" content="http://example.com/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/index.html">
-<meta property="og:site_name" content="jjppp">
-<meta property="og:description" content="~~理论上还有第个perflab....~~  ## Part A  之前寒假的时候beginend说过cachelab很难，但是感觉做下来还行？也可能是他把malloclab记错成了cachelab也说不定(  不管了。Part A就是要按照书上cache memory的组织结构写一个简单的判断器，即给定若干读和写，来判断每次对内存的操作是&#x2F;否命中缓存。事实上开一个三维数组就好了(如果不实现Bl">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-07T02:59:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T01:36:58.142Z">
-<meta property="article:author" content="jpwang">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://example.com/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/","path":"2021/03/07/CSAPP实验5-cachelab/","title":"CSAPP实验5: cachelab"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CSAPP实验5: cachelab | jjppp</title>
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
   
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
 
 
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">jjppp</p>
-      <i class="logo-line"></i>
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
     </a>
-      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+    <div class="nickname"><a href="/">Oranges</a></div>
   </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
   </div>
 </div>
 
 
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
 
 
 
 
 
-</div>
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">CSAPP实验5: cachelab</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-03-07 10:59:00
+        </span>
         
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">jpwang</p>
-  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">84</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
       </div>
-  </nav>
-</div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="CSAPP实验5: cachelab | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          CSAPP实验5: cachelab
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-07 10:59:00" itemprop="dateCreated datePublished" datetime="2021-03-07T10:59:00+08:00">2021-03-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      <div class="markdown-body">
         <p><del>理论上还有第个perflab….</del> ## Part A 之前寒假的时候beginend说过cachelab很难，但是感觉做下来还行？也可能是他把malloclab记错成了cachelab也说不定( 不管了。Part A就是要按照书上cache memory的组织结构写一个简单的判断器，即给定若干读和写，来判断每次对内存的操作是&#x2F;否命中缓存。事实上开一个三维数组就好了(如果不实现Blocks甚至只需要二维) 不过这一次还是学到很多东西的，这里罗列一下 1. `getopt()`函数，这个函数来自`unistd.h`或直接是`getopt.h`，两者选哪一个取决于C的标准。这个函数实现了从`argc, argv`中一个一个取出参数的功能，并且提供了[必选参数&#x2F;可选参数&#x2F;单独参数]三类参数的提取，很好用。如果有类似`–debug`这样的参数可能要用上`long_getopt()`之类的函数 2. `strtok()`函数，这个最早见到是在PA lab里面。可以理解为`split()`函数 3. `sscanf()`和`atoi()`，这个可以把字符串转数字。根据数字的进制选择用不用`sscanf`。事实上还有类似的`atof()`、`itoa()`、`sprintf()`这样的函数。多看官方文档~ 4. `calloc()`类似于`malloc()`，区别在于`calloc()`会初始化分配的内存为`0`，常用与数组(回想一下数组的默认初始化) 个人觉得库函数还是很好用的，至少比自己写要精炼得多了。看来还是要多研究研究别人造过的轮子啊 难点大概就在于`getopt()`和如何优雅地取出对应的位，还有就是对`M`操作的处理。这些都不算太难，写就完了。注意LRU的策略指的是最后一次访问最早的先被删。 ```c #include #include #include #include #include #include “cachelab.h” #define CMD_ARGS “h::v::s:E:b:t:” #define INF 0x7FFFFFFF typedef long long LL; typedef struct { int *block; int sign, last; bool used; } Set; Set **Line; int s, E, b, S, B; int hit_cnt, miss_cnt, evict_cnt; char *filename; bool debug &#x3D; false; void output(char *s) { if (debug) printf(“%s”, s); } void hit() { output(“hit “); ++ hit_cnt; } void miss() { output(“miss “); ++ miss_cnt; } void evict() { output(“eviction “); ++ evict_cnt; } FILE *openFile(char *filename) { FILE *fin &#x3D; fopen(filename, “r”); if (fin &#x3D;&#x3D; NULL) { puts(“Error: file not found”); exit(-1); } return fin; } void update(int cur_time, int set_no, int block_offset, int sign, int wsiz) { int rec &#x3D; -1, rec_last &#x3D; INF; for (int i &#x3D; 0; i &lt; E; ++ i) { Set *tmp_line &#x3D; &amp;Line[set_no][i]; if (!tmp_line-&gt;used) { rec &#x3D; i; break; } if (tmp_line-&gt;last &lt; rec_last) { rec_last &#x3D; tmp_line-&gt;last; rec &#x3D; i; } } Line[set_no][rec].last &#x3D; cur_time; Line[set_no][rec].sign &#x3D; sign; if (Line[set_no][rec].used) { evict(); } else { Line[set_no][rec].used &#x3D; true; } } bool load(int cur_time, int set_no, int block_offset, int sign, int wsiz) { for (int i &#x3D; 0; i &lt; E; ++ i) { Set *tmp_line &#x3D; &amp;Line[set_no][i]; if (tmp_line-&gt;used &amp;&amp; tmp_line-&gt;sign &#x3D;&#x3D; sign) { tmp_line-&gt;last &#x3D; cur_time; hit(); return true; } } miss(); update(cur_time, set_no, block_offset, sign, wsiz); return false; } void process(FILE *fin) { char *cmd &#x3D; (char *)malloc(51 * sizeof(char)); char *tmp_cmd &#x3D; cmd; int cur_time &#x3D; 0; for (fgets(cmd, 30, fin); !feof(fin); cmd &#x3D; tmp_cmd, fgets(cmd, 30, fin)) { if (cmd[0] &#x3D;&#x3D; ‘I’) continue; while ( (*cmd) &#x3D;&#x3D; ‘ ‘) cmd ++; cur_time ++; cmd[strlen(cmd) - 1] &#x3D; ‘\0’; char *type &#x3D; strtok(cmd, “ ,”); char *addr &#x3D; strtok(NULL, “ ,”); char *wsiz &#x3D; strtok(NULL, “ ,”); int wsiz_n &#x3D; atoi(wsiz); LL addr_n; sscanf(addr, “%llx”, &amp;addr_n); if (debug) printf(“%s %llx,%s “, type, addr_n, wsiz); int block_offset &#x3D; addr_n &amp; (B - 1); int set_no &#x3D; (addr_n &gt;&gt; b) &amp; (S - 1); int sign &#x3D; (addr_n &gt;&gt; (s + b) ); load(cur_time, set_no, block_offset, sign, wsiz_n); if (type[0] &#x3D;&#x3D; ‘M’) { load(cur_time, set_no, block_offset, sign, wsiz_n); } output(“\n”); } printSummary(hit_cnt, miss_cnt, evict_cnt); } void init() { Line &#x3D; malloc(S * sizeof(Set *)); for (int i &#x3D; 0; i &lt; S; ++ i) { Line[i] &#x3D; malloc(E * sizeof(Set)); for (int j &#x3D; 0; j &lt; E; ++ j) { Line[i][j].block &#x3D; malloc(B * sizeof(int)); Line[i][j].used &#x3D; false; } } } int main(int argc, char *const *argv) { char *filename; for (int opt; ~(opt &#x3D; getopt(argc, argv, CMD_ARGS)); ) { switch (opt) { case ‘s’: { s &#x3D; atoi(optarg); S &#x3D; 1 &lt;&lt; s; break; } case ‘E’: { E &#x3D; atoi(optarg); break; } case ‘b’: { b &#x3D; atoi(optarg); B &#x3D; 1 &lt;&lt; b; break; } case ‘t’: { filename &#x3D; optarg; break; } case ‘v’: { debug &#x3D; true; } } } init(); process(openFile(filename)); return 0; } ``` ## Part B 写死我了… 一个最naive的优化就是视频中说的blocking，通过恰当分块就可以实现高效利用cache 对于32x32的问题，答案很简单就是分成8x8的块，61x67的也类似，难的在于64x64 难点在于：一次访存会加载连续8个元素，而访问行数大于4时就会出现thrashing，因此用8x8的block会thrashing，用4x4的block则利用不充分 最后是看了别人的解析才会做的，具体可以看这篇[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liqiuhao/p/8026100.html/](https://www.cnblogs.com/liqiuhao/p/8026100.html)">https://www.cnblogs.com/liqiuhao/p/8026100.html\](https://www.cnblogs.com/liqiuhao/p/8026100.html)</a> 大概意思就是把8x8分成四个4x4，每次用4x8的方式移动，这样是坠吼的 ```c &#x2F;* * transpose_submit - This is the solution transpose function that you * will be graded on for Part B of the assignment. Do not change * the description string “Transpose submission”, as the driver * searches for that string to identify the transpose function to * be graded. *&#x2F; char transpose_submit_desc[] &#x3D; “Transpose submission”; void transpose_submit(int M, int N, int A[N][M], int B[M][N]) { int t0, t1, t2, t3, t4, t5, t6, t7, t8; if (M &#x3D;&#x3D; 64) { for (int si &#x3D; 0; si &lt; N; si +&#x3D; 8) { for (int sj &#x3D; 0; sj &lt; M; sj +&#x3D; 8) { for (int i &#x3D; si; i &lt; si + 4; ++ i) { t0 &#x3D; A[i][sj]; t1 &#x3D; A[i][sj + 1]; t2 &#x3D; A[i][sj + 2]; t3 &#x3D; A[i][sj + 3]; t4 &#x3D; A[i][sj + 4]; t5 &#x3D; A[i][sj + 5]; t6 &#x3D; A[i][sj + 6]; t7 &#x3D; A[i][sj + 7]; B[sj][i] &#x3D; t0; B[sj + 1][i] &#x3D; t1; B[sj + 2][i] &#x3D; t2; B[sj + 3][i] &#x3D; t3; B[sj][i + 4] &#x3D; t7; B[sj + 1][i + 4] &#x3D; t6; B[sj + 2][i + 4] &#x3D; t5; B[sj + 3][i + 4] &#x3D; t4; } for (int j &#x3D; 0; j &lt; 4; ++ j) { t0 &#x3D; A[si + 4][sj + j + 4]; t1 &#x3D; A[si + 5][sj + j + 4]; t2 &#x3D; A[si + 6][sj + j + 4]; t3 &#x3D; A[si + 7][sj + j + 4]; t4 &#x3D; A[si + 4][sj + 3 - j]; t5 &#x3D; A[si + 5][sj + 3 - j]; t6 &#x3D; A[si + 6][sj + 3 - j]; t7 &#x3D; A[si + 7][sj + 3 - j]; B[sj + j + 4][si] &#x3D; B[sj + 3 - j][si + 4]; B[sj + j + 4][si + 1] &#x3D; B[sj + 3 - j][si + 5]; B[sj + j + 4][si + 2] &#x3D; B[sj + 3 - j][si + 6]; B[sj + j + 4][si + 3] &#x3D; B[sj + 3 - j][si + 7]; B[sj + 3 - j][si + 4] &#x3D; t4; B[sj + 3 - j][si + 5] &#x3D; t5; B[sj + 3 - j][si + 6] &#x3D; t6; B[sj + 3 - j][si + 7] &#x3D; t7; B[sj + j + 4][si + 4] &#x3D; t0; B[sj + j + 4][si + 5] &#x3D; t1; B[sj + j + 4][si + 6] &#x3D; t2; B[sj + j + 4][si + 7] &#x3D; t3; } } } } else if (M &#x3D;&#x3D; 61) { for (int si &#x3D; 0; si &lt; N; si +&#x3D; 13) { for (int sj &#x3D; 0; sj &lt; M; sj +&#x3D; 8) { for (int i &#x3D; si; i &lt; si + 13 &amp;&amp; i &lt; N; ++ i) { for (int j &#x3D; sj; j &lt; sj + 8 &amp;&amp; j &lt; M; ++ j) { t0 &#x3D; A[i][j]; B[j][i] &#x3D; t0; } } } } } else if (M &#x3D;&#x3D; 32) { for (int si &#x3D; 0; si &lt; N; si +&#x3D; 8) { for (int sj &#x3D; 0; sj &lt; M; sj +&#x3D; 8) { for (int i &#x3D; si; i &lt; si + 8; ++ i) { t1 &#x3D; A[i][sj]; t2 &#x3D; A[i][sj + 1]; t3 &#x3D; A[i][sj + 2]; t4 &#x3D; A[i][sj + 3]; t5 &#x3D; A[i][sj + 4]; t6 &#x3D; A[i][sj + 5]; t7 &#x3D; A[i][sj + 6]; t8 &#x3D; A[i][sj + 7]; B[sj][i] &#x3D; t1; B[sj + 1][i] &#x3D; t2; B[sj + 2][i] &#x3D; t3; B[sj + 3][i] &#x3D; t4; B[sj + 4][i] &#x3D; t5; B[sj + 5][i] &#x3D; t6; B[sj + 6][i] &#x3D; t7; B[sj + 7][i] &#x3D; t8; } } } } } ```</p>
 <!-- more -->
 
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-03-07 10:59:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
     </div>
-
-    
-    
     
 
-    <footer class="post-footer">
-
+    
+      <div class="comments-container">
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/" rel="prev" title="大一上存活经验">
-                  <i class="fa fa-chevron-left"></i> 大一上存活经验
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" rel="next" title="群论习题乱做">
-                  群论习题乱做 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
 
 
 
 
 
 
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">jpwang</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+      </div>
+    
   </div>
 
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
     </div>
-  </footer>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/colorscheme.js"></script>
 
+
+
+
+
+        
   
-
-
-
-
-
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + CSAPP%E5%AE%9E%E9%AA%8C5%3A%20cachelab + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F03%2F07%2FCSAPP%25E5%25AE%259E%25E9%25AA%258C5-cachelab%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
+  
+<script src="/js/shares.js"></script>
 
 
 
-
-
-</body>
+      </div>
+    </div>
+  </body>
 </html>

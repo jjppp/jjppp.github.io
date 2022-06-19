@@ -1,5314 +1,647 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<html lang="zh-CN" color-mode="light">
 
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+    <meta name="robots" content="noindex" />
+  
+  
+  <title>
+    
+     jjppp
+  </title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="Young, Simple &amp; Naive">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jjppp">
-<meta property="og:url" content="http://example.com/page/3/index.html">
-<meta property="og:site_name" content="jjppp">
-<meta property="og:description" content="Young, Simple &amp; Naive">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="jpwang">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://example.com/page/3/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/3/index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>jjppp</title>
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
   
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
 
 
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">jjppp</h1>
-      <i class="logo-line"></i>
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
     </a>
-      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+    <div class="nickname"><a href="/">Oranges</a></div>
   </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
   </div>
 </div>
 
 
+<script src="/js/activeNav.js"></script>
 
 
 
-
-
-</div>
-        
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
+      <div class="flex-container">
+        <div class="container index">
+  <div class="post-list">
+    <!-- 遍历渲染文章 -->
+    
+      <div class="post-item" title="软件分析笔记9 CFL-R&IFDS">
+        <div class="time-m-d">2021-08-13</div>
+        <div class="title">
+          <a href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B09-CFL-R-IFDS/">
+            
+              
+                <span>软件分析笔记9 CFL-R&IFDS</span>
+              
+            
+          </a>
         </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">jpwang</p>
-  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">84</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
       </div>
+    
+      <div class="post-item" title="软件分析笔记8 Datalog">
+        <div class="time-m-d">2021-08-13</div>
+        <div class="title">
+          <a href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B08-Datalog/">
+            
+              
+                <span>软件分析笔记8 Datalog</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="软件分析笔记7 Security">
+        <div class="time-m-d">2021-08-08</div>
+        <div class="title">
+          <a href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/">
+            
+              
+                <span>软件分析笔记7 Security</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="软件分析笔记6 CSA">
+        <div class="time-m-d">2021-08-08</div>
+        <div class="title">
+          <a href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B06-CSA/">
+            
+              
+                <span>软件分析笔记6 CSA</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="软件分析笔记5 PA">
+        <div class="time-m-d">2021-08-04</div>
+        <div class="title">
+          <a href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/">
+            
+              
+                <span>软件分析笔记5 PA</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="软件分析笔记4 CGC">
+        <div class="time-m-d">2021-08-04</div>
+        <div class="title">
+          <a href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B04-CGC/">
+            
+              
+                <span>软件分析笔记4 CGC</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="大一下存活纪实">
+        <div class="time-m-d">2021-08-02</div>
+        <div class="title">
+          <a href="/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/">
+            
+              
+                <span>大一下存活纪实</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="集训补题合集">
+        <div class="time-m-d">2021-07-17</div>
+        <div class="title">
+          <a href="/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/">
+            
+              
+                <span>集训补题合集</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="图论笔记4 平面图与可平面图">
+        <div class="time-m-d">2021-07-03</div>
+        <div class="title">
+          <a href="/2021/07/03/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/">
+            
+              
+                <span>图论笔记4 平面图与可平面图</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="Java速成笔记">
+        <div class="time-m-d">2021-06-19</div>
+        <div class="title">
+          <a href="/2021/06/19/Java%E9%80%9F%E6%88%90%E7%AC%94%E8%AE%B0/">
+            
+              
+                <span>Java速成笔记</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="软件分析笔记3 DFA">
+        <div class="time-m-d">2021-06-11</div>
+        <div class="title">
+          <a href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B03-DFA/">
+            
+              
+                <span>软件分析笔记3 DFA</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="软件分析笔记2 IR">
+        <div class="time-m-d">2021-06-11</div>
+        <div class="title">
+          <a href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B02-IR/">
+            
+              
+                <span>软件分析笔记2 IR</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="软件分析笔记1 Intro">
+        <div class="time-m-d">2021-06-11</div>
+        <div class="title">
+          <a href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B01-Intro/">
+            
+              
+                <span>软件分析笔记1 Intro</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="图论笔记3 染色">
+        <div class="time-m-d">2021-06-04</div>
+        <div class="title">
+          <a href="/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/">
+            
+              
+                <span>图论笔记3 染色</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="图论笔记1 基本概念&定义">
+        <div class="time-m-d">2021-06-01</div>
+        <div class="title">
+          <a href="/2021/06/01/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/">
+            
+              
+                <span>图论笔记1 基本概念&定义</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="数据结构 笔记1 搜索树">
+        <div class="time-m-d">2021-05-29</div>
+        <div class="title">
+          <a href="/2021/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AC%94%E8%AE%B01-%E6%90%9C%E7%B4%A2%E6%A0%91/">
+            
+              
+                <span>数据结构 笔记1 搜索树</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="ICPC 2021 银川划水记">
+        <div class="time-m-d">2021-05-17</div>
+        <div class="title">
+          <a href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">
+            
+              
+                <span>ICPC 2021 银川划水记</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="图论笔记2 匹配">
+        <div class="time-m-d">2021-04-30</div>
+        <div class="title">
+          <a href="/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/">
+            
+              
+                <span>图论笔记2 匹配</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="CSAPP实验6 : shlab">
+        <div class="time-m-d">2021-04-21</div>
+        <div class="title">
+          <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/">
+            
+              
+                <span>CSAPP实验6 : shlab</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="奋斗逼的脸庞着实惹人爱">
+        <div class="time-m-d">2021-04-14</div>
+        <div class="title">
+          <a href="/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/">
+            
+              
+                <span>奋斗逼的脸庞着实惹人爱</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+  </div>
+  <nav class="post-navigation">
+    
+      <a href="/page/2/"><i class="iconfont icon-angleleft"></i></a>
+    
+    <span class="page-num">3 / 5</span>
+    
+      <a href="/page/4/"><i class="iconfont icon-angleright"></i></a>
+    
   </nav>
 </div>
 
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
 
 
-        </div>
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B09-CFL-R-IFDS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B09-CFL-R-IFDS/" class="post-title-link" itemprop="url">软件分析笔记9 CFL-R&IFDS</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-13 23:32:00" itemprop="dateCreated datePublished" datetime="2021-08-13T23:32:00+08:00">2021-08-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:52:57" itemprop="dateModified" datetime="2022-06-19T09:52:57+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          这一节主要讨论针对CFG中的路径的优化
-
-## Feasible & Realizable Paths
-
-> Infeasible Paths: paths that do not correspond to actual executions
->
-> Unrealizable Paths: paths whose "returns" are not matched with corresponding "calls"
-
-定义的引入很直观，动态运行时并非所有路都会被执行，因此需要区分各类假边。IP是一类难以鉴别的路(why?)，而UP是我们定义出的一类较简单就能判定的路(用带标号的括号序即可)。很显然$UP\subseteq IP$，即call和ret不匹配的路必然不会被动态执行。那么我们就可以针对UP进行优化来达到减少IP的目的。
-
-
-
-于是我们就可以通过在边上加标号的方式来获得某path的标号序列，并通过这个序列来判断其Realizability
-
-
-
-如果用上下文无关语言(CFL=Context Free Language)对括号序列(合法Call序列)进行识别，那么这样的可达性就叫做CFL-Reachability
-
-
-
-注意到CFL可以用一个有限状态自动机(DFA)的接受集表示，因此只需要对CFL建出DFA，然后在传播状态的时候顺便传一下DFA的状态就可以无缝升级原来的做法了
-
-
-
-## IFDS
-
-IFDS = Interprocedural,Finite,Distributive,Subset Problem
-
-IFDS是一个分析框架，用于一类满足上述四个要求的分析问题
-
-
-
-IFDS提供了MRP(Meet-over-all-Realizable-Paths)问题的解
-
-作为对比，最早的朴素迭代算法提供了MOP(Meet-Over-all-Paths)问题的解
-
-
-
-### Overview
-
-给定程序P，数据流分析问题Q，IFDS的流程如下
-
-1. 对P建supergraph $G^*$​ 并根据具体问题Q定义边上的flow function
-
-2. 对P建exploded supergraph(听起来就好中二) $G^{\sharp}$​
-3. 对Q的求解就转化为对$G^{\sharp}$​应用tabulation algorithm求图可达性问题(MRP Solutions)
-
-
-
-分配律的定义：
-
-$f(A\sqcup B)=f(A)\sqcup f(B)$​
-
-通常证明不符合只需要找范例就行了。尝试证明Constprop和Pointer Analysis的分配性质：
-
-在Constprop中，令$A=\left\{\;(x,1)\;\right\}$，$B=\left\{\;(y,2)\;\right\}$，处理语句 `z=x+y;`
-
-则$f(A)\sqcup f(B)=\left\{\;(x,1),(z,\text{NAC})\;\right\}\sqcup\left\{\;(y,2),(z,\text{NAC})\;\right\}=\left\{\;(x,1),(y,2),(z,\text{NAC})\;\right\}$​​
-
-而$f(A\sqcup B)=f(\left\{\;(x,1),(y,2)\;\right\})=\left\{\;(x,1),(y,2),(z,3)\;\right\}$​，不符合分配律
-
-
-
-PPT给了一个简单的判断法则：若求一个结果需要考虑多个(大于一个)元素的值，则不是可分配的。
-
-
-
-在Pointer Analysis中，对变量的转移函数需要实现对象的别名分析(即语句`x=y;`需要考虑变量`y`指向对象的所有别名)，这样就涉及到了多个变量，根据简单的判断法则是不可分配的。
-
-
-
-看完Overview有一个**猜测**，大概的想法如下：
-
-1. 既然解决的是集合问题，那么就可以对每个点拆点。
-2. supergraph的定义使得一条边能连接多个点，这样就可以表述集合之间的transfer关系
-3. 根据分配律可以把**集合的映射**变为**单独元素的映射构成的集合**，这样就可以对点连边了
-4. 这样CFG中一个点n是否包含元素x就变成了$G^{\sharp}$中\<n,x\>点是否从起点可达
-
-猜完继续看视频
-
-
-
-### Supergraph
-
-首先定义一个单独过程p的flow graph $G_p$：
-
-1. $G_p$ 是一个有向图，除basic blocks外，还包含一对唯一的起点 $start_p$ 和终点 $end_p$，函数/方法调用以一对相邻节点 $call_m$ 和 $ret_m$​​​ 表示
-2. $G_p$ 中的边除正常函数内的控制流连边外，还包含三类跨函数的边($call_m\rightarrow start_m$，$end_m\rightarrow ret_m$，$call_m\rightarrow ret_m$)
-
-$G^*$ 由一系列图 $G_1,G_2\ldots$ 和跨函数间的边组成，即每个函数/过程都有自己的图
-
-
-
-发现确实猜对了.....感觉就索然无味
-
-需要注意的一个小细节就是拆点的时候空集需要特殊处理。为了方便可以加入特殊点$\varnothing$表示空集
-
-注意到如下事实：
-
-1. $A\sqcup\varnothing=A$
-2. $f(A\sqcup\varnothing)=f(A)\sqcup f(\varnothing)$
-3. $f(A)\sqcup\varnothing=f(A)$
-
-因此可以**认为**任意作用在非空集合$A$​​上的函数$f(A)$​​实际上为$f(A\sqcup\varnothing)=f(A)\sqcup f(\varnothing)$​​，而$A$​中**不可再**分离出$\varnothing$​ 
-
-这就表示我们需要连$\varnothing\rightarrow\varnothing$的边，同时在其余的$f(A)$中去掉$f(\varnothing)$​中的元素
-
-
-
-有一些常数的小优化。比如说假设做完了方法p的方法内分析，那么对于所有调用了方法p的连通性其实都已经确定了
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B09-CFL-R-IFDS/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B08-Datalog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B08-Datalog/" class="post-title-link" itemprop="url">软件分析笔记8 Datalog</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-13 14:29:00" itemprop="dateCreated datePublished" datetime="2021-08-13T14:29:00+08:00">2021-08-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          Datalog = Data + Logic，是声明式编程语言(Declarative Programming Language) Prolog的一个子集
-
-Datalog最早作为数据库的查询语言出现，是**非**图灵完备的编程语言
-
-## 语法
-
-和数理逻辑的命题逻辑、谓词逻辑基本是一致的，如果看的教材和我一样是Mathematical Logic in Computer Science的话甚至会发现很多描述的语句都是一样的
-
-`,`表示and
-`;`表示or
-`!`表示not，这些运算可以用括号改变优先级
-每条语句的最后要加`.`表示结束，这个老是忘....
-
-### Predicate
-
-即谓词。谓词可以看成是一个函数，n元谓词就是一个$D^n\mapsto \left\{\;0,1\;\right\}$的函数，其中$D$是命题变元(变量)与命题常元(常量)构成的集合
-
-在Datalog中，我们讨论的都是有限论域，因此使谓词P为真的命题有限。记$F(P)$为所有在谓词P下为真的n元组，则我们称这些元素为Facts。这样就把一个函数变成判断元素是否属于某集合的问题了。
-
-谓词分为两类，算术谓词`x >= y`和关系谓词`Friends(x, y)`，算术谓词是Unbounded的
-
-### Inference Rules
-
-即推理规则。用PPT的例子就是Datalog的推理规则形如
-
-```py
-Adult(x) <- Person(x, age), age >= 18.
-```
-
-`<-`可以看成是向左的箭头(好形象！)，箭头左侧的称为Head，右侧是Body。语句的意思是"若Body为真，则Head为真"
-
-这句话的意思是"若x是age岁的人 且 age>=18 那么x是成年人"
-
-考虑形式化命题会怎么说
-
-$((\forall x)(Person(x)\wedge Age(x)>=18))\vdash Adult(x) $
-
-观察区别即可发现，如果不使用函数的概念(形式化命题里的$Age()$)，我们就需要维护某个元素所有相关的信息，即用元组
-
-#### 求解
-
-就是列真值表，$\prod\limits_{B\in Body} |B|$枚举所有可能的值求解$F(P)$
-
-#### Safe Rules
-
-既然涉及到枚举，就要看看是不是可穷尽的
-考虑如下两组Rules
-
-```py
-A(x) <- B(y), x >= y.
-```
-
-```py
-A(x) <- B(y), !C(x, y).
-```
-
-对于1. 如果我们讨论的是正整数域，且$F(B)$非空，则必然存在无穷多的x满足要求...
-对于2. 由于$F(C)$有限，因此$F(!C)$有无穷多元素，因此也存在无穷多的x满足要求...
-
-基于上述情况，Datalog对Rules作出了规定：
-Head中的变元必须在Body中的某个**非否定**谓词中出现过(即必须是Bounded Variable)
-
-同样，再考虑如下Rule
-
-```py
-A(x) <- !A(x).
-```
-
-很显然就不是合理的Rule，毕竟都不是重言式...因此设定Rules的时候也要考虑是否永真的问题(不能有矛盾)
-
-### IDB & EDB
-
-IDB = Intensional DataBase 内涵谓词
-EDB = Extensional DataBase 外延谓词
-
-大概理解就是在初始阶段会规定一些谓词，这些就是EDB
-而在推理过程中出现的谓词则是IDB。Head一定是IDB，而Body可以IDB、EDB
-
-通常EDB是不可变的(常元)，而IDB可以随着程序的进行而修改，例如如果我想表示"喜欢猫 或 喜欢狗 的人是好人"，那么我可以写
-
-```py
-Good(x) <- Likes(x, "Dog").
-Good(x) <- Likes(x, "Cat").
-```
-
-当然也可以写
-
-```py
-Good(x) <- Likes(x, "Dog"); Likes(x, "Cat").
-```
-
-### 递归
-
-Datalog的强大之处就在于递归
-
-考虑给定等价关系集合的传递闭包，就可以这么写
-
-```py
-Eq(x, y) <- Rel(x, y)
-
-Eq(x, y) <- Eq(x, z), Rel(z, y)
-```
-
-其中`Rel(x, y)`是EDB中提前定义好的常元
-
-## 在指针分析中的应用
-
-应用Datalog就能很容易翻译和实现前面讲到的Flow Insensitive & Context Insensitive分析
-
-首先规定下面几个谓词
-
-```py
-New(x, o)
-Assign(x, y)
-Store(x, f, y)
-Load(x, y, f)
-
-VCall(l, x, k) #l: x.k(a1,a2...an)
-Dispatch(o, k, m)
-ThisVar(m, this)
-Argument(l, i, ai) #ith argument at l: is ai
-Parameter(m, i, pi) #ith parameter at method m is pi
-MethodReturn(m, ret) #return var at method m is ret
-CallReturn(l, r) #r receives return value at l:
-```
-
-推导规则就是翻译PPT
-
-```py
-VarPointsTo(x, o) <- New(x, o).
-VarPointsTo(x, o) <- VarPointsTo(y, o), Assign(x, y).
-FieldPointsTo(o1, f, o2) <- VarPointsTo(x, o1), VarPointsTo(y, o2), Store(x, f, y).
-VarPointsTo(x, o2) <- VarPointsTo(y, o1), FieldPointsTo(o1, f, o2), Load(x, y, f).
-
-CallGraph(l, m), Reachable(m), VarPointsTo(this, o) <- VCall(l, x, k), VarPointsTo(x, o), Dispatch(o, k, m), ThisVar(m, this).
-VarPointsTo(pi, o) <- CallGraph(l, m), Argument(l, i, ai), Parameter(m, i, pi), VarPointsTo(ai, o).
-VarPointsTo(r, o) <- MethodReturn(m, ret), CallGraph(l, m), CallReturn(l, r), VarPointsTo(ret, o).
-```
-
-全程序分析还要加上一个默认的入口方法，没了
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B08-Datalog/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/" class="post-title-link" itemprop="url">软件分析笔记7 Security</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-08 22:42:00" itemprop="dateCreated datePublished" datetime="2021-08-08T22:42:00+08:00">2021-08-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          下面几节课都比较轻松，内容偏科普性质
-
-## Security
-
-> Achieving some goals in the presence of adversaries
-
-这个概括可以说是很简练了
-
-统计意义下最常见的两类漏洞：
-
-1. Injection Errors
-2. Information leaks
-
-这两者本质上都是信息流的错误流动，因此就自然引出信息流安全的问题和分析
-
-## Information Flow
-
-字面意思....前面指针分析本质上是对数据流的分析，而数据流正是信息流的一种
-
-IF的安全问题在于出现了unwanted infowmation flow，即本应该流向x处的信息流向了y处，举个例子就是本来应该发给plmm的情书一不小心塞进了好基友的书包里....
-那么想要保持安全，我们的目标就是阻止非法信息流
-
-### Access Control
-
-即对信息上锁，每次获取信息的时候要求通行权限
-AC主要关心信息是否被获取，而不关心后续对信息操作的流程。可以认为是点上的安全措施
-
-同样用情书举例，AC就是基友在任何东西进包之前都要检查这东西能不能进包，以此来阻止上述情况
-
-而信息流安全则关注的是不同节点之间的联系以及互动，因此又被叫做端到端的安全措施
-
-### Information Flow Security
-
-IFS会(1)把变量分成若干安全等级，并(2)规定流动法则。最简单的分级就是分成高、低安全等级
-
-#### Security Level
-
-举例中国保密的四级：绝密>机密>秘密>公开
-同时等级并不一定是全序的，比如公司内两个部门可以不互通内部信息，但是最高决策者应当看到所有的信息
-
-这意味着我们可以用lattice对等级进行建模
-
-#### Flow Policy
-
-经典方法是Noninterference policy，它要求"高等级的信息不应该影响(流向)低级信息"
-这句话比较抽象，这里的“影响”或许要从信息论的角度来理解。例如a=b+c，若a、b均为低级，则c不能为高级(否则可以通过获取a和b来计算出c的值)
-
-同时还提到了两个概念
-
-#### Confidentiality
-
-就是要防止机密信息泄露
-
-#### Integrity
-
-保证Integrity的广义要求是保证数据的准确性(不应被低等级信息污染)、完整性(不应该丢失)、一致性(在传输过程中不应该变化)
-狭义地讲，就是要防止危险信息的流入(例如各种注入攻击)
-
-这两种保护可以看成是分别对读/写的保护
-
-泄露的情况又分为两种
-
-### Implicit Flow
-
-考虑如果H信息对程序的控制流产生了影响，且这段受影响的控制流有着对L信息的不同的副作用，那么显然可以通过监听L信息的变化来判断控制流的流向，并间接推断出H信息
-
-例如这样一段代码
-
-```cpp
-switch (high) {
-	case 1: case 2: {
-		low = 0;
-		break;
-	}
-	case 3: {
-		low = 1;
-		break;
-	}
-	case 4: {
-		low = 2;
-		break;
-	}
-	default: {
-		low = 3;
-	}
-}
-```
-
-只需观测`low`即可得到`high`的信息
-
-### Convert/Hidden Channels
-
-在计算机系统中传输信息的组件被称为信道(channels)
-如果某段代码本来目的并不是传输信息，但最终它传递了某种信息，则称为这是一个隐藏信道
-
-PPT给了四个例子
-
-#### Implicit Flows
-
-通过控制流泄露信息
-
-```cpp
-if (high < 0) low = 1;
-else low = 2;
-```
-
-#### Termination Channels
-
-通过是否结束(运行状态)泄露信息
-
-```cpp
-while (high<0) {...}
-```
-
-#### Timing Channels
-
-通过运行时间泄露信息
-
-```cpp
-if(high>0) SPEND_A_LONG_TIME();
-```
-
-#### Exceptions
-
-通过异常泄露信息
-
-```cpp
-if (high>0) throw new Exception("exception");
-```
-
-此外还有很多，一些听起来就很牛逼的比如观察缓存命中率来推断一些关键信息(这个要怎么做啊好想知道啊看起来好好玩啊洗礼太洗礼太)
-
-通过对比explicit flow和implicit flow我们可以发现
-
-1. explicit flow泄露的信息不会更少(毕竟全露了)。举例就是在if的控制流泄露中，implicit只泄露了1bit的信息量
-2. implicit flow很难实现数据的更改，往往只能获得信息
-   因此目前的主要研究对象就是显式流的规避
-
-## Taint Analysis
-
-污点分析首先对数据分类：感兴趣的数据则打上标记，否则没有标记
-然后将一些函数/方法标记为source，表示污点数据会以函数的返回值进入程序
-将一些方法标记为sink，表示这些是我们关注的关键部分
-那么这个分析要回答的问题就是：是否有污点数据从source流向了sink？
-
-可以类比一下动物学中的标志法求群体迁徙路线...
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B06-CSA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B06-CSA/" class="post-title-link" itemprop="url">软件分析笔记6 CSA</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-08 22:35:00" itemprop="dateCreated datePublished" datetime="2021-08-08T22:35:00+08:00">2021-08-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          CSA=Context Sensitive Analysis 上下文敏感分析
-
-不敏感的分析认为所有语句的执行顺序无法区分，也就是没有上下文的概念
-
-考虑如下代码片段
-
-```java
-class A;
-
-A a = new A(); // o1
-A b = new A(); // o2
-A pa = func(a);
-A pb = func(b);
-
-A func(A x) { return x; }
-```
-
-CI静态分析pa,pb的指针集，容易发现pts(pa)=pts(pb)={o1,o2}，这与实际情况不符
-
-出现这种情况的原因在于
-
-1. 动态执行的程序的函数每次执行都有自己的栈空间(上下文)，即同一方法的不同调用产生的数据流不同
-2. CI中的建模认为同一函数的所有实体共享信息(指针集)
-
-因此一个直观的想法就是区分出不同的函数实体，一个实现类似allocation site abstraction
-即定义函数func的上下文为caller site的上下文+func的caller site，这样也是对调用栈的直观模拟
-
-此外，Java是OO语言，需要频繁对堆进行操作，这样的语言也叫Heap intensive语言。所以在进行load和store的处理时，不同函数实体中产生的**对象**也应该加以区分，这就是所谓的CS Heap
-
-
-
-处理的规则大同小异，区别在于处理方法调用的时候要多一步产生方法内的上下文的步骤，同时PFG点集变成$(C\times V)\cup(C\times V\times F)$，别的就没了
-
-提问：引入上下文的本质是区分了运行时的函数实体，那么对于递归/循环调用的情况如何处理？答案就是k-CFA的k的含义
-
-## 几类CS变种
-
-1. call-site sensitive，也叫call-string或k-CFA(k-Control Flow Analysis)，k的意思是取最后k位
-2. object sensitive
-3. type sensitive
-
-获得方法调用的方法上下文的选择函数select(c,l,c':o,m)=
-
-1. c+l
-2. c'+o
-3. c'+type(o)，这里的type指的是包含o的allocation site的类，
-
-其中1是在对call stack建模，2是在对对象交互建模，3可以看成是1和2的结合和简化
-**这里一定要注意2,3的select函数**，因为我们关注的是Object调用链，而每个方法的receiver object的context恰好就包含了前面所有的调用链信息
-
-两位老师的论文对三种方法进行了比较(还没看过，惭愧....)，在k比较小且同一个类内的方法调用较多的时候，2更有优势(即存在调用路径的后缀完全相同且调用链较长，但调用者为两个不同的对象的情况)
-但是面对同一个对象在多处调用同一方法的情况，1就要优于2(这个的原因比较显然....)
-
-在实际情况中精度2>3>1，效率3>2>1
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B06-CSA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/" class="post-title-link" itemprop="url">软件分析笔记5 PA</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-04 23:45:00" itemprop="dateCreated datePublished" datetime="2021-08-04T23:45:00+08:00">2021-08-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          PA=Pointer Analysis 指针分析
-
-## Motivation
-
-CHA方法实际上没有利用足够的信息(即实际上变量可能指向的对象所从属的类的范围可以进一步缩小),会引入假的调用边
-
-## Pointer Analysis
-
-PA是一种基础的静态分析,它要回答的问题是"某个指针p的值域可能是啥"
-
-对于OO语言来说,其实就是回答某个指针可能指向哪些对象(对于非OO语言的指针则可以直接指向内存)
-
-很显然这是一个may analysis, 用over-approximation
-
-### Alias Analysis
-
-这个叫别名分析,关注的是某一个对象是否会被两个指针指向
-
-## 实现
-
-程序的实际运行情况复杂，因此一种简单的对对象建立的建模就是“我们认为每个new语句只会建立一个唯一的对象”，也叫allocation site abstract
-
-通常分析分为流敏感(flow sensitive)和不敏感分析，即考量是否考虑语句间的执行顺序(即控制流)来分类。这里采用的是流不敏感的技术，即我们认为代码整体是由若干语句组成的集合
-
-定义pt(x)表示变量x所可能指向的对象的集合，并根据不同的赋值语句对对象的流动情况进行建模
-大概可以分为几类：
-1. x = new Obj(); //令pt(x).insert(Obj);
-2. x = y; //pt(x).insert(pt(y));
-3. x.f = y; //for (Obj in pt(x)) pt(Obj.f).insert(pt(y))
-4. x = y.f; //for (Obj in pt(y)) pt(x).insert(pt(Obj.f))
-
-容易发现，四条规则对应了四种集合关系的限制，因此指针分析的一种看法就是解一类限制方程(Anderson Style Analysis)
-
-## PFG
-
-Pointer Flow Graph
-
-一个有向图，用来描述指针所指向对象的流向信息
-
-### 点
-
-变量、对象及其field的表示
-
-变量就标号。对象的field用二元组(o,f)表示，表示对象o的域f
-
-### 边
-
-有向边x->y表示pt(x)中元素的更新**可能**影响pt(y)的元素
-
-如果我们知道了PFG，再把所有new都分配到对应的点上，那么指针分析就变成简单的传递闭包问题了!
-但是建图的过程也依赖于求pt(x)的问题，因此这是一个边算边建图的过程.....
-
-大概伪代码是这样的
-
-```c
-void addEdge(Q,G,x,y) {
-	G.addEdge(x,y);
-	Q.push(pts(x),y);
-}
-
-void solve(Code C) {
-	Queue Q; Graph G;
-	for (i in C) if (i.type==NEW) { // x = new Obj(); at line i
-		Q.push(x,{oi});
-	}
-	for (i in C) if (i.type==ASSIGN) { // x = y;
-		addEdge(Q,G,x,y);
-	}
-	while (!Q.empty()) {
-		(x,P)=Q.top(); Q.pop();
-		P=P-pts(x);
-
-		if (!P.empty()) {
-			pts(x).insert(P);
-			for (y in adjacent(G,x)) {
-				Q.push(y,P);
-			}
-		}
-
-		for (i in C) if (i.type==load) { // y = x.f;
-			// for (o in pts(x)) { // 已经加过了的边不必再加
-			for (o in P) {
-				addEdge(Q,G,o.f,y);
-			}
-		}
-
-		for (i in C) if (i.type==store) { // x.f = y;
-			for (o in pts(x)) { // 同上
-				addEdge(Q,G,y,o.f);
-			}
-		}
-
-		for (i in C) if (i.type==store) { // y.f = x; // 这种写法和上面是等价的
-			for (o in pts(y)) { // 同上
-				addEdge(Q,G,x,o.f);
-			}
-		}
-	}
-}
-```
-
-一开始没有看明白为什么pts(x)发生变动时只考虑了`y=x.f`和`x.f=y`
-
-考虑所有的情况只有四种：
-1. `y=x.f`
-2. `x.f=y`
-3. `y.f=x`
-4. `x=y.f`
-
-可以发现情况4在pts(x)发生变化时不需要更新后继点
-而情况3和情况1是对称的...因此写法是任意的
-
-### Inter-Procedural Analysis
-
-考虑方法调用的指针分析，就是要考虑形如
-```
-a=b.f(r1,r2...)
-```
-这样的语句如何建模。同样也是建Call Graph
-
-在前面用到的CHA方法并不准确，因为我们并没有考虑指针实际可能指向的对象域的情况。注意到这恰好是PA在做的事情，因此可以结合着指针分析进行CG的建立
-
-实际上就是枚举pts(b)中的对象o，通过dispatch(o,f)来找到实际调用的方法m，然后枚举所有实参的指针域流向方法m中的对应形参，返回值的指针域流向a。同时类的this指针也不能忽略，因此也要把o流到m的this去(这里我们认为每个方法都有它自己的this指针)
-
-在建PFG的时候，我们会对参数、返回值进行连边，而this则不会连边(why?)
-
-考虑如下代码片段：
-```java
-class A {
-	T foo() { this; }
-}
-
-class B extends A {
-	T foo() { this; }
-}
-
-class C extends A {
-	T foo() { this; }
-}
-```
-
-那么给定下列指针域和调用
-```java
-pts(x)={A, B, C};
-x.foo();
-```
-
-当x分别指向A,B,C时，对应应该流向A.foo.this,B.foo.this,C.foo.this
-
-也就是说，对某一段方法调用代码片而言，LHS变量的指针域中的每个对象只会流向唯一的方法的this指针(这是由dispatch的唯一性保证的)。假若我们为LHS变量到所有可能方法都连上了边，那么就会出现不必要的精度损失。
-
-具体的实现可以看PPT
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B04-CGC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B04-CGC/" class="post-title-link" itemprop="url">软件分析笔记4 CGC</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-04 23:44:00" itemprop="dateCreated datePublished" datetime="2021-08-04T23:44:00+08:00">2021-08-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          CGC=Call Graph Construction
-
-## Motivation
-
-如果只做method内的分析，则任何包含function call的语句都需要保守分析(例如说默认不是常数)
-
-这样是不利于进一步做优化的,因此引入Call Graph图对CFG作拓展
-
-## java call
-
-invokestatic: call static methods, 对应的方法唯一且在编译时确定
-invokespecial: call constructor, superclass methods, private methods, 对应的方法唯一且在编译时确定
-invokevirtual: instance methods(virtual dispatch)，后面这俩是运行时决定的,对应的方法可以不止一个(polymorphism)
-invokeinterface: same as virtual but cannot optimize and checks interface implementation()
-invokedynamic: JVM在若干版本之后支持各种语言,这东西让dynamic language方便地在JVM上跑起来
-
-一对尖括号<>内的内容叫做method的signature(签名), 包含 class name, ret type, 方法名字(可选), param type
-
-格式形如 `InstanceName.<ClassName: ReturnType MethodName(Param1Type, ...)>(params, ...)`
-
-
-可以发现前两种call都是唯一确定的,因此问题的难点在于如何对virtual call建图
-
-在运行时,virtual(的目标方法)由两点决定:
-
-1. receiver object的类型
-2. method signature
-
-考虑到Java的继承/方法覆写特性,我们可以用一个递归函数来求某个类中的方法的主体究竟是什么
-
-dispatch(c,m)表示求c类中的方法m的主体,那么分别讨论m是否在c中,然后看情况往父类爬就好了
-
-## Class Hierarchy Algorithm
-
-我们需要解决的问题就是求解dispatch,那么做这个的经典方法是CHA
-
-做CHA有一个保守的假设,即任意指针指向的对象可以是他所有子类的对象(即子树中的一个点)
-
-这时需要计算一个函数resolve(a.method).这里a是class A的引用变量,那么根据java的多态a可以指向所有A的子类的对象.
-
-根据上面的保守假设,我们需要找到a所有可能指向的对象的method调用的dispatch值.这就是resolve的定义
-
-## Interprocedural Control Flow Graph
-
-有了上面的resolve,我们就可以很方便地通过一个method call找到其所有可能调用的方法(的位置),然后连方法之间的边
-
-方法间的边的transfer function实际上就是处理传参的过程.
-
-需要注意的是,我们并不需要干掉caller位置的边,而是利用这条边来引导本地变量(数据流),没必要流进整个callee method
-
-在caller位置的边的transfer function要干掉LHS变量,这是为了防止method call前后LHS变量的值发生变化使得分析精度下降
-
-于是乎这样建出来的图就包含过程间的信息了,直接用和之前一样的方法做就好了
-
-### Reachability
-
-方法间的调用形成了以main方法为起点的有向图，因此我们只需要分析可达的方法。在CGC的过程中可达性逐渐明确，因此可达范围也是不断增加的。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B04-CGC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/" class="post-title-link" itemprop="url">大一下存活纪实</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-02 01:37:00" itemprop="dateCreated datePublished" datetime="2021-08-02T01:37:00+08:00">2021-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## 大一下享受生活&课程存活经验
-
-下一届的直系小朋友们终于来了，希望自己能够真正帮到他们，而不是向去年的我一样自己摸索（虽然也没有摸索地太痛苦，但是从反响来看大部分的同学的求索之路还是很痛苦的....
-
-混了一年也学会了各种划水摸鱼，算是成了老油条了。不过享受生活和学习不冲突，因此这次不完全是存活经验了（毕竟难度太大，俺也不知道怎么存活）
-
-最近混了几天的新生群，感觉问题还是在于自己讲得太多，希望自己可以沉得住气，多多倾听，不要说起话来得意忘形了
-
-废话不多说，开始废话环节吧！
-
-### 三月
-
-这部分的记忆已经模糊了，姑且看着照片说一说。
-
-二月底到的学校，实际上开学的第一周仍然是网课。因为上课的地点就在床下因此十分舒适，最后两天甚至直接在床上用手机听。
-
-因为一月的时候收了显示器，因此宿舍的学习/看剧体验有极大的提升，也不那么愿意出门了。
-
-这学期的课程非常多，抛开体育就已经塞满了五天的早八，一学期学分30+，十分的难顶。
-
-第一周还要抢体育课，于是就抱着选认识的老师的想法选了一个气排球（事实证明不要幻想在不会的球类运动中获得高分和良好体验）
-
-三月份的南京仍然很冷，下雨的时候也有刺骨的寒意（其实是看到了自己穿着羽绒服的自拍才想起来的）。不过三月中旬的时候就会有花开，系楼前的景色非常美妙。
-
-10号开始可以去鸡鸣寺樱花大道（没错就叫这个名字）看樱花，玄武湖也是不错的选择。有条件最好选择工作日放晴的下午，这样人少也舒服。
-
-第一次形策就放出了上学期各课程的均分和成绩分布，看了一波发现大家分数差的都不多，俺好像也没有特别大的优势
-
-月底的时候听了SJTU的OS叫兽的报告，觉得自己可能对这类能看到成果的问题比较感兴趣，不过还是不知道自己究竟想干啥...于是就激情下单了SJTU的OS教材！
-
-### 四月
-
-清明的时候jjk从常州来了南京，算上达哥，三个东莞人在南京相聚也是独特了
-
-jjk说是在追小姐姐，于是陪他去了鸡鸣寺求姻缘（后续是达哥脱单了....没啥好说的，这波是准歪了）因为我的原因没有约到南博和总统府，不过临时去的六朝博物馆还不错，学生证免费，有三层可以逛，布置很有意思，暖气也很足，好评
-
-和同学聊了两天，发现也没什么事情可以说的了，不过默契还在，也就谈谈学了什么，吐槽一下老师课程和学校政务
-
-四月份的抽代学得痛不欲生，四处找书都没有很好啃下来，题目也离谱，要么不会要么一眼秒.....图论就还好。实际上很多题目都在考基础数论知识和套路，可惜我完全不懂这方面。想补也有点晚，刷题也莫得什么用处，于是四月份算是过得比较痛苦的一个月了....
-
-中途和同学去雨花台，也算比较融洽，只要不谈学习都可以做好朋友（
-
-### 五月
-
-五月初入手了通宝的十孔布鲁斯，非常好吹！低音6容易压，气息也很灵敏，算是入门的好选择了，于是就开始了双修之旅（并不）
-
-五月中考完大雾就和队友去了水站银川，中间的过程可以参考银川的游记。回来才发现这个银川站是各种坑，泪累
-
-顺便软院的EL也打完了，虽然最终排名没有预想的那么精准，不过也算是拿到了一小笔钱（怎么还没到账啊喂），顺便吃了一顿
-
-也是在五月听了第一场歌剧，不得不说舞台非常棒，演员的水平很高！因为懒得排队所以花了50r买的纪念品票，还有个帆布袋，也算是不错了
-
-五月底的时候尝试了人生第一次（半）女装，之所以说是半女装是因为只有上半身（脸部）。真厉害啊，美颜相机
-
-感觉还是不擅长处理和异性的事情....先不管了
-
-### 六月&七月
-
-这俩月都没啥可讲的，就硬考试，顺便继续思考如何与异性相处的问题....结果还是没有得到答案
-
-得知要参加科研实践，于是开始四处翻主页当海王，不过最后还是拉上奶人上船了。发现自己的java水平根本不够看，于是开始疯狂看hfj+问舍友，赶了差不多一周终于可以看了。宣讲的时候感觉大部分都在炼丹，就没什么意思。看了一波网课发现所谓的worklist算法就是一个spfa....感觉难点主要在实现吧，那就把自己的动手能力搞起来！
-
-PS:作业的部分到现在还鸽着...我尽量暑假前搞定！
-
-### 给分
-
-有的科还没出，再等等看吧，或许会陆陆续续更新（真的会有人看吗喂
-
-#### 数分 5学分 4.25
-
-淑芬B就是计算，除了一开始的分析后面都是算....级数也是硬算，反正展开就都能做....微分方程的部分也没有讲到，考核就水水过去了
-
-感觉不是很难，主要是练得少，而且和物理高度相关（毕竟都是场论）。不过积分这种东西，练多了意义何在啊，反正算不过wolfram alpha（
-
-给分感觉还行，似乎是完全没有调分。这个分数也是自己烤出来的，没啥好说的....
-
-#### 高代 4学分 4.7
-
-期中挂了差不多1/3的人，于是期末就各种放水。上课内容也很水，和线性空间结构有关的内容基本都快速过了，直接退化成矩阵应用和计算课程....
-
-专门的矩阵论内容还得自己看，指望这门课显然是不靠谱的。酉空间的内容也没怎么讲，对这门课彻底无语了。
-
-习题我觉得都没什么做的必要，反正都是计算（摔。要不是不点名课都没必要去了（暴论）
-
-#### 离散 5学分 4.8
-
-这门课很难，但是考试远没有你想象中那么难（迫真
-
-仲老师真的很喜欢数论，算是看出来了（习题也太离谱了
-
-图论就很舒服，基本上学会几个套路就比较容易。当然也没有讲太现代的东西，毕竟啥基础没有也不能大跃进
-
-最后考试是大概70pts的送分选择和经典四选三，不过这次的四道题大概有三道可以做，如果准备充足（指习题课全程做笔记）也许可以满分
-
-#### 信科实践 3学分 4.8
-
-这门课就是各种坑....
-
-所谓的实践就是程设基础+算法+数据结构，这个就不是那么有手就行了。
-
-最后是一场考试、三次小作业和期末的两个代码作业，基本就是大模拟/数据结构实现，随便卷卷就好了。
-
-期末大概就是几个BST和RBT的小题，几个手写链表快排DP平衡树旋转的大题，这不就考背诵吗（摔
-
-这门课的PPT都是祖传的，讲得也一般，笑话和梗都很老了，建议自学数据结构/算法看B站网课(我现在发现BYR和TJUPT也有MIT和CMU的DS课程，好评)，就酱
-
-#### 大物 4学分 3.6
-
-喜提人生最低分(这之前是气排球)
-
-没啥好说的，大物这学期基本没怎么看，考前对着程守洙的普物速成，最后确实靠着考前的自学写出了两道大题(还算是可喜可贺？)
-
-四舍五入就是花费GPA-0.1的代价体验了一波~~矿院水准~~卢老爷子的教材和~~矿院水准~~王老师的课程，不亏了。
-
-据上一届AI壬说王老师是捞人高手，现在想想大概是网课+王老师第一届的双重功劳吧，不过说真的，有这分我已经戴恩戴德了....
-
-话说学这有啥用啊，有空学物理换成ICS不行吗
-
-#### 听说读写 2学分+2学分 4.6
-
-听说老师很好人！上课气氛很棒，大家互动很多。而且这个班很多人文的小姐姐，上课简直是天堂~平时就是听听力看视频，有一次quiz、一个小配音和一个剪视频分组大作业
-
-读写就非常坑，每周起码要一个晚上做作业，每节课quiz，每三周轮到你一次pre，最后还有三次大作业（问卷调查和分析/录视频/essay），还有期末的一次exam....大家都躺平，最后甚至老师都佛了也无所谓了....这课设计就迷.不过中途有三次网课(也就是在宿舍躺着听)，还算比较新奇
-
-期末就是四级难度，听力和四级持平，阅读和写作要比四级简单一些，剩下的就没啥好说的了。
-
-#### 马原 3学分 4.55
-
-曹老师的课很有意思，每次都要装模作样打开PPT然后自由发挥，讲的明明是马克思主义原理结果半学期过去了才讲完诞生背景，然后话锋一转开始聊怎么进行资本的原始积累（发财致富之路）。算是这学期很有意思的课，值得不翘
-
-这课只有一次点名，不过来听课很好玩也不亏，最后两周会集中画一下重点，也可以看他第一周就发出来的重点集萃（那个要比考试范围大一些）
-
-考前四处参考了一下大家的笔记综合了一份，背了大概三天，最后分数感觉算是不错
-
-#### 军理 2学分
-
-这课就大离谱
-
-杨博士喜欢点名，更喜欢点点过的名。一学期下来大概有了五六次，更是有三次缺席重修的豪言壮语，不得不说是老顽固了
-
-除了点名，这门课还是早八，因此每周都在挣扎着起床与不起床之间摇摆，就算决定了要去也是啃着面包灰溜溜坐第一排——后面的位置是留给早起人抢的。
-
-由于大家都醒不来，且杨博士喜欢下课前点名，因此就有了人越来越多以至于下课前要站着听课喊到的场景，实在是大开眼界
-
-期末更是离谱，所谓的考察细心就是答题卡的选项数量挖坑，开卷考何必呢...
-
-#### 气排球 1学分 3.7
-
-2k4没有退步，不过也没有进步就是了
-
-气排球的考核要考发球和对传，也就是很考验队友的水平以及配合能力....队友比较佛，我也就佛了，最后80都没有
-
-不过体育嘛....才一学分
-
-#### 一些通识课
-
-这个学期痛定思痛，下决心选了几门网课。仅有的一门线下也是不点名的那种，于是后期就逐渐摸了
-
-网课好在1. 没有固定时间 2. 考核简单，考试约等于开卷 3. 给分好，基本上就是95+，找一找可以刷上99.....
-
-本来还带着点愧疚感认真看网课的，不过看着看着发现还挺有意思，于是就认真看完了，体验可以说是很好了。
-
-这里仅供参考，网课就不点评了（
-
-科学之光的走进天文学好评，平时不点名，期末交论文。即使是听故事也很有趣，教室是装修过的标杆多媒体教室（每个位置带插座！）前几节课的老师比较有意思，后面就很催眠了，目前还没出分
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/" class="post-title-link" itemprop="url">集训补题合集</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-17 22:50:00" itemprop="dateCreated datePublished" datetime="2021-07-17T22:50:00+08:00">2021-07-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          好多题都不会啊，这可咋整
-先写着吧....大概会割掉....
-
-### cf490
-求带点权树上的简单路径构成的点权序列的最长上升子序列的长度的最大值
-
-一个比较容易想到的做法就是dp，设f[x,i]表示以x为根的子树中，以i为结尾的最长上升子序列的长度，g[x,i]就是下降。这里我们规定只能选取深度递降的顺序
-那么每次合并子树就好了，这样直接做是n^2logn的。还可以用线段树记录这个结尾的状态，那么两个dp状态合并就是线段树合并了，这样就少一个n
-
-### 牛客多校1C
-给一棵树要求删掉一个节点，使得剩余每棵树中的cf490的答案最大值最小
-
-这个做法就很强。首先可以找原树的最长路径所在的链c，那么要删的点一定在这条链上（否则最大值不变）
-不妨假设删掉了一个点x，那么这条最长链被分成两部分c1和c2，此时再按照cf490的方法求一次最长链得到c'，则分类讨论
-1. c和c'相交，这个时候删掉它们的交点会更优秀（不仅让原本的最长变短了，还让变短后的最长也变短了）
-2. c和c'相离，这个时候删掉c上的任意一点都一样
-
-于是就可以发现如果我们不断这么做下去，最终将得到若干条链的交，且这个交在不同层次的最长链上，删掉交里的点一定是最优秀的
-每次对当前的交二分（取中点），判断新的交在哪一侧，这样就只是再多了一个log
-
-### 牛客多校1H
-定义函数$f_h(x)=x\text{ mod } h$，求最小的$h$使得$f_h$是给定有限正整数集的perfect hash
-
-不是perfect当且仅当存在$a\neq b$，却$f(a)=f(b)$，即 $a_i-a_j\equiv 0\pmod h$，其中$i\neq j$
-也就是说如果我们能算出任意两对数的差值，就可以方便地枚举答案了
-直接开两个桶bct[i]和bct[INF-i]，做卷积就好了....
-
-### 牛客多校2I
-没啥好说的，纯粹是菜
-
-一开始竟然整了一个迭代加深的dfs，事实上直接用四维bfs就好了....
-
-### 牛客多校2L
-欧老师：一般无向图没啥好的性质，考虑均摊或者度数分块就行了
-
-考虑暴力怎么做。每次更新一个点之后暴力枚举它的邻居更新邻居的状态（是否为冠军）
-
-为了不那么暴力对度数分块，记度数>sqrt(n)的点为大点，否则为小点，那么大点的数量是有一个上界A的，而小点的度数有一个上界B。
-
-若修改点是小点，那么就直接暴力，这部分是O(nB)的
-若修改点是大点，那么就分邻居的情况讨论：
-1. 邻居是大点，那么这样的 大-大 点对不会超过A个
-2. 邻居是小点，那么我们对每个大点x维护一个集合S，按照点权顺序存放x的既是小点又是冠军的邻居。由于当前点的权值不减，因此当前大点的冠军小点邻居不增
-
-### hdu01G
-n个人传1个球，初始球在1号人手上，每次拿球的人随机传给别人。现在已知球回到1号人的方案数为x，求这是传了几轮得到的方案数
-
-设f[i]表示i轮球回到1的方案数，则考虑1所在圈的大小：
-1. 恰好为2，就是f[i-2] * (n-1)，即1和另一个人配对组成长度为2的圈
-2. 至少为3，就是f[i-1] * (n-2)，即在前一个圈中的最后一轮传球中插入一个除1和x外的第三人。
-
-于是就可以用特征根求通项，解一个BSGS就好了
-
-### hdu01J
-给定序列$\left\{a_n\right\}$
-Q次询问求下标l到r，值域a到b之间出现了多少不同的数字
-
-已经不会套路了....
-记last[i]为第i个位置的数上一次出现的位置，那么统计区间内不同的数字，就是统计区间内last[x]< l的x的数量
-于是就变成了一个三维偏序问题。经典的离线莫队分块平衡复杂度的操作可以看HH的项链(实在愧对队友，这题俺还写过...)
-
-### hdu02J
-给定$x,p$，$p$为质数。规定$a_n=nx\text{ mod } p$，求数列$\left\{a_1,a_2,\ldots,a_{p-1}\right\}$逆序对的奇偶性
-
-这题就是Zolotarev定理...${\mathbb {Z}_p}^*$中的元素$a$的勒让德符号$\left(\frac{a}{p}\right)$和排列$p_i=ai\text{ mod } p$的奇偶性(逆序对的奇偶性)是相关的。
-上课讲的方法比较神奇，这里其实可以直接算
-排列$\left\{p_i\right\}$的逆序对可以这么算${\dfrac{\prod\limits_{i<j}{\left(p_i-p_j\right)} }{\prod\limits_{i<j}{\left(i-j\right)} } }=\prod\limits_{i<j}{\dfrac{p_i-p_j}{i-j} }=\prod\limits_{i<j}{\dfrac{xi-xj}{i-j} }=x^{\frac{p-1}{2} }$
-
-### 牛客多校3B
-这场好难，不过做的都1A了...算是可喜可贺吧
-给n*m的棋盘要求染色。每次染色代价为对因位置的权值，并且规定若某矩形的三个顶点染色了，则第四个点可以免费染。求染黑整个棋盘的最小代价。
-
-容易发现答案至多染n+m-1个点，否则必然会出现某个四角都染色的矩形。
-把行和列看成n+m个点，染色则相当于连一条i-j带权边，那么免费染色的含义就是把长度为3的边连成一个4元环。由于免费操作不改变图的连通性，因此最终全部染黑就要求初始的选择联通了所有n+m个点，这就是求一个最小生成树。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/03/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/03/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/" class="post-title-link" itemprop="url">图论笔记4 平面图与可平面图</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-03 09:02:00" itemprop="dateCreated datePublished" datetime="2021-07-03T09:02:00+08:00">2021-07-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          本来应该(被)科普一些拓扑的姿势的，但是目前好像也不太用得上，就先咕了吧。
-
-本文假设读者有一定的图结构知识，比较新的概念俺会努力解释的
-
-这里的内容都比较入门，大佬轻喷(
-
-# 平面图(Plane Graph)
-
-我们称具有如下性质的图 $G$ 为平面图：
-
-1. $V(G)\subseteq \mathbb R^2$，$E(G)\subseteq \mathbb R^2$ 毕竟是"平面"图
-2. $\forall e_1,e_2\in E(G)$, $st(e_1)\neq st(e_2)\text{ and } ed(e_1)\neq ed(e_2)$
-3. $\forall e_1,e_2\in E(G)$, $e_1\cap e_2\in \left(V(G)\cup\varnothing\right)$
-4. $\forall e\in E(G)$, $e=(x,y)$ 是连通 $x,\;y$ 的一段弧(arc)。
-
-
-
-在一般图中，我们认为 $E(G)$ 中的元素是若干二元组。在平面图中，我们认为图的边 $e=(x,y)$ 是连通 $x$ 和 $y$ 的一段弧(arc)，即一个点集。此时 $G$ 就可以代表由所有顶点以及边上的点构成的点集。
-
-
-
-考虑点集 $S=\mathbb R^2\backslash G$，$S$ 中存在着若干不相交的区域(region)。我们记 $F(G)$ 为 $S$ 中的所有区域，将这些区域称为图 $G$ 的面(face)。若 $f\in F(G)$ 是无界的(unbounded)，则记为外面，否则记为内面。
-
-
-
-### 平面图的欧拉定理
-
-对于平面图 $G=(V,E)$，$F=F(G)$，则有 $|V|-|E|+|F|=2$
-
-
-
-考虑对 $|E|$ 归纳。
-
-1. 当 $|E|=|V|-1$ 且 $G$ 连通时，$G$ 是树，此时 $|V|=|E|+1$，$|F|=1$，带入成立。
-
-2. 设当 $|E|<k$ 时成立，则对于 $||G||=k$，必然存在一个圈 $C$。取 $e\in E(C)$，考虑 $G'=G-e$。则必然存在两个面 $f_1,f_2$，满足 $f_1\neq f_2$ 且 $e\subseteq(\partial f_1\cap\partial f_2)$。记 $f=f_1\cup f_2\cup (\partial f_1\cap\partial f_2)$，则 $F(G')=F(G)-f_1-f_2+f$。于是可以由 $|V(G')|-|E(G')|+|F(G')|=2$ 得到 $|V(G)|-|E(G)|+|F(G)|=|V(G')|-|E(G')|-1+|F(G')|+1=2$
-
-于是对于任意有限的平面图，平面图欧拉定理成立。
-
-
-
-### 三角剖分定理
-
-若对于平面图 $G$ 中的每个面 $f$，$\partial f$ 上都只有三个点，则 $G$ 是一个三角剖分图(triangulation graph)
-
-极大平面图(maximal plane graph)定义为 $\forall x,y\in V(G)$，$G+(x,y)$ 都不是平面图。
-
-
-
-我们有：平面图 $G$ 是极大平面的当且仅当它是一个三角剖分
-
-$\Rightarrow$：
-
-取 $f\in F(G)$，则 $\partial f$ 是一个圈 $C$。观察到必然有 $|C|\leqslant 3$ (否则可以选取 $C$ 上两个不相邻的顶点连边使得仍然是平面图，这与极大平面矛盾)
-
-且由平面图的定义可知 $|C|>2$ (否则存在重边)，因此 $|C|=3$。由 $f$ 的任意性可知 $G$ 是一个三角剖分。
-
-$\Leftarrow$：
-
-由反证法，假设存在 $x,y\in V(G)$ 使得 $xy$ 的内部在某一区域 $f$ 内，那么必然有 $x,y\in\partial f$。而由 $G$ 是三角剖分可知 $|V(\partial f)|=3$，故 $x,y$ 必相邻，这与 $G$ 不含重边矛盾。故命题成立。
-
-
-
-### 平面图的必要条件
-
-若图 $G=(V,E)$  是平面图，则 $|E|\leqslant 3|V|-6$
-
-对三角剖分的边和面计数，则有 $\frac{3|F|}{2}=|E|$ (每个面的边界上有三条边，每条边的两侧恰好为两个面)，带入平面图欧拉公式就有 $|E|=3|V|-6$。
-
-
-
-若不含三角形的(triangle-free graph)的图 $G=(V,E)$ 为平面图，则 $|E|\leqslant2|V|-4$
-
-证明和上面类似，每个面的边界有四条边
-
-
-
-### 子式和拓扑子式
-
-#### 拓扑子式
-
-考虑一个固定的图 $X$，我们用若干不相交的路替换掉 $X$ 的边得到新的图 $X'$，则我们称 $X'$ 是 $X$ 的一个细分，也记作 $X'=TX$
-
-我们把 $V(X)\cap V(TX)$ 称作 $X$ 的**分支顶点**，把 $V(TX)\backslash V(X)$ 称作 $X$ 的细分顶点。很显然细分顶点度数都是 $2$
-
-若 $TX\subseteq G$，则我们称 $X$ 是 $G$ 的**拓扑子式**
-
-
-
-#### 子式
-
-考虑一个固定的图 $X$，我们用若干不相交的连通图 $G_x$ 替换掉 $X$ 中的顶点，对于 $xy\in E(X)$ 则用 $G_x-G_y$ 路替换掉，这样得到的图记作 $X'$，那么我们记作 $X'=IX$
-
-若 $IX\subseteq G$，则我们称 $X$ 是 $G$ 的**收缩子式**，记作 $X\preceq G$
-
-
-
-### Kuratowski定理
-
-这个定理很强，但是证明非常麻烦....这里打算~~摸了~~只给出结论，具体证明可以参考任意一本找得到这个定理的图论教材~
-
-
-
-对于图 $G$，下列叙述等价：
-
-1. $G$ 可平面
-2. $G$ 不包含 $K_5$ 或 $K_{3,3}$ 作为子式
-3. $G$ 不包含 $K_5$ 或 $K_{3,3}$ 作为拓扑子式
-
-
-
-### 极大可平面图是三连通图
-
-这是作业里需要证明的一个小引理，不过很有用，也放上来吧
-
-要用到三连通图的收缩列
-
-
-
-#### 引理1：$\exists uv\in E(T_n)$ 使得 $\left|{N(u)\cap N(v)}\right|=2$ 
-
-首先 $\forall x\in V(T_n)$，都有 $deg(x)\geqslant 3$。任取边 $uv\in E(T_n)$，$uv$ 恰好在两个面 $f_1,f_2$ 的边界上。而由三角剖分的定义可知 $f_1,f_2$ 的边界是两个三角形。因此 $\forall uv\in E(T_n)$ 都有 $|N(u)\cap N(V)|\geqslant 2$。
-
-
-
-由反证法，不妨假设 $\forall uv\in E(T_n)$ 都有 $|N(u)\cap N(v)|\geqslant 3$，则易知 $|N(u)|\geqslant 4$ 且 $|N(v)|\geqslant 4$
-
-不妨记 $N(u)=\left\{\;x_1,x_2,x_3,x_4\;\right\}$，则由 $|N(u)\cap N(x_1)|\geqslant 3$ 可得 $x_1x_2,x_1x_3,x_1x_4\in E(T_n)$
-
-同理有 $x_2x_3,x_2x_4,x_3x_4\in E(T_n)$，故 $u\cup N(u)$ 的导出子图是 $K_5$，这与 $T_n$ 可平面矛盾。
-
-因此 $\exists uv\in E(T_n)$ 使得 $|N(u)\cap N(v)|=2$。证明对图的阶没有要求，因此引理对 $T_n$，$n\geqslant 4$ 成立。
-
-
-
-#### 极大可平面图是3-连通图
-
-对极大可平面图 $T_n$ 的阶作数学归纳法。
-
-当 $n=4$ 时，$T_4=K_4$ 是三连通图；
-
-设当 $n=k$ 时 $T_k$ 是三连通图，则取 $k+1$ 阶极大可平面图 $T_{k+1}$，由引理1可知 $\exists uv\in E(T_{k+1})$ 使得 $|N(u)\cap N(v)|=2$。
-
-作图的收缩，记 $G=T_{k+1}\circ uv$，容易发现 $||G||=||T_{k+1}||-|\left\{\;uv\;\right\}|-|N(u)\cap N(v)|$
-
-又因为 $T_{k+1}$ 是三角剖分，所以 $||G||=3(k+1)-6-1-2=3k-6=3|G|-6$
-
-又因为 $G$ 仍然是平面图，所以 $G$ 也是极大可平面图。由归纳假设，$G$ 是三连通图，存在一个保持三连通性的收缩。因此 $T_{k+1}$ 也是三连通图。
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/03/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/19/Java%E9%80%9F%E6%88%90%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/19/Java%E9%80%9F%E6%88%90%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Java速成笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-19 15:06:00" itemprop="dateCreated datePublished" datetime="2021-06-19T15:06:00+08:00">2021-06-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          恶补一下java来方便写作业,希望能用的上
-一直有点抗拒这门语言,给我的感觉就是笨重麻烦,很难写一些很漂亮的做法
-
-## 变量和类型
-
-java是强类型语言,需要显式地声明变量的类型.变量的类型分为两种:
-1. primitive类型,包括:
-	1. 整形:long int short byte，分别表示单字、双字、四字、八字
-	2. 浮点数:float double,分别表示单精度、双精度
-	3. bool和char,这里char很神奇是16bits的,看起来比C要现代一些
-2. 对象引用类型,这个看起来比较像没法作运算的指针
-
-特殊地，数组也是对象,不管里面装的是啥.所以数组是new出来的.
-
-在变量赋值中要求要严格一些，隐式类型转换必须是小范围转大范围(转换提升 implicit widening)
-在java中小数默认是double,除非在数值末尾加上后缀'f'
-
-事实上所有的对象都在带gc的堆上,因此这里的对象引用就真的只是引用了,对象本身并不在变量里
-
-局部变量是没有初始值的(所以必须要初始化),实例变量(全局变量)的初始值是0
-
-对象的相等需要调用equals()方法,指针和primitive变量的相等用==判断
-
-
-
-## 类和对象
-
-类是生成对象的模板,对象是数据和方法的抽象(集合).java是面向对象的高级语言,程序的操作主要通过对象之间的交互来进行.
-下面这一段是不知道从哪里抄来的,预防自己以后忘了
-
-In Java, a class is a definition of objects of the same kind. In other words, a class defines and describes the **static attributes** and **dynamic behaviors** common to all objects of the same kind.
-
-An instance is a realization of a particular item of a class. In other words, an instance is an instantiation of a class. All the instances of a class have similar properties, as described in the class definition. For example, you can define a class called "Student" and create three instances of the class "Student" for "Alice", "Ah Beng" and "Ali".
-
-The term "object" usually refers to instance. But it is often used loosely, and may refer to a class or an instance.
-
-### 类的继承、接口
-
-类分为抽象类和具体类
-
-1. 抽象类**可以有**抽象方法(无需实现函数主体)，且无法创建抽象类的对象。任何继承了抽象类的类都要覆写抽象方法
-2. 具体类就是一般说的类
-
-子类可以继承父类的**public和protected**方法和变量
-
-判断A是不是B的子类可以问问自己“A是一个B吗？”，注意区分"has a"与"is a"的区别
-
-类的继承只能形成树形结构，即继承的父类是唯一的.为了方便后期维护屎山(主观看法)还引入了接口类
-
-3. 接口**只能有**抽象方法，且无法创建对象。接口可以随意“继承”(这里叫接口的实现)。引入接口的目的会在下面多态谈到
-
-利用super关键字调用父类的方法和变量
-
-### 类的产生和消亡
-
-首先要区分Scope和Life
-
-1. Scope指的是作用域，比如说`foo()`方法中的变量x在`foo()`调用了`bar()`之后无法访问，但仍然活在栈上
-2. Life指的是生命周期，比如说`foo()`方法结束后，其内部的局部变量都消亡。Java中对象消亡当且仅当没有指向它的指针了
-
-类位于堆上，类的产生会**调用构造函数**
-
-在调用类A的构造函数时，会自动调用A的父类的构造函数，并且这个过程是递归的。这个过程称为**构造函数链**
-
-在默认情况下编译器会在类的构造函数的最前面加上`super()`来调用父类的默认构造函数，当然你可以自行调用带参数的父类的构造函数比如说`super(123)`
-当然也可以在某类的最前面用`this()`调用该类的其它构造函数。`this`和`super`是只能二选一的
-
-类的消亡是完全由GC完成的，内存不需要自己管理(这一点还算不戳)
-
-### 静态方法和静态变量
-
-实际上就是java的OO太浓，在只需要全局函数(例如说`sqrt()`，`round()`，`ceil()`等函数，pi等常熟之类的)的情况下，如果仍然创造类才能调用某个方法就很sb，于是就引入了静态方法(静态变量)的做法。实际上java的实现是通过声明`Math`类的构造函数为private来实现的。用抽象类来实现也是可以的
-
-静态方法不会构造对象，因此不能调用实例变量，也不能调用非静态的方法
-
-静态方法虽然可以通过引用变量调用，但还是推荐用类名调用静态方法来避免歧义
-
-类的所有对象共享它们的静态变量，静态变量只会在类被加载时被初始化。类的加载通常在第一次类的实例化时进行
-
-用final修饰的变量不能被改变和覆写，方法也是一样(类和**形参**也可以这么做！)
-
-final变量的初始化：
-```java
-public class Foo {
-	public static final Pi = 3.14; // method 1
-	public static final Pj;
-	static {
-		Pj = 3.15; // method 2
-	}
-}
-```
-
-### 多态
-
-这个很强了，算是OO前期的重点，用起来也非常方便
-
-大概意思就是说，一个类(接口)的指针可以指向其所有子类的对象。也就是说对于更高层次抽象的方法，可以使用更高层次抽象的类来进行处理，这样以后传入其它具体的子类的时候就可以复用代码(在java里到处都能看到复用代码...)
-
-需要注意的是，编译器通过指针的类型而不是对象的实际类型来判断能使用哪些方法和变量，这个也是比较好理解的(在编译期是没法知道指针究竟指向了什么类型的对象的...).并且还有一点比较重要，考虑下段代码
-
-```java
-class A {
-	public void fA() {
-		System.out.println("fA");
-	}
-}
-
-class B extends A {
-	public void fA() {
-		System.out.println("fB");
-	}
-}
-
-public class Test {
-	public static void main(String[] args) {
-		A a = new A();
-		B b = new B();
-		A pb = b;
-		a.fA();
-		b.fA();
-		pB.fA();;
-	}
-}
-```
-
-它的输出结果是
-
-```
-fA
-fB
-fB
-```
-
-也就是说，即使我们用A的指针指向B类的对象并调用方法,调用的也是B覆写过后的方法
-
-从另一个角度看，也就是即使指针也可以隐式地类型转换，并且和primitive数据类型一样只能提升转换(类比就是从小范围到大范围，从具体到抽象)，从这一点来看java的设计还是很一贯的。而java强大的一点就在于所有类型(除了6个primitive之外)都继承自Object类.... 
-
-## 异常
-
-算是第一次正式接触异常和处理的概念...
-
-异常也是Java的类，在出现错误时方法会抛出异常来通知调用方出现了错误。抛出异常的方法需要在方法的声明处声明它会抛出哪些异常，例如
-
-```java
-public void thrower() throws MyException {
-	// blah blah blah
-}
-```
-
-同时，调用一个会throw异常的方法一定要做异常处理，例如
-
-```java
-try {
-	this.thrower();
-} catch (MyException ex) {
-	// handler
-} catch (OtherException ex) {
-	// other handlers
-} finally {
-	// do something after all cases.
-}
-```
-
-Exception仍然是支持多态的，也就是可以用父类的Exception接受子类Exception的对象。
-而java处理异常的流程是：接到了异常，从上往下找到第一个能指向这个异常对象的处理方法，进入处理。因此最好的安排方式是子类异常先于父类异常处理(否则父类肯定能先catch到异常，我们细分处理就没有意义了)。
-
-上面的代码中finally是无论如何都要执行的部分。而有一点比较蛋疼就是说如果在某个catch中执行了return，那么仍然是执行完finally再执行return的
-
-考虑如下代码
-
-```java
-public class TestClass {
-	int j;
-
-	public void g(int x) throws AException, BException {
-		if (x == 1) {
-			throw new AException();
-		} else if (x == 2) {
-			throw new BException();
-		}
-	}
-	
-	public Integer f() {
-		Integer a = 0;
-		try {
-			g(1);
-		} catch(Exception ex) {
-			return a;
-		} finally {
-			System.out.println(++a);
-		}
-		return -1;
-	}
-
-	public static void main(String[] args) {
-		TestClass d = new TestClass();
-		System.out.println(d.f());
-	}
-}
-```
-
-执行之后可以发现输出的结果是先1后0，也就是在执行finally之前return值就已经确定了，但仍然是先finally再结束这个方法....我直接疑惑了
-
-实际上catch也不是必须的。如果你觉得某些异常不应该在当前方法内被处理，那么就可以在当前方法的声明处表明它仍然会throw这个异常，然后不catch就好了
-
-例如说
-
-```java
-void f() throws A, B {
-	// blah blah
-} ;
-
-void g() throws A, B {
-	f(); // to avoid a throw, we duck
-}
-```
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/19/Java%E9%80%9F%E6%88%90%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B03-DFA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B03-DFA/" class="post-title-link" itemprop="url">软件分析笔记3 DFA</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-11 15:09:00" itemprop="dateCreated datePublished" datetime="2021-06-11T15:09:00+08:00">2021-06-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          这里的DFA可不是有限状态自动机（
-
-## Data Flow Analysis
-
-这一部分是比较重的重点...要好好看
-或许需要补一补lattice(事实证明这一部分非常简单...)
-
-Data Flow Analysis
-实际是要通过
-How **Application-Specific Data**
-**Flows** through the 
-**Nodes & Edges** on CFG
-这句话中三个加粗部分理解
-
-#### ASD
-
-这里的ASD可以看作是根据研究性质抽象(Abstraction)出来的变量值域
-
-#### Flows Approximation
-
-建CFG的时候实际上是考虑了**所有可能的**的控制流,这是一种over-approximation,即考虑尽可能全面
-这种以over-approximation为手段的分析也叫may analysis(finds out what may be true)事实上大部分的静态分析都属于这一类
-
-同理就会有must analysis(finds out what must be true),这时候的手段就叫under-approximation
-这两者分别对应lec1的soundness和completeness,在实际应用中都有必要
-在不引入歧义的情况下，两者可统称为safe-approximation,即safe的定义对于特定问题来讲是不同的
-
-#### Nodes & Edges
-
-注意到3AC的性质，对Node的分析就是定义一套在ASD上的运算法则
-对Edge的分析实际上就是定义一套分支合并的法则
-
-通常来说，不同的静态分析算法，各自上述三个部分有不同的设计
-
-## In & Out States
-
-实际上就是一条IR的执行会导致程序状态的变化,我们把语句前后的状态分别称为这个节点的In&Out States
-在分支和并处需要合并不同分支的Out状态来生成当前位置的In状态,这里引入了$\wedge$符号(读作meet)来表示将两个状态合并(可以是并交差补...)
-为了研究的方便，我们在不同语句之间插入特殊节点(称为program states),这样In/Out States就都有了载体.具体的理解可以想想GDB的用法和操作步骤,这个是一样的
-
-在每一个DFA应用中，我们要给每个program states赋一个抽象的状态表示(例如:用5进制vector来表示+-0bt)
-此时再引入domain(定义域)的概念，即我们针对感兴趣的问题抽象出的数据范围D,那么总共含有n个变量的抽象的状态表示就可以用一个D^n向量表示
-
-也就是说DFA的另一精确定义为:在若干经过safe-approximation后的限制条件下找到每个program state的解.这里的限制包括:
-
-1. 定义操作(transfer functions)
-2. 控制流(control flow merging)
-
-## transfer function 的一些概念
-
-forward analysis,就是符合直觉的顺序分析,我们将指令s看成函数fs，并且立即得到fs(in[s])=out[s]
-结合block的特点和性质,fb就是block b中所有f的复合(注意顺序),in[b]就是b中第一条的in,out[b]就是最后一条的out,对于分支处理和上面单条语句的处理是一致的
-
-类似的还有backward analysis,就是反向分析,容易发现这里取fs'=fs^{-1}就好了.或者反向建图做forward也是一样的
-
-## Reaching Definition
-
-这是一个分析的例子，即把definition作为ASD来分析
-
-a definition of v: a statement that assigns a value to v,通常用statement的位置表示(这是我的理解)
-
-我们说一个位于p的变量v的definition d reaches q 当且仅当存在一条p到q的path且path上不存在别的v的definition.实际上有点像SSA的变量作用域
-一个简单的应用就是在st节点给每个变量来个definition,然后所有变量第一次reach到的点如果出现了对变量的使用说明**可能**出现了"used before definition"错
-
-基于以上事实，很自然就需要求出各个点能被哪些definition给reach.课程给出的寻找算法非常平凡,直接状压就好了...
-课程中间给了一个例子理解: D: v = x op y
-这个语句kill掉了前面关于v的definition,同时reach到所有的后续状态,也就是多了一个(当前的变量的reach)同时少了一个(kill掉前面的definition)
-ppt的例子有点怪，因为正式的定义是block B需要kill掉所有其中变量在所有其余地方的definition,即使这些definition没有在当前的状态集中
-
-看到后面就可以敏锐地发现所谓迭代法就是在跑一个bellman-ford,我的第一反应其实是用队列更新,那么这个就是在跑SPFA了...这也太憨了
-
-算法步骤的有限性可以通过观察集合size的单调性(单调不减)轻松得出
-
-## Live Variables Analysis
-
-其实就是变量v是否能在某个节点p的后继(不一定相邻)被使用
-一个应用场景就是在生成汇编的时候需要做寄存器分配,这种时候就需要保留live的变量而尽量使用dead变量的寄存器
-
-此处的ASD就是用状压表示live的变量,并且容易想到反向建图维护的操作
-感觉没啥好说的
-
-## Available Expressions Analysis
-
-一个表达式x op y在点p被称为是available的当且仅当:
-
-1. 所有起点到p的路径都经过这个表达式(支配点)
-2. 在表达式到p之间不存在redefinition
-
-idea是非常直观的，即我们可以提前计算好这个值来优化
-ASD同样是状压,区别在于merge的时候要取&操作(考虑available的条件2)
-感觉这一部分也没啥好说的
-
-## Lattice & Partial Order
-
-偏序的部分上学期已经讲得很多了...这里主要普及一下(较为简单的)Lattice.之所以这么说是因为离散课程中提到的Lattice是Minkowski Lattice,和这个不太一样
-
-有了这些就可以形式化地验证所谓迭代算法的正确性了
-
-对于有n个点的CFG,每个点都有一个ASD的元素作为函数值,那么这个图的状态就可以写成ASD^n中的一个元素
-
-那么每次迭代可以看成是从ASD^n到ASD^n的函数
-事实上只需要定义ASD^n上的包含关系为每个元素对应包含即可得到一个lattice
-(我在写上面这句话的时候还没有看到后面的product lattice,事实上这个东西也很直观...没啥好说的)
-
-也就是说，严格的DFA算法可以用三元组(D,L,F)描述，即分别为direction, lattice, function
-分别表示分析方向,值域(通常是格),格上的状态转换函数.而通过证明这个转换函数是单调的即可说明我们的迭代算法必然存在且能找到解
-
-## Precision Analysis
-
-#### Meet All Paths Solution(MOP)
-
-一条path的transfer function就是路径上function的复合
-MOP实际上就是枚举到达当前点的所有Path,然后合并这些path的函数值
-
-MOP存在几个问题(事实上也是图论中的经典问题)
-
-1. 有些path实际上不会被执行,即我们的分析并不精确.这是从保守分析的出发点得到的.例如condition和path互斥的collision path
-2. 路径长度不确定(存在圈),路的数量不可枚举
-
-但是经过比较迭代法和MOP,我们可以发现MOP要更精确.实际上就是F(x\cup y)<=F(x)\cup F(y)的关系
-当transfer function存在分配律时,等号成立.容易验证前面提到的三个分析都是可分配的.
-
-## Constant Propagation
-
-所谓常数替换优化，这个是第一次的作业
-
-我们需要判断某个变量v在某一处p是否值**一定**为常量
-
-类似的仍然采用状压，即用变量集合bitvector $V$ 和值域集合bitvector $D$ 得到笛卡尔积 $V\times D$，那么这个就可以作为单个点的ASD了。考虑到实现的问题，作业中给出的框架代码用的是map
-
-做起来也不是很难，对于合并变量的情况只需要分类讨论，合并flow的时候遍历Keys，求值的时候需要分类讨论递归求某个表达式的值就好了
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B03-DFA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B02-IR/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B02-IR/" class="post-title-link" itemprop="url">软件分析笔记2 IR</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-11 15:02:00" itemprop="dateCreated datePublished" datetime="2021-06-11T15:02:00+08:00">2021-06-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## 术语
-
-IR = Intermediate Representation 代码的中间形式
-AST = Abstract Semantic Tree 抽象语法树
-
-## IR
-
-上节讲到的同态映射需要一个具体的载体,类比我们常常将n维线性空间同构到R^n上考虑,这里就引入了IR
-IR也是一种语言，可以作任意语言到IR的同态映射,静态分析通常建立在IR的基础上,也就是分析的实际上是IR
-
-回顾编译的流程:
-
-|                                                              |
-| ------------------------------------------------------------ |
-| source code - scanner     - 词法分析 regular expression      |
-| tokens		   - parser    	- 语法分析 context free grammar |
-| AST	     		- type check- 语义分析 attribute grammar |
-| D-AST		   - translate     - 转换                       |
-| IR	         		- optimize	- 优化                  |
-| IR	         		- code gen	- 生成机器码            |
-|                                                              |
-
-SA通常在出现IR的环节发挥作用,也即是前后端之间
-
-3AC是一种特殊的IR,它和汇编是非常像的
-
-## 3AC vs. AST
-
-AST的结构与语法高度相关,通常和语言高度相关,缺少控制流的信息
-
-3AC相反,且有简洁和形式简单的优点
-
-
-## java call
-
-invokespecial: call constructor, superclass methods, private methods
-
-invokevirtual: instance methods(virtual dispatch)
-
-invokeinterface: same as virtual but cannot optimize and checks interface implementation()
-
-invokestatic: call static methods
-
-invokedynamic: JVM在若干版本之后支持各种语言,这东西让dynamic language方便地在JVM上跑起来
-
-一对尖括号<>内的内容叫做method的signature(签名), 包含 class name, ret type, 方法名字(可选), param type
-格式形如 `InstanceName.<ClassName: ReturnType MethodName(Param1Type, ...)>(params, ...)`
-
-## java constructor
-
-init是动态的构造函数,clinit是静态构造函数
-
-具体的可能还要后面补,我尽量...
-
-## SSA
-
-是一种特殊的3AC,满足:
-每个**重复使用的**变量都会有不同的名字(而不改变语义)
-
-会有特殊的情况,比如说3AC
-
-```
-1: x = 3
-2: if x < 5 goto 5:
-3: y = 0
-4: goto 6:
-5: y = 1
-6: z = y
-```
-
-可以发现,经过不同的分支得到的y的别名应该是不同的,即在控制流合并的地方会出现多个别名取其一的情况,这种时候引入$\phi$函数来选取
-即
-
-```
-1: x1 = 3
-2: if x1 < 5 goto 5:
-3: y1 = 0
-4: goto 6:
-5: y2 = 1
-6: y3 = phi(y1, y2)
-7: z1 = y3
-```
-
-SSA的优势
-
-1. 程序流的信息可以从变量下标中抽取(即可以用变量定位代码位置),从而可以打乱3AC的顺序而保持部分流的信息(或许可以并行?)
-2. 变量的定义/使用成对,有利于**某些**任务
-
-劣势
-
-1. 会引入多余的变量和phi函数
-2. 变量变多了,性能会受影响(感觉和1重了)
-
-## CFG
-
-即control flow graph,是静态分析的基本结构
-图的节点通常是若干语句(可以是单条)打包形成的blocks(basic blocks=BB)
-
-### BB
-
-BB是极大的, 连续的, 满足(这个block的入口只能在第一条)这一性质的 3AC指令的序列
-定义比较好理解,我们用BB造出来一个图G,再用所有的3AC造一个图G',那么G'就是G的一个图的细分
-
-根据定义很容易给出BB的一个寻找算法,只需要注意到:
-
-1. 有非平凡出边的点一定是某个block的bottom
-2. 有非平凡入边的点一定是某个block的top
-3. 每个block的bottom一定紧接下一个block的top
-   就好了
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B02-IR/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B01-Intro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B01-Intro/" class="post-title-link" itemprop="url">软件分析笔记1 Intro</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-11 14:57:00" itemprop="dateCreated datePublished" datetime="2021-06-11T14:57:00+08:00">2021-06-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          决定要好好开干了，于是有了这个系列的笔记
-真是绝了，我连淑芬都没有专门的笔记
-回想上学期的考试周开了CSAPP的大锅，这次考试周开了软件分析的大锅，考试周真是除了考试都好玩
-
-## 术语
-
-PLT = Programming language theory 编程语言理论
-
-Static Analysis 静态分析
-
-computable function 可计算函数
-
-property $\text{P is trivial}\iff (\forall xP(x))\text{ or } (\forall x\neg P(x))$
-
-r.e. = recurrence enumerate 递归可枚举的
-
-
-
-
-## 什么是PLT
-
-> **Programming language theory** (**PLT**) is a branch of [computer science](https://en.wikipedia.org/wiki/Computer_science) that deals with the design, implementation, analysis, characterization, and classification of [programming languages](https://en.wikipedia.org/wiki/Programming_language) and of their individual [features](https://en.wikipedia.org/wiki/Programming_language#Elements). It falls within the discipline of computer science, both depending on and affecting [mathematics](https://en.wikipedia.org/wiki/Mathematics), [software engineering](https://en.wikipedia.org/wiki/Software_engineering), [linguistics](https://en.wikipedia.org/wiki/Linguistics) and even [cognitive science](https://en.wikipedia.org/wiki/Cognitive_science). It has become a well-recognized branch of computer science, and an active research area, with results published in numerous [journals](https://en.wikipedia.org/wiki/Academic_journal) dedicated to PLT, as well as in general computer science and engineering publications.
-
-对语言及其特性的设计、实现、分析、描述和分类的科学
-
-
-
-课程给出了如下分类：
-
-1. 理论：设计语言 design, type system, semantics and logics...
-2. 环境：让语言跑起来 compilers, runtime system...
-3. 应用：验证语言 analysis, verification, synthesis(综合)...
-
-看了一波感觉理论和验证比较好玩
-
-## 什么是静态分析(Static Analysis)
-
-在程序**运行之前**判断其行为和是否满足某些性质
-
-也就是用程序分析程序(老爹语气)
-
-
-
-## 静态分析的背景
-
-语言的三大分类：
-
-1. 命令式(imperative)
-2. 函数式(functional)
-3. 逻辑式(logical)/声明式(declarative)
-
-静态分析的背景:
-
-1. 新的语言很多, 但它们的内核差异很小
-2. 软件变得复杂, 需要有效分析
-
-## 静态分析的应用场景
-
-1. reliability: 检测空指针解引用...
-2. security: 预防注入攻击...
-3. optimization: 编译后端的优化...
-4. development: IDE的补全, 提示, 类型提醒...
-
-## Soundness & Completeness, 取 & 舍
-
-There is no such approach to determine whther P satisfies such non-trivial properties, i.e., giving exact answer: Yes or No.
-
-Any non-trivial property of the behavior of programs in a r.e. language is undecidable.
-
-也即: PERFECT static analysis 不存在
-
-由此自然引出sound和complete的概念, 其实就是充分性和必要性的讨论...
-
-三者的关系是 $\text{complete}\subsetneq \text{truth}\subsetneq\text{sound}$ 于是又自然引出了sound和complete的取舍/妥协问题
-
-PPT的红绿颜色是反的...看了两回才意识到
-
-根据定义有点怪，这里不讲妥协换一种追求的说法
-
-追求soundness会引入truth之外的报错，这一部分称为false positive(假阳性)
-
-追求completeness会遗漏truth内的报错，这一部分称为false negative(假阴性)
-
-(考虑比较"宁可错杀一千也不放过一个"和"宁可放过一千也不错杀一个")
-
-事实上绝大部分的分析器追求 sound but not fully-precise anlysis,即要保证任意情况下程序的正确性
-
-类似的还有precision和efficiency的取舍问题,于是给出static anlysis的进一步定义:ensure soundness while making trade-offs between precision and speed.
-
-PPT在这里给了一个栗子，实际上就是在做霍尔逻辑($P{S}Q$)的判别
-
-
-
-## Abstraction & Over-approximation
-
-与运行时分析不同，静态分析通常将数据作**同态映射**到一个小集合(例:PPT里的{+-0U}),集合的构造与我们在乎的性质相关
-好像这句话就足够把abstract的部分讲完了
-
-over-approximation依赖于control flows的分析，在分支合并的地方需要合并数据映射
-
-结合两种方法，我们实际上构造了程序P到一个近似程序P'的同态映射，因此只需要研究P'的性质就可以得到P的一些性质了.针对不同的感兴趣的性质，则可以构造不同的映射
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B01-Intro/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/" class="post-title-link" itemprop="url">图论笔记3 染色</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-04 16:12:00" itemprop="dateCreated datePublished" datetime="2021-06-04T16:12:00+08:00">2021-06-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## 图染色(Coloring)
-
-#### 染色数(Coloring Index)
-
-图的染色分为点染色(vertex coloring)和边染色(edge coloring)
-
-点染色指的是构造映射 $f_k\colon V(G)\mapsto \left\{\;1,2,\ldots k\;\right\}$，一个合法的染色(proper coloring) 则要求映射满足 $\forall xy\in E(G)\Rightarrow f_k(x)\neq f_k(y)$，记 $k$ 为这个染色方案的染色数(chromatic number)。通常我们只关心最小的染色数，记作 $\chi(G)$
-
-下面讨论的染色都指的是proper coloring
-
-边染色则是类似地构造 $f_k\colon E(G)\mapsto \left\{\;1,2,\ldots k\;\right\}$，proper的则要求满足 $\forall e_1,e_2\in E(G),\; e_1\cap e_2\neq\varnothing\Rightarrow f_k(e_1)\neq f_k(e_2)$
-
-类似地定义 $\chi\prime (G)$ 为最小的边染色数
-
-关于染色最经典的问题就是著名的“四色定理”的证明。定理的证明非常长.....有兴趣也不会去看的
-
-
-
-#### 团(clique)和独立集(independent set)
-
-团的定义为 $G$ 的完全子图，即 $H\subseteq G$ 且 $2||H||=|H|(|H|-1)$
-
-定义clique number为最大团的大小，记为 $\omega(G)=\max \left\{\;H \text{ is a clique}\mid H\subseteq G\;\right\}$
-
-定义反团(co-clique)为 $\overline G$  的团，即 $G$ 的一个独立集。同样定义 co-clique number 为最大独立集的大小，记为 $\alpha(G)$
-
-容易有如下数量关系：
-
-1. $\alpha(G)\cdot \chi(G)\geqslant |G|$
-2. $n-\alpha(G)\geqslant \chi(G)-1$
-3. $\chi(G)\geqslant \omega(G)$
-4. $\binom{\chi(G)}{2}\geqslant ||G||$
-
-1直接由每个独立集染上同一种颜色得到
-
-2的意思是给最大的独立集染上一种颜色，剩下的点用 $\chi(G)-1$ 种颜色染
-
-3的意思是团内部的颜色互不相同
-
-4的意思是同色点之间不能连边，因此至多连 $\binom{\chi(G)}{2}$ 条边
-
-### 图的色多项式
-
-对图 $G$ 用 $k$ 种颜色染色(我们认为每个节点都不一样)的方案数是关于 $G$ 和 $k$ 的函数，我们不妨记作 $F(G,k)$
-
-对 $|G|$ 进行归纳。当 $|G|=1$ 的时候 $F(G,k)=k$
-设当 $|G|<n$ 时成立，则 $|G|=n$ 的时候，考虑 $xy\in E(G)$
-只有两种情况：
-1.  $x,y$ 同色，此时可以把 $x,y$ 收缩成一个点而不改变方案数
-2.  $x,y$ 异色，此时就是 $F(G,k)$
-
-于是 $F(G,k)+F(G\circ xy,k)=F(G-xy,k)$
-很容易看出这是一个多项式，并且首项系数和次项系数与 $|G|$ 和 $||G||$有关
-
-### 染色的贪心算法
-
-关于染色的证明通常通过构造给出一个最小染色数的上界。构造出染色方案的一种常见算法是所谓“贪心算法”，用如下步骤描述：
-
-1. 维护已经染色的点集 $V'$ 和未染色的点集 ${V}''$
-2. 任取 $x\in V''$，给 $x$ 染上 $N(x)\cap V'$ 中未出现、且最小的颜色
-3. 把 $x$ 从 $V''$ 中删去，再加入 $V'$ 中
-4. 若 $V''=\varnothing$ 则结束算法，否则回到步骤2
-
-容易发现这个算法并不总能给出较好的染色数的界，但仍然给出了一个结果，并且算法的结果与给节点染色的顺序十分相关，因此我们要结合以下引理来改进以下这个算法的效果。
-
-
-
-#### 引理一
-
-取图 $G$ 中的任意点 $s$，都存在 $V(G)$ 的一个排列 $v_1,v_2,\ldots v_{n-1}, s$ 使得 $\forall 1\leqslant i< n$ 都有 $\exists j>i,\;v_j\in N(v_i)$。
-
-为了好记我把这个叫排列引理
-
-只需要构造出这样的序列即可。我们取 $G$ 中以 $s$ 为根的生成树 $T$，每次从 $T$ 中取出叶子，这样就能保证每个点在被放进序列时都有至少一个邻居在它的后面，且根是一定放在最后的。
-
-这样结合贪心染色可以得到 $\chi(G)\leqslant \max\left\{\;\text{deg}(s)+1,\Delta(G-s)\;\right\}$
-
-
-
-#### 引理二
-
-若非完全图 $G$ 满足 $\delta(G)\geqslant 3$ 且 $\kappa(G)\geqslant 2$，那么 $\exists x,y\in V(G)$ 使得 $\exists v\in V(G),\; xv,yv\in E(G)\text{ and } xy\not\in E(G)$
-
-并且有 $G-\left\{\;x,y\;\right\}$ 仍然连通。
-
-取 $G$ 的一个极小分隔集 $T$，则 $|T|=\kappa(G)\geqslant 2$。记 $C$ 为 $G-T$ 形成的连通分支的集合，那么有 $\forall x\in T$，$\forall c_i\in C,\; N_G(x)\cap c_i\neq\varnothing$
-
-于是取 $v\in T$，令 $x,y$ 分别取自不同的分支，那么必然有 $xy\not\in E(G)\text{ and } xv,yv\in E(G)$。
-
-并且删去 $x,y$ 后它们所属的分支仍然连通($\kappa(c_x)\geqslant 2\text {  and }\kappa(c_y)\geqslant 2$)，$\left\{\;c_x,c_y,x\;\right\}$ 仍然连通($\text{deg}(x)\geqslant 3$)，得到一个矛盾
-
-
-
-### 染色数的平凡上界
-
-任意图 $G$ 都有 $\chi(G)\leqslant \Delta (G)+1$。
-
-这个上界直接由贪心算法得到。
-
-
-
-### Brooks Theorem
-
-$G$ 是连通图，那么 $\chi(G)=\Delta(G) + [G \text{ is complete or an odd cycle}]$，其中 $[x]=1$ 当且仅当表达式 $x$ 为真。
-
-首先 $G$ 是完全图的情况很显然，奇数圈的情况也很简单，反证法就可以说明不存在方案了。
-
-然后 $\Delta(G)\leqslant 2$ 的情况也很好讨论，就是一个圈，因此下面讨论的都是 $\Delta(G)\geqslant3$ 的图。
-
-对于 $G$ 不是完全图也不是奇数圈的情况我们对 $|G|$ 归纳证明：
-
-当 $|G|=3$ 时，$G$ 不是完全图也不是圈，因此 $G$ 只能是链，染色就很显然了；
-
-设当 $|G|< k$ 时命题成立，则取 $|G|=k$ 的图，分如下几种情况讨论：
-
-1. $\kappa(G)=1$，即 $G$ 存在一个割点 $x$，则 $G=G_1\cup G_2$，其中 $G_1\cap G_2=\left\{\;x\;\right\}$。那么我们对 $G_1$、$G_2$ 分别染色，由归纳假设得到他们方案的并就是 $G$ 的一个合法染色方案，因此 $\chi(G)=\max\left\{\;\chi(G_1),\chi(G_2)\;\right\}\leqslant\max\left\{\;\Delta(G_1),\Delta(G_2)\;\right\}\leqslant \Delta(G)$ 得证。
-2. $\kappa(G) \geqslant 2$，且存在 $x\in V(G)$ 使得 $\text{deg}(x)<\Delta(G)$，则根据引理一构造 $x$ 在最后的序列并贪心染色，这样就有 $\chi(G)\leqslant\Delta(G)$
-3. $\kappa(G)\geqslant 2$，且 $\forall x\in V(G)$ 都有 $\text{deg}(x)=\Delta(G)=\delta(G)$，则根据引理二存在 $x,y,v\in V(G)$ 使得 $xv,yv\in E(G)$ 且 $xy\not\in E(G)$。我们把 $x,y$ 染上同种颜色，根据引理一把 $v$ 放在序列末尾，这样就可以贪心地染出 $\chi(G)\leqslant \Delta(G)$ 了。
-
-
-
-### 图的定向(orientation)
-
-图定向的严格定义是构造映射 $f\colon E(G)\mapsto V(G)\times V(G)$，简单地说就是给无向边定方向
-
-我们称有向无环图(Directed Acyclic Graph) 为DAG，DAG有许多优秀的性质
-
-
-
-#### DAG的染色算法
-
-对于给定的有向无环图 $G$，我们给出如下染色算法步骤：
-
-1. 我们需要维护一个映射 $g\colon V(G)\mapsto \mathbb N^+$，$g(x)$ 表示以节点 $x$ 为终点的最长路长度。
-2. 找到 $x\in V(G)$ 使得 $x$ 的入度为0，在 $N_G(x)$ 中找到已经走过的点中 $g(v)$ 的最大值，令 $g(x)=g(v)+1$
-3. 删去 $x$，标记 $x$ 已经走过了。若还有未经过的点则返回步骤2
-
-细心的朋友们很快就可以发现这是一个拓扑排序上的计数。很显然 $g$ 下任意相邻节点的函数值都不相等。于是我们caim：找到的映射 $g$ 就是一个染色方案。
-
-不妨记 $p(G)$ 表示DAG图 $G$ 中最长路的长度，那么有 $\chi(G)\leqslant p(G)$
-
-复杂度是可以做到 $\Theta(n+m)$ 的
-
-
-
-### 利用图定向给出染色数的紧界
-
-不妨设 $H$ 是图 $G$ 的任意一个定向，$K$ 是 $H$ 极大的不含有向圈的子图，那么有：
-
-$\chi(G)\leqslant p(K)$，并且存在一个定向使得它们**恰好相等**
-
-这个结论是很强的。不等号的部分在DAG的染色中已经给出，我们只需要考虑 $E(G)\backslash E(K)$ 中的边加入后会不会产生相同颜色的相邻节点就好了。由 $K$ 的定义可知 $\forall uv\in (E(G)\backslash E(K))$，有 $K+uv$ 会产生一个有向圈，即 $K$ 中存在一条 $v-u$ 有向路，这保证了 $g(v)\neq g(u)$
-
-
-
-下面证明存在一个定向的极大无圈子图 $K$ 使得 $p(K)=\chi(G)$。我们只需要证明 $p(K)\leqslant\chi(G)$
-
-首先用 $\chi(G)$ 给 $G$ 染色，然后对 $G$ 定向：若 $uv\in E(G)$ 有 $c(u)<c(v)$，则构造定向 $f(uv)=(u,v)$，否则 $f(uv)=(v,u)$
-
-即我们规定边只能从小颜色连向大颜色。这样 $K$ 中路的长度至多为 $\chi(G)$，也就是 $p(K)\leqslant \chi(G)$
-
-
-
-这个定向实际上是在枚举所有贪心算法的操作序列，也就是说存在至少一种操作的顺序使得我们trivial的贪心算法能够摸到 $\chi(G)$ 的门槛。
-
-
-
-### 平面图的五色定理
-
-四色定理太难勒，这里有一个比较好玩的弱化版本——任意平面图(plane graph)/可平面图(planar graph)是5-可着色(colorable)的
-
-
-
-#### 引理一
-
-极大可平面图有等式 $||G||=3|G|-6$ 成立
-
-推论1：平均度为 $\frac{2||G||}{|G|}=\frac{6|G|-12}{|G|}<6$，因此 $\exists x\in V(G)$ 使得 $\text{deg}(x)\leqslant 5$
-
-推论2：极大可平面图删去任意点仍然是可平面图，因此 $\forall x\in V(G)$ 都有 $\text{deg}(x)\geqslant 3$
-
-
-
-#### 引理二
-
-极大可平面图中任意点的邻居导出一个圈
-
-只需要找到一个平面画法，删去这个点，观察这个点所在的区域的边界即可。
-
-
-
-可平面图不好直接做，因此我们向 $G$ 加边直至 $G$ 成为极大可平面。只需证明新图 $G'$ 仍然是 5-可染色即可。
-
-我们对极大可平面图的大小归纳。当 $|G|=1$ 是显然的。
-
-设当 $|G|<n$ 时成立，则 $|G|=n$ 时取 $x\in V(G)$
-
-讨论：
-
-1. $\text{deg}(x)<5$，则由贪心算法可知加上 $x$ 也不需要超过5种颜色。
-2. $\text{deg}(x)=5$，则 $x$ 有恰好 $5$ 个邻居
-   1. 若5个邻居中存在两个颜色相同，则染上 $x$ 也只需要至多5种颜色
-   2. 若5个邻居互不相同，则需要特殊讨论。
-
-
-
-现在来看2.2的情况。根据引理二我们得到5个点共圈，不妨按顺序记为 $v_1, v_2,\ldots v_5$，其颜色分别为 $c_1,c_2\ldots c_5$ 那么我们做如下操作：
-
-1. 把 $v_1$ 的颜色换成 $c_3$
-2. 把与 $v_1$ 距离为1的点中，颜色为 $c_3$ 的点的颜色换成 $c_1$
-3. 把距离为2的点做同样操作....
-4. 直到不存在可以更改颜色的点剩下。
-
-若流程终止了，则我们通过switch得到了一个染色方案，而 $c(v_1)\neq c(v_3)$，即5个邻居只用了4种颜色，那么 $G$ 就是5-可染色的了。
-
-若最后一直换到了 $v_3$，即存在一条 $v_1-v_3$ 路，使得路上的节点颜色交替为 $c_1,c_3,c_1,c_3\ldots c_3$，那么此次交换无效(没有达到预期的目的)
-
-再类似地考虑 $v_2,v_4$，若成功则证明完毕，否则存在一条 $v_2-v_4$ 颜色交替路
-
-注意到 $G$ 是平面图，因此不存在这样两次都失败的情况(why？)，即 $v_2-v_4$ 和 $v_1-v_3$ 必然相交。因此证毕。
-
-
-
-#### 二分图的染色
-
-这个非常sb，二分图嘛，黑白染色黑白染色，$\chi(G)=2$
-
-
-
-~~还有边染色的部分，先去吃饭...~~
-
-回来填坑了
-
-
-
-### 图的边染色
-
-具体定义见上面
-
-
-
-首先给出一个简单的关于边染色的界的结论：
-
-$\forall G$, $\chi'(G)\geqslant \Delta(G)$
-
-这个界的证明非常简单，只需要找到度数最大的节点，给它的边染上颜色就好了
-
-
-
-#### 二分图的边染色
-
-若 $G$ 是二分图，则 $\chi'(G)=\Delta(G)$
-
-首先有 $\chi'(G)\geqslant\Delta(G)$，因此只需要证明 $\chi'(G)\leqslant\Delta(G)$ 即可
-
-我们对 $||G||$ 归纳，设当 $||G||<n$ 时命题成立，则取 $xy\in E(G)$，$\chi'(G-xy)\leqslant\Delta(G-xy)\leqslant\Delta(G)$ 
-
-考虑加入 $xy$ 这条边，那么$\text{deg}_{G-xy}(x)\leqslant\Delta(G),\text{deg}_{G-xy}(y)\leqslant\Delta(G)$。不妨记 $M(x)$ 为 $x$ 相邻的边中没被用过的颜色，则分两种情况讨论：
-
-1. $M(x)\cap M(y)\neq\varnothing$，则给 $xy$ 染上 $M(x)\cap M(y)$ 中的任意一种颜色，$\chi'(G)\leqslant\Delta(G)$
-2. $M(x)\cap M(y)=\varnothing$，则 $\exists a\in M(x), b\in M(y)$ 使得 $a\not\in M(y),b\not\in M(x)$。类比点的染色，我们尝试通过交换来让出一种颜色。即令 $x$ 邻边中染上 $b$ 颜色的边换成 $a$ 颜色，并沿着这条边走向一个邻居；再令这个邻居染上 $a$ 颜色的邻边换成 $b$ 颜色..... 直至走到一个不用换颜色的节点，则停止
-   * 我们claim这样的走法一定能换成功，即使走回了起点。原因在于这是一个二分图，所有的圈都是偶圈，而我们交替地走着 $a,b,a,b,\ldots$ 的边，因此最后必然可以走出一条路(这样就直接交换颜色)或一个圈(这样就相当于轮换了一圈的颜色)
-
-
-
-于是就证完了
-
-
-
-#### 一个任意图的更强的界
-
-事实上 $\forall G$ 都有 $\Delta(G)\leqslant\chi'(G)\leqslant\Delta(G)+1$
-
-这个证明有点麻烦，咕了吧（
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/01/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/01/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/" class="post-title-link" itemprop="url">图论笔记1 基本概念&定义</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-01 23:36:00" itemprop="dateCreated datePublished" datetime="2021-06-01T23:36:00+08:00">2021-06-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          还是记一下吧，方便看博客的人(真的会有人看吗喂！)
-## 图论基本概念
-
-好多啊,还是英文,记不住.....
-
-这里的图默认是有限图
-
-点(vertex/vertices),边(edge)
-
-边$\left\{x,y\right\}$可简记为$xy$
-
-### 基本符号
-
-$\left[n\right]=\left\{1,\dots,n\right\},n\in\mathbb N$
-
-$\binom{n}{k}=\left\{  {x\subseteq \left[n\right]|\left|x\right|=k}\right\}$
-
-$\binom{V}{k}=\left\{x\subseteq V|\left|x\right|=k\right\}$
-
-### 图(graphs)
-
-图的严格定义由有序二元组表示,$G=(V,E)$表示以$V$为点集,$E$为边集的图,这里$E\subseteq \binom{V}{2}$
-
-这里的图又叫**无向简单图**,不含重边(multi edge)和自环(loops)
-
-无向图中的边用集合定义，连接 $x,y$ 的边实际上是 $\left\{\;x,\;y\;\right\}$，简记为 $xy$
-
-其中用$V(G)$和$E(G)$分别表示图$G$的点集，边集
-
-### 有向图(directed graphs)
-
-$G=(V,E)$ 其中 $E\subseteq V^2$
-
-有向图中的边用有序二元组定义
-
-### 多重图(multi graph)
-
-$G=(V,E)$,其中$E$是一个多重集且$\forall x\in E$都有$x\in \binom{V}{2}\cup\binom{V}{1}$
-
-也就是可以有重边和自环
-
-### 超图(hypergraph)
-
-$G=(V,E)$,其中$E\subseteq 2^V-\varnothing$
-
-也就是一条边可以连接任意多个点,这个可以用建立辅助点来理解
-
----
-
-下面默认讨论的是**简单图**
-
-### 相邻(adjacent/neighbors)
-
-两个点$x,y$相邻定义为$\left\{x,y\right\}\in E$
-
-两条边$e_1,e_2$相邻定义为$e_1\cap e_2\neq\varnothing$
-
-### 完全图/团(complete graphs/cliques)
-
-对于$G=(V,E)$若$\forall x,y\in V$都有$\left\{x,y\right\}\in E$那么称$G$是一个完全图/团
-
-我们记含有$n$个点的完全图为$K_n$或$K^n$.特别地,$K_3$叫做三角形(triangle)
-
-### 独立(independent)
-
-不相邻的点对被称为是独立(independent)的
-
-对于图$G=(V,E)$若$\exists V'\subseteq V$使得$\forall x,y\in V'$都有$\left\{x,y\right\}\notin E$,那么我们称点集$V'$是独立集(independent set)
-
-独立集的性质也被称为stable(不会翻,也可能是读错了)
-
-### 同态(homomorphism)和同构(isomorphism)
-
-考虑两个图$G=(V,E)$和$G'=(V',E')$,若存在映射$f:V\mapsto V'$使得$\forall x,y\in V$都有$\left\{x,y\right\}\in E\Rightarrow \left\{f(x),f(y)\right\}\in E'$,那么我们称$G$和$G'$**同态**
-
-
-
-若同态映射同时是一个双射(bijection),那么就得到了一个$G$和$G'$的**同构**,写作$G\simeq G'$
-
-很显然$G$与$G'$同构$\iff$$G$与$G'$同态$\and G'$与$G$同态,且易得同构是一个**等价关系**(equivalence relation)
-
-
-
-在不关注点和边的标号时,我们认为同构的图相等,此时记作$G=G'$
-
-### 图的运算
-
-一下记 $G=(V,E)$,$G'=(V',E')$
-
-#### 图的并交补
-
-定义$G\cup G'=(V\cup V',E\cup E')$,交同理
-
-若$G\cap G'=\varnothing$则称它们不相交(disjoint)
-
-定义$\overline G=(V,\binom{V}{2}-E)$为图$G$的补图(complement)
-
-#### 子图(subgraph)
-
-若$V\subseteq V'\and E\subseteq E'$,则说$G$是$G'$的子图,记作$G\subseteq G'$
-
-#### 导出子图(induced subgraph)
-
-若$G\subseteq G'\and \forall x,y\in V(xy\in E\iff xy\in E')$,则称$G$是$G'$的导出子图,记作$G=G'[V]=G'[V(G)]$
-
-#### 生成图/支撑子图
-
-若$G=G'[V(G')]$,则称$G$是$G'$的一个生成图/支撑子图
-
-### 连通分支/分量(component)
-
-极大的连通子图被称为一个连通分支/连通分量
-
-### 图的特性(property)
-
-若$G'\subseteq G\and G'\simeq H$,则记$P(G,H)=1$,表示图$G$具有特性$H$;否则为$0$,表示不具有该特性
-
-#### 极大/极小图(maximal/minimal)
-
-我们称一个$G'$的子图$G$是具有某类特性的极大子图意味着:
-
-$\forall G''\subseteq G$,都有$P(G',H)=1\and P(G'',H)=0$
-
-极小同理.类似的定义还可以用在边的数量上/图的size上等等
-
-#### 图的乘法
-
-若$G$和$G'$不交,则定义$G*G'=(V\cup V',\left\{xy|xy\in E\or xy\in E'\or (x\in V\and y\in V')\right\})$
-
-比如说$K_2*K_3=K_5$
-
-### line graph(不会翻)
-
-对于图$G=(V,E)$,构造图$G'=(E,E')$,其中$xy\in E'\iff$ 边$x$和边$y$在$G$中相邻
-
-### 邻点(set of neighbours)
-
-对于图$G$中的点$v$,定义$N_G(v)=\left\{x|xy\in E\right\}$,把这个集合称为$v$的邻点集
-
-### 度数(degree/valency)
-
-定义图$G$上点$v$的度数为$d_G(v)=|E(v)|$,其中$E(v)=\left\{xv|xv\in E\right\}$
-
-度数为$0$的点被称为孤立点(isolated vertex)
-
-记$\delta(G)=\max\left\{d_G(v)|v\in V\right\}$
-
-记$\Delta(G)=\max\left\{d_G(v)|v\in V\right\}$
-
-### 正则图(regular graph)
-
-我们称所有点度数相等的图为正则图.所有点度数为$k$的图称为$k-$正则图
-
-显然有$G$是正则图$\iff\delta(G)=\Delta(G)$
-
-特殊地,$3-$正则图也叫做cubic
-
-### 距离(distance)
-
-$x,y$ 之间的距离定义为 $\min{xPy}$，$P$ 为一条 $x-y$ 路。距离记作 $\text{dist}(x,y)$
-
-### 直径(diameter)
-
-图 $G$ 的直径定义为 $\max{(\text{dist}(x,y))}$，记作 $\text{diam} \;G$
-
-### 半径(radius)
-
-定义半径为 $\min\limits_{x\in V(G)}\max\limits_{y\in V(G)}{\text{dist}(x,y)}$，记作 $\text{rad}\; G$
-
-取到半径的端点记作中心点(central vertex)
-
-### 森林(forest)
-
-森林是无圈图
-
-### 树(tree)
-
-树是连通的森林
-
-### 代数基础
-
-考虑集合 $\left\{\;0,1\;\right\}$ 和其上模2的加法、乘法运算，容易验证这是一个数域，记作 $F_2$。
-
-考虑 $V={F_2}^{|G|}$，$V$ 中的元素都是长度为 $|G|$ 的01向量，很显然 $V$ 是 $F_2$ 上的线性空间，我们称之为点空间
-
-类似的考虑 $E={F_2}^{||G||}$，这是边空间
-
-不难发现 $V$ 中的每个向量对应着一个顶点的集合(特征函数)，$E$ 有类似的结论。
-
-$E$ 有一个特殊的子空间 $C$，$C$ 中是所有圈组成的线性空间。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/01/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AC%94%E8%AE%B01-%E6%90%9C%E7%B4%A2%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AC%94%E8%AE%B01-%E6%90%9C%E7%B4%A2%E6%A0%91/" class="post-title-link" itemprop="url">数据结构 笔记1 搜索树</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-29 17:02:00" itemprop="dateCreated datePublished" datetime="2021-05-29T17:02:00+08:00">2021-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          感觉一下子进度快了很多，中间有一些需要记的，还有一些偏工业的，现在补一补。
-
-内容全部来自《算法导论》，啃了一遍之后觉得这本书真是强啊，理论上说用这个入门就没必要看别的书了.....也许这就是本意吧
-
-这波主要是树相关，后面可能会持续更新，看我有没有空吧.....
-
-是写给自己看的，也许会有一点电波
-
-
-
-## 二叉搜索树(Binary Search Tree)
-
-实际上是对链表和二分过程的结合。我们希望在保持二分性质的前提下支持快速插入和删除某些元素，这样的需求推动了BST的出现
-
-
-
-### 定义
-
-严格的二叉搜索树定义如下：
-
-1. 定义一个节点有`lch`,`rch`,`fa`,`key`这四个基础的指针，分别表示节点的左右孩子、父亲、键值(通常是我们所关心的数据)，还会有一些所谓卫星数据(也就是我们不太关心的但与节点相关数据)
-2. 单个节点是BST
-3. $T$是BST当且仅当$T$的左右子树都是BST，且左子树$T_L$中的`key`全部小于$T$的根的`key`，$T_R$的全部`key`大于$T$的根的`key`
-
-这里实际上是简化了讨论存在重复键值的情况，即我们认为每个`key`是唯一的。
-
-
-
-### 操作
-
-既然是数据结构就要有操作。BST支持经典的**增删查改**，还可以做第查找k大/第k小
-
-
-
-#### 查找/修改
-
-实际上就是在序列上二分
-
-
-
-#### 前驱/后继
-
-这俩是对称的。
-
-设要找$p$的前驱，就先找到$p$，再分两种情况：
-
-1. $p$有左儿子，那么就是$p$左子树的最大值
-2. $p$没有左儿子，那么$p$的前驱一定是$p$的某个祖先（why?），向上跳直到当前节点是父节点的右儿子就好了
-
-
-
-#### 插入
-
-实际上也是在序列上二分，然后用树的插入就好了
-
-
-
-#### 删除
-
-分三种情况，设要删掉$p$
-
-1. $p$是叶子，直接删掉就可以啦
-2. $p$有一个孩子$q$，那么就删掉$p$，让$p$的父亲认$q$做新的儿子
-3. $p$有两个孩子，那么就查找$p$的前驱(比他小的最大值)，交换二者`key`，问题规约为删除$q$。由$q$是$p$的前驱可知$q$没有右儿子(反证法就可以得到)
-
-前两个都是简单的，第三个需要证明一下交换再删除的操作不改变BST的定义，也不太难
-
-
-
-#### 第k大
-
-做这个要维护一下每棵子树的大小，再用k去二分就好了。
-
-
-
-### 基本性质
-
-1. size为$n$的BST的高度**最小**为$\log_2(n)$。直接由二叉树得出
-2. BST的中序遍历是按`key`有序的。这个归纳即可得到
-3. 高度为$h$的BST的单次查找、删除、插入复杂度都是$\Theta(h)$的
-4. 随机数列生成的BST高度期望为$\log_2(n)$
-
-
-
-## B-树(B-Tree)
-
-这里的“-”是连接符，不念“B减树”
-
-B树的本质是索引树。在计算机中，不同层级的储存之间的速度存在显著差异。通常大量的数据储存在外存（硬盘）中，内存只保留对数据的索引。这类问题的硬盘读写时间远大于CPU时间，因此我们主要关心前者。
-
-
-
-### 定义
-
-1. 一个节点有`size`个键值(key value)，有`size+1`个儿子节点，同时记录父节点`parent`
-2. 所有的键值按照顺序排放
-3. 任意节点`x`的键值`key_i`，若`x`是`x.parent`的第`i`个孩子，则必有`x.parent.key_{i-1}<x.key_i<x.parent.key_{i}`
-4. 所有叶子有相同的深度
-5. 除根外，每个节点的键值数量有上界和下界，即$[t-1,2t-1]$，$t$ 被称为最小度数
-
-同样我们认为`key`唯一
-
-
-
-### 操作
-
-仍然是增删查改。多了分裂(split)和合并(merge)
-
-
-
-#### 查找
-
-由定义2和定义3可知，我们在节点上枚举就好了（也可以二分）
-
-
-
-#### 插入
-
-B树所有的插入都在叶子处进行。首先查找找到叶子，插入，然后视情况进行分裂(split)
-
-
-
-#### 分裂
-
-首先定义满节点：我们称`x`是满的当且仅当`x`有恰好`2t-1`个键值
-
-由B树的定义，当插入的叶子已满的时候，我们需要分裂该叶子。
-
-具体说分裂`x`就是取出`x`的中间键值插入到`x.parent`中，再把`x`拆成`xl`，`xr`分别设为中间键值的左右儿子即可。
-
-注意自下而上的分裂需要递归处理祖先的分裂情况，也可以在插入前预分裂来避免回溯分裂。
-
-
-
-#### 删除
-
-首先定义富裕节点：我们称`x`富裕当且仅当`x`有多于`t`个键值
-
-先找到对应键值的节点`x`
-
-1. 若`x`不是叶子，则类似BST找到处于叶子的后继（why？）交换，变成删后继，转到2
-2. 若`x`是叶子且富裕，则直接删除
-3. 若`x`是叶子且不富裕，则分情况讨论：
-   1. （我称为找兄弟借钱）`x`的兄弟（定义为在父亲中与`x`相邻的儿子）富裕，则取兄弟的最值给父亲，再把父亲中对应俩儿子的键值下放给`x`，此时`x`就富裕了
-   2. （我称为找兄弟搭伙）`x`的兄弟都不富裕，则取`x`、`x`的兄弟、父亲中对应俩儿子的键值 三者合并为新的节点`x'`，挂在父亲下，递归维护父亲的性质5
-
-很容易发现删除的3-2和插入的分裂是反着来的
-
-
-
-### 性质
-
-B树的每个节点储存着一整个页(page)的数据，因此读写整个节点的数据的时间是最小单位，也就是我们认为可以一次性完成。
-
-1. 树高是$\Theta(\log_t(n))$ 级别的
-2. 单次插入和删除的硬盘复杂度都是$\Theta(h)$级别的，CPU时间复杂度是$\Theta(ht)$级别的
-
-
-
-类似的延伸还有B+树（叶子是双向链表）、B*树（对单个节点的利用率要求更高）等等
-
-### 代码实现
-丢一段代码，和multiset拍了一下，应该是没有问题的
-
-```cpp
-#include <iostream>
-#include <algorithm>
-
-#define rel(x) do { if (x != nullptr) delete x; x = nullptr; } while (0)
-
-template <typename T_keys, typename T_data, int M> class BTree;
-
-template <typename T> void read( T & );
-
-template <typename T_data, typename T_keys, int M> class BTreeNode {
-	typedef BTreeNode <T_data, T_keys, M> Node;
-	typedef std:: pair <Node *, int> NodePos;
-
-public:
-
-	BTreeNode( bool is_leaf = false, Node *parent = nullptr ): parent( parent ), is_leaf( is_leaf ), size(0 ) {
-		for ( int i = 0; i <= M; ++ i ) this->p[i] = nullptr;
-		for ( int i = 0; i < M; ++ i ) {
-			this->keys[i] = 0;
-		}
-	}
-
-	bool isLeaf() {
-		return this->is_leaf;
-	}
-
-	bool isRoot() {
-		return this->parent == nullptr;
-	}
-
-	bool isFull() {
-		return this->size == M;
-	}
-
-	// return true if node is rich enough to delete a key
-	bool isRich() {
-		return this->size > ( M / 2 );
-	}
-
-	bool isValid() {
-		for ( int i = 0; i <= size; ++ i ) {
-			if ( p[i] && p[i]->parent != this ) return false;
-		}
-		if ( size < ( M / 2 ) || size > M ) return false;
-		return true;
-	}
-
-	// returns i if i is the first Node.keys[i] >= key, -1 if there's no such key
-	int findKey( const T_keys &key ) {
-		for ( int i = 0; i < this->size; ++ i ) {
-			if ( key <= this->keys[i]) return i;
-		}
-		return this->size;
-	}
-
-	int findWhich( Node *x ) {
-		for (int i = 0; i <= size; ++ i) {
-			if (p[i] == x) return i;
-		}
-		return -1;
-	}
-
-	void insert_front( const T_keys &key, Node *inp ) {
-		for ( int i = this->size; i > 0; -- i ) {
-			this->keys[i] = this->keys[i - 1];
-			this->p[i + 1] = this->p[i];
-		}
-		this->p[1] = this->p[0];
-		this->p[0] = inp;
-		this->keys[0] = key;
-		if (inp != nullptr) {
-			inp->parent = this;
-		}
-		this->size ++;
-	}
-
-	void insert_back( const T_keys &key, Node *inp ) {
-		this->keys[size] = key;
-		this->p[++ size] = inp;
-		if (inp != nullptr) {
-			inp->parent = this;
-		}
-	}
-
-	// insert key & data in leaf nodes
-	void insert( const T_keys &key, Node *inp = nullptr ) {
-		int pos = this->findKey( key );
-		for ( int i = this->size; i > pos; -- i ) {
-			this->keys[i] = this->keys[i - 1];
-			this->p[i + 1] = this->p[i];
-		}
-		this->keys[pos] = key;
-		this->p[pos + 1] = inp;
-		this->size ++;
-		if (inp != nullptr) {
-			inp->parent = this;
-		}
-	}
-
-	// remote node( key, datum ) and set split nodes to be its children
-	void insert_remote( const T_keys &key, Node *lch, Node *rch ) {
-		int pos = this->findKey( key );
-		for ( int i = this->size; i > pos; -- i ) {
-			this->keys[i] = this->keys[i - 1];
-			this->p[i + 1] = this->p[i];
-		}
-		this->keys[pos] = key;
-		this->p[pos] = lch;
-		this->p[pos + 1] = rch;
-		this->size ++;
-	}
-
-	void remove_front() {
-		for (int i = 0; i <= size; ++ i) {
-			keys[i] = keys[i + 1];
-			p[i] = p[i + 1];
-		} size --;
-	}
-
-	void remove_back() {
-		keys[size - 1] = 0;
-		p[size] = nullptr;
-		size--;
-	}
-
-	// remove keys[pos] in leaf node
-	void removeByPos(const int &pos) {
-		for (int i = pos; i < size; ++ i) {
-			keys[i] = keys[i + 1];
-			p[i] = p[i + 1];
-		}
-		keys[size] = 0;
-		p[size --] = nullptr;
-	}
-
-	// split node *this
-	Node *split() {
-		if ( !this->isFull() ) return nullptr;
-		
-		// if this is root, then split this and set a new root
-		if ( this->isRoot() ) {
-			this->parent = new Node( false, nullptr );
-		}
-		
-		Node *newNode = new Node( this->isLeaf() , this->parent );
-		int mid = M / 2;
-
-		T_keys mid_key = this->keys[mid];
-
-		this->keys[mid] = 0;
-
-		this->parent->insert_remote( mid_key, this, newNode );
-
-		for ( int i = mid + 1; i < this->size; ++ i ) {
-			newNode->keys[i - mid - 1] = this->keys[i];
-			newNode->p[i - mid - 1] = this->p[i];
-			if ( this->p[i] != nullptr ) this->p[i]->parent = newNode;
-
-			this->p[i] = nullptr;
-			this->keys[i] = 0;
-		}
-		newNode->p[M / 2] = this->p[this->size];
-		if ( this->p[this->size] != nullptr ) this->p[this->size]->parent = newNode;
-		this->p[this->size] = nullptr;
-
-		this->size = newNode->size = M / 2;
-		return newNode;
-	}
-
-	NodePos minimum() {
-		if ( p[0] == nullptr ) return NodePos( this, 0 );
-		return p[0]->minimum();
-	}
-
-	NodePos maximum( Node *x ) {
-		if ( p[size] == nullptr ) return NodePos( this, size );
-		return p[size]->minium();
-	}
-
-	void mergeLeft( int pos, Node *&right ) {
-		keys[size] = parent->keys[pos];
-		
-		for (int i = 0; i < right->size; ++ i) {
-			keys[size + i + 1] = right->keys[i];
-			p[size + i + 1] = right->p[i];
-			if (right->p[i] != nullptr) right->p[i]->parent = this;
-
-			right->keys[i] = 0;
-			right->p[i] = nullptr;
-		}
-		
-		size += 1 + right->size;
-		p[size] = right->p[right->size];
-		right->p[right->size] = nullptr;
-		if (p[size] != nullptr) p[size]->parent = this;
-		rel(right);
-
-		parent->removeByPos(pos);
-	}
-
-private:
-
-	Node *p[M + 2], *parent;
-	T_keys keys[M + 1];
-	bool is_leaf;
-	// the number of keys in a Node*
-	int size;
-	
-	friend class BTree <T_keys, T_data, M>;
-} ;
-
-template <typename T_keys, typename T_data, int M> class BTree {
-	typedef BTreeNode <T_keys, T_data, M> Node;
-	typedef std:: pair <Node *, int> NodePos;
-	
-public:
-
-	BTree() {
-		this->root = new Node( true, nullptr );
-	}
-
-	NodePos find( const T_keys &key ) {
-		for ( Node *x = root, *res = nullptr; x != nullptr; ) {
-			int pos = x->findKey( key );
-			Node *next = x->p[pos];
-			int next_key = x->keys[pos];
-
-			res = x->split();
-			if (x == root && res != nullptr) {
-				root = root->parent;
-			}
-			if ( next_key == key ) {
-				if (res == nullptr) {
-					return NodePos( x, pos );
-				} else {
-					if ( pos < (M / 2) ) {
-						return NodePos( x, pos );
-					} else if ( pos > (M / 2) ) {
-						return NodePos( res, pos - (M / 2) - 1 );
-					} else {
-						return NodePos( x->parent, x->parent->findKey( next_key ) );
-					}
-				}
-			} else if ( x->isLeaf() ) {
-				break;
-			}
-			x = next;
-		}
-		return NodePos( nullptr, -1 );
-	}
-
-	void insert( T_keys key ) {
-		Node *x = root, *res = nullptr;
-		while ( !x->isLeaf() ) {
-			int pos = x->findKey( key );
-			Node *next = x->p[pos];
-
-			res = x->split();
-			if ( x == root && res != nullptr ) {
-				root = root->parent;
-			}
-
-			x = next;
-		}
-
-		int pos = x->findKey( key );
-		res = x->split();
-		if ( x == root && res != nullptr ) {
-			root = root->parent;
-		}
-		if ( res == nullptr || pos <= ( M / 2 ) ) {
-			x->insert( key );
-		} else {
-			res->insert( key );
-		}
-	}
-
-	void adjust(Node *x) {
-		if ( x->isValid() ) return ;
-		if ( x->isRoot() ) {
-			if ( x->size == 0 ) {
-				root = x->p[0];
-				rel(root->parent);
-			}
-			return ;
-		}
-		int pos = x->parent->findWhich( x );
-		Node *big_brother = x->parent->p[pos + 1];
-		Node *little_brother = (pos > 0) ? (x->parent->p[pos - 1]) : nullptr;
-
-		if ( big_brother != nullptr && big_brother->isRich() )
-		{
-			x->insert_back( x->parent->keys[pos], big_brother->p[0] );
-			std:: swap( x->parent->keys[pos], big_brother->keys[0] );
-			big_brother->remove_front();
-		} 
-		else if ( little_brother != nullptr && little_brother->isRich() ) 
-		{
-			x->insert_front( x->parent->keys[pos - 1], little_brother->p[little_brother->size] );
-			std:: swap( x->parent->keys[pos - 1], little_brother->keys[little_brother->size - 1] );
-			little_brother->remove_back();
-		} 
-		else {
-			// neither brothers are rich, merge
-			if ( big_brother != nullptr ) {
-				std:: swap(x->parent->p[pos], x->parent->p[pos +1]);
-				x->mergeLeft( pos, big_brother );
-			} else {
-				x->parent->p[pos] = little_brother;
-				little_brother->mergeLeft( pos - 1, x );
-				x = little_brother;
-			}
-			adjust(x->parent);
-		}
-	}
-
-	void remove(NodePos p) {
-		Node *x = p.first;
-		// the position of x in its parent
-		int pos = p.second;
-		if ( !x->isLeaf() ) {
-			NodePos successor = x->p[pos + 1]->minimum();
-			Node *sx = successor.first; int spos = successor.second;
-			std:: swap( sx->keys[spos], x->keys[pos] );
-			remove( successor );
-		} else {
-			bool x_isRich = x->isRich();
-			x->removeByPos( pos );
-			if ( !x->isRoot() && !x_isRich ) {
-				adjust( x );
-			}
-		}
-	}
-
-	void remove(T_keys key) {
-		NodePos p = find(key);
-		remove( p );
-	}
-
-	void preOrder() {
-		myPreOrder( this->root );
-	}
-
-	bool isValid() {
-		return myIsValid( this->root );
-	}
-
-private:
-
-	void myPreOrder( Node *x ) {
-		if ( x == nullptr ) return ;
-		if ( x->isLeaf() ) {
-			for ( int i = 0; i < x->size; ++ i ) {
-				std:: cout << x->keys[i] << " ";
-			}
-			return ;
-		}
-		for ( int i = 0; i <= x->size; ++ i ) {
-			myPreOrder( x->p[i] );
-			if ( i != x->size ) {
-				std:: cout << x->keys[i] << " ";
-			}
-		}
-	}
-
-	bool myIsValid( Node *x ) {
-		bool flag = x->isValid() | (x == root);
-		if ( x->isLeaf() ) return flag;
-		for ( int i = 0; i < x->size; ++ i ) {
-			if (x->p[i] == nullptr || x->p[i]->parent != x) return false;
-			flag &= myIsValid( x->p[i]);
-		}
-		return flag;
-	}
-
-	friend class BTreeNode <T_keys, T_data, M>;
-	Node *root;
-} ;
-
-template <typename T> void read( T &x ) {
-	T v = 1; x = 0; char ch = getchar();
-	for (; ch < '0' || ch > '9'; v = ( ch == '-' ) ? -1 : v, ch = getchar() );
-	for (; ch <= '9' && ch >= '0'; x = x * 10 + ch - '0', ch = getchar() );
-	x *= v;
-}
-
-int main( void ) {
-	freopen("data.in","r",stdin );
-	freopen("myp.out","w",stdout );
-	BTree <int, int, 5> *T = new BTree <int, int, 5> ();
-	int n;
-	for ( read(n); n --; ) {
-		int opt, x;
-		read( opt );
-		read( x );
-		switch ( opt ) {
-			case 1: {
-				T->insert( x );
-				break;
-			}
-			case 2: {
-				T->remove( x );
-				break;
-			}
-		}
-		T->preOrder(); std:: cout << std:: endl;
-	}
-	return 0;
-}
-```
-
-
-## 红黑树(RB-Tree)
-
-BST的一大问题就是对于单调的数据容易退化成链表，复杂度没有保证，因此就引入了平衡二叉树的概念。
-
-之前写过splay写过treap写过scapegoat，但是真正工业级的平衡树还是红黑树用的多（why？）
-
-红黑树实际上是一种特殊的B-树，也称为2-3-4树。从这个角度来看，就很好理解了。
-
-
-
-### 定义
-
-红黑树是一棵二叉平衡搜索树(BST)，其满足：
-
-1. 每个节点都有唯一的颜色：红r或黑b
-2. 根节点是黑色的
-3. 任意红色节点不相邻
-4. 任意节点v为根的子树中的所有叶子到v的路径上黑色点数量都相同
-
-
-
-### 平衡分析
-
-关键在于性质3和4的结合。考虑任意两个叶子，它们到根的路径上黑点数量相同，不妨记为$bh$
-
-因为不全为黑点，且红点不相邻，故$rh_1\leqslant bh\and rh_2\leqslant bh$，于是$|H_1-H_2|=|(bh+rh_1)-(bh+rh_2)|=|rh_1-rh_2|\leqslant bh$
-
-可知红黑树是弱平衡的（相比AVL）
-
-
-
-### 操作
-
-#### 查找
-
-和一般的BST一样，红黑树的查找操作就是在树上二分
-
-
-
-#### 插入
-
-和一般的BST一样，红黑树的插入就是在树上查找，然后增加一个新的节点
-
-不同之处在于我们的节点有颜色。在红黑树中规定新节点染成R，这样得到的新树满足条件4
-
-然而可能出现新节点v和它的父亲fa都是R的情况，这种时候就需要修正操作
-
-
-
-#### 插入修正染色
-
-记新节点为x，其父亲为y，爷爷为z，爷爷的另一个儿子（伯父/叔父）为w
-
-显然有y为R，z为B（在加入x之前这是一个合法的红黑树）
-
-
-
-1. 若y和w都是R，则将它们染成B，将z染成R，对z递归修正；
-
-2. 若w是B，则先确保x是y的左儿子（否则旋转x，交换指向x和y的指针），再染y为B，染z为R，旋转y
-
-
-
-可以发现，1操作等价于把一个B点的颜色给了两个R儿子，这样做不会使得$bh$发生变化
-
-类似的2操作也不会使$bh$增大
-
-
-
-#### 删除元素
-
-好麻烦.....先吃饭
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AC%94%E8%AE%B01-%E6%90%9C%E7%B4%A2%E6%A0%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/" class="post-title-link" itemprop="url">ICPC 2021 银川划水记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-17 14:42:00" itemprop="dateCreated datePublished" datetime="2021-05-17T14:42:00+08:00">2021-05-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          一个周末发生了很多事情，值得记录一下
-
-## day -1
-
-前夜被告知航班取消了，匆忙换成了从合肥出发的灰机。早上匆忙赶到南京南的时候因为太着急甚至走错了路。在列车即将晚点的时候又被告知退掉高铁票改去徐州，疫情！
-
-人生第一次坐到了高铁一等座，座椅确实宽敞。到机场前短暂地体验了一波徐州的氛围，感觉和东莞差不太多，除了他们有自己的飞机场（囧
-
-终于见到了碧海潮生和labelray本人，值了。两点半的飞机直接晚点到七点，期间一直在和简叶打雀，顺便看了一点少女漫，四处找人聊天。
-
-到银川的时候已经十点了，沿途观察了一波地形，真是平坦啊。到酒店之后叫了一点外卖，很快就到了。躺上床就合了眼
-
-
-
-## day 0
-
-早上爬起来才想起要去打板子，俩人四处晃悠问了三家店，看价格深感学校的好。最后货比三家还是爬回了第一家。出于某些原因没有打到目录（伏笔*1）
-
-下午打车去NXIST，司机把能压的线都压全了，甚至没有系安全带，后怕（
-
-在学校里转了30 min才找到场地，问了三个志愿者分别指向了卖土特产的、饭堂和体育馆，迷惑
-
-找场地的时候绕了一会儿，旁边是熟悉的广式口音，类目。CSHwang 在隔壁的隔壁的隔壁，被抓到了。看了一波参赛手册，觉得这波能Ag就是成功（flag，毕竟划了一整年的水。
-
-热身赛是四个sb题，没啥好说的，唯一的难点在于古早gnome和编辑器。本来看到CLion还很高兴，直到打开它告诉我没有License，这么敷衍的吗（摔）
-
-找半天找不到firefox，最后机智地`firefox &`，当然直接点开cpp reference也可以，好评
-
-评测姬中途直接停了，美其名曰“stress test”。开场1min全场都在交，然后就听到后面的摄影大叔：哇塞，一开始就过了这么多题目啊
-
-出来之后听说本机栈是unlimited，死循环会直接卡死（伏笔*2）
-
-有人在群里问要不要预定（伏笔*3）恰羊腿，非常心动就和GeWugu约了
-
-拿着15r饭票的时候还在想够不够吃的问题，直到我看到了NXIST的感人物价：10r三个菜，3r一杯的饮料，甚至饭票没花完。九乡河人落泪.jpg
-
-晚上睡了1h左右，醒来刚好看到简叶在写EL，于是我也就上了。接了一个E的锅，意识到是个水题就写了，中间因为LL和模太多挂了两发（伏笔*4），所幸还是过了。打完算了一波分，大概下盘不翻车就有rk2了。恰钱真难.jpg
-
-大概十点出门吃宵夜，被告知羊腿要预约（预定），于是爽快决定去烧烤。找了一家店手抖点了五份考得很好的金(Au)针菇，气氛还是很不戳的。回到酒店开始赶当晚11:59的ddl，幸好带了笔记本
-
-晚上睡得比较晚，水了很久的群。
-
-
-
-## day 1
-
-貌似这波只有day 1.....
-
-早上出门吃杂酱面，那边面食特别香。大概45分才让进门，差点以为要坐地上看题了。
-
-发的题面甚至有封条，好评；密码条不是等宽字体，分不清0和O，差评；
-
-看了一波昨天试机的配置还在，只是文件都没了，开始后悔没有设置snippet，血亏；
-
-桌面上的cpp reference无了，oj地址也无了，于是开始发呆。
-
-密码一发就过了，感觉很OK。开场我开了K，简叶开D，wky开A。事实上这个开法还算可以。K的题意有点绕，我跳过了第一段，直接导致题意看歪了。再加上第一发写错了下标，dfs直接就把系统都整挂了。万般震惊之下举手示意志愿者，小鸽鸽竟然表示这是正常现象。于是直接重启打印下场让wky做A。A写了一波就过了，再就是简叶写D，我看一波榜决定再开J和E。
-
-看了一波E感觉是不太难的讨论，就把锅分给了wky然后去看J，意识到J是个sb模拟，就觉得这波五题应该稳了，怎么也得冲个Au吧（flag）
-
-然后开始等简叶的AC，然后就看他写了30 min。感觉到不对劲就自己看了一发题面，于是发现按照他的做法过不得，这厮算错复杂度了。此时Au线是三题，我就开始着急了。上去抢键盘写掉了J，经历了行末空格就过了。wky讨论了一波E，也过了。于是开始回头看K，读了三次题才发现理解错了，不过改改就能A。此时痛失K的一血。看一波榜发现此时四题刚好Au线，心里开始鸡冻。
-
-然后就开始了漫长的讨论-灵感-没有气球三连。中间经历了wky猜M的结论，简叶写B的假做法，我干D的LCT做法，我写G的假做法。三个人手上捏着四道题，但是两个不会写两个调不出。大概是吃午饭的时候决定跟榜全力搞G，然后就封榜了。这个时候瞄一眼，你南四支队都是四题（绝活），我们在100+，鸽呜咕在疯狂交B。直到认真看G才发现是nqlog刚好被卡的范围，于是十分自信地卡了30 min的常数。最后还剩3 min的时候突然想到只需要倒着做就可以用链表维护相邻关系了，这不就是sb题吗（摔
-
-于是和队友说了想法，他们纷纷表示是正解，然后就躺了。最后一分钟认真看了看周围，原来xjj还是很多的，也许真的有人能在ACPC收货爱情吧（雾）。
-
-离开之前疯狂刷新，最后还是苟在了Ag线上，个无辜刚好差三名，这也太极限了（。
-
-在体育馆外面想着拍张合影，毕竟是第一次线下赛。于是三个人就拍了一张图上全是脸，脸上全是口罩的阴间照片（脸太大了）
-
-一队貌似心态有点崩，不过已经打完了，像我这种容易满足的人总是没什么好不平的，也算好事吧。
-
-飞机不出意料地晚点了，到学校已经是十一点。想想我出门都没刷卡，也没请假，只是和辅导员说了一声，还是有点后怕的。
-
-
-
-## 总结一波
-
-我和队友都算划水的那一类，平时课业也多，所以练得很少（或者说几乎没有，呃，碰头）。这次出门看到了强队准备的模板和词典，看到了强队明确的分工和各有所长，得知了强队每周训练频率，看来勤奋在哪里都是硬通货。有追求、有梦想当然就有热情持续投入，自然会比原来的自己要强一点点，这也是算法竞赛美妙的地方——你总要不断超越自己。不过我不算太肝这方面的人，参加也只是抱着旅游的心态，因此能目睹如此青春的奋斗盛会也算是很值了。当然这三天里和队友干饭旅游吹水的感觉还是很不错的，感谢算法竞赛给我带来的宝贵友谊。这一轮打下来，可以看到强队失意，可以看到弱队翻盘，既有结束前的绝杀，又有开局稳定遥遥领先。在这样百态的人生之中，我普普通通地过活，勉勉强强地学习，也算是活出了我自己的样子吧。
-
-暑假，一定，补题，加练（flag）
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/" class="post-title-link" itemprop="url">图论笔记2 匹配</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-30 19:11:00" itemprop="dateCreated datePublished" datetime="2021-04-30T19:11:00+08:00">2021-04-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          事实上第一篇应该是一些概念的介绍，不过先不管了...
-
-这几周讲了一个很大（也是很难）的题目，值得好好记录一下.....
-
-本文讲的都是有限图，在阅读之前默认读者有基本的集合论姿势和图论前置姿势
-
-# 匹配（Matching）
-
-## 定义
-
-### 匹配
-
-对于给定的图 $G=(V,E)$，若存在边集$M$使得 $M\subseteq E(G)$ 且 $\forall e_1,e_2\in E(G)$ 都有 $e_1\cap e_2=\varnothing$，那么我们称 $M$ 为 $G$ 的一个匹配。特别地，若 $|M|=||G||$ 则称 $M$ 为一个完美匹配（Perfect Matching）；若 $M$ 有最大基数，则称其为最大基数匹配；类似的还有极大匹配等等
-
-一个完美匹配有时也被称为一个1-因子（1-factor），其含义为图 $G$ 存在1-正则的支撑子图
-
-我们一般不明显区分匹配对应的边集和子图，而只在需要的时候作出说明
-
-
-
-### 增广路
-
-考虑 $G$ 的一个匹配 $M$，我们称点 $x$ 是自由的（free vertex）当且仅当 $x\not\in V(M)$
-
-若$xy\in E(G)$，我们称边 $xy$ 是匹配边（matched edge）当且仅当 $xy\in E(M)$；否则称其为非匹配边（unmatched edge）
-
-若一条路 $P$ 中总是交替地出现匹配边和非匹配边，则我们称 $P$ 为一条交错路（alternating path）
-
-若一条交错路 $P'$ 以自由点开始和结束，则我们称 $P'$ 为增广路（augmenting path）
-
-
-
-### 性质
-
-1. $G$ 存在完美匹配的必要条件是 $|G|=2k,\;k\in\N^+$，这个是显然的
-2. 若 $P$ 是增广路，则$|P|=|E(P)|=2k+1,\; k\in\N^+$
-3. 若 $M$ 是 $G$ 的一个匹配，$P$ 是 $G$ 中的增广路，则$M\oplus P$ 仍然是 $G$ 的一个匹配，且$|M\oplus P|=|M|+1$
-4. $M$ 为最大匹配**当且仅当 **$G$ 不存在增广路
-
-
-
-性质3的证明：
-
-考虑 $M\oplus P$ 的含义，即将 $P$ 中的匹配边与非匹配边互换。由性质2和增广路的定义可知，这样做会使得匹配边数量增加1
-
-
-
-性质4的证明：
-
-$\Rightarrow$：
-
-由反证法，若 $G$ 存在增广路，则根据性质3可得到基数更大的匹配，矛盾；
-
-$\Leftarrow$：
-
-由反证法，若 $M$ 不是最大基数匹配，则设最大匹配为 $M'$，那么 $M'\neq M$。记$M''=M'\oplus M$，则 $\forall x\in V(M''),\; deg(x)\in\left\{0,1,2\right\}$
-
-即 $M''$ 中只能有若干孤立的点、不相交的路、不相交的圈。除孤立点外，路和圈上的边都交替地属于 $M$ 和 $M'$（这一点可以轻松地由反证法得到）。
-
-且由 $|M'|>|M|$ 可知，必然存在至少 $|M'|-|M|$ 条以 $M'$ 中的边为起点和终点的不相交的路，这些就是增广路。
-
-
-
-性质4告诉我们可以通过不断寻找增广路来扩充现有的匹配。下面的伪代码给出了一个寻找最大匹配的算法
-
-```cpp
-input(G);
-M = {};
-while (exists_augmenting_path(G)) {
-    P = get_augmenting_path(G);
-    M = M xor P;
-}
-output(M);
-```
-
-由于图有限，故这个算法能在有限步骤内结束，并且算法结束当且仅当不存在增广路，即我们找到了一个最大匹配。
-
-
-
-## 二分图（bipartite graph）匹配
-
-也叫二部图匹配
-
-
-
-### 性质
-
-1. 二分图不含奇环
-2. 二分图中的增广路一定以某一点集中的自由点为起点，途中经过若干非自由点（可以为0），最后结束于另一点集的自由点
-
-
-
-Hall's Theorem：
-
-二分图 $G=(A\cup B,E)$ 存在浸润/饱含（saturate） $A$ 的匹配当且仅当 $\forall S\subseteq A$，都有$|N(S)|\geqslant |S|$
-
-这个定理给出了判断二分图是否存在完美匹配的判定
-
-
-
-Hall's Theorem的证明：
-
-必要性是显然的；
-
-充分性在 $|A| = 1$ 时显然成立
-
-由数学归纳法，不妨假设当 $|A|< n$ 时成立，则当$|A|=n$时对$ G'=G-v$进行讨论：
-
-1. 若 $\forall S\subseteq A',\; |N(S)|\geqslant |S|+1$，那么此时我们将 $v$ 和它相邻的任意节点放在 $M$ 中，于是对 $\forall S'\subseteq A$，$N(S')\geqslant |S|$。由归纳假设，$G'$ 的匹配 $M'$ 和 $v$ 分配的边一起构成了 $G$ 中浸润 $A$ 的匹配。
-2. 若 $\exists S\subseteq A$ 使得 $|N(S)|=|S|$，那么此时将 $S-N(S)$ 边全部加入 $M$ 中，且 $G-S-N(S)$ 满足 Hall条件 ，于是将两部分合并即得到 $G$ 中浸润 $A$ 的匹配。
-
-
-
-### 匈牙利算法
-
-对于二分图，我们按照任意顺序枚举 $A$ 中的每个自由点（ $B$ 中也一样）作为起点进行 DFS，规定只能走交错路。若以某个点为起点找到了一条增广路，那么就沿着路径取反。
-
-```cpp
-input(G);
-for (i in V) {
-    if (free(i)) {
-        if (exists_augmenting_path(i)) {
-            M = M xor augmenting_path(i);
-            ans ++;
-        }
-    }
-}
-output(ans);
-```
-
-#### 复杂度分析
-
-单次循环时间复杂度为$O(|V|+|E|)$，总共只会做 $O(|V|)$ 次循环，故总的时间复杂度是 $O\left({\left|V\right|\left({\left|V\right|+\left|E\right|}\right)}\right)$ 的
-
-#### 正确性的证明
-
-实际上我们需要证明为什么只做 $O(|V|)$ 次循环足够找到答案
-
-注意到二分图 $G$ 中的增广路的性质2，我们claim：若不存在以自由点 $v$ 为起点的增广路，则以 $A$ 中其余自由点为起点的增广路一定不会经过 $v$
-
-由反证法：不妨假设经过 $v$，则自由点 $v$ 一定位于增广路的终点，而这恰与增广路长度为奇数矛盾；故假设不成立。
-
-
-
-### HopCroft Karp 算法
-
-一个比较直观的想法就是同时进行多条增广路的寻找，这就是HK算法的大致思想。
-
-HK算法包含若干轮，其中每一轮的流程如下：
-
-对于点集 $A$，寻找出所有自由点并记为 $S$。每次寻找出 $B$ 中与 $S$ 相邻，且由匹配边连接的点集 $S'$，令 $S\leftarrow S'$
-
-再在 $A$ 中寻找与 $S$ 相邻且由非匹配边连接的点集 $S''$，令 $S=S''$
-
-....
-
-```cpp
-input(G);
-while (find_augmenting_path(G)) {
-   	S = maximal_shortest_augmenting_path(G);
-    M = M xor S;
-    ans += size(S);
-}
-output(ans);
-```
-
-不难发现，这个算法每一轮至少找到一条增广路
-
-#### 时间复杂度的证明
-
-正确性的证明是比较显然的，算法结束当且仅当找不到新的增广路。
-
-这个证明很难，是看了论文才会的.....
-
-##### 引理一：
-
-$M$ 和 $M'$ 是 $G$ 的两个匹配，且 $|M|< |M'|$，则 $M'\oplus M$ 是 $G$ 中 $|M'|-|M|$ 条相对于 $M$ 的点不相交的增广路的集合
-
-引理一的证明有点类似于匹配性质4的证明
-
-注意到 $M'\oplus M$ 中只会有点、路和圈，且任意路和圈上的边都在 $M'$ 和 $M$ 中交替出现。且任意路满足其上来自 $M$ 和 $M'$ 的边的数量相差恰好1。因为 $|M|<|M'|$ ，所以至少存在 $|M'|-|M|$ 条点不相交的增广路。
-
-
-
-##### 引理二：
-
-设 $M$ 是一个匹配，$P$ 是 $G$ 中相对于 $M$ 的一条**最短增广路**，$P'$ 是 $G\oplus P$ 的一条增广路。那么有 $|P'|\geqslant |P|+2|P'\cap P|$
-
-引理二的导出非常关键，这个观察也太强了.....
-
-不妨记 $N=M\oplus P\oplus P'$，则 $|N|=|M|+2\Rightarrow |N|-|M|=2$
-
-于是 $N$ 和 $M$ 分别是 $G$ 的两个匹配，且 $|M|<|N|$，因此 $M\oplus N$ 是 $G$ 中相对于 $M$ 的 $2$ 条点不相交的增广路的集合，不妨设为 $P_1$ 和 $P_2$。
-
-又 $P\oplus P'=N\oplus M$，故 $|P'|+|P|-2|P\cap P'|=|P\oplus P'|=|N\oplus M|\geqslant |P_1\cup P_2|=|P_1|+|P_2|\geqslant 2|P|$
-
-最后一个不等号利用了 $P$ 是最短增广路的假设
-
-于是移项合并就有 $|P'|\geqslant |P|+2|P\cap P'|$
-
-
-
-##### 引理三：
-
-在HK算法中，每一轮操作找出的极大的点不相交的最短增广路集合中的增广路长度单调递增
-
-引理三由引理二直接导出，并且能直接证明时间复杂度
-
-根据算法的描述，每一轮都将在匹配 $M$ 的基础上找出一个极大的点不相交的最短增广路集合。不妨记 $P=\left\{  {\;P_1,P_2\ldots P_k\;}\right\}$，$l=|P_i|$
-
-记 $N=M\oplus P_1\oplus P_2\ldots P_k$，设 $p$ 是 $G$ 相对于 $M$ 的一条增广路，我们分两类情况讨论：
-
-1. $p$ 和 $P$ 中的任意路不相交，则必然有 $|p|> l$。否则令$P'=P+p$ ，这将与 $P$ 的极大性和最短性矛盾。
-2. $p$ 和 $P$ 中的某些路相交，则根据引理二有 $|p|\geqslant |P_i|+2|p\cap P_i|> |P_i|=l$
-
-故综合1、2有：下一轮新增的增广路长度严格递增
-
-
-
-##### 引理四：
-
-寻找出极大的点不相交的最短增广路集合的时间复杂度为 $O(|V|+|E|)$
-
-这个证明非常简单，只需要注意到每条边、每个顶点只会被访问一次就好了
-
-
-
-#### 时间复杂度的证明：
-
-证明的想法十分常见，不过在这里严格证明需要证明引理二。
-
-首先claim算法只会进行 $O(\sqrt{|V|})$ 轮
-
-1. 在前 $\sqrt {|V|}$ 轮，每一轮都将找到若干增广路，且每一轮找到的增广路长度至少增加 $1$
-2. 从第 $\sqrt {|V|}+1$ 轮起，每一轮找到的增广路长度都至少为 $\sqrt {|V|}$ ，而总结点数量为 $|V|$，故剩余的增广路数量不会超过 $\sqrt {|V|}$ 条。又该算法每一轮至少找到一条增广路，故算法最多再进行 $\sqrt{|V|}$ 轮
-
-
-
-由于每一轮寻找集合的复杂度是 $O(|V|+|E|)$ 的，因此总的时间复杂度就是 $O\left({\sqrt{|V|}\left({|V|+|E|}\right)}\right)$ 的
-
-#### 碎碎念
-
-敏感的朋友可以能已经发现这实际上就是流量全为 $1$ 的dinic算法了。因此在实践中直接写网络流的话复杂度也是很优秀的。
-
-## 一般图匹配
-
-一般图的完美匹配也叫一般图的1-因子
-
-### 性质
-1. 没有特别好的性质
-2. 很显然 $|G|$ 为偶数是存在完美匹配的必要条件，下面我们将忽略 $|G|$ 为奇数的情况（这是平凡的）
-
-Tutte's Theorem：
-
-图 $G$ 有完美匹配的充要条件是 $\forall S\subseteq V(G)$，$q(G-S)\leqslant |S|$
-其中 $q(G')$ 表示子图 $G'$ 中，奇数size连通分量的数量。$G-S$ 表示删去 $S$ 中的顶点及从 $S$ 中连出的所有边后剩余的图
-
-"$\Leftarrow$"：
-若 $G$ 存在完美匹配，则 $\forall S\subseteq V(G)$，记 $G-S$ 形成的奇分量构成的集合为 $C_O$，偶分量构成的集合为 $C_E$
-
-取 $c_o\in C_O$，很显然 $c_o$ 中至少有一个点无法在分量内部匹配，因此必须有至少一条边从 $c_o$ 连向 $S$。
-
-不妨假设 $|S| < q(G-S)$ ，那么必然不存在奇分量到 $S$ 的完美匹配，这与 $G$ 存在完美匹配矛盾。
-
-"$\Rightarrow$"：
-我们称不满足 Tutte 条件的集合 $S$ 为坏集合
-由反证法，假设 $G$ 不存在完美匹配，接下来将证明 $G$ 存在一个坏集合（即导出和条件的矛盾）
-
-##### 引理一：
-若 $G$ 有一个坏集合 $S$，则它也是 $G$ 所有生成子图（支撑子图） 的坏集合。
-
-注意到 $S$ 为坏集合的含义是 $|S| < q(G-S)$，且由 $G$ 的生成子图 $G'$ 能通过删去 $G$ 中的若干条边得到，$G-S$ 中的奇分量的数目在删边之后不会减少（讨论分裂、不分裂的情况），因此仍然不满足 Tutte 条件，是坏集合。
-
-由引理一我们可以取 $G$ 为不存在完美匹配的边极大图。倘若我们能证明 $G$ 有一个坏集合，那么 $G$ 的支撑子图（生成子图）也必然有一个坏集合
-
-##### 引理二：
-若 $G$ 为不存在完美匹配的边极大图且 $G$ 存在一个坏集合 $S$，则
-1. $G-S$ 的所有分量为完全图（否则加边仍然不改变 $S$ 为坏集合的性质，这与边极大矛盾）
-2. $\forall v\in S$，都有 $N_G(v)=V(G)-v$ （否则加边仍然不改变 $S$ 为坏集合的性质，这与边极大矛盾）
-
-即，引理二揭示了 $S$ 是坏集合的必要条件，我们很自然地猜想这个条件是不是充分的。
-
-##### 引理三：
-在 不存在完美匹配的边极大图 $G$ 中，满足引理二条件的集合 $S\subseteq V(G)$ 是坏集合
-
-由反证法，不妨假设集合 $S$ 满足引理二条件却不是坏集合，则我们可以把 $G-S$ 中偶分量内部两两配对，奇分量两两匹配后多余点连向 $S$ 中，最后将 $S$ 中未配对的点两两配对。
-因为 $S$ 不是坏集合，因此 $|S|>q(G-S)$ ，即按照上述配对方案 $G$ 存在完美匹配，这与我们对 $G$ 的假设矛盾。
-
-注意到我们的目标是证明 $G$ 存在一个坏集合，因此我们构造出一个集合 $T=\left\{\; v\mid N(v)=V(G)-v \;\right\}$，下面将证明集合 $T$ 就是坏集合。
-
-由反证法，不妨假设 $T$ 不是坏集合。则由 $T$ 的构造方法可知 $G-T$ 的所有分量不是完全图。
-即从某一分量取点对 $a,a'$，有 $aa'\not\in E(G)$ 
-
-不妨记 $a,b,c$ 为某一连通 $a-a'$ 的最短路 $P$ 上的前三个顶点，则由 $P$ 的最短性可知 $ab,bc\in E(G)\and ac\not\in E(G)$
-
-又由于 $b\not\in T$，因此存在 $d\in V(G)$ 使得 $bd\not\in E(G)$
-
-因为 $G$ 是**边极大的**无完美匹配图，因此 $G+ac$ 必然存在完美匹配 $M_1$，同理 $G+bd$ 也存在完美匹配 $M_2$。
-
-并且我们有如下观察：$ab\not\in M_1\and ab\not\in M_2$， $bc\not\in M_1\and bc\not\in M_2$。这个结论可以由 $ac\in M_1$ 和 $bd\in M_2$ 直接导出（反证法）
-
-取从 $d$ 出发的一条路 $Q$，$Q$ 满足：
-
-1. $Q$ 是一条极长路
-2. $Q$ 中的第一条边在匹配 $M_1$ 中
-3. $Q$ 中交替出现 $M_1,\; M_2$ 中的边
-
-考虑 $Q$ 会在哪里结束，记为 $v$，对 $Q$ 的最后一条边 $e$ 作讨论：
-
-1. 若 $e\in M_1$，则 $v=b$，因为 $a,c$ 都在 $M_1$ 中为匹配点。此时 $Qbd$ 构成了一个偶圈，构造 $M=M_2\oplus Qbd$ 就得到了不含 $ac$ 和 $bd$ 的一个完美匹配，这与 $G$ 不存在完美匹配矛盾；
-2. 若 $e\in M_2$，则 $v=a$ 或 $v=c$，因为 $b$ 在 $M_2$ 中为匹配点。
-   1. 若 $Q$ 结束于 $a$，则此时取 $Qbd$ 为一个偶圈，则 $M=M_2\oplus Qbd$ 就得到了不含 $ac$ 和 $bd$ 的一个完美匹配
-   2. 类似地，我们可以讨论 $Q$ 结束于 $c$ 的情况，得到类似的结论
-
-
-
-因此无论如何都将得到矛盾（$G$ 中存在完美匹配），故 $T$ 是一个坏集合。
-
-这样我们就证明了 Tutte 定理。
-
-
-
-### 一般图匹配算法——带花树
-
-一般图因为存在奇圈，因此不能随便使用匈牙利算法（why？）
-
-一个实现求一般图最大匹配的算法是带花树算法，但是讲这个要用到并查集....再说吧（
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/" class="post-title-link" itemprop="url">CSAPP实验6 : shlab</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-21 19:24:00" itemprop="dateCreated datePublished" datetime="2021-04-21T19:24:00+08:00">2021-04-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          linking的部分看了一半跳过去了....据说你南的ICS讲linking非常不错，于是我就心安理得了
-exception的部分还在看，估计这周末可以看完（吧），先留坑
-
-我来填坑辣
-
-
-
-终于赶在五一（假期前）写完了第六个lab，书也推完了第八章，四舍五入就是五月前搞定了前八章内容，还是很不戳的。整个四月都非常忙，各种ddl和期中满天飞。五月也不空闲，还有EL、听说读写ddl、马原、银川、大雾期中、军理。希望人没事.jpg
-
-
-
-这次lab的一个明显特点就是答案都可以在书上找到，各种详细的例子书上都有，因此写起来只需要多翻书就好了。不过由于这次lab的测试比较弱，而我对自己的代码水平又没有什么信心，因此下面贴的代码看看就好，莫当真
-
-
-
-说了不少废话，讲正题吧
-
-
-
-## 前置姿势
-
-这一章主要从**硬件**和**软件（系统）**两个层面讲了异常控制流(exceptional control flow)的各种姿势，这次的lab主要关注的是软件方面的东西。软件的控制流交移是通过信号(signal)的发送和接受来进行的，这一点因为写过QT所以不是特别虚。看前面的内容如果不过瘾还可以搭配OS的教材一起看，正好就顺手入了SJTU的书，希望暑假能啃一啃。
-
-本章引入的鲁棒性的问题非常重要，也就是多线程过程中的竞争问题。这种问题常常发生在不同线程对统一数据的修改和读取中。为了解决这个问题本章引入了**原子性**的概念，大意就是某些操作不可分割、控制流不能从中间被移接。事实上还有**锁**的概念，大意就是在修改、读取数据的时候阻塞其余信号，也就是给数据“上锁”
-
-
-
-本次lab的测试非常之水，毕竟系统方面的测试用用例还是比较难调出问题（我对形式化验证这方面也很感兴趣）。
-
-
-
-## 代码
-
-### `eval`
-
-这一部分可以抄书。具体需要搞清楚`fork()`会创建一个新的进程，而`execve()`则相当于用新的进程"覆盖"当前进程。因此如果想要实现shell的调用需要先`fork()`再在子进程里`execve()`
-
-根据writeup的提示需要给子进程分配组id，在`eval`中新建进程需要调用`addjob()`来修改进程表中的内容，因此需要阻塞其它信号以免出现问题。
-
-```c
-void eval(char *cmdline) 
-{
-    int olderrno = errno;
-    char *argv[MAXARGS];
-    int bg = parseline(cmdline, argv);
-
-    if (argv[0] == NULL) return ;
-    if ( builtin_cmd(argv) ) return ;
-
-    pid_t pid;
-    // Child Process
-    sigset_t mask, prev;
-    sigemptyset(&mask);
-    sigaddset(&mask, SIGCHLD);
-
-    sigprocmask(SIG_BLOCK, &mask, &prev);
-    pid = fork();
-    if (pid < 0)
-        unix_error("Fork error");
-    if ( pid == 0) {
-        sigprocmask(SIG_BLOCK, &prev, NULL);
-        setpgid(0, 0);
-        if ( execve(argv[0], argv, environ) < 0) {
-            printf("%s: Command not found\n", argv[0]);
-            exit(0);
-        }
-    }
-    if (!bg) {
-        addjob(jobs, pid, FG, cmdline);
-        sigprocmask(SIG_SETMASK, &prev, NULL);
-        waitfg(pid);
-    } else {
-        addjob(jobs, pid, BG, cmdline);
-        struct job_t *job = getjobpid(jobs, pid);
-        printf("[%d] (%d) %s", job->jid, job->pid, cmdline);
-        sigprocmask(SIG_SETMASK, &prev, NULL);
-    }
-    errno = olderrno;
-    return;
-}
-```
-
-
-
-### `builtin_cmd`
-
-这个估计是最好写的，判断一下命令类型就好了。`quit`和`jobs`都很好写，`fg`和`bg`的具体操作被封装在`do_bgfg()`里面了，在这里直接用就好了
-
-```c
-int builtin_cmd(char **argv) 
-{
-    char *builtin_args[4] = {"quit", "bg", "fg", "jobs"};
-    for (int i = 0; i < 4; ++ i) {
-        if ( strcmp(builtin_args[i], argv[0]) ) continue;
-
-        switch (argv[0][0]) {
-            case 'q': exit(0);
-            case 'f': {
-                do_bgfg(argv);
-                break;
-            }
-            case 'b': {
-                do_bgfg(argv);
-                break;
-            }
-            case 'j': listjobs(jobs);
-        }
-        return 1;
-    }
-    return 0;     /* not a builtin command */
-}
-
-```
-
-
-
-### `waitfg`
-
-这一段也很好写。这是用来等待前台进程结束的，那么就用一个死循环来不停地监听`pid`进程是否在前台
-
-由于在监听的时候访问了全局数据结构，因此也要阻塞信号
-
-```c
-void waitfg(pid_t pid)
-{
-    sigset_t mask, prev;
-    sigfillset(&mask);
-    sigprocmask(SIG_BLOCK, &mask, &prev);
-    struct job_t *job = getjobpid(jobs, pid);
-    sigprocmask(SIG_SETMASK, &prev, NULL);
-    for (; job != NULL && job->state == FG; ) {
-        sigfillset(&mask);
-        sigprocmask(SIG_BLOCK, &mask, &prev);
-        job = getjobpid(jobs, pid);
-        sigprocmask(SIG_SETMASK, &prev, NULL);
-    }
-    return;
-}
-```
-
-
-
-### `do_bgfg`
-
-这个是最后写的，毕竟`bg`和`fg`我也是上个月才会用的.....
-
-大概就是利用`kill`发送信号，同时修改`job`对应的`state`。在发送信号的时候也要阻塞其余信号因为访问了全局数据结构
-
-这里还要判一下输入是否合法，这个比较麻烦不过对着`trace`慢慢搞就好了
-
-```c
-void do_bgfg(char **argv) 
-{
-    char *id_str = argv[1];
-
-    //fg bg error handling
-    if (id_str == NULL) {
-        printf("%s command requires PID or %%jobid argument\n", argv[0]);
-        return ;
-    }
-
-    int flag = (id_str[0] == '%'), jid, pid;
-    id_str += flag;
-
-    for (int i = 0, _len = strlen(id_str); i < _len; ++ i) {
-        if (!isdigit(id_str[i])) {
-            printf("%s: argument must be a PID or %%jobid\n", argv[0]);
-            return ;
-        }
-    }
-
-    sigset_t mask, prev;
-    sigfillset(&mask);
-    sigprocmask(SIG_BLOCK, &mask, &prev);
-
-    if (!flag) {
-        sscanf(id_str, "%d", &pid);
-        jid = pid2jid(jid);
-    } else {
-        sscanf(id_str, "%d", &jid);
-    }
-
-    struct job_t *job = getjobjid(jobs, jid);
-
-    if (job == NULL) {
-        if (flag) printf("%%%d: No such job\n", jid);
-        else printf("(%d): No such process\n", pid);
-        sigprocmask(SIG_SETMASK, &prev, NULL);
-        return ;
-    }
-
-    if (argv[0][0] == 'b') {
-        printf("[%d] (%d) %s", job->jid, job->pid, job->cmdline);
-        job->state = BG;
-        kill(-(job->pid), SIGCONT);
-    } else if (argv[0][0] == 'f') {
-        job->state = FG;
-        kill(-(job->pid), SIGCONT);
-        sigprocmask(SIG_SETMASK, &prev, NULL);
-        waitfg(job->pid);
-    }
-    sigprocmask(SIG_SETMASK, &prev, NULL);
-    return;
-}
-```
-
-
-
-### `hanlders`
-
-三个放在一起说
-
-`sigint_handler()`最好写，只需要利用`fgpid()`搭配`kill()`就好了
-
-注意要阻塞信号
-
-```c
-void sigint_handler(int sig) 
-{
-    int olderrno = errno;
-
-    sigset_t mask, prev;
-    sigfillset(&mask);
-    sigprocmask(SIG_BLOCK, &mask, &prev);
-    pid_t pid = fgpid(jobs);
-    if (pid == 0) return ;
-    struct job_t *job = getjobpid(jobs, pid);
-    if (kill(-pid, sig) < 0)
-        unix_error("Sigint error");
-    sigprocmask(SIG_SETMASK, &prev, NULL);
-    
-    errno = olderrno;
-    return;
-}
-
-```
-
-
-
-`sigstp_handler()`和上面是一样的，就不说了
-
-需要注意的是，在这两个handler中我们没必要更改数据结构，而是可以等`sigchld_handler()`一起改，这样写起来可以清晰一些
-
-
-
-`sigchld_handler()`有几个坑点
-
-1. 要注意`waitpid()`默认行为是挂起父进程直至子进程终止(terminate)，写到这里的时候记得往回翻书，或者看writeup的提示也行
-2. 好像就没了....
-
-
-
-回收的时候需要对子进程的死因讨论一下，同时记得阻塞就好了
-
-在读这一章的时候深刻体会到了术语明确的重要性，比如说停止(stop)和终止(terminate)和中断(interrupt)这三个，放在中文里感觉就没有区别啊
-
-```c
-void sigchld_handler(int sig) 
-{
-    int olderrno = errno;
-
-    int status;
-    pid_t pid = waitpid(-1, &status, WNOHANG | WUNTRACED);
-    if (!pid) return ;
-
-    sigset_t mask, prev;
-    sigfillset(&mask);
-    sigprocmask(SIG_BLOCK, &mask, &prev);
-
-    struct job_t *job = getjobpid(jobs, pid);
-
-    if (WIFSTOPPED(status)) {
-        job->state = ST;
-        printf("Job [%d] (%d) stopped by signal %d\n", job->jid, job->pid, WSTOPSIG(status) );
-    } else {
-        if (!WIFEXITED(status))
-            printf("Job [%d] (%d) terminated by signal %d\n", job->jid, job->pid, WTERMSIG(status) );
-        deletejob(jobs, job->pid);
-    }
-    sigprocmask(SIG_SETMASK, &prev, NULL);
-
-    errno = olderrno;
-    return;
-}
-
-```
-
-
-
-于是就写完辣！
-
-
-
-最后的最后我还写了一个小程序来快速检验答案是否正确，大概长这样
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-char str1[200];
-
-int main(int argc, char const *argv[])
-{
-	system("make clean; make");
-	for (int i = 1; i <= 16; ++ i) {
-		sprintf(str1, "make test%02d > myp%02d.out", i, i);
-		system(str1);
-		sprintf(str1, "make rtest%02d > std%02d.out", i, i);
-		system(str1);
-		printf("id: %d completed\n", i);
-	}
-	for (int i = 1; i <= 16; ++ i) {
-		sprintf(str1, "wc -l std%02d.out", i);
-		system(str1);
-		sprintf(str1, "wc -l myp%02d.out", i);
-		system(str1);
-	}
-	return 0;
-}
-```
-
-当然这个只是初步的，具体正确性还要自行比对一下....不过这个看起来也是可以自动化的，我太懒了就鸽了吧，毕竟要考大雾了淦
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/" class="post-title-link" itemprop="url">奋斗逼的脸庞着实惹人爱</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-14 22:13:00" itemprop="dateCreated datePublished" datetime="2021-04-14T22:13:00+08:00">2021-04-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          `ICSOJ`搭建记录及对你班风气的一些思考
-
-
-
-最近上了一门课，名为《信息科学与实践》。说是实践，其实是基础程设+算法理论+数据结构入门，可谓是大杂烩。本着共同进步的目的，我们尝试着建了一个讨论群&资料群来加强互动氛围、搭设了一个简易的OJ来提升同学们的代码能力。
-
-
-
-## 购买服务器&搭建OJ
-
-买的是腾讯云的学生机，6个月54r，完美覆盖下学期，暑假也能用，感觉还不错。
-
-选择装ubuntu，最早是照抄了HUSTOJ的搭建教程，后面发现既不现代也不美观，放题面也很麻烦，就后面改成了QingDaoUOJ
-
-具体的教程可以看[官方文档](https://github.com/QingdaoU/OnlineJudgeDeploy)
-
-不得不说服务器还是快，网速杠杠的
-
-考虑到最近在讲一些递归和排序的算法，就放了几道题上去。remoon甚至在这个面向新手的OJ上整活....太毒了
-
-搭的时候还幻想着要每周肝一套题出来给大家练练手啥的
-
-## 反思
-
-时间过去了三天，我的OJ用户总数只有5人。除去root、我、出题人remoon、隔壁班的yuyake同学，就只剩下一位了
-
-既然是CS班，代码能力就是必须项。既然是强基班，理论基础就应该扎实。然而事与愿违。讨论群死气沉沉，oj无人问津，呜呼哀哉！我自身也难保。
-
-希望所谓的躺平文化可以褪去，奋斗逼实属有着可爱的脸，来了这里就好好学吧，管好自己先
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">jpwang</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-</body>
+  </body>
 </html>

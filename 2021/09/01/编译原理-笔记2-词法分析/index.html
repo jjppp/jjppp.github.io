@@ -1,285 +1,495 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<html lang="zh-CN" color-mode="light">
 
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      编译原理 笔记2 词法分析 
+      
+      
+      |
+    
+     jjppp
+  </title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="## 词法分析的作用  1. 读取字符流，输出词法单元给语法分析器 2. 在1的过程中去掉不必要的内容(空白符、注释)，查错报错 3. 与符号表交互，插入符号的相关内容 4. 虽然词法分析和语法分析是两个独立的部分，但它们通常在同一趟    ### 为什么要独立词法分析  1. 模块化 2. 词法分析很简单，实现也很简单 3. PPT把1+2又说了一遍.... 4. 词法分析和语法分析依赖的算法不">
-<meta property="og:type" content="article">
-<meta property="og:title" content="编译原理 笔记2 词法分析">
-<meta property="og:url" content="http://example.com/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/index.html">
-<meta property="og:site_name" content="jjppp">
-<meta property="og:description" content="## 词法分析的作用  1. 读取字符流，输出词法单元给语法分析器 2. 在1的过程中去掉不必要的内容(空白符、注释)，查错报错 3. 与符号表交互，插入符号的相关内容 4. 虽然词法分析和语法分析是两个独立的部分，但它们通常在同一趟    ### 为什么要独立词法分析  1. 模块化 2. 词法分析很简单，实现也很简单 3. PPT把1+2又说了一遍.... 4. 词法分析和语法分析依赖的算法不">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-31T17:32:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T01:47:11.652Z">
-<meta property="article:author" content="jpwang">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://example.com/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/","path":"2021/09/01/编译原理-笔记2-词法分析/","title":"编译原理 笔记2 词法分析"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>编译原理 笔记2 词法分析 | jjppp</title>
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
   
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
 
 
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">jjppp</p>
-      <i class="logo-line"></i>
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
     </a>
-      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+    <div class="nickname"><a href="/">Oranges</a></div>
   </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
   </div>
 </div>
 
 
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
 
 
 
 
 
-</div>
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">编译原理 笔记2 词法分析</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-09-01 01:32:00
+        </span>
         
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">jpwang</p>
-  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">84</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
       </div>
-  </nav>
-</div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="编译原理 笔记2 词法分析 | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          编译原理 笔记2 词法分析
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-01 01:32:00" itemprop="dateCreated datePublished" datetime="2021-09-01T01:32:00+08:00">2021-09-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      <div class="markdown-body">
         <p>## 词法分析的作用 1. 读取字符流，输出词法单元给语法分析器 2. 在1的过程中去掉不必要的内容(空白符、注释)，查错报错 3. 与符号表交互，插入符号的相关内容 4. 虽然词法分析和语法分析是两个独立的部分，但它们通常在同一趟 ### 为什么要独立词法分析 1. 模块化 2. 词法分析很简单，实现也很简单 3. PPT把1+2又说了一遍…. 4. 词法分析和语法分析依赖的算法不同(有限状态自动机VS下推自动机) ## Token&amp;Pattern&amp;Lexeme Token是词法单元的抽象符号，可以理解成具体单词所属的**类** Pattern是对一类词法单元形式的描述，它说明了这类词法单元“长啥样” Lexeme则是一个具体的词法单元(词素) 举例： Tokens:猫和狗 对应Pattern:会喵喵叫和会汪汪叫 对应Lexeme:我家的一只狸花和校门口的大黄 这也说明了为什么token需要额外的信息来标记，因为光凭token不能知道lexeme具体的内容 ## 词法单元的形式规定(正则表达式) ### 串和语言 学一下形式化的定义…. 首先定义字符表(alphabet)为有限集$S$​​，那么字符表$S$​​上的串就定义为n元有序对$L&#x3D;\cup_{i\in\mathbb {N} }{S^i}$​​的集合中的元素 串$s$的长度定义为$|s|$，即$s$中符号的数量。我们称$L$为字符表$S$​上的语言。语言是可数的(可数个有限集的并仍然可数)，但不一定是有限的 对于特殊的长度为0的串记作$\epsilon$ 前缀：从串的尾部删除0个或多个字符得到的串 后缀：从串的前部删除0个或多个字符得到的串 子串：从串的前部和尾部删除0个或多个字符得到的串 子序列：从串中删除0个或多个字符得到的串 #### 串操作 连接(concatenation)：把串y放在x后得到xy，注意这是不可交换的运算。串x自身的n次连接可以简记作x^n^。特殊地，我们规定x^0^&#x3D;$\epsilon$ #### 语言操作 L和M的并：$L\cup M&#x3D;\left\{\;s|s\in L\text{ or }s\in M\;\right\}$ L和M的连接：$LM&#x3D;\left\{\;st|s\in L\text{ and }t\in M\;\right\}$，同样L自己的连接记作$L^k$ L的Kleene闭包：$L^*&#x3D;\cup_{i&#x3D;0}^{+\infty}L^i$，即将L重复0次或多次​ L的正闭包：$L^+&#x3D;\cup_{i&#x3D;1}^{+\infty}L^i$，即将L重复至少一次 这样我们就有了构建复杂语言的工具了。 ### 正则表达式 递归定义 1. $\epsilon$是正则表达式，$L(\epsilon)&#x3D;\varnothing$ 2. 若$a\in S$，则$L(a)&#x3D;\left\{\;a\;\right\}$ 3. 若$a,b$都是正则表达式，则$(a)|(b)$也是正则表达式，且$L((a)|(b))&#x3D;L(a)\cup L(b)$ 4. 若$a,b$都是正则表达式，则$(a)(b)$也是正则表达式，且$L((a)(b))&#x3D;L(a)L(b)$ 5. 若$a$都是正则表达式，则$(a)$也是正则表达式，$L((a))&#x3D;L(a)$ 可以用正则表达式定义的语言被称为**正则集合** 为了方便，可以给正则表达式命名。例如给表达式r命名为d，则写作`d-&gt;r` 还有一些其它的运算(语法糖) `r+`&#x3D;&#x3D;`rr*` `r?`&#x3D;&#x3D;`e|r` `[a1a2a3]`&#x3D;&#x3D;`a1|a2|a3` `[a-z]`&#x3D;&#x3D;`[abcdefg…wxyz]` ## 词法单元的识别(状态转换图) 图的节点表示状态，边表示状态转换函数，边上的符号表示输入的符号与之相等时从这条边进入下一个状态。 必然有初始和接受状态 ### 关键字的处理 关键字也会被识别成identifier，解决方案有两种 1. 提前把关键字插入符号表 2. 为关键字建立单独的状态转换图 ## 词法分析器生成工具及设计 就讲了一波flex的用法….看文档！ ## 有限状态自动机 事实上有限状态自动机有两种，分别是确定状态自动机(Deterministic Finite Automata)和非确定状态自动机(Nondeterministic Finite Automata)，即DFA和NFA 自动机的形式化定义为一个五元组$(\Sigma,S,f,start,E)$​，分别表示字符集、状态集、转移函数、初始状态、接受状态 ### DFA 其中$f:S\times\Sigma\mapsto S$​ 和 $E\subseteq S$​​ 比较特别。 对于字符$c$​ 和一个状态 $s$​，我们称自动机 $D$​ 接受 $c$​ 后的状态为 $s’$​ 当且仅当 $f((s,c))$​有定义，且$f((s,c))&#x3D;s’$​。对于DFA我们特殊规定 $f((s,\epsilon))&#x3D;s$，NFA后面再说 对于字符串$str&#x3D;c_1c_2c_3\ldots c_n$ 和一个状态 $s$，我们称自动机$D$ 接受$str$ 后的状态为$s’’$ 当且仅当 $f(f(\ldots f(f(s,c_1),c_2)\ldots,c_{n-1}),c_n)$ 有定义且等于$s’’$ 很显然，若字符串 $str&#x3D;s_1s_2$，其中 $s_1s_2$ 都是串，那么有 $f(f(state,s_1),s_2)&#x3D;f(state,s_1s_2)&#x3D;f(state,str)$ 对于一个特定的DFA $D&#x3D;(\Sigma,S,f,start,E)$​，给定一个串 $str$​，我们称 $D$​ 接受串 $str$​ 当且仅当 $f^*(start,str)\in E$​ 记 $L(D)&#x3D;\left\{\;str\mid f^*(start,str)\in E\;\right\}$​，则$L(D)$​ 称为 $D$​ 的语言 ### NFA 与DFA的区别在于，$f:S\times(\Sigma\cup\left\{\;\epsilon\;\right\})\mapsto 2^S$ 转移函数的目标是若干状态组成的集合，表示这些状态都可以是当前状态加上某个字符后的后继状态 说人话就是造出来的图可以有$\epsilon$ 作为标号的边，并且一条标号的边可以连接多个后继状态。 有几个等价关系 #### 自动机等价 直观地，对于自动机 $D_1,D_2$，我们称它们等价当且仅当 $L(D_1)&#x3D;L(D_2)$ #### 状态等价 对于状态 $s_1,s_2\in S$，我们称它们等价当且仅当对任意的串 $str$，都有 $f^*(s_1,str)&#x3D;f^*(s_2,str)$ 于是自然要问：这两种不一样的自动机表达语言的能力相同吗？ 很显然DFA是一种特殊的NFA，因此NFA不会比DFA弱。 考虑用DFA对NFA进行模拟。 注意到不确定性的引入使得某一时刻NFA所处的状态可能有不止一个，因此可以用$2^n$​状压枚举所有可能的状态，并对字符集连边 构造如下： 给定NFA $N&#x3D;(\Sigma,S,f,start,E)$ #### $\epsilon\text{-closure}$ 首先规定一个函数 $c(S)&#x3D;T$​​​​，满足 $S\subseteq T$​​，且 $\forall x\in T$​​ 都 $\exists y\in T$​​ 使得 $f(y,\epsilon)&#x3D;x$​​。我们称 $c(S)$​​ 是 $S$​​ 的 $\epsilon\text{-closure}$​​。 函数$c$的存在性是可以构造证明的。首先令 $T_0&#x3D;S$，对于自然数$k$，我们任意地选取 $T_k$ 中的元素 $x$，若$f(x,\epsilon)\not\in T_k$，则令 $f(x,\epsilon)\in T_{k+1}$ 再规定对任意的自然数$k$都有 $T_k\subseteq T_{k+1}$，那么 $T_0\subsetneq T_1\subsetneq T_2\ldots T_u$，由于总的状态集有限，且集合列的大小递增，故算法必然停止，这样就找到了$c(S)$ #### 转移函数 对于任意状态$s\in 2^S$​，我们规定$g(s,ch)&#x3D;c\left({\cup_{x\in s}{f\left(x,ch\right)} }\right)$​，容易用反证法证明函数$g$​是well defined的 #### 初始&#x2F;接受状态 规定 $s\in 2^S$ 为接受状态当且仅当 $\exists x\in s$ 使得 $x$是接受状态，初始状态则是$c(\left\{start\right\})$ 下面证明这是一个DFA： 首先对于任意状态$s\in 2^S$​，$\epsilon\text{-closure}$的过程确保了不存在$\epsilon$的边，而 $g$ 的良定义确保了不存在多条同标号的边连向不同的后继状态 然后证明其与$N$等价： 只需要证明二者的接受状态集等价，且两个状态等价当且仅当它们输入同一个字符后得到的两个后继状态仍然等价，然后归纳即可。 这样就证明了二者的表达能力是等价的….大概 容易发现，给出DFA则很容易判断某个串是否能被其接受，而NFA则不好直接模拟。因此根据上面的证明可以想到用一个DFA去模拟NFA ## 应用 说了这么多有啥用呢，就是我们可以通过将正则表达式转化为一个NFA，再将NFA转化为DFA的流程来实现用正则表达式识别字符流的目的，也就是写一个自己的lexer 注意到正则表达式实际上和一般的代数表达式没有本质区别，也是由一般字符(数字)和特殊字符(运算符)组成的，运算符又包括单目运算符(*号)、二元运算(|号，还有看不到的连接号) 因此可以用两个栈生成表达式的语法树，然后在语法树上根据递归构造的正则表达式规则来建立NFA，然后根据上面的构造把NFA变成DFA 我自己写了一下，写了大概一天一夜…..写得人都傻了但是停不下来 最开始打算用cpp写，后来发现OOP只会java的写法(什么居然没有instanceof要用)….更糟糕的是类之间的层次设计基本抓瞎，于是就转战c了。不过收货还是有的，不能说完全没学到东西。 尝试了一下程序的结构设计，分了几个`struct`和文件来保证这些部分可以单独改动，有些地方考虑得很粗暴，后面有时间再修修吧 生成NFA和DFA之后还会导出一个`.gv`文件用于graphviz绘图，这样就可以直观看自己的DFA和NFA长啥样啦！</p>
 <!-- more -->
 
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-09-01 01:32:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
     </div>
-
-    
-    
     
 
-    <footer class="post-footer">
-
+    
+      <div class="comments-container">
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/" rel="prev" title="DFA到等价正则表达式的转化">
-                  <i class="fa fa-chevron-left"></i> DFA到等价正则表达式的转化
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" rel="next" title="编译原理 笔记3 语法分析">
-                  编译原理 笔记3 语法分析 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
 
 
 
 
 
 
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">jpwang</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+      </div>
+    
   </div>
 
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
     </div>
-  </footer>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/colorscheme.js"></script>
 
+
+
+
+
+        
   
-
-
-
-
-
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%20%E7%AC%94%E8%AE%B02%20%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90 + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F09%2F01%2F%25E7%25BC%2596%25E8%25AF%2591%25E5%258E%259F%25E7%2590%2586-%25E7%25AC%2594%25E8%25AE%25B02-%25E8%25AF%258D%25E6%25B3%2595%25E5%2588%2586%25E6%259E%2590%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
+  
+<script src="/js/shares.js"></script>
 
 
 
-
-
-</body>
+      </div>
+    </div>
+  </body>
 </html>

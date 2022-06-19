@@ -1,835 +1,437 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<html lang="zh-CN" color-mode="light">
 
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+    <meta name="robots" content="noindex" />
+  
+  
+  <title>
+    
+     jjppp
+  </title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="Young, Simple &amp; Naive">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jjppp">
-<meta property="og:url" content="http://example.com/page/5/index.html">
-<meta property="og:site_name" content="jjppp">
-<meta property="og:description" content="Young, Simple &amp; Naive">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="jpwang">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://example.com/page/5/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/5/index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>jjppp</title>
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
   
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
 
 
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">jjppp</h1>
-      <i class="logo-line"></i>
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
     </a>
-      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+    <div class="nickname"><a href="/">Oranges</a></div>
   </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
   </div>
 </div>
 
 
+<script src="/js/activeNav.js"></script>
 
 
 
-
-
-</div>
-        
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
+      <div class="flex-container">
+        <div class="container index">
+  <div class="post-list">
+    <!-- 遍历渲染文章 -->
+    
+      <div class="post-item" title="SICP 作业2.5">
+        <div class="time-m-d">2020-10-31</div>
+        <div class="title">
+          <a href="/2020/10/31/SICP-%E4%BD%9C%E4%B8%9A2-5/">
+            
+              
+                <span>SICP 作业2.5</span>
+              
+            
+          </a>
         </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">jpwang</p>
-  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">84</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
       </div>
+    
+      <div class="post-item" title="有关集合大小的比较">
+        <div class="time-m-d">2020-10-28</div>
+        <div class="title">
+          <a href="/2020/10/28/%E6%9C%89%E5%85%B3%E9%9B%86%E5%90%88%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%AF%94%E8%BE%83/">
+            
+              
+                <span>有关集合大小的比较</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="2020 ICPC 小米邀请赛 部分题解">
+        <div class="time-m-d">2020-10-26</div>
+        <div class="title">
+          <a href="/2020/10/26/2020-ICPC-%E5%B0%8F%E7%B1%B3%E9%82%80%E8%AF%B7%E8%B5%9B-%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/">
+            
+              
+                <span>2020 ICPC 小米邀请赛 部分题解</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="Hello World!">
+        <div class="time-m-d">2020-10-26</div>
+        <div class="title">
+          <a href="/2020/10/26/Hello-World/">
+            
+              
+                <span>Hello World!</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+  </div>
+  <nav class="post-navigation">
+    
+      <a href="/page/4/"><i class="iconfont icon-angleleft"></i></a>
+    
+    <span class="page-num">5 / 5</span>
+    
   </nav>
 </div>
 
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
 
 
-        </div>
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/31/SICP-%E4%BD%9C%E4%B8%9A2-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/10/31/SICP-%E4%BD%9C%E4%B8%9A2-5/" class="post-title-link" itemprop="url">SICP 作业2.5</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-31 02:14:00" itemprop="dateCreated datePublished" datetime="2020-10-31T02:14:00+08:00">2020-10-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          # 初探
-
----
-
-九乡河文理学院开设了SICP这门课，但很显然我是抢不到也上不了的，因此只能自己写写作业看PPT了。考虑到另一边导论实验的程设比较简单，感觉双开也是没问题的。所幸课程有对应开放的oj，我的部分作业经过测试后也就有了一定的可信度。具体的课程文件可以在cs61a找到，毕竟这门课也是我校搬过来的。。
-
-先说函数式编程是什么。与面向过程、面向对象的程序设计不同，函数式编程几乎不存在变量的概念，而只有常量，程序的主体也由函数构成，函数在这里甚至可以代替变量作为输入、输出，也就有了“函数的函数”的概念。
-
-# Church numerals
-
----
-
-逻辑学家Church发明了一个仅用函数来表示自然数的运算系统，其中各种函数唯一对应了一个自然数，且他们之间可以作加、乘、乘方（其实都是加法的拓展）
-
-题目给了初始的一段代码定义系统中的两个函数zero 和 successor，他们长这样
-
-```python
-def zero(f):
-	return lambda x: x
-
-def successor(n):
-	return lambda f: lambda x: f(n(f)(x))
-```
-
-考虑zero的含义，zero定义了一个函数，它会返回一个单位映射。
-
-观察successor(zero)，我们可以发现它会返回一个函数f(g)，这个函数会返回参数g表示的函数。也就是f(g)(x)=g(x)，根据定义这就是one
-
-再看successor(one)，不难得到two就是f(g)=g(g(x))这个函数，也就是给定一个函数，我们会把它嵌套两次
-
-于是第一题就很明显了，one(f)=lambda x: f(x)，two(f)=lambda x: f(f(x))
-
-然后考虑转成数字的问题。以数字four为例子，four(f)=f(f(f(f(x))))，我们现在的任务就是找到一个合适的函数f，使得f(f(f(f(x))))=4。很快就能想到如果我们令f(x)=x+1，则four(f)(0)=f(f(f(f(0))))=0+1+1+1+1=4，简单归纳可以知道这样是符合全体正整数的
-
-
-
-然后考虑a+b的问题。考虑到successor(x)就是把x再套一个f，那么我们可以简单地改写
-
-```python
-def add(n, m):
-    return lambda f: lambda x: m(f)(n(f)(x))
-```
-
-这段代码是什么意思呢？也就是当输入的函数为f时，我们会先把f嵌套n次，再拿这个结果**作为f嵌套m次后形成的函数的自变量**，这样得到的才是n+m。如果我们**将嵌套了n次的f作为自变量输入m这个函数**，那么得到的就是n*m。这一段很重要，要好好理解
-
-对于乘方a^b，我们只要把a这个函数套b次就可以了，实际上就是将b作为f丢进a中
-
-## scheme
-
-又写了一个scm的，大意是一样的
-```scheme
-(define zero (lambda (f) (lambda (x) x)))
-(define (add-1 n) (lambda (f) (lambda (x) (f ((n f) x)))))
-
-(define one (lambda (f) (lambda (x) (f x))))
-(define two (lambda (f) (lambda (x) (f (f x)))))
-(define (add n m) (lambda (f) (lambda (x) ((n f) ((m f) x)))))
-(define (mul n m) (lambda (f) (lambda (x) ((n (m f)) x))))
-(define (pow n m) (lambda (f) (lambda (x) (((m n) f) x))))
-```
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/31/SICP-%E4%BD%9C%E4%B8%9A2-5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/28/%E6%9C%89%E5%85%B3%E9%9B%86%E5%90%88%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%AF%94%E8%BE%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/10/28/%E6%9C%89%E5%85%B3%E9%9B%86%E5%90%88%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%AF%94%E8%BE%83/" class="post-title-link" itemprop="url">有关集合大小的比较</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-28 22:59:00" itemprop="dateCreated datePublished" datetime="2020-10-28T22:59:00+08:00">2020-10-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          # 写在前面
-
----
-
-今天上的离散数学做了一些有意思的证明，这里放一下
-
-
-
-# 集合的大小，我知道
-
----
-
-在对付有限集合时，我们很容易就能比较两个集合的大小（只需要数一数各自有多少个元素就行了）。但是当这个问题拓展到无限集合时，我们往往不能简单地给出答案。原因是什么呢？
-
-
-
-## 问题1：证明$|\mathbb{N}|$=$|\mathbb{E}|$，其中$\mathbb{E}=\left\{2n|n\in\mathbb{N}\right\}$
-
-定义映射$f:\mathbb{N}\mapsto\mathbb{E}$为$f(x)=2x$，通过这样一个操作我们可以发现**$\forall x\in\mathbb{N},\exist y\in\mathbb{E},f(x)=y. And \ \forall y\in\mathbb{E},\exist x\in\mathbb{N},f(x)=y$**
-
-也就是说，我们建立起了一个从自然数到偶数的双射，任意一个偶数都唯一确定对应一个整数，反之亦然。
-
-这时，我们就说这两个集合的大小相等，也称他们是等势的
-
-
-
-上面的这个例子比较简单，我们可以接着看下一个例子
-
-## 问题2：证明$|\mathbb{R}|=|[0,1]|$
-
-这个问题乍一看是反直觉的，但是有了上面问题的铺垫我们可以知道一件事情：一个无限集是可以和它的一个真子集等势的。
-
-先说说我的做法。一个有趣的证明是这样的：
-
-我们把区间$[0,1]$卷起来形成一个半圆，不难得到它的半径$r=\frac{1}{\pi}$
-
-在数轴上取一个点，不妨就取0，过0作一直线垂直于数轴，在这条直线上取一点$A$使得点到数轴的距离恰好为r
-
-以点A为圆心，作半圆与数轴相切，不难得到这个半圆的长度恰好为1
-
-在数轴上任取一点$D(x,0)$，连接$D$、圆心$A$，交半圆于$E$
-
-![](https://img2020.cnblogs.com/blog/1010529/202010/1010529-20201028233331572-584148140.png)
-
-
-
-如上图，可以发现，数轴上的任意一点都唯一对应着半圆上的一个点，而半圆上的任意一点（除去两端）也恰好唯一地对应了数轴上的一点
-
-因此我们断言$|(0,1)|=|\mathbb{R}|$
-
-
-
-> 等等，你不是要证明$|[0,1]|=|\mathbb{R}|$吗
-
-是的，所以我们接下来要做的是证明$|[0,1]|=|(0,1)|$
-
-如何下手？考虑这样集合$A=\left\{\frac{1}{2},\frac{1}{4}...\frac{1}{2^n}...\right\}$和$B=\left\{0,1,\frac{1}{2},\frac{1}{4}...\frac{1}{2^n}...\right\}$
-
-**注意！这里的$A$和$B$都是无限集**
-
-不难发现，我们将A和B分别一一列举了出来，也就是说他们是**可列集合**，也叫**可数集**，这样的两个集合是可以一一对应的，我们只需要把$A$中的第i个元素映射到$B$中的第i个元素，这样就造出了两个集合间的一个双射
-
-我们又注意到$[0,1]\backslash B=(0,1)\backslash A$，这一点是非常显然的，那么就有$|[0,1]\backslash B|=|(0,1)\backslash A|$
-
-这样我们把A和B分别劈成了两半，使得这两半之间存在双射，所以只需要把两个互不相干的映射并在一起就可以得到$f:(0,1)\mapsto[0,1]$ 
-
-故$|\mathbb{R}|=|[0,1]|$，并且易得$\forall x,y\in\mathbb{R} 若x\neq y,|[x,y]|=|(x,y)|=|(x,y]|=|[x,y)|=|\mathbb{R}|$
-
-
-
-这个证明看起来非常直观，但是关键步骤缺乏严密性。毕竟我们无法严谨地说明把线段弯曲后它和原来仍然是一样的（笑
-
-但是观察这个证明，我们发现这等价于利用函数$f(x)=\tan\left(\pi \left(x-\frac{1}{2}\right)\right)$，将$\mathbb{R}$映射到$(0,1)$，并且由单调性可知这样的映射是双射，所以上述证明可以用更加严谨的方式进行说明，是没有问题的。
-
-## 问题3：证明$|\mathbb{R}^2|=|\mathbb{R}|$
-
-这个平方指集合和他自身的笛卡尔积，即设$A$为一非空集合，则$A^2=\left\{(x,y)|x\in A,y\in A\right\}$
-
-由前一题可知，$|\mathbb R|=|[0,1)|$
-
-于是我们只需要证明$|[0,1)|=|[0,1)^2|$
-
-观察可知，$[0,1)$中的实数都是整数部分为0的小数，我们可以构造这样一个映射
-
-$$f(a,b)=\sum_{i=1}^{+\infin}\left(\frac{[a\times 10^{2i-1}]}{10^{2i-1} }+\frac{[b\times 10^{2i}]}{10^{2i} }\right)$$
-
-其中$[x]$表示取$x$的整数部分，不难发现这样就是在把$a、b$的每一位交替插在一起，形成一个新的实数
-
-这个构造过程是可逆的，并且是一个双射
-
-这个结论能说明什么呢？我们在二维平面上的点和数轴上一样多！很奇妙
-
-并且这个结论是可以推广的。也就是$\forall n\in \mathbb{N},|{\mathbb R}^n|=|\mathbb R|$
-
-而$|{\mathbb R}^{+\infin}|=|\mathbb R|$也是可以得出的，我们只需要按行列出实数的每一位，然后沿着反对角线取数字构造就可以了
-
-## 问题4：证明$|2^{\mathbb{N} }|=|\mathbb{R}|$
-
-这个幂次的含义是自然数的幂集，也就是自然数所有子集形成的集合。
-
-由上一问可知，我们只需要证明$|2^{\mathbb{N} }|=|[0,1)|$
-
-而对于任意一个$\mathbb N$的子集$S$，我们都可以用一个无限长度的二进制串来唯一表示，其中若第i位为0，代表$i\not\in S$，否则$i\in S$
-
-于是立刻就可以想到，我们只需要把$[0,1)$中的实数化成二进制小数，就可以获得无线多个互不相同的任意长的二进制串（取小数点后的部分）
-
-例如，一个实数$a=0.1101100000...$，唯一地表达了集合$S=\left\{1,2,4,5\right\}$
-
-但是，这样的表示是完美的吗？
-
-并不！考虑一个无限循环小数$a=0.011000\dot{1}$，我们可以发现它其实等价于有限小数$b=0.011001$，也就是说，我们这样存在一个实数映射到了两个不同的$\mathbb N$的子集。当然这个很好解决，我们只需要规定若一个数能表示成有限小数，那么我们绝不考虑它的无限小数表示法。但是，我们无法通过这样的映射找到一个逆映射，使得$\mathbb N$中的每一个子集都能在$[0,1)$中找到唯一对应的实数（例如，我们把从9开始往后的所有正整数都选出来，组成的集合就不能映射到一个实数上，因为这是一个无限小数，而前面我们规定了不取这种写法）
-
-怎么办呢？这里有一个比较奇妙的做法。考虑这样一个事实，我们在第一问证明了$|\mathbb N|=|\mathbb E|$，因此我们似乎只需要证明$|\mathbb E|=|2^{\mathbb N}|$就可以了！
-
-观察$\mathbb E$的性质，我们可以发现对它做上述构造后，是不存在**与另一个有限小数相等的无限循环小数**的！为什么呢？因为这里都是偶数，因此最多出现$0.00010101010101...$这样的循环小数
-
-因此这个构造就成立了！我们就成功地证明了$|2^{\mathbb N}|=|2^{\mathbb E}|=|[0,1)|=|\mathbb R|$
-
-
-
-# 小小的总结
-
----
-
-离散数学这门课听起来还是很有意思的，但是真正要做题的时候就很懵逼了，算是很需要idea的学科
-
-经过了几次课大概可以感受到离散数学主要研究的问题无非就是围绕着集合开展，并且多和无限扯上关系。因为和无限扯上了关系，我们初等数学中的一些结论就变得不那么显然和可拓展了，原本的直觉也会失效。
-
-希望能活过大一的离散数学（一），然后看看能不能活过离散（二）吧(希望)
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/28/%E6%9C%89%E5%85%B3%E9%9B%86%E5%90%88%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%AF%94%E8%BE%83/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/2020-ICPC-%E5%B0%8F%E7%B1%B3%E9%82%80%E8%AF%B7%E8%B5%9B-%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/10/26/2020-ICPC-%E5%B0%8F%E7%B1%B3%E9%82%80%E8%AF%B7%E8%B5%9B-%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/" class="post-title-link" itemprop="url">2020 ICPC 小米邀请赛 部分题解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-26 23:56:00" itemprop="dateCreated datePublished" datetime="2020-10-26T23:56:00+08:00">2020-10-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          这是oi退役以来第五场比赛，也是和队友打的第三场，前面零星有几次个人赛。
-
-水平不太够，不过个人比较佛系，希望把能看出来的题目肝出来就行了，目标就是争取不做演员;-P
-
-# A
-
----
-
-A是我写的
-
-给n个数，取出最大的子集，使得子集中任意两个数a,b满足要么a|b，要么b|a
-
-这题卡了很久，主要是一开始就想到了和n相关的做法和和值域相关的做法，但是两个单独都过不了
-
-最后想起来这个是可以讨论的，把两种做法一结合就过了
-
-考虑设f[x]表示x为最大数的最大集合大小，那么新加入的数字必须是x的整数倍，我们枚举x的倍数就可以了，这里是1e7log1e7的
-
-同理，设g[x]表示第x大的数字为最大数的最大集合大小，那么它一定由前n-1个状态转移来，所以就是n^2的
-
-
-
-# B
-
----
-
-B是我写的
-
-给定一个二维平面，给k个线段，问从起点坐标走到终点坐标的最短路，行走时不能跨越线段
-
-想象我们用弹力绳从起点拉，一直拉到终点，那么绳子会收缩，此时绳子的长度就是答案，而且绳子一定经过了若干线段的端点
-
-所以把线段拆成两个点，然后n^2连边，跑最短路就可以了。因为INF开小了挂了，这是我的锅，得背
-
-
-
-# C
-
----
-
-sb题目，一整段长为n的w，答案就是2n-1，数数就好了
-
-
-
-# D
-
----
-
-这个是队友写的
-
-考虑一个点什么情况下删掉会增加连通块。不难发现当一个点是一个连通分量连出去的点时，我们删掉他会新增连通块。也就是说，这个点的所有儿子的low都不比他小。
-
-
-
-# E
-
----
-
-留坑
-
-
-
-# F
-
----
-
-做的时候看错题了，我的锅
-
-不难发现答案可以二分。先排除全选ri都不能到L和全选li都过了R的两种情况
-
-假设我们二分到的答案是mid，那么每类题目我们至少需要mid\*li个，并且剩余max(L,sum[li])-mid\*li道题目需要去凑齐。这个直接看看sum[ri-li]够不够就行了
-
-这题LL不够，看了别人的题解用__int128才够
-
-
-# G
-
----
-
-留坑
-
-
-
-# H
-
----
-
-留坑
-
-
-
-# I
-
----
-
-水题，模拟就好了
-
-
-
-# J
-
----
-
-我写的
-
-考虑从左上到右下找第一个不为零的位置，我们对这个点为左上角的矩阵不停-1，这样能保证不会遗漏
-
-然后我们check是否最后都变成了0，或者减成了负数
-
-这是一个区间加，单点求的问题，我们差分然后二维树状数组就好了
-
-
-
-# K
-
----
-
-留坑待填
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/26/2020-ICPC-%E5%B0%8F%E7%B1%B3%E9%82%80%E8%AF%B7%E8%B5%9B-%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/Hello-World/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/10/26/Hello-World/" class="post-title-link" itemprop="url">Hello World!</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-26 12:29:00" itemprop="dateCreated datePublished" datetime="2020-10-26T12:29:00+08:00">2020-10-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          脱离了高中生活，进入大学的也接触了一些有意思的事情。
-希望这个博客的存在意义在于写一些有趣的东西，记录一些好玩的事情，而不仅仅只是放一些算法题解
-目前想法还有很多，最近这一个月遇到的人和事情都给了我很多灵感，根据某学长“想法不记录下来就等于没想”的说法，
-我决定记录一下，写点东西，有点输出，这样也好回头看看自己的成长历程。
-那就这样吧！Hello World！我的新博客
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/26/Hello-World/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">jpwang</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-</body>
+  </body>
 </html>

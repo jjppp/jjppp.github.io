@@ -1,285 +1,495 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<html lang="zh-CN" color-mode="light">
 
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      群论习题乱做 
+      
+      
+      |
+    
+     jjppp
+  </title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="有一些在课上做过了就没放(而且都还是*题，拿来入门，难顶....)  当然后来再补也说不定。拿不准的翻译就照抄原文。    ### 令$G$是$n$阶有限群，$S$是$G$的子集，且$2|S|&gt;|G|$，试证明$\forall a\in G$都$\exists b,c\in S$使得$a&#x3D;bc$  这题有点巧妙。注意到$S\subseteq G$，我们构造$T&#x3D;\left\{x^{-1}|x\in">
-<meta property="og:type" content="article">
-<meta property="og:title" content="群论习题乱做">
-<meta property="og:url" content="http://example.com/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/index.html">
-<meta property="og:site_name" content="jjppp">
-<meta property="og:description" content="有一些在课上做过了就没放(而且都还是*题，拿来入门，难顶....)  当然后来再补也说不定。拿不准的翻译就照抄原文。    ### 令$G$是$n$阶有限群，$S$是$G$的子集，且$2|S|&gt;|G|$，试证明$\forall a\in G$都$\exists b,c\in S$使得$a&#x3D;bc$  这题有点巧妙。注意到$S\subseteq G$，我们构造$T&#x3D;\left\{x^{-1}|x\in">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-11T15:01:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T01:47:11.728Z">
-<meta property="article:author" content="jpwang">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://example.com/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/","path":"2021/03/11/群论习题乱做/","title":"群论习题乱做"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>群论习题乱做 | jjppp</title>
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
   
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
 
 
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">jjppp</p>
-      <i class="logo-line"></i>
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
     </a>
-      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+    <div class="nickname"><a href="/">Oranges</a></div>
   </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
   </div>
 </div>
 
 
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
 
 
 
 
 
-</div>
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">群论习题乱做</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-03-11 23:01:00
+        </span>
         
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">jpwang</p>
-  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">84</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
       </div>
-  </nav>
-</div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="群论习题乱做 | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          群论习题乱做
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-11 23:01:00" itemprop="dateCreated datePublished" datetime="2021-03-11T23:01:00+08:00">2021-03-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      <div class="markdown-body">
         <p>有一些在课上做过了就没放(而且都还是*题，拿来入门，难顶….) 当然后来再补也说不定。拿不准的翻译就照抄原文。 ### 令$G$是$n$阶有限群，$S$是$G$的子集，且$2|S|&gt;|G|$，试证明$\forall a\in G$都$\exists b,c\in S$使得$a&#x3D;bc$ 这题有点巧妙。注意到$S\subseteq G$，我们构造$T&#x3D;\left\{x^{-1}|x\in S\right\}$，则任意取$a\in G$，构造$aT&#x3D;\left\{ax^{-1}|x\in S\right\}\subseteq G$。又因为$|aT|+|S|&gt;|G|$且$aT\cup S\subseteq G$，所以$aT\cap S\neq \varnothing$ 即$\exists d\in T, b\in S$使得$ad&#x3D;b$，即$a&#x3D;bd^{-1}$，这里$d^{-1}\in S$ ### 证明：$b$是含幺半群$G$中的元$a$的逆元当且仅当$aba&#x3D;a,ab^2a&#x3D;1$ 由$aba&#x3D;a$两侧同时左乘$ab^2$得到$ab^2aba&#x3D;(ab^2a)ba&#x3D;ba&#x3D;1$ 由$aba&#x3D;a$两侧同时右乘$b^2a$得到$abab^2a&#x3D;ab^2a&#x3D;ab&#x3D;1$ 即$ab&#x3D;ba&#x3D;1$，$b$为$a$的逆元 ### 令$G$是$n$阶有限群，从中任取出$n$个元素$a_1,a_2,\dots,a_n$，不一定两两不同。证明：存在正整数$1\le p\le q\le n$使得$\prod\limits_{i&#x3D;p}^{q}{a_i}&#x3D;1$ 不妨从$G$中再任意取出一个元素$a_{0}$，构造$s_k&#x3D;\prod\limits_{i&#x3D;0}^{k}{a_i}$，易得$\forall 0\le k\le n$都有$s_k\in G$ $|G|&#x3D;n\le n+1$，则根据鸽笼原理，$s_0,s_1,\dots,s_n$这$n+1$个数中必有两个相等，不妨记作$s_u$和$s_v$，其中$0\le u&lt; v\le n$，则$s_v{s_u}^{-1}&#x3D;\prod\limits_{i&#x3D;u+1}^{v}{a_i}&#x3D;1$，此时的$p,q$恰好为$u+1,v$ ### 证明：已知$\gcd(n,m)&#x3D;1$，若有限群$G$中$\exists a$使得$a^n&#x3D;e$，则$\exists b\in G$使得$b^m&#x3D;e$ 裴蜀定理：$\gcd(n,m)&#x3D;1\iff sm+tn&#x3D;1$有整数解 那么$e&#x3D;a^{sm+tn}&#x3D;a^{sm}a^{tn}&#x3D;{\left(a^s\right)}^{m}{\left(a^n\right)}^t&#x3D;{\left(a^s\right)}^{m}$ 取$b&#x3D;a^s$就好了 ### $\left\{A,B\right\}$是半群$S$的一个划分，且$\forall a,b,c\in A$都有$abc\in A$；$\forall a,b,c\in B$都有$abc\in B$。证明：$A,B$至少有一个是半群 由反证法，不妨假设$\exists a_1,a_2\in A\and \exists b_1,b_2\in B$使得$a_1a_2\in B\and b_1b_2\in A$ 于是$a_1a_2b_1b_2&#x3D;(a_1a_2)b_1b_2&#x3D;a_1a_2(b_1b_2)$，分属于两个不交的集合，于是矛盾； ### 设$A\le G,B\le G$ ，若$\exists a,b\in G$使得$Aa&#x3D;Bb$，则$A&#x3D;B$ 由$Aa&#x3D;Bb\Rightarrow Aab^{-1}&#x3D;B$ 因为$e\in B$，所以$ba^{-1}\in A$，所以${\left({ba^{-1} }\right)}^{-1}&#x3D;ab^{-1}\in A$ 所以$Aab^{-1}&#x3D;A&#x3D;B$得证 ### $A,B\le G$，试证$AB\le G\iff AB&#x3D;BA$ 先证明$\Leftarrow$： 单位元和结合律比较显然 逆元：且$x\in AB\iff \exists a\in A,b\in B$使得$x&#x3D;ab$，则$x^{-1}&#x3D;b^{-1}a^{-1}\in BA&#x3D;AB$ 封闭性：若$x&#x3D;ab\in AB,y&#x3D;cd\in AB$，则$xy&#x3D;abcd&#x3D;b’a’cd&#x3D;b’(a’c)d&#x3D;(a’c)(b’d)\in AB$ 再证明$\Rightarrow$： 由$AB\le G$可知，$ab\in AB\Rightarrow (ab)^{-1}\in AB$； 而$(ab)^{-1}&#x3D;b^{-1}a^{-1}\in BA$，这说明$\forall (ab)^{-1}\in AB$，$(ab)^{-1}\in BA$，即$AB\subseteq BA$； 另一方面，$\forall ba\in BA$，$(ba)^{-1}&#x3D;a^{-1}b^{-1}$，即$\forall (ba)^{-1}\in BA$，$(ba)^{-1}\in AB$，即$BA\subseteq AB$ 也就是说$AB&#x3D;BA$ ### 若$A,B\le G$，$AB&#x3D;G$且$A\le C\le G$，证明$C&#x3D;A(B\cap C)$ 这个技法貌似比较有用，要多学学 首先$A(B\cap C)\subseteq C$比较简单： $\forall x\in A(B\cap C)$ ，都$\exists a\in A,\exists b\in (B\cap C)$使得$x&#x3D;ab$ 因为$b\in B$ ，所以$ab\in AB&#x3D;G$；因为$b\in C$，所以$ab\in AC&#x3D;C$，综合就有$ab\in (AB\cap AC)&#x3D;(G\cap C)&#x3D;C$，于是$A(B\cap C)\subseteq C$ 再证明$C\subseteq A(B\cap C)$ 由$G&#x3D;AB$可得$\forall c\in C$都$\exists a\in A,\exists b\in B$使得$c&#x3D;ab$ 即$b&#x3D;a^{-1}c$ 由$b\in B$且$a^{-1}c\in C$可知$b\in (B\cap C)$，即$c&#x3D;ab\in A(B\cap C)$ 也就证明了$C\subseteq A(B\cap C)$ ### 设$A,B\subseteq G$且$|A|+|B|&gt;|G|$，求证$G&#x3D;AB$ 类似第一题，考虑$\forall g\in G, gA^{-1}\cap B\neq \varnothing$就好了 ### 已知$H\le G$且$K\le G$，则$[G\colon H]$有限$\Rightarrow [G\cap K\colon H\cap K]&#x3D;[K\colon H\cap K]$有限 我们构造 $f:k(K\cap H)\mapsto kH$, $k\in K$，然后证明这是一个$L_{K\cap H}(K)$ 到 $L_{H}(G)$的单射 先证明这是一个映射： $\forall k_1,k_2\in K$ 如果 $k_1(K\cap H)&#x3D;k_2(K\cap H)$, 那么有 $k_1\in k_2(K\cap H)$，也就是$\exists h\in (K\cap H)$ 使得 $k_1&#x3D;k_2h$ 又因为$h\in (K\cap H)$, $h\in H$，所以 $k_1&#x3D;k_2h\in k_2H$ 即 $k_1(K\cap H)&#x3D;k_2(K\cap H)\Rightarrow k_1H&#x3D;k_2H$，说明$f$是一个映射 然后证明$f$是单射： $\forall k_1,k_2\in K$, $k_1(K\cap H)\neq k_2(K\cap H)$ 由 $k_1(K\cap H)\neq k_2(K\cap H)$ 可知，$\exists h_1\in (K\cap H)$ 使得 $\forall h_2\in (K\cap H)$ , $k_1h_1\neq k_2h_2$ 我们猜测 对于同一个$h_1$ 有 $k_1h_1\neq k_2h_3$ 对任意的 $h_3\in H$ 成立，并由此证明 $k_1H\neq k_2H$ 不妨假设 $\exists h_3\in H$ 使得 $k_2h_3&#x3D;k_1h_1$, 于是有 $h_3&#x3D;{k_2}^{-1}k_1h_1$. 观察到 ${k_2}^{-1}, k_1, h_1$ 都在 $K$中， $h_3$ 也一定在 $K$中，即$h_3\in (H\cap K)$，这和条件($\forall h_2\in (H\cap K)$都有$k_1h_1\neq k_2h_2$)矛盾； 于是通过证明 $\forall k_1,k_2\in K$ , $k_1(K\cap H)\neq k_2(K\cap H)\Rightarrow k_1H\neq k_2H$，我们就证明了 $f$ 是一个单射，且 $|L_{K\cap H}(K)|\le |L_{H}(G)|$，也就是 $\left[G\colon H\right]\in \N^+\Rightarrow \left[K\colon K\cap H\right]\in\N^+$ ### 若$G$到$H$有一个同态$f$，则$\forall g\in G$有$ord(f(g))\mid ord(g)$ 很显然$g^{ord(g)}&#x3D;1$，两边取$f$就有$f(g^{ord(g)})&#x3D;f(1)&#x3D;{f(g)}^{ord(g)}$，也就是$ord(f(g))\mid ord(g)$ ### 若$(|G|,|H|)&#x3D;1$，则$G$到$H$的同态只有$f:x\mapsto e$ 由上面可知$\forall g\in G$，$ord(f(G))\mid ord(G)\mid|G|$，又$ord(f(g))\mid |H|$，故$ord(f(g))&#x3D;1$，即$f(g)&#x3D;e$ ### if $A\subseteq G,B\subseteq G$, $|A|+|B|&gt;|G|$, prove $G&#x3D;AB$ since $|A|+|B|&gt;|G|$, we have $A\cap B\neq\varnothing$ $\forall g\in G$, $|A^{-1}g|&#x3D;|A^{-1}|&#x3D;|A|$ thus $A^{-1}g\subseteq G$, $B\subseteq G$, $|A^{-1}g|+|B|&gt;|G|$ $A^{-1}g\cap B\neq\varnothing$, assume $x\in \left({A^{-1}g\cap B}\right)$, there $\exists a\in A$ and $b\in B$ s.t. $x&#x3D;a^{-1}g&#x3D;b$, which means $g&#x3D;ab$, that is, $G\subseteq AB$ apparently we have $AB\subseteq G$, thus $G&#x3D;AB$ ### $A\leqslant G$, $B\leqslant G$, if $\exists a,b\in G$ s.t. $Aa&#x3D;Bb$, then $A&#x3D;B$ $Aa&#x3D;Bb\Rightarrow A&#x3D;B\left({ba^{-1} }\right)$ we claim $ba^{-1}\in B$. assume $ba^{-1}\not\in B$, then $B\left({ba^{-1} }\right)\cap B&#x3D;\varnothing$, which leads to $e\not\in A$, an obvious contradiction thus $ba^{-1}\in B$, where $A&#x3D;B\left({ba^{-1} }\right)&#x3D;B$</p>
 <!-- more -->
 
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-03-11 23:01:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/04/09/%E9%9B%86%E5%90%88%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
     </div>
-
-    
-    
     
 
-    <footer class="post-footer">
-
+    
+      <div class="comments-container">
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/" rel="prev" title="CSAPP实验5: cachelab">
-                  <i class="fa fa-chevron-left"></i> CSAPP实验5: cachelab
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/04/09/%E9%9B%86%E5%90%88%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" rel="next" title="集合论习题乱做">
-                  集合论习题乱做 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
 
 
 
 
 
 
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">jpwang</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+      </div>
+    
   </div>
 
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
     </div>
-  </footer>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/colorscheme.js"></script>
 
+
+
+
+
+        
   
-
-
-
-
-
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F03%2F11%2F%25E7%25BE%25A4%25E8%25AE%25BA%25E4%25B9%25A0%25E9%25A2%2598%25E4%25B9%25B1%25E5%2581%259A%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
+  
+<script src="/js/shares.js"></script>
 
 
 
-
-
-</body>
+      </div>
+    </div>
+  </body>
 </html>

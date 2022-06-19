@@ -1,5112 +1,647 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<html lang="zh-CN" color-mode="light">
 
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+    <meta name="robots" content="noindex" />
+  
+  
+  <title>
+    
+     jjppp
+  </title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="Young, Simple &amp; Naive">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jjppp">
-<meta property="og:url" content="http://example.com/page/2/index.html">
-<meta property="og:site_name" content="jjppp">
-<meta property="og:description" content="Young, Simple &amp; Naive">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="jpwang">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://example.com/page/2/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/2/index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>jjppp</title>
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
   
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
 
 
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">jjppp</h1>
-      <i class="logo-line"></i>
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
     </a>
-      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+    <div class="nickname"><a href="/">Oranges</a></div>
   </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
   </div>
 </div>
 
 
+<script src="/js/activeNav.js"></script>
 
 
 
-
-
-</div>
-        
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
+      <div class="flex-container">
+        <div class="container index">
+  <div class="post-list">
+    <!-- 遍历渲染文章 -->
+    
+      <div class="post-item" title="密码学07 OWF&HC">
+        <div class="time-m-d">2021-12-21</div>
+        <div class="title">
+          <a href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/">
+            
+              
+                <span>密码学07 OWF&HC</span>
+              
+            
+          </a>
         </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">jpwang</p>
-  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">84</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
       </div>
+    
+      <div class="post-item" title="密码学06 HASH">
+        <div class="time-m-d">2021-12-21</div>
+        <div class="title">
+          <a href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A606-HASH/">
+            
+              
+                <span>密码学06 HASH</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="密码学05 MAC">
+        <div class="time-m-d">2021-12-20</div>
+        <div class="title">
+          <a href="/2021/12/20/%E5%AF%86%E7%A0%81%E5%AD%A605-MAC/">
+            
+              
+                <span>密码学05 MAC</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="PA3 附加关卡">
+        <div class="time-m-d">2021-12-11</div>
+        <div class="title">
+          <a href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
+            
+              
+                <span>PA3 附加关卡</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="PA2 附加关卡">
+        <div class="time-m-d">2021-12-01</div>
+        <div class="title">
+          <a href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
+            
+              
+                <span>PA2 附加关卡</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="PA1 附加关卡">
+        <div class="time-m-d">2021-12-01</div>
+        <div class="title">
+          <a href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
+            
+              
+                <span>PA1 附加关卡</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="形式语义05 Semantics">
+        <div class="time-m-d">2021-11-07</div>
+        <div class="title">
+          <a href="/2021/11/07/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8905-Semantics/">
+            
+              
+                <span>形式语义05 Semantics</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="密码学04 PRG&PRF">
+        <div class="time-m-d">2021-10-19</div>
+        <div class="title">
+          <a href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/">
+            
+              
+                <span>密码学04 PRG&PRF</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="形式语义04 Types">
+        <div class="time-m-d">2021-10-05</div>
+        <div class="title">
+          <a href="/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/">
+            
+              
+                <span>形式语义04 Types</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="密码学03 Computational">
+        <div class="time-m-d">2021-09-27</div>
+        <div class="title">
+          <a href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/">
+            
+              
+                <span>密码学03 Computational</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="形式语义03 Lambda">
+        <div class="time-m-d">2021-09-16</div>
+        <div class="title">
+          <a href="/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/">
+            
+              
+                <span>形式语义03 Lambda</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="密码学02 Perfect">
+        <div class="time-m-d">2021-09-15</div>
+        <div class="title">
+          <a href="/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/">
+            
+              
+                <span>密码学02 Perfect</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="形式语义01 Intro">
+        <div class="time-m-d">2021-09-09</div>
+        <div class="title">
+          <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8901-Intro/">
+            
+              
+                <span>形式语义01 Intro</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="形式语义02 Math">
+        <div class="time-m-d">2021-09-09</div>
+        <div class="title">
+          <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8902-Math/">
+            
+              
+                <span>形式语义02 Math</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="密码学01 Intro">
+        <div class="time-m-d">2021-09-02</div>
+        <div class="title">
+          <a href="/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/">
+            
+              
+                <span>密码学01 Intro</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="编译原理 笔记3 语法分析">
+        <div class="time-m-d">2021-09-01</div>
+        <div class="title">
+          <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">
+            
+              
+                <span>编译原理 笔记3 语法分析</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="编译原理 笔记2 词法分析">
+        <div class="time-m-d">2021-09-01</div>
+        <div class="title">
+          <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
+            
+              
+                <span>编译原理 笔记2 词法分析</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="DFA到等价正则表达式的转化">
+        <div class="time-m-d">2021-08-20</div>
+        <div class="title">
+          <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/">
+            
+              
+                <span>DFA到等价正则表达式的转化</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="scheme学习笔记">
+        <div class="time-m-d">2021-08-15</div>
+        <div class="title">
+          <a href="/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+            
+              
+                <span>scheme学习笔记</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="软件分析笔记10 Soundiness">
+        <div class="time-m-d">2021-08-14</div>
+        <div class="title">
+          <a href="/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/">
+            
+              
+                <span>软件分析笔记10 Soundiness</span>
+              
+            
+          </a>
+        </div>
+      </div>
+    
+  </div>
+  <nav class="post-navigation">
+    
+      <a href="/"><i class="iconfont icon-angleleft"></i></a>
+    
+    <span class="page-num">2 / 5</span>
+    
+      <a href="/page/3/"><i class="iconfont icon-angleright"></i></a>
+    
   </nav>
 </div>
 
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
 
 
-        </div>
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/" class="post-title-link" itemprop="url">密码学07 OWF&HC</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-21 20:15:00" itemprop="dateCreated datePublished" datetime="2021-12-21T20:15:00+08:00">2021-12-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          这一章比较轻松，主要是科普一些东西，都是概念性的
-
-## One-way function
-
-注意到密码学中的很多构造都是不对称的：我们希望加密是简单的而解密是困难的、我们希望PRG是很容易产生的但是很难被区分的……这些不对称性归根结底都可以通过OWF来导出，这个概念还是很抓住了关键的
-
-
-
-但是到目前为止，是否存在OWF仍然是未知的....因此存在OWF本身就是一个密码学假设，当然目前种种迹象看来这么假设是没有太大问题的。
-
-
-
-## 定义
-
-我们称函数 $f\colon\left\{0,1\right\}^*\mapsto\left\{0,1\right\}^*$ 是OWF，当且仅当它满足：
-
-1. 存在PPT算法 $M_f$ 使得 $\forall x\in Dom(f): f(x)=M_f(x)$
-2. 对于任意的PPT算法 $\cal A$，有 $Pr\left[{\cal A}(1^n,f(x))\in f^{-1}(f(x))\right]\leqslant\text{negl}(n)$，其中 $x\overset{$}\leftarrow\left\{0,1\right\}^*$
-
-
-
-有几个值得注意的地方：首先OWF的计算非常容易，但是对于**随机均匀**选取的定义域中的比特串，将其映射过后再求它的任意一个原象就很难（不一定是单射，逆是一个集合）
-
-
-
-这里对 $x$ 的选取说明求逆的难度是平均意义上的，可以存在某些点非常好求的情况。并且只需要求得任意一个逆就可以了，不需要全部求得。
-
-
-
-这里的hardness同样可以定义成game $\text{Invert}_{\cal A,f}(n)$，我们称一个函数是OWF当且仅当对于任意的PPT攻击者 $\cal A$ 都有 $Pr\left[\text{Invert}_{\cal A,f}(n)=1\right]\leqslant\text{negl}(n)$ 成立
-
-
-
-## 两个例子
-
-### 因数分解
-
-最著名的OWF当然要属乘法函数了。这个函数写出来是这样的 $f:\mathbb N\times\mathbb N\mapsto\mathbb N,\; f(x,y)=x\cdot y$，通常会规定 $x,y$ 是 $n\text{-bit}$ 质数
-
-### 离散对数
-
-也就是OI里面讲过的BSGS算法用来解决的问题，规定 $f:\mathbb N\times \mathbb N\mapsto\mathbb N,\; f(g,x)=g^x\pmod p$，其中 $p$ 是一个给定的 $n\text{-bit}$ 质数
-
-
-
-## Hard-core predicate
-
-所谓predicate，就是一个值域为 $\left\{0,1\right\}$ 的函数，记为 $hc\left(\cdot\right)$，通常还要求 $hc(\cdot)$ 要满足可以被PPT算法计算出来
-
-如果对于任意的PPT算法 $\cal A$，都有 $Pr[{\cal A}(1^n,f(x))=hc(x)]\leqslant\frac12+\text{negl}(n)$，其中 $x\overset{$}\leftarrow\left\{0,1\right\}^n$
-
-
-
-上面说到OWF的单向性是通过容易计算、难于求逆定义的，那么自然就要问：求逆的难度能不能量化？
-
-很显然OWF内部仍然有很多区别，例如说一个OWF可以是难以计算逆的，但是仍然泄漏了一些原象的信息（例如说你和女神每天的对话，虽然内容难以计算，但是永远以“呵呵我去洗澡了”这样的字眼结束）
-
-hc就是这样一个最低限度的"防止泄漏"的量化——我们关注某个函数是否能够隐藏最小单位的信息，也就是一个比特
-
-需要注意的是，上述定义并不要求 $f$ 是OWF，一个例子是定义 $f(x_1x_2\ldots x_n)=x_2x_3\ldots x_n$，很显然它的一个hc就是比特串的第一位，并且这个函数不是OWF（猜对的概率是$\frac12$）
-
-
-
-### Goldreich-Levin THeorem
-
-如果OWF成立，那么存在一个OWF $g$ 和一个 $hc$，使得 $hc$ 是 $g$ 的硬核谓词
-
-证明咕咕咕，这个结论的意义更大一些，有这个结论就可以更充分地相信hc的存在性了
-
-
-
-## OWF for PRG
-
-假设 $f$ 是一个OWF，$hc$ 是 $f$ 的一个hc，那么 $G(s)=f(s)||hc(s)$ 是一个PRG，expansion factor 为 $n+1$
-
-证明可以通过反证法，则存在一个区分 $G(s)$ 和 $r$ 的 $\cal A$，那么就可以通过这个 $\cal A$ 来构造一个区分 $hc(s)$ 和真随机比特的 $\cal A'$，从而得到与 $hc$ 性质的矛盾。
-
-
-
-注意到这个只“生长”了一位，实际上可以生长出任意poly(n)的长度，构造如下：
-
-$\hat G(s)=hc(s)||hc(f(s))||\ldots||hc(f^k(s))||f^k(s)$
-
-可以把最后的 $s$ 看作某个内部状态，前缀都是由状态产生的一个结果，这个前缀的PRG性质则是通过hc来保证的
-
-随机性的证明可以通过差分构造若干个后缀完全一样，前缀完全随机的假的PRG，然后证明它们两两无法区分，最后用三角不等式叠加起来就好了。根据 $\text{negl}(n)$ 的性质可知，拓展poly次之后不等式的右端仍然是一个 $\text{negl}(n)$
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A606-HASH/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A606-HASH/" class="post-title-link" itemprop="url">密码学06 HASH</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-21 15:06:00" itemprop="dateCreated datePublished" datetime="2021-12-21T15:06:00+08:00">2021-12-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-## Cryptographic Hash Function 
-
-所谓Hash，就是一个实现“压缩”比特序列的函数（有时也叫摘要）。与普通的散列和哈希不同，密码学上的hash要求要更严格一些：
-1. 要是抗碰撞(collision resistant)的
-2. 最好还有PRF的性质
-
-类似PRF，Hash也是一个keyed function，只不过更多的时候 $k$ 是由某种方法选出来的固化公开常量，而非随机选出来的。
-
-## 定义
-Hash $\Pi=(\text{Gen,H})$ 是一对PPT算法，满足：
-1. $k=\text{Gen}(n)$ 是一个**公开**的参数
-2. $H(k,x)=H^k(x)\in\left\{0,1\right\}^{l(n)}$，其中 $l(n)$ 是expansion factor
-
-如果有 $l(n)<n$，那么我们就称 $H$ 是一个压缩映射(compression function)
-
-### Collision resistant
-
-首先要定义一个game $\text{Hash-coll}_{\cal A,\Pi}(n)$，这个game很直白，就直接说了：
-我们公开Hash的参数 $s$，然后让Adversary输出一对比特串 $(x_1,x_2)$。若有 $H^s(x_1)=H^s(x_2)$，我们就说Adversary找到了一个碰撞(collision)
-
-称一个Hash scheme是c.r.的，当且仅当有 $Pr\left[\text{Hash-coll}_{\cal A,\Pi}(n)=1\right]\leqslant\text{negl}(n)$ 对任意的PPT Adversary成立
-
-此外还有一些更弱的对Hash的要求
-
-### Second preimage resistant
-
-
-如果给定了参数 $s$ 和一个比特串 $x$，有任意的PPT Adversary都不能找到 $x'\neq x$ 使得 $H^s(x)=H^s(x')$，就称这个Hash scheme是2nd p.r.的
-
-注意到如果Adversary没法对Hash找到任意一对碰撞（满足c.r.），那么它一定无法对一个给定的比特串找到碰撞（满足2nd p.r.），因此有 c.r. $\Rightarrow$ 2nd p.r.
-
-### Preimage resistant
-
-如果给定了参数 $s$ 和一个比特串 $y$，有任意的PPT Adversary都不能找到 $x$ 使得 $H^s(x)=y$，就称这个Hash scheme是p.r.的
-
-注意到如果Adversary可以对给定的 $y$ 找到原象 $x$（not p.r.），那么它就可以通过找出 $y$ 的所有原象，从中挑一对出来就能找到一对碰撞了（not c.r.）。这是因为在Hash是压缩映射的时候，至少有一半的元素有两个原象
-
-## Merkel-Damgard Transform
-
-其实很套路了。假如我们有一个定长的c.r.压缩映射，要怎么才能做到构造出一个任意长的压缩映射？
-
-不失一般性，假设我们已有的小映射是 $\left\{0,1\right\}^{a+b}\mapsto\left\{0,1\right\}^{a}$
-
-
-有一个很直观的图，大概是长这样的
-**插入图片**
-
-大概分成三步走：
-1. 先做补全（padding），得到长度为 $b$ 的整数倍的一个比特串
-2. 按照每 $b$ 位切成一块，每一块记作 $B_i$，最后额外加入一块 $L$，表示**原始比特串**的长度
-3. 确定一个 $z_0=IV$，有 $z_i=H(z_{i-1}|| B_i)$，最终的那一块 $z_{last}$ 就是整个Hash的输出
-
-c.r.的证明可以通过反证法和归纳来得到，同样是如果能构造出大映射的碰撞，那么一定是构造出了一个小映射的碰撞，因此就矛盾了。
-
-## 和MAC的应用
-
-回想前一篇MAC的内容，我们没有一个很好的办法能构造任意长度的MAC。但是现在有了任意长度到固定长度的c.r.压缩映射，我们就可以用这个c.r. Hash和secure fixed-length MAC一起来构造一个任意长度的MAC了
-
-只需要规定 $\widehat {\text{Mac} }_k(x)=\text{Mac}_k(H^s(x))$ 即可，$\text{Vrfy}$ 的部分只需要用canonical方法就好了
-
-安全性的证明可以通过反证法说明：我们下面要证明这是一个secure arbitrary-length MAC
-假设 $\cal A$ 构造出了一个新的tag $(m',t')$，那么有如下可能：
-1. 存在一个 $m''$，使得 $\cal A$ 查询了 $m''$，并且有 $H^s(m')=H^s(m'')$。显然这与c.r.矛盾
-2. 所有 $\cal A$ 查询过的消息在Hash之后都不与 $m'$ 构成一对碰撞，此时意味着 $\cal A$ 构造出了一个全新的tag，这又与secure-MAC矛盾了
-
-## Hash攻击
-这部分暂且咕咕咕
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A606-HASH/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/20/%E5%AF%86%E7%A0%81%E5%AD%A605-MAC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/20/%E5%AF%86%E7%A0%81%E5%AD%A605-MAC/" class="post-title-link" itemprop="url">密码学05 MAC</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-20 23:22:00" itemprop="dateCreated datePublished" datetime="2021-12-20T23:22:00+08:00">2021-12-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-## Message Authentication Code
-
-简称MAC。通常我们不仅希望保证一条消息的内容没有被泄露（例如你向女神告白的信的内容），还希望我们发出去的消息没有被篡改过（例如你给女神的告白信不会被换成/修改成除了告白信之外的别的东西）。前者属于secrecy的范畴，后者则是integrity的范畴。
-
-之所以会出现这样的需求，是因为我们开始考虑更“强大”的adversary了。原本的EAV-secure模型只能对窃听者进行建模，而通常我们的adversary不仅可以看（窃听），还可以摸（篡改消息）。并且我们发现原有的加密算法是无法保证integrity的。以OTP为例，攻击者在得到密文 $c$ 后，可以通过翻转 $c$ 任意的比特来实现篡改出任意可能的信息。即使他不知道消息本身是什么，他也可以伪造出任意的消息——反正任意的定长比特串都是合法消息
-
-于是就有了MAC的闪亮登场！这样你给女神的真情表白就不会变成痴汉发言，战书，或者是别的什么东西了。
-
-## 定义
-
-一个MAC包括三个PPT算法，$\text{MAC=(Gen,Mac,Vrfy)}$，其中
-$\text{Gen}$ 负责生成一个密钥 $k$，$\text{Mac}_k(m)=t$ 负责根据 $m,k$ 生成一个标签(tag)，$\text{Vrfy}_k(m,t)$ 则会在 $t$ 是 $m$ 的一个合法tag时输出 $1$，否则输出 $0$
-
-这里的 $\text{Vrfy}$ 是确定性算法，而 $\text{Mac}$ 则没有要求。这点是很显然，因为要保证：
-1. 正确的tag能被识别
-2. 错误的tag能被报出来
-也就又是所谓的sound&complete了
-
-看起来很像私钥加密，但是又不太一样：$\text{Vrfy}$ 是需要借助 $m$ 来确认tag的正确性的，因此MAC往往不会单独使用，这里的 $m$ 还需要加密保护起来。
-然后就定义了几个性质
-
-### Correctness
-
-$\forall k=\text{Gen}(1^n): \text{Vrfy}_k(m,\text{Mac}_k(m))=1$
-没啥好说的，这个性质提示我们：
-如果我们的 $\text{Mac}$ 是确定性算法，那么我们的 $\text{Vrfy}$ 就可以通过重新计算一次 $\text{Mac}_k(m)$，然后比较 $\text{Mac}_k(m)$ 和 $t$ 是否相同来判断这个tag是否合法。这被称为**canonical way**
-
-### Secrecy
-其实就是如何保证我们的消息被篡改后，能从tag中反馈出来？
-密码学给出的回答是这样的：如果任何PPT算法都不能造出一个对应的message-tag pair出来，那么我们就可以认为没有人能够给一个修改过后的消息 $m$ 伪造tag，也即不存在消息被篡改后仍然能通过 $\text{Vrfy}$ 了
-
-形式化地写出来是一个 $\text{Mac-forge}_{\cal A,\Pi}$ game：
-1. 首先生成一个 $k$，然后给一个 $\text{Mac}_k$ 的oracle给adversary $\cal A$
-2. $\cal A$ 可以任意查询oracle，然后输出一对答案 $(m,t)$。期间我们会维护一个集合 $\cal Q$，表示 $\cal A$ 查询过的所有消息
-3. 检查 $\text{Vrfy}_k(m,t)$，如果满足1. $\text{Vrfy}_k(m,t)=1$ 且 2. $m\not\in \cal Q$，就得到结果 $1$，否则为 $0$
-
-我们称一个MAC scheme $\Pi$ 是安全的，当且仅当 $Pr\left[\text{Mac-forge}_{\cal A,\Pi}(n)=1\right]\leqslant\text{negl}(n)$。这个安全性的全称也叫being existentially unforgeable under an adaptive chosen-message attack
-
-这个定义就是很好地抓住(capture)了“不能伪造tag”这句话，看下来是很自然的。
-
-如果细心一点可以发现，这里的 $\text{Mac}$ 不一定是确定性算法，因此可以有一个 $m$ 对应多个不同的 $t$，这说明上述定义会出现一些问题——Adversary完全可以给一条已经查询过的消息 $m$ 构造出一个全新的tag。于是自然引出strongly secure MAC的定义：
-太懒了，只需要把上面的 $m\not\in\cal Q$ 改成 $(m,t)\not\in\cal Q$ 就好了
-
-结合canonical way的MAC可知，对所有canonical MAC有：如果它是secure的，那么它自然地就是strongly secure的
-
-注意到这个strong secure的安全性要求仍然是很弱的。我们甚至并不要求Adversary输出的消息有含义，而只需要能构造出一条消息和对应的tag就好了。
-
-## 构造
-
-### fixed-length MAC
-构造一个定长MAC是比较简单的，只需要用一个PRF就好了。安全性的证明可以通过反证，然后构造一个区分PRF和真随机函数的攻击者 $\cal A$ 来完成，细节就留做习题吧~
-
-### arbitrary-length MAC
-只讲讲怎么做到任意 $l(n)$ 的整数倍长度，其中 $l$ 是单个 $\text{MAC}$ 的extension factor（回忆上面说的用PRF构造MAC）
-
-假设现在给了 $n$ 个消息块，每个块都能单独用MAC构造tag，那么我们可以这么构造一个整体的tag：
-1. 规定 $t_0=IV$，其中通常 $IV=0$，initial vector的意思
-2. 规定 $t_i=MAC(t_{i-1}\oplus m_i)$
-最后输出 $t_n$ 就好了
-
-安全性的证明比较简单，只需要对着 $n$ 做数学归纳法就好了，可以发现每次都没法伪造的Adversary对于整体的tag束手无策
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/20/%E5%AF%86%E7%A0%81%E5%AD%A605-MAC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/" class="post-title-link" itemprop="url">PA3 附加关卡</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-11 14:43:00" itemprop="dateCreated datePublished" datetime="2021-12-11T14:43:00+08:00">2021-12-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          这次做起来还是很有收获的，虽然最后阶段基本在写库函数，和ICS已经没啥关系了
-
-## 思考题
-
-### AM究竟给程序提供了多大的栈空间呢?
-
-观察`$AM_HOME/scripts/linker.ld`这个链接脚本可以发现，其中定义了一个符号`_stack_pointer`
-
-而根据AM启动客户程序的流程可知，在`am/src/riscv/nemu/start.S`中的`_start:`中将会执行`la sp, _stack_pointer`，以此初始化栈指针。又注意到`_stack_top`符号的地址与之相差`0x8000`，因此可以回答AM中程序的栈空间大小为`0x8000`字节
-
-
-
-### 对比异常处理与函数调用
-
-在函数调用中，调用点只需要保存caller saved的寄存器
-
-而在异常处理中，需要保存所有的通用寄存器、CSR寄存器
-
-区别是由规约决定的。函数调用约定决定了我们只需要保存caller saved寄存器即可满足被调用函数对寄存器使用的需求，而异常处理结束后，我们仍然需要恢复到异常发生前的“状态”（具体而言就是所有的通用寄存器、CSR寄存器....等等），因此需要提前把它们保存起来
-
-
-
-### 堆和栈在哪里?
-
-首先要知道栈和堆的用途
-
-只需要注意到栈的使用只发生在函数调用过程中，堆的使用只发生在`malloc/free`函数调用之后，因此它们都只在**动态**时有意义，这是为什么它们不需要出现在可执行文件中
-
-AM中的栈从哪里来已经在上面回答过了，而堆的来头则可以在`$AM_HOME/am/src/platform/nemu/trm.c`中找到，是一个`Area`类型的结构体变量`heap`。可以发现它们都是在程序执行后（`_start`），`main`执行前被初始化的。
-
-
-
-### 如何识别不同格式的可执行文件?
-
-在ELF Header中可以看到OS/ABI一项，这里可以区分操作系统；还有大/小端机的信息、数据储存方式的信息（二进制补码格式等等）
-
-
-
-### 冗余的属性?
-
-`FileSiz`是ELF文件中的大小，`MemSiz`是加载进内存后的大小。对于`.bss`段中的数据无需保存在ELF文件中（默认被初始化为0），但是加载之后应当在内存中占用空间、有它的地址。因此就会出现`FileSiz<=MemSiz`的情况
-
-
-
-### 为什么要清零？
-
-因为初始化为0的变量会被储存在`.bss`段中，数据被初始化为0这一步就是在加载过程中完成的
-
-当然这么说还有一个前提，就是内存的初值是不确定的（至少不是全0的），这点可以从NEMU的menuconfig中看到，默认NEMU会初始化内存为随机内容
-
-
-
-### RISC-V系统调用号的传递
-
-这题实在猜不出设计者的心意，说一下我的想法
-
-需要注意到的是，进行系统调用的时候，系统调用的调用号和它的参数是一并被传给系统调用识别的处理函数的。而`a0`在calling convention中已经作为储存函数调用参数的**第一个**寄存器了。假如在识别出正确的事件后需要进一步调用函数进行处理，就需要逐个移动寄存器的内容后再call。而把系统调用号作为最后一个参数传入，则在必要时只需要覆盖就能进一步处理，这就可以更快处理各类系统调用（当然也更方便了）。
-
-
-
-### 文件偏移量和用户程序
-
-把偏移量放在文件记录表中维护有一个前提：无论文件被打开多少次，都共享同一个偏移量。这也是我在实现`fs.c`的时候产生的疑问：如果一个文件被打开多次，正确的读写行为应该是怎样的？
-
-这个问题可以通过`audio.c`中的pipe来理解。一个`pipe`是一个文件（队列），它支持同时从队头读取、从队尾写入。读取和写入两个操作可以由两个独立的进程分别完成，这就要求它们的读写操作必须彼此独立（至少偏移量是互相独立的）。
-
-
-
-###  比较`fixedpt`和`float`
-
-取：
-
-1. 可以不需要FPU也能实现小数运算
-2. 可以简单地保持序关系和实现简单的运算
-3. 在数字较大时仍然有比较好的精度（总共32bit的有效位）
-
-舍：
-
-1. 在结果很小时答案的精度，浮点数能表示的最小数字远小于定点数的最小数，这使得浮点数在多次除法后仍然保持着相对准确的结果，而定点数很容易变成0
-2. 能表示数字的值域（最大值）。浮点数能表示的最大数字远大于定点数的最大数，这使得定点数在多次乘之后很容易符号溢出
-
-
-
-###  神奇的`fixedpt_rconst`
-
-`rconst`的最外面有一个强制类型转换为`fixedpt`类型（也就是`int`），因此整个表达式最终会成为一个整数（这是编译期间进行的），所以最终不会出现浮点指令。
-
-
-
-###  RTFSC???
-
-处理不是那么好玩，可以玩一玩怎么逆处理！
-
-不妨记处理后的程序为P'，原本的程序为P
-
-首先注意到这种修改不能改变程序语义，并且有如下性质（性质1）：在P'中相同的符号，在P中一定也相同
-
-而且还有一个很特殊的地方：硬编码的数据（包括AM的接口调用）是没法被处理的（不然就改变了程序的语义），因此这一部分也可以提供一些信息
-
-同样以16122学长的跳一跳程序为例，可以明显发现硬编码了三种颜色（红黄紫），那么就可以根据这个得到绘制不同部位的代码；硬编码了欢迎和得分信息，因此可以确定一部分函数的功能；同时能发现几处AM接口调用，因此可以直接得到对应函数的用途。
-
-做完这些还能更进一步：注意到for循环内的变量也是携带有语义的（如行优先枚举），并且根据性质1可以借此获得一些全局的语义信息（例如说小人的高度、小人的坐标等等）
-
-到这里其实就差不多了，剩下的基本自己写也能写出来，于是就得到了一个重命名后的可读跳一跳实现。
-
-
-
-## 感想&反馈
-
-主要想说说loader的问题。在PA3之前我从没有想过为什么.bss段的数据不需要特殊处理，直接就能加载到NEMU模拟执行，到了后面有同学问出这个问题我才意识到，这步loader的工作实际上是提前被做掉了（实际上如果能早一点问出“为什么我们同时需要一个`.bin`和一个`.elf`？”就能更快发现了，这个问题确实是一个看起来简单但是不那么容易回答明白的问题）
-
-
-
-还想说说遇到的一个bug，仍然与`gettimeofday()`有关。阅读`sys/time.h`可以发现`struct timeval`的实现用的是`long int`，也就是一个架构相关的类型。通过简单的测试可以发现在`timer-test/main.c`中输出`sizeof(struct timeval)`的结果是8，而在`nanos-lite/src/syscall.c`中的结果则是16。这是因为
-
-最初在实现`gettimeofday`系统调用的时候，我直接把`struct timeval *`指针作为参数传给了`nanos-lite/src/syscall.c`，这内存布局就导致了问题：用户程序中`timeval`的两个成员分别组成了`syscall`中`timeval`的第一个成员的高32位和低32位。这直接使得我的用户程序永远读不到`usec`的信息（恒为0），因此在用户程序那里最小时间间隔就是整1秒了，这也是为什么最初我的仙剑只能跑到1帧（他已经尽力了）
-
-事实上这个问题并不罕见，这正是ICS理论课本上的例子：链接的双方用不同的类型解释了相同的内存区域，使得接口的语义发生了偏差。我的解决方法也简单粗暴：在系统调用中直接传递两个成员的指针，并规定它们都是`uint32_t`类型，这样就（暂时地）解决了问题
-
-于是我的疑问在于，为什么一个大家经常使用的库函数要使用平台相关的类型？
-
-----
-upd：
-实际上是libc更新了，新版的库函数规定`struct timeval`中的成员应该不管什么架构都使用64位长度的整型，而navy中带有的libc还没有修改，所以导致了这个问题。只需要在makefile中修改就可以正确实现了
-
-
-
-在说到“一切皆文件”的哲学时，我还没有什么体会，直到看到通过更换具体文件读写的实现来达到“用统一的方法处理不同的事物”的目的，才理解什么叫一切皆文件了——就是抽象出统一的接口供程序操作，来达到简化设计的目的。在这一层面上，所有可以操作的东西看起来都是文件（可读可写）
-
-
-
-说一点反馈吧。感觉PA3.3的部分内容实在太多了，后期库函数的编写也很费时间。我能明白这门课一直在强调的抽象层观点，但是用SDL实现一个抽象设备1，再给抽象设备1抽象出AM接口，然后给抽象的接口封装出一个NDL、miniSDL，最后用miniSDL实现libam中的抽象设备2，这样来来回回地编写功能相同、逻辑类似，而仅仅只是在抽象层之间传递信息的模块，是不是有点码农的感觉.....
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/" class="post-title-link" itemprop="url">PA2 附加关卡</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-01 20:51:00" itemprop="dateCreated datePublished" datetime="2021-12-01T20:51:00+08:00">2021-12-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          完成了声卡的实现，可以流畅播放If I Could Tell Her~
-但是玩litenes就只有23帧，用fceux就卡得声音都变成了儿童鞋垫
-
-## 收货
-讲几个主要的
-
-假设需要同时定义很多个东西，同时这些东西又有着相同的模式，并且我们希望能够方便地修改、添加这些东西（只需要维护一份唯一的列表），那么就可以这么做：
-
-```c
-#define LIST(F) F(item1) F(item2) ...
-#define FUNC(X) //blablabla
-
-LIST(FUNC)
-```
-这样非常像fp的写法，并且我们只需要维护一份item表，套用不同的模式生成函数就可以得到不同模式的列表了（这句话有点绕），其实就是一个X-macro
-
-一系列trace能够使得debug非常简便，但是最强的还是difftest，通常只需要找到第一处diff就能查出错误了。
-
-然后还想讲一个匪夷所思、困扰了我一整周的bug。NEMU默认通过一个`get_time()`函数获取宿主机时间，并且提供了两个选项：`gettimeofday()`和`clock_gettime()`。STFW之后可以发现，`gettimeofday()`是通过vdso实现的，即并没有真的系统调用，因此性能很高。并且使用的是tsc时钟源，所以精度也很高，是获取时间的首选方法。然而在我的笔记本上（机械革命Code01）同时安装了windows10和ubuntu21.04，在win10休眠后启动ubuntu，就会出现tsc时钟源无法访问的情况，这时候再调用`gettimeofday()`，最终仍然会通过`clock_gettime()`获取时间，从而花费更多时间，导致NEMU性能下降。STFW之后发现速度大约能差17倍，这也和我跑分400->23的变化趋势大致相符合。YZH的建议是让我看看为什么会频繁调用gettimeofday，但是我在callgrind之后发现，二者的区别仅仅在于调用所消耗时间，而调用次数则一模一样
-解决方案就更那啥了，只需要重启进入win10，点击关机，然后再进入ubuntu即可。通过命令`cat /sys/devices/system/clocksource/clocksource0/available_clocksource` 可以观察是否有tsc
-
-
-## 思考题
-
-### 为什么不需要rtl_muls_lo
-
-对于有符号乘法的低32位，结果来源于两个操作数的低16位，此时指令的行为和无符号整数的乘法行为一致
-
-### 为什么执行了未实现指令会出现上述报错信息
-
-在`special.h`中定义了`inv`指令，所有的指令模式匹配失败后最后会返回`inv`表示invalid opcode，在`inv`的辅助执行函数中就打印了错误信息
-
-### 指令名对照
-
-可以以关键词"expand"、"expansion"、"pseudo"来搜索伪指令，或者直接通过伪指令的二进制序列来搜索真正对应的指令。之所以能这么做是因为伪指令是软件层面的约定，伪指令最终对应什么指令由它的二进制序列决定
-
-### stdarg是如何实现的?
-
-我能想到的一个实现方式是传入一个链表的表头作为参数，这样通过更改链表的长度就可以实现任意数量的参数传参了。而取参数的操作则是通过遍历链表完成的
-
-### 消失的符号
-
-宏在预处理时就被展开了，因此不会出现在符号表中
-
-局部变量在链接时是不可见的，因此也不会出现在符号表中
-
-一个符号要可以被跨文件使用，因此不能是局部变量。
-
----
-
-update：
-
-上完课之后理解更深了一点
-
-所谓符号，必须是有确定地址的实体，这就是为什么macro和局部变量不是符号——macro不存在地址，直接被展开；局部变量分配在栈上，甚至连地址都不是确定的。
-
-### 冗余的符号表
-
-之所以会出现这样的情况，是因为ELF文件在运行时，并不需要符号表中的信息，只需要映射对应的段到虚拟内存的不同地址中即可。
-
-而对于可重定位文件，符号表则是必不可少的——否则链接将无法进行，链接器对符号的查找也将无从下手。
-
-### 寻找"Hello World!"
-
-在`.rodata`段，因为`.strtab`虽然叫字符串表，但储存的是符号的名字的字符串，而不是程序中的字符串。程序中的字符串是以数据的形式储存着的
-
-### 不匹配的函数调用和返回
-
-`f0`和`f1`是尾递归，可以用一次`ret`代替连续的一整段`ret`
-
-通过vscode的查找，可以发现`f2`和`f3`的call和ret是匹配的，而所有的`f1`只有在递归的base case处有ret，`f2`也是类似的。通过查找可以发现call的数量与check的数字一致，因此call一定不会少，少的就只能是ret了。再继续查找所有对`f`函数的call，刚好能对应上`recursion.c`最后的`check`中的常数，这就有力地证明了我生成的ftrace是正确的实现（至少对所有的call都有了正确的处理）
-
-### 如何生成native的可执行文件
-
-关键在于`CFLAGS`中的`-D`选项，根据传入`ARCH`参数的不同，`Makefile`会通过`gcc`的参数传入不同的宏定义，以此来产生不同平台上的编译产物
-
-### 这是如何实现的？
-
-在定义了`__NATIVE_USE_KLIB__`之后，klib的库函数将会有函数体，因此成为强符号，在链接时所有对库函数的调用都将指向klib中的库函数
-
-### 实现DiffTest
-
-实际上我并不是RTFSC找到的这个顺序，而是直接翻阅了Spike的官方手册得到了这一顺序...
-
-Spike本身就是按照ABI的顺序来的，因此我的代码不需要改变就可以按顺序比对寄存器
-
-### 捕捉死循环(有点难度)
-
-我没有实现，但我猜可以通过记录程序的状态，然后如果多次经过一个位置就比对此时寄存器状态和上一次经过时的寄存器状态，如果相同则很有可能陷入了死循环
-
-不过这样好像会漏掉一些死循环的情况....
-
-### 理解volatile关键字
-
-感觉这里的优化过于激进了
-
-关键在于这里的`_end`是`extern`变量，因此`p`指向的内存可能被其它函数/程序修改，从而导致
-
-1. 仅从函数`func()`来看，`*p`是定值
-2. 但是考虑了其它情况后，`*p`不是定值
-
-这里显式地写出，是为了不让编译器做过度优化，从而保证可执行文件的行为与程序语言的描述一致
-
-### 理解mainargs
-
-`am-kernels/kernels/hello/`目录下的Makefile会include `$AM_HOME/`目录下的Makefile
-
-`$AM_HOME/`目录下的Makefile则会include对应架构的`($ARCH).mk`文件，然后分别include硬件架构和软件平台的两份`.mk`文件
-
-#### nemu
-
-只需要观察`abstract-machine/scripts/platform/nemu.mk`中的`run`规则
-
-这里会通过`-DMAINARGS=\"$(mainargs)\"`传入一个宏`MAINARGS="xxx"`，这里双引号内的字符串将会在`abstract-machine/am/src/platform/nemu/trm.c`中被作为`static const char mainargs[]`的值初始化，然后这个字符串会被传入`main`中，也就是我们的`hello.c`中的`main`函数
-
-#### native
-
-这个和上面比起来就要简单一些
-
-使用`-nB`命令就可以发现，最终的`hello-native`由`hello.o`一个`am-native.a`文件链接而成，寻找这个`am-native.a`就可以发现它源于`platform.o`这个文件，观察`platform.o`就可以发现在函数`init_platform()`中有`const char *args=getenv("mainargs")`这样一行代码
-
-STFW即可发现，`getenv(const char *)`用于找到特定名称的环境变量的值，在这里就是我们在编译时写下的`mainargs=xxx`了
-
-### 神奇的调色板
-
-只需要改变调色板的亮度，就可以不改变显示而实现渐暗效果了
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/" class="post-title-link" itemprop="url">PA1 附加关卡</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-01 20:22:00" itemprop="dateCreated datePublished" datetime="2021-12-01T20:22:00+08:00">2021-12-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          写了很多代码，更宝贵的应该是这些思考和经验，所以就放上来了
-必做题会被删去，和具体实验相关的内容也会被处理掉，应该看起来是不存在剧透的（大概）
-
-## 收货
-PA1主要是在做一些预备工作，例如阅读NEMU的主体框架，添加一些表达式求值、打断点之类的小功能，以及一些测试程序正确性的方法介绍
-
-在提到表达式解析的时候引入了CFG的概念，还用到了正则匹配tokens，写起来不算太难。处理的时候要用一些库函数，也算是练练手
-
-做`gen-expr.c`的时候，手册给了一个把表达式打印到一段代码中然后编译这段代码的方法来获得一个表达式的值——也就是说，我们在利用GCC替我们实现了表达式求值！再加上下面对于除0的排除，这样仅仅通过popen就可以快速测试我们的表达式解析器了。同时还学到一个小技巧：如果不会用sed awk之类的命令行工具，还可以通过管道连接python -c 'xxx' 的方法利用python来进行字符串的小处理，这样还是更方便一些的
-
-
-
-
-## 思考题
-
-### 计算机可以没有寄存器吗
-
-STFW得到一个叫做stack oriented programming的编程范式
-这样的编程范式依赖于一种叫stack machine的机器
-当然,如果在内存中预留出数量固定的地址代替原本寄存器的功能,好像也就免去了寄存器的用处了
-
-### 为什么 init_monitor() 中全是函数调用
-
-把具体的操作按照阶段分成若干部分,再封装成函数,是抽象的一种
-可以方便后期修改(不同函数间相对独立或几乎不相关),方便后期调试(方便打断点调试某个阶段的功能),可以把不必要的细节隐藏起来,提升代码的可读性
-
-### argc 和 **argv 的来头
-
-猜想肯定是调用这个程序的人给的参数,在命令行敲就是命令行给的参数,被别的程序调用就是调用者给的参数
-STFW得到如下结果
-On Linux, a program is started by execve(2) and that system call passes argument to main .
-也就是说调用者通过系统调用来运行别的程序,传参的过程实际上是操作系统完成的
-又去看了CSAPP,得知值传参是通过寄存器传递值完成的,而具体字符串的参数则储存在栈上,实际上操作系统做的就是传递 argc 和 **argv 两个值,然后把参数压入栈中
-
-### 究竟要执行多久?
-
-观察到传入形参的类型是 uint64_t ,因此传入 -1 的意思就是传入一个MAX
-继续观察,后面的循环是 for (;n>0;n--) ,因此传入 -1 的时候就要执行MAX次
-### 传入 -1 是UB吗
-翻到了手册...
-
-> 6.3.1.3 Signed and unsigned integers
-> 
-> 2. Otherwise, if the new type is unsigned, the value is converted by repeatedly
->   adding or subtracting one more than the maximum value that can be
->   represented in the new type until the value is in the range of the new type.
->   
-
-这里的adding和subtracting都指的是数学上的操作,和类型无关,是unbounded的
-也就是说传入 -1 的时候究竟执行多少次取决于无符号形参的类型,这不是UB
-
-### 为什么 printf 后要加 \n
-
-首先是为了可读性,所有输出挤在同一行很难看
-接着STFW得到如下解释
-Very often, if you don't end your printf format string with a \n , some of the output stays
-in the stdout buffer, and you need to call fflush to get all the output shown.
-标准输出利用output buffer来暂时保存一整行的输出, printf("\n") 实际上实行了刷新buffer的功能
-如果不刷新buffer,那么标准输出的行为就不能保证是即时的
-类似的还STFW到这样的说法
-Standard output is line buffered if it can be detected to refer to an interactive device,
-otherwise it's fully buffered.
-
-### 除0的确切行为
-
-在开启较高级编译优化的情况下,常亮表达式的计算将会是编译期行为,因此最终编译器会得到一个
-expr/0 的表达式,就会报warning
-所以只需要修改编译的命令,加上 -O2 -Wall -Werror 就可以让编译器在编译期就得到表达式的值,并
-且把warning变成error,然后根据GCC的返回值是否为 0 就可以判断是否存在除 0 行为了,如果存在
-error就直接再生成一个
-update:
-事实上好像直接看 popen 的返回值就好了,我当时在想什么...
-
-### static 关键字
-
-1. static 变量储存在静态区,生命周期和全局变量一样,但是作用域和局部变量一样
-  
-2. static 变量只会被初始化一次
-  
-3. static 修饰的变量和函数对其他编译单元是不可见的
-  
-
-这里用的是性质3,提供了类似 class 中 private 成员函数的功能
-
-### 随心所欲的断点
-
-因为每次解析指令的时候都是从 $pc 开始的,并且 $pc 只会经历所有指令的首尾,所以从指令的中间设置断点会跳过这个断点
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/07/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8905-Semantics/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/07/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8905-Semantics/" class="post-title-link" itemprop="url">形式语义05 Semantics</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-11-07 17:14:00" itemprop="dateCreated datePublished" datetime="2021-11-07T17:14:00+08:00">2021-11-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## Formal Semantic
-
-一般分三种
-
-1. Operational Semantic，操作语义
-2. Denotational Semantic，指称语义
-3. Axiomatic Semantic，公理语义
-
-主要记一下操作语义
-
-
-
-## Operational Semantic
-
-对命令式语言而言，一个程序的运行状态可以用 状态$\times$当前语句地址 二元组确定，那么就可以用 $\left<c,\sigma\right>$ 描述一个执行状况，表示接下来要执行 $c$，目前的状态为 $\sigma$
-
-状态一般指的是 $\text{Value}^\text{Var}$ 的函数，这里规定 $\text{Var}$ 表示变量的集合，$\text{Value}$ 表示值（常量）的集合。注意这里的集合内都是符号，与语义无关。例如我们说$23456$是一个值，但它的具体含义是什么在这里并不关心。具体给值的符号赋予含义的操作，一般由另外的函数进行，例如说 $\text{Meaning}:\text{Value}\mapsto \mathbb N$ 就是一个给所有Integer Tokens赋予具体整数含义的映射
-
-操作语义一般分为大步语义（$\Downarrow$Big-Step）和小步语义（$\rightarrow$Small-Step），分别用于不同目的的研究。一般操作语义要依靠语法结构进行，即它是Syntax Directed的。因此有时候也叫做SOS（Structural Operational Semantics）
-
-通常讲语义会基于一个具体的语言给一些例子，建议直接找PLDI和POPL的形式语义论文看
-
-
-
-### Evaluation
-
-$$
-\frac{\left<x,\sigma\right>\rightarrow\left<{\rm{n_1} },\sigma'\right>}{\left<x+y,\sigma\right>\rightarrow\left<{\rm{n_1} }+y,\sigma'\right>}
-\\
-\\
-\frac{\left<y,\sigma'\right>\rightarrow \left<{\rm{n_2} },\sigma''\right>}{\left<{\rm{n_1} }+y,\sigma'\right>\rightarrow\left<{\rm n_1+n_2},\sigma''\right>}
-\\
-\\
-\frac{x\in\text{Var} }{\left<x,\sigma\right>\rightarrow\left<\sigma(x),\sigma\right>}
-\\
-\\
-\frac{\text{Meaning}({\rm n_1})+\text{Meaning}({\rm n_2})=\text{Meaning}({\rm n_3})}{\left<{\rm n_1+n_2},\sigma\right>\rightarrow\left<{\rm n_3},\sigma\right>}
-$$
-
-注意这里$\text{Meaning}$映射后的加法实际上是正整数的加法，而二元组中的$+$仅作为符号，具体含义由$\text{Meaning}$决定
-
-以求值为例，来展示一下小步语义的特点
-
-
-
-给出的求值语义有一些比较好的性质：
-
-1. 可以看到上面给出的求值语义是确定的(Deterministic)，这**并不是**所有语言必备的
-2. 并且我们对代码、状态二元组的推导只能通过每次寻找当前语句的结构中，最左的可推导的句子，这**也不是**所有语言必备的；
-
-到这里就可以发现一些情况了。所谓的形式语义无非是刻画某些东西性质的一类工具，具体只能作为解决问题的帮手，而本身只起到一种规范的作用，也就是Reference Manual了。并且这种语义是建立在数学符号上的，**可以**与具体的实现无关（当然也可以有关，但这并不是我们希望的），可以非常容易地进行推理
-
-
-
-对于上面给出的例子，可以用写表达式求值辅助：对于给定的表达式**二叉树**（why 二叉？），我们规定必须先算左子树，再算右子树。如果遇到了变量，就替换为它在环境中的值；如果遇到了常量+常量，就把token转化为整数，计算之后再变回token。
-
-到这里就又可以发现一些事情。操作语义几乎就是在模拟一个具体的算法、一个抽象计算机上编程语言的执行过程、一个解释执行的解释器。反过来，有了操作语义，我们也可以以此指导编译器、解释器的实现，规范具体细节。
-
-这有什么用？用JYY的话说，我们就可以用一个**甚至还没有被实现的**语言来编写程序、模拟执行，并且预测这些程序的结果、证明它的细节了。这是多酷的一件事情！
-
-
-
-### While
-
-$$
-\frac{[\![exp]\!]\sigma=\bold{true} }{\left<{\bold{while} }\;exp\;\bold{do}\;stmt,\sigma\right>\rightarrow\left<stmt\bold;\;\bold{while}\;exp\;\bold{do}\;stmt,\sigma\right>}
-\\
-\\
-\frac{[\![exp]\!]\sigma=\bold{false} }{\left<{\bold{while} }\;exp\;\bold{do}\;stmt,\sigma\right>\rightarrow\left<\bold{skip},\sigma\right>}
-\\
-\\
-\frac{\left<stmt_1,\sigma\right>\rightarrow \left<stmt_1',\sigma'\right>}{\left<stmt_1\bold;\;stmt_2,\sigma\right>\rightarrow\left<stmt_1'\bold;\;stmt_2,\sigma'\right>}
-\\
-\\
-\frac{}{\left<\bold{skip;}\;stmt,\sigma\right>\rightarrow\left<stmt,\sigma\right>}
-\\
-\\
-\frac{}{\left<\bold{skip},\sigma\right>\rightarrow\left<\bold{skip},\sigma\right>}
-$$
-
-这里主要想讲 $[\![exp]\!]\sigma$ 这个符号的用法。这里表示在环境 $\sigma$ 下，表达式求出的值是什么。其具体含义与操作语义的求值相同，但是注意到操作语义在执行的过程中会丢失表达式的结构信息（我们在一步步化简），因此通常需要把求值和化简分开，这里表现为用单独的函数表示求值操作，以此简化$\bold{while}\;\ldots\;\bold{do}$ 的操作语义规则，否则我们得这么写：
-$$
-\frac{}{\left<{\bold{while} }\;exp\;\bold{do}\;stmt,\sigma\right>\rightarrow\left<\bold{if}\;exp\;\bold{then}\;(stmt\bold;\;\bold{while}\;exp\;\bold{do}\;stmt)\;\bold{else}\;\bold{skip},\sigma\right>}
-$$
-
-
-### Evaluation Context
-
-人总喜欢偷懒，观察到上面的操作语义其实在做很重复的事情：
-
-1. 我们写一堆加法的rules，然后获得了加法操作
-2. 再写一堆乘法的rules
-3. 再写一堆减法的rules
-4. 再写一堆二元运算的rules....
-
-可以发现，既然这些都是二元运算，那么能不能给所有的二元运算定义一次求值顺序（e.g. 最左推导、确定性blabla），然后只需要根据不同情况带入具体算符就可以了？
-
-这就是所谓的Evaluation Context了
-
-仍然以Evaluation为例，可以规定 
-$$
-{\cal E}:=[\;]{\,\Big |\,}{\cal E}+exp{\,\Big |\,}{\rm n}+{\cal E}{\,\Big |\,}{\cal E}-exp{\,\Big |\,}{\rm n}-{\cal E}
-$$
-这里我们称 $\cal E$ 为Evaluation Context，对于带入其中的项 $r$ 称为Redex
-
-那么我们只需要如下几条rules，就足够表达出带有加减法的表达式求值语法：
-$$
-\frac{\text{Meaning}({\rm n_1})+\text{Meaning}({\rm n_2})=\text{Meaning}({\rm n_3})}{\left<{\rm n_1+n_2},\sigma\right>\rightarrow\left<{\rm n_3},\sigma\right>}
-\\
-\\
-\frac{\text{Meaning}({\rm n_1})-\text{Meaning}({\rm n_2})=\text{Meaning}({\rm n_3})}{\left<{\rm n_1-n_2},\sigma\right>\rightarrow\left<{\rm n_3},\sigma\right>}
-\\
-\\
-\frac{\left<s,\sigma\right>\rightarrow \left<t,\sigma\right>}{\left<{\cal E}[s],\sigma\right>\rightarrow\left<{\cal E}[t],\sigma'\right>}
-$$
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/07/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8905-Semantics/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/" class="post-title-link" itemprop="url">密码学04 PRG&PRF</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-19 21:09:00" itemprop="dateCreated datePublished" datetime="2021-10-19T21:09:00+08:00">2021-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-
-## Pseudo Random Generator
-
-真的随机性是要求很强的东西，上一章是对安全性的适当弱化，而这一章就是对随机性的适当弱化，使得我们可以得到一个“不那么随机但是可以当成随机数用的随机数”
-
-也就是伪随机性
-
-### 定义
-
-这里的随机性指的是一个比特串的分布的随机性，通常用 $\text{Dist}$ 表示
-
-为了使用，这个分布通常是计算出来的，即有一个**多项式确定性**算法 $G$，可以通过一个真随机种子 $s$ 得到一个伪随机串 $G(s)$
-
-通常我们要求 $G(s)$ 的输出要比输入长（否则一个平凡的伪随机函数可以取 $G(s)=s$，这没有意义；），因为在前面我们知道OTP的一大缺陷就在于双方需要共享很长（与密文等长）的秘钥。假若我们可以通过 $G(\cdot)$ 和一个较短的真随机数 $s$ 来获得一个较长的（和密文等长）的比特串，那么就可以部分解决OTP的问题了
-
-
-
-我们称一个 $G(\cdot)$ 是伪随机函数，当且仅当对于任意PPT的算法 $D$，都有 $|Pr\left[D(G(s))=1\right]-Pr[D(r)=1]|\leqslant\text{negl}(n)$，这里 $r$ 是一个真随机串，其中 $D$ 输出 $1$ 表示算法认为这是一个伪随机函数。
-
-这个式子的含义是：如果任何**高效**的算法都无法以一个大于 $\text{negl}$ 的概率区分出我们的$G(\cdot)$和真随机的比特串，那么我们就可以认为这个生成器有比较好的随机性——即伪随机性
-
-
-
-注意到定义中我们没有对伪随机生成函数做出任何行为上的定义，即这样的函数其实是理想的模型，定义并不是构造的。通常我们可以认为目前已有的一些随机数生成器具有PRG的性质，即"某样东西是PRG"属于安全性证明前提中的假设部分
-
-
-
-### 实现
-
-具体的典型PRG实现一般通过一个有限状态自动机来完成，即我们的每一步构造其实都是确定性的，但是每一步都依赖于随机种子 $s$
-
-一类比较经典的PRG其实可以生成任意长的比特串，然后再根据需要连续截取来获得不同的随机串
-
-
-
-### 应用
-
-如果把OTP的真随机变成这里的PRG，那么就可以得到一个Computationally Secure的加密策略。注意到与原本需要共享与明文等长的key不同，此处只需要双方共享PRG的key，而根据PRG的定义这个key是要比明文的长度短的。这样就通过牺牲一些安全性（多了一个$\text{negl}$）解决了key太长的问题
-
-
-
-## Multiple Encryptions
-
-前面的EAV-secure都是基于一个假设的：每次通讯只会传输一条密文。这个假设显然是不够强的——我们肯定会有多条消息传输的需求，在这种情况下，之前的某些安全加密策略就变得不安全了
-
-同样先定义一个游戏 $Priv^\text{mult}_{\mathcal A,\Pi}(n)$ 如下：
-
-1. 首先生成一个key
-2. $\mathcal A$ 给出两条**明文向量** $\vec{m_0},\vec{m_1}$
-3. Challenger随机一个比特 $b$，把 $\vec{c_b}$ 发回给 $\mathcal A$
-4. $\mathcal A$ 来猜 $b$
-
-如果 $Pr[Priv^\text{mult}_{\mathcal A,\Pi}(n)=1]\leqslant\dfrac1 2+\text{negl}(n)$，那么就称策略 $\Pi$ 是mult-secure的（这个词是我自己发明的....囧）
-
-
-
-一个很重要的观察是，如果加密算法是确定性的，那么这个策略一定不是mult-secure的，攻击构造如下：
-
-1. $\mathcal A$ 只需要给出 $\vec{m_0}=(M_1,M_1)$，$\vec{m_1}=(M_1,M_2)$，其中 $M_1\neq M_2$
-2. 对于接收到的 $\vec{c_b}=(C_1,C_2)$，若 $C_1=C_2$ 就猜 $b=0$，否则猜 $b=1$
-
-用这个 $\mathcal A$ 去玩上面的游戏正确率是$1$，因此这个策略不是mult-secure的。我们还可以发现前面讲过的弱化OTP也是确定性的，因此做不到mult-secure
-
-这提醒我们要给加密算法引入随机性，引入随机性的方法就是PRF
-
-
-
-## Pseudo random Functions
-
-首先要引入functionality的概念，即一个概率的函数。对于函数 $\hat F$，若对于某输入 $x$ 而言，其结果 $\hat F(x)$ 满足某概率分布，那么我们就称其为一个 functionality。可以发现传统的definite function也是一类特殊的functionality
-
-所谓PRF类似PRG，就是期望通过一类确定性的算法来模拟出随机函数的行为。因此概率的引入就全部在于密钥 $k$ 了
-
-也就是说我们有一个函数的集合(A family of functions) $Func$，我们可以通过一个密钥 $k$ 来实例化出一个具体的函数 $F_k$，这是一个确定性的函数。
-
-由于 $k$ 是完全随机的，所以在Adversary 眼中 $F_k$ 的行为也**应该**是完全随机的。但是因为我们的生成算法是多项式的，因此 $|Func|$ 也是多项式的，即 $Func$ 只能做到非常有限的采样，因此 $F_k$ 又**不可能**是完全随机的（这一段要体会一下）
-
-
-
-我们称一个函数集（族）是伪随机函数当且仅当对于任意PPT的算法 $D$，都有 $\left|Pr\left[D^{F_k(\cdot)}(1^n)=1\right]-Pr\left[D^{f(\cdot)}(1^n)=1\right]\right|\leqslant\text{negl}(n)$ 成立。其中 $D$ 输出 $1$ 表示算法猜这**是**一个伪随机函数
-
-这个式子的随机性引入来自两方面：1. $k$ 的选取 2. $f$ 是一个真随机函数
-
-这里之所以把 $F$ 写在右上角是习惯问题，意思是 $D$ 不需要自己计算函数值，而是通过访问我们人为提供的oracle（谕示机，这名字好屌）来瞬间得到答案
-
-这么做是因为如果我们把某个函数作为参数传入，则可能会需要处理指数级的信息，这与多项式时间复杂度是矛盾的。
-
-
-
-### 实现
-
-对PRG进行定长采样就可以得到一个PRF了
-
-
-
-### 应用
-
-可以构造如下加密策略：
-
-1. $\text{Enc}(m)$ 会随机生成一个 $r$，然后把 $\left<r,m\oplus F_k(r)\right>$ 作为密文输出
-2. $\text{Dec}(\left<r,c\right>)$ 则通过计算 $c\oplus F_k(r)=m\oplus F_k(r)\oplus F_k(r)=m$ 就能得到明文
-
-这个策略的安全性的保障在于，对于Adversary而言 $k$ 是未知的，而 $F$ 是PRF。要证明也很简单，只需要把 PRF换成真随机函数，这样就可以确保 $\mathcal A$ 只有 $\dfrac12$ 的成功率(why?)，而一个能**有效**攻击PRF策略的算法，必然也能用于**有效**区分PRF和真随机函数（证明这一点需要构造一下），这与PRF的定义矛盾，因此是不存在这样的策略的。
-
-
-
-## Weakly Pseudo random Function
-
-密码学的一个套路就是先引入一个问题，然后通过实践或者需求来强化/弱化某些条件，再猜想/证明这些情况下的构造仍然具有一些良好的性质
-
-所谓Weakly Pseudo random的意思就是，对于任意的PPT算法 $D$，都有 $\left|Pr\left[D^{F_k^\$(\cdot)}(1^n)=1\right]-Pr\left[D^{f^\$(\cdot)}(1^n)=1\right]\right|\leqslant\text{negl}(n)$ 对任意的 $\text{negl}(n)$ 成立
-
-和PRF的区别在于，这里我们给 $D$ 的是一个概率oracle，即每次 $D$ 向oracle查询的时候，会由oracle生成一个随机数 $r$，然后把 $\left<r,F(r)\right>$ 给 $D$
-
-意思是虽然 $D$ 有能力知道一些 $F$ 的取值，但是具体取到哪些 $x$ 并不由 $D$ 决定
-
-
-
-有一个定理：一个PRF一定是WPRF，但反之不一定成立。证明比较简单，因为是课后习题所以不放具体证明了
-
-一个经典的构造如下：如果我们有一个PRF $F$，那么我们就可以构造一个WPRF $F'(x)=\left\{\begin{aligned}F(y)&,&x=y||0\\F(y)&,&x=y||1\end{aligned}\right.$
-
-根据这个例子可以发现，构造同样长度的PRF要比WPRF简单的多，因为我们只需要一个更短的PRF就可以弱化得到一个更长的WPRF了
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/" class="post-title-link" itemprop="url">形式语义04 Types</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-05 10:42:00" itemprop="dateCreated datePublished" datetime="2021-10-05T10:42:00+08:00">2021-10-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## Types
-
-首先要说明什么是Type
-
-Types可以看成是对数据的分类、一种约定，即我们用一个界来描述一类数据构成的集合，用不同的界区分不同的数据种类。对于untyped的语言，我们则可以看成是只有唯一一种包罗万象的type
-
-类型实际上有很多作用，可以进行针对性的优化、可以提供部分代码的信息、可以作为接口分离各模块的逻辑、可以保证程序的正确执行.....
-
-如果写过Coq的话，还会知道类型可以与逻辑系统中的元素建立对应关系，从而可以利用类型推导工具来进行定理的证明（虽然我感觉这是绕了一个大弯，毕竟类型系统本来就应该看成一类特殊的逻辑系统），也就是Curry-Howard morphism
-
-这一节讲的就是在$\lambda$-calculus中引入type
-
-
-
-## Errors
-
-分为trapped errors和untrapped errors
-
-trapped意思是就是出现使得程序停止的错误（除0）
-
-untrapped意思是程序虽然继续运行，但是状态被破坏了（回想注入攻击）
-
-
-
-forbidden-error则指的是一个untrapped errors的超集
-
-
-
-## Safe & Well-behaved
-
-我们称一个程序是safe的，当且仅当它执行过程中不会出现untrapped error。如果一个语言的所有合法程序都是safe的，那么我们就称这个语言是safe的
-
-我们称一个程序是well-behave的，当且仅当它在执行过程中不会出现forbidden-errors。
-
-
-
-于是就可以定义type safe了。如果一个语言经过了type system检查的程序都是safe的，那么我们称这个语言就是type safe的
-
-
-
-实践中通常不明确定义forbidden-errors、well-behave以及safe，一般混着来，不过不影响理解
-
-
-
-## Annotations
-
-把变量 $x$ 的类型为 $\tau$ 记作 $x:\tau$
-
-把"以类型 $\tau_1$ 作为输入、$\tau_2$ 作为输出"的函数 $f$ 的类型记作 $f:\tau_1\rightarrow \tau_2$
-
-有些变量的类型由环境决定，例如表达式 $f\;1$，在 $f:\text{int}\rightarrow\text{int}$ 和 $f:\text{int}\rightarrow\text{double}$ 两种情况下的类型就不一样，因此需要引入环境的概念，用函数 $\Gamma:\text{Types}^\text{var}$ 表示，意思是给free variable分配类型，也可以理解成*假设*
-
-在Simply Typed $\lambda$-calculus里，类型仅由基本类型以及通过函数对基本类型进行复合两种方法得到。很显然类型的数量是可数的
-
-以及若干推导规则：
-
-1. $\Gamma,x:\tau_1\vdash e:\tau_2\Rightarrow \Gamma,x_1:\tau_1\vdash \lambda x.e:\tau_1\rightarrow\tau_2$，意思是函数的类型由参数类型和返回值类型确定。
-2. $\Gamma,x:\tau\vdash x:\tau $，意思是在相同环境下，同名变量有相同类型
-3. $\Gamma,e_1:\tau_1\rightarrow\tau_2,e_2:\tau_1\vdash e_1\;e_2:\tau_2$，意思是给一个函数传入参数就可以得到返回值的类型
-
-
-
-可以发现，一个类型系统类似一个逻辑系统，我们有若干公理（变量类型）、推导规则，并且我们希望所有的命题都可以通过推理得到，也都有相应的语义含义
-
-
-
-## Soundness & Completeness 
-
-也有叫Consistency的
-
-如果一段代码能给所有表达式标上类型：即每个表达式的类型都可以在类型系统中推导得到，那么就称类型系统accept了这段代码
-
-我们称类型系统sound，当且仅当所有通过的代码都不会出错
-
-我们称类型系统complete，当且仅当所有不会出错的代码都能通过检查
-
-
-
-很快就能反应过来对于递归可枚举的图灵完备的语言而言，这个问题是不可判定的。因此通常的做法是牺牲completeness追求soundness，意思是也许你的做法是对的，但我们建议用其它可以通过检查的方法来写；并且所有通过的代码都必须是安全的
-
-
-
-在Simply Typed $\lambda$-calculus中，不出错就意味着：
-
-如果 $\vdash M:\tau$ 并且 $M\overset *\rightarrow M'$，那么就有 $\vdash M':\tau$
-
-并且要么 $M'$ 是一个value，要么 $M'$ 可以继续规约。这里value通常就定义为normal form
-
-*上面两条分别对应了下面的两个定理*
-
-
-
-一个证明上述type system不complete的例子如下：
-
-$(\lambda x.(x\; (\lambda y.y))(x\;3))(\lambda z.z)$
-
-关键就在于对于同一个 $x$，它既作用于 $(\lambda y.y)$，又作用于 $3$，因此我们不能推导得到 $x$ 的类型，因此也就无法通过类型系统的检查
-
-但是稍微规约一下就可以得到 $(\lambda y.y)\;3=3$，最终是可以停止并得到值的，意思是这段代码不会出错
-
-
-
-### Progress TH
-
-如果 $\vdash e:\tau$，那么要么 $e$ 是value，要么存在 $e\rightarrow e'$
-
-证明这个只需要对推导次数进行归纳就可以了
-
-
-
-引理1：如果一个拥有 $\tau_1\rightarrow\tau_2$ 类型的表达式 $e$ 是value，那么它一定是 $\lambda x.E$ 的形式
-
-引理1的证明：观察类型推导的规则就可以发现，能够给出 $\tau_1\rightarrow\tau_2$ 类型的规则只有一条。反证即可说明
-
-
-
-Progress的证明：
-
-base case 是很简单的，这里就不写了
-
-设当推导次数 $n=k$ 时命题成立，分类讨论第 $k+1$ 次推导时表达式 $e$ 的结构：
-
-1. 常量，此时 $e$ 是value，符合；
-2. $e=x$，此时环境为空，不可能有 $\vdash x:\tau$
-3. $e=\lambda x.E$，此时 $e$ 是value，符合；
-4. $e=e_1\;e_2$，分类讨论 $e_1,e_2$
-   1. $e_1$ 不是value，那么由归纳假设，存在 $e_1'$ 使得 $e_1\rightarrow e_1'$，符合；
-   2. $e_1$ 是value，$e_2$ 不是value，那么同理存在 $e_2\rightarrow e_2'$，符合；
-   3. $e_1,e_2$ 都是value，根据引理有 $e_1=\lambda x.E$，于是有 $e_1\;e_2\rightarrow E[e_2/x]$，符合；
-
-由数学归纳法得命题对任意自然数次的推理成立
-
-关键在于为什么需要引理，以及何时使用引理
-
-
-
-## Preservation TH
-
-意思是如果 $\vdash e:\tau$ 且 $e\rightarrow e'$，那么有 $\vdash e':\tau$
-
-
-
-引理2：若 $\Gamma,x:\sigma\vdash E:\tau$，且 $\Gamma\vdash e:\sigma$，那么 $\Gamma\vdash E[e/x]:\tau$
-
-证明比较简单，只需要对 $e$ 推导归纳再分类讨论就好了
-
-
-
-仍然对推理次数进行归纳，同样省去base case
-
-对 $e$ 的结构分类讨论：
-
-1. $e$ 是常量，那么不存在 $e'$；
-2. $e=x$，那么不存在 $e'$
-3. $e=\lambda x.E$，那么不存在 $e'$
-4. $e=e_1\;e_2$，那么就有 $\vdash e_1\;e_2:\tau$，并且 $\vdash e_1:\sigma\rightarrow \tau,e_2:\sigma$
-   1. 存在 $e_1\rightarrow e_1'$，那么就有 $e\rightarrow e_1'\;e_2$。根据归纳假设有 $\vdash e_1':\sigma\rightarrow\tau$，又根据类型推导规则有 $\vdash e_1'\;e_2:\tau$，归纳步骤成立；
-   2. 存在 $e_2\rightarrow e_2'$，那么就有 $e\rightarrow e_1\;e_2'$。根据归纳假设有 $\vdash e_2':\sigma$，再根据类型推导规则有 $\vdash e_1\;e_2':\tau$
-   3. $e_1,e_2$ 都是normal form，那么根据引理1有 $e_1=\lambda x.E$ 的形式，于是 $e=e_1\;e_2=\lambda x.E\; e_2$。此时显然有 $e\rightarrow E[e_2/x]$，根据引理2有 $\vdash E[e_2/x]:\tau$
-
-于是就证完了
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/" class="post-title-link" itemprop="url">密码学03 Computational</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-27 14:27:00" itemprop="dateCreated datePublished" datetime="2021-09-27T14:27:00+08:00">2021-09-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## Background
-
-前面提到的perfect secrecy虽然好，但有着理论上的局限：key太长、key太多等等，用起来不是那么方便
-
-一个idea就是，我们放弃部分安全性来换取更实用的密码。这里要回答几个问题：放弃哪些？放弃多少？放弃之后的安全性如何衡量？
-
-注意，接下来的讨论如无特殊说明，都以eavesdropper作为threat model
-
-
-
-## Computational Security
-
-首先回答"放弃哪些"，这部分直接产生了Computational Security的概念
-
-perfect secrecy要求即使是有**无穷算力**的窃听者也**不能得到任何**关于明文的信息（概率分布不变），而Computational Security就妥协了加粗的两处：
-
-1. 仅考虑一个比较强的窃听者，意思是窃听者虽然有一定计算资源，但并不是无上限的。并且在给定足够时间的条件下，窃听者可以威胁到信息安全。但是如果我们能把破译所需的算力要求设定得很高，那么我们就可以保证在一段时间内明文的安全
-2. 窃听者能够以一个概率成功破译。如果我们能让这个概率很低，那么就可以让窃听者破译成为极小概率事件
-
-
-
-## Informally Define Security Levels
-
-既然作出了妥协，那么最好能明确说明"究竟要放弃多少"，这部分主要有两个方法
-
-
-
-### Concrete Approach
-
-这个很好理解，所有的concrete approach都可以理解为如下句式：
-
-“在窃听者破译花费时间不超过$T_0$时，他破译的成功率至多为$P_0$”，这样的密码也被称为$(T_0,P_0)$-secure的密码
-
-
-
-这么做的好处和坏处都是显然的。一句话就是，通常这个结果是**不够普遍**，但**具体有用**的
-
-好处是很直观，把最直接应用的条件给出来了
-
-坏处是这只是一个关于时间上界的一个概率上界，我们不能知道更多的信息（如果花费了更多时间概率是多少？如果只花费一半时间概率又会是多少？不知道）。当然还要明确各种技术进步的影响、计时的衡量等等。
-
-
-
-### Asymptotic Approach
-
-意思是我们给每个密码策略赋予一个整数的security parameter，通常记作$n$。而一个密码策略被攻破的概率就可以写成$n$的函数$P(n)$，而一个窃听者的计算就可以用计算复杂度函数$T(n)$来表示
-
-
-
-#### Negligible Function
-
-如果一个函数$F(n)$有：$\forall c,\exists N\in\mathbb N^+$ 使得当 $n>N$ 时恒有 $F(n)<\dfrac{1}{n^c}$，那么我们就称 $F(n)$ 是negligible的
-
-其实可以换个方式理解，如果$\dfrac{1}{F(n)}$在渐进意义下比任何多项式函数都要大，那么$F(n)$就是可忽略的
-
-
-
-negligible有很好的性质：
-
-$\forall F(n)\in\text{neg}$，任取**正**多项式函数 $p(n)$，我们有 $p(n)\cdot F(n)\in\text{neg}$
-
-这个只需要证明$\text{neg}$乘上常数、乘上$x^k$、任意加减仍然是$\text{neg}$就好了
-
-
-
-#### Probabilistic Polynomial Time(PPT)
-
-Polynomial意思是存在一个多项式$p(n)$作为bound，使得任意情况下这个算法的复杂度不超过$p(n)$
-
-Probabilistic意思是这个算法可以获得真随机数源，即它可以获得任意多的均匀0/1随机比特
-
-
-
-有了如上介绍，给出Asymptotic Approach的定义：
-
-对于给定的$n$而言，如果任意概率多项式复杂度的算法都不能以高于的negligible函数的概率破解该密码，那么我们就称这个密码是安全的
-
-
-
-同样列一下pros&cons
-
-好处就是我们可以通过调整parameter来构造出针对不同需求的（即对应于concrete method）密码，并且可以很好评估一个密码的性能
-
-好像没啥坏处，因为concrete method可以看成是这个的特殊情况。
-
-
-
-事实上efficient adversary和概率的界定从某种程度上来说是任意的，这里选择PPT和negligible有几个原因
-
-1. 在计算理论中多项式复杂度有特殊地位，这类算法被认为是高效的，并且Church-Turing命题保证了不同计算模型上多项式算法的不同实现仍然至多有多项式级别的差距，意思是还是多项式的
-2. 多项式函数具有一定的闭包性质(closure)，多项式的复合、四则运算仍然得到多项式
-3. negligible也有很好的性质，任意多项式个$\text{neg}$得到的仍然是一个$\text{neg}$，意味着如果单次破译的概率是$\text{neg}$的话，在多项式次尝试后破译概率仍然是$\text{neg}$的
-
-
-
-## Private-key Encryption Scheme
-
-一个私钥加密由一个PPT算法上的三元组构成 $(\text{Gen, Enc, Dec})$
-
-1. $\text{Gen}$会输入一个表示parameter的参数（通常用一个unary number $1^n$表示parameter为 $n$），然后生成一个key。通常我们会假设 $|k|\geqslant n$
-2. $\text{Enc}$会输入一个表示明文的串$m\in\left\{0,1\right\}^*$和$k$，然后得到一个密文$c\in\left\{0,1\right\}^*$
-3. $\text{Dec}$会输入$c,k$，然后得到对应的明文$m$。注意$\text{Dec}$是deterministic的函数，并且$\text{Dec}_k(\text{Enc}_k(m))=m$。如果输入的密文在对应key下不能得到任何明文，还要求返回一个错误值
-
-
-
-如果密码对$m$的长度有固定要求$\mathscr l(n)$，那么我们称这是固定长度$\mathscr l(n)$的私钥加密
-
-
-
-### Security Goal Definition
-
-semantic security是最早用来形式化computational security的定义。因为比较复杂所以咕咕咕
-
-这里用的实际上仍然是adversary game的定义方式
-
-
-
-#### Distinguish Game
-
-1. $\mathcal A$ 选取两条**等长**消息 $m_0,m_1$，记 $n=|m_0|$，把消息发出去
-2. 我们获得一个随机比特$b$，设定parameter为$n$得到一个key，并加密 $m_b$ 发给 $\mathcal A$
-3. $\mathcal A$ 猜 $c$ 对应哪条明文，输出一个结果。$\mathcal A$ 猜测的正确性用 $\text{PrivK}^{\text{eav} }_{\mathcal A,\Pi}(n)$，表示（$1$正确$0$错误）
-
-
-
-记一个密码 $\Pi=(\text{Gen, Enc, Dec})$
-
-若对于任意PPT的算法$\mathcal A$ 都有 $\left|Pr[\text{PrivK}^{\text{eav} }_{\mathcal A,\prod}(n)=1]-\dfrac 1 2\right|<\text{neg}(n)$，那么我们就称 $\Pi$ 是EAV-secure的
-
-这个定义很直观，意思是无论我用什么PPT的策略猜，在多项式时间内最多也只能够比随机猜要好出一个 $\text{neg}$
-
-注意到perfect secrecy的定义是这个的特例，对比可以发现妥协了恰好就是上面提到的两项
-
-
-
-另一个等价定义：
-
-定义 $\text{out}_{\mathcal A}(n,b)$ 表示一次固定了 $b$ 的 $\mathcal A$ 的输出，那么EAV-secure 等价于
-
-$\left|{Pr[\text{out}_{\mathcal A}(n,0)=1]-Pr[\text{out}_{\mathcal A}(n,1)=1]}\right|<\text{neg}(n)$
-
-意思是对于一个adversary，它在$b$不同的情况下表现几乎一致。注意到 $\mathcal A$ 的功能仅仅是输出一个bit，因此"表现"意味着输出结果是什么，而"几乎一致"则可以用仅仅相差 $\text{neg}$ 衡量
-
-
-
-证明它们的等价性只需要注意到 $Pr[\text{PrivK}^\text{eav}_{\mathcal A,\Pi}(n)=1]=\dfrac1 2Pr[\text{out}_\mathcal A(n,0)=0|b=0]+\dfrac1 2Pr[\text{out}_\mathcal A(n,1)=1|b=1]$
-
-以及 $Pr[\text{PrivK}^\text{eav}_{\mathcal A,\Pi}(n)=1]+Pr[\text{PrivK}^\text{eav}_{\mathcal A,\Pi}(n)=0]=1$ 即可
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/" class="post-title-link" itemprop="url">形式语义03 Lambda</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-16 11:36:00" itemprop="dateCreated datePublished" datetime="2021-09-16T11:36:00+08:00">2021-09-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          $\lambda$-calculus
-
-# Background
-
-首先这是一种编程语言，在1930s被Alonzo Church和Stephen Cole Kleene发明（两位都是听说过的明星人物）
-
-还是一种计算模型，在1937年被Alan Turing证明其和图灵机的表达能力等价（这位更是重量级）
-
-
-
-$\lambda$ 演算是函数式编程的基础，同时它简单的特点也使得很适合用于研究PL的各个领域（回忆IDFS中的$\lambda$ 表达式作为transfer function）
-
-
-
-PL的东西有点乱，大家的说法和记号也都不一样，这里选择了可能算是比较好理解又简洁的一种
-
-
-
-# Syntax
-
-定义 $\mathcal V$ 是无穷变量集合，$\Sigma=\mathcal V\cup\left\{(,),\lambda,.\right\}$ 为字符集，那么定义一个term为$\Sigma$上满足的某些约束的有穷串
-
-$\lambda$ calculus term组成的集合 $\Lambda\subseteq \Sigma^*$ 定义为**满足如下条件的最小集合**：
-
-1. 若 $x\in\mathcal V$，那么 $x\in\Lambda$
-2. 若 $M,N\in\Lambda$，那么 $(MN)\in\Lambda$，此时称 $N$ 是**parameter**
-3. 若 $x\in\mathcal V$ 且 $M\in\Lambda$，那么 $(\lambda x.M)\in\Lambda$，此时称 $M$ 为这个term的**body**
-
-上面三种形式分别叫做**variable**、**application**、**$\lambda$ abstraction(function)**
-
-
-
-为了简略（这也太简略了），有一些约定俗成的优先级和结合律：
-
-1. 最外层括号可以省略不写，例如 $(\lambda x.x^2)=\lambda x.x^2$
-2. Application形式是左结合的，即 $f\;x\;y\;z=((f\;x)\;y)\;z$
-3. 一个$\lambda$的约束范围(scope)向右延伸，body的范围尽可能长。例如 $\lambda x. x+y=\lambda x.(x+y)\neq(\lambda x. x)+y$
-4. 多个$\lambda$ 可以写在一起。例如 $\lambda x.\lambda y.\lambda z.=\lambda xyz.$
-
-
-
-# Semantics
-
-
-
-## Bound & Free Variables
-
-对于一个形如 $\lambda x.N$ 的term，我们就说 $N$ 中出现的 $x$ 都被绑定(binding)到了 $\lambda x.$ 上，并把 $\lambda x.$ 叫做binder
-
-注意绑定是可以嵌套的，例如 $\lambda x. (\lambda f.\lambda x.f\; x)+x$，最里面的 $x$ 被绑定到了第二个 $\lambda x.$，而最后一个 $x$ 则被绑定到了第一个 $\lambda x.$ 这个规则和C的作用域是很相似的
-
-如果一个变量没有被绑定，就被称为自由变量(free variables)
-
-
-
-一个bound variable是可以被换名字而不改变term的含义的，类似于C function中形参的名字其实是任意的（但仍然有限制，后面会说）。而free variable则不能随意换名字。因此我们主要关注一个term $M$ 中具体的free variables有哪些，用 $FV(M)$ 这个记号来表示
-
-容易有如下规则：
-
-1. $FV(x)=\left\{\;x\;\right\},\; x\in\mathcal V$
-2. $FV(\lambda x.M)=FV(M)-\left\{\;x\;\right\}$
-3. $FV(M N)=FV(M)\cup FV(N)$
-
-也就是结构归纳
-
-
-
-## Substitution
-
-这里的substitution和直接替换是有区别的，注意我们substitute的必须是free variable
-
-我们用 $M[x/y]$ 或者 $M\left\{x/y\right\}$、$M[y:=x]$ 来表示用 $x$ 替换掉term $M$ 中的 $y$ 的结果，并把一次substitution记作 $M\rightarrow M[x/y]$
-
-
-
-考虑如下C代码
-
-```c
-int x=1;
-int y=2;
-
-int foo(int z) {
-    return x + y + z;
-}
-```
-
-这里第5行中，`x,y`是free variable，`z`被绑定到形参`int z`
-
-
-
-前面说到对函数的形参可以任意换名但是有条件。考虑以下三种情况：
-
-1. 作替换$[x/z]$，这时候第5行变为`return x + y + x;`，且这里的两个`x`都被绑定到形参`int x`上（形参也被替换了），含义和原文显然是不同的
-2. 作替换$[u/z]$，这时候`u`从未出现过（称为fresh variable），这个替换就没有任何问题
-3. 作替换$[z/x]$，这时候`x`从free variable变成了bound variable，含义也发生了变化
-
-
-
-基于如上考虑，我们给出substitution的递归定义：
-
-1. $x[N/x]\overset{\text{def} } =N$
-2. $y[N/x]\overset{\text{def} }=y$
-3. $(M N)[P/x]=(M[P/x])(N[P/x])$
-4. $\lambda x.M[N/x]=\lambda x.M$
-5. 若 $y\not\in FV(N)$，那么 $(\lambda y.M)[N/x]=\lambda y.(M[N/x])$
-6. 若 $y\in FV(N)$，那么 $(\lambda y.M)[N/x]=\lambda z.(M[z/y][N/x])$
-
-1234都好理解，主要说说56
-
-5的意思是如果 $[N/x]$ 不会引入新的 与当前形参重名的free variable，那么就直接换
-
-6的意思是如果非要换，那么就得先把 $M$ 中被绑定到当前 $\lambda y.$ 上的 $y$ 都换成一个fresh variable $z$，此时就规约成5的情况了。最开始我以为也可以先换掉 $N$ 中的 $y$，但是注意free variable的含义，如果换掉了的话语义就变了。
-
-
-
-## $\alpha$-conversion
-
-也叫$\alpha$-renaming，意思是我们把形如 $\lambda x. M$ 这样的term的body中与binder同名的变量连同binder一起改名字（改成一个从未出现过的变量）得到的term和原来等价。这样的等价关系叫做$\alpha$-equivalence、$\alpha$-congruence。
-
-
-
-## $\beta$-reduction
-
-讲的是如何reduce一个term。递归定义如下：
-
-1. $(\lambda x. M)N\rightarrow M[N/x]$，这就是基本的$\beta$-reduction
-2. 如果 $M\rightarrow M'$，那么 $\lambda x.M\rightarrow\lambda x.M'$
-3. 如果 $M\rightarrow M'$，那么 $M N\rightarrow M' N$，$N M\rightarrow N M'$
-
-
-
-$\beta$-reduction是满足上述条件的最小二元关系，显然是自反、传递的
-
-再定义 $\overset*\rightarrow$ 是 $\beta$-reduction的自反传递闭包，这个在后面会用来刻画confluence性质
-
-
-
-## $\beta$-redex 和 $\beta$-normal form
-
-引入这俩的意图是为了判断reduction何时停止
-
-$\beta$-redex=$\beta$-reduction expression，意思是形如 $(\lambda x.M)N$ 这样的term。这样的形式仍然可以根据$\beta$-reduction rule来进一步化简
-
-$\beta$-normal form指的是不含$\beta$-redex的项，注意到所有的reduction都是基于$\beta$-reduction定义的，不含$\beta$-redex意味着不能再reduce。如果我们把reduction看成映射，那么就可以认为是到达了一个reduction操作下的不动点
-
-
-
-## $\eta$-reduction
-
-这个主要是利用了函数的*外延性等价*。意思是说，如果两个函数对于相同的输入有相同的输出，那么它们就可以互相替换
-
-一个例子也是从sicp中来的。假如我们要构造有理分数这一数据类型，并打算用pair来构造，那么可以写成如下形式：
-
-```scheme
-(define (make-rat a b) (cons a b))
-```
-
-也可以这么写：
-
-```scheme
-(define make-rat cons)
-```
-
-
-
-具体到$\lambda$-calculus就是：
-
-若 $f=g$，那么 $\lambda x. f\; x=\lambda x.g\; x$
-
-
-
-## Confluence
-
-Church-Rosser Confluence Theorem：
-
-**对于任意的term $M$，若存在两个不同的reduction序列使得 $M\overset*\rightarrow A$，$M\overset*\rightarrow B$，那么就必然存在一个term $N$ 使得 $A\overset*\rightarrow N$ 且 $B\overset*\rightarrow N$**。注意$A$、$B$、$N$都有可能相等
-
-
-
-推论：在$\alpha$-equivalence下，每个term如果存在$\beta$-normal form，那么这个形式是唯一的
-
-反证即可，如果存在两个那么就违反了上述定理。
-
-
-
-需要**注意**的是，这里并没有说“任意推导序列都能得到normal form”，只是说
-
-1. 如果从同一个term开始推导，那么两个推导序列中将会存在一个公共项（不一定是normal form）
-2. 如果一个term开始推导能得到一个normal form，那么这个形式在$\alpha$-equivalence意义下唯一
-
-
-
-## Reduction Strategies
-
-回忆scheme求值的正则序和应用序（即先代换形参还是先对实参求值）策略，正好对应了$\lambda$-calculus的不同reduction"路径"，也就是策略。
-
-实际上就是取 $\rightarrow_\beta$ 这个二元关系的一个子集，在**牺牲一些推导能力的前提下使每步推导确定下来**
-
-
-
-之所以会出现策略的不同，是因为一个term可能存在多个$\beta$-redex，每一步的选取就造成了化简序列的差异。而虽然我们知道normal form唯一，但**并不是所有的推导序列都能终止**，**也并不是所有的term都有normal form**。
-
-一个比较好玩的例子就是 $(\lambda x.x\; x)(\lambda x.x\; x)$，这就是没有normal form的term
-
-利用上面的例子可以构造出如下式子 $(\lambda u.\lambda v.v)((\lambda x.x\; x)(\lambda x.x\; x))$，它就存在一个无法终止的推导序列
-
-
-
-### Normal-order reduction
-
-每次选择最左、最外的redex
-
-有定理：Normal-order reduction一定能找到normal form（如果存在的话）
-
-
-
-### Applicative-order reduction
-
-每次选择最左、最内的redex
-
-
-
-这两种规约的效率谁更优是不一定的
-
-
-
-## Evaluation Strategy
-
-好像搜了很多地方都没有找到类似的定义，可能这是村规
-
-Evaluation和Reduction的区别在于
-
-1. Evaluation只要求最后是一个特殊的形式(canonical form)
-2. Evaluation会尽可能避免对function body化简
-
-
-
-### Canonical Form
-
-意思是形如 $\lambda x. M$ 这样的term
-
-一个Closed Normal Form一定是Canonical Form（所有变量都bounded，且不能再规约，意味着最外面是$\lambda x. M$ 的形式），反之则不然（很显然一个CF仍然可能被规约简化）
-
-
-
-### Normal Order Evaluation Rules
-
-注意到，如果normal order reduction停止了，那么在规约过程中一定存在一个canonical form。因此提出normal order evaluation的求值策略，规则如下
-
-
-
-1. $\lambda x. M\Rightarrow \lambda x.M$，意思是在此处停止
-2. 如果$M\Rightarrow\lambda x. M'$，且$M'[N/x]\Rightarrow $P，那么$M\; N\Rightarrow P$，意思是先把function body规约成canonical form(也就是一个标准的function形式)，再带入parameter，最后整体化简
-
-
-
-### Eager Evaluation Rules
-
-这个考虑的则是applicative order reduction的evaluation，即先把parameter化成CF，再进行形参代换
-
-
-
-1. $\lambda x. M\Rightarrow \lambda x. M$
-2. 若$M\Rightarrow \lambda x.M'$，$N\Rightarrow N'$，$M'[N'/x]\Rightarrow P$，那么 $M\; N\Rightarrow P$，注意观察与上面的不同
-
-
-
-## Fun Func
-
-给几个好玩的例子吧，可以在lambda calculus interpreter里面玩一玩
-
-
-
-### Bool
-
-$True=\lambda x.\lambda y. x$
-
-$False=\lambda x.\lambda y. y $
-
-编码其实是任意的，类比函数等价定义的外延性（在相同输入下有相同输出），数据等价定义为**它们在相同操作下有相同的行为**
-
-
-
-negate就比较取巧了
-
-$negate = \forall b. b\;False\;True$
-
-
-
-然后可以写一个mux，可以方便后面的二元函数
-
-即$if(A)then(B)else(C)=(A\;B)\;C$
-
-
-
-于是就可以很容易地写出and和or和xor，实际上只需要写出三个中的一个就完备了
-
-$and=\lambda x.\lambda y. if(x)then(y)else(False)$
-
-$or=\lambda x.\lambda y.if(x)then(True)else(y)$
-
-$xor=\lambda x.\lambda y.if(x)then(negate\; y)else(y)$
-
-
-
-### Natural
-
-如何判断一个自然数是$0$
-
-$isZero=\lambda n.(n\;(\lambda x.False)\;True)$
-
-注意到当$n=0$时得到的是单位函数，否则得到常函数$False$
-
-
-
-其他部分都快写烂了，跳
-
-
-
-### Recursion
-
-这个比较好玩，之前算是没怎么搞懂
-
-
-
-还是那个玩烂了的例子，我们要算阶乘
-
-很容易写出 $fact=\lambda n.if (isZero\;n)then(1)else(mult\;n\;(fact\;(pred\; n)))$
-
-问题在于等式两侧都出现了$fact$，在具体语言中就表现为我们必须给递归函数一个**名字**才能调用递归
-
-
-
-接下来就是很神奇的操作了
-
-考虑这个函数 $Func=\lambda f.\lambda n.if (isZero\;n)then(1)else(f\;n\;(f\;(pred\; n)))$，它接受一个函数 $f$，返回一个$f$的递归调用。那么上面的定义就可以解释为**$fact$是函数$Func$的不动点**，即$Func\;fact=fact$
-
-也就是说，虽然我们不能给$fact$命名，但是我们可以通过一个不含$fact$的式子把它算出来
-
-
-
-算不动点也是很神奇的操作
-
-回忆之前的神奇表达式 $\Omega=(\lambda x.x\; x)\,(\lambda x.x\; x)$，可以构造（怎么想到的？！）一个新的函数
-
-$Y=\lambda F.(\lambda x.F(x\;x))\,(\lambda x.F(x\;x))$
-
-观察 $YF=(\lambda x.F(x\; x))\,(\lambda x.F(x\;x))=F((\lambda x.F(x\;x))\,(\lambda x. F(x\;x)))=F(YF)$
-
-大概的idea就是我们希望每次apply完之后，前面多出一个$F$而后面保持不变，这样就可以得到不动点
-
-
-
-那么阶乘就可以写成
-
-$\lambda n.if(isZero\; n)then(1)else(mult\;n\;((Y\;(\lambda f.\lambda n.if (isZero\;n)then(1)else(f\;n\;(f\;(pred\; n))))\; (pred\; n)))))$
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/" class="post-title-link" itemprop="url">密码学02 Perfect</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-15 01:26:00" itemprop="dateCreated datePublished" datetime="2021-09-15T01:26:00+08:00">2021-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## 概率论前置技能
-
-其实就三个公式
-
-条件概率公式：
-
-$Pr[B|A]=\dfrac{Pr[A\wedge B]}{Pr[A]}$，这个是定义
-
-贝叶斯公式
-
-$Pr[B|A]=\dfrac{Pr[A|B]\cdot Pr[B]}{Pr[A]}$，这个只需要按照上面的展开就可以证明
-
-全概率公式
-
-$Pr[A]=Pr[A|B_1]\cdot Pr[B_1]+Pr[A|B_2]\cdot Pr[B_2]+\cdots +Pr[A|B_n]\cdot Pr[B_n]$，意思是把整个概率空间作划分，然后分别考虑这些划分内部事件 $A$ 的那部分，最后合并在一起
-
-## 获取随机数
-
-注意到一套encryption scheme包括一个Gen()操作生成一个key，我们会需要一个随机生成数据的方法来产生密钥
-
-首先我们需要收集若干high-entropy的数据，然后通过特殊的处理来生成nearly independent and unbiased bits
-
-
-
-high-entropy意味着高不确定性，而nearly independent and unbiased则对最终产生的数据有一些要求
-
-
-
-一个例子就是扔硬币。假设每次扔硬币事件独立，正反面概率分别为 $p,1-p$，那么我们可以扔很多次，然后：
-
-如果出现连续的"正反"，就写下一个"1"；如果出现连续的"反正"，就写下一个"0"
-
-注意到它们的概率都是 $p(1-p)$，因此就得到了一个uniformly distributed output
-
-
-
-通常用作cryptography的随机数算法有特殊的要求，因此不是所有的随机数生成器都可以用于特定的加密算法的，这一点需要注意（也即正确使用加密算法的注意事项）
-
-
-
-## 一些定义
-
-$\mathcal {K,M,C}$ 分别表示密钥、消息、密文空间（即集合），$\text{Gen,Dec,Enc}$ 分别表示密钥生成器、解密器、加密器三个算法/函数。通常我们规定 $|\mathcal M|>1$，这是因为如果你要发送的信息永远只有一种，那就没有破译的必要而只存在是否发送这一区别了....即信息是不确定性的度量，因此消息空间必须具有不确定性（每次可能传送的消息不止一种）
-
-
-
-$\text{Gen}$ 会随机产生一个key，而 $\Im \text{ Gen}=\mathcal K$
-
-$\text{Enc}$ 会输入一个 $m\in\mathcal M$，并根据key $k$ 产生一个密文 $c\in\mathcal C$。我们允许 $\text{Enc}$ 是probabilistic的，即每次都按照一定概率生成出不同的密文。通常写作 $c\leftarrow \text{Enc}_k(m)$。这是一个functionality
-
-$\text{Dec}$ 会将给定的密文 $c\in\mathcal C$ 根据key $k$ 产生对应的原文 $m$，我们要求即使 $\text{Enc}$ 并非是确定性的，也应该有 $\text{Dec}(\text{Enc}_k(m))=m$ 成立
-
-
-
-我们传统上认为一段原文应该是确定的，但事实并非如此。一个独特的视角是，原文 $m$ 可以看成是对 $\mathcal M$ 上具有特定概率分布的随机变量 $M$ 进行采样得到的结果，这是站在攻击者的视角考虑的。 $\mathcal M$ 上的概率分布与加密策略无关，而只由使用者决定。
-
-
-
-我们通常假设 $K$ 和 $M$ 这两个随机变量是独立的，意思是发送消息的人的消息分布不应该受到他所使用的加密策略的影响。
-
-如果我们确定了加密策略和发送消息的人（即 $\mathcal M$ 上的概率分布），那么就确定了 $\mathcal C$ 上的概率分布。
-
-
-
-## Perfect Secrecy
-
-一些关于攻击者的假设：
-
-1. 攻击者可以窃听密文
-
-2. 攻击者**可以**知道所有可能发送消息的集合和消息空间的概率分布
-
-3. 同时这个攻击者也知道加密策略
-
-4. 但他仅仅只是不知道具体哪条消息被发送了而已
-
-   
-
-Perfect Secrecy的意思就是，攻击者无法通过密文来改变他对 $\mathcal M$ 上的概率分布的认识
-
-形式化写出来就是：
-
-$\forall m\in\mathcal M,c\in\mathcal C:Pr[M=m\;|\; C=c]=Pr[M=m]$
-
-这里要求 $Pr[C=c]>0$
-
-用条件概率拆开就是 $Pr[M=m\wedge C=c]=Pr[M=m]\times Pr[C=c]$
-
-
-
-另一种等价表述是这样的：
-
-$\forall m,m'\in\mathcal M, c\in\mathcal C:Pr[\text{Enc}(m)=c]=Pr[\text{Enc}(m')=c] \text{  (1)}$
-
-也就是说，对于给定的任意的密文 c，我们都无法区分是明文m加密成了它还是明文m'加密成了它
-
-
-
-有引理：加密策略是perfectly secret的当且仅当它满足$(1)$ 式
-
-$\Rightarrow$
-
-需要注意到这样一个等式：$Pr[C=c|M=m]=Pr[c=\text{Enc}_k(m)]$
-
-意思是说，如果我们已经知道了 $M=m$ 的条件，那么 $C=c$ 的概率就是 $c=\text{Enc}_k(m)$ 的概率。因为原文已经作为条件给出，因此我们可以这么做
-
-
-
-于是就有 $Pr[c=\text{Enc}_k(m)]=Pr[C=c|M=m]=\frac{Pr[M=m|C=c]\times Pr[C=c]}{Pr[M=m]}$
-
-又根据perfectly secret的定义我们有 $Pr[M=m|C=c]=Pr[M=m]$，因此带入上式就有 $Pr[c=\text{Enc}_k(m)]=Pr[C=c]$
-
-注意到此处 $m$ 是任意的，因此自然满足等式$(1)$，证毕。
-
-反方向类似，贝叶斯公式拆开再用那个观察到的等式和全概率就可以啦
-
-
-
-### Perfect adversarial indistinguishability
-
-好长的名字...
-
-第三个等价的，用一个game表述的perfect secrecy是这样的：
-
-有一个假设拥有任意算力的攻击者 $\mathcal A$，他可以选择两个明文 $m_0,m_1\in\mathcal M$，然后交给一个决策者
-
-决策者会随机一个$0/1$比特 $b$，然后把 $c=\text{Enc}_k(m_b)$ 交给 $\mathcal A$，由 $\mathcal A$ 判断这是哪个明文加密形成的
-
-
-
-对于一个加密策略，我们用三元组 $\Pi=(\text{Gen, Enc, Dec} )$ 表示，并用 $\text{PrivK}^{eav}_{\mathcal A,\Pi} =1$ 表示某一轮猜测的结果正确，用 $0$ 表示猜测错误
-
-一个很naive的策略就是一直猜$0$，那么这样正确率就是$\frac{1}{2}$的，因为 $b$ 是随机的。
-
-
-
-若对于任意的 $\mathcal A$，都有 $Pr[\text{PrivK}^{eav}_{\mathcal A,\Pi}=1]=\frac{1}{2}$，那么我们称这个加密策略是perfectly adversarial indistinguishable的
-
-可以证明这个定义和perfect secrecy的定义是等价的。因为是作业内容所以就不放证明了
-
-这里的 $\mathcal A$ 并不一定要是具体的人，当然也可以是某种算法、某段程序。
-
-
-
-### One Time Pad
-
-这个策略的perfect secrecy是由大名鼎鼎的香农证明的。
-
-给出构造如下：
-
-对于一个固定的正整数 $l$，我们规定 $\mathcal M=\mathcal C=\mathcal K=\left\{\;0,1\;\right\}^l$
-
-$\text{Gen}$ 等概率从 $\mathcal K$ 中选取一个串，$\text{Enc}$ 则输出key和m按位异或的结果，$\text{Dec}=\text{Enc}$
-
-
-
-很显然这个策略满足我们对加密策略一般性的要求，也不难证明这是perfectly secret的
-
-对于任意的 $c\in\mathcal C,m\in\mathcal M$，我们固定这样的 $c,m$，于是
-
-$Pr[C=c|M=m]=Pr[\text{Enc}_k(m)=c]=Pr[m\oplus K=c]=Pr[K=c\oplus m]$
-
-$K$ 是key的随机变量，而 $c,m$ 是任意定的串，于是这个式子就是从key space中取出一个特定串 $c\oplus m$，概率即为 $\frac{1}{2^l}$
-
-
-
-又 $Pr[C=c]=\sum\limits_{m\in\mathcal M}Pr[C=c|M=m]\times Pr[M=m]=\frac{1}{2^l}\sum\limits_{m\in\mathcal M}Pr[M=m]=\frac{1}{2^l}$
-
-于是我们的老朋友贝叶斯公式又来了
-
-$Pr[M=m|C=c]=\frac{Pr[C=c|M=m]\cdot Pr[M=m]}{Pr[C=c]}=Pr[M=m]$，就证明完了
-
-
-
-这个加密策略确实很牛逼，但是存在一些问题使得现在很少用它。
-
-1. Key太长了，实际上必须和m等长。如果可以安全运输这么长的key，为啥不直接运输m呢？
-2. Key必须是One-time的。假设一个攻击者连续获取到了两次用同样key的信息$c_1,c_2$，那么根据$\text{Enc}(x)=x\oplus k$，很容易就能得到 $c_1\oplus c_2=m_1\oplus k\oplus m_2\oplus k=m_1\oplus m_2$，这就泄露了部分信息。结合1使得这个方法变得非常昂贵
-
-
-
-### Limitations
-
-有如下定理：
-
-给定perfectly secret scheme $\Pi=(\text{Gen, Enc, Dec})$，则 $|\mathcal K|\geqslant |\mathcal M|$
-
-由反证法，假设 $|\mathcal K|<|\mathcal M|$，那么取如下集合： $\mathcal M(c)=\left\{\;m\;|\;\text{Dec}_k(c)=m\text{ for some }k\in\mathcal K\;\right\}$
-
-注意到 $\text{Dec}$ 是一个函数，因此 $|\mathcal M(c)|\leqslant|\mathcal K|<|\mathcal M|$
-
-即 $\mathcal M(c)\subseteq\mathcal M$。取 $m'\in\mathcal M\backslash\mathcal M(c)$，那么就有
-
-$Pr[M=m']\neq0$，但是 $Pr[M=m'|C=c]=0$，因为 $c$ 不可能被解密为 $m'$
-
-
-
-这个结论很厉害，直接把这条路封死了。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8901-Intro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8901-Intro/" class="post-title-link" itemprop="url">形式语义01 Intro</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-09 21:44:00" itemprop="dateCreated datePublished" datetime="2021-09-09T21:44:00+08:00">2021-09-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          感觉第一节课都差不多
-
-推荐了*Software Foundations*，搜了一圈发现非常劝退....但还是磨磨蹭蹭看完了Lists
-书上说不建议贴答案和题解，那就不贴了吧（
-
-developing general abstractions, or building blocks, for solving problems, or classes of problems. Also considers software behavior in a rigorous and general way, to prove that programs enjoy properties
-
-
-
-当我们提及程序的正确性时，我们在谈论什么？
-
-* How to describe meanings of programs? 含义
-* How to describe properties of programs? 性质
-* How to reason about programs? 推理
-* How to tell if two programs have the same behaviors or not?
-* How to design a new language?
-* How to build Bug-Free Software?
-
-
-
-现在的软件也越来越复杂
-
-* Multi-core concurrency
-* Embedded software, Limited resources
-* Distributed and cloud computing, Network environment
-* Ubiquitous computing and IoT
-* Quantum Computing
-
-
-
-测试的局限性
-
-* 简单，容易自动化、流程化
-* 无法保证一定没有bug
-* 对并发(多核/网络)程序作用有限，发现的bug难以重现
-* Testing shows the presence, not the absence of bugs. Dijkstra
-
-
-
-对于Crash-Proof工作，如何证明？
-
-* How to prove mathematically?
-* How to define "crash"?
-* How to prove a system is "crash-free"?
-
-
-
-为什么要上这门课？
-
-* 软件可靠性是目前严重的问题
-* 是别人没有的优势
-* 可以提升代码能力
-* 更好地理解和比较编程语言
-* 这门课很有挑战
-
-
-
-课程内容
-
-* 对现有语言的研究
-* 讲一些定义程序行为的方法
-* 讲一些证明程序性质的方法
-  * 如何定义性质
-  * 如何证明
-
-
-
-Coq
-
-* 可以自动化证明命题
-* 可以自动化验证证明
-* 我们不再需要信任证明，只需要信任证明工具，然后检验一个证明
-
-也就是说，一个程序可以自带一个安全性proof，而运行环境自带的证明器用以验证，以此来保证程序是正确的
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8901-Intro/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8902-Math/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8902-Math/" class="post-title-link" itemprop="url">形式语义02 Math</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-09 21:44:00" itemprop="dateCreated datePublished" datetime="2021-09-09T21:44:00+08:00">2021-09-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## Basic Set Theory
-
-没啥好讲的
-
-$\bigcap S=\left\{\;x\;|\; \forall T\in S,x\in T \;\right\}$
-
-记 $R=\bigcap\emptyset$，则 $\forall x. \forall T\in\emptyset\wedge x\in T\rightarrow x\in R$
-
-注意到命题的前件为假，因此 $R$ 是"a set of everything"
-
-根据幂集公理这是不成立的，因此我们规定它无意义。
-
-
-
-## Relations
-
-没啥好讲的
-
-
-
-## Functions
-
-$f\subseteq D(f)\times R(f)$，且 $\forall x,y,y'$，$(x,y)\in f\wedge (x,y')\in f\Rightarrow y=y'$
-
-
-
-### Total Functions $f$ on $A\times B$
-
-$A=D(f)$
-
-
-
-### Partial Functions $f$ on $A\times B$
-
-$D(f)\subseteq A$
-
-
-
-### $\lambda$-Expression
-
-$\lambda x\in D. f(x)$ 和 $\left\{\;(x,f(x))\;|\;x\in D\;\right\}$ 是等价的
-
-
-
-### Function Variant
-
-我们用 $f\left\{x\leadsto y\right\}$ 记号表示 $f\cup (x,y)$ 这个新的函数，此处的 $x\in D(f)$  不一定成立
-
-显然 $D(f\left\{x\leadsto y\right\})=D(f)\cup\left\{\;x\;\right\}$
-
-
-
-### Function Type
-
-我们用 $A\rightarrow B$ 表示 $A\mapsto B$ 的所有函数，且规定 $\rightarrow$ 右结合
-
-即 $A\rightarrow B\rightarrow C=A\rightarrow (B\rightarrow C)$ ，表明这是一个 $A\times B\mapsto C$ 的函数，或者 $A\mapsto (B\mapsto C)$ 的函数
-
-这里给出的 Function Type 默认是对应集合的 Total Function.
-
-
-
-很显然 $A_1\mapsto A_2\mapsto \cdots\mapsto A_n\mapsto R$ 的表达能力要强于 $A_1\times A_2\times\cdots\times A_n\mapsto R$，即我们可以先后给出参数
-
-表达能力的弱化无需额外做什么，而强化则需要currying操作
-
-
-
-### Tuples as Functions
-
-二元组 $(x,y),\, x,y\in D$ 可以看成是 $\left\{\;0,1\;\right\}\mapsto D$ 的**一个**函数，即 $f(0)=x,f(1)=y$，$D\times D$ 就可以看成是 $\left\{\;0,1\;\right\}\mapsto D$ 的**所有**函数
-
-形式化地写出来就是 $A\times B=\left\{\;f\;|\;D(f)=\left\{\;0,1\;\right\}\wedge f(0)\in A\wedge f(1)\in B\;\right\}$
-
-
-
-于是自然，$A_0\times A_1\times\cdots\times A_{n-1}$ 就可以看成是 $\left\{\;0,1,2\ldots n-1\;\right\}\mapsto D$ 的所有函数，其中 $D=\bigcup\limits_{i=0}^{n-1} A_i$
-
-写出来就是 $\prod\limits_{i=0}^{n-1} A_i=\left\{\;f\;|\;D(f)=[0..n-1]\wedge\forall i\in[0..n-1].f(i)\in A_i\;\right\}$
-
-再进一步就是 $\prod\limits_{i\in I}S_i=\left\{\;f\;|\;D(f)=I\wedge\forall i\in I.f(i)\in S_i\;\right\}$
-
-
-
-### Product of Functions
-
-现在，我们令 $\theta: \alpha\mapsto \left\{\;S_\alpha\;\right\}$，即是以 $\alpha$ 为指标集的一个集合族，$\theta$ 将一个下标映射到集合族里对应下标的某个集合
-
-我们同样可以定义 $\theta$ 上的乘积(product)
-
-即 $\sqcap\theta=\left\{\;f\;|\;D(f)=\alpha\wedge \forall x\in\alpha.f(x)\in\theta(x)\;\right\}$，其中 $\alpha=D(\theta),\;\theta(x)=S_x$
-
-
-
-当 $\theta$ 是常函数时，$\forall x. \theta(x)=S$，那么 $\sqcup\theta=\left\{\;f\;|\;D(f)=\alpha\wedge\forall x\in\alpha. f(x)\in S\;\right\}=\prod\limits_{i\in\alpha}S=S^\alpha=\left\{\;f\;|\;f:\alpha\mapsto S\;\right\}$
-
-大概的意思是说，我们有一个定义域 $\alpha$ 到若干集合的映射 $\theta$，现在把每个 $\alpha$ 中的元素 $x$ 的像限制到 $\theta(x)$ 里的一个具体元素，就可以得到一个具体的 $D(\theta)\rightarrow \bigcup R(\theta)$ 函数。如果我们取遍所有可能的像，那么就恰好遍历完了所有这样的函数。
-
-
-
-具体到程序设计语言，就是若干个 Type 经过这样的操作，就可以得到一个 Product Type. 即我们把一个 Type 看成是一个**单点函数**的集合，那么就可以通过简单的 Product 操作复合得到新的 Type.
-
-
-
-### Sum of Functions
-
-对于任意集合 $A,B$，规定
-
-$A+B=\left\{\;0\;\right\}\times A\cup\left\{\;1\;\right\}\times B$
-
-称 $A+B$ 为 $A,B$ 的不交并。
-
-
-
-自然就有 $\sum\limits_{i\in \alpha} S(i)=\left\{\;(i,x)\;|\;i\in\alpha\wedge x\in S(i)\;\right\}$
-
-同样的，如果我们把 $\theta$ 看作是 $\alpha\rightarrow \bigcup\limits_{i\in\alpha}S(i)$，那么就有 $\Sigma\theta=\left\{\;(i,x)\;|\;i\in\alpha\wedge x\in S(i)\;\right\}$
-
-
-
-当 $\theta$ 是常函数 $\theta(i)=S$ 的时候，$\Sigma\theta=\sum\limits_{x\in\alpha}S=\left\{\;(x,y)\;|\;x\in\alpha\wedge y\in S\;\right\}=\alpha\times S=\alpha\rightarrow S$
-
-
-
-这个的意思是，我们可以通过若干 Type 得到 Sum Type，新的 Sum Type 中的变量只能是组成它的若干 Type 中的某一个。
-
-
-
-### 感想
-
-写着写着就突然悟了，注意到一个编程语言中的类型可以看成是值域 $R$ 构成的集合
-
-而带**类型**的变量可以看成是单点函数的集合 $\left\{\;f\;|\;f:\left\{\;var\;\right\}\rightarrow R\;\right\}$，变量的一个具体**取值**则对应一个具体的单点函数。需要说明的是，我们这里不妨规定变量两两不重名(否则可以很容易用自然数命名而不改变程序的行为)
-
-
-
-那么上面说的 Sum 和 Product 实际上就是通过简单类型构造出复杂类型的两类方法
-
-而我们知道，一个程序的所有状态由所有变量的取值组成，那么一个程序的特定状态就可以表达成一个具体的函数 $P:\left\{\;\;|\;x\text{ is variable}\;\right\}$
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8902-Math/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/" class="post-title-link" itemprop="url">密码学01 Intro</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-02 22:02:00" itemprop="dateCreated datePublished" datetime="2021-09-02T22:02:00+08:00">2021-09-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          密码学关心的问题和应用
-
-* Secrecy，即信息是否泄露
-* Integrity，即信息是否被篡改
-* Oblivious Transfer(不经意传输)
-* Zero Knowledge Proof(零知识证明)
-* Secure Multi-party Computation(多方计算)
-* Digital Currency(数字货币)
-
-
-
-如何定义安全？CPA-secure、CCA-secure....
-
-观点一：
-
-> Only I know the encryption algorithm and keys, so it's safe.
-
-
-
-观点二：
-
-> It would takes 100 years to break the system for an adversary with a currently most advanced computer using the best known method.
-
-
-
-严格证明:
-
-Computationally Security
-
-Game-Based Proof
-
-Simulation-Based Proof
-
-
-
-如何取随机数？什么是伪随机序列？如何衡量伪随机序列的随机性？
-
-
-
-Oblivious Transfer
-
-你可以找女孩A和B中其中一个女孩的号码，但是不能让另一个人知道
-
-
-
-## 一些概念
-
-现代加密方法包括如下几个部分：
-
-$\mathcal M$ 表示信息空间，即所有可以加密的信息的集合
-
-$\mathcal K$ 表示密钥空间，即所有密钥组成的集合
-
-$\text{Enc,Dec}$ 表示加密、解密方法
-
-$\text{Gen}$ 表示密钥生成器
-
-一个比较显然的要求是 $Dec(Enc(M))=M$，即加密后解密的信息要保真
-
-
-
-## Classical Cipher
-
-给了几个例子
-
-### 凯撒密码(Caesar Cipher)
-
-定义函数 $next:\Sigma\mapsto\Sigma$ 为 按照某种顺序排列 $\Sigma$ 的内容，某字符的下一个字符是什么
-
-然后构造映射 $f_k=next^k$，其中 $k$ 是非 $0$ 常正整数，那么 $f_k$ 和 ${f_k}^{-1}$ 就是一对加密和解密算法了。
-
-$k=3$ 的情况就是经典凯撒密码
-
-
-
-这个密码问题很大
-
-* 首先这是一个固定的算法
-* 其次 $k$ 的值域很小，只需要做 $26$ 次就可以得到所有情况
-
-
-
-由此自然引出
-
-### Sufficient Key Space Principle(充分密钥空间原则)
-
-任何加密算法必须有足够大的密钥空间，使得不会被暴力枚举破解。
-
-一个原则是密钥要尽可能地长
-
-但是足够大的密钥空间并不一定能保证安全，MAS加密是一个例子
-
-
-
-### ROT-13
-
-取 $k=13$ 的凯撒密码
-
-这个密码的一个好处在于，$f_{13}={f_{13} }^{-1}$，即加密和解密是一样的
-
-
-
-### Mono-alphabetic Substitution Cipher(单字母替换密码)
-
-构造一个permutation $\pi:\Sigma\mapsto\Sigma$
-
-那么 $\pi$ 和 ${\pi}^{-1}$ 就是加密和解密。这里permutation 的意义在于，如果不是双射的话，就无法解密了
-
-凯撒密码可以看成是这个的特例。这类密码的一大特色就是要有一个对应小本本
-
-
-
-容易计算，MAS密码的密钥空间就是排列数量 $\left|\Sigma\right|!$。取小写字母表就是 $26!\approx 2^{88}$
-
-
-
-MAS的最大缺点在于，它永远将相同字符加密成相同的字符(双射)，即它完全保存了原文的所有信息。这使得第三方可以基于统计学原理来进行攻击。例如说"u常在q后，h很可能在t后"之类的统计学规律，常见的模式会被保留，甚至说直接用字母频率的相对大小进行匹配。
-
-
-
-### Poly-alphabetic Substitution Cipher(多字母替换密码)
-
-考虑构造这样构造的排列 $\pi:\Sigma\times\Sigma\mapsto \Sigma\times\Sigma$
-
-也就是我们把每两位字符映射为两位字符。这样可以部分解决相同字母映射下的象永远相同的问题
-
-
-
-缺点也很明显，我们需要更大的空间储存映射表
-
-
-
-### Vigenere Cipher
-
-这个密码首先需要一个catch phrase，例如说 $phrase=cafe$
-
-然后构造 $\pi:\Sigma\mapsto\Sigma$，规定 $\pi(code_i)=f_{phrase_{i\pmod |phrase|} }(code_i)$
-
-可以发现这实际上就是一个特殊的PAS密码，即我们每 $|phrase|$ 位造一个映射，并且每个映射都是相同的
-
-
-
-#### VC的破解
-
-分成几个步骤
-
-1. 求$phrase$的长度 $m$
-2. 把密文每 $m$ 位分组，那么模 $m$ 同余的位放在一起就是一个$k$未知的凯撒密码了
-
-
-
-现在考虑怎么破译单次的凯撒密码
-
-我们当然可以枚举$26$种可能的密钥，然后找到make sense的明文
-
-但是由于判定明文是否make sense是不那么平凡的，因此书上给出了另一个可以自动化完成的做法
-
-定义 $p_i$ 表示第 $i$ 个字符在英语中出现的频率，$q_i$ 表示第 $i$ 个字符在密文中出现的频率，假设密钥是 $k$，那么有
-
-$\sum {p_i}^2\approx \sum{q_{i+k \text{ mod } 26} }^2$
-
-于是我们可以计算不同key对应的 $\sum p_iq_{i+k\text{ mod } 26}$，然后按照和期望值的差来排序
-
-
-
-那么就可以枚举 $m$，然后对模 $m$ 相同的位做凯撒的破译，最后合并就好了
-
-
-
-有一个小小的优化，它源自如下观察：
-
-若两个位置 $i,j$ 满足 $i\equiv j\pmod {m}$，且明文对应的第 $i,j$ 位相同，那么密文的对应位置上的字符也相同
-
-那么就可以寻找长度较短的、出现了多次的密文的子串，$m$ 一定是用它们之间的距离的一个因数。还可以多次寻找重复的pattern，枚举这些距离的GCD的因数来求 $m$
-
-
-
-## Modern Cipher
-
-古典密码更像是艺术，缺乏科学的分析
-
-
-
-现代密码学的目标在于：给定一个密码构造，可以严格证明它是安全的
-
-需要证明，首先要：
-
-* 定义什么是"安全"
-* 需要给出一些假设(可以是未被证明的猜想)
-
-
-
-安全性取决于安全目标(security goal)和攻击模型(threat model)，即不同的目标和不同水平的攻击，会使得安全性的定义发生变化。
-
-
-
-### security goal
-
-这里用secure encryption举例
-
-前几个要求相对而言比较基本，并且非常显然
-
-1. 攻击者无法通过密文获得密钥
-2. 攻击者无法通过密文获得明文
-3. 攻击者无法破译任意明文的任意字符
-4. 无论攻击者掌握了多少信息，密文不会泄露除此之外的任何信息
-
-
-
-### threat model
-
-1. Cipher text-only attack: 攻击者只知道密文
-2. Known-plain text attack: 即已知明文攻击，攻击者在攻击前可以知道若干明文到密文的单向映射(比如说加密文件有固定的格式，有已知的片段)
-3. Chosen-plain text attack: 攻击者可以选择知道若干明文到密文的单向映射(比如说加密设施是公开的，那么攻击者就可以任意获得任意明文对应的密文，但反过来不行)
-4. Chosen-cipher text attack: 攻击者可以选择知道若干密文到明文的映射(比如说解密设施是公开的)
-
-
-
-### assumptions
-
-加密解密问题通常依赖于一些难以计算/不存在高效算法的问题
-
-* 大数分解问题
-* SAT问题
-
-选择假设的时候需要注意这几个点
-
-1. 选择虽未被证明，但是经过长时间检验的假设
-2. 选择更弱的假设。若存在两个假设A,B，其中A能推出B，那么选择A而不是B。这样在B被证伪后，A仍然坚挺。如果两个假设不可比较，那么选择被研究得更深入的假设
-3. 在假设被证伪后，需要针对性地研究它在证明一个加密方法时扮演的角色
-
-
-
-### provable security
-
-基于我们的假设，针对特定的攻击者，达到了一些安全目标。这样的安全性被称为可证明的安全性
-
-通常可证明的安全性是对现实中的安全性的一种建模，即仅针对重要部分形式化证明。
-
-
-
-## Kerckhoffs' Principle
-
-古典密码的安全性很大程度上基于信息的不对称(即我用的什么加密方式，攻击者是不知道的)
-
-柯克霍夫原则：
-
-> The cipher method must not be required to be secret, and it must
->
-> be able to fall into the hands of the enemy without inconvenience.
-
-即现代密码的安全性仅依赖于密钥，而不是加密方式
-
-这么要求的理由有以下几个：
-
-1. 相比起同时保密密钥和加密方法，只保存密钥要方便得多
-2. 相比起更改加密方法，定期更换密钥更容易保持安全
-3. 统一的加密方法更容易实现标准化
-
-
-
-也就是说，尽量使用公开、经过验证的加密策略，配以定期更换的密钥，更能保护安全。所谓home-brewed算法很多其实经不起验证
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">编译原理 笔记3 语法分析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-01 01:33:00" itemprop="dateCreated datePublished" datetime="2021-09-01T01:33:00+08:00">2021-09-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          写的时候复制到笔记2那里去了...晕，这个点还不睡就是不行啦
-
-## CFG
-
-上下文无关语法(Context Free Grammar)，或者说BNF(Backus Naur Form)，是用于描述一类语言的法则，也即是语法
-
-语法包括：
-
-1. 终结符号(terminal)集 $T$
-2. 非终结符号(nonterminal)集 $N$
-3. 推导规则(rule of inference) $R$
-4. 起始符号 $s_0$
-
-任意规则有如下形式：
-
-$h\rightarrow B$，其中 $h$ 是非终结符，$B$ 是 $T\cup N$ 上的串
-
-对于给定的串 $s$，若存在推导规则 $r:h\rightarrow B$，且 $h\in s$，则用 $B$ 替换 $s$ 中的一个 $h$ 得到新串 $s'$ 称为一次**推导**，记作 $s\underset{r}\Rightarrow s'$，也可以简单记作 $s\Rightarrow s'$
-
-若串 $s$ 中出现多个 $h$，则我们称对最左侧的 $h$ 的替换推导为**最左推导**(left-most)，同理有最右推导的概念
-
-为了方便，规定 $a\overset{*}\Rightarrow b$ 表示 $a$ 经由零次或多次推导可以得到 $b$，而 $a\overset{lm}\Rightarrow b$ 和 $a\overset{rm}\Rightarrow b$ 分别表示**一次最左和最右推导**
-
-从起始符号 $s_0$ 开始，若存在串 $e$ 使得 $s_0\overset{*}\Rightarrow e$，则我们称 $e$ 是该语法的一个**句型/句式**。若 $\forall x(x\in e\rightarrow x\in T)$，则称 $e$ 是一个**句子**
-
-用 $L(T,N,R,s_0)$ 表示该语法规定的语言，则容易知道所有的句子构成了语言本身(废话)
-
-叫上下文无关，就是因为我们的推理规则要求推理的左侧只能是单独的非终结符，即替换可以发生在任何位置而与被替换的符号的上下文无关
-
-
-
-### 表达能力
-
-如何比较语法的表达能力？或者说，怎么判断一种新的语法和已知语法的表达能力强弱？
-
-直观地，若 $L(G_1)\subseteq L(G_2)$，则我们称语法 $G_1$ 表达能力不强于 $G_2$。
-
-乔姆斯基把语法分成四类，其中两类便是CFG和RG(regular grammar)，可以证明他们的表达能力是存在差异的
-
-#### 命题：正则语法的表达能力严格弱于上下文无关语法
-
-首先证明 $L(RG)\subseteq L(CFG)$。根据正则表达式的递归定义，我们可以这么构造对应的CFG：
-
-1. $\epsilon$，对应 $h(\epsilon)\rightarrow \epsilon$
-2. $c,c\in\Sigma$，对应 $h(c)\rightarrow c$
-3. $s|t$，其中 $s,t$ 是正则表达式，对应 $h(s|t)\rightarrow h(s)|h(t)$
-4. $st$，对应 $h(st)\rightarrow h(s)h(t)$
-5. $s^*$，对应 $h(s^*)\rightarrow h(s)h(s^*)|\epsilon$
-6. $(s)$，对应 $h((s))\rightarrow h(s)$
-
-注意到正则表达式长度有限，因此我们构造的非终结符有限，同理推导规则有限，因此这是一个CFG，并且可以归纳证明 $L(CFG)=L(RG)$，即任意正则表达式都存在一种上下文无关语言，使得他们的表达能力相等。这就说明了 $L(RG)\subseteq L(CFG)$
-
-
-
-再证明 $L(RG)\neq L(CFG)$，即存在一种CFG能表达但RE无法表达的语言。这个构造很强，而且能说明很多问题，值得体会一会儿
-
-考虑如下上下文无关语法：
-
-$S\rightarrow aSb|\epsilon$
-
-它表示的是所有形如 $ab,aabb,aaabbb\ldots$ 的串的集合。下面证明正则表达式无法表示这种语言
-
-注意到任意正则表达式可以化为等价的DFA，因此只需要证明不存在可以识别该语言的DFA即可
-
-由反证法，假设存在这样一个DFA，不妨设其状态数为$n$，则根据抽屉原理在识别前$n$位的时候，必然存在 $i\neq j$ 使得 $tr(start,a^i)=tr(start,a^j)$
-
-根据定义，DFA能识别串 $a^ib^i$ 和 $a^jb^j$，再根据状态转移的等式有 $tr(start,a^ib^i)=tr(tr(start,a^i),b^i)=tr(tr(start,a^j),b^i)=tr(start,a^jb^i)\in E$，即该DFA也能识别串 $a^jb^i$，这与假设矛盾。
-
-也就是说，任意的 $n\in \mathbb N$，我们都能找到一个串使得其满足CFG规定的形式但是不能被DFA识别。于是证毕
-
-
-
-关于正则/DFA的证明大多依赖于反证法和抽屉原理这两大保健，然后结合状态转移的结合性来说明某个状态的接受性，最后得出矛盾。同时这里的问题也直观说明了正则表达式没法表示同时向左和向右无限延伸的串，因为DFA一旦从某一位开始无限延伸，就意味着它前面必须是有限位。
-
-(扯远点，也就是说CFL-Reachability不能简单地用DFA解决，而是要用一个PDA....一周前的我还是太naive了！)
-
-
-
-## ST
-
-从初始符号开始到任意句子的推导过程隐式地产生了语法树(Syntax Tree)的结构，即考虑任意单次推导 $a\Rightarrow b$，如果我们把 $a$ 视作根，$b$ 中的所有字母看作儿子，那么树形结构就出来了。具体的证明只需要注意到每个字符的父亲唯一(上下文无关的定义)，结合句子的定义说明一下就好了。
-
-有个比较显然的性质：任意语法树的叶子都是终结符，且从 $s_0$ 到句子 $s$ 的推导产生的语法树的 所有叶子的前序遍历序 恰好构成了 $s$ 本身
-
-### 最左推导
-
-很显然一个推导序列唯一地构造了一棵语法树，然而一棵语法树并不唯一对应一个推导序列(考虑同一层出现了多个非终结符号，选择的次序就产生了不同的推导)
-
-为了构造推导序列到语法树的双射，我们提出了最左推导的概念。即在最左推导下，语法树和推导序列是一一对应的。
-
-### 二义性
-
-注意到即使我们规定了最左推导，同一句子的推导仍然不唯一，构造的语法树也不唯一，因此自然引出二义性的问题
-
-注意二义性是针对语法而言的而与串无关，即语法 $G$ 有二义性当且仅当存在串 $str\in L(G)$，使得存在两种从初始符号 $s_0$ 开始的推导序列 $l_1,l_2$ 满足 $s_0\overset{*}{\underset{l_1}\Rightarrow}str$ 且 $s_0\overset{*}{\underset{l_2}\Rightarrow}str$
-
-举个例子，考虑如下语法：
-
-$Expr\rightarrow \epsilon|Number|Expr+Expr|Expr*Expr$
-
-$Number\rightarrow \text{[1-9][0-9]*}$
-
-这里的 $Number$ 是用正则语言表达的
-
-
-
-这个语法对于语句 $1+1*2$ 就存在多种推导，但它们都是**最左推导**
-
-例如 $Expr\Rightarrow Expr+Expr\Rightarrow 1+Expr\Rightarrow 1+Expr*Expr\Rightarrow 1+1*Expr\Rightarrow 1+1*1$
-
-和 $Expr\Rightarrow Expr*Expr\Rightarrow Expr+Expr*Expr\Rightarrow 1+Expr*Expr\Rightarrow 1+1*Expr\Rightarrow 1+1*1$
-
-具体表现出来就是+*优先级冲突的问题
-
-
-
-### 二义性的消除
-
-二义性的消除没有通用方法，需要根据语义和语法灵活处理(这不是说了等于没说吗喂)
-
-虽然没有通用做法，但这一步还是必不可少的！
-
-小结一下就是
-最左推导构造了语法树和推导序列的双射
-二义性的消除保证了句子的**最左**推导序列唯一，即每个句子和语法树存在双射
-
-
-### 左递归
-
-若语法 $G$ 存在 $A\overset{*}\Rightarrow A\alpha$，其中 $A$ 是非终结符(废话)，$\alpha$ 是 $N\cup T$ 上的非空串，则我们称 $G$ 存在**左递归**(left recursion)
-
-为了消除二义性我们需要规定一个推导顺序，而规定了推导顺序后自然引出终止的问题。容易发现存在左递归的文法 $G$ 的推导过程不一定终止
-
-这个很好玩，好玩的地方在于它有点像前面造DFA的时候用Arden's TH解正则式状态方程(事实上这是一个右线性文法，确实是正则语言...)
-
-
-
-### 左递归的消除
-
-考虑最简单的形式，即单个直接的左递归如何处理 $A\Rightarrow A\alpha|\beta$
-
-由 Arden's TH 可知 $A$ 能产生的所有串用正则语言表达就是 $\beta{\alpha}^*$。注意到除了第一个字符外，剩下的部分都是若干片段的重复，因此考虑把两部分分开做。
-
-不妨设 $A'\rightarrow \alpha A'|\epsilon$，而 $A\rightarrow \beta A'$，这样就用非左递归的方式表示出了原本存在左递归的语法
-
-对于间接的左递归(即存在推导序列 $l$ 使得 $A\underset{l}\Rightarrow A\alpha$)，我们这么考虑：
-
-1. 首先为所有的非终结符号编号，设共有 $n$ 个，建图
-2. 对于一对非终结符 $A_i,A_j$，若存在推导序列 $A_i\Rightarrow A_j\alpha$，则连边 $i\rightarrow j$
-3. 于是存在左递归$\iff$ 存在有向圈
-
-问题变成了存在一些具有传递性的边(即 $i\rightarrow j,j\rightarrow k$ 可得 $i\rightarrow k$)，我们已知怎么去掉一个点的自环(消除直接左递归)，问要如何消除所有的有向圈
-
-一个做法就是规定编号为 $i$ 的点只能连向编号大于 $i$ 的点(容易归纳证明这样无环)，对于不满足的边我们用边的传递性使之越过若干中间节点。于是书上的算法就很好理解了
-
-
-
-~~先写到这里，去睡觉/(ㄒoㄒ)/~~
-
-
-
-## Top-Down Parsing
-
-再次回顾语法分析的目标：判断给定的串 $code$ 是否是语法 $G$ 的语言，如果是的话给出语法树结构
-
-为了讨论的方便，下面提到的文法都是无二义性文法
-
-
-
-考虑对起始符号 $s_0$ 的一个最左推导，若 $s_0\overset *{\underset{lm}\Rightarrow}code$，由文法无二义性可知推导序列唯一，且其作为最左推导唯一对应与一棵语法树。
-
-Top-Down实际上就是在模拟这个过程。即我们每次从当前句型中取出最左的nonterminal $N$，根据某个 $N$ 作为head的产生式替换得到新的句型
-
-
-
-#### 递归下降
-
-没啥好讲的很sb的技术，也就是我们每次尝试所有可能的产生式，如果遇到了不能匹配情况就回溯....
-
-
-
-### LL(1) 文法
-
-在认真研读龙书前，我对语法分析的理解停留在递归下降的层面，并好奇工业上究竟是怎么解决这么一个复杂的问题的....
-
-现实令人吃惊，通常面对一个很难的问题，我们不仅可以用精巧的做法解决它，还可以用更简单的case回避它！LL(1)文法就是这么出现的
-
-
-
-#### 准备工作
-
-给定上下文无关文法 $G(N,T,s_0,R)$
-
-首先定义两个函数 $FIRST(\alpha)\colon \left(N\cup T\right)^+\mapsto T\cup\left\{\;\epsilon\;\right\}$ 和 $FOLLOW(A)\colon N\mapsto T$ ，含义分别如下
-
-$c\in FIRST(\alpha)$ 当且仅当 $\alpha\overset *\Rightarrow cy$，其中 $\alpha$ 是非终结符和终结符上的串， $c$ 是某个终结符，$y$ 是终结符上的串。若 $\alpha\overset*\Rightarrow\epsilon$，则规定 $\epsilon\in FIRST(\alpha)$
-
-$c\in FOLLOW(A)$ 当且仅当 $\exists yc\in L(G)$ 满足 $A\overset*\Rightarrow y$，其中 $A$ 是某个非终结符，$c$ 是某个终结符，$y$ 是终结符上的串。特殊规定 $code$ 的末端有一个终结符 $EOF$，且 $EOF$ 只能出现在串的末尾
-
-
-
-LL(1) 文法要求：
-
-1. 任意共享同一个head的两个产生式 $A\rightarrow \alpha$ 和 $A\rightarrow \beta$，都满足 $FIRST(\alpha)\neq FIRST(\beta)$
-2. 任意共享同一个head的两个产生式 $A\rightarrow\alpha$ 和 $A\rightarrow\beta$，都满足至多有一个body的 $FIRST$ 有 $\epsilon$
-3. 任意共享同一个head的两个产生式 $A\rightarrow\alpha$ 和 $A\rightarrow \beta$，若 $\epsilon\in FIRST(\alpha)$，则必有 $FOLLOW(A)\neq FIRST(\beta)$，反之亦然。
-
-
-
-琢磨一下这几条规则的含义需要首先搞懂两个函数在干什么
-
-$FIRST(\alpha)$ 表明了句型 $\alpha$ 最终产生的所有句子的可能的第一个字符
-
-$FOLLOW(A)$ 表明了非终结符 $A$ 产生的所有终结符序列(不一定是句子，因为 $A$ 不一定是起始符号)在所有句子中后续紧邻着的字符
-
-
-
-也就是说，LL(1)文法所有共享head的产生式都走向了不相交的分支，确定走哪一个只需要根据下一个非终结符的从属关系就能判断了
-
-由此自然得到LL(1)文法的真正含义：从左往右读取(第一个L)，最左推导(第二个L)，推导非终结符时产生式的选择只需1个终结符即可判定 的文法
-
-于是也就可以理解为什么上面要提到提取左公因子的做法了，只是为了把非LL(1)文法改造成LL(1)文法而已
-
-
-
-#### 求 $FIRST(),FOLLOW()$
-
-先考虑怎么求FIRST
-
-终结符的FIRST很好求
-
-非终结符的FIRST只需要逐个判断产生式，再顺序判断产生式的每一项就好了
-
-终结符和非终结符的串的FIRST可以看成是某个不存在的非终结符的body，那么就和上面一样了
-
-
-
-再看看怎么求FOLLOW
-
-起始符号的FOLLOW很好求，是$EOF$
-
-对于每个非终结符，找到所有body包含它的产生式，往后根据FIRST规定集合的约束。有些来自FOLLOW，有些来自head的FOLLOW，这部分和FIRST是差不多的
-
-
-
-### 制表
-
-可以预处理出 $N\times T$ 的表，表示对于不同的状态(非终结符)和下一个输入(终结符)，我们应该采取哪一条产生式
-
-由于任意两个产生式的FIRST不交，因此只需要枚举每个产生式和它body的FIRST，就可以得到表项了
-
-对于表中空出的位置我们可以填入报错信息，也可以额外填入对应的错误处理方法
-
-
-
-## PDA
-
-这个很有意思，但我还不是很懂，大概写一下定义就跑路(
-
-下推自动机的形式化定义为一个七元组 $(Q,\Sigma,\Gamma,\delta,q_0,Z_0,F)$
-
-$Q$：状态的有穷集合
-
-$\Sigma$：符号的有穷集合
-
-$\Gamma$：一个叫堆栈(Stack)的数据结构，支持：1. 在顶端插入一个字符 2. 取出顶端的字符 3. 读取而不取出顶端的字符
-
-$\delta$：转移函数 $Q\times \Sigma\times\Sigma\mapsto Q$，即转移状态由当前状态、输入和栈顶状态共同决定
-
-$q_0$：初始状态
-
-$Z_0$：初始符号，即初始栈中的元素
-
-$F$：接受态的集合
-
-
-
-## Bottom-Up Parsing
-
-自底向上语法分析期望做到这样一件事情：我们手上时刻保存着一个最右句型，并根据当前局面的情况作出如下操作：将连续若干符号收缩(用某条产生式的逆替换)成一个非终结符，且不改变最右句型这一性质。
-
-换句话说，假设我们得到了起始符号 $s_0$ 到最终句子 $c$ 的一个最右推导序列 $l_{rm}$，那么我们需要希望通过对 $c$ 的分析得到 $l_{rm}$ 的逆 ${l_{rm} }'$。
-
-
-
-具体的实现需要用到一个栈，保存当前最右句型仍未展开的部分；以及剩余全部已经展开为终结符的字符流。在栈顶和字符流的最左端，就是上一次发生推导的位置。注意到所有在当前栈顶的非终结符展开之后才展开的非终结符，必然都已经展开成了字符流(有点绕但一定要看明白)，否则违反最右句型的定义。因此每次面临的选择只有两个：
-
-1. 规约(Reduce)，将栈顶的若干符号根据某产生式的逆，替换为一个非终结符，记作一次**规约**
-2. 移入(Shift)，目前任意栈的前缀都无法匹配任何产生式的右端，表明所有栈顶位置之前的符号都已经规约完毕，继续规约需要用到栈顶位置往后的终结符，因此移入一个终结符到栈顶。
-
-
-
-因此一个通用的LR Parser由四部分组成：
-
-1. token流的buffer
-2. 一个栈
-3. 一个`GOTO`表
-4. 一个`ACTION`表
-
-与上面直观的分析不同，此处的栈储存的是状态
-
-这里通用的真正含义在于：所有不同的LR方法的区别仅在于构造的`GOTO`和`ACTION`表不同，或者说构造算法存在差异。这就很适合自动生成了
-
-实际上`GOTO`表、`ACTION`表、栈共同组成了一个下推自动机(Push Down Automata)
-
-
-
-### GOTO和ACTION表
-
-$GOTO[x,ch]=y$ 表示在PDA的状态$x$，遇到**非终结符** $ch$ 时，会转移到状态 $y$
-
-$ACTION[x,tch]$ 记录了在状态 $x$，遇到**终结符** $tch$ 时，应该进行什么操作(移入还是规约？移入什么状态？用哪条产生式的逆进行规约？)。**这是不同LR策略之间的最本质区别**
-
-
-
-于是一个通用LR Parser的工作流程就可以描述为：
-
-记栈顶为 $top$， 每次读入符号 $ch$，根据 $ACTION[top,ch]$ 判断是否规约
-
-1. 如果规约，则从栈中弹出产生式的右端(对应的状态)。记产生式的左端为 $H$，那么当前到达的状态就是 $GOTO[top',H]$，其中 $top'$ 是弹出产生式右端后，得到的栈顶。
-2. 否则根据$ACTION$表，移入新的当前状态 
-
-
-
-在处理过程中可能出现下面的冲突情况：
-
-1. 移入-规约冲突，即当前可以规约，但是再移入几个可以规约成更大的非终结符
-2. 规约-规约冲突，即当前既可以规约栈的一个前缀$s$，又可以规约栈的另一个前缀$s'$
-
-
-
-一个好的LR策略，应当恰当地处理这些冲突(后面会看到SLR的做法就是不处理....)
-
-
-
-### LR(0) 自动机
-
-这是为后面的SLR技术作铺垫
-
-其实是PDA的一个真子集，可以看成是一个特殊的DFA
-
-首先对语法 $G$，我们构造等价的增广语法 $G'$，唯一的区别在于增添一条产生式 ${s_0}'\rightarrow s_0$，表示一个新的起始符号
-
-
-
-### 项，项集
-
-我们称一个项(term)为一个产生式加上一个点，例如 $A\rightarrow ab\cdot cde$
-
-直观的含义就是，我们目前已经读到了这个产生式右端的某个前缀，于是在这个前缀的位置打上标记。特殊地 规定 $A\rightarrow \epsilon$ 的项只有唯一的 $A\rightarrow \cdot$
-
-不妨记所有项组成的集合为 $T$，一个粗略的估计为 $|T|=\sum\limits_{p\text{ 是产生式，b是p的body} } {|b|+1}$
-
-再造两个项上的操作 $cur:T\mapsto \mathbb N$ 和 $next:T\mapsto T$
-
-规定 $cur(A\rightarrow\alpha\cdot c\beta)=c$，表示我们接下来需要一个终结符 $c$
-
-规定 $next(A\rightarrow\alpha\cdot c\beta)=A\rightarrow\alpha c\cdot\beta$，表示我们又匹配上了一个字符 $c$
-
-
-
-### 项集合的闭包操作
-
-对于一个项组成的集合(a set of terms) $S$，我们构造地定义函数 $I:2^T\mapsto 2^T$ 如下：
-
-1. $S\subseteq I(S)$
-2. $\forall t\in S$，若 $t$ 中的点后是一个非终结符(即 $t$ 的形式为 $H\rightarrow \alpha\cdot A\beta$)，且存在产生式 $A\rightarrow \gamma$，则 $A\rightarrow\cdot\gamma\in I(S)$
-
-
-
-感性的理解很直观，即如果我们已经读完了某个产生式右端的一个前缀，那么对于紧接着的一个非终结符 $A$，我们接下来可以读任何以 $A$ 为head的产生式的右端的第一个符号。
-
-
-
-### 项集作为状态的转移
-
-现在有了一堆元素，自然考虑它们之间的关系以及它们和字符的相互作用。
-
-对于一个项集 $S$，给定一个字符 $c$，则我们记 $trans(S,c)=T$ 当且仅当：
-
-1. $\forall t\in T$ 都有 $\exists s\in S$ 使得 $next(s)=t$ 且 $cur(s)=c$
-2. $\forall s\in S$ 且 $cur(s)=c$ 都有 $next(s)\in T$
-
-
-
-## SLR
-
-SLR(Simple LR Parsing)技术其实很简单，大概思路就是只分析最简单能分析得了的LR语法，其余一概不认
-
-假设我们的项集为 $T=\left\{\;I_0,I_1,I_2\ldots\;\right\}$
-
-
-
-### 构造`ACTION`
-
-假设我们要求 $ACTION[S,c]$
-
-1. 若 $A\rightarrow\alpha\cdot\in S$ ，且 $c\in FOLLOW(A)$，则用 $A\rightarrow\alpha$ 规约
-2. 若 $A\rightarrow\alpha\cdot c\beta\in S$，则规定移入 $trans(A,c)$
-3. 若 ${s_0}'\rightarrow s_0\in S$，则表明完成了parsing
-4. 最后在空的地方填上错误处理/报错
-
-
-
-### 构造 `GOTO`
-
-非常简单，规定 $GOTO[x,ch]=trans(I_x,ch)$
-
-
-
-大概总结一下。LR分析最重要的就是解决"何时规约"的问题，因为如果不能规约就必须移入了
-
-SLR给出的方案就是，如果我们走到了某个产生式的右端，且紧接着出现了一个可以立即出现在产生式左端之后的终结符，那么就立刻规约到这个产生式。其余的情况则是能移入就移入。其实也就是"能规约就立刻规约，否则能移入就立刻移入" 的意思......
-
-
-
-SLR的缺点很明显，存在规约-规约冲突的时候不能做(因为这不是SLR语法的范围)，并且规约策略过于"aggressive"，导致可能得到的局部解走不到一个全局解。课程视频说LALR很好地平衡了LR(1)和SLR的优缺点，但是这部分我还没看。
-
-
-
-## 错误恢复
-
-很显然我们不可能每次编译只找到一个错就停下来。假设每次只报一个错，代码有一万个错的话.....
-
-因此需要一种策略，在找到错误(无法匹配任何一种语法模式)时，迅速恢复到正常模式，对后续的(可能正常的)代码进行检测。
-
-主要讲三种：panic mode和phrase level recovery，还有一种属于体贴型服务
-
-
-
-xc原话"由于程序猿写bug的创造力实在太强，甚至会搞爆编译器，因此要求编译器正确找出所有的错也是很困难的事情。"
-
-error recovery的策略通常是根据经验得来的trick，也就是**完全**不具有普遍性。这也是为什么报错信息这么难读
-
-### Panic Mode
-
-这一策略可以描述为：若栈顶的终结符 $A$ 遇到了无法匹配的非终结符 $c$，则开始一直往后读输入的字符流，直到找到某个字符 $c'\in Syn(A)$，停止panic mode并弹出栈顶，然后往后继续分析。
-
-这里的 $Syn(A)$ 是一个字符集，它**通常**表示了一个语法单元的结束(例如一个分号，一个换行，一个右花括号)。意思是 $A$ 已经识别不出来了，于是赶快找到(可能)包含 $A$ 的最小(尽可能小)语法单元，把它和 $A$ 一起丢弃。
-
-
-
-举个生活中的例子就是，你一边听老师上课，一边记笔记。但是因为中间分神了，导致手上还在写第一页，老师已经讲到第五页了。于是你迅速往后跳，直到找到当前老师正在讲的位置，然后继续跟着记笔记(泪
-
-
-
-### Phrase Level Recovery
-
-意思是我们可以对输入进行若干插入、删除、修改操作，使得它成为一段正确符合语法的串。
-
-最直白的做法是最小编辑距离，但是这个东西在实际中效果并不好(书上原文
-
-
-
-### 打表
-
-对，预测程序猿可能犯什么错：行末没有分号，形参没有类型等等等等
-
-属于是尽力在提升编译结果可读性，但是十分为难的sb做法。只能说确实有这个必要，但是这么做确实很无语....讲出来只是为了开开眼界(
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">编译原理 笔记2 词法分析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-01 01:32:00" itemprop="dateCreated datePublished" datetime="2021-09-01T01:32:00+08:00">2021-09-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## 词法分析的作用
-
-1. 读取字符流，输出词法单元给语法分析器
-2. 在1的过程中去掉不必要的内容(空白符、注释)，查错报错
-3. 与符号表交互，插入符号的相关内容
-4. 虽然词法分析和语法分析是两个独立的部分，但它们通常在同一趟
-
-
-
-### 为什么要独立词法分析
-
-1. 模块化
-2. 词法分析很简单，实现也很简单
-3. PPT把1+2又说了一遍....
-4. 词法分析和语法分析依赖的算法不同(有限状态自动机VS下推自动机)
-
-
-
-## Token&Pattern&Lexeme
-
-Token是词法单元的抽象符号，可以理解成具体单词所属的**类**
-
-Pattern是对一类词法单元形式的描述，它说明了这类词法单元“长啥样”
-
-Lexeme则是一个具体的词法单元(词素)
-
-
-
-举例：
-
-Tokens:猫和狗
-
-对应Pattern:会喵喵叫和会汪汪叫
-
-对应Lexeme:我家的一只狸花和校门口的大黄
-
-
-
-这也说明了为什么token需要额外的信息来标记，因为光凭token不能知道lexeme具体的内容
-
-## 词法单元的形式规定(正则表达式)
-
-
-
-### 串和语言
-
-学一下形式化的定义....
-
-首先定义字符表(alphabet)为有限集$S$​​，那么字符表$S$​​上的串就定义为n元有序对$L=\cup_{i\in\mathbb {N} }{S^i}$​​的集合中的元素
-
-串$s$的长度定义为$|s|$，即$s$中符号的数量。我们称$L$为字符表$S$​上的语言。语言是可数的(可数个有限集的并仍然可数)，但不一定是有限的
-
-对于特殊的长度为0的串记作$\epsilon$
-
-
-
-前缀：从串的尾部删除0个或多个字符得到的串
-
-后缀：从串的前部删除0个或多个字符得到的串
-
-子串：从串的前部和尾部删除0个或多个字符得到的串
-
-子序列：从串中删除0个或多个字符得到的串
-
-#### 串操作
-
-连接(concatenation)：把串y放在x后得到xy，注意这是不可交换的运算。串x自身的n次连接可以简记作x^n^。特殊地，我们规定x^0^=$\epsilon$
-
-#### 语言操作
-
-L和M的并：$L\cup M=\left\{\;s|s\in L\text{ or }s\in M\;\right\}$
-
-L和M的连接：$LM=\left\{\;st|s\in L\text{ and }t\in M\;\right\}$，同样L自己的连接记作$L^k$
-
-L的Kleene闭包：$L^*=\cup_{i=0}^{+\infty}L^i$，即将L重复0次或多次​
-
-L的正闭包：$L^+=\cup_{i=1}^{+\infty}L^i$，即将L重复至少一次
-
-
-
-这样我们就有了构建复杂语言的工具了。
-
-
-
-### 正则表达式
-
-递归定义
-
-1. $\epsilon$是正则表达式，$L(\epsilon)=\varnothing$
-2. 若$a\in S$，则$L(a)=\left\{\;a\;\right\}$
-3. 若$a,b$都是正则表达式，则$(a)|(b)$也是正则表达式，且$L((a)|(b))=L(a)\cup L(b)$
-4. 若$a,b$都是正则表达式，则$(a)(b)$也是正则表达式，且$L((a)(b))=L(a)L(b)$
-5. 若$a$都是正则表达式，则$(a)$也是正则表达式，$L((a))=L(a)$
-
-
-
-可以用正则表达式定义的语言被称为**正则集合**
-
-为了方便，可以给正则表达式命名。例如给表达式r命名为d，则写作`d->r`
-
-还有一些其它的运算(语法糖)
-
-`r+`==`rr*`
-
-`r?`==`e|r`
-
-`[a1a2a3]`==`a1|a2|a3`
-
-`[a-z]`==`[abcdefg...wxyz]`
-
-## 词法单元的识别(状态转换图)
-
-图的节点表示状态，边表示状态转换函数，边上的符号表示输入的符号与之相等时从这条边进入下一个状态。
-
-必然有初始和接受状态
-
-### 关键字的处理
-
-关键字也会被识别成identifier，解决方案有两种
-
-1. 提前把关键字插入符号表
-2. 为关键字建立单独的状态转换图
-
-## 词法分析器生成工具及设计
-
-就讲了一波flex的用法....看文档！
-
-## 有限状态自动机
-
-事实上有限状态自动机有两种，分别是确定状态自动机(Deterministic Finite Automata)和非确定状态自动机(Nondeterministic Finite Automata)，即DFA和NFA
-
-自动机的形式化定义为一个五元组$(\Sigma,S,f,start,E)$​，分别表示字符集、状态集、转移函数、初始状态、接受状态
-
-### DFA
-
-其中$f:S\times\Sigma\mapsto S$​ 和 $E\subseteq S$​​ 比较特别。
-
-对于字符$c$​ 和一个状态 $s$​，我们称自动机 $D$​ 接受 $c$​ 后的状态为 $s'$​ 当且仅当 $f((s,c))$​有定义，且$f((s,c))=s'$​。对于DFA我们特殊规定 $f((s,\epsilon))=s$，NFA后面再说
-
-对于字符串$str=c_1c_2c_3\ldots c_n$ 和一个状态 $s$，我们称自动机$D$ 接受$str$ 后的状态为$s''$ 当且仅当 $f(f(\ldots f(f(s,c_1),c_2)\ldots,c_{n-1}),c_n)$ 有定义且等于$s''$
-
-很显然，若字符串 $str=s_1s_2$，其中 $s_1s_2$ 都是串，那么有 $f(f(state,s_1),s_2)=f(state,s_1s_2)=f(state,str)$
-
-
-
-对于一个特定的DFA $D=(\Sigma,S,f,start,E)$​，给定一个串 $str$​，我们称 $D$​ 接受串 $str$​ 当且仅当 $f^*(start,str)\in E$​
-
-记 $L(D)=\left\{\;str\mid f^*(start,str)\in E\;\right\}$​，则$L(D)$​ 称为 $D$​ 的语言
-
-
-
-### NFA
-
-与DFA的区别在于，$f:S\times(\Sigma\cup\left\{\;\epsilon\;\right\})\mapsto 2^S$ 转移函数的目标是若干状态组成的集合，表示这些状态都可以是当前状态加上某个字符后的后继状态
-
-说人话就是造出来的图可以有$\epsilon$ 作为标号的边，并且一条标号的边可以连接多个后继状态。
-
-
-
-有几个等价关系
-
-#### 自动机等价
-
-直观地，对于自动机 $D_1,D_2$，我们称它们等价当且仅当 $L(D_1)=L(D_2)$
-
-
-
-#### 状态等价
-
-对于状态 $s_1,s_2\in S$，我们称它们等价当且仅当对任意的串 $str$，都有 $f^*(s_1,str)=f^*(s_2,str)$
-
-
-
-于是自然要问：这两种不一样的自动机表达语言的能力相同吗？
-
-很显然DFA是一种特殊的NFA，因此NFA不会比DFA弱。
-
-考虑用DFA对NFA进行模拟。
-
-注意到不确定性的引入使得某一时刻NFA所处的状态可能有不止一个，因此可以用$2^n$​状压枚举所有可能的状态，并对字符集连边
-
-构造如下：
-
-给定NFA $N=(\Sigma,S,f,start,E)$
-
-#### $\epsilon\text{-closure}$
-
-首先规定一个函数 $c(S)=T$​​​​，满足 $S\subseteq T$​​，且 $\forall x\in T$​​ 都 $\exists y\in T$​​ 使得 $f(y,\epsilon)=x$​​。我们称 $c(S)$​​ 是 $S$​​ 的 $\epsilon\text{-closure}$​​。
-
-函数$c$的存在性是可以构造证明的。首先令 $T_0=S$，对于自然数$k$，我们任意地选取 $T_k$ 中的元素 $x$，若$f(x,\epsilon)\not\in T_k$，则令 $f(x,\epsilon)\in T_{k+1}$
-
-再规定对任意的自然数$k$都有 $T_k\subseteq T_{k+1}$，那么 $T_0\subsetneq T_1\subsetneq T_2\ldots T_u$，由于总的状态集有限，且集合列的大小递增，故算法必然停止，这样就找到了$c(S)$
-
-#### 转移函数
-
-对于任意状态$s\in 2^S$​，我们规定$g(s,ch)=c\left({\cup_{x\in s}{f\left(x,ch\right)} }\right)$​，容易用反证法证明函数$g$​是well defined的
-
-#### 初始/接受状态
-
-规定 $s\in 2^S$ 为接受状态当且仅当 $\exists x\in s$ 使得 $x$是接受状态，初始状态则是$c(\left\{start\right\})$
-
-
-
-下面证明这是一个DFA：
-
-首先对于任意状态$s\in 2^S$​，$\epsilon\text{-closure}$的过程确保了不存在$\epsilon$的边，而 $g$ 的良定义确保了不存在多条同标号的边连向不同的后继状态
-
-然后证明其与$N$等价：
-
-只需要证明二者的接受状态集等价，且两个状态等价当且仅当它们输入同一个字符后得到的两个后继状态仍然等价，然后归纳即可。
-
-
-
-这样就证明了二者的表达能力是等价的....大概
-
-
-
-容易发现，给出DFA则很容易判断某个串是否能被其接受，而NFA则不好直接模拟。因此根据上面的证明可以想到用一个DFA去模拟NFA
-
-
-
-## 应用
-
-说了这么多有啥用呢，就是我们可以通过将正则表达式转化为一个NFA，再将NFA转化为DFA的流程来实现用正则表达式识别字符流的目的，也就是写一个自己的lexer
-
-
-
-注意到正则表达式实际上和一般的代数表达式没有本质区别，也是由一般字符(数字)和特殊字符(运算符)组成的，运算符又包括单目运算符(*号)、二元运算(|号，还有看不到的连接号)
-
-因此可以用两个栈生成表达式的语法树，然后在语法树上根据递归构造的正则表达式规则来建立NFA，然后根据上面的构造把NFA变成DFA
-
-
-
-我自己写了一下，写了大概一天一夜.....写得人都傻了但是停不下来
-
-最开始打算用cpp写，后来发现OOP只会java的写法(什么居然没有instanceof要用<dynamic_cast>)....更糟糕的是类之间的层次设计基本抓瞎，于是就转战c了。不过收货还是有的，不能说完全没学到东西。
-
-尝试了一下程序的结构设计，分了几个`struct`和文件来保证这些部分可以单独改动，有些地方考虑得很粗暴，后面有时间再修修吧
-
-生成NFA和DFA之后还会导出一个`.gv`文件用于graphviz绘图，这样就可以直观看自己的DFA和NFA长啥样啦！
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/" class="post-title-link" itemprop="url">DFA到等价正则表达式的转化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-20 11:42:00" itemprop="dateCreated datePublished" datetime="2021-08-20T11:42:00+08:00">2021-08-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## 思考题的引入
-首先看这样一道思考题：
-> 如何用**正则表达式**识别所有是三的倍数的二进制串？
-
-考虑最暴力的做法。用一个变量`rem`表示一个串的前缀作为二进制对3的余数，对新进来的字符讨论：
-1. 进来一个`0`，则`rem=(rem<<1)%3;`，因为我们是从高位向低位读的
-2. 进来一个`1`，则`rem=((rem<<1)+1)%3`
-
-那么只需要判断最终`rem`是否为0就好了
-
-## 自动机的做法
-
-在做这题之前，可以先想想这样的一个问题：
-> 如何用**自动机**识别所有是三的倍数的二进制串？
-
-或者说
-> 如何用**自动机**表示上述暴力做法？
-
-注意到`rem`的取值只能为`0,1,2`，因此可以建3个点，每个点两条出边表示对不同字符的处理转移，那么建出来的图如下
-
-![image](https://img2020.cnblogs.com/blog/1010529/202108/1010529-20210820110746913-1492292485.png)
-
-其中节点1,2,3分别表示`rem`对应为0,1,2的状态。
-
-"但是问题还没完啊，你不是要正则表达式吗"
-做到这一点需要一些前置姿势
-
-## 正则表达式代数
-
-没错！正则表达式也是有代数结构的！
-为了方便，我们规定连接运算(concatenation)用`.`符号表示
-| 符号  | 性质  |
-| ------------ | ------------ |
-| \|  | 结合律，交换律，对.的分配率  |
-| .  | 结合律  |
-| ^  | 幂等律  |
-
-它们的优先级从上到下**递增**
-
-那么自然应该想到，列出正则表达式的代数方程，也是可以解方程的
-
-### Arden's Theorem
-
-定理的内容很简单，即对于形如 $x=A|xB$ 的方程，$x$ 的解都是 $AB^*$ 的形式
-
-对解的长度进行归纳。当 $n=1$， $x_1=A$ 是原方程的一个解，满足 $x=AB^*$ 的形式
-设当 $n<k$ 时成立，则 $x_{n-1}=A\overbrace{B\ldots B}^{n-1\text{个}B}$，带入方程右侧就有 $x_n=x_{n-1}B=A\overbrace{B\ldots B}^{n\text{个}B}$
-由数学归纳法可知原方程的解都是 $x=AB^*$ 的形式，并且容易验证形如 $AB^*$ 的串都是方程的解。
-
-类似的也有对 $x=A|Bx$ 的结论
-
-## 自动机到正则表达式的转换
-
-我们知道，自动机的每个状态都对应着一个接受串的集合(从初始状态到当前状态所有路径组成的串的并)，而不同状态之间存在转移关系
-
-那么就可以设未知数列方程辣！
-
-对于最开始的那个DFA，我们可以设它的三个状态对应的接受串的正则表达式为$x_0,x_1,x_2$，那么有如下关系
-$$
-\begin{cases}
-        x_0 &=& x_00|x_11 \\
-        x_1 &=& x_01|x_20 \\ 
-        x_2 &=& x_10|x_21 \\
-    \end{cases}
-$$
-
-对式3用Arden\'s Theorem得到$x_2=x_101^*$
-代入式2得到 $x_1=x_01|x_101^*0=x_01(01^*0)^*$
-代入式1得到 $x_0=x_00|x_01(01^*0)^*=x_0(0|1(01^*0)^*)=(0|1(01^*0)^*)^*$
-
-于是就得到了与该自动机等价的正则表达式
-
-需要注意的是，在这个表达式中，我们认为可以有任意的前缀零，并且空串和任意长度的0串都是3的倍数
-
-## 升华一下
-
-如果你乐于思考，就会发现我们上述"消元"过程意味着什么——我们在化简自动机的状态！
-也就是说，假如我们要求得表示DFA从起点到终点e的串的集合的正则表达式，那么我们只需要合并掉除起点和e以外的所有状态即可。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">scheme学习笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-15 13:10:00" itemprop="dateCreated datePublished" datetime="2021-08-15T13:10:00+08:00">2021-08-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## 前话
-
-开了SICP的坑，记一下lisp的方言scheme的一些东西
-
-我的笔记本是manjaro，本来折腾了半天装不上mit-scheme，后面发现直接自带guile就蛮能用的(能用就行)
-
-
-
-一个很重要的点就是求值的时候有两种规则：正则序和应用序，分别表示先替换后计算和先计算后替换。
-
-一般的scheme解释器用的都是应用序，这样可以减少一部分重复运算(具体例子见后)
-
-
-
-## 基本操作
-
-记一个操作为 `op`，则 `(op a1 a2 ... an)` 的值就是分别递归对 `a1, a2 ... an` 求值，然后将 `op` 作用于它们的值
-
-比如说 `(/ 3 2)` 就是 `3/2`。scheme中的整数相除默认是有理分数
-
-
-
-## 分支
-
-```scheme
-(cond
- 	((cond1) (exp1))
- 	((cond2) (exp2))
- 	(else (exp3)))
-```
-
-
-
-```scheme
-(if
-	(cond1) (exp1)
-	(exp2))
-```
-
-
-
-与一般的过程不同，这俩都是从上到下分别对 `(cond)` 表达式求值，然后选择第一个为真的入口对 `exp ` 求值
-
-
-
-## 过程/函数
-
-```scheme
-(define (max a b)
-	(if (< a b)) b a)
-```
-
-与 `cond` 和 `if` 不同，函数在解释器中的行为是：先求值，后替换，即使是 `cond` 和 `if` 的封装也是这样。**因此会出现一些不同的行为**
-
-
-
-`define` 同样可以用来定义变量，比如说
-
-```scheme
-(define PI 3.1415926)
-```
-
-但我更愿意把这个看成是一个**常函数**
-
-
-
-有了这些就足够写出和一般C程序设计基础课程里会出现的、等价的程序了！
-
-
-
-然后就涉及到了一个素数测试的小程序
-
-## 费马小定理
-
-$p\text{ is prime}\Rightarrow a^p\equiv a\pmod p\text{, }\forall 1\leqslant a< p$
-
-定理的初等证明比较麻烦，但是在群论里就能很简单地说明
-
-记 ${\mathbb Z_p}^*=\left\{\;a|0\leqslant a<p\text{ and }\gcd(a,p)=1\;\right\}$，由 $p$ 是质数容易有 ${\mathbb Z_p}^*=\left\{\;0,1,2\ldots p-1\;\right\}$ 且 ${\mathbb Z_p}^*$ 是循环群
-
-不妨取 $|g|=p,\,g\in{\mathbb Z_p}^*$，这就是通常说的**原根**，也就是循环群的生成元。
-
-这样 $\forall a\in {\mathbb Z_p}^*$ 都存在 $k$ 使得 $a=g^k$，即 $a^p={\left(g^k\right)}^p={\left(g^p\right)}^k=e^k=e=1$，这样就证明了费马小定理。
-
-
-
-## 费马素性测试
-
-假如给定了数 $p$，那么随机一个数 $a$，若 $a^p\not\equiv a\pmod p$，那么 $p$ **一定不是**质数。
-
-依据这一点，我们可以随机出若干基底，快速幂判断。
-
-
-
-## 引理
-
-若 $p$ 是质数，则 $\forall x\in {\mathbb Z_p}^*,\;x^2\equiv1\pmod p$
-
-则 $p\mid (x-1)(x+1)$，即 $p\mid (x-1)$ 或 $p\mid (x+1)$，又 $x<p$，所以 $x=1$ 或 $x=-1$
-
-
-
-## Miller-Rabin素性测试
-
-费马测试的问题在于存在一些数，它们能完全通过费马测试，但不是质数，比如说561
-
-这样的数叫Carmichael数，561是最小的卡迈克尔数，这样的数字有无穷多个
-
-因此我们不用 $a^p\equiv a\pmod p$，而用 $a^{p-1}\equiv 1\pmod p$，这样 $p-1$ 就是偶数
-
-考虑 $(p-1)=2^ab$，$b$ 为素数，那么在快速幂的时候判断一下是否存在 $1$ 的非平凡平方根就好了
-
-
-
-## 代码
-
-写的比较丑，不过真的很好玩！
-
-```scheme
-(define (fermat_test p k)
-	(define (exp_mod a x)
-		(define (square x) (remainder (* x x) p))
-		(cond
-			((= x 0) 1)
-			((= x 1) a)
-			((= 0 (remainder x 2)) (square (exp_mod a (/ x 2))))
-			((= 1 (remainder x 2)) (remainder (* a (square (exp_mod a (/ (- x 1) 2)))) p))))
-	
-	(define a (+ 1 (random (- p 1))))
-
-	(cond
-		((= k 0) #t)
-		((= (exp_mod a p) a) (fermat_test p (- k 1)))
-		(else #f)))
-
-(define (miller_rabin_test p k)
-	(define (!= a b) (not (= a b)))
-	(define (square x)
-			(define tmp (remainder (* x x) p))
-			(if (and (!= x 1) (!= x (- p 1)) (= 1 tmp))
-				0
-				tmp	))
-
-	(define (even? x) (= 0 (remainder x 2)))
-	(define (get x)
-		(if (even? x)
-			(/ x 2)
-			(/ (- x 1) 2)))
-
-	(define (exp_mod a x)
-		(cond
-			((= x 0) 1)
-			((= x 1) a)
-			(else (square (exp_mod a (get x))))))
-	
-	(define a (+ 1 (random (- p 1))))
-
-	(cond
-		((= k 0) #t)
-		((= (exp_mod a (- p 1)) 1) (miller_rabin_test p (- k 1)))
-		(else #f)))
-```
-
-## 快排
-
-非常naive的快排，用序列的第一项作为比较项，可以传入<或>来控制递增/递减
-
-```scheme
-(define (sort rel ls)
-	(define (merge la lb)
-		(cond
-			((null? la) lb)
-			((null? lb) la)
-			((rel (car la) (car lb)) (cons (car la) (merge (cdr la) lb)))
-			(else (cons (car lb) (merge la (cdr lb))))))
-	(define (split predicate lst)
-		(if (null? lst) (cons #nil #nil)
-			(let ((cur (car lst)) (result (split predicate (cdr lst))))
-				(if (predicate cur)
-					(cons (cons cur (car result)) (cdr result))
-					(cons (car result) (cons cur (cdr result)))))))
-	(if (not (< 1 (length ls))) ls
-		(let ((res-pair (split (lambda (x) (not (rel x (car ls)))) ls)))
-			(merge
-				(cons (caar res-pair) (sort rel (cdar res-pair)))
-				(sort rel (cdr res-pair))))))
-```
-
-## 符号求导
-
-是'的用法的最后作业，写了完全括号的中缀求导(加法、乘法、幂函数法则)
-不完全括号的写法大概是和sum-snd取列表的rest是一样的，因此这里先没写
-
-```scheme
-(define (sum? exp) (and (pair? exp) (eq? '+ (cadr exp))))
-
-(define (mul? exp) (and (pair? exp) (eq? '* (cadr exp))))
-
-(define (exponentiation? exp) (and (pair? exp) (eq? '** (cadr exp))))
-
-(define (=num? a b)
-	(and (number? a) (number? b) (= a b)))
-
-(define (make-sum a b)
-	(cond
-		((=num? a 0) b)
-		((=num? b 0) a)
-		((and (number? a) (number? b)) (+ a b))
-		(else (list a '+ b))))
-
-(define (make-mul a b)
-	(cond
-		((=num? a 1) b)
-		((=num? b 1) a)
-		((or (=num? a 0) (=num? b 0)) 0)
-		(else (list a '* b))))
-
-(define (make-exponentiation base exponent)
-	(cond
-		((=num? exponent 0) 1)
-		((=num? exponent 1) base)
-		(else (list base '** exponent))))
-
-(define (sum-fst exp) (car exp))
-(define (sum-snd exp) (caddr exp))
-
-(define mul-fst sum-fst)
-(define (mul-snd exp) (caddr exp))
-
-(define base sum-fst)
-(define (exponent exp) (caddr exp))
-
-(define (deriv exp var)
-	(cond
-		((number? exp) 0)
-		((symbol? exp) (if (eq? exp var) 1 0))
-		((exponentiation? exp)
-			(make-mul
-				(make-mul
-					(exponent exp)
-					(make-exponentiation (base exp) (- (exponent exp) 1)))
-				(deriv (base exp) var)))
-		((sum? exp)
-			(make-sum
-				(deriv (sum-fst exp) var)
-				(deriv (sum-snd exp) var)))
-		((mul? exp) 
-			(make-sum
-				(make-mul (deriv (mul-fst exp) var) (mul-snd exp))
-				(make-mul (mul-fst exp) (deriv (mul-snd exp) var))))))
-```
-
-## eq?和equal?
-
-书里面讲得比较奇怪，有点玄学
-
-其实就和java里判断两个引用指向的对象是否相等是一样的
-`pA == pB` 表示`pA`和`pB`指向同一个对象，这就和`eq?`的语义相同
-`pA.equals(pB)`表示`pA`和`pB`指向的对象在内容意义上是相等的，在scheme中指的就是结构和对应位置的内容是同一个对象，也就是`euqal?`的含义
-这也是为什么判断两个list用`eq?`会得到`#f`，这是因为两个list是不同的对象
-
-## 数据导向的程序设计和可加性
-
-这部分讲得挺好的。在写软件分析作业的时候就遇到了要判断某个对象`Obj`的类，然后分类操作的情况。然后那个lab要对11种子类进行讨论....这种时候简单的`if-else-if`分支就很麻烦了，对后期的维护和可读性都没有好处
-
-书上讲的是对数据打标签来实现分流处理，事实上在OO语言就是把过程写进每个类的内部，然后用一个统一的覆写方法，这样实际上就是封装
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/" class="post-title-link" itemprop="url">软件分析笔记10 Soundiness</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-14 02:45:00" itemprop="dateCreated datePublished" datetime="2021-08-14T02:45:00+08:00">2021-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          ## Soundness
-
-Conservative approximation: captures all program behaviors, or the analysis result models all possible executions of the program
-
-然鹅
-
-### Academia
-
-Virtually all published whole-program analyses are unsound when applied to real programming languages.
-
-### Industries
-
-Virtually all realistic whole-program static analysis tools have to make unsound choices.
-
-## Hard-to-analyze Language Features
-
-不同的语言存在一些难以分析的特性，如果对这些特性采取过于保守的措施，那么我们将会得到正确但无用的分析
-
-PPT给了几个例子，发现自己除了C的几个都不会....提上日程！
-
-#### Java
-
-Reflection, native code, dynamic class loading
-
-#### JavaScript
-
-eval, document object model(DOM)
-
-#### C/C++
-
-Pointer arithmetic, function pointers
-
-这就导致了许多声称sound的做法只是保证了核心语法的sound，而对部分功能的sound有所取舍(说白了就是挑结果发论文，坠入生化环材的灌水之路)。
-
-学术圈出现的乱象，需要正义的铁拳！(大雾，于是就有了一个Manifesto宣言，提出了Soundiness的概念
-
-## Soundiness
-
-造词来自Truthiness
-
-> Truthiness: a truthful or seemingly truthful quality that is claimed for something not because of supporting facts or evidence but because of a feeling that it is true or a desire for it to be true
-
-也就是把原本的Soundness升华(?)了
-
-A soundy analysis means that the analysis is mostly sound, with well-identified unsound treatments to hard/specific language features.
-
-
-
-区分之后的三级分类
-
-* A sound analysis requires to capture all dynamic behaviors
-* A soundy analysis aims to capture all dynamic behaviors with certain hard language features unsoundly handled within reason
-* An unsound analysis deliberately ignores certain behaviors in its design for better efficiency, precision or accessibility.
-
-也就是以后的论文必须要明确分析自己哪里准了，哪里还不准，以及原因。
-
-
-
-然后讲了两个具体的例子来对reflection和native code分析
-
-## Reflection
-
-难点在于class、method和field的具体对象是运行时确定的，并且是由一段字符串决定的，因此对于非静态决定的字符串难以求解上面的三个东西
-
-动态的字符串可能来自
-
-* 终端输入
-* 配置文件
-* 可能含有加密解密信息
-* 网络
-
-这些因素都使得反射机制难以静态分析
-
-
-
-最早的做法是通过结合指针分析来对静态字符串进行分析，进而推断出一些目标方法。而另一个想法就是，我们不在求解定义时寻找对应的方法，而是在使用它的时候寻找。大意就是在调用方法的时候通过参数的类型和数量来推断可能的目标方法。
-
-
-
-还有一些complete方法，例如说跑几个测试用例来找到一些必然真的目标方法。
-
-
-
-## Native Code
-
-Java在需要和OS交互的时候，需要调用一些C/C++代码，这样的代码称为Native Code
-
-Native Code难以分析比较好理解，因为语言不同，导致需要不同的分析策略。一种方法是根据函数的语义对常用的函数进行建模。PPT给的例子就是一个`ArrCopy()`可以建模成一整段的`for`+赋值
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">jpwang</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-</body>
+  </body>
 </html>

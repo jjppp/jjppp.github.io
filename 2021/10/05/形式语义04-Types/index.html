@@ -1,285 +1,495 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<html lang="zh-CN" color-mode="light">
 
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      形式语义04 Types 
+      
+      
+      |
+    
+     jjppp
+  </title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="## Types  首先要说明什么是Type  Types可以看成是对数据的分类、一种约定，即我们用一个界来描述一类数据构成的集合，用不同的界区分不同的数据种类。对于untyped的语言，我们则可以看成是只有唯一一种包罗万象的type  类型实际上有很多作用，可以进行针对性的优化、可以提供部分代码的信息、可以作为接口分离各模块的逻辑、可以保证程序的正确执行.....  如果写过Coq的话，还会知道">
-<meta property="og:type" content="article">
-<meta property="og:title" content="形式语义04 Types">
-<meta property="og:url" content="http://example.com/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/index.html">
-<meta property="og:site_name" content="jjppp">
-<meta property="og:description" content="## Types  首先要说明什么是Type  Types可以看成是对数据的分类、一种约定，即我们用一个界来描述一类数据构成的集合，用不同的界区分不同的数据种类。对于untyped的语言，我们则可以看成是只有唯一一种包罗万象的type  类型实际上有很多作用，可以进行针对性的优化、可以提供部分代码的信息、可以作为接口分离各模块的逻辑、可以保证程序的正确执行.....  如果写过Coq的话，还会知道">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-05T02:42:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T01:36:58.078Z">
-<meta property="article:author" content="jpwang">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://example.com/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/","path":"2021/10/05/形式语义04-Types/","title":"形式语义04 Types"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>形式语义04 Types | jjppp</title>
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
   
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
 
 
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">jjppp</p>
-      <i class="logo-line"></i>
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
     </a>
-      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+    <div class="nickname"><a href="/">Oranges</a></div>
   </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
   </div>
 </div>
 
 
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
 
 
 
 
 
-</div>
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">形式语义04 Types</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-10-05 10:42:00
+        </span>
         
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">jpwang</p>
-  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">84</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
       </div>
-  </nav>
-</div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="形式语义04 Types | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          形式语义04 Types
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-05 10:42:00" itemprop="dateCreated datePublished" datetime="2021-10-05T10:42:00+08:00">2021-10-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      <div class="markdown-body">
         <p>## Types 首先要说明什么是Type Types可以看成是对数据的分类、一种约定，即我们用一个界来描述一类数据构成的集合，用不同的界区分不同的数据种类。对于untyped的语言，我们则可以看成是只有唯一一种包罗万象的type 类型实际上有很多作用，可以进行针对性的优化、可以提供部分代码的信息、可以作为接口分离各模块的逻辑、可以保证程序的正确执行….. 如果写过Coq的话，还会知道类型可以与逻辑系统中的元素建立对应关系，从而可以利用类型推导工具来进行定理的证明（虽然我感觉这是绕了一个大弯，毕竟类型系统本来就应该看成一类特殊的逻辑系统），也就是Curry-Howard morphism 这一节讲的就是在$\lambda$-calculus中引入type ## Errors 分为trapped errors和untrapped errors trapped意思是就是出现使得程序停止的错误（除0） untrapped意思是程序虽然继续运行，但是状态被破坏了（回想注入攻击） forbidden-error则指的是一个untrapped errors的超集 ## Safe &amp; Well-behaved 我们称一个程序是safe的，当且仅当它执行过程中不会出现untrapped error。如果一个语言的所有合法程序都是safe的，那么我们就称这个语言是safe的 我们称一个程序是well-behave的，当且仅当它在执行过程中不会出现forbidden-errors。 于是就可以定义type safe了。如果一个语言经过了type system检查的程序都是safe的，那么我们称这个语言就是type safe的 实践中通常不明确定义forbidden-errors、well-behave以及safe，一般混着来，不过不影响理解 ## Annotations 把变量 $x$ 的类型为 $\tau$ 记作 $x:\tau$ 把”以类型 $\tau_1$ 作为输入、$\tau_2$ 作为输出”的函数 $f$ 的类型记作 $f:\tau_1\rightarrow \tau_2$ 有些变量的类型由环境决定，例如表达式 $f\;1$，在 $f:\text{int}\rightarrow\text{int}$ 和 $f:\text{int}\rightarrow\text{double}$ 两种情况下的类型就不一样，因此需要引入环境的概念，用函数 $\Gamma:\text{Types}^\text{var}$ 表示，意思是给free variable分配类型，也可以理解成*假设* 在Simply Typed $\lambda$-calculus里，类型仅由基本类型以及通过函数对基本类型进行复合两种方法得到。很显然类型的数量是可数的 以及若干推导规则： 1. $\Gamma,x:\tau_1\vdash e:\tau_2\Rightarrow \Gamma,x_1:\tau_1\vdash \lambda x.e:\tau_1\rightarrow\tau_2$，意思是函数的类型由参数类型和返回值类型确定。 2. $\Gamma,x:\tau\vdash x:\tau $，意思是在相同环境下，同名变量有相同类型 3. $\Gamma,e_1:\tau_1\rightarrow\tau_2,e_2:\tau_1\vdash e_1\;e_2:\tau_2$，意思是给一个函数传入参数就可以得到返回值的类型 可以发现，一个类型系统类似一个逻辑系统，我们有若干公理（变量类型）、推导规则，并且我们希望所有的命题都可以通过推理得到，也都有相应的语义含义 ## Soundness &amp; Completeness 也有叫Consistency的 如果一段代码能给所有表达式标上类型：即每个表达式的类型都可以在类型系统中推导得到，那么就称类型系统accept了这段代码 我们称类型系统sound，当且仅当所有通过的代码都不会出错 我们称类型系统complete，当且仅当所有不会出错的代码都能通过检查 很快就能反应过来对于递归可枚举的图灵完备的语言而言，这个问题是不可判定的。因此通常的做法是牺牲completeness追求soundness，意思是也许你的做法是对的，但我们建议用其它可以通过检查的方法来写；并且所有通过的代码都必须是安全的 在Simply Typed $\lambda$-calculus中，不出错就意味着： 如果 $\vdash M:\tau$ 并且 $M\overset *\rightarrow M’$，那么就有 $\vdash M’:\tau$ 并且要么 $M’$ 是一个value，要么 $M’$ 可以继续规约。这里value通常就定义为normal form *上面两条分别对应了下面的两个定理* 一个证明上述type system不complete的例子如下： $(\lambda x.(x\; (\lambda y.y))(x\;3))(\lambda z.z)$ 关键就在于对于同一个 $x$，它既作用于 $(\lambda y.y)$，又作用于 $3$，因此我们不能推导得到 $x$ 的类型，因此也就无法通过类型系统的检查 但是稍微规约一下就可以得到 $(\lambda y.y)\;3&#x3D;3$，最终是可以停止并得到值的，意思是这段代码不会出错 ### Progress TH 如果 $\vdash e:\tau$，那么要么 $e$ 是value，要么存在 $e\rightarrow e’$ 证明这个只需要对推导次数进行归纳就可以了 引理1：如果一个拥有 $\tau_1\rightarrow\tau_2$ 类型的表达式 $e$ 是value，那么它一定是 $\lambda x.E$ 的形式 引理1的证明：观察类型推导的规则就可以发现，能够给出 $\tau_1\rightarrow\tau_2$ 类型的规则只有一条。反证即可说明 Progress的证明： base case 是很简单的，这里就不写了 设当推导次数 $n&#x3D;k$ 时命题成立，分类讨论第 $k+1$ 次推导时表达式 $e$ 的结构： 1. 常量，此时 $e$ 是value，符合； 2. $e&#x3D;x$，此时环境为空，不可能有 $\vdash x:\tau$ 3. $e&#x3D;\lambda x.E$，此时 $e$ 是value，符合； 4. $e&#x3D;e_1\;e_2$，分类讨论 $e_1,e_2$ 1. $e_1$ 不是value，那么由归纳假设，存在 $e_1’$ 使得 $e_1\rightarrow e_1’$，符合； 2. $e_1$ 是value，$e_2$ 不是value，那么同理存在 $e_2\rightarrow e_2’$，符合； 3. $e_1,e_2$ 都是value，根据引理有 $e_1&#x3D;\lambda x.E$，于是有 $e_1\;e_2\rightarrow E[e_2&#x2F;x]$，符合； 由数学归纳法得命题对任意自然数次的推理成立 关键在于为什么需要引理，以及何时使用引理 ## Preservation TH 意思是如果 $\vdash e:\tau$ 且 $e\rightarrow e’$，那么有 $\vdash e’:\tau$ 引理2：若 $\Gamma,x:\sigma\vdash E:\tau$，且 $\Gamma\vdash e:\sigma$，那么 $\Gamma\vdash E[e&#x2F;x]:\tau$ 证明比较简单，只需要对 $e$ 推导归纳再分类讨论就好了 仍然对推理次数进行归纳，同样省去base case 对 $e$ 的结构分类讨论： 1. $e$ 是常量，那么不存在 $e’$； 2. $e&#x3D;x$，那么不存在 $e’$ 3. $e&#x3D;\lambda x.E$，那么不存在 $e’$ 4. $e&#x3D;e_1\;e_2$，那么就有 $\vdash e_1\;e_2:\tau$，并且 $\vdash e_1:\sigma\rightarrow \tau,e_2:\sigma$ 1. 存在 $e_1\rightarrow e_1’$，那么就有 $e\rightarrow e_1’\;e_2$。根据归纳假设有 $\vdash e_1’:\sigma\rightarrow\tau$，又根据类型推导规则有 $\vdash e_1’\;e_2:\tau$，归纳步骤成立； 2. 存在 $e_2\rightarrow e_2’$，那么就有 $e\rightarrow e_1\;e_2’$。根据归纳假设有 $\vdash e_2’:\sigma$，再根据类型推导规则有 $\vdash e_1\;e_2’:\tau$ 3. $e_1,e_2$ 都是normal form，那么根据引理1有 $e_1&#x3D;\lambda x.E$ 的形式，于是 $e&#x3D;e_1\;e_2&#x3D;\lambda x.E\; e_2$。此时显然有 $e\rightarrow E[e_2&#x2F;x]$，根据引理2有 $\vdash E[e_2&#x2F;x]:\tau$ 于是就证完了</p>
 <!-- more -->
 
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-10-05 10:42:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
     </div>
-
-    
-    
     
 
-    <footer class="post-footer">
-
+    
+      <div class="comments-container">
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/" rel="prev" title="密码学03 Computational">
-                  <i class="fa fa-chevron-left"></i> 密码学03 Computational
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/" rel="next" title="密码学04 PRG&PRF">
-                  密码学04 PRG&PRF <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
 
 
 
 
 
 
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">jpwang</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+      </div>
+    
   </div>
 
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
     </div>
-  </footer>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/colorscheme.js"></script>
 
+
+
+
+
+        
   
-
-
-
-
-
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904%20Types + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F10%2F05%2F%25E5%25BD%25A2%25E5%25BC%258F%25E8%25AF%25AD%25E4%25B9%258904-Types%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
+  
+<script src="/js/shares.js"></script>
 
 
 
-
-
-</body>
+      </div>
+    </div>
+  </body>
 </html>

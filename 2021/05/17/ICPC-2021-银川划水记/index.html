@@ -1,285 +1,495 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+<html lang="zh-CN" color-mode="light">
 
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      ICPC 2021 银川划水记 
+      
+      
+      |
+    
+     jjppp
+  </title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="一个周末发生了很多事情，值得记录一下  ## day -1  前夜被告知航班取消了，匆忙换成了从合肥出发的灰机。早上匆忙赶到南京南的时候因为太着急甚至走错了路。在列车即将晚点的时候又被告知退掉高铁票改去徐州，疫情！  人生第一次坐到了高铁一等座，座椅确实宽敞。到机场前短暂地体验了一波徐州的氛围，感觉和东莞差不太多，除了他们有自己的飞机场（囧  终于见到了碧海潮生和labelray本人，值了。两点半">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ICPC 2021 银川划水记">
-<meta property="og:url" content="http://example.com/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/index.html">
-<meta property="og:site_name" content="jjppp">
-<meta property="og:description" content="一个周末发生了很多事情，值得记录一下  ## day -1  前夜被告知航班取消了，匆忙换成了从合肥出发的灰机。早上匆忙赶到南京南的时候因为太着急甚至走错了路。在列车即将晚点的时候又被告知退掉高铁票改去徐州，疫情！  人生第一次坐到了高铁一等座，座椅确实宽敞。到机场前短暂地体验了一波徐州的氛围，感觉和东莞差不太多，除了他们有自己的飞机场（囧  终于见到了碧海潮生和labelray本人，值了。两点半">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-17T06:42:00.000Z">
-<meta property="article:modified_time" content="2022-06-19T01:36:58.130Z">
-<meta property="article:author" content="jpwang">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://example.com/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/","path":"2021/05/17/ICPC-2021-银川划水记/","title":"ICPC 2021 银川划水记"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ICPC 2021 银川划水记 | jjppp</title>
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
   
 
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
 
 
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">jjppp</p>
-      <i class="logo-line"></i>
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
     </a>
-      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+    <div class="nickname"><a href="/">Oranges</a></div>
   </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
   </div>
 </div>
 
 
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
 
 
 
 
 
-</div>
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">ICPC 2021 银川划水记</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-05-17 14:42:00
+        </span>
         
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">jpwang</p>
-  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">84</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
       </div>
-  </nav>
-</div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="jpwang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jjppp">
-      <meta itemprop="description" content="Young, Simple & Naive">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="ICPC 2021 银川划水记 | jjppp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          ICPC 2021 银川划水记
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-17 14:42:00" itemprop="dateCreated datePublished" datetime="2021-05-17T14:42:00+08:00">2021-05-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      <div class="markdown-body">
         <p>一个周末发生了很多事情，值得记录一下 ## day -1 前夜被告知航班取消了，匆忙换成了从合肥出发的灰机。早上匆忙赶到南京南的时候因为太着急甚至走错了路。在列车即将晚点的时候又被告知退掉高铁票改去徐州，疫情！ 人生第一次坐到了高铁一等座，座椅确实宽敞。到机场前短暂地体验了一波徐州的氛围，感觉和东莞差不太多，除了他们有自己的飞机场（囧 终于见到了碧海潮生和labelray本人，值了。两点半的飞机直接晚点到七点，期间一直在和简叶打雀，顺便看了一点少女漫，四处找人聊天。 到银川的时候已经十点了，沿途观察了一波地形，真是平坦啊。到酒店之后叫了一点外卖，很快就到了。躺上床就合了眼 ## day 0 早上爬起来才想起要去打板子，俩人四处晃悠问了三家店，看价格深感学校的好。最后货比三家还是爬回了第一家。出于某些原因没有打到目录（伏笔*1） 下午打车去NXIST，司机把能压的线都压全了，甚至没有系安全带，后怕（ 在学校里转了30 min才找到场地，问了三个志愿者分别指向了卖土特产的、饭堂和体育馆，迷惑 找场地的时候绕了一会儿，旁边是熟悉的广式口音，类目。CSHwang 在隔壁的隔壁的隔壁，被抓到了。看了一波参赛手册，觉得这波能Ag就是成功（flag，毕竟划了一整年的水。 热身赛是四个sb题，没啥好说的，唯一的难点在于古早gnome和编辑器。本来看到CLion还很高兴，直到打开它告诉我没有License，这么敷衍的吗（摔） 找半天找不到firefox，最后机智地`firefox &amp;`，当然直接点开cpp reference也可以，好评 评测姬中途直接停了，美其名曰“stress test”。开场1min全场都在交，然后就听到后面的摄影大叔：哇塞，一开始就过了这么多题目啊 出来之后听说本机栈是unlimited，死循环会直接卡死（伏笔*2） 有人在群里问要不要预定（伏笔*3）恰羊腿，非常心动就和GeWugu约了 拿着15r饭票的时候还在想够不够吃的问题，直到我看到了NXIST的感人物价：10r三个菜，3r一杯的饮料，甚至饭票没花完。九乡河人落泪.jpg 晚上睡了1h左右，醒来刚好看到简叶在写EL，于是我也就上了。接了一个E的锅，意识到是个水题就写了，中间因为LL和模太多挂了两发（伏笔*4），所幸还是过了。打完算了一波分，大概下盘不翻车就有rk2了。恰钱真难.jpg 大概十点出门吃宵夜，被告知羊腿要预约（预定），于是爽快决定去烧烤。找了一家店手抖点了五份考得很好的金(Au)针菇，气氛还是很不戳的。回到酒店开始赶当晚11:59的ddl，幸好带了笔记本 晚上睡得比较晚，水了很久的群。 ## day 1 貌似这波只有day 1….. 早上出门吃杂酱面，那边面食特别香。大概45分才让进门，差点以为要坐地上看题了。 发的题面甚至有封条，好评；密码条不是等宽字体，分不清0和O，差评； 看了一波昨天试机的配置还在，只是文件都没了，开始后悔没有设置snippet，血亏； 桌面上的cpp reference无了，oj地址也无了，于是开始发呆。 密码一发就过了，感觉很OK。开场我开了K，简叶开D，wky开A。事实上这个开法还算可以。K的题意有点绕，我跳过了第一段，直接导致题意看歪了。再加上第一发写错了下标，dfs直接就把系统都整挂了。万般震惊之下举手示意志愿者，小鸽鸽竟然表示这是正常现象。于是直接重启打印下场让wky做A。A写了一波就过了，再就是简叶写D，我看一波榜决定再开J和E。 看了一波E感觉是不太难的讨论，就把锅分给了wky然后去看J，意识到J是个sb模拟，就觉得这波五题应该稳了，怎么也得冲个Au吧（flag） 然后开始等简叶的AC，然后就看他写了30 min。感觉到不对劲就自己看了一发题面，于是发现按照他的做法过不得，这厮算错复杂度了。此时Au线是三题，我就开始着急了。上去抢键盘写掉了J，经历了行末空格就过了。wky讨论了一波E，也过了。于是开始回头看K，读了三次题才发现理解错了，不过改改就能A。此时痛失K的一血。看一波榜发现此时四题刚好Au线，心里开始鸡冻。 然后就开始了漫长的讨论-灵感-没有气球三连。中间经历了wky猜M的结论，简叶写B的假做法，我干D的LCT做法，我写G的假做法。三个人手上捏着四道题，但是两个不会写两个调不出。大概是吃午饭的时候决定跟榜全力搞G，然后就封榜了。这个时候瞄一眼，你南四支队都是四题（绝活），我们在100+，鸽呜咕在疯狂交B。直到认真看G才发现是nqlog刚好被卡的范围，于是十分自信地卡了30 min的常数。最后还剩3 min的时候突然想到只需要倒着做就可以用链表维护相邻关系了，这不就是sb题吗（摔 于是和队友说了想法，他们纷纷表示是正解，然后就躺了。最后一分钟认真看了看周围，原来xjj还是很多的，也许真的有人能在ACPC收货爱情吧（雾）。 离开之前疯狂刷新，最后还是苟在了Ag线上，个无辜刚好差三名，这也太极限了（。 在体育馆外面想着拍张合影，毕竟是第一次线下赛。于是三个人就拍了一张图上全是脸，脸上全是口罩的阴间照片（脸太大了） 一队貌似心态有点崩，不过已经打完了，像我这种容易满足的人总是没什么好不平的，也算好事吧。 飞机不出意料地晚点了，到学校已经是十一点。想想我出门都没刷卡，也没请假，只是和辅导员说了一声，还是有点后怕的。 ## 总结一波 我和队友都算划水的那一类，平时课业也多，所以练得很少（或者说几乎没有，呃，碰头）。这次出门看到了强队准备的模板和词典，看到了强队明确的分工和各有所长，得知了强队每周训练频率，看来勤奋在哪里都是硬通货。有追求、有梦想当然就有热情持续投入，自然会比原来的自己要强一点点，这也是算法竞赛美妙的地方——你总要不断超越自己。不过我不算太肝这方面的人，参加也只是抱着旅游的心态，因此能目睹如此青春的奋斗盛会也算是很值了。当然这三天里和队友干饭旅游吹水的感觉还是很不错的，感谢算法竞赛给我带来的宝贵友谊。这一轮打下来，可以看到强队失意，可以看到弱队翻盘，既有结束前的绝杀，又有开局稳定遥遥领先。在这样百态的人生之中，我普普通通地过活，勉勉强强地学习，也算是活出了我自己的样子吧。 暑假，一定，补题，加练（flag）</p>
 <!-- more -->
 
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-05-17 14:42:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AC%94%E8%AE%B01-%E6%90%9C%E7%B4%A2%E6%A0%91/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
     </div>
-
-    
-    
     
 
-    <footer class="post-footer">
-
+    
+      <div class="comments-container">
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/" rel="prev" title="图论笔记2 匹配">
-                  <i class="fa fa-chevron-left"></i> 图论笔记2 匹配
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AC%94%E8%AE%B01-%E6%90%9C%E7%B4%A2%E6%A0%91/" rel="next" title="数据结构 笔记1 搜索树">
-                  数据结构 笔记1 搜索树 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
 
 
 
 
 
 
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">jpwang</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+      </div>
+    
   </div>
 
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
     </div>
-  </footer>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/colorscheme.js"></script>
 
+
+
+
+
+        
   
-
-
-
-
-
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + ICPC%202021%20%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0 + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F05%2F17%2FICPC-2021-%25E9%2593%25B6%25E5%25B7%259D%25E5%2588%2592%25E6%25B0%25B4%25E8%25AE%25B0%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
+  
+<script src="/js/shares.js"></script>
 
 
 
-
-
-</body>
+      </div>
+    </div>
+  </body>
 </html>
