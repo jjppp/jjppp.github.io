@@ -226,41 +226,41 @@ n_3},\sigma\right&gt;}
 <h3 id="while">While</h3>
 <span class="math display">\[\begin{aligned}
 
-\frac{[\![exp]\!]\sigma=\bold{true} }{\left&lt;{\bold{while}
-}\;exp\;\bold{do}\;stmt,\sigma\right&gt;\rightarrow\left&lt;stmt\bold;\;\bold{while}\;exp\;\bold{do}\;stmt,\sigma\right&gt;}
+\frac{[\![exp]\!]\sigma=\textbf{true} }{\left&lt;{\textbf{while}
+}\;exp\;\textbf{do}\;stmt,\sigma\right&gt;\rightarrow\left&lt;stmt\textbf;\;\textbf{while}\;exp\;\textbf{do}\;stmt,\sigma\right&gt;}
 
 \\
 
 \\
 
-\frac{[\![exp]\!]\sigma=\bold{false} }{\left&lt;{\bold{while}
-}\;exp\;\bold{do}\;stmt,\sigma\right&gt;\rightarrow\left&lt;\bold{skip},\sigma\right&gt;}
+\frac{[\![exp]\!]\sigma=\textbf{false} }{\left&lt;{\textbf{while}
+}\;exp\;\textbf{do}\;stmt,\sigma\right&gt;\rightarrow\left&lt;\textbf{skip},\sigma\right&gt;}
 
 \\
 
 \\
 
 \frac{\left&lt;stmt_1,\sigma\right&gt;\rightarrow
-\left&lt;stmt_1&#39;,\sigma&#39;\right&gt;}{\left&lt;stmt_1\bold;\;stmt_2,\sigma\right&gt;\rightarrow\left&lt;stmt_1&#39;\bold;\;stmt_2,\sigma&#39;\right&gt;}
+\left&lt;stmt_1&#39;,\sigma&#39;\right&gt;}{\left&lt;stmt_1\textbf;\;stmt_2,\sigma\right&gt;\rightarrow\left&lt;stmt_1&#39;\textbf;\;stmt_2,\sigma&#39;\right&gt;}
 
 \\
 
 \\
 
-\frac{}{\left&lt;\bold{skip;}\;stmt,\sigma\right&gt;\rightarrow\left&lt;stmt,\sigma\right&gt;}
+\frac{}{\left&lt;\textbf{skip;}\;stmt,\sigma\right&gt;\rightarrow\left&lt;stmt,\sigma\right&gt;}
 
 \\
 
 \\
 
-\frac{}{\left&lt;\bold{skip},\sigma\right&gt;\rightarrow\left&lt;\bold{skip},\sigma\right&gt;}
+\frac{}{\left&lt;\textbf{skip},\sigma\right&gt;\rightarrow\left&lt;\textbf{skip},\sigma\right&gt;}
 
 \end{aligned}\]</span>
-<p>这里主要想讲 <span class="math inline">\([\![exp]\!]\sigma\)</span> 这个符号的用法。这里表示在环境 <span class="math inline">\(\sigma\)</span> 下，表达式求出的值是什么。其具体含义与操作语义的求值相同，但是注意到操作语义在执行的过程中会丢失表达式的结构信息（我们在一步步化简），因此通常需要把求值和化简分开，这里表现为用单独的函数表示求值操作，以此简化<span class="math inline">\(\bold{while}\;\ldots\;\bold{do}\)</span> 的操作语义规则，否则我们得这么写：</p>
+<p>这里主要想讲 <span class="math inline">\([\![exp]\!]\sigma\)</span> 这个符号的用法。这里表示在环境 <span class="math inline">\(\sigma\)</span> 下，表达式求出的值是什么。其具体含义与操作语义的求值相同，但是注意到操作语义在执行的过程中会丢失表达式的结构信息（我们在一步步化简），因此通常需要把求值和化简分开，这里表现为用单独的函数表示求值操作，以此简化<span class="math inline">\(\textbf{while}\;\ldots\;\textbf{do}\)</span> 的操作语义规则，否则我们得这么写：</p>
 <span class="math display">\[\begin{aligned}
 
-\frac{}{\left&lt;{\bold{while}
-}\;exp\;\bold{do}\;stmt,\sigma\right&gt;\rightarrow\left&lt;\bold{if}\;exp\;\bold{then}\;(stmt\bold;\;\bold{while}\;exp\;\bold{do}\;stmt)\;\bold{else}\;\bold{skip},\sigma\right&gt;}
+\frac{}{\left&lt;{\textbf{while}
+}\;exp\;\textbf{do}\;stmt,\sigma\right&gt;\rightarrow\left&lt;\textbf{if}\;exp\;\textbf{then}\;(stmt\textbf;\;\textbf{while}\;exp\;\textbf{do}\;stmt)\;\textbf{else}\;\textbf{skip},\sigma\right&gt;}
 
 \end{aligned}\]</span>
 <h3 id="evaluation-context">Evaluation Context</h3>

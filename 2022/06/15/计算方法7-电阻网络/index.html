@@ -214,13 +214,13 @@ L\phi=BWB^\intercal \phi=BWI=b
 <p>这也是很直观的，对边上的电流分布做一次图上的按邻居求和，就能得到一个节点上的全局电流分布 <span class="math inline">\(b\)</span>。</p>
 <h2 id="电路方程的解">电路方程的解</h2>
 <p>定理：</p>
-<p>若 <span class="math inline">\(L\phi=b\)</span> 有解当且仅当 <span class="math inline">\(b\perp \bold1\)</span></p>
+<p>若 <span class="math inline">\(L\phi=b\)</span> 有解当且仅当 <span class="math inline">\(b\perp \textbf1\)</span></p>
 <p>"<span class="math inline">\(\Rightarrow\)</span>"</p>
-<p>注意到 <span class="math inline">\(L\)</span> 实对称，取一组由 <span class="math inline">\(\bold1\)</span> 扩充而来的正交基 <span class="math inline">\(\Set{v_i}\)</span>，则 <span class="math inline">\(\phi=a_1\bold1 + \sum_{i=2}^n a_i v_i\)</span></p>
-<p>此时 <span class="math inline">\(L\phi=L\left(a_1\bold1+\sum_{i=2}^n a_iv_i\right)=\sum_{i=2}^n a_i\lambda_i v_i\)</span>，根据正交基可知 <span class="math inline">\(L\phi\perp b\)</span></p>
+<p>注意到 <span class="math inline">\(L\)</span> 实对称，取一组由 <span class="math inline">\(\textbf1\)</span> 扩充而来的正交基 <span class="math inline">\(\Set{v_i}\)</span>，则 <span class="math inline">\(\phi=a_1\textbf1 + \sum_{i=2}^n a_i v_i\)</span></p>
+<p>此时 <span class="math inline">\(L\phi=L\left(a_1\textbf1+\sum_{i=2}^n a_iv_i\right)=\sum_{i=2}^n a_i\lambda_i v_i\)</span>，根据正交基可知 <span class="math inline">\(L\phi\perp b\)</span></p>
 <p>直观含义为电阻网络流入的电流要等于流出的电流。</p>
 <p>"<span class="math inline">\(\Leftarrow\)</span>"</p>
-<p>若 <span class="math inline">\(b\perp\bold1\)</span>，那么 <span class="math inline">\(b=\sum_{i=2}^n b_iv_i\)</span></p>
+<p>若 <span class="math inline">\(b\perp\textbf1\)</span>，那么 <span class="math inline">\(b=\sum_{i=2}^n b_iv_i\)</span></p>
 <p>此时取 <span class="math inline">\(\phi=\sum_{i=2}^n \frac{b_i}{\lambda_i}v_i\)</span> 即为一个解。</p>
 <p>直观含义为对于一组外部电流的电势解，可以任意整体平移得到同方程的其余解（因为电流只和电势差有关）。在固定某个点电势为 <span class="math inline">\(0\)</span> 的前提下，就能得到唯一解。</p>
 <p>上面关于 "<span class="math inline">\(\Leftarrow\)</span>" 方向的证明用到了一个构造，实际上可以写成</p>
@@ -243,7 +243,7 @@ b&amp;=\sum_{i=2}^n {\lambda_i} v_i
 \end{aligned}
 
 \end{aligned}\]</span>
-<p>这意味着，当 <span class="math inline">\(b\)</span> 是一个合法的电流（满足 <span class="math inline">\(b\perp \bold1\)</span>）时，<span class="math inline">\(L\)</span> 存在伪逆。并且 <span class="math inline">\(L\phi=b\)</span> 的解集为 <span class="math inline">\(\Set{L^\dagger b + k\bold1\mid k\in \mathbb R}\)</span></p>
+<p>这意味着，当 <span class="math inline">\(b\)</span> 是一个合法的电流（满足 <span class="math inline">\(b\perp \textbf1\)</span>）时，<span class="math inline">\(L\)</span> 存在伪逆。并且 <span class="math inline">\(L\phi=b\)</span> 的解集为 <span class="math inline">\(\Set{L^\dagger b + k\textbf1\mid k\in \mathbb R}\)</span></p>
 <h2 id="电势能和等效电阻">电势能和等效电阻</h2>
 <p>同样只考虑单位电阻。</p>
 <p>考虑令 <span class="math inline">\(b\)</span> 流入单位电流，电路网络为单位电阻，那么整个电路的等效电阻就是 <span class="math inline">\(s,t\)</span> 间的电势差，即</p>
