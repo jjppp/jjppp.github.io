@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            密码学01 Intro
+        </div>
+        <div class="post-meta">
+            2021-09-02
+        </div>
+    
+
+    <div class="post-md">
+        <p>密码学关心的问题和应用 * Secrecy，即信息是否泄露 * Integrity，即信息是否被篡改 * Oblivious Transfer(不经意传输) * Zero Knowledge Proof(零知识证明) * Secure Multi-party Computation(多方计算) * Digital Currency(数字货币) 如何定义安全？CPA-secure、CCA-secure…. 观点一： &gt; Only I know the encryption algorithm and keys, so it’s safe. 观点二： &gt; It would takes 100 years to break the system for an adversary with a currently most advanced computer using the best known method. 严格证明: Computationally Security Game-Based Proof Simulation-Based Proof 如何取随机数？什么是伪随机序列？如何衡量伪随机序列的随机性？ Oblivious Transfer 你可以找女孩A和B中其中一个女孩的号码，但是不能让另一个人知道 ## 一些概念 现代加密方法包括如下几个部分： $\mathcal M$ 表示信息空间，即所有可以加密的信息的集合 $\mathcal K$ 表示密钥空间，即所有密钥组成的集合 $\text{Enc,Dec}$ 表示加密、解密方法 $\text{Gen}$ 表示密钥生成器 一个比较显然的要求是 $Dec(Enc(M))&#x3D;M$，即加密后解密的信息要保真 ## Classical Cipher 给了几个例子 ### 凯撒密码(Caesar Cipher) 定义函数 $next:\Sigma\mapsto\Sigma$ 为 按照某种顺序排列 $\Sigma$ 的内容，某字符的下一个字符是什么 然后构造映射 $f_k&#x3D;next^k$，其中 $k$ 是非 $0$ 常正整数，那么 $f_k$ 和 ${f_k}^{-1}$ 就是一对加密和解密算法了。 $k&#x3D;3$ 的情况就是经典凯撒密码 这个密码问题很大 * 首先这是一个固定的算法 * 其次 $k$ 的值域很小，只需要做 $26$ 次就可以得到所有情况 由此自然引出 ### Sufficient Key Space Principle(充分密钥空间原则) 任何加密算法必须有足够大的密钥空间，使得不会被暴力枚举破解。 一个原则是密钥要尽可能地长 但是足够大的密钥空间并不一定能保证安全，MAS加密是一个例子 ### ROT-13 取 $k&#x3D;13$ 的凯撒密码 这个密码的一个好处在于，$f_{13}&#x3D;{f_{13} }^{-1}$，即加密和解密是一样的 ### Mono-alphabetic Substitution Cipher(单字母替换密码) 构造一个permutation $\pi:\Sigma\mapsto\Sigma$ 那么 $\pi$ 和 ${\pi}^{-1}$ 就是加密和解密。这里permutation 的意义在于，如果不是双射的话，就无法解密了 凯撒密码可以看成是这个的特例。这类密码的一大特色就是要有一个对应小本本 容易计算，MAS密码的密钥空间就是排列数量 $\left|\Sigma\right|!$。取小写字母表就是 $26!\approx 2^{88}$ MAS的最大缺点在于，它永远将相同字符加密成相同的字符(双射)，即它完全保存了原文的所有信息。这使得第三方可以基于统计学原理来进行攻击。例如说”u常在q后，h很可能在t后”之类的统计学规律，常见的模式会被保留，甚至说直接用字母频率的相对大小进行匹配。 ### Poly-alphabetic Substitution Cipher(多字母替换密码) 考虑构造这样构造的排列 $\pi:\Sigma\times\Sigma\mapsto \Sigma\times\Sigma$ 也就是我们把每两位字符映射为两位字符。这样可以部分解决相同字母映射下的象永远相同的问题 缺点也很明显，我们需要更大的空间储存映射表 ### Vigenere Cipher 这个密码首先需要一个catch phrase，例如说 $phrase&#x3D;cafe$ 然后构造 $\pi:\Sigma\mapsto\Sigma$，规定 $\pi(code_i)&#x3D;f_{phrase_{i\pmod |phrase|} }(code_i)$ 可以发现这实际上就是一个特殊的PAS密码，即我们每 $|phrase|$ 位造一个映射，并且每个映射都是相同的 #### VC的破解 分成几个步骤 1. 求$phrase$的长度 $m$ 2. 把密文每 $m$ 位分组，那么模 $m$ 同余的位放在一起就是一个$k$未知的凯撒密码了 现在考虑怎么破译单次的凯撒密码 我们当然可以枚举$26$种可能的密钥，然后找到make sense的明文 但是由于判定明文是否make sense是不那么平凡的，因此书上给出了另一个可以自动化完成的做法 定义 $p_i$ 表示第 $i$ 个字符在英语中出现的频率，$q_i$ 表示第 $i$ 个字符在密文中出现的频率，假设密钥是 $k$，那么有 $\sum {p_i}^2\approx \sum{q_{i+k \text{ mod } 26} }^2$ 于是我们可以计算不同key对应的 $\sum p_iq_{i+k\text{ mod } 26}$，然后按照和期望值的差来排序 那么就可以枚举 $m$，然后对模 $m$ 相同的位做凯撒的破译，最后合并就好了 有一个小小的优化，它源自如下观察： 若两个位置 $i,j$ 满足 $i\equiv j\pmod {m}$，且明文对应的第 $i,j$ 位相同，那么密文的对应位置上的字符也相同 那么就可以寻找长度较短的、出现了多次的密文的子串，$m$ 一定是用它们之间的距离的一个因数。还可以多次寻找重复的pattern，枚举这些距离的GCD的因数来求 $m$ ## Modern Cipher 古典密码更像是艺术，缺乏科学的分析 现代密码学的目标在于：给定一个密码构造，可以严格证明它是安全的 需要证明，首先要： * 定义什么是”安全” * 需要给出一些假设(可以是未被证明的猜想) 安全性取决于安全目标(security goal)和攻击模型(threat model)，即不同的目标和不同水平的攻击，会使得安全性的定义发生变化。 ### security goal 这里用secure encryption举例 前几个要求相对而言比较基本，并且非常显然 1. 攻击者无法通过密文获得密钥 2. 攻击者无法通过密文获得明文 3. 攻击者无法破译任意明文的任意字符 4. 无论攻击者掌握了多少信息，密文不会泄露除此之外的任何信息 ### threat model 1. Cipher text-only attack: 攻击者只知道密文 2. Known-plain text attack: 即已知明文攻击，攻击者在攻击前可以知道若干明文到密文的单向映射(比如说加密文件有固定的格式，有已知的片段) 3. Chosen-plain text attack: 攻击者可以选择知道若干明文到密文的单向映射(比如说加密设施是公开的，那么攻击者就可以任意获得任意明文对应的密文，但反过来不行) 4. Chosen-cipher text attack: 攻击者可以选择知道若干密文到明文的映射(比如说解密设施是公开的) ### assumptions 加密解密问题通常依赖于一些难以计算&#x2F;不存在高效算法的问题 * 大数分解问题 * SAT问题 选择假设的时候需要注意这几个点 1. 选择虽未被证明，但是经过长时间检验的假设 2. 选择更弱的假设。若存在两个假设A,B，其中A能推出B，那么选择A而不是B。这样在B被证伪后，A仍然坚挺。如果两个假设不可比较，那么选择被研究得更深入的假设 3. 在假设被证伪后，需要针对性地研究它在证明一个加密方法时扮演的角色 ### provable security 基于我们的假设，针对特定的攻击者，达到了一些安全目标。这样的安全性被称为可证明的安全性 通常可证明的安全性是对现实中的安全性的一种建模，即仅针对重要部分形式化证明。 ## Kerckhoffs’ Principle 古典密码的安全性很大程度上基于信息的不对称(即我用的什么加密方式，攻击者是不知道的) 柯克霍夫原则： &gt; The cipher method must not be required to be secret, and it must &gt; &gt; be able to fall into the hands of the enemy without inconvenience. 即现代密码的安全性仅依赖于密钥，而不是加密方式 这么要求的理由有以下几个： 1. 相比起同时保密密钥和加密方法，只保存密钥要方便得多 2. 相比起更改加密方法，定期更换密钥更容易保持安全 3. 统一的加密方法更容易实现标准化 也就是说，尽量使用公开、经过验证的加密策略，配以定期更换的密钥，更能保护安全。所谓home-brewed算法很多其实经不起验证</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="header">
+    <a class="logo" href="/">jjppp</a>
+    <ul class="nav">
+        
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/archives">归档</a></li>
+        
+        <li><a href="/about">关于</a></li>
+        
+    </ul>
+</div>
+                
+                <div class="post-list">
+    
+    <div class="post">
+        <a class="post-title" href="/2021/04/09/%E5%9B%BE%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">图论习题乱做</a>
+        <div class="post-except">
+            图论中常常关心有限图，这样的图通常可以取最值、可以归纳，有一些比较好的性质(但是我也说不出几条来) 有些东西不会翻译，或者说不好翻译，就偷懒了( ### 证明：任意图$G$都存在长度为$\delta(G)+1$的path，存在长度为$\delta(G)$的circle 从图中取出最长的path $P$，考虑$P$的一个端点$a$，则必然有$N_G(a)\subseteq P$，否则我们可以找到另一个点扩展$P$使得它更长； 也就是说$|P|\ge |N_G(a)|+1\ge\
+            <a class="read-more" href="/2021/04/09/%E5%9B%BE%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/"> ... </a>
+        </div>
+        <div class="post-date">2021.04.09</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/04/09/%E9%9B%86%E5%90%88%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">集合论习题乱做</a>
+        <div class="post-except">
+            ### 给定2个集合$A$和$B$，可以任意使用$\cap$、$\cup$、$\\$，可以任意使用$A$和$B$任意多次，最多可以得到多少本质不同的集合？对于给定n个集合的情况答案又是多少？ 这个问题比较巧妙。2个集合的时候，我们最多可以把全集划分为4个区域，除$\overline{A\cup B}$外每个区域都可以单独地取到，并且可以相互并起来 那么最后的答案就是$2^{4-1}&#x3D;8$， 推广一下，就是n个集合最多能将全集划分为$2^n$个互不相交的区域，且除了$
+            <a class="read-more" href="/2021/04/09/%E9%9B%86%E5%90%88%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/"> ... </a>
+        </div>
+        <div class="post-date">2021.04.09</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">群论习题乱做</a>
+        <div class="post-except">
+            有一些在课上做过了就没放(而且都还是*题，拿来入门，难顶….) 当然后来再补也说不定。拿不准的翻译就照抄原文。 ### 令$G$是$n$阶有限群，$S$是$G$的子集，且$2|S|&gt;|G|$，试证明$\forall a\in G$都$\exists b,c\in S$使得$a&#x3D;bc$ 这题有点巧妙。注意到$S\subseteq G$，我们构造$T&#x3D;\left\{x^{-1}|x\in S\right\}$，则任意取$a\in G$，构造$aT&#x3
+            <a class="read-more" href="/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/"> ... </a>
+        </div>
+        <div class="post-date">2021.03.11</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/">CSAPP实验5: cachelab</a>
+        <div class="post-except">
+            理论上还有第个perflab…. ## Part A 之前寒假的时候beginend说过cachelab很难，但是感觉做下来还行？也可能是他把malloclab记错成了cachelab也说不定( 不管了。Part A就是要按照书上cache memory的组织结构写一个简单的判断器，即给定若干读和写，来判断每次对内存的操作是&#x2F;否命中缓存。事实上开一个三维数组就好了(如果不实现Blocks甚至只需要二维) 不过这一次还是学到很多东西的，这里罗列一下 1. `getop
+            <a class="read-more" href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/"> ... </a>
+        </div>
+        <div class="post-date">2021.03.07</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/">大一上存活经验</a>
+        <div class="post-except">
+            ## 大一上存活经验 希望能给下一届的小朋友留点存活经验，毕竟俺也没有真正意义上的直系学长….真是残念 现在有点怕明年没有直系学弟学妹了（悲 ### 九月 开学前几天就到了南京，热得一言难尽。晚上骑车去了鼓楼新街口，宇宙中心.jpg 宿舍分配很迷，18是填表配对、19是生日配对、20是生源地配对，导致我带去的土特产无人稀罕。感觉怎么想都是18科学啊（摔 军训据说水分单调递增，时间甚至只有两周，唯一的困难在于早起。期待了很久的打靶只用上了电子枪，军训的话人均85，神枪手和优秀营
+            <a class="read-more" href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/"> ... </a>
+        </div>
+        <div class="post-date">2021.02.19</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C4-archlab/">CSAPP实验4: archlab</a>
+        <div class="post-except">
+            留坑待填，还没看课本（囧 照例说一下前置姿势 本次实验最大的难点估计在于配置实验环境，找了一整天的搜索引擎发现还是出墙香…..我在本次实验中遇到了如下情况： ![](https://img2020.cnblogs.com/blog/1010529/202102/1010529-20210219015459676-1512313102.png) 想了很久都想不到要怎么解决，翻了翻`yas.h`甚至没有`#ifndef`，总不可能是CMU的人写错了？ 最后还是在Stack Ove
+            <a class="read-more" href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C4-archlab/"> ... </a>
+        </div>
+        <div class="post-date">2021.02.17</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/">半音阶口琴谱合辑</a>
+        <div class="post-except">
+            最早想玩口琴是高三的暑假。啥也不懂就直接jd了复音，到手以后发现复音没有半音，很多曲子没法吹，谱子也不好找，舌伴奏分解和弦更是难得口腔发麻，唯一的优点大概是便宜、单音好吹、音色醇厚了(这里有三个了吧喂)。 年前入手了一把铁鹅的追梦人，不得不说半音阶吹起来感觉还是很不同的。孔位我还在适应，推键也还在掌握，不过至少能吹很多曲子了;-P 这里就放一点从各处搜罗来的半音阶琴谱，也算是分享吧？还不会看五线谱，先吹着再说吧。希望好听的曲子都可以找到听众 **作一点小约定：1234567分
+            <a class="read-more" href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/"> ... </a>
+        </div>
+        <div class="post-date">2021.02.14</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/02/08/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E8%A7%81%E8%AF%81%E6%98%8E/">高等代数复习笔记 常见证明</a>
+        <div class="post-except">
+            关于矩阵的秩，王萼芳的书上给了一个比较简单的证明，丘维声的书上给了一个比较容易理解的证明，这里记一下复习复习，算是加深理解 ## 方法一 — **引理**：齐次线性方程组$A\bold{x}&#x3D;\bold{0}$只有零解当且仅当矩阵$A$的行秩$\ge$未知数个数。 引理的证明比较简单，只需要证明初等行变换不改变行秩，再观察$A$化成阶梯形矩阵之后自由变量的数量就好了 不妨设一个矩阵$A_{s\times n}$，且有$s\le n$，我们首先证明行秩$r_s\le$
+            <a class="read-more" href="/2021/02/08/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E8%A7%81%E8%AF%81%E6%98%8E/"> ... </a>
+        </div>
+        <div class="post-date">2021.02.08</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/">CSAPP实验3 : attacklab</a>
+        <div class="post-except">
+            佛了，写到lab3才知道有writeup这种东西… # CI Part — ## touch1 — 很简单的题，但是做了很久才发现是数错了的问题….面壁中 ``` asm 00000000004017a8 : 4017a8: 48 83 ec 28 sub $0x28,%rsp 4017ac: 48 89 e7 mov %rsp,%rdi 4017af: e8 8c 02 00 00 callq 401a40 4017b4: b8 01 00 00 00 mov $0x1,%
+            <a class="read-more" href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/"> ... </a>
+        </div>
+        <div class="post-date">2021.02.04</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/">CSAPP实验2 : bomblab</a>
+        <div class="post-except">
+            观察之后还可以发现有所谓的`secret_phase`和`func7`之类的东西，但是感觉差不太多了也就不太想做…就这样吧 # 前置姿势&#x2F;技能 — 这里记一下做lab需要的前置姿势&#x2F;技能,尽量不和理论方面的东西重叠吧… 编译实际上就是把源代码变成一堆CPU指令的过程(在这里到这个程度就够了) GCC使用的是叫`ATT`格式的汇编,和`Intel`格式的汇编有很多不一样,最显著的就是操作元素的顺序…看文档的时候要小心 编译产生`.s`文件: ```gcc -
+            <a class="read-more" href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/"> ... </a>
+        </div>
+        <div class="post-date">2021.01.24</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C1-datalab/">CSAPP实验1 : datalab</a>
+        <div class="post-except">
+            考试周除了学习什么都好玩，偶然发现了B站上的“精翻”视频，就冲了 第一章的视频还没看完(太长了quq),这里也只是写了整形的lab,写了大概有一整天 明天烤完高代就滚回来填这个lab、课程笔记、导论4、集合论习题的坑…好像有点多,不管了 这些只在本地btest过,不保证能对…如果有错或者有更好的做法欢迎指正! upd:做完了，爽耶 ![](https://img2020.cnblogs.com/blog/1010529/202101/1010529-2021011923533
+            <a class="read-more" href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C1-datalab/"> ... </a>
+        </div>
+        <div class="post-date">2021.01.14</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/">信息与计算科学导论复习笔记三</a>
+        <div class="post-except">
+            这里的递归实际上也可以理解为递推 ##Karatsuba算法 计算界次为$n$的多项式乘积，$naive$做法需要计算$n^2$次 一个本科生(！！！)提出了这样的算法。考虑计算$\left(ax+b\right)\left(cx+d\right)$ 展开就是$acx^2+\left(ad+bc\right)x+bd$，其中$ac$和$bd$无法避免，而$\left(ad+bc\right)&#x3D;\left(a+b\right)\left(c+d\right)-ac-b
+            <a class="read-more" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/"> ... </a>
+        </div>
+        <div class="post-date">2021.01.06</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/">信息与计算科学导论复习笔记二</a>
+        <div class="post-except">
+            ##集合的大小 有限集合的大小很容易比较，只需要数一数，比一比就完了 而无限集不能这么做。我们在这里规定集合$A$与$B$大小相等当且仅当存在$f: A\mapsto B$为双射 定理：无限集至少和它的一个真子集有双射 证明：考虑$A$，由选择公理，我们可以取出$B\subset A$且$B$可数，那么$f:A\mapsto A\backslash B_0$就可以取$f(x)&#x3D;\left\{\begin{aligned}\begin{equation}B_{i+1}
+            <a class="read-more" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/"> ... </a>
+        </div>
+        <div class="post-date">2021.01.06</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">信息与计算科学导论复习笔记一</a>
+        <div class="post-except">
+            信息与计算科学导论一 ##罗素悖论 考虑这么一个集合： $S&#x3D;\left\{T|T\not\in S\right\}$ 考虑一个集合内的元素$x$，若$x\in S$，则根据定义$x\not\in S$，矛盾 若$x\not\in S$，则根据定义有$x\in S$，矛盾 我们找不到这样一个集合，这就是大名鼎鼎的罗素悖论 ##公理集合论 悖论的源头在于构建集合的描述性方法，我们在使用这个方法的时候出现了所谓“自引用”的情况 为了体系的和谐与自洽，数学家们提出了公理集
+            <a class="read-more" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/"> ... </a>
+        </div>
+        <div class="post-date">2021.01.06</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/">数学分析复习笔记 实数完备性的六个定理</a>
+        <div class="post-except">
+            实数完备性的几个定理可以互相推导，这里给出了一个比较简单的完整推导链条 对于没有写到的推导可以通过旁敲侧击推导出这里的条件再继续（迂回战术） # 1. 有界必有确界 — 如果$\exists u$使得$\forall x\in S$都有$x\le u$,那么$S$有上确界 上确界：记$U&#x3D;\sup\left\{S\right\}$，则$\forall x\in S$都有$x\le U$，且$\forall \epsilon&gt;0$，$\exists x_0\in
+            <a class="read-more" href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/"> ... </a>
+        </div>
+        <div class="post-date">2021.01.01</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">C语言学习笔记</a>
+        <div class="post-except">
+            更新：因为开始写PA2了，因此决定重回这个坑，顺便记录一下解决一些C问题的方法，不一定和语法相关 — 现在才知道 oi 用的是 C-with-STL… 感觉自己对这个看起来很单纯的语言仍然不够了解 打算仔仔细细地写一写自己不太会的东西，包括与 C++ 不同的语法、宏(macro)的技巧、指针的技巧等等 # 语法 ## `enum` 可以利用`enum`的特点来引入最大下标开数组 ``` enum {PC,R1,R2,…,R7,R_SIZE}; ``` 那么这里的`R_SIZE
+            <a class="read-more" href="/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> ... </a>
+        </div>
+        <div class="post-date">2020.12.27</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B01-Introduction/">编译原理 笔记1 Introduction</a>
+        <div class="post-except">
+            看的是英文版的龙书,各种翻译看看就好… 大概前半段是课本，后半段是网课的笔记。因为课程好像都不讲Chap. 2，所以下一节的笔记大概就没有课堂内容了 # 1.1 Language Processors 词汇: intermediate 中间的 compile 编译 interpret 解释 assemble 汇编 relocatable 可重定位的 编译器指的是将源代码翻译成等价的另一种语言的程序的程序(饶舌) 编译器的一项重要职责是检测error 编译语言的编译和执行是分开
+            <a class="read-more" href="/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B01-Introduction/"> ... </a>
+        </div>
+        <div class="post-date">2020.12.26</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2020/12/25/BF%E8%A7%A3%E9%87%8A%E5%99%A8%E5%92%8C%E5%87%A0%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A5%E5%8F%8A%E5%85%B3%E4%BA%8E%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/">BF解释器和几个小程序以及关于多文件编程的理解</a>
+        <div class="post-except">
+            上SICP的时候樾哥提到了一个叫图灵完备的概念，啥是图灵完备呢？简单说就是能模拟图灵机的所有操作的语言就可以说是图灵完备的，它的计算能力和图灵机至少是等价的 然后有这么一个很小的语言Brainfuck，它有一个类似射线的有格纸带，一个可以任意移动的指针 规定，”&lt;”、”&gt;”、”,”、”.”、”+”、”-“分别表示左移、右移、读入、输出、增加1、减少1，这个做起来是很简单的 然后是”[“和”]“，其等价于 while (pointer-&gt;value !&#x3
+            <a class="read-more" href="/2020/12/25/BF%E8%A7%A3%E9%87%8A%E5%99%A8%E5%92%8C%E5%87%A0%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A5%E5%8F%8A%E5%85%B3%E4%BA%8E%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/"> ... </a>
+        </div>
+        <div class="post-date">2020.12.25</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/">期末小作业——2048小游戏</a>
+        <div class="post-except">
+            ## 写在前面 — 程设期末没考试，但是要做一个2048游戏的小作业 虽然tw老湿并没有作出格外的要求，但我还是上了QT写了图形化的界面（虽然写的很丑） 这里并没有用上signal和slot之类的特性，因为暂时还用不上。。希望后面能发现更好的写法 在上了半个学期的SICP(实验课)之后体会到了python里变量和指针各自的好处，于是现在更喜欢指针和变量分的比较开的cpp了。这是第一次主要使用指针和各种类的cpp programming，感觉写完一遍下来对cpp的理解有了一点变
+            <a class="read-more" href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/"> ... </a>
+        </div>
+        <div class="post-date">2020.12.15</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/">几个关于集合的有趣证明</a>
+        <div class="post-except">
+            在离散数学的第一堂课就被介绍了Set和Proper Class的区别。 与高中内容不同，现代数学中并不是任取一些元素都能组成一个Set，某些东西归在一起只能形成Proper Class（因为这个东西不满足集合的一些性质） 根据ZFC公理系统，我们可以知道关于集合的若干条公理，也就是说满足这些的才是集合，而推断某个东西不是集合常用反证的方法，下面来看几个栗子 1. Prove that the set of all sets is a proper class. 这个比较简单。
+            <a class="read-more" href="/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/"> ... </a>
+        </div>
+        <div class="post-date">2020.11.23</div>
+    </div>
+    
+</div>
+
+<div class="paginator">
+    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+</div>
+
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

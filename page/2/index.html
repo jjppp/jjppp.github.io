@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="header">
+    <a class="logo" href="/">jjppp</a>
+    <ul class="nav">
+        
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/archives">归档</a></li>
+        
+        <li><a href="/about">关于</a></li>
+        
+    </ul>
+</div>
+                
+                <div class="post-list">
+    
+    <div class="post">
+        <a class="post-title" href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/">密码学07 OWF&amp;HC</a>
+        <div class="post-except">
+            这一章比较轻松，主要是科普一些东西，都是概念性的 ## One-way function 注意到密码学中的很多构造都是不对称的：我们希望加密是简单的而解密是困难的、我们希望PRG是很容易产生的但是很难被区分的……这些不对称性归根结底都可以通过OWF来导出，这个概念还是很抓住了关键的 但是到目前为止，是否存在OWF仍然是未知的….因此存在OWF本身就是一个密码学假设，当然目前种种迹象看来这么假设是没有太大问题的。 ## 定义 我们称函数 $f\colon\left\{0,1\r
+            <a class="read-more" href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/"> ... </a>
+        </div>
+        <div class="post-date">2021.12.21</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A606-HASH/">密码学06 HASH</a>
+        <div class="post-except">
+            ## Cryptographic Hash Function 所谓Hash，就是一个实现“压缩”比特序列的函数（有时也叫摘要）。与普通的散列和哈希不同，密码学上的hash要求要更严格一些： 1. 要是抗碰撞(collision resistant)的 2. 最好还有PRF的性质 类似PRF，Hash也是一个keyed function，只不过更多的时候 $k$ 是由某种方法选出来的固化公开常量，而非随机选出来的。 ## 定义 Hash $\Pi&#x3D;(\text{Gen
+            <a class="read-more" href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A606-HASH/"> ... </a>
+        </div>
+        <div class="post-date">2021.12.21</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/12/20/%E5%AF%86%E7%A0%81%E5%AD%A605-MAC/">密码学05 MAC</a>
+        <div class="post-except">
+            ## Message Authentication Code 简称MAC。通常我们不仅希望保证一条消息的内容没有被泄露（例如你向女神告白的信的内容），还希望我们发出去的消息没有被篡改过（例如你给女神的告白信不会被换成&#x2F;修改成除了告白信之外的别的东西）。前者属于secrecy的范畴，后者则是integrity的范畴。 之所以会出现这样的需求，是因为我们开始考虑更“强大”的adversary了。原本的EAV-secure模型只能对窃听者进行建模，而通常我们的advers
+            <a class="read-more" href="/2021/12/20/%E5%AF%86%E7%A0%81%E5%AD%A605-MAC/"> ... </a>
+        </div>
+        <div class="post-date">2021.12.20</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">PA3 附加关卡</a>
+        <div class="post-except">
+            这次做起来还是很有收获的，虽然最后阶段基本在写库函数，和ICS已经没啥关系了 ## 思考题 ### AM究竟给程序提供了多大的栈空间呢? 观察`$AM_HOME&#x2F;scripts&#x2F;linker.ld`这个链接脚本可以发现，其中定义了一个符号`_stack_pointer` 而根据AM启动客户程序的流程可知，在`am&#x2F;src&#x2F;riscv&#x2F;nemu&#x2F;start.S`中的`_start:`中将会执行`la sp, _stac
+            <a class="read-more" href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/"> ... </a>
+        </div>
+        <div class="post-date">2021.12.11</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">PA2 附加关卡</a>
+        <div class="post-except">
+            完成了声卡的实现，可以流畅播放If I Could Tell Her~ 但是玩litenes就只有23帧，用fceux就卡得声音都变成了儿童鞋垫 ## 收货 讲几个主要的 假设需要同时定义很多个东西，同时这些东西又有着相同的模式，并且我们希望能够方便地修改、添加这些东西（只需要维护一份唯一的列表），那么就可以这么做： ```c #define LIST(F) F(item1) F(item2) … #define FUNC(X) &#x2F;&#x2F;blablabla L
+            <a class="read-more" href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/"> ... </a>
+        </div>
+        <div class="post-date">2021.12.01</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">PA1 附加关卡</a>
+        <div class="post-except">
+            写了很多代码，更宝贵的应该是这些思考和经验，所以就放上来了 必做题会被删去，和具体实验相关的内容也会被处理掉，应该看起来是不存在剧透的（大概） ## 收货 PA1主要是在做一些预备工作，例如阅读NEMU的主体框架，添加一些表达式求值、打断点之类的小功能，以及一些测试程序正确性的方法介绍 在提到表达式解析的时候引入了CFG的概念，还用到了正则匹配tokens，写起来不算太难。处理的时候要用一些库函数，也算是练练手 做`gen-expr.c`的时候，手册给了一个把表达式打印到一段
+            <a class="read-more" href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/"> ... </a>
+        </div>
+        <div class="post-date">2021.12.01</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/11/07/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8905-Semantics/">形式语义05 Semantics</a>
+        <div class="post-except">
+            ## Formal Semantic 一般分三种 1. Operational Semantic，操作语义 2. Denotational Semantic，指称语义 3. Axiomatic Semantic，公理语义 主要记一下操作语义 ## Operational Semantic 对命令式语言而言，一个程序的运行状态可以用 状态$\times$当前语句地址 二元组确定，那么就可以用 $\left$ 描述一个执行状况，表示接下来要执行 $c$，目前的状态为 $\sigm
+            <a class="read-more" href="/2021/11/07/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8905-Semantics/"> ... </a>
+        </div>
+        <div class="post-date">2021.11.07</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/">密码学04 PRG&amp;PRF</a>
+        <div class="post-except">
+            ## Pseudo Random Generator 真的随机性是要求很强的东西，上一章是对安全性的适当弱化，而这一章就是对随机性的适当弱化，使得我们可以得到一个“不那么随机但是可以当成随机数用的随机数” 也就是伪随机性 ### 定义 这里的随机性指的是一个比特串的分布的随机性，通常用 $\text{Dist}$ 表示 为了使用，这个分布通常是计算出来的，即有一个**多项式确定性**算法 $G$，可以通过一个真随机种子 $s$ 得到一个伪随机串 $G(s)$ 通常我们要求 $
+            <a class="read-more" href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/"> ... </a>
+        </div>
+        <div class="post-date">2021.10.19</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/">形式语义04 Types</a>
+        <div class="post-except">
+            ## Types 首先要说明什么是Type Types可以看成是对数据的分类、一种约定，即我们用一个界来描述一类数据构成的集合，用不同的界区分不同的数据种类。对于untyped的语言，我们则可以看成是只有唯一一种包罗万象的type 类型实际上有很多作用，可以进行针对性的优化、可以提供部分代码的信息、可以作为接口分离各模块的逻辑、可以保证程序的正确执行….. 如果写过Coq的话，还会知道类型可以与逻辑系统中的元素建立对应关系，从而可以利用类型推导工具来进行定理的证明（虽然我感觉
+            <a class="read-more" href="/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/"> ... </a>
+        </div>
+        <div class="post-date">2021.10.05</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/">密码学03 Computational</a>
+        <div class="post-except">
+            ## Background 前面提到的perfect secrecy虽然好，但有着理论上的局限：key太长、key太多等等，用起来不是那么方便 一个idea就是，我们放弃部分安全性来换取更实用的密码。这里要回答几个问题：放弃哪些？放弃多少？放弃之后的安全性如何衡量？ 注意，接下来的讨论如无特殊说明，都以eavesdropper作为threat model ## Computational Security 首先回答”放弃哪些”，这部分直接产生了Computational Se
+            <a class="read-more" href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/"> ... </a>
+        </div>
+        <div class="post-date">2021.09.27</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/">形式语义03 Lambda</a>
+        <div class="post-except">
+            $\lambda$-calculus # Background 首先这是一种编程语言，在1930s被Alonzo Church和Stephen Cole Kleene发明（两位都是听说过的明星人物） 还是一种计算模型，在1937年被Alan Turing证明其和图灵机的表达能力等价（这位更是重量级） $\lambda$ 演算是函数式编程的基础，同时它简单的特点也使得很适合用于研究PL的各个领域（回忆IDFS中的$\lambda$ 表达式作为transfer function）
+            <a class="read-more" href="/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/"> ... </a>
+        </div>
+        <div class="post-date">2021.09.16</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/">密码学02 Perfect</a>
+        <div class="post-except">
+            ## 概率论前置技能 其实就三个公式 条件概率公式： $Pr[B|A]&#x3D;\dfrac{Pr[A\wedge B]}{Pr[A]}$，这个是定义 贝叶斯公式 $Pr[B|A]&#x3D;\dfrac{Pr[A|B]\cdot Pr[B]}{Pr[A]}$，这个只需要按照上面的展开就可以证明 全概率公式 $Pr[A]&#x3D;Pr[A|B_1]\cdot Pr[B_1]+Pr[A|B_2]\cdot Pr[B_2]+\cdots +Pr[A|B_n]\cdot Pr[
+            <a class="read-more" href="/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/"> ... </a>
+        </div>
+        <div class="post-date">2021.09.15</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8901-Intro/">形式语义01 Intro</a>
+        <div class="post-except">
+            感觉第一节课都差不多 推荐了*Software Foundations*，搜了一圈发现非常劝退….但还是磨磨蹭蹭看完了Lists 书上说不建议贴答案和题解，那就不贴了吧（ developing general abstractions, or building blocks, for solving problems, or classes of problems. Also considers software behavior in a rigorous and gene
+            <a class="read-more" href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8901-Intro/"> ... </a>
+        </div>
+        <div class="post-date">2021.09.09</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8902-Math/">形式语义02 Math</a>
+        <div class="post-except">
+            ## Basic Set Theory 没啥好讲的 $\bigcap S&#x3D;\left\{\;x\;|\; \forall T\in S,x\in T \;\right\}$ 记 $R&#x3D;\bigcap\emptyset$，则 $\forall x. \forall T\in\emptyset\wedge x\in T\rightarrow x\in R$ 注意到命题的前件为假，因此 $R$ 是”a set of everything” 根据幂集公理这是不成立
+            <a class="read-more" href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8902-Math/"> ... </a>
+        </div>
+        <div class="post-date">2021.09.09</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/">密码学01 Intro</a>
+        <div class="post-except">
+            密码学关心的问题和应用 * Secrecy，即信息是否泄露 * Integrity，即信息是否被篡改 * Oblivious Transfer(不经意传输) * Zero Knowledge Proof(零知识证明) * Secure Multi-party Computation(多方计算) * Digital Currency(数字货币) 如何定义安全？CPA-secure、CCA-secure…. 观点一： &gt; Only I know the encryption
+            <a class="read-more" href="/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/"> ... </a>
+        </div>
+        <div class="post-date">2021.09.02</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">编译原理 笔记3 语法分析</a>
+        <div class="post-except">
+            写的时候复制到笔记2那里去了…晕，这个点还不睡就是不行啦 ## CFG 上下文无关语法(Context Free Grammar)，或者说BNF(Backus Naur Form)，是用于描述一类语言的法则，也即是语法 语法包括： 1. 终结符号(terminal)集 $T$ 2. 非终结符号(nonterminal)集 $N$ 3. 推导规则(rule of inference) $R$ 4. 起始符号 $s_0$ 任意规则有如下形式： $h\rightarrow B$，其
+            <a class="read-more" href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-date">2021.09.01</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">编译原理 笔记2 词法分析</a>
+        <div class="post-except">
+            ## 词法分析的作用 1. 读取字符流，输出词法单元给语法分析器 2. 在1的过程中去掉不必要的内容(空白符、注释)，查错报错 3. 与符号表交互，插入符号的相关内容 4. 虽然词法分析和语法分析是两个独立的部分，但它们通常在同一趟 ### 为什么要独立词法分析 1. 模块化 2. 词法分析很简单，实现也很简单 3. PPT把1+2又说了一遍…. 4. 词法分析和语法分析依赖的算法不同(有限状态自动机VS下推自动机) ## Token&amp;Pattern&amp;Lexe
+            <a class="read-more" href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-date">2021.09.01</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/">DFA到等价正则表达式的转化</a>
+        <div class="post-except">
+            ## 思考题的引入 首先看这样一道思考题： &gt; 如何用**正则表达式**识别所有是三的倍数的二进制串？ 考虑最暴力的做法。用一个变量`rem`表示一个串的前缀作为二进制对3的余数，对新进来的字符讨论： 1. 进来一个`0`，则`rem&#x3D;(rem&lt;&lt;1)%3;`，因为我们是从高位向低位读的 2. 进来一个`1`，则`rem&#x3D;((rem&lt;&lt;1)+1)%3` 那么只需要判断最终`rem`是否为0就好了 ## 自动机的做法 在做这题之
+            <a class="read-more" href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.20</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">scheme学习笔记</a>
+        <div class="post-except">
+            ## 前话 开了SICP的坑，记一下lisp的方言scheme的一些东西 我的笔记本是manjaro，本来折腾了半天装不上mit-scheme，后面发现直接自带guile就蛮能用的(能用就行) 一个很重要的点就是求值的时候有两种规则：正则序和应用序，分别表示先替换后计算和先计算后替换。 一般的scheme解释器用的都是应用序，这样可以减少一部分重复运算(具体例子见后) ## 基本操作 记一个操作为 `op`，则 `(op a1 a2 … an)` 的值就是分别递归对 `a1,
+            <a class="read-more" href="/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.15</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/">软件分析笔记10 Soundiness</a>
+        <div class="post-except">
+            ## Soundness Conservative approximation: captures all program behaviors, or the analysis result models all possible executions of the program 然鹅 ### Academia Virtually all published whole-program analyses are unsound when applied to real pr
+            <a class="read-more" href="/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.14</div>
+    </div>
+    
+</div>
+
+<div class="paginator">
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+</div>
+
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            数学分析复习笔记 实数完备性的六个定理
+        </div>
+        <div class="post-meta">
+            2021-01-01
+        </div>
+    
+
+    <div class="post-md">
+        <p>实数完备性的几个定理可以互相推导，这里给出了一个比较简单的完整推导链条 对于没有写到的推导可以通过旁敲侧击推导出这里的条件再继续（迂回战术） # 1. 有界必有确界 — 如果$\exists u$使得$\forall x\in S$都有$x\le u$,那么$S$有上确界 上确界：记$U&#x3D;\sup\left\{S\right\}$，则$\forall x\in S$都有$x\le U$，且$\forall \epsilon&gt;0$，$\exists x_0\in S$使得$x_0&gt;U-\epsilon$ ## 用有限区间覆盖证明 — $S$存在最大值的情况非常显然，它的上确界就是最大值；后文只讨论$S$不存在最大值的情况 反证法，假设$S$有界而没有上确界，记$S$上界的集合为$\overline U$ 则可以取$S$中的一个元素$L$，$\overline U$中的一个元素$R$，得到一个闭区间$\left[L,R\right]$ 考虑$x\in [L,R]$，分成如下几种情况： 1. $x\in\overline U$ 2. $x\in S$ 3. $x\not\in S$且$x\not\in\overline U$ 对于情况1,由假设我们一定可以找到$x’\in\overline U$且$x’&lt; x$，使得$x’$也是一个上界 此时我们为点$x$造一个开区间$\left(x’,2x-x’\right)$，这个区间内的点都**是**$S$的上界 对于情况2,由$S$不存在最大值可知我们一定能找到$x’\in S$且$x’&gt;x$ 此时我们为点x造一个开区间$\left(2x-x’,x’\right)$，这个区间内的点都**不是**$S$的上界 对于情况3,由x不是上界可知，必存在一个$x’ \in S$使得 $x &lt; x’ $，此时情况同2 于是我们为闭区间内的每一个点都配了一个开区间，这个开区间的集合覆盖了闭区间内的每一个点，由有限覆盖定理可知存在有限个开区间覆盖了$[L,R]$ 引理1:开覆盖中相邻两个开区间必相交 证明：假设存在不相交的开覆盖，则存在点未被覆盖，矛盾 由引理1可知$[L,R]$上的开覆盖一定是环环相套的，从左起每一个开区间内的点都不是上界，从右起每一个开区间内的点都是上界，则可以推得中间存在一个开区间同时满足这两种情况(这是不可能的)，推得矛盾。于是原命题成立 # 2. 单调有界收敛 — 若数列$\left\{a_n\right\}$单调递增且有上界，则该数列收敛(存在极限) ## 用确界存在证明 — 有上界必有上确界，记$U&#x3D;\sup\left\{a_n\right\}$，则根据定义有$\forall n\left(U\ge a_n\right)$且$\forall \epsilon&gt;0,\exists n_0$，有$U-\epsilon &lt; a_{n_0}$ 又$\left\{a_n\right\}$递增，于是取$N&#x3D;n_0$，当$n\ge N$，有$U-\epsilon &lt; a_{n_0}\le a_n \le U &lt; U+\epsilon$，这个就是数列收敛的定义，且恰好收敛于$U$ # 3. 闭区间套 — 考虑一个初始闭区间$[L_0,R_0]$，我们取一系列闭区间$[L_1,R_1],[L_2,R_2],\dots$满足$[L_1,R_1]\subset[L_2,R_2]\subset\dots$ 且有$\lim\limits_{i\rightarrow +\infty}{\left(R_i-L_i\right)}&#x3D;0$ 则$\cap{[L_i,R_i]}&#x3D;\xi$，收敛于一个点 ## 用单调有界收敛证明 — 由第一个条件可知，$\left\{L_n\right\}$单调递增，且有上界$R_0$，于是数列收敛 同理$\left\{R_n\right\}$也收敛，下面证明两个极限相等。 反证法：假设左右极限不相等，则$\cap[L_i,R_i]&#x3D;[\sup\left\{L_n\right\},\inf\left\{R_n\right\}]$，与条件2矛盾，故假设不成立 然后就做完了 # 4. 聚点 — 无穷项有界数列必有收敛子数列 ## 用闭区间套证明 — 因为有界，必可以找到上下界，记值域区间为$[L_0,R_0]$ 取中点$M&#x3D;\frac{L_0+R_0}{2}$，则左右两个区间中，必存在至少一个区间包含了数列的无限项，记这个新的区间为$[L_1,R_1]$ 重复上述过程，则我们构造出了一个闭区间套，由闭区间套定理可知这个区间会收敛到一个点$\xi$上，那么每次任意取$x_i\in[L_i,R_i]$就可以得到一个收敛的子数列 # 5. 有限覆盖 — 考虑一个由若干开区间构成的集合$I$，若$[L,R]\subset\cup I$，则一定可以从$I$中取出有限个开区间覆盖整个闭区间$[L,R]$ ## 用闭区间套证明 — 反证法：假设不能用有限个开区间覆盖$[L,R]$，则取$M&#x3D;\frac{L+R}{2}$，左右两半至少有一个闭区间被无限个开区间覆盖 反复上述操作，则我们构造了一个闭区间套。且这个闭区间的长度可以任意小。而开区间集合中任意一个覆盖了$\xi$的开区间长度都确定，得到矛盾，故假设不成立 # 6. 柯西收敛 — 数列收敛的充要条件是 $\forall \epsilon &gt; 0$，$\exists N$，$\forall x,y\ge N$都有$|a_x-a_y|\le \epsilon$ 可以发现这个判别法则和具体的极限无关，只关心数列本身的性质 ## 用聚点证明 — 必要性比较简单，这里只证明充分性 先证明柯西数列有界。取$\epsilon&#x3D;1$，则$\max\left\{a_1,a_2,\dots,a_{N_{\epsilon} },a_{N_{\epsilon} }+1\right\}$是数列的一个上界，下界同理 有界数列必有收敛子数列，记子数列为$a_{n_1},a_{n_2},a_{n_3},\dots$，其极限为$A$， 则$\forall \epsilon &gt;0$, $\exists K &gt;0$，当$k&gt; K$时$|a_{n_k}-A|\le \epsilon$ 根据定义，取$N’&#x3D;\max\left\{n_K,N\right\}$，令$x&#x3D;N’$，则$\forall y&gt; N’$都有$|a_y-A|&#x3D;|a_y-a_x+a_x-A|\le|a_y-a_x|+|a_x-A|\le2\epsilon$</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

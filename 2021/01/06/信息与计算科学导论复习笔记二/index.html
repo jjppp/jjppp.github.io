@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            信息与计算科学导论复习笔记二
+        </div>
+        <div class="post-meta">
+            2021-01-06
+        </div>
+    
+
+    <div class="post-md">
+        <p>##集合的大小 有限集合的大小很容易比较，只需要数一数，比一比就完了 而无限集不能这么做。我们在这里规定集合$A$与$B$大小相等当且仅当存在$f: A\mapsto B$为双射 定理：无限集至少和它的一个真子集有双射 证明：考虑$A$，由选择公理，我们可以取出$B\subset A$且$B$可数，那么$f:A\mapsto A\backslash B_0$就可以取$f(x)&#x3D;\left\{\begin{aligned}\begin{equation}B_{i+1}, x&#x3D;B_i\\x,x\not\in B\end{equation}\end{aligned}\right.$ ##康托定理 集合$S$总是小于它的幂集$2^S$，定义$2^S&#x3D;\left\{T|T\subset S\right\}$ 这里蕴含了一个幂集公理，即集合的幂集还是集合 证明：假设存在一个双射$f:S\mapsto 2^S$，那么取$T&#x3D;\left\{x|x\not\in f(x)\right\}$，显然这个集合不同于任何双射中的值域，这就得到了一个矛盾 这个方法叫对角线法则，很好用~ ##可数与不可数 定义$S$可数(countable)当且仅当$\exists f:\mathbb N\mapsto S$为双射 定理：$\mathbb R$不可数 证明：这是别处看来的，觉得更好理解一些(虽然没有用到对角线法则) 这里先只证明$[0,1]$不可数。反证法：假设可数，则存在一种列举方式使得我们能穷尽所有的实数，记这个数列为$\left\{a_n\right\}$ 那么对于$a_0$，我们可以把区间划分为$[0,\frac{1}{3}],[\frac{1}{3},\frac{2}{3}],[\frac{2}{3},1]$，则至多有两个区间包含了$a_0$，取剩下的那个区间为下一次的操作区间，重复上述过程 这样我们就得到了一系列区间套，最终会收敛到一个点$\xi$ $\xi\in\mathbb R$，但是$\forall i$都有$a_i\neq \xi$，这样就推出了矛盾 ##Cantor-Bernstein定理 其实还有一个名字的，不会写…… 这个定理很直观：若$|A|\le|B|$且$|B|\le|A|$则$|A|&#x3D;|B|$ 证明用到了巴拿赫定理 ##Banach定理 若存在$f:A\mapsto B$和$g:B\mapsto A$都是单射，则 存在$A_0,A_1$满足$A_0\cap A_1&#x3D;\varnothing$，$A_0\cup A_1&#x3D;A$ 存在$B_0,B_1$满足$B_0\cap B_1&#x3D;\varnothing$，$B_0\cup B_1&#x3D;B$ 使得$f\left(A_0\right)&#x3D;B_1$，$g\left(B_0\right)&#x3D;A_1$ 证明有点长，先去吃个饭~ 剩下的内容可以看之前写过的集合大小比较的文章，差不多都齐了……</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            软件分析笔记5 PA
+        </div>
+        <div class="post-meta">
+            2021-08-04
+        </div>
+    
+
+    <div class="post-md">
+        <p>PA&#x3D;Pointer Analysis 指针分析 ## Motivation CHA方法实际上没有利用足够的信息(即实际上变量可能指向的对象所从属的类的范围可以进一步缩小),会引入假的调用边 ## Pointer Analysis PA是一种基础的静态分析,它要回答的问题是”某个指针p的值域可能是啥” 对于OO语言来说,其实就是回答某个指针可能指向哪些对象(对于非OO语言的指针则可以直接指向内存) 很显然这是一个may analysis, 用over-approximation ### Alias Analysis 这个叫别名分析,关注的是某一个对象是否会被两个指针指向 ## 实现 程序的实际运行情况复杂，因此一种简单的对对象建立的建模就是“我们认为每个new语句只会建立一个唯一的对象”，也叫allocation site abstract 通常分析分为流敏感(flow sensitive)和不敏感分析，即考量是否考虑语句间的执行顺序(即控制流)来分类。这里采用的是流不敏感的技术，即我们认为代码整体是由若干语句组成的集合 定义pt(x)表示变量x所可能指向的对象的集合，并根据不同的赋值语句对对象的流动情况进行建模 大概可以分为几类： 1. x &#x3D; new Obj(); &#x2F;&#x2F;令pt(x).insert(Obj); 2. x &#x3D; y; &#x2F;&#x2F;pt(x).insert(pt(y)); 3. x.f &#x3D; y; &#x2F;&#x2F;for (Obj in pt(x)) pt(Obj.f).insert(pt(y)) 4. x &#x3D; y.f; &#x2F;&#x2F;for (Obj in pt(y)) pt(x).insert(pt(Obj.f)) 容易发现，四条规则对应了四种集合关系的限制，因此指针分析的一种看法就是解一类限制方程(Anderson Style Analysis) ## PFG Pointer Flow Graph 一个有向图，用来描述指针所指向对象的流向信息 ### 点 变量、对象及其field的表示 变量就标号。对象的field用二元组(o,f)表示，表示对象o的域f ### 边 有向边x-&gt;y表示pt(x)中元素的更新**可能**影响pt(y)的元素 如果我们知道了PFG，再把所有new都分配到对应的点上，那么指针分析就变成简单的传递闭包问题了! 但是建图的过程也依赖于求pt(x)的问题，因此这是一个边算边建图的过程….. 大概伪代码是这样的 ```c void addEdge(Q,G,x,y) { G.addEdge(x,y); Q.push(pts(x),y); } void solve(Code C) { Queue Q; Graph G; for (i in C) if (i.type&#x3D;&#x3D;NEW) { &#x2F;&#x2F; x &#x3D; new Obj(); at line i Q.push(x,{oi}); } for (i in C) if (i.type&#x3D;&#x3D;ASSIGN) { &#x2F;&#x2F; x &#x3D; y; addEdge(Q,G,x,y); } while (!Q.empty()) { (x,P)&#x3D;Q.top(); Q.pop(); P&#x3D;P-pts(x); if (!P.empty()) { pts(x).insert(P); for (y in adjacent(G,x)) { Q.push(y,P); } } for (i in C) if (i.type&#x3D;&#x3D;load) { &#x2F;&#x2F; y &#x3D; x.f; &#x2F;&#x2F; for (o in pts(x)) { &#x2F;&#x2F; 已经加过了的边不必再加 for (o in P) { addEdge(Q,G,o.f,y); } } for (i in C) if (i.type&#x3D;&#x3D;store) { &#x2F;&#x2F; x.f &#x3D; y; for (o in pts(x)) { &#x2F;&#x2F; 同上 addEdge(Q,G,y,o.f); } } for (i in C) if (i.type&#x3D;&#x3D;store) { &#x2F;&#x2F; y.f &#x3D; x; &#x2F;&#x2F; 这种写法和上面是等价的 for (o in pts(y)) { &#x2F;&#x2F; 同上 addEdge(Q,G,x,o.f); } } } } ``` 一开始没有看明白为什么pts(x)发生变动时只考虑了`y&#x3D;x.f`和`x.f&#x3D;y` 考虑所有的情况只有四种： 1. `y&#x3D;x.f` 2. `x.f&#x3D;y` 3. `y.f&#x3D;x` 4. `x&#x3D;y.f` 可以发现情况4在pts(x)发生变化时不需要更新后继点 而情况3和情况1是对称的…因此写法是任意的 ### Inter-Procedural Analysis 考虑方法调用的指针分析，就是要考虑形如 ``` a&#x3D;b.f(r1,r2…) ``` 这样的语句如何建模。同样也是建Call Graph 在前面用到的CHA方法并不准确，因为我们并没有考虑指针实际可能指向的对象域的情况。注意到这恰好是PA在做的事情，因此可以结合着指针分析进行CG的建立 实际上就是枚举pts(b)中的对象o，通过dispatch(o,f)来找到实际调用的方法m，然后枚举所有实参的指针域流向方法m中的对应形参，返回值的指针域流向a。同时类的this指针也不能忽略，因此也要把o流到m的this去(这里我们认为每个方法都有它自己的this指针) 在建PFG的时候，我们会对参数、返回值进行连边，而this则不会连边(why?) 考虑如下代码片段： ```java class A { T foo() { this; } } class B extends A { T foo() { this; } } class C extends A { T foo() { this; } } ``` 那么给定下列指针域和调用 ```java pts(x)&#x3D;{A, B, C}; x.foo(); ``` 当x分别指向A,B,C时，对应应该流向A.foo.this,B.foo.this,C.foo.this 也就是说，对某一段方法调用代码片而言，LHS变量的指针域中的每个对象只会流向唯一的方法的this指针(这是由dispatch的唯一性保证的)。假若我们为LHS变量到所有可能方法都连上了边，那么就会出现不必要的精度损失。 具体的实现可以看PPT</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

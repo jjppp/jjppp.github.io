@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            2020 ICPC 小米邀请赛 部分题解
+        </div>
+        <div class="post-meta">
+            2020-10-26
+        </div>
+    
+
+    <div class="post-md">
+        <p>这是oi退役以来第五场比赛，也是和队友打的第三场，前面零星有几次个人赛。 水平不太够，不过个人比较佛系，希望把能看出来的题目肝出来就行了，目标就是争取不做演员;-P # A — A是我写的 给n个数，取出最大的子集，使得子集中任意两个数a,b满足要么a|b，要么b|a 这题卡了很久，主要是一开始就想到了和n相关的做法和和值域相关的做法，但是两个单独都过不了 最后想起来这个是可以讨论的，把两种做法一结合就过了 考虑设f[x]表示x为最大数的最大集合大小，那么新加入的数字必须是x的整数倍，我们枚举x的倍数就可以了，这里是1e7log1e7的 同理，设g[x]表示第x大的数字为最大数的最大集合大小，那么它一定由前n-1个状态转移来，所以就是n^2的 # B — B是我写的 给定一个二维平面，给k个线段，问从起点坐标走到终点坐标的最短路，行走时不能跨越线段 想象我们用弹力绳从起点拉，一直拉到终点，那么绳子会收缩，此时绳子的长度就是答案，而且绳子一定经过了若干线段的端点 所以把线段拆成两个点，然后n^2连边，跑最短路就可以了。因为INF开小了挂了，这是我的锅，得背 # C — sb题目，一整段长为n的w，答案就是2n-1，数数就好了 # D — 这个是队友写的 考虑一个点什么情况下删掉会增加连通块。不难发现当一个点是一个连通分量连出去的点时，我们删掉他会新增连通块。也就是说，这个点的所有儿子的low都不比他小。 # E — 留坑 # F — 做的时候看错题了，我的锅 不难发现答案可以二分。先排除全选ri都不能到L和全选li都过了R的两种情况 假设我们二分到的答案是mid，那么每类题目我们至少需要mid\*li个，并且剩余max(L,sum[li])-mid\*li道题目需要去凑齐。这个直接看看sum[ri-li]够不够就行了 这题LL不够，看了别人的题解用__int128才够 # G — 留坑 # H — 留坑 # I — 水题，模拟就好了 # J — 我写的 考虑从左上到右下找第一个不为零的位置，我们对这个点为左上角的矩阵不停-1，这样能保证不会遗漏 然后我们check是否最后都变成了0，或者减成了负数 这是一个区间加，单点求的问题，我们差分然后二维树状数组就好了 # K — 留坑待填</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

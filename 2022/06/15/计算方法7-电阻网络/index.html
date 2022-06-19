@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            计算方法7 电阻网络
+        </div>
+        <div class="post-meta">
+            2022-06-15
+        </div>
+    
+
+    <div class="post-md">
+        <p>越发觉得自己物理学得烂了… # 前置 前置的物理定律包括如下两条： 1. 欧姆定律，即 $\phi_i-\phi_j&#x3D;U_{i,j}&#x3D;I_{i,j}R$。定义电导率为 $w&#x3D;R^{-1}$，那么有 $I_{i,j}&#x3D;U_{i,j}w$。 2. 基尔霍夫定律，即对于电阻网络的任意节点 $v$，流入的电流等于流出的电流 。 # 电路网络与 $L$ 对于单位电阻组成的电路网络 $G$，其拉普拉斯矩阵 $L$ 可以通过上面两条物理定律和电流联系起来。 考虑电路网络内部的节点 $x$，根据基尔霍夫定律有 $$ b_x&#x3D;\sum_{y\in N(x)} I_{x,y}&#x3D;\sum_{y\in N(x)} (\phi_x-\phi_y)w $$ 为了方便讨论，一般会规定电源电势为 $1V$，或流入电路网络的电流总量为 $1A$，此处采用第二个约定。 对于单位电阻有 $w&#x3D;1$，此时上述方程组可以写成 $$ L\phi&#x3D;b $$ 其中 $b_x$ 表示流入 $x$ 的电流（流入为正，流出为负）。将电源接在图上任意两点间（不妨设为 $s,tttt$），其含义为向量 $b$ 满足 $b_s&#x3D;1,b_t&#x3D;-1$，其余均为 $0$。 再考虑欧姆定律，有 $$ B^\intercal \phi&#x3D;I $$ 其中 $B$ 为图 $G$ 的 $n\times m$ 关联矩阵，形如 $\begin{bmatrix}\cdots&amp;\cdots&amp;\cdots \\ \cdots&amp; 1&amp; \cdots \\ \cdots&amp;\cdots&amp;\cdots \\ \cdots&amp; -1&amp; \cdots\\\cdots&amp;\cdots&amp;\cdots\end{bmatrix}$，第 $i$ 列表示边 $e_i$ 关联哪两条边，正负表示方向。$m$ 维向量 $I$ 表示每条边上电流的流量。 如果要考虑非单位电阻的矩阵，那么需要引入 $m\times m$ 的对角阵 $W&#x3D;\text{diag}\set{w_{e_1},w_{e_2}\ldots w_{e_m} }$ 来分别建模每条边的电导率，在需要的时候乘上就行了。 考虑 $L$ 的另一形式有 $$ L&#x3D;\sum_{e\in E(G)} L_e&#x3D;\sum_{e\in E(G)} w_e b_e{b_e}^\intercal&#x3D;BWB^\intercal $$ 因此还可以写成 $$ L\phi&#x3D;BWB^\intercal \phi&#x3D;BWI&#x3D;b $$ 这也是很直观的，对边上的电流分布做一次图上的按邻居求和，就能得到一个节点上的全局电流分布 $b$。 ## 电路方程的解 定理： 若 $L\phi&#x3D;b$ 有解当且仅当 $b\perp \bold1$ “$\Rightarrow$” 注意到 $L$ 实对称，取一组由 $\bold1$ 扩充而来的正交基 $\Set{v_i}$，则 $\phi&#x3D;a_1\bold1 + \sum_{i&#x3D;2}^n a_i v_i$ 此时 $L\phi&#x3D;L\left(a_1\bold1+\sum_{i&#x3D;2}^n a_iv_i\right)&#x3D;\sum_{i&#x3D;2}^n a_i\lambda_i v_i$，根据正交基可知 $L\phi\perp b$ 直观含义为电阻网络流入的电流要等于流出的电流。 “$\Leftarrow$” 若 $b\perp\bold1$，那么 $b&#x3D;\sum_{i&#x3D;2}^n b_iv_i$ 此时取 $\phi&#x3D;\sum_{i&#x3D;2}^n \frac{b_i}{\lambda_i}v_i$ 即为一个解。 直观含义为对于一组外部电流的电势解，可以任意整体平移得到同方程的其余解（因为电流只和电势差有关）。在固定某个点电势为 $0$ 的前提下，就能得到唯一解。 上面关于 “$\Leftarrow$” 方向的证明用到了一个构造，实际上可以写成 $$ \phi^*&#x3D;L^\dagger b $$ 其中 $$ \begin{aligned} L^\dagger&amp;&#x3D;\sum_{i&#x3D;2}^n {\lambda_i}^{-1}v_i{v_i}^\intercal \\ b&amp;&#x3D;\sum_{i&#x3D;2}^n {\lambda_i} v_i \end{aligned} $$ 这意味着，当 $b$ 是一个合法的电流（满足 $b\perp \bold1$）时，$L$ 存在伪逆。并且 $L\phi&#x3D;b$ 的解集为 $\Set{L^\dagger b + k\bold1\mid k\in \mathbb R}$ ## 电势能和等效电阻 同样只考虑单位电阻。 考虑令 $b$ 流入单位电流，电路网络为单位电阻，那么整个电路的等效电阻就是 $s,t$ 间的电势差，即 $$ R_{\text{eff} }&#x3D;\phi_s-\phi_t&#x3D;b^\intercal\phi&#x3D;b^\intercal L^\dagger b $$ 对于电势能同样可以通过等效电阻来算。注意到通的是单位电流，并且电阻为 $R_{\text{eff} }$，因此电势能就是 $R_{\text{eff} }$。 另一种对每条边单独推导的方法如下： $$ E&#x3D;\sum_{e\in E(G)} E_e&#x3D;\sum_{(x,y)\in E(G)} {\left({\phi_x-\phi_y}\right)}^2 $$ 回忆关于 $L$ 的二次型，有 $$ E&#x3D;\phi^\intercal L\phi&#x3D;R_{\text{eff} } $$ 并且有结论：对与任意的 $s,t$ 流，其电势能不会比 $R_{\text{eff} }$ 更小。即这样的电势分布会最小化单位流的能量损耗，非常神奇的物理意义。</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

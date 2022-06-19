@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="header">
+    <a class="logo" href="/">jjppp</a>
+    <ul class="nav">
+        
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/archives">归档</a></li>
+        
+        <li><a href="/about">关于</a></li>
+        
+    </ul>
+</div>
+                
+                <div class="post-list">
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B09-CFL-R-IFDS/">软件分析笔记9 CFL-R&amp;IFDS</a>
+        <div class="post-except">
+            这一节主要讨论针对CFG中的路径的优化 ## Feasible &amp; Realizable Paths &gt; Infeasible Paths: paths that do not correspond to actual executions &gt; &gt; Unrealizable Paths: paths whose “returns” are not matched with corresponding “calls” 定义的引入很直观，动态运行时并非所
+            <a class="read-more" href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B09-CFL-R-IFDS/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.13</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B08-Datalog/">软件分析笔记8 Datalog</a>
+        <div class="post-except">
+            Datalog &#x3D; Data + Logic，是声明式编程语言(Declarative Programming Language) Prolog的一个子集 Datalog最早作为数据库的查询语言出现，是**非**图灵完备的编程语言 ## 语法 和数理逻辑的命题逻辑、谓词逻辑基本是一致的，如果看的教材和我一样是Mathematical Logic in Computer Science的话甚至会发现很多描述的语句都是一样的 `,`表示and `;`表示or `!`表示
+            <a class="read-more" href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B08-Datalog/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.13</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/">软件分析笔记7 Security</a>
+        <div class="post-except">
+            下面几节课都比较轻松，内容偏科普性质 ## Security &gt; Achieving some goals in the presence of adversaries 这个概括可以说是很简练了 统计意义下最常见的两类漏洞： 1. Injection Errors 2. Information leaks 这两者本质上都是信息流的错误流动，因此就自然引出信息流安全的问题和分析 ## Information Flow 字面意思….前面指针分析本质上是对数据流的分析，而数据
+            <a class="read-more" href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.08</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B06-CSA/">软件分析笔记6 CSA</a>
+        <div class="post-except">
+            CSA&#x3D;Context Sensitive Analysis 上下文敏感分析 不敏感的分析认为所有语句的执行顺序无法区分，也就是没有上下文的概念 考虑如下代码片段 ```java class A; A a &#x3D; new A(); &#x2F;&#x2F; o1 A b &#x3D; new A(); &#x2F;&#x2F; o2 A pa &#x3D; func(a); A pb &#x3D; func(b); A func(A x) { return x
+            <a class="read-more" href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B06-CSA/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.08</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/">软件分析笔记5 PA</a>
+        <div class="post-except">
+            PA&#x3D;Pointer Analysis 指针分析 ## Motivation CHA方法实际上没有利用足够的信息(即实际上变量可能指向的对象所从属的类的范围可以进一步缩小),会引入假的调用边 ## Pointer Analysis PA是一种基础的静态分析,它要回答的问题是”某个指针p的值域可能是啥” 对于OO语言来说,其实就是回答某个指针可能指向哪些对象(对于非OO语言的指针则可以直接指向内存) 很显然这是一个may analysis, 用over-approxi
+            <a class="read-more" href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.04</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B04-CGC/">软件分析笔记4 CGC</a>
+        <div class="post-except">
+            CGC&#x3D;Call Graph Construction ## Motivation 如果只做method内的分析，则任何包含function call的语句都需要保守分析(例如说默认不是常数) 这样是不利于进一步做优化的,因此引入Call Graph图对CFG作拓展 ## java call invokestatic: call static methods, 对应的方法唯一且在编译时确定 invokespecial: call constructor, super
+            <a class="read-more" href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B04-CGC/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.04</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/">大一下存活纪实</a>
+        <div class="post-except">
+            ## 大一下享受生活&amp;课程存活经验 下一届的直系小朋友们终于来了，希望自己能够真正帮到他们，而不是向去年的我一样自己摸索（虽然也没有摸索地太痛苦，但是从反响来看大部分的同学的求索之路还是很痛苦的…. 混了一年也学会了各种划水摸鱼，算是成了老油条了。不过享受生活和学习不冲突，因此这次不完全是存活经验了（毕竟难度太大，俺也不知道怎么存活） 最近混了几天的新生群，感觉问题还是在于自己讲得太多，希望自己可以沉得住气，多多倾听，不要说起话来得意忘形了 废话不多说，开始废话环节吧
+            <a class="read-more" href="/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/"> ... </a>
+        </div>
+        <div class="post-date">2021.08.02</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/">集训补题合集</a>
+        <div class="post-except">
+            好多题都不会啊，这可咋整 先写着吧….大概会割掉…. ### cf490 求带点权树上的简单路径构成的点权序列的最长上升子序列的长度的最大值 一个比较容易想到的做法就是dp，设f[x,i]表示以x为根的子树中，以i为结尾的最长上升子序列的长度，g[x,i]就是下降。这里我们规定只能选取深度递降的顺序 那么每次合并子树就好了，这样直接做是n^2logn的。还可以用线段树记录这个结尾的状态，那么两个dp状态合并就是线段树合并了，这样就少一个n ### 牛客多校1C 给一棵树要求删
+            <a class="read-more" href="/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/"> ... </a>
+        </div>
+        <div class="post-date">2021.07.17</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/07/03/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/">图论笔记4 平面图与可平面图</a>
+        <div class="post-except">
+            本来应该(被)科普一些拓扑的姿势的，但是目前好像也不太用得上，就先咕了吧。 本文假设读者有一定的图结构知识，比较新的概念俺会努力解释的 这里的内容都比较入门，大佬轻喷( # 平面图(Plane Graph) 我们称具有如下性质的图 $G$ 为平面图： 1. $V(G)\subseteq \mathbb R^2$，$E(G)\subseteq \mathbb R^2$ 毕竟是”平面”图 2. $\forall e_1,e_2\in E(G)$, $st(e_1)\neq st(
+            <a class="read-more" href="/2021/07/03/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/"> ... </a>
+        </div>
+        <div class="post-date">2021.07.03</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/06/19/Java%E9%80%9F%E6%88%90%E7%AC%94%E8%AE%B0/">Java速成笔记</a>
+        <div class="post-except">
+            恶补一下java来方便写作业,希望能用的上 一直有点抗拒这门语言,给我的感觉就是笨重麻烦,很难写一些很漂亮的做法 ## 变量和类型 java是强类型语言,需要显式地声明变量的类型.变量的类型分为两种: 1. primitive类型,包括: 1. 整形:long int short byte，分别表示单字、双字、四字、八字 2. 浮点数:float double,分别表示单精度、双精度 3. bool和char,这里char很神奇是16bits的,看起来比C要现代一些 2. 对
+            <a class="read-more" href="/2021/06/19/Java%E9%80%9F%E6%88%90%E7%AC%94%E8%AE%B0/"> ... </a>
+        </div>
+        <div class="post-date">2021.06.19</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B03-DFA/">软件分析笔记3 DFA</a>
+        <div class="post-except">
+            这里的DFA可不是有限状态自动机（ ## Data Flow Analysis 这一部分是比较重的重点…要好好看 或许需要补一补lattice(事实证明这一部分非常简单…) Data Flow Analysis 实际是要通过 How **Application-Specific Data** **Flows** through the **Nodes &amp; Edges** on CFG 这句话中三个加粗部分理解 #### ASD 这里的ASD可以看作是根据研究性质抽象(
+            <a class="read-more" href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B03-DFA/"> ... </a>
+        </div>
+        <div class="post-date">2021.06.11</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B02-IR/">软件分析笔记2 IR</a>
+        <div class="post-except">
+            ## 术语 IR &#x3D; Intermediate Representation 代码的中间形式 AST &#x3D; Abstract Semantic Tree 抽象语法树 ## IR 上节讲到的同态映射需要一个具体的载体,类比我们常常将n维线性空间同构到R^n上考虑,这里就引入了IR IR也是一种语言，可以作任意语言到IR的同态映射,静态分析通常建立在IR的基础上,也就是分析的实际上是IR 回顾编译的流程: | | | ———————————————————— |
+            <a class="read-more" href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B02-IR/"> ... </a>
+        </div>
+        <div class="post-date">2021.06.11</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B01-Intro/">软件分析笔记1 Intro</a>
+        <div class="post-except">
+            决定要好好开干了，于是有了这个系列的笔记 真是绝了，我连淑芬都没有专门的笔记 回想上学期的考试周开了CSAPP的大锅，这次考试周开了软件分析的大锅，考试周真是除了考试都好玩 ## 术语 PLT &#x3D; Programming language theory 编程语言理论 Static Analysis 静态分析 computable function 可计算函数 property $\text{P is trivial}\iff (\forall xP(x))\text
+            <a class="read-more" href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B01-Intro/"> ... </a>
+        </div>
+        <div class="post-date">2021.06.11</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/">图论笔记3 染色</a>
+        <div class="post-except">
+            ## 图染色(Coloring) #### 染色数(Coloring Index) 图的染色分为点染色(vertex coloring)和边染色(edge coloring) 点染色指的是构造映射 $f_k\colon V(G)\mapsto \left\{\;1,2,\ldots k\;\right\}$，一个合法的染色(proper coloring) 则要求映射满足 $\forall xy\in E(G)\Rightarrow f_k(x)\neq f_k(y)$，记 
+            <a class="read-more" href="/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/"> ... </a>
+        </div>
+        <div class="post-date">2021.06.04</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/06/01/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/">图论笔记1 基本概念&amp;定义</a>
+        <div class="post-except">
+            还是记一下吧，方便看博客的人(真的会有人看吗喂！) ## 图论基本概念 好多啊,还是英文,记不住….. 这里的图默认是有限图 点(vertex&#x2F;vertices),边(edge) 边$\left\{x,y\right\}$可简记为$xy$ ### 基本符号 $\left[n\right]&#x3D;\left\{1,\dots,n\right\},n\in\mathbb N$ $\binom{n}{k}&#x3D;\left\{ {x\subseteq \left[
+            <a class="read-more" href="/2021/06/01/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/"> ... </a>
+        </div>
+        <div class="post-date">2021.06.01</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AC%94%E8%AE%B01-%E6%90%9C%E7%B4%A2%E6%A0%91/">数据结构 笔记1 搜索树</a>
+        <div class="post-except">
+            感觉一下子进度快了很多，中间有一些需要记的，还有一些偏工业的，现在补一补。 内容全部来自《算法导论》，啃了一遍之后觉得这本书真是强啊，理论上说用这个入门就没必要看别的书了…..也许这就是本意吧 这波主要是树相关，后面可能会持续更新，看我有没有空吧….. 是写给自己看的，也许会有一点电波 ## 二叉搜索树(Binary Search Tree) 实际上是对链表和二分过程的结合。我们希望在保持二分性质的前提下支持快速插入和删除某些元素，这样的需求推动了BST的出现 ### 定义 
+            <a class="read-more" href="/2021/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AC%94%E8%AE%B01-%E6%90%9C%E7%B4%A2%E6%A0%91/"> ... </a>
+        </div>
+        <div class="post-date">2021.05.29</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">ICPC 2021 银川划水记</a>
+        <div class="post-except">
+            一个周末发生了很多事情，值得记录一下 ## day -1 前夜被告知航班取消了，匆忙换成了从合肥出发的灰机。早上匆忙赶到南京南的时候因为太着急甚至走错了路。在列车即将晚点的时候又被告知退掉高铁票改去徐州，疫情！ 人生第一次坐到了高铁一等座，座椅确实宽敞。到机场前短暂地体验了一波徐州的氛围，感觉和东莞差不太多，除了他们有自己的飞机场（囧 终于见到了碧海潮生和labelray本人，值了。两点半的飞机直接晚点到七点，期间一直在和简叶打雀，顺便看了一点少女漫，四处找人聊天。 到银川的
+            <a class="read-more" href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/"> ... </a>
+        </div>
+        <div class="post-date">2021.05.17</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/">图论笔记2 匹配</a>
+        <div class="post-except">
+            事实上第一篇应该是一些概念的介绍，不过先不管了… 这几周讲了一个很大（也是很难）的题目，值得好好记录一下….. 本文讲的都是有限图，在阅读之前默认读者有基本的集合论姿势和图论前置姿势 # 匹配（Matching） ## 定义 ### 匹配 对于给定的图 $G&#x3D;(V,E)$，若存在边集$M$使得 $M\subseteq E(G)$ 且 $\forall e_1,e_2\in E(G)$ 都有 $e_1\cap e_2&#x3D;\varnothing$，那么我们称 $
+            <a class="read-more" href="/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/"> ... </a>
+        </div>
+        <div class="post-date">2021.04.30</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/">CSAPP实验6 : shlab</a>
+        <div class="post-except">
+            linking的部分看了一半跳过去了….据说你南的ICS讲linking非常不错，于是我就心安理得了 exception的部分还在看，估计这周末可以看完（吧），先留坑 我来填坑辣 终于赶在五一（假期前）写完了第六个lab，书也推完了第八章，四舍五入就是五月前搞定了前八章内容，还是很不戳的。整个四月都非常忙，各种ddl和期中满天飞。五月也不空闲，还有EL、听说读写ddl、马原、银川、大雾期中、军理。希望人没事.jpg 这次lab的一个明显特点就是答案都可以在书上找到，各种详细的
+            <a class="read-more" href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/"> ... </a>
+        </div>
+        <div class="post-date">2021.04.21</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/">奋斗逼的脸庞着实惹人爱</a>
+        <div class="post-except">
+            `ICSOJ`搭建记录及对你班风气的一些思考 最近上了一门课，名为《信息科学与实践》。说是实践，其实是基础程设+算法理论+数据结构入门，可谓是大杂烩。本着共同进步的目的，我们尝试着建了一个讨论群&amp;资料群来加强互动氛围、搭设了一个简易的OJ来提升同学们的代码能力。 ## 购买服务器&amp;搭建OJ 买的是腾讯云的学生机，6个月54r，完美覆盖下学期，暑假也能用，感觉还不错。 选择装ubuntu，最早是照抄了HUSTOJ的搭建教程，后面发现既不现代也不美观，放题面也很麻
+            <a class="read-more" href="/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/"> ... </a>
+        </div>
+        <div class="post-date">2021.04.14</div>
+    </div>
+    
+</div>
+
+<div class="paginator">
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+</div>
+
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            数理逻辑习题乱做
+        </div>
+        <div class="post-meta">
+            2022-01-21
+        </div>
+    
+
+    <div class="post-md">
+        <p>做习题，不保证对，不保证全 ## 2.10 证明只有 $\uparrow,\downarrow$ 能单独定义所有的单目和二元运算 首先考虑如何表示 $\neg$。 $\circ$ 这个二元运算能表示 $\neg$ 的定义为，对于任意公式 $A$ 都有 $\neg A&#x3D;A\circ A\circ A\cdots A$ 成立 取解释 $\scr I$ 使得 ${\scr I}(A)&#x3D;T$，代入上式有 $F&#x3D;T\circ T\circ T\cdots T$ 这里可以发现，对于 $\circ$ 运算必然有 $T\circ T&#x3D;F$ 成立。否则假设 $T\circ T&#x3D;T$，那么简单归纳就有 $F&#x3D;T\circ T\circ T\cdots T&#x3D;T$，矛盾。 同理可以知道必然有 $F\circ F&#x3D;T$。那么就可以知道 $\circ$ 只能是 $\uparrow$，$\downarrow$，投影，投影取反 假设 $\circ$ 是投影，那么根据投影的性质简单归纳可知投影的复合还是投影，这就与它能表示任意二元运算矛盾了。投影取反同理。因此就只能是 $\uparrow,\downarrow$ 然后可以构造 $A\uparrow A&#x3D;\neg A$，$(A\uparrow B)\uparrow(A\uparrow B)&#x3D;\neg(A\uparrow B)&#x3D;A\and B$，这样就实现了一个完备集，搞定！ ## 2.11 证明 $\wedge$ 和 $\vee$ 不是完备符号集 很显然单个的 $\wedge$ 和 $\vee$ 不是完备集（参照2.10），下面证明 $\left\{\wedge,\vee\right\}$ 不是完备集 类似上面的证明，取 $\neg A&#x3D;A\wedge A\vee A\cdots A$，右侧可以任意加减括号 取解释 $\scr I$ 使得 ${\scr I}(A)&#x3D;T$，那么有 $F&#x3D;T\wedge T\vee T\cdots T&#x3D;T$，矛盾。 ## 2.12 证明 $\left\{\neg,\leftrightarrow\right\}$ 不是完备集 考虑某个投影运算 $\circ$，其定义为 $A\circ B&#x3D;A$，那么假设这是一个完备集，根据定义有 $A\circ A&#x3D;(A\leftrightarrow A)\leftrightarrow\neg(\cdots$ 考虑公式的所有二元运算的叶子： 1. 形如 $A\leftrightarrow A$，其与 $\top$ 逻辑等价，值为 $T$ 2. 形如 $\neg A\leftrightarrow A$，其与 $\bot$ 逻辑等价，值为 $F$ 3. 形如 $A\leftrightarrow\neg A$，其与 $\bot$ 逻辑等价，值为 $F$ 4. 形如 $\neg A\leftrightarrow \neg A$，其与 $\top$ 逻辑等价，值为 $T$ 即上述等式的右侧将会是一个常量（$T$ 或 $F$），即 $A\circ A&#x3D;T$ 或 $A\circ A&#x3D;F$，二者只能取其一。 然而根据投影的定义有 $A\circ A&#x3D;A&#x3D;T$，在使得 $A$ 为 $F$ 的解释下就找到了一个矛盾，因此这不是完备集。 ## 2.17 设 $\scr U$ 是一个公理集，记 ${\scr T}(\scr U)$ 是其导出的理论集，证明 $\scr T(U)$ 在 $\models$ 下是封闭的。 由反证法假设其不封闭，则存在 $A\not\in {\scr T(U)}$，满足 ${\scr T(U)}\models A$，即 $\models \bigwedge{\scr T(U)}\rightarrow A$。 根据 $\scr T(U)$ 的定义有 $\forall F\in{\scr T(U)}$ 都有 ${\scr U}\models F$，即对于任意 $\scr T(U)$ 中的公式 $F$ 都有 $\models \bigwedge{\scr U}\rightarrow F$，因此有 $\models \bigwedge{\scr U}\rightarrow \bigwedge{\scr T(U)}$ 结合上面两条就有 $\models \bigwedge{\scr U}\rightarrow A$，即 ${\scr U}\models A$，根据 $\scr T(U)$ 的定义有 $A\in{\scr T(U)}$，这与假设矛盾；故假设不成立，即 $\scr T(U)$ 在 $\models$ 下封闭 ## 3.18 称公式集是极大一致的，当且仅当它的所有真超集都是不一致的。设 $S$ 是一极大一致的可数公式集，证明： 1. $S$ 的所有有限子集都是可满足的 2. 对于任意公式 $A$，$S\cup\left\{A\right\}$ 和 $S\cup\left\{\neg A\right\}$ 二者至少有一个是一致的 3. $S$ 可以被拓展为极大一致的公式集 ### 1 显然对于公式集 $S$ 的有限子集 $T$，$T$ 是一致的（否则将得出 $S$ 不一致的矛盾） 由反证法，设 $T$ 不可满足，则任意解释下 $T$ 中存在值为 $F$ 的公式。因此根据 $\models$ 的定义，对于任意的公式 $A$ 都有 $T\models A$，即 $\models \bigvee T\rightarrow A$ 又根据 $\scr H$ 的可靠性和完备性有 $\vdash \bigvee T\rightarrow A$，即 $T\vdash A$ 对任意公式 $A$ 都成立。因此 $T$ 不一致，这与假设矛盾。故 $T$ 可满足。 中间跳了一些步骤 ### 2 假设都不一致，那么有 $S\vdash A$ 并且 $S\vdash\neg A$，根据定义有 $S$ 不一致，与假设矛盾。故 至少有一个是一致的 ### 3 注意到 $S\cup \left\{A\right\}$ 和 $S\cup\left\{\neg A\right\}$ 二者至少有一个保持了一致性，并且2中的证明只用到了 $S$ 的一致性，所以用2中的结论一直往里面加公式就好了，这样就会得到 $\forall A\in{\scr F}\text{, either $A\in S$ or $\neg A\in S$}$ ## Prob 1 证明 $|PROP|&#x3D;\aleph_0$ ### 证明1 构造 $P_k&#x3D;\overbrace{PS\times PS\times\cdots PS}^{k个}$，其中 $PS\times PS$ 定义为集合的笛卡尔积运算 定义 $P&#x3D;\bigcup_{k\in\mathbb N^+} P_k$，有 $PROP\subseteq P$ 并且对于任意正整数 $k$，有 $P_k$ 是可数集，因此 $P$ 是可数个可数集之并，易证 $|P|&#x3D;\aleph_0$，因此 $|PROP|\leqslant\aleph_0$ 又注意到如下命题构造序列：$A,\neg A,\neg\neg A\ldots$，易得 $|PROP|\geqslant\aleph_0$ 结合就有 $|PROP|&#x3D;\aleph_0$ ### 证明2 考虑构造如下映射 $f$： $$ \begin{equation} f(x)&#x3D;\left\{ \begin{aligned} 0002&amp;,&amp; x&amp;&#x3D;\neg\\ 0012&amp;,&amp; x&amp;&#x3D;\wedge\\ 0102&amp;,&amp; x&amp;&#x3D;\vee\\ 0112&amp;,&amp; x&amp;&#x3D;\rightarrow\\ 1002&amp;,&amp; x&amp;&#x3D;(\\ 1012&amp;,&amp; x&amp;&#x3D;)\\ bit(x)0002&amp;,&amp; x&amp;\in PS\\ \end{aligned} \right. \end{equation} $$ 其中 $bit(x)$ 将自然数 $x$ 转化为其二进制表示的字符串。 很显然 $f:PROP\mapsto \mathbb N$ 是一个单射，这里可以把结果串解释为三进制数，故有 $|PROP|\leqslant\aleph_0$ 另一个不等式是显然的 ## Prob 2 证明括号引理 其实就是结构归纳的简单应用。 ### Base Case 考虑 $A\in PS$，此时左括号的数量等于右括号的数量 ### Step Case 1. $A&#x3D;(\neg B)$，而 $B$ 是命题，则根据归纳假设 $B$ 满足括号引理，因此 $A$ 仍然满足 2. $A &#x3D; (B\wedge C)$，根据归纳假设 $B,C$ 满足括号引理，此时 $A$ 仍然满足 3. 剩下的几个是类似的 根据结构归纳法，所有由上述方法定义出的命题都满足括号引理。又因为命题仅限于此，因此对于所有的命题括号引理都成立。证毕。</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

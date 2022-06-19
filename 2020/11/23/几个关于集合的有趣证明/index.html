@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            几个关于集合的有趣证明
+        </div>
+        <div class="post-meta">
+            2020-11-23
+        </div>
+    
+
+    <div class="post-md">
+        <p>在离散数学的第一堂课就被介绍了Set和Proper Class的区别。 与高中内容不同，现代数学中并不是任取一些元素都能组成一个Set，某些东西归在一起只能形成Proper Class（因为这个东西不满足集合的一些性质） 根据ZFC公理系统，我们可以知道关于集合的若干条公理，也就是说满足这些的才是集合，而推断某个东西不是集合常用反证的方法，下面来看几个栗子 1. Prove that the set of all sets is a proper class. 这个比较简单。假设这东西是一个集合，记为 $S$，那么根据Cantor’s Theorem我们有 $|S|&lt;|2^S|$。 而根据幂集公理(Axiom of power set)可知，$2^S$ 也是一个集合，于是有 $2^S\subset S$，也就是 $|2^S|\le |S|$，矛盾 2. Prove that the set of all cardinals is a proper class. 这周的作业，想了很久。。 首先要知道任意多个集合的并、一个集合的幂集都是集合，并且任意集合都唯一对应着一个cardinal，知道这些就比较好做了。 和上面的方法类似，假设这是一个集合 $S$，那么根据并集公理(Axiom of union)我们有 $T&#x3D;\cup S$ 也是一个集合，于是 $|T|\in S$。 因为 $\forall x\in S$ 都有 $x\subset T$，于是得到 $\forall x\in S\ \ \ |x|\le |T|$ 然而 $|T|&lt;|2^T|\in S$，这就推出了一个矛盾。 关于the set of all ordinals是一个 proper class的证明和这个类似 3. Prove that for cardinals $A$ and $B$，$A+B&#x3D;\max(A,B)$ where at least one of them is infinite 网上有很多证明，然而我都看不太懂，希望有别的做法的朋友可以交流交流;-P 不妨设$A\ge B$，那么显然有$A\le A+B\le A+A$，我们只需要证明$A&#x3D;A+A$即可，注意这里的A是cardinal 由于A是一个cardinal，那么它同时也是一个ordinal。对于任意ordinal $x$，$\exist \alpha,\beta\ \ s.t.\ \ x&#x3D;\alpha+\beta$，其中$\alpha$是一个limit ordinal，$\beta\in\mathbb N$ 考虑这样一个映射$f(\alpha+\beta)&#x3D;\left\{\begin{aligned}\left(0,\alpha+\beta\right)&amp;,&amp;\beta &amp;&#x3D;2k\\\left(1,\alpha+\beta\right)&amp;,&amp;\beta&amp;&#x3D;2k+1\end{aligned}\right. \left(k\in\mathbb Z\right)$ 显然$\forall x\in A$，$x$ is an ordinal. 那么$A&#x3D;A+A$等价于证明$|A|&#x3D;|\left(\left\{0\right\}\times A\right)\cup\left(\left\{1\right\}\times A\right)|$ 不难发现$f:A\mapsto\left(\left\{0\right\}\times A\right)\cup\left(\left\{1\right\}\times A\right)$是一个双射，于是就证明完了。</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

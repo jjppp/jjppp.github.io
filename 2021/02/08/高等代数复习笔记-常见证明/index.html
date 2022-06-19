@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            高等代数复习笔记 常见证明
+        </div>
+        <div class="post-meta">
+            2021-02-08
+        </div>
+    
+
+    <div class="post-md">
+        <p>关于矩阵的秩，王萼芳的书上给了一个比较简单的证明，丘维声的书上给了一个比较容易理解的证明，这里记一下复习复习，算是加深理解 ## 方法一 — **引理**：齐次线性方程组$A\bold{x}&#x3D;\bold{0}$只有零解当且仅当矩阵$A$的行秩$\ge$未知数个数。 引理的证明比较简单，只需要证明初等行变换不改变行秩，再观察$A$化成阶梯形矩阵之后自由变量的数量就好了 不妨设一个矩阵$A_{s\times n}$，且有$s\le n$，我们首先证明行秩$r_s\le$列秩$ r_n$ 可以取出$r_s$个线性无关的行向量，不妨记为$\bold{\alpha_{1},\alpha_{2},\dots,\alpha_{r_s} }$。根据线性无关的定义有：**不存在**一组不全为零的数$k_1,k_2,\dots,k_{r_s}$使得$\sum\limits_{i&#x3D;1}^{r_s}{k_i\bold{\alpha_i} }&#x3D;0$。记这些行向量组成的矩阵为$A_1$，即$\bold{x}^{T}A_1&#x3D;\bold{0}$只有零解，两边转置得到${A_1}^T\bold{x}&#x3D;\bold{0}$只有零解。由引理可知$r_s$ $\le$ ${A_1}^T$的行秩。那么我们可以从${A_1}^T$中取出它行向量的一个极大线性无关组。根据定理这个极大线性无关组的延伸组也是线性无关的，于是我们就把它填充为原本列向量的转置。 这里可以看出矩阵$A$的列向量组至少有$r_s$个向量线性无关，因此$r_s\le r_n$ 由对称性可知反过来是同理的，或者你转置一下也行。这个证法我jio得很简洁 ## 方法二 — ### Step1 首先证明行阶梯形矩阵的行秩&#x3D;列秩。记$A$的非零行数量为$r$，首先可以把每一行主元所在的行和列抠出来，不妨记第$i$个主元所在列为$K_i$，它们交点组成的子矩阵记为$C$。很显然$C$是一个上三角矩阵，于是$|C|\neq0$，也就是说$C$中的行列向量组都是线性无关的，同样它们的延伸组也是线性无关的 1. 先看矩阵$A$的列向量组，记为$\bold{\alpha_1,\alpha_2,\dots,\alpha_n}$，它们的特点是每一个向量的后$s-r$个元素全为$0$，这表示$A$的列秩$r_n&#x3D;r&#x3D;r\left(\bold{\alpha_{K_1},\dots,\alpha_{K_r} }\right)$，于是我们抠出来的这$r$个列向量就是$A$的列向量组的一个极大线性无关组 2. 再看$A$的行向量组，记为$\bold{}$$\bold{\beta_1,\beta_2,\dots,\beta_s}$，由$|C|\neq0$可知其中的$r$个向量线性无关，剩余$s-r$个都是$\bold0$，于是行秩$r_s&#x3D;r&#x3D;r\left(\bold{\beta_{K_1},\beta_{K_2},\dots,\beta{K_r} }\right)$ 综合1、2可得，行阶梯形矩阵的行秩等于列秩 ### Step2 再证明初等行变换不改变行秩 第i行的k倍加到第j行，即向量组$\bold{\alpha_1,\dots,\alpha_i,\dots,\alpha_j,\dots,\alpha_n}$变成了$\bold{\alpha_1,\dots,\alpha_i,\dots,k\alpha_i+\alpha_j,\dots,\alpha_n}$。这俩显然是等价的，它们的秩也相等 交换i、j两行显然不变，某一行乘上一个非零系数显然不变 ### Step3 再证明初等行变换不改变列向量组的线性相关性 任取$A$中的列向量组$\bold{\alpha_1,\alpha_2,\dots,\alpha_p}$，其经历一系列初等行变换变成行阶梯形$\bold{\beta_1,\beta_2,\dots,\beta_p}$ 如果$\bold\beta$线性无关，那么它的前$p$个分量组成的$p\times p$的矩阵行列式$\neq0$，又因为行初等变换不改变行列式的值，因此得到$\bold\alpha$的前$p$个分量组成的矩阵的行列式也$\neq0$；如果线性相关，那么这个结论也是对应的 于是初等行变换不改变列向量组的线性相关性 ### Step4 最后证明初等行变换不改变列秩 取$A$的$r_n$个线性无关的列向量构成一个极大线性无关组$\bold\alpha$，其经历一系列初等行变换变成$\bold\beta$，由Step3可知$\bold\beta$中的这$r_n$个向量也线性无关，因此初等行变换不会使列秩减小； 再任取$A$中的$r_n+1$个列向量(如果有的话)，易得这$r_n+1$个列向量线性相关，于是其对应的$\bold\beta$中的任意$r_n+1$个列向量都线性相关，因此初等行变换不会使列秩增大； 因此初等行变换不改变列秩 ### Step5 综合1234就可以把任意的矩阵通过初等行变换变成行阶梯形矩阵，再由秩的不变性得到任意矩阵的行秩等于列秩</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

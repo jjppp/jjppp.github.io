@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>jjppp | Blog of jjppp</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">jjppp</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+        <div class="post-main-title">
+            数理逻辑03 一阶逻辑
+        </div>
+        <div class="post-meta">
+            2022-02-13
+        </div>
+    
+
+    <div class="post-md">
+        <p># 写在前面 命题逻辑（或者 零阶逻辑）到一阶逻辑的变化，在于描述的粒度。命题逻辑只能描述命题之间的关系，以及它们如何构成更大的结构（新的命题）。在一阶逻辑中我们可以深入原子命题的内部，讨论命题的构成。 为了做到这一点，需要引入集合上的n元关系。从集合论作为基础的角度看，这么做是比较和谐的。 # 命题逻辑 命题逻辑的不同之处在于，我们既可以描述一个系统内的某些运算（通过函数、变量和常元），又可以描述由这些运算的结果得到的命题（通过谓词和逻辑连接符）。 一个例子就是标准算术模型 $\scr A$： 我们希望能够描述一个系统 $\scr A$，即描述清楚 1. 系统内部存在一些元素（自然数） 2. 这些元素互相可以通过运算（加法、后继）得到新的自然数 3. 可以判断两个元素的大小关系（$&lt;$ 是二元谓词）、相等关系（$&#x3D;$ 是二元谓词） 4. 可以把若干判断组合成一个更大的判断（通过命题构造子组合命题） 注意到上述4条是有层级的，12位于系统内部，3可以根据需要构造，4在不同的系统中可以完全相同。 ## n元关系 定义集合 $D$ 上的n元关系为n元函数 $f\colon D^n\mapsto \left\{T,F\right\}$，取 $P&#x3D;\left\{x\mid x\in D,f(x)&#x3D;T\right\}$，那么就可以仅用集合来表示n元关系。 特别的，$&lt;$ 是一个二元关系。它同时是 $\mathbb R,\mathbb N,\mathbb Z$ 上的二元关系，因此可以看出n元关系的定义还要看其定义域，此处即论域 # 语法 记 $\scr P,C,V,F$ 分别为 谓词、常量、变量、函数 符号的可数集，规定每个谓词 $P\in{\scr P}$ 和函数 $F\in{\scr F}$ 都有arity（有多少参数）$\mu(P),\mu(F)\in\mathbb N$。$0$ 元谓词就是命题逻辑中的命题，$0$ 元函数即为常元。 一阶逻辑中仍然存在命题构造子 $\{\wedge,\vee,\rightarrow,\neg\}$，通常取一个完备集即可。 规定**量词** $\forall,\exists$ 分别读作 任意 和 存在 ## 项 项集 ${\scr T}$ 由如下递归定义： 1. $\scr C\subseteq T$，常元是项 2. $\scr V\subseteq T$，变量是项 3. $f\in{\scr F},f(t_1,t_2\ldots t_{\mu(f)})\in{\scr T}$，由若干项作为实参的函数作用是项 4. 项仅限于此 所谓的项集就是在描述系统内部的元素，产生新的项的方法只有函数作用。 ## 原子公式 形如 $p(t_1,t_2\ldots t_{\mu(p)}),p\in{\scr P}$ 的公式是原子公式 原子公式承担了从项过度到公式（命题）的角色 ## 公式 给出BNF $$ \begin{aligned} formula &amp;:&#x3D; atomic\_formula\;|\; \neg formula\;|\;formula\vee formula\;|\;formula\wedge formula \\ formula &amp;:&#x3D; \exists x\,formula\;|\;\forall x\,formula \end{aligned} $$ 一阶逻辑是对命题逻辑的简单拓展，仍然保持了树状结构，之前的证明套路仍然适用。 在一阶逻辑中既然有变量就同样有作用域的问题。具体的定义类似$\lambda$-演算： 1. 公式 $\forall x\, F$，$\exists x\, F$ 中，$x$ 的作用域为公式 $F$，$F$ 不要求有 $x$ 出现 2. 称变量 $x$ 是公式 $F$ 中的自由变量，当且仅当 $x$ 在 $F$ 中出现，且不在限定 $x$ 的任何作用域中。 3. 非自由变量就称其为约束变量。 4. 若公式 $F$ 中，任意变量都是约束变量，则称 $F$ 为封闭公式（Closed Formula），宋公的书叫做句子。 ## 替换 和 $\lambda$-演算中的替换是一模一样的 # 语义 命题逻辑的语义由**解释**给出，在一阶逻辑则不够 回忆命题逻辑中解释的定义：$\scr I$ 是函数 $U_A\mapsto \left\{T,F\right\}$，其中 $U_A$ 表示公式 $A$ 中全部原子命题构成的集合 考虑还差了哪些。为了实现类似的效果，我们需要 1. 给常量赋予含义 2. 给变量赋予含义 3. 给项赋予含义 4. 给谓词赋予含义 5. 给原子公式赋予含义 ## 解释 宋公的书把这个叫做结构，也行吧。 规定公式 $A$ 的解释是一个三元组 $(D,\left\{R_1\ldots R_m\right\},\left\{d_1\ldots d_k\right\})$ 其中 $D$ 是论域，$R_i$ 是论域 $D$ 上的关系，$d_j$ 是 $D$ 中的元素，其赋予了 $A$ 中常量含义。 一个例子是 $\bold 1&lt;\bold 2$ 和 $壹&lt;贰$，此处的 $\left\{壹，贰\right\}$ 都是常量，在规定解释为 $(\mathbb N,\left\{&lt;\right\},\left\{1,2\right\})$ 时才能说等式成立（讨论其真值）。可能存在这么一个神奇的国度，它们把 $1$ 写作 $\bold 2$，把 $2$ 写作 $\bold 1$，那么式1在它们的国度（特定解释下）就不成立了。 但这是不够的。考虑公式 $x</p>
+<!-- more -->
+
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 jjppp</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

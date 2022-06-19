@@ -50,6 +50,181 @@
         <div class="post-date">2022.06.19</div>
     </div>
     
+    <div class="post">
+        <a class="post-title" href="/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%957-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/">计算方法7 电阻网络</a>
+        <div class="post-except">
+            越发觉得自己物理学得烂了… # 前置 前置的物理定律包括如下两条： 1. 欧姆定律，即 $\phi_i-\phi_j&#x3D;U_{i,j}&#x3D;I_{i,j}R$。定义电导率为 $w&#x3D;R^{-1}$，那么有 $I_{i,j}&#x3D;U_{i,j}w$。 2. 基尔霍夫定律，即对于电阻网络的任意节点 $v$，流入的电流等于流出的电流 。 # 电路网络与 $L$ 对于单位电阻组成的电路网络 $G$，其拉普拉斯矩阵 $L$ 可以通过上面两条物理定律和电流联系
+            <a class="read-more" href="/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%957-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/"> ... </a>
+        </div>
+        <div class="post-date">2022.06.15</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/">计算方法6 FFT</a>
+        <div class="post-except">
+            据助教说不考这么麻烦的计算，我就摸了 # 多项式的表示 最熟悉的是系数表示法，例如 $P(x)&#x3D;\sum_{i&#x3D;0}^n a_i x^i$ 系数表示法有它的好处：例如将 $\Set{1,x,x^2\ldots}$ 视为一组基时，系数恰好就是多项式在这组基下的坐标；例如对于任给的点 $x$ 可以计算多项式的值（$O(n)$ 次乘法）。但是在给出系数表示法后，对两个 $n$ 次多项式很难高效算乘积（还记得天才本科生Karatsuba吗） 还可以是点值表示法。根
+            <a class="read-more" href="/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/"> ... </a>
+        </div>
+        <div class="post-date">2022.06.14</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA2-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/">博弈论2 零和游戏</a>
+        <div class="post-except">
+            # Zero Sum Games 即原本讨论的收益矩阵有两个，分别对应于玩家1和玩家2。零和游戏保证了 $A+B&#x3D;O$，这说明只需要一个唯一的矩阵即可建模游戏收益，通常规定为玩家1的收益 考虑一个混合策略outcome $(p,q)$，对于玩家1而言收益就是 $p^\intercal Aq$，玩家2就是 $-p^\intercal Aq$。对于纯策略只需要让概率分布坍缩为一个点就行了。 # Min-Max 以下只讨论玩家1，玩家2是类似的。 对于任意的玩家2的混合策
+            <a class="read-more" href="/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA2-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/"> ... </a>
+        </div>
+        <div class="post-date">2022.06.09</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab2-kmt/">操作系统 Lab2 kmt</a>
+        <div class="post-except">
+            # Lab2-kmt 花了整个五一三天假期，最后是听了答疑才知道怎么解决栈的数据竞争的…. 痛苦的部分主要是多核 logging 和怎么用 qemu debug 的问题。搞定了这些技术上的难题，剩下就是老老实实写代码了。 ## 设计 ### spinlock 去观摩了 xv6 的代码，发现不仅要自旋，还得关中断。并且关中断这事还得是嵌套的。 ### semaphore 每个信号量有一个等待队列 `wait_tid`，一个 `value`，还有一个 `wakeup` 表示需要唤
+            <a class="read-more" href="/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab2-kmt/"> ... </a>
+        </div>
+        <div class="post-date">2022.05.28</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab1-pmm/">操作系统 Lab1 pmm</a>
+        <div class="post-except">
+            # Lab1-pmm 这里不是实验报告，可以随便吐槽和说很多废话吧（大概） 也没有泄漏啥代码，纯纯的唠嗑，应该不违反学术诚信。 感觉这次实验被我做难了….事实上只需要链表就可以实现所有的操作，buddy system 纯纯的没必要，写出来也不容易 debug （也许熟练工可以做到一次对，但是这有啥用呢） 途中卡 smp&#x3D;8 的时候尝试过 bitmap 和 slab。 bitmap 就是把一个大页分配成64份，用一个 `uint64_t` 状压使用情况，每次直接 `l
+            <a class="read-more" href="/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab1-pmm/"> ... </a>
+        </div>
+        <div class="post-date">2022.05.28</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%955-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/">计算方法5 图的代数性质</a>
+        <div class="post-except">
+            感觉这部分穿插的有些怪 upd：最后两节课突然就悟了，因为tcs组主要是做这个的…看了看感觉就是硬广，那就学着吧。 # Courant-Fischer 对于实对称矩阵 $A$，其最大特征值 $\lambda_\max(A)\geq \frac{x^\intercal Ax}{x^\intercal x}$，其中 $x^\intercal x\neq \bold 0$ # 图的代数性质 即对于给定的图 $G$，通过观察 $G$ 的邻接矩阵&#x2F;拉普拉斯矩阵的性质来获得某些
+            <a class="read-more" href="/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%955-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/"> ... </a>
+        </div>
+        <div class="post-date">2022.05.10</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/">计算方法4 图的随机游走</a>
+        <div class="post-except">
+            Markov Chain 的本质是概率状态机，这么想就很简单了 为了偷懒只讨论有限的情形 # 前置 离散概率分布可以表示为 $\R^n$ 上的向量 $x$，满足 $\sum_{i&#x3D;1}^n x_i&#x3D;1$ 且 $\forall i,x_i\in[0,1]$ 对于用向量表示的概率分布，可以定义两个分布的“距离”： $$ d_{TV}(p,q)&#x3D;\frac{1}{2}\norm{p-q}_1&#x3D;\frac{1}{2}\sum_{i&#x3D;1
+            <a class="read-more" href="/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/"> ... </a>
+        </div>
+        <div class="post-date">2022.05.10</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/">计算方法3 线性方程组求解</a>
+        <div class="post-except">
+            # 前置 这一节主要是玩矩阵，为了偷懒只讨论实线性空间 # 前置 这一节主要是玩矩阵，为了偷懒只讨论实线性空间 ## 内积 二元函数 $\left&lt;,\right&gt;$ 被称为内积，则其满足： 1. $\left=\left$ 2. $\left=a\left+b\left$ 3. $\left\geq 0$，等号仅在 $x&#x3D;\bold{0}$ 时取到 ## 向量范数 一元函数 $\norm{\cdot}$ 被称为范数，则其满足： 1. $\norm{x}
+            <a class="read-more" href="/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/"> ... </a>
+        </div>
+        <div class="post-date">2022.05.08</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%952-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/">计算方法2 插值与函数逼近</a>
+        <div class="post-except">
+            心态崩了，这个 latex 公式支持也太迷幻了。但是不太想管，等啥时候有空整个自己的吧(flag++) # 函数逼近 考虑的是对于给定函数 $f$ 和度量 $\norm{\cdot}$，求一个多项式函数 $p$ 使得 $\norm{f-p}$ 尽可能小。这里不关注特定点上的值，而更在意两个函数总体的距离。 ## Weierstrass 逼近定理 若 $f\in C[a,b]$，那么存在多项式列 $\left\{F_n\right\}$，使得 $\norm{\lim\limit
+            <a class="read-more" href="/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%952-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/"> ... </a>
+        </div>
+        <div class="post-date">2022.05.08</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/03/12/%E5%8D%9A%E5%BC%88%E8%AE%BA1-%E7%AD%96%E7%95%A5%E6%B8%B8%E6%88%8F/">博弈论1 策略游戏</a>
+        <div class="post-except">
+            # Pure Strategy Games 策略博弈说的是有限个玩家，每个玩家都有有限个决策，并且每个玩家的决策必须同时作出（即不能知悉其他人的决策），每个玩家都知道每一种决策组合的结果给每个玩家带来的收益。 形式化地，有 1. $N$ 个玩家构成有限的玩家集 2. 每个玩家 $i$ 都有一个有限的决策集 $A_i$，表示其所有可以选择的决策 3. 一个局面 $a\in A&#x3D;\prod\limits_{i&#x3D;1}^N A_i$，包含了场上所有玩家所作出的决策
+            <a class="read-more" href="/2022/03/12/%E5%8D%9A%E5%BC%88%E8%AE%BA1-%E7%AD%96%E7%95%A5%E6%B8%B8%E6%88%8F/"> ... </a>
+        </div>
+        <div class="post-date">2022.03.12</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Ubuntu下的数电实验环境配置</a>
+        <div class="post-except">
+            针对南京大学 数字逻辑与计算机组成实验 课程的环境配置，本机是Ubuntu 21.10 # 1 访问 [这个网页](https://www.intel.com/content/www/us/en/software-kit/660904/intel-quartus-prime-lite-edition-design-software-version-20-1-1-for-linux.html?)，选择Individual Files，只需要下载 1. QuartusLiteSe
+            <a class="read-more" href="/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"> ... </a>
+        </div>
+        <div class="post-date">2022.03.08</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%951-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/">计算方法1 函数求根</a>
+        <div class="post-except">
+            严格写就太累了，这个就当是随手的笔记得了。大概看看原理，不求甚解。 ## Fixpoint Theorem 定义函数 $f$ 的不动点 $r$ 为满足 $f(r)&#x3D;r$ 的所有取值 考虑函数 $f$，定义不动点迭代算法如下： 1. 任取 $X\in D(f)$ 2. 计算 $X&#x3D;f(X)$ 3. 重复步骤2 $k$ 次 记出现的所有 $X$ 按顺序构成数列 $\left\{x_n\right\}$，定理如下 若 $f$ 是连续函数，且 $\lim\limi
+            <a class="read-more" href="/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%951-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/"> ... </a>
+        </div>
+        <div class="post-date">2022.03.07</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/02/13/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9103-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/">数理逻辑03 一阶逻辑</a>
+        <div class="post-except">
+            # 写在前面 命题逻辑（或者 零阶逻辑）到一阶逻辑的变化，在于描述的粒度。命题逻辑只能描述命题之间的关系，以及它们如何构成更大的结构（新的命题）。在一阶逻辑中我们可以深入原子命题的内部，讨论命题的构成。 为了做到这一点，需要引入集合上的n元关系。从集合论作为基础的角度看，这么做是比较和谐的。 # 命题逻辑 命题逻辑的不同之处在于，我们既可以描述一个系统内的某些运算（通过函数、变量和常元），又可以描述由这些运算的结果得到的命题（通过谓词和逻辑连接符）。 一个例子就是标准算术模型
+            <a class="read-more" href="/2022/02/13/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9103-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/"> ... </a>
+        </div>
+        <div class="post-date">2022.02.13</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/01/24/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9102-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/">数理逻辑02 推演系统</a>
+        <div class="post-except">
+            # 写在前面 在上一章给出了命题逻辑的语法、语义，公理化的定义，以及一种判定公式是否可满足&#x2F;永真的算法，但是这还不够，因为： 1. 并不是所有逻辑都有Decision Procedure，因此这种方法不够普遍 2. 即使有，在有无穷多的公理时，Decision Procedure很可能没法处理无穷项的公式（算法不一定终止） 3. 即使终止，Decision Procedure也只能展示一件事情：命题的真值。我们没法得到中间结果，对理解逻辑没有帮助 于是就有了推演系统
+            <a class="read-more" href="/2022/01/24/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9102-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/"> ... </a>
+        </div>
+        <div class="post-date">2022.01.24</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/01/21/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">数理逻辑习题乱做</a>
+        <div class="post-except">
+            做习题，不保证对，不保证全 ## 2.10 证明只有 $\uparrow,\downarrow$ 能单独定义所有的单目和二元运算 首先考虑如何表示 $\neg$。 $\circ$ 这个二元运算能表示 $\neg$ 的定义为，对于任意公式 $A$ 都有 $\neg A&#x3D;A\circ A\circ A\cdots A$ 成立 取解释 $\scr I$ 使得 ${\scr I}(A)&#x3D;T$，代入上式有 $F&#x3D;T\circ T\circ T\cdots 
+            <a class="read-more" href="/2022/01/21/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/"> ... </a>
+        </div>
+        <div class="post-date">2022.01.21</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/01/20/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9101-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/">数理逻辑01 命题逻辑</a>
+        <div class="post-except">
+            # 写在前面 第一次看这本书的时候看得比较急，也没有一个big picture的把握，所以在细节上面耗费了很多时间….现在算是重构一次笔记了 我们知道，形式逻辑是对推理的形式化（mathematical logic formalizes resoning），为了描述推理我们有各种各样的逻辑系统。对于一个逻辑系统，最关键的就是它的语法（Syntax）和语义（Semantics）。其中语法决定了逻辑系统中讨论的对象长什么样，而语义决定了我们如何解释这些逻辑系统中被研究的对象。 比
+            <a class="read-more" href="/2022/01/20/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9101-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/"> ... </a>
+        </div>
+        <div class="post-date">2022.01.20</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/01/17/%E7%94%A8haskell%E5%86%99brainfuck%E8%A7%A3%E9%87%8A%E5%99%A8/">用haskell写brainfuck解释器</a>
+        <div class="post-except">
+            最近在看 Learn you a haskell for great good，刚好看到IO。因为实在想不到去哪写haskell练手，于是就去codewars上面找水题刷了。 感觉给了我最大震撼的FP是scheme，给了我现代FP体验的是Coq（好多东西和haskell无缝衔接，除了记号方面的适应），现在到Haskell了最大的体会就是这玩意提供了很多抽象，这是极好的，因为有很多东西我在以前都没有想过可以这么看待，现在就觉得比较自然了。但是俺目前好像还没有找到啥用上这些抽象的
+            <a class="read-more" href="/2022/01/17/%E7%94%A8haskell%E5%86%99brainfuck%E8%A7%A3%E9%87%8A%E5%99%A8/"> ... </a>
+        </div>
+        <div class="post-date">2022.01.17</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/">大二上躺平经验</a>
+        <div class="post-except">
+            ## 大二上躺平经验 2021年的记忆都停留在了五六月份…现在不是很想回忆，但是那段时间确实又欣喜又自卑，随后的七八月一直在学校里过着昼夜颠倒的生活。再往后就没什么印象了，那之后也不怎么拍照，人是越活越不明白了 ## 七八月 七月初的时候和辅导员申请全程留校，然后就来消息说广东解封了，于是连夜说服辅导员第二天回家，并且也确实回成了。 回家那天本来买的是下午的飞机，结果延误到傍晚，再接着就直接取消了——当天全禄口的航班都G了。于是当机立断买高铁票去常州坐飞机，然后成功在凌晨两点
+            <a class="read-more" href="/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/"> ... </a>
+        </div>
+        <div class="post-date">2022.01.11</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">PA4 附加关卡</a>
+        <div class="post-except">
+            ## 试验进度 我完成了全部必做内容，最后可以用F1、F2、F3分别玩nterm、pal和bird，默认初始打开的是nterm ## 思考题 ### 为什么不叫”内核进程”? 可以发现，内核中所有正在执行的函数都共用一个虚拟地址空间——也就是内核地址空间，这是线程和进程最大的区别，因为每个进程都将会有自己的地址空间。 这也是为什么会说线程更轻，因为构造虚拟地址空间需要时间开销。 ### 虚存管理中PIC的好处 可以只保存一份程序而将其映射到不同虚拟空间中。因为PIC可以被加载
+            <a class="read-more" href="/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/"> ... </a>
+        </div>
+        <div class="post-date">2022.01.11</div>
+    </div>
+    
+</div>
+
+<div class="paginator">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
 </div>
 
                 <div class="footer">
