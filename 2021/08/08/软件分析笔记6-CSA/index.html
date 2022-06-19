@@ -62,7 +62,11 @@
       document.documentElement.setAttribute('color-mode', colorMode)
     }
   </script>
-<meta name="generator" content="Hexo 6.2.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
 
 
   <body>
@@ -164,8 +168,7 @@
         
       </div>
       <div class="markdown-body">
-        <p>CSA&#x3D;Context Sensitive Analysis 上下文敏感分析 不敏感的分析认为所有语句的执行顺序无法区分，也就是没有上下文的概念 考虑如下代码片段 ```java class A; A a &#x3D; new A(); &#x2F;&#x2F; o1 A b &#x3D; new A(); &#x2F;&#x2F; o2 A pa &#x3D; func(a); A pb &#x3D; func(b); A func(A x) { return x; } ``` CI静态分析pa,pb的指针集，容易发现pts(pa)&#x3D;pts(pb)&#x3D;{o1,o2}，这与实际情况不符 出现这种情况的原因在于 1. 动态执行的程序的函数每次执行都有自己的栈空间(上下文)，即同一方法的不同调用产生的数据流不同 2. CI中的建模认为同一函数的所有实体共享信息(指针集) 因此一个直观的想法就是区分出不同的函数实体，一个实现类似allocation site abstraction 即定义函数func的上下文为caller site的上下文+func的caller site，这样也是对调用栈的直观模拟 此外，Java是OO语言，需要频繁对堆进行操作，这样的语言也叫Heap intensive语言。所以在进行load和store的处理时，不同函数实体中产生的**对象**也应该加以区分，这就是所谓的CS Heap 处理的规则大同小异，区别在于处理方法调用的时候要多一步产生方法内的上下文的步骤，同时PFG点集变成$(C\times V)\cup(C\times V\times F)$，别的就没了 提问：引入上下文的本质是区分了运行时的函数实体，那么对于递归&#x2F;循环调用的情况如何处理？答案就是k-CFA的k的含义 ## 几类CS变种 1. call-site sensitive，也叫call-string或k-CFA(k-Control Flow Analysis)，k的意思是取最后k位 2. object sensitive 3. type sensitive 获得方法调用的方法上下文的选择函数select(c,l,c’:o,m)&#x3D; 1. c+l 2. c’+o 3. c’+type(o)，这里的type指的是包含o的allocation site的类， 其中1是在对call stack建模，2是在对对象交互建模，3可以看成是1和2的结合和简化 **这里一定要注意2,3的select函数**，因为我们关注的是Object调用链，而每个方法的receiver object的context恰好就包含了前面所有的调用链信息 两位老师的论文对三种方法进行了比较(还没看过，惭愧….)，在k比较小且同一个类内的方法调用较多的时候，2更有优势(即存在调用路径的后缀完全相同且调用链较长，但调用者为两个不同的对象的情况) 但是面对同一个对象在多处调用同一方法的情况，1就要优于2(这个的原因比较显然….) 在实际情况中精度2&gt;3&gt;1，效率3&gt;2&gt;1</p>
-<!-- more -->
+        <p>CSA=Context Sensitive Analysis 上下文敏感分析 不敏感的分析认为所有语句的执行顺序无法区分，也就是没有上下文的概念 考虑如下代码片段 ```java class A; A a = new A(); // o1 A b = new A(); // o2 A pa = func(a); A pb = func(b); A func(A x) { return x; } ``` CI静态分析pa,pb的指针集，容易发现pts(pa)=pts(pb)={o1,o2}，这与实际情况不符 出现这种情况的原因在于 1. 动态执行的程序的函数每次执行都有自己的栈空间(上下文)，即同一方法的不同调用产生的数据流不同 2. CI中的建模认为同一函数的所有实体共享信息(指针集) 因此一个直观的想法就是区分出不同的函数实体，一个实现类似allocation site abstraction 即定义函数func的上下文为caller site的上下文+func的caller site，这样也是对调用栈的直观模拟 此外，Java是OO语言，需要频繁对堆进行操作，这样的语言也叫Heap intensive语言。所以在进行load和store的处理时，不同函数实体中产生的**对象**也应该加以区分，这就是所谓的CS Heap 处理的规则大同小异，区别在于处理方法调用的时候要多一步产生方法内的上下文的步骤，同时PFG点集变成<span class="math inline">\((C\\times V)\\cup(C\\times V\\times F)\)</span>，别的就没了 提问：引入上下文的本质是区分了运行时的函数实体，那么对于递归/循环调用的情况如何处理？答案就是k-CFA的k的含义 ## 几类CS变种 1. call-site sensitive，也叫call-string或k-CFA(k-Control Flow Analysis)，k的意思是取最后k位 2. object sensitive 3. type sensitive 获得方法调用的方法上下文的选择函数select(c,l,c':o,m)= 1. c+l 2. c'+o 3. c'+type(o)，这里的type指的是包含o的allocation site的类， 其中1是在对call stack建模，2是在对对象交互建模，3可以看成是1和2的结合和简化 **这里一定要注意2,3的select函数**，因为我们关注的是Object调用链，而每个方法的receiver object的context恰好就包含了前面所有的调用链信息 两位老师的论文对三种方法进行了比较(还没看过，惭愧....)，在k比较小且同一个类内的方法调用较多的时候，2更有优势(即存在调用路径的后缀完全相同且调用链较长，但调用者为两个不同的对象的情况) 但是面对同一个对象在多处调用同一方法的情况，1就要优于2(这个的原因比较显然....) 在实际情况中精度2&gt;3&gt;1，效率3&gt;2&gt;1 <!-- more --></p>
 
       </div>
       

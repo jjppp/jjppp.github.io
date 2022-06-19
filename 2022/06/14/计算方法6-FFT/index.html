@@ -62,7 +62,11 @@
       document.documentElement.setAttribute('color-mode', colorMode)
     }
   </script>
-<meta name="generator" content="Hexo 6.2.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
 
 
   <body>
@@ -164,30 +168,48 @@
         
       </div>
       <div class="markdown-body">
-        <h1 id="多项式的表示"><a href="#多项式的表示" class="headerlink" title="多项式的表示"></a>多项式的表示</h1><p>最熟悉的是系数表示法，例如 $P(x)&#x3D;\sum_{i&#x3D;0}^n a_i x^i$</p>
-<p>系数表示法有它的好处：例如将 $\Set{1,x,x^2\ldots}$ 视为一组基时，系数恰好就是多项式在这组基下的坐标；例如对于任给的点 $x$<br>可以计算多项式的值（$O(n)$ 次乘法）。但是在给出系数表示法后，对两个 $n$ 次多项式很难高效算乘积（还记得天才本科生Karatsuba吗）</p>
-<p>还可以是点值表示法。根据lagrange插值可知，一个 $n$ 次多项式可以由 $n+1$ 个点唯一确定。因此<br>$P(x)\overset{\text{def} }&#x3D; \Set{(x_0,y_0),(x_1,y_1)\ldots}$</p>
-<p>此时计算 $P(x)Q(x)$ 只需要求出 $2n+1$ 个点值，然后将这些取值对应相乘即可得到 $R(x)&#x3D;P(x)Q(x)$ 的点值，也就唯一确定了<br>$R(x)$</p>
-<p>因此我们希望有一种方法，对于给定的系数表示多项式 $F(x),G(x)$，能够选取 $2n+1$ 个点</p>
-<p>对这 $2n+1$ 个点做插值后得到 $F^*(x),G^*(x)$ 的点值表示，相乘最后还原得到 $F(x)G(x)$ 的系数表示。</p>
+        <h1 id="多项式的表示">多项式的表示</h1>
+<p>最熟悉的是系数表示法，例如 <span class="math inline">\(P(x)=\sum_{i=0}^n a_i x^i\)</span></p>
+<p>系数表示法有它的好处：例如将 <span class="math inline">\(\Set{1,x,x^2\ldots}\)</span> 视为一组基时，系数恰好就是多项式在这组基下的坐标；例如对于任给的点 <span class="math inline">\(x\)</span> 可以计算多项式的值（<span class="math inline">\(O(n)\)</span> 次乘法）。但是在给出系数表示法后，对两个 <span class="math inline">\(n\)</span> 次多项式很难高效算乘积（还记得天才本科生Karatsuba吗）</p>
+<p>还可以是点值表示法。根据lagrange插值可知，一个 <span class="math inline">\(n\)</span> 次多项式可以由 <span class="math inline">\(n+1\)</span> 个点唯一确定。因此 <span class="math inline">\(P(x)\overset{\text{def} }= \Set{(x_0,y_0),(x_1,y_1)\ldots}\)</span></p>
+<p>此时计算 <span class="math inline">\(P(x)Q(x)\)</span> 只需要求出 <span class="math inline">\(2n+1\)</span> 个点值，然后将这些取值对应相乘即可得到 <span class="math inline">\(R(x)=P(x)Q(x)\)</span> 的点值，也就唯一确定了 <span class="math inline">\(R(x)\)</span></p>
+<p>因此我们希望有一种方法，对于给定的系数表示多项式 <span class="math inline">\(F(x),G(x)\)</span>，能够选取 <span class="math inline">\(2n+1\)</span> 个点</p>
+<p>对这 <span class="math inline">\(2n+1\)</span> 个点做插值后得到 <span class="math inline">\(F^*(x),G^*(x)\)</span> 的点值表示，相乘最后还原得到 <span class="math inline">\(F(x)G(x)\)</span> 的系数表示。</p>
 <p>这就是FFT</p>
-<h1 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h1><h2 id="DFT"><a href="#DFT" class="headerlink" title="DFT"></a>DFT</h2><p>不妨假设多项式是 $n&#x3D;2^k$ 次的</p>
-<p>考虑方程 $x^n&#x3D;1$ 的所有复数解，它们构成了复平面单位圆上等距分布的 $n$ 个点，记为 $\Set{\omega_i\mid<br>\omega_i^n&#x3D;1}$</p>
-<p>选择这些点出自如下考虑：取 $\Omega_n$，那么有 ${\Omega_{2n} }^2\overset{\text{def}<br>}&#x3D;\Set{x^2\mid x\in \Omega_{2n} }&#x3D;\Omega_n$。这暗示我们可以通过类似分治的算法来每次将问题的规模减小一半。并且对于<br>$\Omega_n$ 而言，只需要其生成元 $\omega_1&#x3D;e^{\frac{2\pi}{n+1}i}$ 即可完全表示。</p>
-<p>假设需要对 $F(x)&#x3D;\sum_{i&#x3D;0}^{2n} a_ix^i$ 插值，那么记 $G(x)&#x3D;\sum_{i&#x3D;0}^{n}<br>a_{2i}x^{i}$，$H(x)&#x3D;\sum_{i&#x3D;0}^n a_{2i+1}x^{i}$，显然有</p>
-<ol>
-<li><p>$F(x)&#x3D;G(x^2)+xH(x^2)$</p>
-</li>
-<li><p>原本要对 $F(x)$ 在 $\Omega_{2n}$ 上插值，现在要对 $G(x),H(x)$ 在 $\Omega_n$ 上插值</p>
-</li>
+<h1 id="fft">FFT</h1>
+<h2 id="dft">DFT</h2>
+<p>不妨假设多项式是 <span class="math inline">\(n=2^k\)</span> 次的</p>
+<p>考虑方程 <span class="math inline">\(x^n=1\)</span> 的所有复数解，它们构成了复平面单位圆上等距分布的 <span class="math inline">\(n\)</span> 个点，记为 <span class="math inline">\(\Set{\omega_i\mid \omega_i^n=1}\)</span></p>
+<p>选择这些点出自如下考虑：取 <span class="math inline">\(\Omega_n\)</span>，那么有 <span class="math inline">\({\Omega_{2n} }^2\overset{\text{def} }=\Set{x^2\mid x\in \Omega_{2n} }=\Omega_n\)</span>。这暗示我们可以通过类似分治的算法来每次将问题的规模减小一半。并且对于 <span class="math inline">\(\Omega_n\)</span> 而言，只需要其生成元 <span class="math inline">\(\omega_1=e^{\frac{2\pi}{n+1}i}\)</span> 即可完全表示。</p>
+<p>假设需要对 <span class="math inline">\(F(x)=\sum_{i=0}^{2n} a_ix^i\)</span> 插值，那么记 <span class="math inline">\(G(x)=\sum_{i=0}^{n} a_{2i}x^{i}\)</span>，<span class="math inline">\(H(x)=\sum_{i=0}^n a_{2i+1}x^{i}\)</span>，显然有</p>
+<ol type="1">
+<li><p><span class="math inline">\(F(x)=G(x^2)+xH(x^2)\)</span></p></li>
+<li><p>原本要对 <span class="math inline">\(F(x)\)</span> 在 <span class="math inline">\(\Omega_{2n}\)</span> 上插值，现在要对 <span class="math inline">\(G(x),H(x)\)</span> 在 <span class="math inline">\(\Omega_n\)</span> 上插值</p></li>
 </ol>
-<p>主定理算一下就是 $O(n\log n)$ 的。</p>
-<h2 id="IDFT"><a href="#IDFT" class="headerlink" title="IDFT"></a>IDFT</h2><p>考虑如下矩阵形式的DFT</p>
-<p>$$<br>\begin{bmatrix}<br>\omega^0 &amp; \omega^0 &amp; \cdots &amp; \omega^0<br>\<br>\omega^0 &amp; \omega^1 &amp; \cdots &amp; \omega^n<br>\<br>\vdots   &amp; \vdots   &amp; \ddots &amp; \vdots<br>\<br>\omega^0 &amp; \omega^n &amp; \cdots &amp; \omega^{n^2}<br>\end{bmatrix}<br>\begin{bmatrix}<br>a_0 \ a_1 \ \vdots \ a_n<br>\end{bmatrix}<br>&#x3D;<br>\begin{bmatrix}<br>F(\omega^0) \ F(\omega^1) \ \vdots \ F(\omega^n)<br>\end{bmatrix}<br>$$</p>
-<p>即我们的 $\Omega_n$ 是一组基，$\Set{a_n}$ 则是基下的坐标，作用一下就能得到多项式在 $\Omega_n$ 上的点值。</p>
-<p>这个矩阵 $W$ 非常经典，算一下行列式和逆就会发现对于IDFT的操作只需要取 $\omega_1’&#x3D;-\omega_1$<br>做DFT即可实现逆变换，最后需要除掉一个系数 $\frac{1}{n+1}$</p>
-<p>据助教说不考这么麻烦的计算，我就摸了 # 多项式的表示 最熟悉的是系数表示法，例如 $P(x)&#x3D;\sum_{i&#x3D;0}^n a_i x^i$ 系数表示法有它的好处：例如将 $\Set{1,x,x^2\ldots}$ 视为一组基时，系数恰好就是多项式在这组基下的坐标；例如对于任给的点 $x$ 可以计算多项式的值（$O(n)$ 次乘法）。但是在给出系数表示法后，对两个 $n$ 次多项式很难高效算乘积（还记得天才本科生Karatsuba吗） 还可以是点值表示法。根据lagrange插值可知，一个 $n$ 次多项式可以由 $n+1$ 个点唯一确定。因此 $P(x)\overset{\text{def} }&#x3D; \Set{(x_0,y_0),(x_1,y_1)\ldots}$ 此时计算 $P(x)Q(x)$ 只需要求出 $2n+1$ 个点值，然后将这些取值对应相乘即可得到 $R(x)&#x3D;P(x)Q(x)$ 的点值，也就唯一确定了 $R(x)$ 因此我们希望有一种方法，对于给定的系数表示多项式 $F(x),G(x)$，能够选取 $2n+1$ 个点 对这 $2n+1$ 个点做插值后得到 $F^*(x),G^*(x)$ 的点值表示，相乘最后还原得到 $F(x)G(x)$ 的系数表示。 这就是FFT # FFT ## DFT 不妨假设多项式是 $n&#x3D;2^k$ 次的 考虑方程 $x^n&#x3D;1$ 的所有复数解，它们构成了复平面单位圆上等距分布的 $n$ 个点，记为 $\Set{\omega_i\mid \omega_i^n&#x3D;1}$ 选择这些点出自如下考虑：取 $\Omega_n$，那么有 ${\Omega_{2n} }^2\overset{\text{def} }&#x3D;\Set{x^2\mid x\in \Omega_{2n} }&#x3D;\Omega_n$。这暗示我们可以通过类似分治的算法来每次将问题的规模减小一半。并且对于 $\Omega_n$ 而言，只需要其生成元 $\omega_1&#x3D;e^{\frac{2\pi}{n+1}i}$ 即可完全表示。 假设需要对 $F(x)&#x3D;\sum_{i&#x3D;0}^{2n} a_ix^i$ 插值，那么记 $G(x)&#x3D;\sum_{i&#x3D;0}^{n} a_{2i}x^{i}$，$H(x)&#x3D;\sum_{i&#x3D;0}^n a_{2i+1}x^{i}$，显然有 1. $F(x)&#x3D;G(x^2)+xH(x^2)$ 2. 原本要对 $F(x)$ 在 $\Omega_{2n}$ 上插值，现在要对 $G(x),H(x)$ 在 $\Omega_n$ 上插值 主定理算一下就是 $O(n\log n)$ 的。 ## IDFT 考虑如下矩阵形式的DFT $$ \begin{bmatrix} \omega^0 &amp; \omega^0 &amp; \cdots &amp; \omega^0 \\ \omega^0 &amp; \omega^1 &amp; \cdots &amp; \omega^n \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \omega^0 &amp; \omega^n &amp; \cdots &amp; \omega^{n^2} \end{bmatrix} \begin{bmatrix} a_0 \\ a_1 \\ \vdots \\ a_n \end{bmatrix} &#x3D; \begin{bmatrix} F(\omega^0) \\ F(\omega^1) \\ \vdots \\ F(\omega^n) \end{bmatrix} $$ 即我们的 $\Omega_n$ 是一组基，$\Set{a_n}$ 则是基下的坐标，作用一下就能得到多项式在 $\Omega_n$ 上的点值。 这个矩阵 $W$ 非常经典，算一下行列式和逆就会发现对于IDFT的操作只需要取 $\omega_1’&#x3D;-\omega_1$ 做DFT即可实现逆变换，最后需要除掉一个系数 $\frac{1}{n+1}$</p>
-<!-- more -->
+<p>主定理算一下就是 <span class="math inline">\(O(n\log n)\)</span> 的。</p>
+<h2 id="idft">IDFT</h2>
+<p>考虑如下矩阵形式的DFT</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+\omega^0 &amp; \omega^0 &amp; \cdots &amp; \omega^0
+\\
+\omega^0 &amp; \omega^1 &amp; \cdots &amp; \omega^n
+\\
+\vdots   &amp; \vdots   &amp; \ddots &amp; \vdots
+\\
+\omega^0 &amp; \omega^n &amp; \cdots &amp; \omega^{n^2}
+\end{bmatrix}
+\begin{bmatrix}
+a_0 \\ a_1 \\ \vdots \\ a_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+F(\omega^0) \\ F(\omega^1) \\ \vdots \\ F(\omega^n)
+\end{bmatrix}
+\]</span></p>
+<p>即我们的 <span class="math inline">\(\Omega_n\)</span> 是一组基，<span class="math inline">\(\Set{a_n}\)</span> 则是基下的坐标，作用一下就能得到多项式在 <span class="math inline">\(\Omega_n\)</span> 上的点值。</p>
+<p>这个矩阵 <span class="math inline">\(W\)</span> 非常经典，算一下行列式和逆就会发现对于IDFT的操作只需要取 <span class="math inline">\(\omega_1&#39;=-\omega_1\)</span> 做DFT即可实现逆变换，最后需要除掉一个系数 <span class="math inline">\(\frac{1}{n+1}\)</span></p>
+<p>据助教说不考这么麻烦的计算，我就摸了 # 多项式的表示 最熟悉的是系数表示法，例如 <span class="math inline">\(P(x)=\\sum\_{i=0}^n a\_i x^i\)</span> 系数表示法有它的好处：例如将 <span class="math inline">\(\\Set{1,x,x^2\\ldots}\)</span> 视为一组基时，系数恰好就是多项式在这组基下的坐标；例如对于任给的点 <span class="math inline">\(x\)</span> 可以计算多项式的值（<span class="math inline">\(O(n)\)</span> 次乘法）。但是在给出系数表示法后，对两个 <span class="math inline">\(n\)</span> 次多项式很难高效算乘积（还记得天才本科生Karatsuba吗） 还可以是点值表示法。根据lagrange插值可知，一个 <span class="math inline">\(n\)</span> 次多项式可以由 <span class="math inline">\(n+1\)</span> 个点唯一确定。因此 <span class="math inline">\(P(x)\\overset{\\text{def} }= \\Set{(x\_0,y\_0),(x\_1,y\_1)\\ldots}\)</span> 此时计算 <span class="math inline">\(P(x)Q(x)\)</span> 只需要求出 <span class="math inline">\(2n+1\)</span> 个点值，然后将这些取值对应相乘即可得到 <span class="math inline">\(R(x)=P(x)Q(x)\)</span> 的点值，也就唯一确定了 <span class="math inline">\(R(x)\)</span> 因此我们希望有一种方法，对于给定的系数表示多项式 <span class="math inline">\(F(x),G(x)\)</span>，能够选取 <span class="math inline">\(2n+1\)</span> 个点 对这 <span class="math inline">\(2n+1\)</span> 个点做插值后得到 <span class="math inline">\(F^\*(x),G^\*(x)\)</span> 的点值表示，相乘最后还原得到 <span class="math inline">\(F(x)G(x)\)</span> 的系数表示。 这就是FFT # FFT ## DFT 不妨假设多项式是 <span class="math inline">\(n=2^k\)</span> 次的 考虑方程 <span class="math inline">\(x^n=1\)</span> 的所有复数解，它们构成了复平面单位圆上等距分布的 <span class="math inline">\(n\)</span> 个点，记为 <span class="math inline">\(\\Set{\\omega\_i\\mid \\omega\_i^n=1}\)</span> 选择这些点出自如下考虑：取 <span class="math inline">\(\\Omega\_n\)</span>，那么有 <span class="math inline">\({\\Omega\_{2n} }^2\\overset{\\text{def} }=\\Set{x^2\\mid x\\in \\Omega\_{2n} }=\\Omega\_n\)</span>。这暗示我们可以通过类似分治的算法来每次将问题的规模减小一半。并且对于 <span class="math inline">\(\\Omega\_n\)</span> 而言，只需要其生成元 <span class="math inline">\(\\omega\_1=e^{\\frac{2\\pi}{n+1}i}\)</span> 即可完全表示。 假设需要对 <span class="math inline">\(F(x)=\\sum\_{i=0}^{2n} a\_ix^i\)</span> 插值，那么记 <span class="math inline">\(G(x)=\\sum\_{i=0}^{n} a\_{2i}x^{i}\)</span>，<span class="math inline">\(H(x)=\\sum\_{i=0}^n a\_{2i+1}x^{i}\)</span>，显然有 1. <span class="math inline">\(F(x)=G(x^2)+xH(x^2)\)</span> 2. 原本要对 <span class="math inline">\(F(x)\)</span> 在 <span class="math inline">\(\\Omega\_{2n}\)</span> 上插值，现在要对 <span class="math inline">\(G(x),H(x)\)</span> 在 <span class="math inline">\(\\Omega\_n\)</span> 上插值 主定理算一下就是 <span class="math inline">\(O(n\\log n)\)</span> 的。 ## IDFT 考虑如下矩阵形式的DFT <span class="math display">\[ \\begin{bmatrix} \\omega^0 &amp; \\omega^0 &amp; \\cdots &amp; \\omega^0 \\\\ \\omega^0 &amp; \\omega^1 &amp; \\cdots &amp; \\omega^n \\\\ \\vdots &amp; \\vdots &amp; \\ddots &amp; \\vdots \\\\ \\omega^0 &amp; \\omega^n &amp; \\cdots &amp; \\omega^{n^2} \\end{bmatrix} \\begin{bmatrix} a\_0 \\\\ a\_1 \\\\ \\vdots \\\\ a\_n \\end{bmatrix} = \\begin{bmatrix} F(\\omega^0) \\\\ F(\\omega^1) \\\\ \\vdots \\\\ F(\\omega^n) \\end{bmatrix} \]</span> 即我们的 <span class="math inline">\(\\Omega\_n\)</span> 是一组基，<span class="math inline">\(\\Set{a\_n}\)</span> 则是基下的坐标，作用一下就能得到多项式在 <span class="math inline">\(\\Omega\_n\)</span> 上的点值。 这个矩阵 <span class="math inline">\(W\)</span> 非常经典，算一下行列式和逆就会发现对于IDFT的操作只需要取 <span class="math inline">\(\\omega\_1&#39;=-\\omega\_1\)</span> 做DFT即可实现逆变换，最后需要除掉一个系数 <span class="math inline">\(\\frac{1}{n+1}\)</span> <!-- more --></p>
 
       </div>
       
@@ -226,7 +248,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-text">多项式的表示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FFT"><span class="toc-text">FFT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DFT"><span class="toc-text">DFT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDFT"><span class="toc-text">IDFT</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-text">多项式的表示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fft"><span class="toc-text">FFT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dft"><span class="toc-text">DFT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#idft"><span class="toc-text">IDFT</span></a></li></ol></li></ol>
       
     </div>
   </div>
