@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="linking的部分看了一半跳过去了....据说你南的ICS讲linking非常不错，于是我就心安理得了 exception的部分还在看，估计这周末可以看完（吧），先留坑  我来填坑辣    终于赶在五一（假期前）写完了第六个lab，书也推完了第八章，四舍五入就是五月前搞定了前八章内容，还是很不戳的。整个四月都非常忙，各种ddl和期中满天飞。五月也不空闲，还有EL、听说读写ddl、马原、银川、大雾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP实验6 : shlab">
+<meta property="og:url" content="http://example.com/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="linking的部分看了一半跳过去了....据说你南的ICS讲linking非常不错，于是我就心安理得了 exception的部分还在看，估计这周末可以看完（吧），先留坑  我来填坑辣    终于赶在五一（假期前）写完了第六个lab，书也推完了第八章，四舍五入就是五月前搞定了前八章内容，还是很不戳的。整个四月都非常忙，各种ddl和期中满天飞。五月也不空闲，还有EL、听说读写ddl、马原、银川、大雾">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-21T11:24:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.134Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/","path":"2021/04/21/CSAPP实验6-shlab/","title":"CSAPP实验6 : shlab"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CSAPP实验6 : shlab | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            CSAPP实验6 : shlab
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-04-21
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CSAPP实验6 : shlab | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSAPP实验6 : shlab
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-21 19:24:00" itemprop="dateCreated datePublished" datetime="2021-04-21T19:24:00+08:00">2021-04-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>linking的部分看了一半跳过去了….据说你南的ICS讲linking非常不错，于是我就心安理得了 exception的部分还在看，估计这周末可以看完（吧），先留坑 我来填坑辣 终于赶在五一（假期前）写完了第六个lab，书也推完了第八章，四舍五入就是五月前搞定了前八章内容，还是很不戳的。整个四月都非常忙，各种ddl和期中满天飞。五月也不空闲，还有EL、听说读写ddl、马原、银川、大雾期中、军理。希望人没事.jpg 这次lab的一个明显特点就是答案都可以在书上找到，各种详细的例子书上都有，因此写起来只需要多翻书就好了。不过由于这次lab的测试比较弱，而我对自己的代码水平又没有什么信心，因此下面贴的代码看看就好，莫当真 说了不少废话，讲正题吧 ## 前置姿势 这一章主要从**硬件**和**软件（系统）**两个层面讲了异常控制流(exceptional control flow)的各种姿势，这次的lab主要关注的是软件方面的东西。软件的控制流交移是通过信号(signal)的发送和接受来进行的，这一点因为写过QT所以不是特别虚。看前面的内容如果不过瘾还可以搭配OS的教材一起看，正好就顺手入了SJTU的书，希望暑假能啃一啃。 本章引入的鲁棒性的问题非常重要，也就是多线程过程中的竞争问题。这种问题常常发生在不同线程对统一数据的修改和读取中。为了解决这个问题本章引入了**原子性**的概念，大意就是某些操作不可分割、控制流不能从中间被移接。事实上还有**锁**的概念，大意就是在修改、读取数据的时候阻塞其余信号，也就是给数据“上锁” 本次lab的测试非常之水，毕竟系统方面的测试用用例还是比较难调出问题（我对形式化验证这方面也很感兴趣）。 ## 代码 ### `eval` 这一部分可以抄书。具体需要搞清楚`fork()`会创建一个新的进程，而`execve()`则相当于用新的进程”覆盖”当前进程。因此如果想要实现shell的调用需要先`fork()`再在子进程里`execve()` 根据writeup的提示需要给子进程分配组id，在`eval`中新建进程需要调用`addjob()`来修改进程表中的内容，因此需要阻塞其它信号以免出现问题。 ```c void eval(char *cmdline) { int olderrno &#x3D; errno; char *argv[MAXARGS]; int bg &#x3D; parseline(cmdline, argv); if (argv[0] &#x3D;&#x3D; NULL) return ; if ( builtin_cmd(argv) ) return ; pid_t pid; &#x2F;&#x2F; Child Process sigset_t mask, prev; sigemptyset(&amp;mask); sigaddset(&amp;mask, SIGCHLD); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); pid &#x3D; fork(); if (pid &lt; 0) unix_error(“Fork error”); if ( pid &#x3D;&#x3D; 0) { sigprocmask(SIG_BLOCK, &amp;prev, NULL); setpgid(0, 0); if ( execve(argv[0], argv, environ) &lt; 0) { printf(“%s: Command not found\n”, argv[0]); exit(0); } } if (!bg) { addjob(jobs, pid, FG, cmdline); sigprocmask(SIG_SETMASK, &amp;prev, NULL); waitfg(pid); } else { addjob(jobs, pid, BG, cmdline); struct job_t *job &#x3D; getjobpid(jobs, pid); printf(“[%d] (%d) %s”, job-&gt;jid, job-&gt;pid, cmdline); sigprocmask(SIG_SETMASK, &amp;prev, NULL); } errno &#x3D; olderrno; return; } ``` ### `builtin_cmd` 这个估计是最好写的，判断一下命令类型就好了。`quit`和`jobs`都很好写，`fg`和`bg`的具体操作被封装在`do_bgfg()`里面了，在这里直接用就好了 ```c int builtin_cmd(char **argv) { char *builtin_args[4] &#x3D; {“quit”, “bg”, “fg”, “jobs”}; for (int i &#x3D; 0; i &lt; 4; ++ i) { if ( strcmp(builtin_args[i], argv[0]) ) continue; switch (argv[0][0]) { case ‘q’: exit(0); case ‘f’: { do_bgfg(argv); break; } case ‘b’: { do_bgfg(argv); break; } case ‘j’: listjobs(jobs); } return 1; } return 0; &#x2F;* not a builtin command *&#x2F; } ``` ### `waitfg` 这一段也很好写。这是用来等待前台进程结束的，那么就用一个死循环来不停地监听`pid`进程是否在前台 由于在监听的时候访问了全局数据结构，因此也要阻塞信号 ```c void waitfg(pid_t pid) { sigset_t mask, prev; sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); struct job_t *job &#x3D; getjobpid(jobs, pid); sigprocmask(SIG_SETMASK, &amp;prev, NULL); for (; job !&#x3D; NULL &amp;&amp; job-&gt;state &#x3D;&#x3D; FG; ) { sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); job &#x3D; getjobpid(jobs, pid); sigprocmask(SIG_SETMASK, &amp;prev, NULL); } return; } ``` ### `do_bgfg` 这个是最后写的，毕竟`bg`和`fg`我也是上个月才会用的….. 大概就是利用`kill`发送信号，同时修改`job`对应的`state`。在发送信号的时候也要阻塞其余信号因为访问了全局数据结构 这里还要判一下输入是否合法，这个比较麻烦不过对着`trace`慢慢搞就好了 ```c void do_bgfg(char **argv) { char *id_str &#x3D; argv[1]; &#x2F;&#x2F;fg bg error handling if (id_str &#x3D;&#x3D; NULL) { printf(“%s command requires PID or %%jobid argument\n”, argv[0]); return ; } int flag &#x3D; (id_str[0] &#x3D;&#x3D; ‘%’), jid, pid; id_str +&#x3D; flag; for (int i &#x3D; 0, _len &#x3D; strlen(id_str); i &lt; _len; ++ i) { if (!isdigit(id_str[i])) { printf(“%s: argument must be a PID or %%jobid\n”, argv[0]); return ; } } sigset_t mask, prev; sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); if (!flag) { sscanf(id_str, “%d”, &amp;pid); jid &#x3D; pid2jid(jid); } else { sscanf(id_str, “%d”, &amp;jid); } struct job_t *job &#x3D; getjobjid(jobs, jid); if (job &#x3D;&#x3D; NULL) { if (flag) printf(“%%%d: No such job\n”, jid); else printf(“(%d): No such process\n”, pid); sigprocmask(SIG_SETMASK, &amp;prev, NULL); return ; } if (argv[0][0] &#x3D;&#x3D; ‘b’) { printf(“[%d] (%d) %s”, job-&gt;jid, job-&gt;pid, job-&gt;cmdline); job-&gt;state &#x3D; BG; kill(-(job-&gt;pid), SIGCONT); } else if (argv[0][0] &#x3D;&#x3D; ‘f’) { job-&gt;state &#x3D; FG; kill(-(job-&gt;pid), SIGCONT); sigprocmask(SIG_SETMASK, &amp;prev, NULL); waitfg(job-&gt;pid); } sigprocmask(SIG_SETMASK, &amp;prev, NULL); return; } ``` ### `hanlders` 三个放在一起说 `sigint_handler()`最好写，只需要利用`fgpid()`搭配`kill()`就好了 注意要阻塞信号 ```c void sigint_handler(int sig) { int olderrno &#x3D; errno; sigset_t mask, prev; sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); pid_t pid &#x3D; fgpid(jobs); if (pid &#x3D;&#x3D; 0) return ; struct job_t *job &#x3D; getjobpid(jobs, pid); if (kill(-pid, sig) &lt; 0) unix_error(“Sigint error”); sigprocmask(SIG_SETMASK, &amp;prev, NULL); errno &#x3D; olderrno; return; } ``` `sigstp_handler()`和上面是一样的，就不说了 需要注意的是，在这两个handler中我们没必要更改数据结构，而是可以等`sigchld_handler()`一起改，这样写起来可以清晰一些 `sigchld_handler()`有几个坑点 1. 要注意`waitpid()`默认行为是挂起父进程直至子进程终止(terminate)，写到这里的时候记得往回翻书，或者看writeup的提示也行 2. 好像就没了…. 回收的时候需要对子进程的死因讨论一下，同时记得阻塞就好了 在读这一章的时候深刻体会到了术语明确的重要性，比如说停止(stop)和终止(terminate)和中断(interrupt)这三个，放在中文里感觉就没有区别啊 ```c void sigchld_handler(int sig) { int olderrno &#x3D; errno; int status; pid_t pid &#x3D; waitpid(-1, &amp;status, WNOHANG | WUNTRACED); if (!pid) return ; sigset_t mask, prev; sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); struct job_t *job &#x3D; getjobpid(jobs, pid); if (WIFSTOPPED(status)) { job-&gt;state &#x3D; ST; printf(“Job [%d] (%d) stopped by signal %d\n”, job-&gt;jid, job-&gt;pid, WSTOPSIG(status) ); } else { if (!WIFEXITED(status)) printf(“Job [%d] (%d) terminated by signal %d\n”, job-&gt;jid, job-&gt;pid, WTERMSIG(status) ); deletejob(jobs, job-&gt;pid); } sigprocmask(SIG_SETMASK, &amp;prev, NULL); errno &#x3D; olderrno; return; } ``` 于是就写完辣！ 最后的最后我还写了一个小程序来快速检验答案是否正确，大概长这样 ```c #include #include #include char str1[200]; int main(int argc, char const *argv[]) { system(“make clean; make”); for (int i &#x3D; 1; i &lt;&#x3D; 16; ++ i) { sprintf(str1, “make test%02d &gt; myp%02d.out”, i, i); system(str1); sprintf(str1, “make rtest%02d &gt; std%02d.out”, i, i); system(str1); printf(“id: %d completed\n”, i); } for (int i &#x3D; 1; i &lt;&#x3D; 16; ++ i) { sprintf(str1, “wc -l std%02d.out”, i); system(str1); sprintf(str1, “wc -l myp%02d.out”, i); system(str1); } return 0; } ``` 当然这个只是初步的，具体正确性还要自行比对一下….不过这个看起来也是可以自动化的，我太懒了就鸽了吧，毕竟要考大雾了淦</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/" rel="prev" title="奋斗逼的脸庞着实惹人爱">
+                  <i class="fa fa-chevron-left"></i> 奋斗逼的脸庞着实惹人爱
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/" rel="next" title="图论笔记2 匹配">
+                  图论笔记2 匹配 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

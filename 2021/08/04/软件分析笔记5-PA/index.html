@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="PA&#x3D;Pointer Analysis 指针分析  ## Motivation  CHA方法实际上没有利用足够的信息(即实际上变量可能指向的对象所从属的类的范围可以进一步缩小),会引入假的调用边  ## Pointer Analysis  PA是一种基础的静态分析,它要回答的问题是&quot;某个指针p的值域可能是啥&quot;  对于OO语言来说,其实就是回答某个指针可能指向哪些对象(对于非OO语言的指针则可以直接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件分析笔记5 PA">
+<meta property="og:url" content="http://example.com/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="PA&#x3D;Pointer Analysis 指针分析  ## Motivation  CHA方法实际上没有利用足够的信息(即实际上变量可能指向的对象所从属的类的范围可以进一步缩小),会引入假的调用边  ## Pointer Analysis  PA是一种基础的静态分析,它要回答的问题是&quot;某个指针p的值域可能是啥&quot;  对于OO语言来说,其实就是回答某个指针可能指向哪些对象(对于非OO语言的指针则可以直接">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-04T15:45:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.106Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/","path":"2021/08/04/软件分析笔记5-PA/","title":"软件分析笔记5 PA"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>软件分析笔记5 PA | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            软件分析笔记5 PA
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-08-04
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B05-PA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="软件分析笔记5 PA | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件分析笔记5 PA
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-04 23:45:00" itemprop="dateCreated datePublished" datetime="2021-08-04T23:45:00+08:00">2021-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>PA&#x3D;Pointer Analysis 指针分析 ## Motivation CHA方法实际上没有利用足够的信息(即实际上变量可能指向的对象所从属的类的范围可以进一步缩小),会引入假的调用边 ## Pointer Analysis PA是一种基础的静态分析,它要回答的问题是”某个指针p的值域可能是啥” 对于OO语言来说,其实就是回答某个指针可能指向哪些对象(对于非OO语言的指针则可以直接指向内存) 很显然这是一个may analysis, 用over-approximation ### Alias Analysis 这个叫别名分析,关注的是某一个对象是否会被两个指针指向 ## 实现 程序的实际运行情况复杂，因此一种简单的对对象建立的建模就是“我们认为每个new语句只会建立一个唯一的对象”，也叫allocation site abstract 通常分析分为流敏感(flow sensitive)和不敏感分析，即考量是否考虑语句间的执行顺序(即控制流)来分类。这里采用的是流不敏感的技术，即我们认为代码整体是由若干语句组成的集合 定义pt(x)表示变量x所可能指向的对象的集合，并根据不同的赋值语句对对象的流动情况进行建模 大概可以分为几类： 1. x &#x3D; new Obj(); &#x2F;&#x2F;令pt(x).insert(Obj); 2. x &#x3D; y; &#x2F;&#x2F;pt(x).insert(pt(y)); 3. x.f &#x3D; y; &#x2F;&#x2F;for (Obj in pt(x)) pt(Obj.f).insert(pt(y)) 4. x &#x3D; y.f; &#x2F;&#x2F;for (Obj in pt(y)) pt(x).insert(pt(Obj.f)) 容易发现，四条规则对应了四种集合关系的限制，因此指针分析的一种看法就是解一类限制方程(Anderson Style Analysis) ## PFG Pointer Flow Graph 一个有向图，用来描述指针所指向对象的流向信息 ### 点 变量、对象及其field的表示 变量就标号。对象的field用二元组(o,f)表示，表示对象o的域f ### 边 有向边x-&gt;y表示pt(x)中元素的更新**可能**影响pt(y)的元素 如果我们知道了PFG，再把所有new都分配到对应的点上，那么指针分析就变成简单的传递闭包问题了! 但是建图的过程也依赖于求pt(x)的问题，因此这是一个边算边建图的过程….. 大概伪代码是这样的 ```c void addEdge(Q,G,x,y) { G.addEdge(x,y); Q.push(pts(x),y); } void solve(Code C) { Queue Q; Graph G; for (i in C) if (i.type&#x3D;&#x3D;NEW) { &#x2F;&#x2F; x &#x3D; new Obj(); at line i Q.push(x,{oi}); } for (i in C) if (i.type&#x3D;&#x3D;ASSIGN) { &#x2F;&#x2F; x &#x3D; y; addEdge(Q,G,x,y); } while (!Q.empty()) { (x,P)&#x3D;Q.top(); Q.pop(); P&#x3D;P-pts(x); if (!P.empty()) { pts(x).insert(P); for (y in adjacent(G,x)) { Q.push(y,P); } } for (i in C) if (i.type&#x3D;&#x3D;load) { &#x2F;&#x2F; y &#x3D; x.f; &#x2F;&#x2F; for (o in pts(x)) { &#x2F;&#x2F; 已经加过了的边不必再加 for (o in P) { addEdge(Q,G,o.f,y); } } for (i in C) if (i.type&#x3D;&#x3D;store) { &#x2F;&#x2F; x.f &#x3D; y; for (o in pts(x)) { &#x2F;&#x2F; 同上 addEdge(Q,G,y,o.f); } } for (i in C) if (i.type&#x3D;&#x3D;store) { &#x2F;&#x2F; y.f &#x3D; x; &#x2F;&#x2F; 这种写法和上面是等价的 for (o in pts(y)) { &#x2F;&#x2F; 同上 addEdge(Q,G,x,o.f); } } } } ``` 一开始没有看明白为什么pts(x)发生变动时只考虑了`y&#x3D;x.f`和`x.f&#x3D;y` 考虑所有的情况只有四种： 1. `y&#x3D;x.f` 2. `x.f&#x3D;y` 3. `y.f&#x3D;x` 4. `x&#x3D;y.f` 可以发现情况4在pts(x)发生变化时不需要更新后继点 而情况3和情况1是对称的…因此写法是任意的 ### Inter-Procedural Analysis 考虑方法调用的指针分析，就是要考虑形如 ``` a&#x3D;b.f(r1,r2…) ``` 这样的语句如何建模。同样也是建Call Graph 在前面用到的CHA方法并不准确，因为我们并没有考虑指针实际可能指向的对象域的情况。注意到这恰好是PA在做的事情，因此可以结合着指针分析进行CG的建立 实际上就是枚举pts(b)中的对象o，通过dispatch(o,f)来找到实际调用的方法m，然后枚举所有实参的指针域流向方法m中的对应形参，返回值的指针域流向a。同时类的this指针也不能忽略，因此也要把o流到m的this去(这里我们认为每个方法都有它自己的this指针) 在建PFG的时候，我们会对参数、返回值进行连边，而this则不会连边(why?) 考虑如下代码片段： ```java class A { T foo() { this; } } class B extends A { T foo() { this; } } class C extends A { T foo() { this; } } ``` 那么给定下列指针域和调用 ```java pts(x)&#x3D;{A, B, C}; x.foo(); ``` 当x分别指向A,B,C时，对应应该流向A.foo.this,B.foo.this,C.foo.this 也就是说，对某一段方法调用代码片而言，LHS变量的指针域中的每个对象只会流向唯一的方法的this指针(这是由dispatch的唯一性保证的)。假若我们为LHS变量到所有可能方法都连上了边，那么就会出现不必要的精度损失。 具体的实现可以看PPT</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/04/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B04-CGC/" rel="prev" title="软件分析笔记4 CGC">
+                  <i class="fa fa-chevron-left"></i> 软件分析笔记4 CGC
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B06-CSA/" rel="next" title="软件分析笔记6 CSA">
+                  软件分析笔记6 CSA <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

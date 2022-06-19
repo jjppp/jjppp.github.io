@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="# 前置  这一节主要是玩矩阵，为了偷懒只讨论实线性空间  # 前置  这一节主要是玩矩阵，为了偷懒只讨论实线性空间  ## 内积  二元函数 $\left$ 被称为内积，则其满足：  1. $\left&#x3D;\left$ 2. $\left&#x3D;a\left+b\left$ 3. $\left\geq 0$，等号仅在 $x&#x3D;\bold{0}$ 时取到  ## 向量范数  一元函数 $\norm{\cdo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算方法3 线性方程组求解">
+<meta property="og:url" content="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="# 前置  这一节主要是玩矩阵，为了偷懒只讨论实线性空间  # 前置  这一节主要是玩矩阵，为了偷懒只讨论实线性空间  ## 内积  二元函数 $\left$ 被称为内积，则其满足：  1. $\left&#x3D;\left$ 2. $\left&#x3D;a\left+b\left$ 3. $\left\geq 0$，等号仅在 $x&#x3D;\bold{0}$ 时取到  ## 向量范数  一元函数 $\norm{\cdo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-08T06:33:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:47:11.580Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/","path":"2022/05/08/计算方法3-线性方程组求解/","title":"计算方法3 线性方程组求解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算方法3 线性方程组求解 | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            计算方法3 线性方程组求解
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2022-05-08
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算方法3 线性方程组求解 | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算方法3 线性方程组求解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-08 14:33:00" itemprop="dateCreated datePublished" datetime="2022-05-08T14:33:00+08:00">2022-05-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p># 前置 这一节主要是玩矩阵，为了偷懒只讨论实线性空间 # 前置 这一节主要是玩矩阵，为了偷懒只讨论实线性空间 ## 内积 二元函数 $\left&lt;,\right&gt;$ 被称为内积，则其满足： 1. $\left=\left$ 2. $\left=a\left+b\left$ 3. $\left\geq 0$，等号仅在 $x&#x3D;\bold{0}$ 时取到 ## 向量范数 一元函数 $\norm{\cdot}$ 被称为范数，则其满足： 1. $\norm{x}\geq 0$，等号仅在 $x&#x3D;\bold0$ 时取到 2. $\norm{kx}&#x3D;\abs{k}\norm{x}$ 3. $\norm{x+y}\leq \norm{x}+\norm{y}$ 在内积空间上有一个天然的范数 $\norm{x}&#x3D;\sqrt{\left}$，容易验证满足上述三条要求。 ## 矩阵范数 ### 算子范数 矩阵可以看成线性变换，因此可以由向量范数来衡量矩阵作为线性变换（算子）的“长度”。定义为 $$ \norm{A}&#x3D;\max_{\norm{x}&#x3D;1} \norm{Ax} $$ 注意这里的 $Ax,x$ 都是向量，因此 RHS 出现的全都是向量范数，LHS 则是定义出来的算子范数。 有了这个定义，我们就可以写出这样的不等式 $$ \norm{Ax}\leq \norm{A}\norm{x} $$ 同时会引入新的定义，称满足下述要求的算子范数具有**相容性**： $$ \norm{AB}\le \norm{A}\norm{B} $$ 有了相容性同样可以做一些界的估计 ### 矩阵范数 矩阵同样也可以看成线性空间中的元素，因此可以单独赋予范数的定义，当然这就和向量范数没什么关系了。 一个例子是这样的，容易验证其满足三条要求 $$ \norm{A}&#x3D;\sum_{i,j}\abs{A_{i,j} } $$ # 高斯消元 对于给定的线性方程组 $Ax&#x3D;b$，可以用简单 $O(n^3)$ 的高斯消元法来求解。并且这样可以很容易地求出解空间的一组基，进而得到所有解。 ## 解的稳定性 不妨假设 $A&#x3D;xb$ 中 $\abs{A}\neq0$，则有 $x&#x3D;A^{-1}b$ 通常 $A$ 是给定的，而 $b$ 是若干计算和观察的结果，因此解的误差主要来源于 $b$ 引入的误差，可以写成 $$ \hat x&#x3D;A^{-1}\hat b $$ 考虑相对误差的计算，即为 $$ \max_{\hat b,b\neq0} {\frac{\norm{A^{-1}\hat b} }{\norm{A^{-1}b} } }&#x2F;{\frac{\norm{\hat b} }{\norm{b} } } $$ 即后向相对误差与前向相对误差的比值，称这个值为方程组 $A$（矩阵 $A$）的条件数 $\text{cond}(A)$ $$ \begin{aligned} \text{cond}(A)&amp;&#x3D;\max_{\hat b,b\neq 0} {\frac{\norm{A^{-1}\hat b} }{\norm{A^{-1}b} } }&#x2F;{\frac{\norm{\hat b} }{\norm{b} } } \\ &amp;&#x3D;\max_{\hat b\neq 0} \frac{\norm{A^{-1}\hat b} }{\norm{\hat b} }\max_{b\neq 0}\frac{\norm{b} }{\norm{A^{-1}b} } \end{aligned} $$ 注意到 $A^{-1}b&#x3D;x$，且 $b&#x3D;Ax$，带入即得 $$ \begin{aligned} \text{cond}(A)&amp;&#x3D;\max_{\hat b\neq 0}\frac{\norm{A^{-1}\hat b} }{\norm{\hat b} }\max_{x\neq 0} \frac{\norm{Ax} }{\norm{x} } \\ &amp;&#x3D;\norm{A^{-1} }\norm{A} \end{aligned} $$ 矩阵的条件数反映了矩阵所对应线性方程组的不稳定程度。条件数越大则不稳定程度越大，误差的传递放大也就越严重。 # 迭代算法 $O(n^3)$ 太昂贵，考虑迭代算法。一般而言迭代的次数是人为规定的，不少算法能够保证在 $\Omega(n)$ 次迭代之后必然得到精确解。 ## Jacobi 迭代 对于矩阵 $A$，将其分解为 $A&#x3D;L+D+U$，其中 $L,U$ 分别为上三角矩阵和下三角矩阵，$D$ 为对角阵。 那么有 $$ Ax&#x3D;(L+U+D)x&#x3D;b \\ x_{k+1}&#x3D;D^{-1}(b-(L+U)x_k) $$ ### 收敛性 给出一个充分条件：若 $A$ 是主对角线占优矩阵，则迭代必然收敛。 只需联立如下方程 $$ \left\{ \begin{aligned} x^*&amp;&#x3D;D^{-1}(b-(L+U)x^*) \\ x_{k+1}&amp;&#x3D;D^{-1}(b-(L+U)x_{k}) \end{aligned} \right. $$ 两式相减即得 $$ x_{k+1}-x^*&#x3D;-D^{-1}(L+U)(x_k-x^*) $$ 记 $W&#x3D;D^{-1}(L+U)$，由对角占优可知 $Wx$ 的每一项绝对值严格小于 $x$，因此迭代收敛。 ### 正确性 假设收敛，则有不动点 $x$，简单替换即得不动点 $x$ 是原方程的一个解。 结合收敛性的充分条件即得：若 $A$ 为主对角线占优矩阵，则解唯一（$A$ 可逆），且迭代收敛至唯一解。 看起来还是比较好的。 ## Gauss-Seidel 迭代 用到了一个观察，即在计算解向量 $x_{k+1}$ 的第 $r$ 项时，它的前 $r-1$ 项都已经算出来了（废话） 因此可以写成 $$ x_{k+1}&#x3D;D^{-1}(b-Ux_k-Lx_{k+1}) $$ 证明和上面是类似的，结论也是类似的。 写代码可以发现这两个方法没有绝对的好坏之分，迭代速度也没有一般性的结论（至少俺不知道）。 ## 谱半径 为了分析一类迭代算法的收敛性，引入谱半径的概念 定义 $A$ 的谱半径为其绝对值最大的特征值 $\abs{\lambda_\max}$，记为 $\rho(A)$ 对于这样的迭代算法 $$ x_{k+1}&#x3D;Ax_k+b $$ 取不动点做差得 $$ x_k-x^*&#x3D;A^k(x_0-x^*) $$ 如果能说明 $\lim\limits_{k\to\infty} A^k&#x3D;O$，那么就能说明迭代是收敛的，且收敛到方程组的解。 有定理：$\lim\limits_{k\to\infty}A^k&#x3D;O$ 当且仅当 $\rho(A)&lt;1$ 分析 Jacobi 和 Gauss-Seidel 迭代矩阵的谱半径可以知道，当系数矩阵 $A$ 是严格对角占优时，这两个算法以任意初始向量开始迭代都会收敛。 ## 伪逆 对于满秩矩阵 $A$，方程组 $Ax&#x3D;b$ 的解是显然存在的。但是对于非满秩的矩阵 $B$ 来说就不一定了。在最小二乘法中可以求得一个二范数最小的“逼近”解，实际上是解了一个方程 $A^\intercal Ax&#x3D;A^\intercal b$，即 $x&#x3D;(A^\intercal A)^{-1}A^\intercal b$ 问题的关键在于 $A^{-1}$ 不一定存在，这使得 $Ax&#x3D;b$ 不一定存在唯一解。因此引入记号 $A^\dagger&#x3D;(A^\intercal A)^{-1}A^\intercal$，称为 $A$ 的伪逆（pseudo inverse），那么最小二乘法可以写成 $x&#x3D;A^\dagger b$，形式与满秩方程组 $x&#x3D;A^{-1}b$ 是一致的。这样求出的解为最佳平方逼近解。 当 $A$ 的列线性无关时，$A^\intercal A$ 满秩，$A^\dagger&#x3D;(A^\intercal A)^{-1}A^\intercal$ 存在。此时原方程组 $Ax&#x3D;b$ 无解（超定方程组） 由反证法假设存在 $x\neq 0$ 使得 $A^\intercal Ax&#x3D;0$，那么 $(Ax)^\intercal (Ax)&#x3D;0$，根据内积的正定性可知 $Ax&#x3D;0$，这说明存在列的线性组合为 $0$，这与列线性无关矛盾；故假设不成立。 类似取 $A^\intercal$ 可知，当 $A$ 的行线性无关时，$A^\intercal$ 列线性无关，$AA^\intercal$ 满秩，$A^\dagger&#x3D;((A^\intercal)^\dagger)^\intercal&#x3D;A^\intercal(AA^\intercal)^{-1}$。此时方程组 $Ax&#x3D;b$ 有多解（欠定方程组），但是我不知道有啥意义，因为 $A^\dagger$ 是个右逆….</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%952-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/" rel="prev" title="计算方法2 插值与函数逼近">
+                  <i class="fa fa-chevron-left"></i> 计算方法2 插值与函数逼近
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/" rel="next" title="计算方法4 图的随机游走">
+                  计算方法4 图的随机游走 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

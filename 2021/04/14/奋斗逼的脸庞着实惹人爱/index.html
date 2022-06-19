@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="&#96;ICSOJ&#96;搭建记录及对你班风气的一些思考    最近上了一门课，名为《信息科学与实践》。说是实践，其实是基础程设+算法理论+数据结构入门，可谓是大杂烩。本着共同进步的目的，我们尝试着建了一个讨论群&amp;资料群来加强互动氛围、搭设了一个简易的OJ来提升同学们的代码能力。    ## 购买服务器&amp;搭建OJ  买的是腾讯云的学生机，6个月54r，完美覆盖下学期，暑假也能用，感觉还不错。  选择装ubun">
+<meta property="og:type" content="article">
+<meta property="og:title" content="奋斗逼的脸庞着实惹人爱">
+<meta property="og:url" content="http://example.com/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="&#96;ICSOJ&#96;搭建记录及对你班风气的一些思考    最近上了一门课，名为《信息科学与实践》。说是实践，其实是基础程设+算法理论+数据结构入门，可谓是大杂烩。本着共同进步的目的，我们尝试着建了一个讨论群&amp;资料群来加强互动氛围、搭设了一个简易的OJ来提升同学们的代码能力。    ## 购买服务器&amp;搭建OJ  买的是腾讯云的学生机，6个月54r，完美覆盖下学期，暑假也能用，感觉还不错。  选择装ubun">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-14T14:13:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.138Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/","path":"2021/04/14/奋斗逼的脸庞着实惹人爱/","title":"奋斗逼的脸庞着实惹人爱"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>奋斗逼的脸庞着实惹人爱 | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            奋斗逼的脸庞着实惹人爱
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-04-14
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="奋斗逼的脸庞着实惹人爱 | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          奋斗逼的脸庞着实惹人爱
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-14 22:13:00" itemprop="dateCreated datePublished" datetime="2021-04-14T22:13:00+08:00">2021-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>`ICSOJ`搭建记录及对你班风气的一些思考 最近上了一门课，名为《信息科学与实践》。说是实践，其实是基础程设+算法理论+数据结构入门，可谓是大杂烩。本着共同进步的目的，我们尝试着建了一个讨论群&amp;资料群来加强互动氛围、搭设了一个简易的OJ来提升同学们的代码能力。 ## 购买服务器&amp;搭建OJ 买的是腾讯云的学生机，6个月54r，完美覆盖下学期，暑假也能用，感觉还不错。 选择装ubuntu，最早是照抄了HUSTOJ的搭建教程，后面发现既不现代也不美观，放题面也很麻烦，就后面改成了QingDaoUOJ 具体的教程可以看[官方文档](<a target="_blank" rel="noopener" href="https://github.com/QingdaoU/OnlineJudgeDeploy">https://github.com/QingdaoU/OnlineJudgeDeploy</a>) 不得不说服务器还是快，网速杠杠的 考虑到最近在讲一些递归和排序的算法，就放了几道题上去。remoon甚至在这个面向新手的OJ上整活….太毒了 搭的时候还幻想着要每周肝一套题出来给大家练练手啥的 ## 反思 时间过去了三天，我的OJ用户总数只有5人。除去root、我、出题人remoon、隔壁班的yuyake同学，就只剩下一位了 既然是CS班，代码能力就是必须项。既然是强基班，理论基础就应该扎实。然而事与愿违。讨论群死气沉沉，oj无人问津，呜呼哀哉！我自身也难保。 希望所谓的躺平文化可以褪去，奋斗逼实属有着可爱的脸，来了这里就好好学吧，管好自己先</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/09/%E5%9B%BE%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" rel="prev" title="图论习题乱做">
+                  <i class="fa fa-chevron-left"></i> 图论习题乱做
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/" rel="next" title="CSAPP实验6 : shlab">
+                  CSAPP实验6 : shlab <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

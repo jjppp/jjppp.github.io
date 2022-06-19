@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="## Soundness  Conservative approximation: captures all program behaviors, or the analysis result models all possible executions of the program  然鹅  ### Academia  Virtually all published whole-program">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件分析笔记10 Soundiness">
+<meta property="og:url" content="http://example.com/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="## Soundness  Conservative approximation: captures all program behaviors, or the analysis result models all possible executions of the program  然鹅  ### Academia  Virtually all published whole-program">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-13T18:45:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.094Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/","path":"2021/08/14/软件分析笔记10-Soundiness/","title":"软件分析笔记10 Soundiness"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>软件分析笔记10 Soundiness | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            软件分析笔记10 Soundiness
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-08-14
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="软件分析笔记10 Soundiness | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件分析笔记10 Soundiness
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-14 02:45:00" itemprop="dateCreated datePublished" datetime="2021-08-14T02:45:00+08:00">2021-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>## Soundness Conservative approximation: captures all program behaviors, or the analysis result models all possible executions of the program 然鹅 ### Academia Virtually all published whole-program analyses are unsound when applied to real programming languages. ### Industries Virtually all realistic whole-program static analysis tools have to make unsound choices. ## Hard-to-analyze Language Features 不同的语言存在一些难以分析的特性，如果对这些特性采取过于保守的措施，那么我们将会得到正确但无用的分析 PPT给了几个例子，发现自己除了C的几个都不会….提上日程！ #### Java Reflection, native code, dynamic class loading #### JavaScript eval, document object model(DOM) #### C&#x2F;C++ Pointer arithmetic, function pointers 这就导致了许多声称sound的做法只是保证了核心语法的sound，而对部分功能的sound有所取舍(说白了就是挑结果发论文，坠入生化环材的灌水之路)。 学术圈出现的乱象，需要正义的铁拳！(大雾，于是就有了一个Manifesto宣言，提出了Soundiness的概念 ## Soundiness 造词来自Truthiness &gt; Truthiness: a truthful or seemingly truthful quality that is claimed for something not because of supporting facts or evidence but because of a feeling that it is true or a desire for it to be true 也就是把原本的Soundness升华(?)了 A soundy analysis means that the analysis is mostly sound, with well-identified unsound treatments to hard&#x2F;specific language features. 区分之后的三级分类 * A sound analysis requires to capture all dynamic behaviors * A soundy analysis aims to capture all dynamic behaviors with certain hard language features unsoundly handled within reason * An unsound analysis deliberately ignores certain behaviors in its design for better efficiency, precision or accessibility. 也就是以后的论文必须要明确分析自己哪里准了，哪里还不准，以及原因。 然后讲了两个具体的例子来对reflection和native code分析 ## Reflection 难点在于class、method和field的具体对象是运行时确定的，并且是由一段字符串决定的，因此对于非静态决定的字符串难以求解上面的三个东西 动态的字符串可能来自 * 终端输入 * 配置文件 * 可能含有加密解密信息 * 网络 这些因素都使得反射机制难以静态分析 最早的做法是通过结合指针分析来对静态字符串进行分析，进而推断出一些目标方法。而另一个想法就是，我们不在求解定义时寻找对应的方法，而是在使用它的时候寻找。大意就是在调用方法的时候通过参数的类型和数量来推断可能的目标方法。 还有一些complete方法，例如说跑几个测试用例来找到一些必然真的目标方法。 ## Native Code Java在需要和OS交互的时候，需要调用一些C&#x2F;C++代码，这样的代码称为Native Code Native Code难以分析比较好理解，因为语言不同，导致需要不同的分析策略。一种方法是根据函数的语义对常用的函数进行建模。PPT给的例子就是一个`ArrCopy()`可以建模成一整段的`for`+赋值</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B09-CFL-R-IFDS/" rel="prev" title="软件分析笔记9 CFL-R&IFDS">
+                  <i class="fa fa-chevron-left"></i> 软件分析笔记9 CFL-R&IFDS
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="scheme学习笔记">
+                  scheme学习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

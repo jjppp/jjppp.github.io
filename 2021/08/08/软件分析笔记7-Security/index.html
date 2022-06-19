@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="下面几节课都比较轻松，内容偏科普性质  ## Security  &gt; Achieving some goals in the presence of adversaries  这个概括可以说是很简练了  统计意义下最常见的两类漏洞：  1. Injection Errors 2. Information leaks  这两者本质上都是信息流的错误流动，因此就自然引出信息流安全的问题和分析  ##">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件分析笔记7 Security">
+<meta property="og:url" content="http://example.com/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="下面几节课都比较轻松，内容偏科普性质  ## Security  &gt; Achieving some goals in the presence of adversaries  这个概括可以说是很简练了  统计意义下最常见的两类漏洞：  1. Injection Errors 2. Information leaks  这两者本质上都是信息流的错误流动，因此就自然引出信息流安全的问题和分析  ##">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-08T14:42:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.102Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/","path":"2021/08/08/软件分析笔记7-Security/","title":"软件分析笔记7 Security"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>软件分析笔记7 Security | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            软件分析笔记7 Security
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-08-08
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B07-Security/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="软件分析笔记7 Security | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件分析笔记7 Security
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-08 22:42:00" itemprop="dateCreated datePublished" datetime="2021-08-08T22:42:00+08:00">2021-08-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>下面几节课都比较轻松，内容偏科普性质 ## Security &gt; Achieving some goals in the presence of adversaries 这个概括可以说是很简练了 统计意义下最常见的两类漏洞： 1. Injection Errors 2. Information leaks 这两者本质上都是信息流的错误流动，因此就自然引出信息流安全的问题和分析 ## Information Flow 字面意思….前面指针分析本质上是对数据流的分析，而数据流正是信息流的一种 IF的安全问题在于出现了unwanted infowmation flow，即本应该流向x处的信息流向了y处，举个例子就是本来应该发给plmm的情书一不小心塞进了好基友的书包里…. 那么想要保持安全，我们的目标就是阻止非法信息流 ### Access Control 即对信息上锁，每次获取信息的时候要求通行权限 AC主要关心信息是否被获取，而不关心后续对信息操作的流程。可以认为是点上的安全措施 同样用情书举例，AC就是基友在任何东西进包之前都要检查这东西能不能进包，以此来阻止上述情况 而信息流安全则关注的是不同节点之间的联系以及互动，因此又被叫做端到端的安全措施 ### Information Flow Security IFS会(1)把变量分成若干安全等级，并(2)规定流动法则。最简单的分级就是分成高、低安全等级 #### Security Level 举例中国保密的四级：绝密&gt;机密&gt;秘密&gt;公开 同时等级并不一定是全序的，比如公司内两个部门可以不互通内部信息，但是最高决策者应当看到所有的信息 这意味着我们可以用lattice对等级进行建模 #### Flow Policy 经典方法是Noninterference policy，它要求”高等级的信息不应该影响(流向)低级信息” 这句话比较抽象，这里的“影响”或许要从信息论的角度来理解。例如a&#x3D;b+c，若a、b均为低级，则c不能为高级(否则可以通过获取a和b来计算出c的值) 同时还提到了两个概念 #### Confidentiality 就是要防止机密信息泄露 #### Integrity 保证Integrity的广义要求是保证数据的准确性(不应被低等级信息污染)、完整性(不应该丢失)、一致性(在传输过程中不应该变化) 狭义地讲，就是要防止危险信息的流入(例如各种注入攻击) 这两种保护可以看成是分别对读&#x2F;写的保护 泄露的情况又分为两种 ### Implicit Flow 考虑如果H信息对程序的控制流产生了影响，且这段受影响的控制流有着对L信息的不同的副作用，那么显然可以通过监听L信息的变化来判断控制流的流向，并间接推断出H信息 例如这样一段代码 ```cpp switch (high) { case 1: case 2: { low &#x3D; 0; break; } case 3: { low &#x3D; 1; break; } case 4: { low &#x3D; 2; break; } default: { low &#x3D; 3; } } ``` 只需观测`low`即可得到`high`的信息 ### Convert&#x2F;Hidden Channels 在计算机系统中传输信息的组件被称为信道(channels) 如果某段代码本来目的并不是传输信息，但最终它传递了某种信息，则称为这是一个隐藏信道 PPT给了四个例子 #### Implicit Flows 通过控制流泄露信息 ```cpp if (high &lt; 0) low &#x3D; 1; else low &#x3D; 2; ``` #### Termination Channels 通过是否结束(运行状态)泄露信息 ```cpp while (high&lt;0) {…} ``` #### Timing Channels 通过运行时间泄露信息 ```cpp if(high&gt;0) SPEND_A_LONG_TIME(); ``` #### Exceptions 通过异常泄露信息 ```cpp if (high&gt;0) throw new Exception(“exception”); ``` 此外还有很多，一些听起来就很牛逼的比如观察缓存命中率来推断一些关键信息(这个要怎么做啊好想知道啊看起来好好玩啊洗礼太洗礼太) 通过对比explicit flow和implicit flow我们可以发现 1. explicit flow泄露的信息不会更少(毕竟全露了)。举例就是在if的控制流泄露中，implicit只泄露了1bit的信息量 2. implicit flow很难实现数据的更改，往往只能获得信息 因此目前的主要研究对象就是显式流的规避 ## Taint Analysis 污点分析首先对数据分类：感兴趣的数据则打上标记，否则没有标记 然后将一些函数&#x2F;方法标记为source，表示污点数据会以函数的返回值进入程序 将一些方法标记为sink，表示这些是我们关注的关键部分 那么这个分析要回答的问题就是：是否有污点数据从source流向了sink？ 可以类比一下动物学中的标志法求群体迁徙路线…</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/08/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B06-CSA/" rel="prev" title="软件分析笔记6 CSA">
+                  <i class="fa fa-chevron-left"></i> 软件分析笔记6 CSA
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/08/13/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B08-Datalog/" rel="next" title="软件分析笔记8 Datalog">
+                  软件分析笔记8 Datalog <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

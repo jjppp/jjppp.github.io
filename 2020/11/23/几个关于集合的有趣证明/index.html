@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在离散数学的第一堂课就被介绍了Set和Proper Class的区别。 与高中内容不同，现代数学中并不是任取一些元素都能组成一个Set，某些东西归在一起只能形成Proper Class（因为这个东西不满足集合的一些性质）  根据ZFC公理系统，我们可以知道关于集合的若干条公理，也就是说满足这些的才是集合，而推断某个东西不是集合常用反证的方法，下面来看几个栗子  1. Prove that the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几个关于集合的有趣证明">
+<meta property="og:url" content="http://example.com/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="在离散数学的第一堂课就被介绍了Set和Proper Class的区别。 与高中内容不同，现代数学中并不是任取一些元素都能组成一个Set，某些东西归在一起只能形成Proper Class（因为这个东西不满足集合的一些性质）  根据ZFC公理系统，我们可以知道关于集合的若干条公理，也就是说满足这些的才是集合，而推断某个东西不是集合常用反证的方法，下面来看几个栗子  1. Prove that the">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-23T03:37:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.170Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/","path":"2020/11/23/几个关于集合的有趣证明/","title":"几个关于集合的有趣证明"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>几个关于集合的有趣证明 | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            几个关于集合的有趣证明
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2020-11-23
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="几个关于集合的有趣证明 | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          几个关于集合的有趣证明
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-23 11:37:00" itemprop="dateCreated datePublished" datetime="2020-11-23T11:37:00+08:00">2020-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>在离散数学的第一堂课就被介绍了Set和Proper Class的区别。 与高中内容不同，现代数学中并不是任取一些元素都能组成一个Set，某些东西归在一起只能形成Proper Class（因为这个东西不满足集合的一些性质） 根据ZFC公理系统，我们可以知道关于集合的若干条公理，也就是说满足这些的才是集合，而推断某个东西不是集合常用反证的方法，下面来看几个栗子 1. Prove that the set of all sets is a proper class. 这个比较简单。假设这东西是一个集合，记为 $S$，那么根据Cantor’s Theorem我们有 $|S|&lt;|2^S|$。 而根据幂集公理(Axiom of power set)可知，$2^S$ 也是一个集合，于是有 $2^S\subset S$，也就是 $|2^S|\le |S|$，矛盾 2. Prove that the set of all cardinals is a proper class. 这周的作业，想了很久。。 首先要知道任意多个集合的并、一个集合的幂集都是集合，并且任意集合都唯一对应着一个cardinal，知道这些就比较好做了。 和上面的方法类似，假设这是一个集合 $S$，那么根据并集公理(Axiom of union)我们有 $T&#x3D;\cup S$ 也是一个集合，于是 $|T|\in S$。 因为 $\forall x\in S$ 都有 $x\subset T$，于是得到 $\forall x\in S\ \ \ |x|\le |T|$ 然而 $|T|&lt;|2^T|\in S$，这就推出了一个矛盾。 关于the set of all ordinals是一个 proper class的证明和这个类似 3. Prove that for cardinals $A$ and $B$，$A+B&#x3D;\max(A,B)$ where at least one of them is infinite 网上有很多证明，然而我都看不太懂，希望有别的做法的朋友可以交流交流;-P 不妨设$A\ge B$，那么显然有$A\le A+B\le A+A$，我们只需要证明$A&#x3D;A+A$即可，注意这里的A是cardinal 由于A是一个cardinal，那么它同时也是一个ordinal。对于任意ordinal $x$，$\exist \alpha,\beta\ \ s.t.\ \ x&#x3D;\alpha+\beta$，其中$\alpha$是一个limit ordinal，$\beta\in\mathbb N$ 考虑这样一个映射$f(\alpha+\beta)&#x3D;\left\{\begin{aligned}\left(0,\alpha+\beta\right)&amp;,&amp;\beta &amp;&#x3D;2k\\\left(1,\alpha+\beta\right)&amp;,&amp;\beta&amp;&#x3D;2k+1\end{aligned}\right. \left(k\in\mathbb Z\right)$ 显然$\forall x\in A$，$x$ is an ordinal. 那么$A&#x3D;A+A$等价于证明$|A|&#x3D;|\left(\left\{0\right\}\times A\right)\cup\left(\left\{1\right\}\times A\right)|$ 不难发现$f:A\mapsto\left(\left\{0\right\}\times A\right)\cup\left(\left\{1\right\}\times A\right)$是一个双射，于是就证明完了。</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/31/SICP-%E4%BD%9C%E4%B8%9A2-5/" rel="prev" title="SICP 作业2.5">
+                  <i class="fa fa-chevron-left"></i> SICP 作业2.5
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/" rel="next" title="期末小作业——2048小游戏">
+                  期末小作业——2048小游戏 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

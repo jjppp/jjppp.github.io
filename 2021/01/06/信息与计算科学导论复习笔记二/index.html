@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="##集合的大小 有限集合的大小很容易比较，只需要数一数，比一比就完了 而无限集不能这么做。我们在这里规定集合$A$与$B$大小相等当且仅当存在$f: A\mapsto B$为双射  定理：无限集至少和它的一个真子集有双射 证明：考虑$A$，由选择公理，我们可以取出$B\subset A$且$B$可数，那么$f:A\mapsto A\backslash B_0$就可以取$f(x)&#x3D;\left\{\b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息与计算科学导论复习笔记二">
+<meta property="og:url" content="http://example.com/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="##集合的大小 有限集合的大小很容易比较，只需要数一数，比一比就完了 而无限集不能这么做。我们在这里规定集合$A$与$B$大小相等当且仅当存在$f: A\mapsto B$为双射  定理：无限集至少和它的一个真子集有双射 证明：考虑$A$，由选择公理，我们可以取出$B\subset A$且$B$可数，那么$f:A\mapsto A\backslash B_0$就可以取$f(x)&#x3D;\left\{\b">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-06T14:44:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.162Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/","path":"2021/01/06/信息与计算科学导论复习笔记二/","title":"信息与计算科学导论复习笔记二"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>信息与计算科学导论复习笔记二 | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            信息与计算科学导论复习笔记二
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-01-06
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="信息与计算科学导论复习笔记二 | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          信息与计算科学导论复习笔记二
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-06 22:44:00" itemprop="dateCreated datePublished" datetime="2021-01-06T22:44:00+08:00">2021-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>##集合的大小 有限集合的大小很容易比较，只需要数一数，比一比就完了 而无限集不能这么做。我们在这里规定集合$A$与$B$大小相等当且仅当存在$f: A\mapsto B$为双射 定理：无限集至少和它的一个真子集有双射 证明：考虑$A$，由选择公理，我们可以取出$B\subset A$且$B$可数，那么$f:A\mapsto A\backslash B_0$就可以取$f(x)&#x3D;\left\{\begin{aligned}\begin{equation}B_{i+1}, x&#x3D;B_i\\x,x\not\in B\end{equation}\end{aligned}\right.$ ##康托定理 集合$S$总是小于它的幂集$2^S$，定义$2^S&#x3D;\left\{T|T\subset S\right\}$ 这里蕴含了一个幂集公理，即集合的幂集还是集合 证明：假设存在一个双射$f:S\mapsto 2^S$，那么取$T&#x3D;\left\{x|x\not\in f(x)\right\}$，显然这个集合不同于任何双射中的值域，这就得到了一个矛盾 这个方法叫对角线法则，很好用~ ##可数与不可数 定义$S$可数(countable)当且仅当$\exists f:\mathbb N\mapsto S$为双射 定理：$\mathbb R$不可数 证明：这是别处看来的，觉得更好理解一些(虽然没有用到对角线法则) 这里先只证明$[0,1]$不可数。反证法：假设可数，则存在一种列举方式使得我们能穷尽所有的实数，记这个数列为$\left\{a_n\right\}$ 那么对于$a_0$，我们可以把区间划分为$[0,\frac{1}{3}],[\frac{1}{3},\frac{2}{3}],[\frac{2}{3},1]$，则至多有两个区间包含了$a_0$，取剩下的那个区间为下一次的操作区间，重复上述过程 这样我们就得到了一系列区间套，最终会收敛到一个点$\xi$ $\xi\in\mathbb R$，但是$\forall i$都有$a_i\neq \xi$，这样就推出了矛盾 ##Cantor-Bernstein定理 其实还有一个名字的，不会写…… 这个定理很直观：若$|A|\le|B|$且$|B|\le|A|$则$|A|&#x3D;|B|$ 证明用到了巴拿赫定理 ##Banach定理 若存在$f:A\mapsto B$和$g:B\mapsto A$都是单射，则 存在$A_0,A_1$满足$A_0\cap A_1&#x3D;\varnothing$，$A_0\cup A_1&#x3D;A$ 存在$B_0,B_1$满足$B_0\cap B_1&#x3D;\varnothing$，$B_0\cup B_1&#x3D;B$ 使得$f\left(A_0\right)&#x3D;B_1$，$g\left(B_0\right)&#x3D;A_1$ 证明有点长，先去吃个饭~ 剩下的内容可以看之前写过的集合大小比较的文章，差不多都齐了……</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" rel="prev" title="信息与计算科学导论复习笔记一">
+                  <i class="fa fa-chevron-left"></i> 信息与计算科学导论复习笔记一
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/" rel="next" title="信息与计算科学导论复习笔记三">
+                  信息与计算科学导论复习笔记三 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

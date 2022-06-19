@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="## 前话  开了SICP的坑，记一下lisp的方言scheme的一些东西  我的笔记本是manjaro，本来折腾了半天装不上mit-scheme，后面发现直接自带guile就蛮能用的(能用就行)    一个很重要的点就是求值的时候有两种规则：正则序和应用序，分别表示先替换后计算和先计算后替换。  一般的scheme解释器用的都是应用序，这样可以减少一部分重复运算(具体例子见后)    ## 基本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scheme学习笔记">
+<meta property="og:url" content="http://example.com/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="## 前话  开了SICP的坑，记一下lisp的方言scheme的一些东西  我的笔记本是manjaro，本来折腾了半天装不上mit-scheme，后面发现直接自带guile就蛮能用的(能用就行)    一个很重要的点就是求值的时候有两种规则：正则序和应用序，分别表示先替换后计算和先计算后替换。  一般的scheme解释器用的都是应用序，这样可以减少一部分重复运算(具体例子见后)    ## 基本">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-15T05:10:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.094Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/","path":"2021/08/15/scheme学习笔记/","title":"scheme学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>scheme学习笔记 | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            scheme学习笔记
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-08-15
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="scheme学习笔记 | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          scheme学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-15 13:10:00" itemprop="dateCreated datePublished" datetime="2021-08-15T13:10:00+08:00">2021-08-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>## 前话 开了SICP的坑，记一下lisp的方言scheme的一些东西 我的笔记本是manjaro，本来折腾了半天装不上mit-scheme，后面发现直接自带guile就蛮能用的(能用就行) 一个很重要的点就是求值的时候有两种规则：正则序和应用序，分别表示先替换后计算和先计算后替换。 一般的scheme解释器用的都是应用序，这样可以减少一部分重复运算(具体例子见后) ## 基本操作 记一个操作为 `op`，则 `(op a1 a2 … an)` 的值就是分别递归对 `a1, a2 … an` 求值，然后将 `op` 作用于它们的值 比如说 `(&#x2F; 3 2)` 就是 `3&#x2F;2`。scheme中的整数相除默认是有理分数 ## 分支 ```scheme (cond ((cond1) (exp1)) ((cond2) (exp2)) (else (exp3))) ``` ```scheme (if (cond1) (exp1) (exp2)) ``` 与一般的过程不同，这俩都是从上到下分别对 `(cond)` 表达式求值，然后选择第一个为真的入口对 `exp ` 求值 ## 过程&#x2F;函数 ```scheme (define (max a b) (if (&lt; a b)) b a) ``` 与 `cond` 和 `if` 不同，函数在解释器中的行为是：先求值，后替换，即使是 `cond` 和 `if` 的封装也是这样。**因此会出现一些不同的行为** `define` 同样可以用来定义变量，比如说 ```scheme (define PI 3.1415926) ``` 但我更愿意把这个看成是一个**常函数** 有了这些就足够写出和一般C程序设计基础课程里会出现的、等价的程序了！ 然后就涉及到了一个素数测试的小程序 ## 费马小定理 $p\text{ is prime}\Rightarrow a^p\equiv a\pmod p\text{, }\forall 1\leqslant a&lt; p$ 定理的初等证明比较麻烦，但是在群论里就能很简单地说明 记 ${\mathbb Z_p}^*&#x3D;\left\{\;a|0\leqslant a来控制递增&#x2F;递减 ```scheme (define (sort rel ls) (define (merge la lb) (cond ((null? la) lb) ((null? lb) la) ((rel (car la) (car lb)) (cons (car la) (merge (cdr la) lb))) (else (cons (car lb) (merge la (cdr lb)))))) (define (split predicate lst) (if (null? lst) (cons #nil #nil) (let ((cur (car lst)) (result (split predicate (cdr lst)))) (if (predicate cur) (cons (cons cur (car result)) (cdr result)) (cons (car result) (cons cur (cdr result))))))) (if (not (&lt; 1 (length ls))) ls (let ((res-pair (split (lambda (x) (not (rel x (car ls)))) ls))) (merge (cons (caar res-pair) (sort rel (cdar res-pair))) (sort rel (cdr res-pair)))))) ``` ## 符号求导 是’的用法的最后作业，写了完全括号的中缀求导(加法、乘法、幂函数法则) 不完全括号的写法大概是和sum-snd取列表的rest是一样的，因此这里先没写 ```scheme (define (sum? exp) (and (pair? exp) (eq? ‘+ (cadr exp)))) (define (mul? exp) (and (pair? exp) (eq? ‘* (cadr exp)))) (define (exponentiation? exp) (and (pair? exp) (eq? ‘** (cadr exp)))) (define (&#x3D;num? a b) (and (number? a) (number? b) (&#x3D; a b))) (define (make-sum a b) (cond ((&#x3D;num? a 0) b) ((&#x3D;num? b 0) a) ((and (number? a) (number? b)) (+ a b)) (else (list a ‘+ b)))) (define (make-mul a b) (cond ((&#x3D;num? a 1) b) ((&#x3D;num? b 1) a) ((or (&#x3D;num? a 0) (&#x3D;num? b 0)) 0) (else (list a ‘* b)))) (define (make-exponentiation base exponent) (cond ((&#x3D;num? exponent 0) 1) ((&#x3D;num? exponent 1) base) (else (list base ‘** exponent)))) (define (sum-fst exp) (car exp)) (define (sum-snd exp) (caddr exp)) (define mul-fst sum-fst) (define (mul-snd exp) (caddr exp)) (define base sum-fst) (define (exponent exp) (caddr exp)) (define (deriv exp var) (cond ((number? exp) 0) ((symbol? exp) (if (eq? exp var) 1 0)) ((exponentiation? exp) (make-mul (make-mul (exponent exp) (make-exponentiation (base exp) (- (exponent exp) 1))) (deriv (base exp) var))) ((sum? exp) (make-sum (deriv (sum-fst exp) var) (deriv (sum-snd exp) var))) ((mul? exp) (make-sum (make-mul (deriv (mul-fst exp) var) (mul-snd exp)) (make-mul (mul-fst exp) (deriv (mul-snd exp) var)))))) ``` ## eq?和equal? 书里面讲得比较奇怪，有点玄学 其实就和java里判断两个引用指向的对象是否相等是一样的 `pA &#x3D;&#x3D; pB` 表示`pA`和`pB`指向同一个对象，这就和`eq?`的语义相同 `pA.equals(pB)`表示`pA`和`pB`指向的对象在内容意义上是相等的，在scheme中指的就是结构和对应位置的内容是同一个对象，也就是`euqal?`的含义 这也是为什么判断两个list用`eq?`会得到`#f`，这是因为两个list是不同的对象 ## 数据导向的程序设计和可加性 这部分讲得挺好的。在写软件分析作业的时候就遇到了要判断某个对象`Obj`的类，然后分类操作的情况。然后那个lab要对11种子类进行讨论….这种时候简单的`if-else-if`分支就很麻烦了，对后期的维护和可读性都没有好处 书上讲的是对数据打标签来实现分流处理，事实上在OO语言就是把过程写进每个类的内部，然后用一个统一的覆写方法，这样实际上就是封装</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/" rel="prev" title="软件分析笔记10 Soundiness">
+                  <i class="fa fa-chevron-left"></i> 软件分析笔记10 Soundiness
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/" rel="next" title="DFA到等价正则表达式的转化">
+                  DFA到等价正则表达式的转化 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

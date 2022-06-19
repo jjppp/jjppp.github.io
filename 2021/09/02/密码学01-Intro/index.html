@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="密码学关心的问题和应用  * Secrecy，即信息是否泄露 * Integrity，即信息是否被篡改 * Oblivious Transfer(不经意传输) * Zero Knowledge Proof(零知识证明) * Secure Multi-party Computation(多方计算) * Digital Currency(数字货币)    如何定义安全？CPA-secure、CCA-s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="密码学01 Intro">
+<meta property="og:url" content="http://example.com/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="密码学关心的问题和应用  * Secrecy，即信息是否泄露 * Integrity，即信息是否被篡改 * Oblivious Transfer(不经意传输) * Zero Knowledge Proof(零知识证明) * Secure Multi-party Computation(多方计算) * Digital Currency(数字货币)    如何定义安全？CPA-secure、CCA-s">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-02T14:02:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:47:11.648Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/","path":"2021/09/02/密码学01-Intro/","title":"密码学01 Intro"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>密码学01 Intro | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            密码学01 Intro
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-09-02
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="密码学01 Intro | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          密码学01 Intro
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-02 22:02:00" itemprop="dateCreated datePublished" datetime="2021-09-02T22:02:00+08:00">2021-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>密码学关心的问题和应用 * Secrecy，即信息是否泄露 * Integrity，即信息是否被篡改 * Oblivious Transfer(不经意传输) * Zero Knowledge Proof(零知识证明) * Secure Multi-party Computation(多方计算) * Digital Currency(数字货币) 如何定义安全？CPA-secure、CCA-secure…. 观点一： &gt; Only I know the encryption algorithm and keys, so it’s safe. 观点二： &gt; It would takes 100 years to break the system for an adversary with a currently most advanced computer using the best known method. 严格证明: Computationally Security Game-Based Proof Simulation-Based Proof 如何取随机数？什么是伪随机序列？如何衡量伪随机序列的随机性？ Oblivious Transfer 你可以找女孩A和B中其中一个女孩的号码，但是不能让另一个人知道 ## 一些概念 现代加密方法包括如下几个部分： $\mathcal M$ 表示信息空间，即所有可以加密的信息的集合 $\mathcal K$ 表示密钥空间，即所有密钥组成的集合 $\text{Enc,Dec}$ 表示加密、解密方法 $\text{Gen}$ 表示密钥生成器 一个比较显然的要求是 $Dec(Enc(M))&#x3D;M$，即加密后解密的信息要保真 ## Classical Cipher 给了几个例子 ### 凯撒密码(Caesar Cipher) 定义函数 $next:\Sigma\mapsto\Sigma$ 为 按照某种顺序排列 $\Sigma$ 的内容，某字符的下一个字符是什么 然后构造映射 $f_k&#x3D;next^k$，其中 $k$ 是非 $0$ 常正整数，那么 $f_k$ 和 ${f_k}^{-1}$ 就是一对加密和解密算法了。 $k&#x3D;3$ 的情况就是经典凯撒密码 这个密码问题很大 * 首先这是一个固定的算法 * 其次 $k$ 的值域很小，只需要做 $26$ 次就可以得到所有情况 由此自然引出 ### Sufficient Key Space Principle(充分密钥空间原则) 任何加密算法必须有足够大的密钥空间，使得不会被暴力枚举破解。 一个原则是密钥要尽可能地长 但是足够大的密钥空间并不一定能保证安全，MAS加密是一个例子 ### ROT-13 取 $k&#x3D;13$ 的凯撒密码 这个密码的一个好处在于，$f_{13}&#x3D;{f_{13} }^{-1}$，即加密和解密是一样的 ### Mono-alphabetic Substitution Cipher(单字母替换密码) 构造一个permutation $\pi:\Sigma\mapsto\Sigma$ 那么 $\pi$ 和 ${\pi}^{-1}$ 就是加密和解密。这里permutation 的意义在于，如果不是双射的话，就无法解密了 凯撒密码可以看成是这个的特例。这类密码的一大特色就是要有一个对应小本本 容易计算，MAS密码的密钥空间就是排列数量 $\left|\Sigma\right|!$。取小写字母表就是 $26!\approx 2^{88}$ MAS的最大缺点在于，它永远将相同字符加密成相同的字符(双射)，即它完全保存了原文的所有信息。这使得第三方可以基于统计学原理来进行攻击。例如说”u常在q后，h很可能在t后”之类的统计学规律，常见的模式会被保留，甚至说直接用字母频率的相对大小进行匹配。 ### Poly-alphabetic Substitution Cipher(多字母替换密码) 考虑构造这样构造的排列 $\pi:\Sigma\times\Sigma\mapsto \Sigma\times\Sigma$ 也就是我们把每两位字符映射为两位字符。这样可以部分解决相同字母映射下的象永远相同的问题 缺点也很明显，我们需要更大的空间储存映射表 ### Vigenere Cipher 这个密码首先需要一个catch phrase，例如说 $phrase&#x3D;cafe$ 然后构造 $\pi:\Sigma\mapsto\Sigma$，规定 $\pi(code_i)&#x3D;f_{phrase_{i\pmod |phrase|} }(code_i)$ 可以发现这实际上就是一个特殊的PAS密码，即我们每 $|phrase|$ 位造一个映射，并且每个映射都是相同的 #### VC的破解 分成几个步骤 1. 求$phrase$的长度 $m$ 2. 把密文每 $m$ 位分组，那么模 $m$ 同余的位放在一起就是一个$k$未知的凯撒密码了 现在考虑怎么破译单次的凯撒密码 我们当然可以枚举$26$种可能的密钥，然后找到make sense的明文 但是由于判定明文是否make sense是不那么平凡的，因此书上给出了另一个可以自动化完成的做法 定义 $p_i$ 表示第 $i$ 个字符在英语中出现的频率，$q_i$ 表示第 $i$ 个字符在密文中出现的频率，假设密钥是 $k$，那么有 $\sum {p_i}^2\approx \sum{q_{i+k \text{ mod } 26} }^2$ 于是我们可以计算不同key对应的 $\sum p_iq_{i+k\text{ mod } 26}$，然后按照和期望值的差来排序 那么就可以枚举 $m$，然后对模 $m$ 相同的位做凯撒的破译，最后合并就好了 有一个小小的优化，它源自如下观察： 若两个位置 $i,j$ 满足 $i\equiv j\pmod {m}$，且明文对应的第 $i,j$ 位相同，那么密文的对应位置上的字符也相同 那么就可以寻找长度较短的、出现了多次的密文的子串，$m$ 一定是用它们之间的距离的一个因数。还可以多次寻找重复的pattern，枚举这些距离的GCD的因数来求 $m$ ## Modern Cipher 古典密码更像是艺术，缺乏科学的分析 现代密码学的目标在于：给定一个密码构造，可以严格证明它是安全的 需要证明，首先要： * 定义什么是”安全” * 需要给出一些假设(可以是未被证明的猜想) 安全性取决于安全目标(security goal)和攻击模型(threat model)，即不同的目标和不同水平的攻击，会使得安全性的定义发生变化。 ### security goal 这里用secure encryption举例 前几个要求相对而言比较基本，并且非常显然 1. 攻击者无法通过密文获得密钥 2. 攻击者无法通过密文获得明文 3. 攻击者无法破译任意明文的任意字符 4. 无论攻击者掌握了多少信息，密文不会泄露除此之外的任何信息 ### threat model 1. Cipher text-only attack: 攻击者只知道密文 2. Known-plain text attack: 即已知明文攻击，攻击者在攻击前可以知道若干明文到密文的单向映射(比如说加密文件有固定的格式，有已知的片段) 3. Chosen-plain text attack: 攻击者可以选择知道若干明文到密文的单向映射(比如说加密设施是公开的，那么攻击者就可以任意获得任意明文对应的密文，但反过来不行) 4. Chosen-cipher text attack: 攻击者可以选择知道若干密文到明文的映射(比如说解密设施是公开的) ### assumptions 加密解密问题通常依赖于一些难以计算&#x2F;不存在高效算法的问题 * 大数分解问题 * SAT问题 选择假设的时候需要注意这几个点 1. 选择虽未被证明，但是经过长时间检验的假设 2. 选择更弱的假设。若存在两个假设A,B，其中A能推出B，那么选择A而不是B。这样在B被证伪后，A仍然坚挺。如果两个假设不可比较，那么选择被研究得更深入的假设 3. 在假设被证伪后，需要针对性地研究它在证明一个加密方法时扮演的角色 ### provable security 基于我们的假设，针对特定的攻击者，达到了一些安全目标。这样的安全性被称为可证明的安全性 通常可证明的安全性是对现实中的安全性的一种建模，即仅针对重要部分形式化证明。 ## Kerckhoffs’ Principle 古典密码的安全性很大程度上基于信息的不对称(即我用的什么加密方式，攻击者是不知道的) 柯克霍夫原则： &gt; The cipher method must not be required to be secret, and it must &gt; &gt; be able to fall into the hands of the enemy without inconvenience. 即现代密码的安全性仅依赖于密钥，而不是加密方式 这么要求的理由有以下几个： 1. 相比起同时保密密钥和加密方法，只保存密钥要方便得多 2. 相比起更改加密方法，定期更换密钥更容易保持安全 3. 统一的加密方法更容易实现标准化 也就是说，尽量使用公开、经过验证的加密策略，配以定期更换的密钥，更能保护安全。所谓home-brewed算法很多其实经不起验证</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" rel="prev" title="编译原理 笔记3 语法分析">
+                  <i class="fa fa-chevron-left"></i> 编译原理 笔记3 语法分析
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8902-Math/" rel="next" title="形式语义02 Math">
+                  形式语义02 Math <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

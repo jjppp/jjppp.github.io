@@ -1,98 +1,285 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">jjppp</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="## 图染色(Coloring)  #### 染色数(Coloring Index)  图的染色分为点染色(vertex coloring)和边染色(edge coloring)  点染色指的是构造映射 $f_k\colon V(G)\mapsto \left\{\;1,2,\ldots k\;\right\}$，一个合法的染色(proper coloring) 则要求映射满足 $\forall">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论笔记3 染色">
+<meta property="og:url" content="http://example.com/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="## 图染色(Coloring)  #### 染色数(Coloring Index)  图的染色分为点染色(vertex coloring)和边染色(edge coloring)  点染色指的是构造映射 $f_k\colon V(G)\mapsto \left\{\;1,2,\ldots k\;\right\}$，一个合法的染色(proper coloring) 则要求映射满足 $\forall">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-04T08:12:00.000Z">
+<meta property="article:modified_time" content="2022-06-19T01:36:58.126Z">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/","path":"2021/06/04/图论笔记3-染色/","title":"图论笔记3 染色"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图论笔记3 染色 | jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">jjppp</p>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-                
-                <div class="post-main">
 
-    
-        <div class="post-main-title">
-            图论笔记3 染色
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
         </div>
-        <div class="post-meta">
-            2021-06-04
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
         </div>
-    
-
-    
-      
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/04/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B03-%E6%9F%93%E8%89%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图论笔记3 染色 | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图论笔记3 染色
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-04 16:12:00" itemprop="dateCreated datePublished" datetime="2021-06-04T16:12:00+08:00">2021-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
     
     
-    <div class="post-md">
+    
+    <div class="post-body" itemprop="articleBody">
         <p>## 图染色(Coloring) #### 染色数(Coloring Index) 图的染色分为点染色(vertex coloring)和边染色(edge coloring) 点染色指的是构造映射 $f_k\colon V(G)\mapsto \left\{\;1,2,\ldots k\;\right\}$，一个合法的染色(proper coloring) 则要求映射满足 $\forall xy\in E(G)\Rightarrow f_k(x)\neq f_k(y)$，记 $k$ 为这个染色方案的染色数(chromatic number)。通常我们只关心最小的染色数，记作 $\chi(G)$ 下面讨论的染色都指的是proper coloring 边染色则是类似地构造 $f_k\colon E(G)\mapsto \left\{\;1,2,\ldots k\;\right\}$，proper的则要求满足 $\forall e_1,e_2\in E(G),\; e_1\cap e_2\neq\varnothing\Rightarrow f_k(e_1)\neq f_k(e_2)$ 类似地定义 $\chi\prime (G)$ 为最小的边染色数 关于染色最经典的问题就是著名的“四色定理”的证明。定理的证明非常长…..有兴趣也不会去看的 #### 团(clique)和独立集(independent set) 团的定义为 $G$ 的完全子图，即 $H\subseteq G$ 且 $2||H||&#x3D;|H|(|H|-1)$ 定义clique number为最大团的大小，记为 $\omega(G)&#x3D;\max \left\{\;H \text{ is a clique}\mid H\subseteq G\;\right\}$ 定义反团(co-clique)为 $\overline G$ 的团，即 $G$ 的一个独立集。同样定义 co-clique number 为最大独立集的大小，记为 $\alpha(G)$ 容易有如下数量关系： 1. $\alpha(G)\cdot \chi(G)\geqslant |G|$ 2. $n-\alpha(G)\geqslant \chi(G)-1$ 3. $\chi(G)\geqslant \omega(G)$ 4. $\binom{\chi(G)}{2}\geqslant ||G||$ 1直接由每个独立集染上同一种颜色得到 2的意思是给最大的独立集染上一种颜色，剩下的点用 $\chi(G)-1$ 种颜色染 3的意思是团内部的颜色互不相同 4的意思是同色点之间不能连边，因此至多连 $\binom{\chi(G)}{2}$ 条边 ### 图的色多项式 对图 $G$ 用 $k$ 种颜色染色(我们认为每个节点都不一样)的方案数是关于 $G$ 和 $k$ 的函数，我们不妨记作 $F(G,k)$ 对 $|G|$ 进行归纳。当 $|G|&#x3D;1$ 的时候 $F(G,k)&#x3D;k$ 设当 $|G|i,\;v_j\in N(v_i)$。 为了好记我把这个叫排列引理 只需要构造出这样的序列即可。我们取 $G$ 中以 $s$ 为根的生成树 $T$，每次从 $T$ 中取出叶子，这样就能保证每个点在被放进序列时都有至少一个邻居在它的后面，且根是一定放在最后的。 这样结合贪心染色可以得到 $\chi(G)\leqslant \max\left\{\;\text{deg}(s)+1,\Delta(G-s)\;\right\}$ #### 引理二 若非完全图 $G$ 满足 $\delta(G)\geqslant 3$ 且 $\kappa(G)\geqslant 2$，那么 $\exists x,y\in V(G)$ 使得 $\exists v\in V(G),\; xv,yv\in E(G)\text{ and } xy\not\in E(G)$ 并且有 $G-\left\{\;x,y\;\right\}$ 仍然连通。 取 $G$ 的一个极小分隔集 $T$，则 $|T|&#x3D;\kappa(G)\geqslant 2$。记 $C$ 为 $G-T$ 形成的连通分支的集合，那么有 $\forall x\in T$，$\forall c_i\in C,\; N_G(x)\cap c_i\neq\varnothing$ 于是取 $v\in T$，令 $x,y$ 分别取自不同的分支，那么必然有 $xy\not\in E(G)\text{ and } xv,yv\in E(G)$。 并且删去 $x,y$ 后它们所属的分支仍然连通($\kappa(c_x)\geqslant 2\text { and }\kappa(c_y)\geqslant 2$)，$\left\{\;c_x,c_y,x\;\right\}$ 仍然连通($\text{deg}(x)\geqslant 3$)，得到一个矛盾 ### 染色数的平凡上界 任意图 $G$ 都有 $\chi(G)\leqslant \Delta (G)+1$。 这个上界直接由贪心算法得到。 ### Brooks Theorem $G$ 是连通图，那么 $\chi(G)&#x3D;\Delta(G) + [G \text{ is complete or an odd cycle}]$，其中 $[x]&#x3D;1$ 当且仅当表达式 $x$ 为真。 首先 $G$ 是完全图的情况很显然，奇数圈的情况也很简单，反证法就可以说明不存在方案了。 然后 $\Delta(G)\leqslant 2$ 的情况也很好讨论，就是一个圈，因此下面讨论的都是 $\Delta(G)\geqslant3$ 的图。 对于 $G$ 不是完全图也不是奇数圈的情况我们对 $|G|$ 归纳证明： 当 $|G|&#x3D;3$ 时，$G$ 不是完全图也不是圈，因此 $G$ 只能是链，染色就很显然了； 设当 $|G|&lt; k$ 时命题成立，则取 $|G|&#x3D;k$ 的图，分如下几种情况讨论： 1. $\kappa(G)&#x3D;1$，即 $G$ 存在一个割点 $x$，则 $G&#x3D;G_1\cup G_2$，其中 $G_1\cap G_2&#x3D;\left\{\;x\;\right\}$。那么我们对 $G_1$、$G_2$ 分别染色，由归纳假设得到他们方案的并就是 $G$ 的一个合法染色方案，因此 $\chi(G)&#x3D;\max\left\{\;\chi(G_1),\chi(G_2)\;\right\}\leqslant\max\left\{\;\Delta(G_1),\Delta(G_2)\;\right\}\leqslant \Delta(G)$ 得证。 2. $\kappa(G) \geqslant 2$，且存在 $x\in V(G)$ 使得 $\text{deg}(x)&lt;\Delta(G)$，则根据引理一构造 $x$ 在最后的序列并贪心染色，这样就有 $\chi(G)\leqslant\Delta(G)$ 3. $\kappa(G)\geqslant 2$，且 $\forall x\in V(G)$ 都有 $\text{deg}(x)&#x3D;\Delta(G)&#x3D;\delta(G)$，则根据引理二存在 $x,y,v\in V(G)$ 使得 $xv,yv\in E(G)$ 且 $xy\not\in E(G)$。我们把 $x,y$ 染上同种颜色，根据引理一把 $v$ 放在序列末尾，这样就可以贪心地染出 $\chi(G)\leqslant \Delta(G)$ 了。 ### 图的定向(orientation) 图定向的严格定义是构造映射 $f\colon E(G)\mapsto V(G)\times V(G)$，简单地说就是给无向边定方向 我们称有向无环图(Directed Acyclic Graph) 为DAG，DAG有许多优秀的性质 #### DAG的染色算法 对于给定的有向无环图 $G$，我们给出如下染色算法步骤： 1. 我们需要维护一个映射 $g\colon V(G)\mapsto \mathbb N^+$，$g(x)$ 表示以节点 $x$ 为终点的最长路长度。 2. 找到 $x\in V(G)$ 使得 $x$ 的入度为0，在 $N_G(x)$ 中找到已经走过的点中 $g(v)$ 的最大值，令 $g(x)&#x3D;g(v)+1$ 3. 删去 $x$，标记 $x$ 已经走过了。若还有未经过的点则返回步骤2 细心的朋友们很快就可以发现这是一个拓扑排序上的计数。很显然 $g$ 下任意相邻节点的函数值都不相等。于是我们caim：找到的映射 $g$ 就是一个染色方案。 不妨记 $p(G)$ 表示DAG图 $G$ 中最长路的长度，那么有 $\chi(G)\leqslant p(G)$ 复杂度是可以做到 $\Theta(n+m)$ 的 ### 利用图定向给出染色数的紧界 不妨设 $H$ 是图 $G$ 的任意一个定向，$K$ 是 $H$ 极大的不含有向圈的子图，那么有： $\chi(G)\leqslant p(K)$，并且存在一个定向使得它们**恰好相等** 这个结论是很强的。不等号的部分在DAG的染色中已经给出，我们只需要考虑 $E(G)\backslash E(K)$ 中的边加入后会不会产生相同颜色的相邻节点就好了。由 $K$ 的定义可知 $\forall uv\in (E(G)\backslash E(K))$，有 $K+uv$ 会产生一个有向圈，即 $K$ 中存在一条 $v-u$ 有向路，这保证了 $g(v)\neq g(u)$ 下面证明存在一个定向的极大无圈子图 $K$ 使得 $p(K)&#x3D;\chi(G)$。我们只需要证明 $p(K)\leqslant\chi(G)$ 首先用 $\chi(G)$ 给 $G$ 染色，然后对 $G$ 定向：若 $uv\in E(G)$ 有 $c(u)</p>
 <!-- more -->
 
     </div>
 
-</div>
+    
+    
+    
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+    <footer class="post-footer">
 
+        
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/01/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/" rel="prev" title="图论笔记1 基本概念&定义">
+                  <i class="fa fa-chevron-left"></i> 图论笔记1 基本概念&定义
+                </a>
             </div>
-        </div>
-    </body>
+            <div class="post-nav-item">
+                <a href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B01-Intro/" rel="next" title="软件分析笔记1 Intro">
+                  软件分析笔记1 Intro <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>

