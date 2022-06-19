@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      C语言学习笔记 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">C语言学习笔记</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2020-12-27 00:08:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>excerpt: "更新：因为开始写PA2了，因此决定重回这个坑，顺便记录一下解决一些C问题的方法，不一定和语法相关---oi 用的是 C-with-STL... 感觉自己对这个看起来很单纯的语言仍然不够了解，包括与 C++ 不同的语法、宏(macro)的技巧、指针的技巧等等# 语法## <code>enum</code><code>enum</code>的特点来引入最大下标开数组<code>\nenum &#123;PC,R1,R2,...,R7,R_SIZE&#125;;\n\n</code><code>R_SIZE</code>天然就是最大下标## 数组初始化。通常会有这样的情形：我们需要一个lookup-table，并且希望这是const的，但是实际上有用的lookup项很少(比如说为每个二元运算分配一个优先级)<code>c\nenum TOKENS &#123;\n\t// blah blah blah....\n&#125; ;\n\n// priority for _binary operators_\nstatic const int priority[512] = &#123;\n  [TK_OR] = 4,\n  \n  [TK_AND] = 5,\n  \n  [TK_NEQ] = 9,\n  [TK_EQ] = 9,\n  \n  [TK_LEQ] = 10,\n  [TK_GEQ] = 10,\n  [TK_LT] = 10,\n  [TK_GT] = 10,\n  \n  ['+'] = 12,\n  ['-'] = 12,\n  \n  ['*'] = 13,\n  ['/'] = 13,\n  ['%'] = 13,\n&#125;;\n</code>## struct(好严格..) <code>c\nstruct MyStruct &#123;\n      int tmp;\n&#125; ;\n\nstruct MyStruct a;\n</code><code>c\ntypedef struct tmpMyStruct &#123;\n    tmpMyStruct *p;\n    int tmp;\n&#125; MyStruct;\n\nMyStruct a;\n</code><code>struct</code>定义为一个类型，并且引入了一个中间名字<code>tmpStruct</code>，这使得我们可以在结构体中定义结构体变量(考虑一个指针节点的组成)## <code>malloc</code>/<code>free</code>++用的更多的是<code>new</code>和<code>delete</code>，C里面用的是<code>malloc</code>和<code>free</code><code>c\ntypedef struct tmpNode &#123;\n      struct tmpNode *next;\n      int value;\n&#125; Node;\n\nNode *head;\n</code><code>head</code>指针分配内存空间，用的就是<code>c\nhead = (Node*) malloc(sizeof(Node));\n</code><code>Node</code>类<code>new</code>了一个对象，不带初始化函数，这个还需要在自己写的初始化函数里再<code>malloc</code>一次，返回一个对象的指针，在<code>free</code>的时候需要自己实现对象的析构：比如说<code>free</code>一棵红黑树，比如说<code>free</code>一个链表。通常递归<code>free</code>掉所有节点就够了## <code>const</code> 数组下标，因为这是一个只读变量而不是常量，通常我们会用#define## bool99以后才有的，如果要用true和false需要引用stdbool.h，或者自己define## 逗号表达式，一段逗号表达式按顺序从左到右求值，一整段逗号表达式的值由最右边的式子决定<code>(a = 3, a *= 2)</code>的值就是<code>6</code>## <code>static</code>静态变量。静态变量放在<code>.bss</code>或<code>.data</code>字段中<code>.o</code>文件引用，可以看成是一种<code>private</code>封装，作用域和局部变量一致，生命周期却和全局变量一致## <code>volatile</code>关键字，可以使用<code>volatile</code>来告诉编译器对于该变量只从内存中取值# macro## 未定义<code>macro</code>的初值<code>c\n#include &lt;stdio.h&gt;\nint main(void) &#123;\n\t#if aa==bb\n\t\tputs(\"YES\");\n\t#else\n\t\tputs(\"NO\");\n\t#endif\n\treturn 0;\n&#125;\n</code><code>YES</code><code>macro</code>默认值都是<code>0</code><code>#if</code> 后跟着的表达式必须是常亮表达式。很好理解，因为是编译期行为## <code>#ifndef</code>.h文件。.h文件的include原理就是复制粘贴，因此如果多次include会出现奇奇怪怪的错.h前后加上<code>c\n#ifndef _SOMETHINGSPECIAL_\n#define _SOMETHINGSPECIAL_\n// do something ...\n#endif\n</code><code>_SOMETHINGSPECIAL_</code>是不同头文件不同的一个变量名，这个东西的意思是如果没有定义过这个宏就执行内部内容，否则就跳过。而内部代码定义了这样一个宏，就保证了只会被执行一次(即使被<code>include</code>多次)## stringify和concatenation<code>float</code>和<code>int</code>的最大值函数<code>c\n#define CONCAT_TMP(X, Y) X ## Y\n#define CONCAT(X, Y) CONCAT_TMP(X, Y)\n\n#define DEF_MAX \\\n\tint\t\tCONCAT(max_, int)(int x,  int y) &#123; return x &gt; y ? x : y;&#125; \\\n\tfloat\tCONCAT(max_, float)(int x,int y) &#123; return x &gt; y ? x : y;&#125;\n</code>## 多行<code>macro</code>&amp;&amp;任意参数，于是我们就可以通过在行末加'\'符号定义多行<code>macro</code>，我们还可以在定义的时候采用...作为形参，使用的时候用<code>__VA_ARGS__</code>这个宏<code>c\n#define IS_DEBUG true\n#define DEBUG(...) &#123;\\\nif (IS_DEBUG) \\\nprintf(__VA_ARGS__);\\\n&#125;\n\n</code>## <code>while(0)</code>，大概可以写成下面这样：<code>c\n#define CHECK(EXP) do &#123;\\\n  if (EXP) printf(\"WARNING! \" #EXP \" CHECK FAILED!\\n\"); &#125; while (0)\n</code><code>EXP</code>，但是这里把主体语句用一个<code>do while(0)</code>括起来了：. 可以包裹多条语句，在展开之后可以保证这些语句在一个大括号内，这样可以保证操作对于<code>if then else</code>的整体性. （新增）这样做的话宏的内部相对独立，就可以随便开临时变量了## X-macro，如何方便修改的问题：<code>c\nenum color &#123;RED,GREEN,BLUE&#125;;\nchar *str[] = &#123;\"RED\",\"GREEN\",\"BLUE\"&#125;;\n</code>，可能相隔很远，那么所有<strong>硬编码</strong>的地方都需要修改X macro就是这样一类解决多处硬编码的修改问题<code>c\n#define COLOR(X) \\\n\tX(\"RED\",RED) \\\n\tX(\"BLUE\",BLUE) \\\n\tX(\"GREEN\",GREEN)\n\n#define X(a,b) b,\n\tenum color &#123;COLOR(X)&#125;;\n#undef X\n\n#define X(a,b) a,\n\tchar *str[] = &#123;COLOR(X)&#125;;\n#undef X\n</code>，有点像call back function的感觉# 指针## 特殊指针<code>NULL</code>指针在C中的定义是<code>(void *)0</code><code>const int *p</code>或<code>int const *p</code>：指向常量的指针(a pointer that points to a const)<code>int *const p</code>：一个自己是常量的指针(a const pointer)/套娃....类比就行## 指针变量的阅读(https://www.cquestions.com/2009/11/how-to-read-complex-pointers-in-c.html)# 链接## 符号表<code>.o</code>文件，最后合并成一个可执行文件(elf)，这个合并的过程就是链接，需要维护一些跨编译单元的1. 函数调用2. 全局变量引用，<strong>符号表</strong>就是用来给链接器提供这个信息的，就可以知道为什么局部变量和宏不会出现在符号表中了，因为它们在链接时1. 不会被引用和修改 2. 已经被展开了## <code>static</code>和<code>inline</code><code>inline</code>表示建议编译器内联这段函数，但仅含有<code>inline</code>的函数定义不是一个函数声明，因此不会出现在符号表中-O0级别优化的时候，就会出错：. 在<code>inline</code>定义后加一个函数声明. 在<code>inline</code>关键字前加<code>static</code>关键字<code>static</code>的函数，如果它未被调用，则开启<code>-Wall</code>和<code>-Werror</code>的时候就会报Function defined but not used错，这是因为<code>static</code>函数只可能被当前<code>.c</code>文件调用，而查手册可以发现<code>-Wunused-function</code>恰好会指出这种情况。解决的方法可以是用<code>static inline</code>代替<code>static</code>，或者删掉这个函数定义和声明# 杂项## 编译器选项<code>-Wall</code>那个应该放这里的64位下，对于开启<code>-O1</code>及以上优化级别的程序，截止当前版本的GCC默认会省略<code>%rbp</code>寄存器的保存（压栈、记录栈顶），这样既可以变快，又可以多一个通用寄存器。在做ICS Labs的时候要写一个自己的<code>setjmp()</code>和<code>longjmp()</code>，然后我就卡在了获得<code>ret</code>地址这一步，原因就是这个东西破坏了调用规定，导致栈的行为不确定了....，直接自己写一整个的函数，而不是在函数内部内联汇编，这样callee就是自己维护的了，想怎么做就怎么做"</p>
+<p>更新：因为开始写PA2了，因此决定重回这个坑，顺便记录一下解决一些C问题的方法，不一定和语法相关 --- 现在才知道 oi 用的是 C-with-STL... 感觉自己对这个看起来很单纯的语言仍然不够了解 打算仔仔细细地写一写自己不太会的东西，包括与 C++ 不同的语法、宏(macro)的技巧、指针的技巧等等 # 语法 ## `enum` 可以利用`enum`的特点来引入最大下标开数组 ``` enum {PC,R1,R2,...,R7,R_SIZE}; ``` 那么这里的`R_SIZE`天然就是最大下标 ## 数组初始化 简单的就不说了。通常会有这样的情形：我们需要一个lookup-table，并且希望这是const的 dom的范围很大，但是实际上有用的lookup项很少(比如说为每个二元运算分配一个优先级) 那么就可以这么写 ```c enum TOKENS { // blah blah blah.... } ; // priority for _binary operators_ static const int priority[512] = { [TK_OR] = 4, [TK_AND] = 5, [TK_NEQ] = 9, [TK_EQ] = 9, [TK_LEQ] = 10, [TK_GEQ] = 10, [TK_LT] = 10, [TK_GT] = 10, ['+'] = 12, ['-'] = 12, ['*'] = 13, ['/'] = 13, ['%'] = 13, }; ``` ## struct struct里面不能有函数(好严格..) C语言中的结构体有两种定义方式 ```c struct MyStruct { int tmp; } ; struct MyStruct a; ``` 或者可以 ```c typedef struct tmpMyStruct { tmpMyStruct *p; int tmp; } MyStruct; MyStruct a; ``` 这两者的区别在于下面的方法把`struct`定义为一个类型，并且引入了一个中间名字`tmpStruct`，这使得我们可以在结构体中定义结构体变量(考虑一个指针节点的组成) ## `malloc`/`free` C++用的更多的是`new`和`delete`，C里面用的是`malloc`和`free` 假设有这么一个 ```c typedef struct tmpNode { struct tmpNode *next; int value; } Node; Node *head; ``` 我们要给`head`指针分配内存空间，用的就是 ```c head = (Node*) malloc(sizeof(Node)); ``` 这个可以类比给`Node`类`new`了一个对象，不带初始化函数 这里分配的内存不包括结构体内部指针指向的地址的内存，这个还需要在自己写的初始化函数里再`malloc`一次 一个我常用的小技巧是把初始化函数自己实现一遍，返回一个对象的指针 类似的，在`free`的时候需要自己实现对象的析构：比如说`free`一棵红黑树，比如说`free`一个链表。通常递归`free`掉所有节点就够了 ## `const` 数组下标 C语言中const修饰的int变量不能定义数组大小，因为这是一个只读变量而不是常量，通常我们会用#define ## bool C里面的bool是在C99以后才有的，如果要用true和false需要引用stdbool.h，或者自己define ## 逗号表达式 逗号的优先级最低，一段逗号表达式按顺序从左到右求值，一整段逗号表达式的值由最右边的式子决定 比如说`(a = 3, a *= 2)`的值就是`6` ## `static`静态变量 分为全局静态变量和局部静态变量。静态变量放在`.bss`或`.data`字段中 全局静态变量在链接的时候不能被其他`.o`文件引用，可以看成是一种`private`封装 局部静态变量不在栈上，作用域和局部变量一致，生命周期却和全局变量一致 ## `volatile`关键字 这个是看CSAPP学到的姿势 对于多线程共同访问一个全局变量的情况，可以使用`volatile`来告诉编译器对于该变量只从内存中取值 这可以防止编译器过度优化使得无锁并行的程序出错 # macro ## 未定义`macro`的初值 考虑如下代码 ```c #include int main(void) { #if aa==bb puts("YES"); #else puts("NO"); #endif return 0; } ``` 输出是`YES` 原因在于未定义的`macro`默认值都是`0` 同时 `#if` 后跟着的表达式必须是常亮表达式。很好理解，因为是编译期行为 ## `#ifndef` 在多文件编程的时候我们会include若干.h文件。.h文件的include原理就是复制粘贴，因此如果多次include会出现奇奇怪怪的错 所以我们需要在.h前后加上 ```c #ifndef _SOMETHINGSPECIAL_ #define _SOMETHINGSPECIAL_ // do something ... #endif ``` 其中`_SOMETHINGSPECIAL_`是不同头文件不同的一个变量名，这个东西的意思是如果没有定义过这个宏就执行内部内容，否则就跳过。而内部代码定义了这样一个宏，就保证了只会被执行一次(即使被`include`多次) ## stringify和concatenation 假设要实现`float`和`int`的最大值函数 ```c #define CONCAT_TMP(X, Y) X ## Y #define CONCAT(X, Y) CONCAT_TMP(X, Y) #define DEF_MAX \ int CONCAT(max_, int)(int x, int y) { return x &gt; y ? x : y;} \ float CONCAT(max_, float)(int x,int y) { return x &gt; y ? x : y;} ``` ## 多行`macro`&amp;&amp;任意参数 很多时候一行宏定义不够用，于是我们就可以通过在行末加'\'符号定义多行`macro` 如果出现了参数不明确但是操作一致的情况，我们还可以在定义的时候采用...作为形参，使用的时候用`__VA_ARGS__`这个宏 ```c #define IS_DEBUG true #define DEBUG(...) {\ if (IS_DEBUG) \ printf(__VA_ARGS__);\ } ``` ## `while(0)` 一个很怪的用法，大概可以写成下面这样： ```c #define CHECK(EXP) do {\ if (EXP) printf("WARNING! " #EXP " CHECK FAILED!\n"); } while (0) ``` 这个宏函数会检查一个表达式`EXP`，但是这里把主体语句用一个`do while(0)`括起来了 好处大概有这么几个： 1. 可以包裹多条语句，在展开之后可以保证这些语句在一个大括号内，这样可以保证操作对于`if then else`的整体性 2. （新增）这样做的话宏的内部相对独立，就可以随便开临时变量了 ## X-macro 这个用于解决相关联的表项数据分布于不同文件时，如何方便修改的问题 一个比较烂的的例子是抄来的： ```c enum color {RED,GREEN,BLUE}; char *str[] = {"RED","GREEN","BLUE"}; ``` 实际代码中可能不止两处，可能相隔很远 现在如果要在红色和绿色之间加入黄色，那么所有**硬编码**的地方都需要修改 所谓 X macro就是这样一类解决多处硬编码的修改问题 ```c #define COLOR(X) \ X("RED",RED) \ X("BLUE",BLUE) \ X("GREEN",GREEN) #define X(a,b) b, enum color {COLOR(X)}; #undef X #define X(a,b) a, char *str[] = {COLOR(X)}; #undef X ``` 怎么说呢，有点像call back function的感觉 # 指针 ## 特殊指针 `NULL`指针在C中的定义是`(void *)0` 常量指针`const int *p`或`int const *p`：指向常量的指针(a pointer that points to a const) 指针常量`int *const p`：一个自己是常量的指针(a const pointer) 上面两类还可以复合/套娃....类比就行 ## 指针变量的阅读 具体可以看[这篇文章](https://www.cquestions.com/2009/11/how-to-read-complex-pointers-in-c.html) # 链接 ## 符号表 这里的符号表和编译原理的符号表又不太一样 编译的时候可以多个编译单元编译成`.o`文件，最后合并成一个可执行文件(elf)，这个合并的过程就是链接 在链接的时候，需要维护一些跨编译单元的1. 函数调用2. 全局变量引用，**符号表**就是用来给链接器提供这个信息的 根据这个角度，就可以知道为什么局部变量和宏不会出现在符号表中了，因为它们在链接时1. 不会被引用和修改 2. 已经被展开了 ## `static`和`inline` `inline`表示建议编译器内联这段函数，但仅含有`inline`的函数定义不是一个函数声明，因此不会出现在符号表中 在GCC开启-O0级别优化的时候，就会出错 所以有两种方法解决： 1. 在`inline`定义后加一个函数声明 2. 在`inline`关键字前加`static`关键字 而对于仅含有`static`的函数，如果它未被调用，则开启`-Wall`和`-Werror`的时候就会报Function defined but not used错，这是因为`static`函数只可能被当前`.c`文件调用，而查手册可以发现`-Wunused-function`恰好会指出这种情况。解决的方法可以是用`static inline`代替`static`，或者删掉这个函数定义和声明 # 杂项 ## 编译器选项 感觉`-Wall`那个应该放这里的 64位下，对于开启`-O1`及以上优化级别的程序，截止当前版本的GCC默认会省略`%rbp`寄存器的保存（压栈、记录栈顶），这样既可以变快，又可以多一个通用寄存器。在做ICS Labs的时候要写一个自己的`setjmp()`和`longjmp()`，然后我就卡在了获得`ret`地址这一步，原因就是这个东西破坏了调用规定，导致栈的行为不确定了.... 解决方法很简单，直接自己写一整个的函数，而不是在函数内部内联汇编，这样callee就是自己维护的了，想怎么做就怎么做 <span id="more"></span></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B01-Introduction/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2020-12-27 00:08:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0 + '&url=' + http%3A%2F%2Fexample.com%2F2020%2F12%2F27%2FC%25E8%25AF%25AD%25E8%25A8%2580%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

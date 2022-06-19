@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      scheme学习笔记 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">scheme学习笔记</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-08-15 13:10:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>excerpt: "## 前话，记一下lisp的方言scheme的一些东西，本来折腾了半天装不上mit-scheme，后面发现直接自带guile就蛮能用的(能用就行)：正则序和应用序，分别表示先替换后计算和先计算后替换。，这样可以减少一部分重复运算(具体例子见后)## 基本操作<code>op</code>，则 <code>(op a1 a2 ... an)</code> 的值就是分别递归对 <code>a1, a2 ... an</code> 求值，然后将 <code>op</code> 作用于它们的值<code>(/ 3 2)</code> 就是 <code>3/2</code>。scheme中的整数相除默认是有理分数## 分支<code>scheme\n(cond\n \t((cond1) (exp1))\n \t((cond2) (exp2))\n \t(else (exp3)))\n</code><code>scheme\n(if\n\t(cond1) (exp1)\n\t(exp2))\n</code>，这俩都是从上到下分别对 <code>(cond)</code> 表达式求值，然后选择第一个为真的入口对 <code>exp</code> 求值## 过程/函数<code>scheme\n(define (max a b)\n\t(if (&lt; a b)) b a)\n</code><code>cond</code> 和 <code>if</code> 不同，函数在解释器中的行为是：先求值，后替换，即使是 <code>cond</code> 和 <code>if</code> 的封装也是这样。<strong>因此会出现一些不同的行为</strong><code>define</code> 同样可以用来定义变量，比如说<code>scheme\n(define PI 3.1415926)\n</code>*常函数<strong>、等价的程序了！## 费马小定理<span class="math inline">\(p\\text{ is prime}\\Rightarrow a^p\\equiv a\\pmod p\\text{, }\\forall 1\\leqslant a&lt; p\)</span>，但是在群论里就能很简单地说明<span class="math inline">\({\\mathbb Z_p}^*=\\left\\{\\;a|0\\leqslant a&lt;p\\text{ and }\\gcd(a,p)=1\\;\\right\\}\)</span>，由 <span class="math inline">\(p\)</span> 是质数容易有 <span class="math inline">\({\\mathbb Z_p}^*=\\left\\{\\;0,1,2\\ldots p-1\\;\\right\\}\)</span> 且 <span class="math inline">\({\\mathbb Z_p}^*\)</span> 是循环群<span class="math inline">\(|g|=p,\\,g\\in{\\mathbb Z_p}^*\)</span>，这就是通常说的</strong>原根<strong>，也就是循环群的生成元。<span class="math inline">\(\\forall a\\in {\\mathbb Z_p}^*\)</span> 都存在 <span class="math inline">\(k\)</span> 使得 <span class="math inline">\(a=g^k\)</span>，即 <span class="math inline">\(a^p={\\left(g^k\\right)}^p={\\left(g^p\\right)}^k=e^k=e=1\)</span>，这样就证明了费马小定理。## 费马素性测试<span class="math inline">\(p\)</span>，那么随机一个数 <span class="math inline">\(a\)</span>，若 <span class="math inline">\(a^p\\not\\equiv a\\pmod p\)</span>，那么 <span class="math inline">\(p\)</span> </strong>一定不是**质数。，我们可以随机出若干基底，快速幂判断。## 引理<span class="math inline">\(p\)</span> 是质数，则 <span class="math inline">\(\\forall x\\in {\\mathbb Z_p}^*,\\;x^2\\equiv1\\pmod p\)</span><span class="math inline">\(p\\mid (x-1)(x+1)\)</span>，即 <span class="math inline">\(p\\mid (x-1)\)</span> 或 <span class="math inline">\(p\\mid (x+1)\)</span>，又 <span class="math inline">\(x&lt;p\)</span>，所以 <span class="math inline">\(x=1\)</span> 或 <span class="math inline">\(x=-1\)</span>## Miller-Rabin素性测试，它们能完全通过费马测试，但不是质数，比如说561，561是最小的卡迈克尔数，这样的数字有无穷多个<span class="math inline">\(a^p\\equiv a\\pmod p\)</span>，而用 <span class="math inline">\(a^{p-1}\\equiv 1\\pmod p\)</span>，这样 <span class="math inline">\(p-1\)</span> 就是偶数<span class="math inline">\((p-1)=2^ab\)</span>，<span class="math inline">\(b\)</span> 为素数，那么在快速幂的时候判断一下是否存在 <span class="math inline">\(1\)</span> 的非平凡平方根就好了## 代码，不过真的很好玩！<code>scheme\n(define (fermat_test p k)\n\t(define (exp_mod a x)\n\t\t(define (square x) (remainder (* x x) p))\n\t\t(cond\n\t\t\t((= x 0) 1)\n\t\t\t((= x 1) a)\n\t\t\t((= 0 (remainder x 2)) (square (exp_mod a (/ x 2))))\n\t\t\t((= 1 (remainder x 2)) (remainder (* a (square (exp_mod a (/ (- x 1) 2)))) p))))\n\t\n\t(define a (+ 1 (random (- p 1))))\n\n\t(cond\n\t\t((= k 0) #t)\n\t\t((= (exp_mod a p) a) (fermat_test p (- k 1)))\n\t\t(else #f)))\n\n(define (miller_rabin_test p k)\n\t(define (!= a b) (not (= a b)))\n\t(define (square x)\n\t\t\t(define tmp (remainder (* x x) p))\n\t\t\t(if (and (!= x 1) (!= x (- p 1)) (= 1 tmp))\n\t\t\t\t0\n\t\t\t\ttmp\t))\n\n\t(define (even? x) (= 0 (remainder x 2)))\n\t(define (get x)\n\t\t(if (even? x)\n\t\t\t(/ x 2)\n\t\t\t(/ (- x 1) 2)))\n\n\t(define (exp_mod a x)\n\t\t(cond\n\t\t\t((= x 0) 1)\n\t\t\t((= x 1) a)\n\t\t\t(else (square (exp_mod a (get x))))))\n\t\n\t(define a (+ 1 (random (- p 1))))\n\n\t(cond\n\t\t((= k 0) #t)\n\t\t((= (exp_mod a (- p 1)) 1) (miller_rabin_test p (- k 1)))\n\t\t(else #f)))\n</code>## 快排，用序列的第一项作为比较项，可以传入<或>来控制递增/递减<code>scheme\n(define (sort rel ls)\n\t(define (merge la lb)\n\t\t(cond\n\t\t\t((null? la) lb)\n\t\t\t((null? lb) la)\n\t\t\t((rel (car la) (car lb)) (cons (car la) (merge (cdr la) lb)))\n\t\t\t(else (cons (car lb) (merge la (cdr lb))))))\n\t(define (split predicate lst)\n\t\t(if (null? lst) (cons #nil #nil)\n\t\t\t(let ((cur (car lst)) (result (split predicate (cdr lst))))\n\t\t\t\t(if (predicate cur)\n\t\t\t\t\t(cons (cons cur (car result)) (cdr result))\n\t\t\t\t\t(cons (car result) (cons cur (cdr result)))))))\n\t(if (not (&lt; 1 (length ls))) ls\n\t\t(let ((res-pair (split (lambda (x) (not (rel x (car ls)))) ls)))\n\t\t\t(merge\n\t\t\t\t(cons (caar res-pair) (sort rel (cdar res-pair)))\n\t\t\t\t(sort rel (cdr res-pair))))))\n</code>## 符号求导'的用法的最后作业，写了完全括号的中缀求导(加法、乘法、幂函数法则)-snd取列表的rest是一样的，因此这里先没写<code>scheme\n(define (sum? exp) (and (pair? exp) (eq? '+ (cadr exp))))\n\n(define (mul? exp) (and (pair? exp) (eq? '* (cadr exp))))\n\n(define (exponentiation? exp) (and (pair? exp) (eq? '** (cadr exp))))\n\n(define (=num? a b)\n\t(and (number? a) (number? b) (= a b)))\n\n(define (make-sum a b)\n\t(cond\n\t\t((=num? a 0) b)\n\t\t((=num? b 0) a)\n\t\t((and (number? a) (number? b)) (+ a b))\n\t\t(else (list a '+ b))))\n\n(define (make-mul a b)\n\t(cond\n\t\t((=num? a 1) b)\n\t\t((=num? b 1) a)\n\t\t((or (=num? a 0) (=num? b 0)) 0)\n\t\t(else (list a '* b))))\n\n(define (make-exponentiation base exponent)\n\t(cond\n\t\t((=num? exponent 0) 1)\n\t\t((=num? exponent 1) base)\n\t\t(else (list base '** exponent))))\n\n(define (sum-fst exp) (car exp))\n(define (sum-snd exp) (caddr exp))\n\n(define mul-fst sum-fst)\n(define (mul-snd exp) (caddr exp))\n\n(define base sum-fst)\n(define (exponent exp) (caddr exp))\n\n(define (deriv exp var)\n\t(cond\n\t\t((number? exp) 0)\n\t\t((symbol? exp) (if (eq? exp var) 1 0))\n\t\t((exponentiation? exp)\n\t\t\t(make-mul\n\t\t\t\t(make-mul\n\t\t\t\t\t(exponent exp)\n\t\t\t\t\t(make-exponentiation (base exp) (- (exponent exp) 1)))\n\t\t\t\t(deriv (base exp) var)))\n\t\t((sum? exp)\n\t\t\t(make-sum\n\t\t\t\t(deriv (sum-fst exp) var)\n\t\t\t\t(deriv (sum-snd exp) var)))\n\t\t((mul? exp) \n\t\t\t(make-sum\n\t\t\t\t(make-mul (deriv (mul-fst exp) var) (mul-snd exp))\n\t\t\t\t(make-mul (mul-fst exp) (deriv (mul-snd exp) var))))))\n</code>## eq?和equal?，有点玄学<code>pA == pB</code> 表示<code>pA</code>和<code>pB</code>指向同一个对象，这就和<code>eq?</code>的语义相同<code>pA.equals(pB)</code>表示<code>pA</code>和<code>pB</code>指向的对象在内容意义上是相等的，在scheme中指的就是结构和对应位置的内容是同一个对象，也就是<code>euqal?</code>的含义<code>eq?</code>会得到<code>#f</code>，这是因为两个list是不同的对象## 数据导向的程序设计和可加性。在写软件分析作业的时候就遇到了要判断某个对象<code>Obj</code>的类，然后分类操作的情况。然后那个lab要对11种子类进行讨论....这种时候简单的<code>if-else-if</code>分支就很麻烦了，对后期的维护和可读性都没有好处，事实上在OO语言就是把过程写进每个类的内部，然后用一个统一的覆写方法，这样实际上就是封装"</p>
+<p>## 前话 开了SICP的坑，记一下lisp的方言scheme的一些东西 我的笔记本是manjaro，本来折腾了半天装不上mit-scheme，后面发现直接自带guile就蛮能用的(能用就行) 一个很重要的点就是求值的时候有两种规则：正则序和应用序，分别表示先替换后计算和先计算后替换。 一般的scheme解释器用的都是应用序，这样可以减少一部分重复运算(具体例子见后) ## 基本操作 记一个操作为 `op`，则 `(op a1 a2 ... an)` 的值就是分别递归对 `a1, a2 ... an` 求值，然后将 `op` 作用于它们的值 比如说 `(/ 3 2)` 就是 `3/2`。scheme中的整数相除默认是有理分数 ## 分支 ```scheme (cond ((cond1) (exp1)) ((cond2) (exp2)) (else (exp3))) ``` ```scheme (if (cond1) (exp1) (exp2)) ``` 与一般的过程不同，这俩都是从上到下分别对 `(cond)` 表达式求值，然后选择第一个为真的入口对 `exp ` 求值 ## 过程/函数 ```scheme (define (max a b) (if (&lt; a b)) b a) ``` 与 `cond` 和 `if` 不同，函数在解释器中的行为是：先求值，后替换，即使是 `cond` 和 `if` 的封装也是这样。**因此会出现一些不同的行为** `define` 同样可以用来定义变量，比如说 ```scheme (define PI 3.1415926) ``` 但我更愿意把这个看成是一个**常函数** 有了这些就足够写出和一般C程序设计基础课程里会出现的、等价的程序了！ 然后就涉及到了一个素数测试的小程序 ## 费马小定理 <span class="math inline">\(p\\text{ is prime}\\Rightarrow a^p\\equiv a\\pmod p\\text{, }\\forall 1\\leqslant a&lt; p\)</span> 定理的初等证明比较麻烦，但是在群论里就能很简单地说明 记 ${\mathbb Z_p}^*=\left\{\;a|0\leqslant a来控制递增/递减 ```scheme (define (sort rel ls) (define (merge la lb) (cond ((null? la) lb) ((null? lb) la) ((rel (car la) (car lb)) (cons (car la) (merge (cdr la) lb))) (else (cons (car lb) (merge la (cdr lb)))))) (define (split predicate lst) (if (null? lst) (cons #nil #nil) (let ((cur (car lst)) (result (split predicate (cdr lst)))) (if (predicate cur) (cons (cons cur (car result)) (cdr result)) (cons (car result) (cons cur (cdr result))))))) (if (not (&lt; 1 (length ls))) ls (let ((res-pair (split (lambda (x) (not (rel x (car ls)))) ls))) (merge (cons (caar res-pair) (sort rel (cdar res-pair))) (sort rel (cdr res-pair)))))) ``` ## 符号求导 是'的用法的最后作业，写了完全括号的中缀求导(加法、乘法、幂函数法则) 不完全括号的写法大概是和sum-snd取列表的rest是一样的，因此这里先没写 ```scheme (define (sum? exp) (and (pair? exp) (eq? '+ (cadr exp)))) (define (mul? exp) (and (pair? exp) (eq? '* (cadr exp)))) (define (exponentiation? exp) (and (pair? exp) (eq? '** (cadr exp)))) (define (=num? a b) (and (number? a) (number? b) (= a b))) (define (make-sum a b) (cond ((=num? a 0) b) ((=num? b 0) a) ((and (number? a) (number? b)) (+ a b)) (else (list a '+ b)))) (define (make-mul a b) (cond ((=num? a 1) b) ((=num? b 1) a) ((or (=num? a 0) (=num? b 0)) 0) (else (list a '* b)))) (define (make-exponentiation base exponent) (cond ((=num? exponent 0) 1) ((=num? exponent 1) base) (else (list base '** exponent)))) (define (sum-fst exp) (car exp)) (define (sum-snd exp) (caddr exp)) (define mul-fst sum-fst) (define (mul-snd exp) (caddr exp)) (define base sum-fst) (define (exponent exp) (caddr exp)) (define (deriv exp var) (cond ((number? exp) 0) ((symbol? exp) (if (eq? exp var) 1 0)) ((exponentiation? exp) (make-mul (make-mul (exponent exp) (make-exponentiation (base exp) (- (exponent exp) 1))) (deriv (base exp) var))) ((sum? exp) (make-sum (deriv (sum-fst exp) var) (deriv (sum-snd exp) var))) ((mul? exp) (make-sum (make-mul (deriv (mul-fst exp) var) (mul-snd exp)) (make-mul (mul-fst exp) (deriv (mul-snd exp) var)))))) ``` ## eq?和equal? 书里面讲得比较奇怪，有点玄学 其实就和java里判断两个引用指向的对象是否相等是一样的 `pA == pB` 表示`pA`和`pB`指向同一个对象，这就和`eq?`的语义相同 `pA.equals(pB)`表示`pA`和`pB`指向的对象在内容意义上是相等的，在scheme中指的就是结构和对应位置的内容是同一个对象，也就是`euqal?`的含义 这也是为什么判断两个list用`eq?`会得到`#f`，这是因为两个list是不同的对象 ## 数据导向的程序设计和可加性 这部分讲得挺好的。在写软件分析作业的时候就遇到了要判断某个对象`Obj`的类，然后分类操作的情况。然后那个lab要对11种子类进行讨论....这种时候简单的`if-else-if`分支就很麻烦了，对后期的维护和可读性都没有好处 书上讲的是对数据打标签来实现分流处理，事实上在OO语言就是把过程写进每个类的内部，然后用一个统一的覆写方法，这样实际上就是封装 <span id="more"></span></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/08/14/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B010-Soundiness/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-08-15 13:10:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0 + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F08%2F15%2Fscheme%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

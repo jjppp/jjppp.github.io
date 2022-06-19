@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      CSAPP实验6 : shlab 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">CSAPP实验6 : shlab</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-04-21 19:24:00
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <p>excerpt: "linking的部分看了一半跳过去了....据说你南的ICS讲linking非常不错，于是我就心安理得了，估计这周末可以看完（吧），先留坑（假期前）写完了第六个lab，书也推完了第八章，四舍五入就是五月前搞定了前八章内容，还是很不戳的。整个四月都非常忙，各种ddl和期中满天飞。五月也不空闲，还有EL、听说读写ddl、马原、银川、大雾期中、军理。希望人没事.jpg，各种详细的例子书上都有，因此写起来只需要多翻书就好了。不过由于这次lab的测试比较弱，而我对自己的代码水平又没有什么信心，因此下面贴的代码看看就好，莫当真，讲正题吧## 前置姿势*硬件<strong>和</strong>软件（系统）<strong>两个层面讲了异常控制流(exceptional control flow)的各种姿势，这次的lab主要关注的是软件方面的东西。软件的控制流交移是通过信号(signal)的发送和接受来进行的，这一点因为写过QT所以不是特别虚。看前面的内容如果不过瘾还可以搭配OS的教材一起看，正好就顺手入了SJTU的书，希望暑假能啃一啃。，也就是多线程过程中的竞争问题。这种问题常常发生在不同线程对统一数据的修改和读取中。为了解决这个问题本章引入了</strong>原子性<strong>的概念，大意就是某些操作不可分割、控制流不能从中间被移接。事实上还有</strong>锁**的概念，大意就是在修改、读取数据的时候阻塞其余信号，也就是给数据“上锁”，毕竟系统方面的测试用用例还是比较难调出问题（我对形式化验证这方面也很感兴趣）。## 代码### <code>eval</code>。具体需要搞清楚<code>fork()</code>会创建一个新的进程，而<code>execve()</code>则相当于用新的进程"覆盖"当前进程。因此如果想要实现shell的调用需要先<code>fork()</code>再在子进程里<code>execve()</code>，在<code>eval</code>中新建进程需要调用<code>addjob()</code>来修改进程表中的内容，因此需要阻塞其它信号以免出现问题。<code>c\nvoid eval(char *cmdline) \n&#123;\n    int olderrno = errno;\n    char *argv[MAXARGS];\n    int bg = parseline(cmdline, argv);\n\n    if (argv[0] == NULL) return ;\n    if ( builtin_cmd(argv) ) return ;\n\n    pid_t pid;\n    // Child Process\n    sigset_t mask, prev;\n    sigemptyset(&amp;mask);\n    sigaddset(&amp;mask, SIGCHLD);\n\n    sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev);\n    pid = fork();\n    if (pid &lt; 0)\n        unix_error(\"Fork error\");\n    if ( pid == 0) &#123;\n        sigprocmask(SIG_BLOCK, &amp;prev, NULL);\n        setpgid(0, 0);\n        if ( execve(argv[0], argv, environ) &lt; 0) &#123;\n            printf(\"%s: Command not found\\n\", argv[0]);\n            exit(0);\n        &#125;\n    &#125;\n    if (!bg) &#123;\n        addjob(jobs, pid, FG, cmdline);\n        sigprocmask(SIG_SETMASK, &amp;prev, NULL);\n        waitfg(pid);\n    &#125; else &#123;\n        addjob(jobs, pid, BG, cmdline);\n        struct job_t *job = getjobpid(jobs, pid);\n        printf(\"[%d] (%d) %s\", job-&gt;jid, job-&gt;pid, cmdline);\n        sigprocmask(SIG_SETMASK, &amp;prev, NULL);\n    &#125;\n    errno = olderrno;\n    return;\n&#125;\n</code>### <code>builtin_cmd</code>，判断一下命令类型就好了。<code>quit</code>和<code>jobs</code>都很好写，<code>fg</code>和<code>bg</code>的具体操作被封装在<code>do_bgfg()</code>里面了，在这里直接用就好了<code>c\nint builtin_cmd(char **argv) \n&#123;\n    char *builtin_args[4] = &#123;\"quit\", \"bg\", \"fg\", \"jobs\"&#125;;\n    for (int i = 0; i &lt; 4; ++ i) &#123;\n        if ( strcmp(builtin_args[i], argv[0]) ) continue;\n\n        switch (argv[0][0]) &#123;\n            case 'q': exit(0);\n            case 'f': &#123;\n                do_bgfg(argv);\n                break;\n            &#125;\n            case 'b': &#123;\n                do_bgfg(argv);\n                break;\n            &#125;\n            case 'j': listjobs(jobs);\n        &#125;\n        return 1;\n    &#125;\n    return 0;     /* not a builtin command */\n&#125;\n\n</code>### <code>waitfg</code>。这是用来等待前台进程结束的，那么就用一个死循环来不停地监听<code>pid</code>进程是否在前台，因此也要阻塞信号<code>c\nvoid waitfg(pid_t pid)\n&#123;\n    sigset_t mask, prev;\n    sigfillset(&amp;mask);\n    sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev);\n    struct job_t *job = getjobpid(jobs, pid);\n    sigprocmask(SIG_SETMASK, &amp;prev, NULL);\n    for (; job != NULL &amp;&amp; job-&gt;state == FG; ) &#123;\n        sigfillset(&amp;mask);\n        sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev);\n        job = getjobpid(jobs, pid);\n        sigprocmask(SIG_SETMASK, &amp;prev, NULL);\n    &#125;\n    return;\n&#125;\n</code>### <code>do_bgfg</code>，毕竟<code>bg</code>和<code>fg</code>我也是上个月才会用的.....<code>kill</code>发送信号，同时修改<code>job</code>对应的<code>state</code>。在发送信号的时候也要阻塞其余信号因为访问了全局数据结构，这个比较麻烦不过对着<code>trace</code>慢慢搞就好了<code>c\nvoid do_bgfg(char **argv) \n&#123;\n    char *id_str = argv[1];\n\n    //fg bg error handling\n    if (id_str == NULL) &#123;\n        printf(\"%s command requires PID or %%jobid argument\\n\", argv[0]);\n        return ;\n    &#125;\n\n    int flag = (id_str[0] == '%'), jid, pid;\n    id_str += flag;\n\n    for (int i = 0, _len = strlen(id_str); i &lt; _len; ++ i) &#123;\n        if (!isdigit(id_str[i])) &#123;\n            printf(\"%s: argument must be a PID or %%jobid\\n\", argv[0]);\n            return ;\n        &#125;\n    &#125;\n\n    sigset_t mask, prev;\n    sigfillset(&amp;mask);\n    sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev);\n\n    if (!flag) &#123;\n        sscanf(id_str, \"%d\", &amp;pid);\n        jid = pid2jid(jid);\n    &#125; else &#123;\n        sscanf(id_str, \"%d\", &amp;jid);\n    &#125;\n\n    struct job_t *job = getjobjid(jobs, jid);\n\n    if (job == NULL) &#123;\n        if (flag) printf(\"%%%d: No such job\\n\", jid);\n        else printf(\"(%d): No such process\\n\", pid);\n        sigprocmask(SIG_SETMASK, &amp;prev, NULL);\n        return ;\n    &#125;\n\n    if (argv[0][0] == 'b') &#123;\n        printf(\"[%d] (%d) %s\", job-&gt;jid, job-&gt;pid, job-&gt;cmdline);\n        job-&gt;state = BG;\n        kill(-(job-&gt;pid), SIGCONT);\n    &#125; else if (argv[0][0] == 'f') &#123;\n        job-&gt;state = FG;\n        kill(-(job-&gt;pid), SIGCONT);\n        sigprocmask(SIG_SETMASK, &amp;prev, NULL);\n        waitfg(job-&gt;pid);\n    &#125;\n    sigprocmask(SIG_SETMASK, &amp;prev, NULL);\n    return;\n&#125;\n</code>### <code>hanlders</code><code>sigint_handler()</code>最好写，只需要利用<code>fgpid()</code>搭配<code>kill()</code>就好了<code>c\nvoid sigint_handler(int sig) \n&#123;\n    int olderrno = errno;\n\n    sigset_t mask, prev;\n    sigfillset(&amp;mask);\n    sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev);\n    pid_t pid = fgpid(jobs);\n    if (pid == 0) return ;\n    struct job_t *job = getjobpid(jobs, pid);\n    if (kill(-pid, sig) &lt; 0)\n        unix_error(\"Sigint error\");\n    sigprocmask(SIG_SETMASK, &amp;prev, NULL);\n    \n    errno = olderrno;\n    return;\n&#125;\n\n</code><code>sigstp_handler()</code>和上面是一样的，就不说了，在这两个handler中我们没必要更改数据结构，而是可以等<code>sigchld_handler()</code>一起改，这样写起来可以清晰一些<code>sigchld_handler()</code>有几个坑点. 要注意<code>waitpid()</code>默认行为是挂起父进程直至子进程终止(terminate)，写到这里的时候记得往回翻书，或者看writeup的提示也行. 好像就没了....，同时记得阻塞就好了，比如说停止(stop)和终止(terminate)和中断(interrupt)这三个，放在中文里感觉就没有区别啊<code>c\nvoid sigchld_handler(int sig) \n&#123;\n    int olderrno = errno;\n\n    int status;\n    pid_t pid = waitpid(-1, &amp;status, WNOHANG | WUNTRACED);\n    if (!pid) return ;\n\n    sigset_t mask, prev;\n    sigfillset(&amp;mask);\n    sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev);\n\n    struct job_t *job = getjobpid(jobs, pid);\n\n    if (WIFSTOPPED(status)) &#123;\n        job-&gt;state = ST;\n        printf(\"Job [%d] (%d) stopped by signal %d\\n\", job-&gt;jid, job-&gt;pid, WSTOPSIG(status) );\n    &#125; else &#123;\n        if (!WIFEXITED(status))\n            printf(\"Job [%d] (%d) terminated by signal %d\\n\", job-&gt;jid, job-&gt;pid, WTERMSIG(status) );\n        deletejob(jobs, job-&gt;pid);\n    &#125;\n    sigprocmask(SIG_SETMASK, &amp;prev, NULL);\n\n    errno = olderrno;\n    return;\n&#125;\n\n</code>！，大概长这样<code>c\n#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n#include &lt;unistd.h&gt;\n\nchar str1[200];\n\nint main(int argc, char const *argv[])\n&#123;\n\tsystem(\"make clean; make\");\n\tfor (int i = 1; i &lt;= 16; ++ i) &#123;\n\t\tsprintf(str1, \"make test%02d &gt; myp%02d.out\", i, i);\n\t\tsystem(str1);\n\t\tsprintf(str1, \"make rtest%02d &gt; std%02d.out\", i, i);\n\t\tsystem(str1);\n\t\tprintf(\"id: %d completed\\n\", i);\n\t&#125;\n\tfor (int i = 1; i &lt;= 16; ++ i) &#123;\n\t\tsprintf(str1, \"wc -l std%02d.out\", i);\n\t\tsystem(str1);\n\t\tsprintf(str1, \"wc -l myp%02d.out\", i);\n\t\tsystem(str1);\n\t&#125;\n\treturn 0;\n&#125;\n</code>，具体正确性还要自行比对一下....不过这个看起来也是可以自动化的，我太懒了就鸽了吧，毕竟要考大雾了淦"</p>
+<p>linking的部分看了一半跳过去了....据说你南的ICS讲linking非常不错，于是我就心安理得了 exception的部分还在看，估计这周末可以看完（吧），先留坑 我来填坑辣 终于赶在五一（假期前）写完了第六个lab，书也推完了第八章，四舍五入就是五月前搞定了前八章内容，还是很不戳的。整个四月都非常忙，各种ddl和期中满天飞。五月也不空闲，还有EL、听说读写ddl、马原、银川、大雾期中、军理。希望人没事.jpg 这次lab的一个明显特点就是答案都可以在书上找到，各种详细的例子书上都有，因此写起来只需要多翻书就好了。不过由于这次lab的测试比较弱，而我对自己的代码水平又没有什么信心，因此下面贴的代码看看就好，莫当真 说了不少废话，讲正题吧 ## 前置姿势 这一章主要从**硬件**和**软件（系统）**两个层面讲了异常控制流(exceptional control flow)的各种姿势，这次的lab主要关注的是软件方面的东西。软件的控制流交移是通过信号(signal)的发送和接受来进行的，这一点因为写过QT所以不是特别虚。看前面的内容如果不过瘾还可以搭配OS的教材一起看，正好就顺手入了SJTU的书，希望暑假能啃一啃。 本章引入的鲁棒性的问题非常重要，也就是多线程过程中的竞争问题。这种问题常常发生在不同线程对统一数据的修改和读取中。为了解决这个问题本章引入了**原子性**的概念，大意就是某些操作不可分割、控制流不能从中间被移接。事实上还有**锁**的概念，大意就是在修改、读取数据的时候阻塞其余信号，也就是给数据“上锁” 本次lab的测试非常之水，毕竟系统方面的测试用用例还是比较难调出问题（我对形式化验证这方面也很感兴趣）。 ## 代码 ### `eval` 这一部分可以抄书。具体需要搞清楚`fork()`会创建一个新的进程，而`execve()`则相当于用新的进程"覆盖"当前进程。因此如果想要实现shell的调用需要先`fork()`再在子进程里`execve()` 根据writeup的提示需要给子进程分配组id，在`eval`中新建进程需要调用`addjob()`来修改进程表中的内容，因此需要阻塞其它信号以免出现问题。 ```c void eval(char *cmdline) { int olderrno = errno; char *argv[MAXARGS]; int bg = parseline(cmdline, argv); if (argv[0] == NULL) return ; if ( builtin_cmd(argv) ) return ; pid_t pid; // Child Process sigset_t mask, prev; sigemptyset(&amp;mask); sigaddset(&amp;mask, SIGCHLD); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); pid = fork(); if (pid &lt; 0) unix_error("Fork error"); if ( pid == 0) { sigprocmask(SIG_BLOCK, &amp;prev, NULL); setpgid(0, 0); if ( execve(argv[0], argv, environ) &lt; 0) { printf("%s: Command not found\n", argv[0]); exit(0); } } if (!bg) { addjob(jobs, pid, FG, cmdline); sigprocmask(SIG_SETMASK, &amp;prev, NULL); waitfg(pid); } else { addjob(jobs, pid, BG, cmdline); struct job_t *job = getjobpid(jobs, pid); printf("[%d] (%d) %s", job-&gt;jid, job-&gt;pid, cmdline); sigprocmask(SIG_SETMASK, &amp;prev, NULL); } errno = olderrno; return; } ``` ### `builtin_cmd` 这个估计是最好写的，判断一下命令类型就好了。`quit`和`jobs`都很好写，`fg`和`bg`的具体操作被封装在`do_bgfg()`里面了，在这里直接用就好了 ```c int builtin_cmd(char **argv) { char *builtin_args[4] = {"quit", "bg", "fg", "jobs"}; for (int i = 0; i &lt; 4; ++ i) { if ( strcmp(builtin_args[i], argv[0]) ) continue; switch (argv[0][0]) { case 'q': exit(0); case 'f': { do_bgfg(argv); break; } case 'b': { do_bgfg(argv); break; } case 'j': listjobs(jobs); } return 1; } return 0; /* not a builtin command */ } ``` ### `waitfg` 这一段也很好写。这是用来等待前台进程结束的，那么就用一个死循环来不停地监听`pid`进程是否在前台 由于在监听的时候访问了全局数据结构，因此也要阻塞信号 ```c void waitfg(pid_t pid) { sigset_t mask, prev; sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); struct job_t *job = getjobpid(jobs, pid); sigprocmask(SIG_SETMASK, &amp;prev, NULL); for (; job != NULL &amp;&amp; job-&gt;state == FG; ) { sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); job = getjobpid(jobs, pid); sigprocmask(SIG_SETMASK, &amp;prev, NULL); } return; } ``` ### `do_bgfg` 这个是最后写的，毕竟`bg`和`fg`我也是上个月才会用的..... 大概就是利用`kill`发送信号，同时修改`job`对应的`state`。在发送信号的时候也要阻塞其余信号因为访问了全局数据结构 这里还要判一下输入是否合法，这个比较麻烦不过对着`trace`慢慢搞就好了 ```c void do_bgfg(char **argv) { char *id_str = argv[1]; //fg bg error handling if (id_str == NULL) { printf("%s command requires PID or %%jobid argument\n", argv[0]); return ; } int flag = (id_str[0] == '%'), jid, pid; id_str += flag; for (int i = 0, _len = strlen(id_str); i &lt; _len; ++ i) { if (!isdigit(id_str[i])) { printf("%s: argument must be a PID or %%jobid\n", argv[0]); return ; } } sigset_t mask, prev; sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); if (!flag) { sscanf(id_str, "%d", &amp;pid); jid = pid2jid(jid); } else { sscanf(id_str, "%d", &amp;jid); } struct job_t *job = getjobjid(jobs, jid); if (job == NULL) { if (flag) printf("%%%d: No such job\n", jid); else printf("(%d): No such process\n", pid); sigprocmask(SIG_SETMASK, &amp;prev, NULL); return ; } if (argv[0][0] == 'b') { printf("[%d] (%d) %s", job-&gt;jid, job-&gt;pid, job-&gt;cmdline); job-&gt;state = BG; kill(-(job-&gt;pid), SIGCONT); } else if (argv[0][0] == 'f') { job-&gt;state = FG; kill(-(job-&gt;pid), SIGCONT); sigprocmask(SIG_SETMASK, &amp;prev, NULL); waitfg(job-&gt;pid); } sigprocmask(SIG_SETMASK, &amp;prev, NULL); return; } ``` ### `hanlders` 三个放在一起说 `sigint_handler()`最好写，只需要利用`fgpid()`搭配`kill()`就好了 注意要阻塞信号 ```c void sigint_handler(int sig) { int olderrno = errno; sigset_t mask, prev; sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); pid_t pid = fgpid(jobs); if (pid == 0) return ; struct job_t *job = getjobpid(jobs, pid); if (kill(-pid, sig) &lt; 0) unix_error("Sigint error"); sigprocmask(SIG_SETMASK, &amp;prev, NULL); errno = olderrno; return; } ``` `sigstp_handler()`和上面是一样的，就不说了 需要注意的是，在这两个handler中我们没必要更改数据结构，而是可以等`sigchld_handler()`一起改，这样写起来可以清晰一些 `sigchld_handler()`有几个坑点 1. 要注意`waitpid()`默认行为是挂起父进程直至子进程终止(terminate)，写到这里的时候记得往回翻书，或者看writeup的提示也行 2. 好像就没了.... 回收的时候需要对子进程的死因讨论一下，同时记得阻塞就好了 在读这一章的时候深刻体会到了术语明确的重要性，比如说停止(stop)和终止(terminate)和中断(interrupt)这三个，放在中文里感觉就没有区别啊 ```c void sigchld_handler(int sig) { int olderrno = errno; int status; pid_t pid = waitpid(-1, &amp;status, WNOHANG | WUNTRACED); if (!pid) return ; sigset_t mask, prev; sigfillset(&amp;mask); sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); struct job_t *job = getjobpid(jobs, pid); if (WIFSTOPPED(status)) { job-&gt;state = ST; printf("Job [%d] (%d) stopped by signal %d\n", job-&gt;jid, job-&gt;pid, WSTOPSIG(status) ); } else { if (!WIFEXITED(status)) printf("Job [%d] (%d) terminated by signal %d\n", job-&gt;jid, job-&gt;pid, WTERMSIG(status) ); deletejob(jobs, job-&gt;pid); } sigprocmask(SIG_SETMASK, &amp;prev, NULL); errno = olderrno; return; } ``` 于是就写完辣！ 最后的最后我还写了一个小程序来快速检验答案是否正确，大概长这样 ```c #include #include #include char str1[200]; int main(int argc, char const *argv[]) { system("make clean; make"); for (int i = 1; i &lt;= 16; ++ i) { sprintf(str1, "make test%02d &gt; myp%02d.out", i, i); system(str1); sprintf(str1, "make rtest%02d &gt; std%02d.out", i, i); system(str1); printf("id: %d completed\n", i); } for (int i = 1; i &lt;= 16; ++ i) { sprintf(str1, "wc -l std%02d.out", i); system(str1); sprintf(str1, "wc -l myp%02d.out", i); system(str1); } return 0; } ``` 当然这个只是初步的，具体正确性还要自行比对一下....不过这个看起来也是可以自动化的，我太懒了就鸽了吧，毕竟要考大雾了淦 <span id="more"></span></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-04-21 19:24:00
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/04/30/%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B02-%E5%8C%B9%E9%85%8D/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + CSAPP%E5%AE%9E%E9%AA%8C6%20%3A%20shlab + '&url=' + http%3A%2F%2Fexample.com%2F2021%2F04%2F21%2FCSAPP%25E5%25AE%259E%25E9%25AA%258C6-shlab%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
