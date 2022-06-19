@@ -170,8 +170,6 @@
       <div class="markdown-body">
         <h1 id="前置">前置</h1>
 <p>这一节主要是玩矩阵，为了偷懒只讨论实线性空间</p>
-<h1 id="前置-1">前置</h1>
-<p>这一节主要是玩矩阵，为了偷懒只讨论实线性空间</p>
 <h2 id="内积">内积</h2>
 <p>二元函数 <span class="math inline">\(\left&lt;,\right&gt;\)</span> 被称为内积，则其满足：</p>
 <ol type="1">
@@ -180,32 +178,32 @@
 <li><p><span class="math inline">\(\left&lt;x,x\right&gt;\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\bold{0}\)</span> 时取到</p></li>
 </ol>
 <h2 id="向量范数">向量范数</h2>
-<p>一元函数 <span class="math inline">\(\norm{\cdot}\)</span> 被称为范数，则其满足：</p>
+<p>一元函数 <span class="math inline">\(\left\lVert\cdot\right\rVert\)</span> 被称为范数，则其满足：</p>
 <ol type="1">
-<li><p><span class="math inline">\(\norm{x}\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\bold0\)</span> 时取到</p></li>
-<li><p><span class="math inline">\(\norm{kx}=\abs{k}\norm{x}\)</span></p></li>
-<li><p><span class="math inline">\(\norm{x+y}\leq \norm{x}+\norm{y}\)</span></p></li>
+<li><p><span class="math inline">\(\left\lVert x\right\rVert\geq 0\)</span>，等号仅在 <span class="math inline">\(x=\bold0\)</span> 时取到</p></li>
+<li><p><span class="math inline">\(\left\lVert kx\right\rVert=\abs{k}\left\lVert x\right\rVert\)</span></p></li>
+<li><p><span class="math inline">\(\left\lVert x+y\right\rVert\leq \left\lVert x\right\rVert+\left\lVert y\right\rVert\)</span></p></li>
 </ol>
-<p>在内积空间上有一个天然的范数 <span class="math inline">\(\norm{x}=\sqrt{\left&lt;x,x\right&gt;}\)</span>，容易验证满足上述三条要求。</p>
+<p>在内积空间上有一个天然的范数 <span class="math inline">\(\left\lVert x\right\rVert=\sqrt{\left&lt;x,x\right&gt;}\)</span>，容易验证满足上述三条要求。</p>
 <h2 id="矩阵范数">矩阵范数</h2>
 <h3 id="算子范数">算子范数</h3>
 <p>矩阵可以看成线性变换，因此可以由向量范数来衡量矩阵作为线性变换（算子）的“长度”。定义为</p>
 <span class="math display">\[\begin{aligned}
 
-\norm{A}=\max_{\norm{x}=1} \norm{Ax}
+\left\lVert A\right\rVert=\max_{\left\lVert x\right\rVert=1} \left\lVert Ax\right\rVert
 
 \end{aligned}\]</span>
 <p>注意这里的 <span class="math inline">\(Ax,x\)</span> 都是向量，因此 RHS 出现的全都是向量范数，LHS 则是定义出来的算子范数。</p>
 <p>有了这个定义，我们就可以写出这样的不等式</p>
 <span class="math display">\[\begin{aligned}
 
-\norm{Ax}\leq \norm{A}\norm{x}
+\left\lVert Ax\right\rVert\leq \left\lVert A\right\rVert\left\lVert x\right\rVert
 
 \end{aligned}\]</span>
 <p>同时会引入新的定义，称满足下述要求的算子范数具有<strong>相容性</strong>：</p>
 <span class="math display">\[\begin{aligned}
 
-\norm{AB}\le \norm{A}\norm{B}
+\left\lVert AB\right\rVert\le \left\lVert A\right\rVert\left\lVert B\right\rVert
 
 \end{aligned}\]</span>
 <p>有了相容性同样可以做一些界的估计</p>
@@ -214,7 +212,7 @@
 <p>一个例子是这样的，容易验证其满足三条要求</p>
 <span class="math display">\[\begin{aligned}
 
-\norm{A}=\sum_{i,j}\abs{A_{i,j} }
+\left\lVert A\right\rVert=\sum_{i,j}\abs{A_{i,j} }
 
 \end{aligned}\]</span>
 <h1 id="高斯消元">高斯消元</h1>
@@ -230,8 +228,8 @@
 <p>考虑相对误差的计算，即为</p>
 <span class="math display">\[\begin{aligned}
 
-\max_{\hat b,b\neq0} {\frac{\norm{A^{-1}\hat b} }{\norm{A^{-1}b} }
-}/{\frac{\norm{\hat b} }{\norm{b} } }
+\max_{\hat b,b\neq0} {\frac{\left\lVert A^{-1}\hat b\right\rVert }{\left\lVert A^{-1}b\right\rVert }
+}/{\frac{\left\lVert\hat b\right\rVert }{\left\lVert b\right\rVert } }
 
 \end{aligned}\]</span>
 <p>即后向相对误差与前向相对误差的比值，称这个值为方程组 <span class="math inline">\(A\)</span>（矩阵 <span class="math inline">\(A\)</span>）的条件数 <span class="math inline">\(\text{cond}(A)\)</span></p>
@@ -239,13 +237,13 @@
 
 \begin{aligned}
 
-\text{cond}(A)&amp;=\max_{\hat b,b\neq 0}  {\frac{\norm{A^{-1}\hat b}
-}{\norm{A^{-1}b} } }/{\frac{\norm{\hat b} }{\norm{b} } }
+\text{cond}(A)&amp;=\max_{\hat b,b\neq 0}  {\frac{\left\lVert A^{-1}\hat b\right\rVert
+}{\left\lVert A^{-1}b\right\rVert } }/{\frac{\left\lVert\hat b\right\rVert }{\left\lVert b\right\rVert } }
 
 \\
 
-&amp;=\max_{\hat b\neq 0} \frac{\norm{A^{-1}\hat b} }{\norm{\hat b} }\max_{b\neq
-0}\frac{\norm{b} }{\norm{A^{-1}b} }
+&amp;=\max_{\hat b\neq 0} \frac{\left\lVert A^{-1}\hat b\right\rVert }{\left\lVert\hat b\right\rVert }\max_{b\neq
+0}\frac{\left\lVert b\right\rVert }{\left\lVert A^{-1}b\right\rVert }
 
 \end{aligned}
 
@@ -255,12 +253,12 @@
 
 \begin{aligned}
 
-\text{cond}(A)&amp;=\max_{\hat b\neq 0}\frac{\norm{A^{-1}\hat b} }{\norm{\hat b}
-}\max_{x\neq 0} \frac{\norm{Ax} }{\norm{x} }
+\text{cond}(A)&amp;=\max_{\hat b\neq 0}\frac{\left\lVert A^{-1}\hat b\right\rVert }{\left\lVert\hat b\right\rVert
+}\max_{x\neq 0} \frac{\left\lVert Ax\right\rVert }{\left\lVert x\right\rVert }
 
 \\
 
-&amp;=\norm{A^{-1} }\norm{A}
+&amp;=\left\lVert A^{-1} \right\rVert\left\lVert A\right\rVert
 
 \end{aligned}
 
@@ -383,7 +381,7 @@ x_k-x^*=A^k(x_0-x^*)
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE"><span class="toc-text">前置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE-1"><span class="toc-text">前置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%A7%AF"><span class="toc-text">内积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E8%8C%83%E6%95%B0"><span class="toc-text">向量范数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0"><span class="toc-text">矩阵范数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E5%AD%90%E8%8C%83%E6%95%B0"><span class="toc-text">算子范数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0-1"><span class="toc-text">矩阵范数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83"><span class="toc-text">高斯消元</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-text">解的稳定性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95"><span class="toc-text">迭代算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3"><span class="toc-text">Jacobi 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-text">收敛性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="toc-text">正确性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gauss-seidel-%E8%BF%AD%E4%BB%A3"><span class="toc-text">Gauss-Seidel 迭代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%B1%E5%8D%8A%E5%BE%84"><span class="toc-text">谱半径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E9%80%86"><span class="toc-text">伪逆</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE"><span class="toc-text">前置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%A7%AF"><span class="toc-text">内积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E8%8C%83%E6%95%B0"><span class="toc-text">向量范数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0"><span class="toc-text">矩阵范数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E5%AD%90%E8%8C%83%E6%95%B0"><span class="toc-text">算子范数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0-1"><span class="toc-text">矩阵范数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83"><span class="toc-text">高斯消元</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-text">解的稳定性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E7%AE%97%E6%B3%95"><span class="toc-text">迭代算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3"><span class="toc-text">Jacobi 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7"><span class="toc-text">收敛性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="toc-text">正确性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gauss-seidel-%E8%BF%AD%E4%BB%A3"><span class="toc-text">Gauss-Seidel 迭代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%B1%E5%8D%8A%E5%BE%84"><span class="toc-text">谱半径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E9%80%86"><span class="toc-text">伪逆</span></a></li></ol></li></ol>
       
     </div>
   </div>
