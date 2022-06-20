@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-06-19T05:32:30.945Z</updated>
+  <updated>2022-06-20T15:31:34.063Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大二下摸鱼记录</title>
+    <link href="http://example.com/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/"/>
+    <id>http://example.com/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/</id>
+    <published>2022-06-20T07:18:15.000Z</published>
+    <updated>2022-06-20T15:31:34.063Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;大二下摸鱼记录&quot;&gt;大二下摸鱼记录&lt;/h2&gt;
+&lt;p&gt;感觉已经失去了初入大学的那种锐气。越学越觉得自己不会的还多着，想做的东西总要被迫让位给GPA和考试。某些课程越发觉得无用，上课的老师也只是混混日子，我也就渐渐只会混混日子了。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>计算方法7 电阻网络</title>
@@ -446,28 +469,6 @@
 &lt;p&gt;我完成了全部必做内容，最后可以用F1、F2、F3分别玩nterm、pal和bird，默认初始打开的是nterm&lt;/p&gt;
 &lt;h2 id=&quot;思考题&quot;&gt;思考题&lt;/h2&gt;
 &lt;h3</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>密码学07 OWF&amp;HC</title>
-    <link href="http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/"/>
-    <id>http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/</id>
-    <published>2021-12-21T12:15:00.000Z</published>
-    <updated>2022-06-19T05:30:25.048Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;这一章比较轻松，主要是科普一些东西，都是概念性的&lt;/p&gt;
-&lt;h2 id=&quot;one-way-function&quot;&gt;One-way</summary>
         
       
     

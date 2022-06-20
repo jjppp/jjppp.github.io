@@ -11,7 +11,7 @@
   
   <title>
     
-      计算方法7 电阻网络 
+      大二下摸鱼记录 
       
       
       |
@@ -160,120 +160,82 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">计算方法7 电阻网络</div>
+      <div class="post-title">大二下摸鱼记录</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2022-06-15 14:21:00
+          2022-06-20 15:18:15
         </span>
         
       </div>
       <div class="markdown-body">
-        <p>越发觉得自己物理学得烂了...</p>
-<h1 id="前置">前置</h1>
-<p>前置的物理定律包括如下两条：</p>
-<ol type="1">
-<li><p>欧姆定律，即 <span class="math inline">\(\phi_i-\phi_j=U_{i,j}=I_{i,j}R\)</span>。定义电导率为 <span class="math inline">\(w=R^{-1}\)</span>，那么有 <span class="math inline">\(I_{i,j}=U_{i,j}w\)</span>。</p></li>
-<li><p>基尔霍夫定律，即对于电阻网络的任意节点 <span class="math inline">\(v\)</span>，流入的电流等于流出的电流 。</p></li>
-</ol>
-<h1 id="电路网络与-l">电路网络与 <span class="math inline">\(L\)</span></h1>
-<p>对于单位电阻组成的电路网络 <span class="math inline">\(G\)</span>，其拉普拉斯矩阵 <span class="math inline">\(L\)</span> 可以通过上面两条物理定律和电流联系起来。</p>
-<p>考虑电路网络内部的节点 <span class="math inline">\(x\)</span>，根据基尔霍夫定律有</p>
-<span class="math display">\[\begin{aligned}
-
-b_x=\sum_{y\in N(x)} I_{x,y}=\sum_{y\in N(x)} (\phi_x-\phi_y)w
-
-\end{aligned}\]</span>
-<p>为了方便讨论，一般会规定电源电势为 <span class="math inline">\(1V\)</span>，或流入电路网络的电流总量为 <span class="math inline">\(1A\)</span>，此处采用第二个约定。</p>
-<p>对于单位电阻有 <span class="math inline">\(w=1\)</span>，此时上述方程组可以写成</p>
-<span class="math display">\[\begin{aligned}
-
-L\phi=b
-
-\end{aligned}\]</span>
-<p>其中 <span class="math inline">\(b_x\)</span> 表示流入 <span class="math inline">\(x\)</span> 的电流（流入为正，流出为负）。将电源接在图上任意两点间（不妨设为 <span class="math inline">\(s,tttt\)</span>），其含义为向量 <span class="math inline">\(b\)</span> 满足 <span class="math inline">\(b_s=1,b_t=-1\)</span>，其余均为 <span class="math inline">\(0\)</span>。</p>
-<p>再考虑欧姆定律，有</p>
-<span class="math display">\[\begin{aligned}
-
-B^\intercal \phi=I
-
-\end{aligned}\]</span>
-<p>其中 <span class="math inline">\(B\)</span> 为图 <span class="math inline">\(G\)</span> 的 <span class="math inline">\(n\times m\)</span> 关联矩阵，形如 <span class="math inline">\(\begin{bmatrix}\cdots&amp;\cdots&amp;\cdots \\ \cdots&amp; 1&amp; \cdots \\ \cdots&amp;\cdots&amp;\cdots \\ \cdots&amp; -1&amp; \cdots\\\cdots&amp;\cdots&amp;\cdots\end{bmatrix}\)</span>，第 <span class="math inline">\(i\)</span> 列表示边 <span class="math inline">\(e_i\)</span> 关联哪两条边，正负表示方向。<span class="math inline">\(m\)</span> 维向量 <span class="math inline">\(I\)</span> 表示每条边上电流的流量。</p>
-<p>如果要考虑非单位电阻的矩阵，那么需要引入 <span class="math inline">\(m\times m\)</span> 的对角阵 <span class="math inline">\(W=\text{diag}\set{w_{e_1},w_{e_2}\ldots w_{e_m} }\)</span> 来分别建模每条边的电导率，在需要的时候乘上就行了。</p>
-<p>考虑 <span class="math inline">\(L\)</span> 的另一形式有</p>
-<span class="math display">\[\begin{aligned}
-
-L=\sum_{e\in E(G)} L_e=\sum_{e\in E(G)} w_e b_e{b_e}^\intercal=BWB^\intercal
-
-\end{aligned}\]</span>
-<p>因此还可以写成</p>
-<span class="math display">\[\begin{aligned}
-
-L\phi=BWB^\intercal \phi=BWI=b
-
-\end{aligned}\]</span>
-<p>这也是很直观的，对边上的电流分布做一次图上的按邻居求和，就能得到一个节点上的全局电流分布 <span class="math inline">\(b\)</span>。</p>
-<h2 id="电路方程的解">电路方程的解</h2>
-<p>定理：</p>
-<p>若 <span class="math inline">\(L\phi=b\)</span> 有解当且仅当 <span class="math inline">\(b\perp \textbf1\)</span></p>
-<p>"<span class="math inline">\(\Rightarrow\)</span>"</p>
-<p>注意到 <span class="math inline">\(L\)</span> 实对称，取一组由 <span class="math inline">\(\textbf1\)</span> 扩充而来的正交基 <span class="math inline">\(\Set{v_i}\)</span>，则 <span class="math inline">\(\phi=a_1\textbf1 + \sum_{i=2}^n a_i v_i\)</span></p>
-<p>此时 <span class="math inline">\(L\phi=L\left(a_1\textbf1+\sum_{i=2}^n a_iv_i\right)=\sum_{i=2}^n a_i\lambda_i v_i\)</span>，根据正交基可知 <span class="math inline">\(L\phi\perp b\)</span></p>
-<p>直观含义为电阻网络流入的电流要等于流出的电流。</p>
-<p>"<span class="math inline">\(\Leftarrow\)</span>"</p>
-<p>若 <span class="math inline">\(b\perp\textbf1\)</span>，那么 <span class="math inline">\(b=\sum_{i=2}^n b_iv_i\)</span></p>
-<p>此时取 <span class="math inline">\(\phi=\sum_{i=2}^n \frac{b_i}{\lambda_i}v_i\)</span> 即为一个解。</p>
-<p>直观含义为对于一组外部电流的电势解，可以任意整体平移得到同方程的其余解（因为电流只和电势差有关）。在固定某个点电势为 <span class="math inline">\(0\)</span> 的前提下，就能得到唯一解。</p>
-<p>上面关于 "<span class="math inline">\(\Leftarrow\)</span>" 方向的证明用到了一个构造，实际上可以写成</p>
-<span class="math display">\[\begin{aligned}
-
-\phi^*=L^\dagger b
-
-\end{aligned}\]</span>
-<p>其中</p>
-<span class="math display">\[\begin{aligned}
-
-\begin{aligned}
-
-L^\dagger&amp;=\sum_{i=2}^n {\lambda_i}^{-1}v_i{v_i}^\intercal
-
-\\
-
-b&amp;=\sum_{i=2}^n {\lambda_i} v_i
-
-\end{aligned}
-
-\end{aligned}\]</span>
-<p>这意味着，当 <span class="math inline">\(b\)</span> 是一个合法的电流（满足 <span class="math inline">\(b\perp \textbf1\)</span>）时，<span class="math inline">\(L\)</span> 存在伪逆。并且 <span class="math inline">\(L\phi=b\)</span> 的解集为 <span class="math inline">\(\Set{L^\dagger b + k\textbf1\mid k\in \mathbb R}\)</span></p>
-<h2 id="电势能和等效电阻">电势能和等效电阻</h2>
-<p>同样只考虑单位电阻。</p>
-<p>考虑令 <span class="math inline">\(b\)</span> 流入单位电流，电路网络为单位电阻，那么整个电路的等效电阻就是 <span class="math inline">\(s,t\)</span> 间的电势差，即</p>
-<span class="math display">\[\begin{aligned}
-
-R_{\text{eff} }=\phi_s-\phi_t=b^\intercal\phi=b^\intercal L^\dagger b
-
-\end{aligned}\]</span>
-<p>对于电势能同样可以通过等效电阻来算。注意到通的是单位电流，并且电阻为 <span class="math inline">\(R_{\text{eff} }\)</span>，因此电势能就是 <span class="math inline">\(R_{\text{eff} }\)</span>。</p>
-<p>另一种对每条边单独推导的方法如下：</p>
-<span class="math display">\[\begin{aligned}
-
-E=\sum_{e\in E(G)} E_e=\sum_{(x,y)\in E(G)} {\left({\phi_x-\phi_y}\right)}^2
-
-\end{aligned}\]</span>
-<p>回忆关于 <span class="math inline">\(L\)</span> 的二次型，有</p>
-<span class="math display">\[\begin{aligned}
-
-E=\phi^\intercal L\phi=R_{\text{eff} }
-
-\end{aligned}\]</span>
-<p>并且有结论：对与任意的 <span class="math inline">\(s,t\)</span> 流，其电势能不会比 <span class="math inline">\(R_{\text{eff} }\)</span> 更小。即这样的电势分布会最小化单位流的能量损耗，非常神奇的物理意义。</p>
+        <h2 id="大二下摸鱼记录">大二下摸鱼记录</h2>
+<p>感觉已经失去了初入大学的那种锐气。越学越觉得自己不会的还多着，想做的东西总要被迫让位给GPA和考试。某些课程越发觉得无用，上课的老师也只是混混日子，我也就渐渐只会混混日子了。</p>
+<h2 id="二月">二月</h2>
+<p>在寒假的时候看完了ML4CS的大半本，顺便又看了一次冰菓。最开始看冰菓的时候并没有特别的感觉，只对万人的死角里的idea感到有些惊艳。等到我的高中生活离我远去了才觉着有趣，也是蛮新奇的体验吧。</p>
+<p>在湖南待着的时候只觉得自己是异乡人。熟悉的亲人都在老去，我的同龄人都与我陌生了。走亲戚的时候只能尴尬笑一下。我承认这种感觉很不好，但这是我出生的地方，这大概算一点责任。</p>
+<p>开学之后选课，思考了半天还是选上了OS和数电，免掉了算法课。说实话这么做我是心里没有底的，但是实在太想上jyy的课了。在呢喃读书四年，我不想临近毕业再去体验号称是最难作业的oslab。但事实上作业也没有想象的那么难，并且一轮下来发现讲课的风格也并没有那么喜欢...还是有点落差的。</p>
+<p>二月份月底的时候和Charlie Jiang去了一趟新街口吃网红快餐，最后因为找不到座位打包去了另一家快餐店吃。Jiang同学是非常有个性的人，且不说坐1h地铁来回吃网红店这个行为，光是提着网红店的包装盒坐地铁就让我难以忍受别人的目光了。不过能够有这么一次体验也算是新奇。</p>
+<h2 id="三月">三月</h2>
+<p>在上大学之前就加入了526，算是社交生活的起点了。本来的教室被征用了，于是只好拖家带口搬到了楼下的411临时凑合。在526刷过丘维声的网课和教材，拆过破碎的智商税笔记本，玩过舞力全开，吹过口琴打过UNO，现在都成回忆了。</p>
+<p>大概在三月底开始封校了，封校前和znr去了一趟玄武湖，结果最终也没有成功打卡相亲角，有点遗憾。</p>
+<p>今年没有去鸡鸣寺。</p>
+<h2 id="四月">四月</h2>
+<p>封校的日子里，炜华变得很热闹。每晚都有唱歌、广场舞、夜跑、桌游，甚至还有调酒和蹦迪的，可以说是很快乐了。</p>
+<p>526的一支成立了桌游分队，在炜华进行了第一次（大概也是最后一次）大型线下桌游活动。挺有意思的。看样子本来是个情感聊天局，最后变成了词穷telepath了</p>
+<p>中途一直在咕咕咕oslab，因为L1实在写得太费心...听OS的感觉就是台上这个人看起来好厉害但是这和我有什么关系吗 的心情。OS的很大一部分都在PA4整完了，但是高阶内容又不可能一下子干完，所以就听得有点累，每次上完都要花一整晚看教材，再花另一整晚去看代码和翻wiki，感觉不是太值得。</p>
+<h2 id="五月">五月</h2>
+<p>花了三天就写完了oslab2，可以吹一年</p>
+<p>校庆整了一个小小的摆摊，社团的活动仍然是老三样：认识网线，接网线，测网线。在最热闹的一天里也没有见到那个人，大概是再也见不到了。</p>
+<p>520晚学校有看起来很屌的晚会和无人机表演，可惜门票限量发放。炜华里只放了1200人，剩下的都在教学楼的窗边、铁栏杆外围、图书馆前的大屏幕看表演，说实话不太人道。 晚上和znr还有lhr喝电气白兰，感觉不怎么好喝。顺便听来了几个小故事，还行吧。</p>
+<p>后面还有校园打卡的活动，最后一站是天文台。上去了只觉得空虚，大热天也许不该走上天文山就为了拍一张照片，更不应该在天文台瘫坐着，于是就编了个理由回宿舍了。</p>
+<p>月底去看了Groundhog Day的音乐剧。这部电影本来在waitlist里，现在也不太想再看一次了。歌魅还是很厉害的，动作和台词都很到位，场景道具精美。可惜的是因为莫名其妙的疫情管控原因，倒数第三排的我被赶到了二楼。这个角度不好又吹不到空调的地方着实不算好位置。第二场就更惨了，多余的同学直接被挡在了门外，事后也没有道歉和解释，差评</p>
+<h2 id="六月">六月</h2>
+<p>月初和桌游组出门唱歌，感觉大家虽然风格迥异但还是能玩得和谐的。</p>
+<p>突然萌生了留长发的想法，在这之后越来越发觉周围的长发男变多了。</p>
+<p>准备期末考试，然后考到了今天。</p>
+<h1 id="课程踩坑">课程踩坑</h1>
+<p>交换生系统里的ranking日常下掉，感觉自己是真的小丑</p>
+<h2 id="操作系统">操作系统</h2>
+<p>刚入学就听说很牛逼的一门课，事实上也很牛逼。这门课基本上都是jyy在单打独斗，所以能有完整的实验体验、丰富的拓展和充分的代码例子是很难得的。</p>
+<p>实验是基于AM写的，因此屏蔽了很多ISA相关的细节（例如怎么做地址空间的虚拟化）。和大班最大的不同就是有完整的多核心支持，可以轻松写出并发bug，以及L1对性能有一些些要求，别的就没了。</p>
+<p>理论都是些说烂了的东西，难的是怎么实现一个理论。再加上这门课提供了完整的课程录像，因此我觉得完全可以旁听然后做完整的实验，这样体验是相差无几的。</p>
+<h2 id="算法设计与分析">算法设计与分析</h2>
+<p>为了修OS就免修了算法，事实证明这一决定非常正确。算法课只会讲一些经典的简单算法，难的分析和论证老师自己也不太行...由于是三个班一起上，某些老师的水平就非常不够看，连带的助教也很睿智（无褒义），oj的题目非常迷惑，同学们也不知道到底学懂没有。</p>
+<p>最后考试是两个原题+四个莫名其妙的设计和分析，1.5h就写完跑路了。就这还有人作弊...</p>
+<h2 id="图论">图论</h2>
+<p>莫名其妙的本研共修课，实际上全是本科生。作业难度一般，属于思考两天就能全部写完的水平。考试莫名其妙，要你模拟算法，证明题纯纯的送分，让我摸不着头脑。</p>
+<p>最莫名其妙的是这课还搞回答问题加分 &amp; 论文分享加分 &amp; OJ附加题加分 &amp; 签到算分 的申必碎片化给分，有点无语。</p>
+<p>但这是你基必修，没法。</p>
+<h2 id="计算方法">计算方法</h2>
+<p>可以感觉到新来的老师水平很高，也在努力想让大家学懂。不过看起来课程内容和一开始以为的计算方法不太一样，中途开始插入随机游走和谱图论的硬广。最后让yyt讲了两次的凸优化（感觉也没讲什么...）</p>
+<p>平时作业不算难，两周交一次并且和课程内容比较相关。助教人很好（也许是因为和ofn关系很好...）会有答疑和参考答案。</p>
+<p>期末考了很多计算题和线性规划，几道证明都是比较简单的结论应用，还是很友善的。</p>
+<h2 id="数理逻辑">数理逻辑</h2>
+<p>非常纱布的课程。首先数理逻辑是一门非常严谨的符号学科，但是学校用的课本错漏百出，甚至需要专门出一个勘误。其次写这个课本的人已经不教计科了，因此这本写得并不完整有些跳跃的课本看懂很费力气。最后目前负责上这门课的老师水平很低，具体表现为不会念定理的名字、不理解定理的含义就上课。考试甚至出现了抄原题抄错定义的情况，并且事后拒绝承认自己造成的教学事故。</p>
+<p>期末只需要提前找好往年题目开抄就行了，80%是有重合的。</p>
+<p>综上所述，这门课非常对不起它的历史地位和重要性，我的建议是能跑就跑，实在跑不了也不要跟着qy上。</p>
+<h2 id="博弈论">博弈论</h2>
+<p>意义不明的选修课。如果你从来没接触过博弈论，那么不妨一上；如果你之前见过类似的东西，那么可能这门课没法带来新知识。课程名叫博弈论及其应用，实际上更适合叫纳什均衡及其计算。</p>
+<p>很多时候课程的内容都是要计算一个纳什均衡，然后就是针对不同的模型做不同的计算和建模，更像是金融会感兴趣的东西。考试不算难，基本没有什么障碍。中途一次的大作业做起来有些费力，需要学一些额外的知识才能做得比较好。最重要的，这门课在周五的晚上，比较折磨。</p>
+<p>属于不太值得专门来选，但是有闲可以上一下的选修课。</p>
+<h2 id="数电计组">数电计组</h2>
+<p>刚刚考完这门</p>
+<p>课程内容没什么新东西，我之前上过ICS和OS了，这学期还做了数电实验，所以上起来没什么感觉...去年的时候同学普遍反馈学不懂，今年的学弟学妹反应也类似，感觉更像是课程安排和老师授课的问题。</p>
+<p>实验很无聊，需要费眼睛硬连线，不过最后跑起来还是挺有成就感的。</p>
+<p>考试似乎没啥难的，除了连线有点虚以外没什么槽点...等出分看看吧</p>
+<h2 id="太极拳">太极拳</h2>
+<p>据说是这位老师的最后一年授课，感觉没什么参考价值。</p>
+<p>这学期整整上了两个月网课，因此中途都没有线下体育。并且最后只考察四个基本动作，还是没什么压力的。</p>
+<h2 id="杂项">杂项</h2>
+<p>选了一门网课，还算行吧，以后都没了。 选了一门数电实验，主要是最后一个实验比较折磨人，别的都还挺好玩。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/" target="_self">
+              <a href="/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%957-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -282,16 +244,11 @@ E=\phi^\intercal L\phi=R_{\text{eff} }
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2022-06-15 14:21:00
+              2022-06-20 15:18:15
             </span>
             
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -305,7 +262,7 @@ E=\phi^\intercal L\phi=R_{\text{eff} }
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE"><span class="toc-text">前置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E7%BD%91%E7%BB%9C%E4%B8%8E-l"><span class="toc-text">电路网络与 \(L\)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3"><span class="toc-text">电路方程的解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E5%8A%BF%E8%83%BD%E5%92%8C%E7%AD%89%E6%95%88%E7%94%B5%E9%98%BB"><span class="toc-text">电势能和等效电阻</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95"><span class="toc-text">大二下摸鱼记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E6%9C%88"><span class="toc-text">二月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%9C%88"><span class="toc-text">三月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E6%9C%88"><span class="toc-text">四月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E6%9C%88"><span class="toc-text">五月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E6%9C%88"><span class="toc-text">六月</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%B8%A9%E5%9D%91"><span class="toc-text">课程踩坑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">操作系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90"><span class="toc-text">算法设计与分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%AE%BA"><span class="toc-text">图论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="toc-text">计算方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91"><span class="toc-text">数理逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%BC%88%E8%AE%BA"><span class="toc-text">博弈论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%94%B5%E8%AE%A1%E7%BB%84"><span class="toc-text">数电计组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%AA%E6%9E%81%E6%8B%B3"><span class="toc-text">太极拳</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a></li></ol>
       
     </div>
   </div>
