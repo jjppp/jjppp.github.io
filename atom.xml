@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-06-23T05:49:06.197Z</updated>
+  <updated>2022-06-23T11:23:17.150Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统 Lab3 uproc</title>
+    <link href="http://example.com/2022/06/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab3-uproc/"/>
+    <id>http://example.com/2022/06/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab3-uproc/</id>
+    <published>2022-06-23T11:19:50.000Z</published>
+    <updated>2022-06-23T11:23:17.150Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;lab3-uproc&quot;&gt;Lab3-uproc&lt;/h1&gt;
+&lt;h2 id=&quot;设计&quot;&gt;设计&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;在 L3 的时候实现了侵入式链表，这样就可以把原先 pmm 的 &lt;code&gt;free_list&lt;/code&gt;、kmt 的</summary>
+        
+      
+    
+    
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>大二下摸鱼记录</title>
@@ -435,30 +461,6 @@
     
     
     <category term="ICS" scheme="http://example.com/tags/ICS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>密码学07 OWF&amp;HC</title>
-    <link href="http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/"/>
-    <id>http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/</id>
-    <published>2021-12-21T12:15:00.000Z</published>
-    <updated>2022-06-23T05:49:33.877Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;这一章比较轻松，主要是科普一些东西，都是概念性的&lt;/p&gt;
-&lt;h2 id=&quot;one-way-function&quot;&gt;One-way</summary>
-        
-      
-    
-    
-    
-    
-    <category term="密码学" scheme="http://example.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
