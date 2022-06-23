@@ -180,8 +180,7 @@
           
       </div>
       <div class="markdown-body">
-        <p>据助教说不考这么麻烦的计算，我就摸了</p>
-<h1 id="多项式的表示">多项式的表示</h1>
+        <h1 id="多项式的表示">多项式的表示</h1>
 <p>最熟悉的是系数表示法，例如 <span class="math inline">\(P(x)=\sum_{i=0}^n a_i x^i\)</span></p>
 <p>系数表示法有它的好处：例如将 <span class="math inline">\(\Set{1,x,x^2\ldots}\)</span> 视为一组基时，系数恰好就是多项式在这组基下的坐标；例如对于任给的点 <span class="math inline">\(x\)</span> 可以计算多项式的值（<span class="math inline">\(O(n)\)</span> 次乘法）。但是在给出系数表示法后，对两个 <span class="math inline">\(n\)</span> 次多项式很难高效算乘积（还记得天才本科生Karatsuba吗）</p>
 <p>还可以是点值表示法。根据lagrange插值可知，一个 <span class="math inline">\(n\)</span> 次多项式可以由 <span class="math inline">\(n+1\)</span> 个点唯一确定。因此 <span class="math inline">\(P(x)\overset{\text{def} }= \Set{(x_0,y_0),(x_1,y_1)\ldots}\)</span></p>

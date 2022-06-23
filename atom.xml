@@ -46,20 +46,10 @@
     <link href="http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%957-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/"/>
     <id>http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%957-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/</id>
     <published>2022-06-15T06:21:00.000Z</published>
-    <updated>2022-06-23T05:44:10.454Z</updated>
+    <updated>2022-06-23T05:55:24.097Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;越发觉得自己物理学得烂了...&lt;/p&gt;
-&lt;h1 id=&quot;前置&quot;&gt;前置&lt;/h1&gt;
-&lt;p&gt;前置的物理定律包括如下两条：&lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;&lt;p&gt;欧姆定律，即 &lt;span class=&quot;math</summary>
-        
-      
+    <summary type="html">越发觉得自己物理学得烂了...</summary>
     
     
     
@@ -73,18 +63,10 @@
     <link href="http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/"/>
     <id>http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/</id>
     <published>2022-06-14T06:49:00.000Z</published>
-    <updated>2022-06-23T05:52:16.121Z</updated>
+    <updated>2022-06-23T05:55:18.289Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;据助教说不考这么麻烦的计算，我就摸了&lt;/p&gt;
-&lt;h1 id=&quot;多项式的表示&quot;&gt;多项式的表示&lt;/h1&gt;
-&lt;p&gt;最熟悉的是系数表示法，例如 &lt;span class=&quot;math inline&quot;&gt;\(P(x)=\sum_{i=0}^n a_i</summary>
-        
-      
+    <summary type="html">据助教说不考这么麻烦的计算，我就摸了</summary>
     
     
     
@@ -170,19 +152,10 @@
     <link href="http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%955-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/"/>
     <id>http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%955-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/</id>
     <published>2022-05-10T12:48:00.000Z</published>
-    <updated>2022-06-23T05:52:12.629Z</updated>
+    <updated>2022-06-23T05:55:12.269Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;感觉这部分穿插的有些怪&lt;/p&gt;
-&lt;p&gt;upd：最后两节课突然就悟了，因为tcs组主要是做这个的...看了看感觉就是硬广，那就学着吧。&lt;/p&gt;
-&lt;h1 id=&quot;courant-fischer&quot;&gt;Courant-Fischer&lt;/h1&gt;
-&lt;p&gt;对于实对称矩阵 &lt;span</summary>
-        
-      
+    <summary type="html">感觉这部分穿插的有些怪</summary>
     
     
     
@@ -196,19 +169,10 @@
     <link href="http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/"/>
     <id>http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/</id>
     <published>2022-05-10T11:58:00.000Z</published>
-    <updated>2022-06-23T05:52:09.361Z</updated>
+    <updated>2022-06-23T05:54:59.889Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Markov Chain 的本质是概率状态机，这么想就很简单了&lt;/p&gt;
-&lt;p&gt;为了偷懒只讨论有限的情形&lt;/p&gt;
-&lt;h1 id=&quot;前置&quot;&gt;前置&lt;/h1&gt;
-&lt;p&gt;离散概率分布可以表示为 &lt;span class=&quot;math inline&quot;&gt;\(\R^n\)&lt;/span&gt;</summary>
-        
-      
+    <summary type="html">Markov Chain 的本质是概率状态机，这么想就很简单了</summary>
     
     
     
@@ -222,21 +186,10 @@
     <link href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/"/>
     <id>http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/</id>
     <published>2022-05-08T06:33:00.000Z</published>
-    <updated>2022-06-23T05:52:07.253Z</updated>
+    <updated>2022-06-23T05:54:50.424Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前置&quot;&gt;前置&lt;/h1&gt;
-&lt;p&gt;这一节主要是玩矩阵，为了偷懒只讨论实线性空间&lt;/p&gt;
-&lt;h1 id=&quot;前置-1&quot;&gt;前置&lt;/h1&gt;
-&lt;p&gt;这一节主要是玩矩阵，为了偷懒只讨论实线性空间&lt;/p&gt;
-&lt;h2 id=&quot;内积&quot;&gt;内积&lt;/h2&gt;
-&lt;p&gt;二元函数 &lt;span</summary>
-        
-      
+    <summary type="html">这一节主要是玩矩阵，为了偷懒只讨论实线性空间</summary>
     
     
     
@@ -250,18 +203,10 @@
     <link href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%952-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/"/>
     <id>http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%952-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/</id>
     <published>2022-05-08T03:33:00.000Z</published>
-    <updated>2022-06-23T05:52:03.985Z</updated>
+    <updated>2022-06-23T05:54:29.868Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;心态崩了，这个 latex 公式支持也太迷幻了。但是不太想管，等啥时候有空整个自己的吧(flag++)&lt;/p&gt;
-&lt;h1 id=&quot;函数逼近&quot;&gt;函数逼近&lt;/h1&gt;
-&lt;p&gt;考虑的是对于给定函数 &lt;span class=&quot;math inline&quot;&gt;\(f\)&lt;/span&gt; 和度量</summary>
-        
-      
+    <summary type="html">心态崩了，这个 latex 公式支持也太迷幻了。</summary>
     
     
     
@@ -323,18 +268,10 @@
     <link href="http://example.com/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%951-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/"/>
     <id>http://example.com/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%951-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/</id>
     <published>2022-03-07T15:26:00.000Z</published>
-    <updated>2022-06-23T05:52:01.281Z</updated>
+    <updated>2022-06-23T05:54:10.067Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;严格写就太累了，这个就当是随手的笔记得了。大概看看原理，不求甚解。&lt;/p&gt;
-&lt;h2 id=&quot;fixpoint-theorem&quot;&gt;Fixpoint Theorem&lt;/h2&gt;
-&lt;p&gt;定义函数 &lt;span class=&quot;math inline&quot;&gt;\(f\)&lt;/span&gt;</summary>
-        
-      
+    <summary type="html">严格写就太累了，这个就当是随手的笔记得了。大概看看原理，不求甚解。</summary>
     
     
     
