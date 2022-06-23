@@ -11,8 +11,8 @@
   
   <title>
     
-      高等代数复习笔记 常见证明 
-      
+      标签 
+       : CSAPP
       
       |
     
@@ -115,157 +115,75 @@
 
 
       <div class="flex-container">
-        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
-<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
 
-
-  <!-- LaTex Display -->
-
+<div class="container tag-details">
+  <div class="content-title">
+    <h2>
+      <span>CSAPP</span>
+    </h2>
+  </div>
   
-    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  
-  <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      }
-    }
-  </script>
-
-
-
-
-
-  <!-- clipboard -->
-
-  
-    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
-  
-  
-<script src="/js/codeCopy.js"></script>
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
-  <div class="container post-details" id="post-details">
-    <div class="post-content">
-      <div class="post-title">高等代数复习笔记 常见证明</div>
-      <div class="post-attach">
-        <span class="post-pubtime">
-          <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2021-02-08 02:24:00
-        </span>
-        
+    <div class="post-list">
+      <div class="post-item" title="CSAPP实验6 : shlab">
+        <span class="time-m-d">2021-04-21</span>
+        <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C6-shlab/">
+          <span>CSAPP实验6 : shlab</span>
+        </a>
       </div>
-      <div class="markdown-body">
-        <p>关于矩阵的秩，王萼芳的书上给了一个比较简单的证明，丘维声的书上给了一个比较容易理解的证明，这里记一下复习复习，算是加深理解</p>
-<h2 id="方法一">方法一</h2>
-<hr />
-<p><strong>引理</strong>：齐次线性方程组<span class="math inline">\(A\textbf{x}=\textbf{0}\)</span>只有零解当且仅当矩阵<span class="math inline">\(A\)</span>的行秩<span class="math inline">\(\ge\)</span>未知数个数。</p>
-<p>引理的证明比较简单，只需要证明初等行变换不改变行秩，再观察<span class="math inline">\(A\)</span>化成阶梯形矩阵之后自由变量的数量就好了</p>
-<p>不妨设一个矩阵<span class="math inline">\(A_{s\times n}\)</span>，且有<span class="math inline">\(s\le n\)</span>，我们首先证明行秩<span class="math inline">\(r_s\le\)</span>列秩$ r_n$</p>
-<p>可以取出<span class="math inline">\(r_s\)</span>个线性无关的行向量，不妨记为<span class="math inline">\(\textbf{\alpha_{1},\alpha_{2},\dots,\alpha_{r_s} }\)</span>。根据线性无关的定义有：<strong>不存在</strong>一组不全为零的数<span class="math inline">\(k_1,k_2,\dots,k_{r_s}\)</span>使得<span class="math inline">\(\sum\limits_{i=1}^{r_s}{k_i\textbf{\alpha_i} }=0\)</span>。记这些行向量组成的矩阵为<span class="math inline">\(A_1\)</span>，即<span class="math inline">\(\textbf{x}^{T}A_1=\textbf{0}\)</span>只有零解，两边转置得到<span class="math inline">\({A_1}^T\textbf{x}=\textbf{0}\)</span>只有零解。由引理可知<span class="math inline">\(r_s\)</span> <span class="math inline">\(\le\)</span> <span class="math inline">\({A_1}^T\)</span>的行秩。那么我们可以从<span class="math inline">\({A_1}^T\)</span>中取出它行向量的一个极大线性无关组。根据定理这个极大线性无关组的延伸组也是线性无关的，于是我们就把它填充为原本列向量的转置。</p>
-<p>这里可以看出矩阵<span class="math inline">\(A\)</span>的列向量组至少有<span class="math inline">\(r_s\)</span>个向量线性无关，因此<span class="math inline">\(r_s\le r_n\)</span></p>
-<p>由对称性可知反过来是同理的，或者你转置一下也行。这个证法我jio得很简洁</p>
-<h2 id="方法二">方法二</h2>
-<hr />
-<h3 id="step1">Step1</h3>
-<p>首先证明行阶梯形矩阵的行秩=列秩。记<span class="math inline">\(A\)</span>的非零行数量为<span class="math inline">\(r\)</span>，首先可以把每一行主元所在的行和列抠出来，不妨记第<span class="math inline">\(i\)</span>个主元所在列为<span class="math inline">\(K_i\)</span>，它们交点组成的子矩阵记为<span class="math inline">\(C\)</span>。很显然<span class="math inline">\(C\)</span>是一个上三角矩阵，于是<span class="math inline">\(|C|\neq0\)</span>，也就是说<span class="math inline">\(C\)</span>中的行列向量组都是线性无关的，同样它们的延伸组也是线性无关的</p>
-<ol type="1">
-<li><p>先看矩阵<span class="math inline">\(A\)</span>的列向量组，记为<span class="math inline">\(\textbf{\alpha_1,\alpha_2,\dots,\alpha_n}\)</span>，它们的特点是每一个向量的后<span class="math inline">\(s-r\)</span>个元素全为<span class="math inline">\(0\)</span>，这表示<span class="math inline">\(A\)</span>的列秩<span class="math inline">\(r_n=r=r\left(\textbf{\alpha_{K_1},\dots,\alpha_{K_r} }\right)\)</span>，于是我们抠出来的这<span class="math inline">\(r\)</span>个列向量就是<span class="math inline">\(A\)</span>的列向量组的一个极大线性无关组</p></li>
-<li><p>再看<span class="math inline">\(A\)</span>的行向量组，记为<span class="math inline">\(\textbf{} \begin{aligned} \textbf{\beta_1,\beta_2,\dots,\beta_s}\)</span>，由<span class="math inline">\(|C|\neq0\)</span>可知其中的<span class="math inline">\(r\)</span>个向量线性无关，剩余<span class="math inline">\(s-r\)</span>个都是<span class="math inline">\(\textbf0\)</span>，于是行秩<span class="math inline">\(r_s=r=r\left(\textbf{\beta_{K_1},\beta_{K_2},\dots,\beta{K_r} }\right)\)</span></p></li>
-</ol>
-<p>综合1、2可得，行阶梯形矩阵的行秩等于列秩</p>
-<h3 id="step2">Step2</h3>
-<p>再证明初等行变换不改变行秩</p>
-<p>第i行的k倍加到第j行，即向量组<span class="math inline">\(\textbf{\alpha_1,\dots,\alpha_i,\dots,\alpha_j,\dots,\alpha_n}\)</span>变成了<span class="math inline">\(\textbf{\alpha_1,\dots,\alpha_i,\dots,k\alpha_i+\alpha_j,\dots,\alpha_n}\)</span>。这俩显然是等价的，它们的秩也相等</p>
-<p>交换i、j两行显然不变，某一行乘上一个非零系数显然不变</p>
-<h3 id="step3">Step3</h3>
-<p>再证明初等行变换不改变列向量组的线性相关性</p>
-<p>任取<span class="math inline">\(A\)</span>中的列向量组<span class="math inline">\(\textbf{\alpha_1,\alpha_2,\dots,\alpha_p}\)</span>，其经历一系列初等行变换变成行阶梯形<span class="math inline">\(\textbf{\beta_1,\beta_2,\dots,\beta_p}\)</span></p>
-<p>如果<span class="math inline">\(\textbf\beta\)</span>线性无关，那么它的前<span class="math inline">\(p\)</span>个分量组成的<span class="math inline">\(p\times p\)</span>的矩阵行列式<span class="math inline">\(\neq0\)</span>，又因为行初等变换不改变行列式的值，因此得到<span class="math inline">\(\textbf\alpha\)</span>的前<span class="math inline">\(p\)</span>个分量组成的矩阵的行列式也<span class="math inline">\(\neq0\)</span>；如果线性相关，那么这个结论也是对应的</p>
-<p>于是初等行变换不改变列向量组的线性相关性</p>
-<h3 id="step4">Step4</h3>
-<p>最后证明初等行变换不改变列秩</p>
-<p>取<span class="math inline">\(A\)</span>的<span class="math inline">\(r_n\)</span>个线性无关的列向量构成一个极大线性无关组<span class="math inline">\(\textbf\alpha\)</span>，其经历一系列初等行变换变成<span class="math inline">\(\textbf\beta\)</span>，由Step3可知<span class="math inline">\(\textbf\beta\)</span>中的这<span class="math inline">\(r_n\)</span>个向量也线性无关，因此初等行变换不会使列秩减小；</p>
-<p>再任取<span class="math inline">\(A\)</span>中的<span class="math inline">\(r_n+1\)</span>个列向量(如果有的话)，易得这<span class="math inline">\(r_n+1\)</span>个列向量线性相关，于是其对应的<span class="math inline">\(\textbf\beta\)</span>中的任意<span class="math inline">\(r_n+1\)</span>个列向量都线性相关，因此初等行变换不会使列秩增大；</p>
-<p>因此初等行变换不改变列秩</p>
-<h3 id="step5">Step5</h3>
-<p>综合1234就可以把任意的矩阵通过初等行变换变成行阶梯形矩阵，再由秩的不变性得到任意矩阵的行秩等于列秩</p>
-
-      </div>
-      
-        <div class="prev-or-next">
-          <div class="post-foot-next">
-            
-              <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/" target="_self">
-                <i class="iconfont icon-chevronleft"></i>
-                <span>上一页</span>
-              </a>
-            
-          </div>
-          <div class="post-attach">
-            <span class="post-pubtime">
-              <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2021-02-08 02:24:00
-            </span>
-            
-          </div>
-          <div class="post-foot-prev">
-            
-              <a href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
-          </div>
-        </div>
-      
     </div>
-    
-  <div id="btn-catalog" class="btn-catalog">
-    <i class="iconfont icon-catalog"></i>
-  </div>
-  <div class="post-catalog hidden" id="catalog">
-    <div class="title">目录</div>
-    <div class="catalog-content">
-      
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step1"><span class="toc-text">Step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step2"><span class="toc-text">Step2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step3"><span class="toc-text">Step3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step4"><span class="toc-text">Step4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step5"><span class="toc-text">Step5</span></a></li></ol></li></ol>
-      
-    </div>
-  </div>
-
   
-<script src="/js/catalog.js"></script>
-
-
-
-
-    
-      <div class="comments-container">
-        
-
-
-
-
-
-
-
+    <div class="post-list">
+      <div class="post-item" title="CSAPP实验5: cachelab">
+        <span class="time-m-d">2021-03-07</span>
+        <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C5-cachelab/">
+          <span>CSAPP实验5: cachelab</span>
+        </a>
       </div>
+    </div>
+  
+    <div class="post-list">
+      <div class="post-item" title="CSAPP实验4: archlab">
+        <span class="time-m-d">2021-02-17</span>
+        <a href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C4-archlab/">
+          <span>CSAPP实验4: archlab</span>
+        </a>
+      </div>
+    </div>
+  
+    <div class="post-list">
+      <div class="post-item" title="CSAPP实验3 : attacklab">
+        <span class="time-m-d">2021-02-04</span>
+        <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C3-attacklab/">
+          <span>CSAPP实验3 : attacklab</span>
+        </a>
+      </div>
+    </div>
+  
+    <div class="post-list">
+      <div class="post-item" title="CSAPP实验2 : bomblab">
+        <span class="time-m-d">2021-01-24</span>
+        <a href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C2-bomblab/">
+          <span>CSAPP实验2 : bomblab</span>
+        </a>
+      </div>
+    </div>
+  
+    <div class="post-list">
+      <div class="post-item" title="CSAPP实验1 : datalab">
+        <span class="time-m-d">2021-01-14</span>
+        <a href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C1-datalab/">
+          <span>CSAPP实验1 : datalab</span>
+        </a>
+      </div>
+    </div>
+  
+  <nav class="post-navigation">
     
-  </div>
-
+    <span class="page-num">1 / 1</span>
+    
+  </nav>
+</div>
 
         
 <div class="footer">
@@ -531,16 +449,6 @@
 
 
         
-  
-    <div class="share-icon tools-bar-item">
-      <a href="javascript: void(0)" id="share-icon">
-        <i class="iconfont iconshare"></i>
-      </a>
-      <div class="share-content hidden">
-        
-        
-      </div>
-    </div>
   
   
 <script src="/js/shares.js"></script>

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-06-20T15:31:34.063Z</updated>
+  <updated>2022-06-23T05:49:06.197Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/"/>
     <id>http://example.com/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/</id>
     <published>2022-06-20T07:18:15.000Z</published>
-    <updated>2022-06-20T15:31:34.063Z</updated>
+    <updated>2022-06-23T05:49:06.197Z</updated>
     
     
       
@@ -36,6 +36,8 @@
     
     
     
+    
+    <category term="想法" scheme="http://example.com/tags/%E6%83%B3%E6%B3%95/"/>
     
   </entry>
   
@@ -71,7 +73,7 @@
     <link href="http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/"/>
     <id>http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%956-FFT/</id>
     <published>2022-06-14T06:49:00.000Z</published>
-    <updated>2022-06-19T05:30:25.016Z</updated>
+    <updated>2022-06-23T05:52:16.121Z</updated>
     
     
       
@@ -87,6 +89,8 @@
     
     
     
+    <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
@@ -94,7 +98,7 @@
     <link href="http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA2-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/"/>
     <id>http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA2-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/</id>
     <published>2022-06-09T12:34:00.000Z</published>
-    <updated>2022-06-19T05:32:30.953Z</updated>
+    <updated>2022-06-23T05:48:21.888Z</updated>
     
     
       
@@ -109,6 +113,8 @@
     
     
     
+    <category term="博弈论" scheme="http://example.com/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    
   </entry>
   
   <entry>
@@ -116,7 +122,7 @@
     <link href="http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab2-kmt/"/>
     <id>http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab2-kmt/</id>
     <published>2022-05-28T08:06:00.000Z</published>
-    <updated>2022-06-19T05:30:25.044Z</updated>
+    <updated>2022-06-23T05:50:17.330Z</updated>
     
     
       
@@ -132,6 +138,8 @@
     
     
     
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
   </entry>
   
   <entry>
@@ -139,7 +147,7 @@
     <link href="http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab1-pmm/"/>
     <id>http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab1-pmm/</id>
     <published>2022-05-28T08:03:00.000Z</published>
-    <updated>2022-06-19T05:30:25.028Z</updated>
+    <updated>2022-06-23T05:50:07.290Z</updated>
     
     
       
@@ -153,6 +161,8 @@
     
     
     
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
   </entry>
   
   <entry>
@@ -160,7 +170,7 @@
     <link href="http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%955-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/"/>
     <id>http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%955-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/</id>
     <published>2022-05-10T12:48:00.000Z</published>
-    <updated>2022-06-19T05:32:30.925Z</updated>
+    <updated>2022-06-23T05:52:12.629Z</updated>
     
     
       
@@ -177,6 +187,8 @@
     
     
     
+    <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
@@ -184,7 +196,7 @@
     <link href="http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/"/>
     <id>http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%954-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/</id>
     <published>2022-05-10T11:58:00.000Z</published>
-    <updated>2022-06-19T05:30:25.012Z</updated>
+    <updated>2022-06-23T05:52:09.361Z</updated>
     
     
       
@@ -201,6 +213,8 @@
     
     
     
+    <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
@@ -208,7 +222,7 @@
     <link href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/"/>
     <id>http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%953-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/</id>
     <published>2022-05-08T06:33:00.000Z</published>
-    <updated>2022-06-19T05:32:30.933Z</updated>
+    <updated>2022-06-23T05:52:07.253Z</updated>
     
     
       
@@ -227,6 +241,8 @@
     
     
     
+    <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
@@ -234,7 +250,7 @@
     <link href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%952-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/"/>
     <id>http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%952-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/</id>
     <published>2022-05-08T03:33:00.000Z</published>
-    <updated>2022-06-19T05:30:25.016Z</updated>
+    <updated>2022-06-23T05:52:03.985Z</updated>
     
     
       
@@ -250,6 +266,8 @@
     
     
     
+    <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
@@ -257,7 +275,7 @@
     <link href="http://example.com/2022/03/12/%E5%8D%9A%E5%BC%88%E8%AE%BA1-%E7%AD%96%E7%95%A5%E6%B8%B8%E6%88%8F/"/>
     <id>http://example.com/2022/03/12/%E5%8D%9A%E5%BC%88%E8%AE%BA1-%E7%AD%96%E7%95%A5%E6%B8%B8%E6%88%8F/</id>
     <published>2022-03-12T14:29:00.000Z</published>
-    <updated>2022-06-19T05:32:30.953Z</updated>
+    <updated>2022-06-23T05:48:19.024Z</updated>
     
     
       
@@ -271,6 +289,8 @@
     
     
     
+    <category term="博弈论" scheme="http://example.com/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    
   </entry>
   
   <entry>
@@ -278,7 +298,7 @@
     <link href="http://example.com/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     <id>http://example.com/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</id>
     <published>2022-03-08T05:06:00.000Z</published>
-    <updated>2022-06-19T05:30:25.020Z</updated>
+    <updated>2022-06-23T05:47:34.971Z</updated>
     
     
       
@@ -294,6 +314,8 @@
     
     
     
+    <category term="DLCO" scheme="http://example.com/tags/DLCO/"/>
+    
   </entry>
   
   <entry>
@@ -301,7 +323,7 @@
     <link href="http://example.com/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%951-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/"/>
     <id>http://example.com/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%951-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/</id>
     <published>2022-03-07T15:26:00.000Z</published>
-    <updated>2022-06-19T05:30:25.008Z</updated>
+    <updated>2022-06-23T05:52:01.281Z</updated>
     
     
       
@@ -317,6 +339,8 @@
     
     
     
+    <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
@@ -324,7 +348,7 @@
     <link href="http://example.com/2022/02/13/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9103-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/"/>
     <id>http://example.com/2022/02/13/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9103-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/</id>
     <published>2022-02-13T04:04:00.000Z</published>
-    <updated>2022-06-19T05:32:30.937Z</updated>
+    <updated>2022-06-23T05:50:44.839Z</updated>
     
     
       
@@ -339,6 +363,8 @@
     
     
     
+    <category term="数理逻辑" scheme="http://example.com/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/"/>
+    
   </entry>
   
   <entry>
@@ -346,7 +372,7 @@
     <link href="http://example.com/2022/01/24/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9102-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/"/>
     <id>http://example.com/2022/01/24/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9102-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/</id>
     <published>2022-01-24T10:53:00.000Z</published>
-    <updated>2022-06-19T05:30:25.036Z</updated>
+    <updated>2022-06-23T05:50:41.791Z</updated>
     
     
       
@@ -363,28 +389,7 @@
     
     
     
-  </entry>
-  
-  <entry>
-    <title>数理逻辑习题乱做</title>
-    <link href="http://example.com/2022/01/21/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/"/>
-    <id>http://example.com/2022/01/21/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91%E4%B9%A0%E9%A2%98%E4%B9%B1%E5%81%9A/</id>
-    <published>2022-01-21T15:44:00.000Z</published>
-    <updated>2022-06-19T05:30:25.028Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;做习题，不保证对，不保证全&lt;/p&gt;
-&lt;h2 id=&quot;section&quot;&gt;2.10&lt;/h2&gt;
-&lt;p&gt;证明只有 &lt;span class=&quot;math inline&quot;&gt;\(\uparrow,\downarrow\)&lt;/span&gt;</summary>
-        
-      
-    
-    
-    
+    <category term="数理逻辑" scheme="http://example.com/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/"/>
     
   </entry>
   
@@ -393,7 +398,7 @@
     <link href="http://example.com/2022/01/20/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9101-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/"/>
     <id>http://example.com/2022/01/20/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9101-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/</id>
     <published>2022-01-20T10:31:00.000Z</published>
-    <updated>2022-06-19T05:30:25.040Z</updated>
+    <updated>2022-06-23T05:50:38.775Z</updated>
     
     
       
@@ -409,6 +414,8 @@
     
     
     
+    <category term="数理逻辑" scheme="http://example.com/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/"/>
+    
   </entry>
   
   <entry>
@@ -416,7 +423,7 @@
     <link href="http://example.com/2022/01/17/%E7%94%A8haskell%E5%86%99brainfuck%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
     <id>http://example.com/2022/01/17/%E7%94%A8haskell%E5%86%99brainfuck%E8%A7%A3%E9%87%8A%E5%99%A8/</id>
     <published>2022-01-17T15:51:00.000Z</published>
-    <updated>2022-06-19T05:30:25.020Z</updated>
+    <updated>2022-06-23T05:51:30.652Z</updated>
     
     
       
@@ -430,6 +437,8 @@
     
     
     
+    <category term="haskell" scheme="http://example.com/tags/haskell/"/>
+    
   </entry>
   
   <entry>
@@ -437,7 +446,7 @@
     <link href="http://example.com/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/"/>
     <id>http://example.com/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/</id>
     <published>2022-01-10T18:17:00.000Z</published>
-    <updated>2022-06-19T05:30:25.016Z</updated>
+    <updated>2022-06-23T05:49:01.913Z</updated>
     
     
       
@@ -453,6 +462,8 @@
     
     
     
+    <category term="想法" scheme="http://example.com/tags/%E6%83%B3%E6%B3%95/"/>
+    
   </entry>
   
   <entry>
@@ -460,7 +471,7 @@
     <link href="http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/"/>
     <id>http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/</id>
     <published>2022-01-10T17:05:00.000Z</published>
-    <updated>2022-06-19T05:30:25.044Z</updated>
+    <updated>2022-06-23T05:47:13.078Z</updated>
     
     
       
@@ -476,6 +487,32 @@
     
     
     
+    
+    <category term="ICS" scheme="http://example.com/tags/ICS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>密码学07 OWF&amp;HC</title>
+    <link href="http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/"/>
+    <id>http://example.com/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/</id>
+    <published>2021-12-21T12:15:00.000Z</published>
+    <updated>2022-06-23T05:49:33.877Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这一章比较轻松，主要是科普一些东西，都是概念性的&lt;/p&gt;
+&lt;h2 id=&quot;one-way-function&quot;&gt;One-way</summary>
+        
+      
+    
+    
+    
+    
+    <category term="密码学" scheme="http://example.com/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
