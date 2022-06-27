@@ -182,14 +182,14 @@
       <div class="markdown-body">
         <p>为了偷懒只讨论有限的情形</p>
 <h1 id="前置">前置</h1>
-<p>离散概率分布可以表示为 <span class="math inline">\(\R^n\)</span> 上的向量 <span class="math inline">\(x\)</span>，满足 <span class="math inline">\(\sum_{i=1}^n x_i=1\)</span> 且 <span class="math inline">\(\forall i,x_i\in[0,1]\)</span></p>
+<p>离散概率分布可以表示为 <span class="math inline">\({\mathbb R}^n\)</span> 上的向量 <span class="math inline">\(x\)</span>，满足 <span class="math inline">\(\sum_{i=1}^n x_i=1\)</span> 且 <span class="math inline">\(\forall i,x_i\in[0,1]\)</span></p>
 <p>对于用向量表示的概率分布，可以定义两个分布的“距离”：</p>
 <span class="math display">\[\begin{aligned}
 
 d_{TV}(p,q)=\frac{1}{2}\left\lVert p-q\right\rVert_1=\frac{1}{2}\sum_{i=1}^n\left\lvert p_i-q_i\right\rvert
 
 \end{aligned}\]</span>
-<p>这里 <span class="math inline">\(d_{TV}(,)\)</span> 表示 total variation distance。这样就可以定义一列分布的收敛性和极限了。</p>
+<p>这里 <span class="math inline">\(d_{TV}(,)\)</span> 表示 total variation distance。这样就可以定义一列分布的收敛性和极限了。系数的选择是任意的，但是这里可以思考为啥是 <span class="math inline">\(\frac{1}{2}\)</span></p>
 <h1 id="markov-chain">Markov Chain</h1>
 <p>对于一系列数量有限的状态，给出每个状态转移到下一个状态的概率 <span class="math inline">\(Pr[s_i=y\mid s_{i-1}=x]\)</span>，这就构成了一个状态机。把状态看成点，转移概率看成边权，就得到了一个有向带权图，并且这个图满足一些特殊的性质。</p>
 <p>考虑怎么算出现在状态 <span class="math inline">\(i\)</span> 的概率，这本质上是一个一阶递推，写出来就是</p>
