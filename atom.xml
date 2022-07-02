@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-06-23T11:23:17.150Z</updated>
+  <updated>2022-07-02T05:37:59.183Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ANTLR4 笔记</title>
+    <link href="http://example.com/2022/07/02/ANTLR4-%E7%AC%94%E8%AE%B0/"/>
+    <id>http://example.com/2022/07/02/ANTLR4-%E7%AC%94%E8%AE%B0/</id>
+    <published>2022-07-02T05:07:19.000Z</published>
+    <updated>2022-07-02T05:37:59.183Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
+&lt;p&gt;最近需要用到这个工具，官方推荐的Definitive ANTLR Book写得比较杂乱，于是想记一下比较有用的一些点&lt;/p&gt;
+&lt;h1 id=&quot;meta-language&quot;&gt;meta language&lt;/h1&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>操作系统 Lab3 uproc</title>
@@ -435,32 +459,6 @@
     
     
     <category term="想法" scheme="http://example.com/tags/%E6%83%B3%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PA4 附加关卡</title>
-    <link href="http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/"/>
-    <id>http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/</id>
-    <published>2022-01-10T17:05:00.000Z</published>
-    <updated>2022-06-23T05:47:13.078Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;试验进度&quot;&gt;试验进度&lt;/h2&gt;
-&lt;p&gt;我完成了全部必做内容，最后可以用F1、F2、F3分别玩nterm、pal和bird，默认初始打开的是nterm&lt;/p&gt;
-&lt;h2 id=&quot;思考题&quot;&gt;思考题&lt;/h2&gt;
-&lt;h3</summary>
-        
-      
-    
-    
-    
-    
-    <category term="ICS" scheme="http://example.com/tags/ICS/"/>
     
   </entry>
   

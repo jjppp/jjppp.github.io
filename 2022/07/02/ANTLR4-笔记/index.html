@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      ANTLR4 笔记 
+      
+      
+      |
     
      jjppp
   </title>
@@ -112,281 +115,161 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="PA4 附加关卡">
-        <div class="time-m-d">2022-01-11</div>
-        <div class="title">
-          <a href="/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA4 附加关卡</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">ANTLR4 笔记</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-07-02 13:07:19
+        </span>
+        
       </div>
-    
-      <div class="post-item" title="密码学07 OWF&HC">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/">
-            
-              
-                <span>密码学07 OWF&HC</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="写在前面">写在前面</h1>
+<p>最近需要用到这个工具，官方推荐的Definitive ANTLR Book写得比较杂乱，于是想记一下比较有用的一些点</p>
+<h1 id="meta-language">meta language</h1>
+<h2 id="parser和lexer">Parser和Lexer</h2>
+<p>一条rule形如</p>
+<pre><code>`rule_name` : `product 1`
+            | `product 2`
+            | ...
+            ;</code></pre>
+<p>若<code>rule_name</code>以小写字母开头则为Parser规则，否则为Lexer规则 存在二义性的时候ANTLR默认选择最先出现的Rule推导</p>
+<h2 id="fragment">fragment</h2>
+<p>为了不在Parser中引入新的token name但是又要用一个名称来指代一些符号以简化书写（类似macro expansion）</p>
+<pre><code>NUM: DIGIT | DIGIT_NONZ DIGIT*;
+
+fragment
+DIGIT: [0-9];
+DIGIT_NONZ: [1-9];</code></pre>
+<h2 id="assoc">assoc</h2>
+<p>指定符号的结合性（默认左结合）</p>
+<pre><code>expr: expr &#39;^&#39;&lt;assoc=right&gt; expr;</code></pre>
+<h2 id="rulename">RuleName</h2>
+<p>一对多的产生式，可以标记上名字以在用Parser Visitor的时候可以单独处理每一种语法推导的情况</p>
+<pre><code>expr: NUM             # Number
+    | expr &#39;*&#39; expr   # Mult
+    | expr &#39;+&#39; expr   # Add
+    ;</code></pre>
+<p>这个时候<code>gen/</code>下的Parser代码就会区分出<code>NumberContext</code>、<code>MultContext</code>和<code>AddContext</code>以及对应的visit方法</p>
+<h2 id="member">Member</h2>
+<p>可以在<code>.g4</code>文件里给Parser类声明field或method</p>
+<pre><code>@members &#123;
+  int count = 0;
+  void helperMethod() &#123; &#125;
+&#125;</code></pre>
+<p>后续就可以继承生成的Parser类然后覆写这些方法了...</p>
+<h2 id="return-value">return value</h2>
+<p>这个主要和visitor、listener的模式有关系</p>
+<p>为了给树上的节点加上注解field，可以这么写</p>
+<pre><code>expr returns [int value]
+    : expr &#39;*&#39; expr         # Mult
+    | expr &#39;+&#39; expr         # Add
+    | NUM                   # Number
+    ;</code></pre>
+<p>此时<code>MultContext</code>会继承<code>exprContext</code>，而<code>exprContext</code>则会被ANTLR加上<code>int value</code>这个field</p>
+
       </div>
-    
-      <div class="post-item" title="密码学06 HASH">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A606-HASH/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>密码学06 HASH</span>
-              
+              <a href="/2022/06/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab3-uproc/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-07-02 13:07:19
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="密码学05 MAC">
-        <div class="time-m-d">2021-12-20</div>
-        <div class="title">
-          <a href="/2021/12/20/%E5%AF%86%E7%A0%81%E5%AD%A605-MAC/">
-            
-              
-                <span>密码学05 MAC</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#meta-language"><span class="toc-text">meta language</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#parser%E5%92%8Clexer"><span class="toc-text">Parser和Lexer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fragment"><span class="toc-text">fragment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#assoc"><span class="toc-text">assoc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rulename"><span class="toc-text">RuleName</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#member"><span class="toc-text">Member</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return-value"><span class="toc-text">return value</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="PA3 附加关卡">
-        <div class="time-m-d">2021-12-11</div>
-        <div class="title">
-          <a href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA3 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA2 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA2 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA1 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA1 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义05 Semantics">
-        <div class="time-m-d">2021-11-07</div>
-        <div class="title">
-          <a href="/2021/11/07/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8905-Semantics/">
-            
-              
-                <span>形式语义05 Semantics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学04 PRG&PRF">
-        <div class="time-m-d">2021-10-19</div>
-        <div class="title">
-          <a href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/">
-            
-              
-                <span>密码学04 PRG&PRF</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义04 Types">
-        <div class="time-m-d">2021-10-05</div>
-        <div class="title">
-          <a href="/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/">
-            
-              
-                <span>形式语义04 Types</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学03 Computational">
-        <div class="time-m-d">2021-09-27</div>
-        <div class="title">
-          <a href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/">
-            
-              
-                <span>密码学03 Computational</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义03 Lambda">
-        <div class="time-m-d">2021-09-16</div>
-        <div class="title">
-          <a href="/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/">
-            
-              
-                <span>形式语义03 Lambda</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学02 Perfect">
-        <div class="time-m-d">2021-09-15</div>
-        <div class="title">
-          <a href="/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/">
-            
-              
-                <span>密码学02 Perfect</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义01 Intro">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8901-Intro/">
-            
-              
-                <span>形式语义01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义02 Math">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8902-Math/">
-            
-              
-                <span>形式语义02 Math</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学01 Intro">
-        <div class="time-m-d">2021-09-02</div>
-        <div class="title">
-          <a href="/2021/09/02/%E5%AF%86%E7%A0%81%E5%AD%A601-Intro/">
-            
-              
-                <span>密码学01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="编译原理 笔记3 语法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>编译原理 笔记3 语法分析</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="编译原理 笔记2 词法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-%E7%AC%94%E8%AE%B02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>编译原理 笔记2 词法分析</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="DFA到等价正则表达式的转化">
-        <div class="time-m-d">2021-08-20</div>
-        <div class="title">
-          <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/">
-            
-              
-                <span>DFA到等价正则表达式的转化</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="scheme学习笔记">
-        <div class="time-m-d">2021-08-15</div>
-        <div class="title">
-          <a href="/2021/08/15/scheme%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-            
-              
-                <span>scheme学习笔记</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">2 / 4</span>
-    
-      <a href="/page/3/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -652,6 +535,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
