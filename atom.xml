@@ -92,11 +92,11 @@
   </entry>
   
   <entry>
-    <title>计算方法7 电阻网络</title>
+    <title>计算方法07 电阻网络</title>
     <link href="http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9507-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/"/>
     <id>http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9507-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/</id>
     <published>2022-06-15T06:21:00.000Z</published>
-    <updated>2022-06-23T11:13:09.105Z</updated>
+    <updated>2022-07-03T05:22:33.458Z</updated>
     
     
       
@@ -118,11 +118,11 @@
   </entry>
   
   <entry>
-    <title>计算方法6 FFT</title>
+    <title>计算方法06 FFT</title>
     <link href="http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9506-FFT/"/>
     <id>http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9506-FFT/</id>
     <published>2022-06-14T06:49:00.000Z</published>
-    <updated>2022-06-23T05:55:18.289Z</updated>
+    <updated>2022-07-03T05:22:29.734Z</updated>
     
     
     <summary type="html">据助教说不考这么麻烦的计算，我就摸了</summary>
@@ -135,11 +135,11 @@
   </entry>
   
   <entry>
-    <title>博弈论2 零和游戏</title>
+    <title>博弈论02 零和游戏</title>
     <link href="http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA02-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/"/>
     <id>http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA02-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/</id>
     <published>2022-06-09T12:34:00.000Z</published>
-    <updated>2022-06-23T05:48:21.888Z</updated>
+    <updated>2022-07-03T05:21:24.437Z</updated>
     
     
       
@@ -207,11 +207,11 @@
   </entry>
   
   <entry>
-    <title>计算方法5 图的代数性质</title>
+    <title>计算方法05 图的代数性质</title>
     <link href="http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9505-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/"/>
     <id>http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9505-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/</id>
     <published>2022-05-10T12:48:00.000Z</published>
-    <updated>2022-06-23T05:55:12.269Z</updated>
+    <updated>2022-07-03T05:22:26.686Z</updated>
     
     
     <summary type="html">感觉这部分穿插的有些怪</summary>
@@ -224,11 +224,11 @@
   </entry>
   
   <entry>
-    <title>计算方法4 图的随机游走</title>
+    <title>计算方法04 图的随机游走</title>
     <link href="http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9504-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/"/>
     <id>http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9504-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/</id>
     <published>2022-05-10T11:58:00.000Z</published>
-    <updated>2022-06-27T02:57:24.286Z</updated>
+    <updated>2022-07-03T05:22:23.014Z</updated>
     
     
     <summary type="html">Markov Chain 的本质是概率状态机，这么想就很简单了</summary>
@@ -241,11 +241,11 @@
   </entry>
   
   <entry>
-    <title>计算方法3 线性方程组求解</title>
+    <title>计算方法03 线性方程组求解</title>
     <link href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9503-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/"/>
     <id>http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9503-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/</id>
     <published>2022-05-08T06:33:00.000Z</published>
-    <updated>2022-06-23T05:54:50.424Z</updated>
+    <updated>2022-07-03T05:22:19.815Z</updated>
     
     
     <summary type="html">这一节主要是玩矩阵，为了偷懒只讨论实线性空间</summary>
@@ -258,11 +258,11 @@
   </entry>
   
   <entry>
-    <title>计算方法2 插值与函数逼近</title>
+    <title>计算方法02 插值与函数逼近</title>
     <link href="http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9502-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/"/>
     <id>http://example.com/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9502-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/</id>
     <published>2022-05-08T03:33:00.000Z</published>
-    <updated>2022-06-23T05:54:29.868Z</updated>
+    <updated>2022-07-03T05:22:15.867Z</updated>
     
     
     <summary type="html">心态崩了，这个 latex 公式支持也太迷幻了。</summary>
@@ -275,11 +275,11 @@
   </entry>
   
   <entry>
-    <title>博弈论1 策略游戏</title>
+    <title>博弈论01 策略游戏</title>
     <link href="http://example.com/2022/03/12/%E5%8D%9A%E5%BC%88%E8%AE%BA01-%E7%AD%96%E7%95%A5%E6%B8%B8%E6%88%8F/"/>
     <id>http://example.com/2022/03/12/%E5%8D%9A%E5%BC%88%E8%AE%BA01-%E7%AD%96%E7%95%A5%E6%B8%B8%E6%88%8F/</id>
     <published>2022-03-12T14:29:00.000Z</published>
-    <updated>2022-06-23T05:48:19.024Z</updated>
+    <updated>2022-07-03T05:21:21.153Z</updated>
     
     
       
@@ -323,11 +323,11 @@
   </entry>
   
   <entry>
-    <title>计算方法1 函数求根</title>
+    <title>计算方法01 函数求根</title>
     <link href="http://example.com/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9501-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/"/>
     <id>http://example.com/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9501-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/</id>
     <published>2022-03-07T15:26:00.000Z</published>
-    <updated>2022-06-23T05:54:10.067Z</updated>
+    <updated>2022-07-03T05:18:45.814Z</updated>
     
     
     <summary type="html">严格写就太累了，这个就当是随手的笔记得了。大概看看原理，不求甚解。</summary>
