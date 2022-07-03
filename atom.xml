@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-07-03T10:28:42.735Z</updated>
+  <updated>2022-07-03T18:15:54.648Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统03 内存管理</title>
+    <link href="http://example.com/2022/07/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>http://example.com/2022/07/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
+    <published>2022-07-03T17:46:50.000Z</published>
+    <updated>2022-07-03T18:15:54.648Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;虚拟地址&quot;&gt;虚拟地址&lt;/h1&gt;
+&lt;p&gt;通过地址翻译, 可以利用统一的虚拟地址空间来为用户程序提供内存, 同时还能隔离不同进程增强安全性&lt;/p&gt;
+&lt;p&gt;基于分页的地址翻译涉及到页表和radix-tree这种数据结构, 以及 TLB 这样的部件,</summary>
+        
+      
+    
+    
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>操作系统02 并发</title>
@@ -429,31 +454,6 @@
 &lt;p&gt;在上一章给出了命题逻辑的语法、语义，公理化的定义，以及一种判定公式是否可满足/永真的算法，但是这还不够，因为：&lt;/p&gt;
 &lt;ol type=&quot;1&quot;&gt;
 &lt;li&gt;&lt;p&gt;并不是所有逻辑都有Decision</summary>
-        
-      
-    
-    
-    
-    
-    <category term="数理逻辑" scheme="http://example.com/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数理逻辑01 命题逻辑</title>
-    <link href="http://example.com/2022/01/20/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9101-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/"/>
-    <id>http://example.com/2022/01/20/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9101-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/</id>
-    <published>2022-01-20T10:31:00.000Z</published>
-    <updated>2022-06-23T05:50:38.775Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
-&lt;p&gt;第一次看这本书的时候看得比较急，也没有一个big picture的把握，所以在细节上面耗费了很多时间....现在算是重构一次笔记了&lt;/p&gt;
-&lt;p&gt;我们知道，形式逻辑是对推理的形式化（mathematical logic</summary>
         
       
     

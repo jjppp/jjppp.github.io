@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      操作系统03 内存管理 
+      
+      
+      |
     
      jjppp
   </title>
@@ -112,279 +115,179 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="CSAPP实验06 : shlab">
-        <div class="time-m-d">2021-04-21</div>
-        <div class="title">
-          <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C06-shlab/">
-            
-              
-                <span>CSAPP实验06 : shlab</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">操作系统03 内存管理</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-07-04 01:46:50
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">
+                    <b>#</b> 操作系统
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="奋斗逼的脸庞着实惹人爱">
-        <div class="time-m-d">2021-04-14</div>
-        <div class="title">
-          <a href="/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/">
-            
-              
-                <span>奋斗逼的脸庞着实惹人爱</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="虚拟地址">虚拟地址</h1>
+<p>通过地址翻译, 可以利用统一的虚拟地址空间来为用户程序提供内存, 同时还能隔离不同进程增强安全性</p>
+<p>基于分页的地址翻译涉及到页表和radix-tree这种数据结构, 以及 TLB 这样的部件, 具体看ICS/CSAPP</p>
+<p>虚拟地址的引入也可以让进程间共享数据, 只需要将某段物理内存同时映射给两个不同的进程即可.</p>
+<p>当然per-process的地址空间带来了进程切换时的cache问题: 需要冲刷TLB, 预热缓存等等. 解决方法很多, 可以给 TLB 引入 <code>ASID</code> 使得不同地址空间的同一虚拟地址可以同时被缓存(会有安全问题吗?), 顺便增强 TLB 冲刷的粒度控制.</p>
+<h2 id="缺页异常">缺页异常</h2>
+<p>把内存视为硬盘的cache, 那么就会出现访问虚拟地址时cache miss的情况. 这时就产生了缺页异常, 需要进exception handler从硬盘上读出被缓存的页</p>
+<p>这里还有很多可说的, 例如可以把不常用数据压缩以节省内存, 压缩后的数据也能更快在硬盘上读写.</p>
+<h2 id="换页策略">换页策略</h2>
+<ol type="1">
+<li>FIFO, 每次换出最早缓存的页</li>
+<li>Second-Chance, 在FIFO的基础上给每个活跃的页一次机会(如果FIFO队尾曾被访问过, 就移回队头)</li>
+<li>LRU, 算频率, 通常通过定期打标记来判断近一段时间是否活跃</li>
+<li>MRU, 在某些场合有用, 例如假设播放过的电影片段不会再立刻放一次</li>
+</ol>
+<p>理论上最优的策略是换出在未来最晚被访问的页</p>
+<h2 id="大页">大页</h2>
+<p>可以设置页的大小以减少TLB miss次数, 同时(在相同总内存下)降低页表的层数</p>
+<h1 id="物理内存管理">物理内存管理</h1>
+<p>操作系统需要管理物理内存, 评价维度包括效率 利用率和Scalability</p>
+<h2 id="利用率">利用率</h2>
+<ol type="1">
+<li>外部碎片: 未分配且无法利用的部分</li>
+<li>内部碎片: 已分配但用不到的部分</li>
+</ol>
+<p>感觉这两种划分得不是很有必要...</p>
+<h2 id="buddy-system">Buddy-System</h2>
+<p>只能分配页面的 <span class="math inline">\(2^k\)</span> 倍大小的物理内存. 每次找到能容纳需求的最小块, 将其分裂成相等的两半直至恰好能容纳需求, 取走一块.</p>
+<p>本质上是个线段树, 但是可以用若干个独立的链表串联相同大小的块(也即写成非递归的线段树)</p>
+<p>任意时刻块的总数量不会超过 <span class="math inline">\(O(\log n)\)</span> 个.</p>
+<blockquote>
+<p>考虑 <span class="math inline">\(n\)</span> 位二进制数字 <span class="math inline">\(B_n=10\ldots0\)</span>, 其中第 <span class="math inline">\(i\)</span> 位为 <span class="math inline">\(1\)</span> 表示有一个大小为 <span class="math inline">\(2^i\)</span> 的块 每次划分出大小为 <span class="math inline">\(2^k\)</span> 的块等价于计算 <span class="math inline">\(B_n&#39;=B_n - B_k\)</span>, 其中 <span class="math inline">\(B_k=0\ldots010\ldots0\)</span>, 第 <span class="math inline">\(k\)</span> 位为 <span class="math inline">\(1\)</span> 每次分裂等价于二进制向高位借位, 利用均摊分析可以轻松得到比特翻转操作的上界, 根据位数立即可得任意时刻块数量的上界</p>
+</blockquote>
+<p>实际上任意时刻, 特定大小的块至多有一个</p>
+<h2 id="freelist">freelist</h2>
+<p>因为空闲内存是空的, 因此可以任意摆布. 一种玩法就是用链表的形式串联起来, 这样每次的分配就是遍历链表-删除节点</p>
+<h2 id="slab">SLAB</h2>
+<p>利用Buddy-System分配大块内存, 然后划分成相等的若干小块, 这样小块内存分配直接从 SLAB 中取走, 几乎是 <span class="math inline">\(O(1)\)</span> 的, 多核也有很好的表现.</p>
+<p>一个小细节是可以把元数据放在 SLAB 的头部并保证 SLAB 按页面对齐, 这样释放的时候就可以快速查询元数据了.</p>
+
       </div>
-    
-      <div class="post-item" title="CSAPP实验05: cachelab">
-        <div class="time-m-d">2021-03-07</div>
-        <div class="title">
-          <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C05-cachelab/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>CSAPP实验05: cachelab</span>
-              
+              <a href="/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02-%E5%B9%B6%E5%8F%91/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-07-04 01:46:50
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">
+                        <b>#</b> 操作系统
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="大一上存活经验">
-        <div class="time-m-d">2021-02-19</div>
-        <div class="title">
-          <a href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/">
-            
-              
-                <span>大一上存活经验</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80"><span class="toc-text">虚拟地址</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%BA%E9%A1%B5%E5%BC%82%E5%B8%B8"><span class="toc-text">缺页异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E9%A1%B5%E7%AD%96%E7%95%A5"><span class="toc-text">换页策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E9%A1%B5"><span class="toc-text">大页</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-text">物理内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E7%8E%87"><span class="toc-text">利用率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#buddy-system"><span class="toc-text">Buddy-System</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#freelist"><span class="toc-text">freelist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slab"><span class="toc-text">SLAB</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="CSAPP实验04: archlab">
-        <div class="time-m-d">2021-02-17</div>
-        <div class="title">
-          <a href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C04-archlab/">
-            
-              
-                <span>CSAPP实验04: archlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="半音阶口琴谱合辑">
-        <div class="time-m-d">2021-02-14</div>
-        <div class="title">
-          <a href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/">
-            
-              
-                <span>半音阶口琴谱合辑</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验03 : attacklab">
-        <div class="time-m-d">2021-02-04</div>
-        <div class="title">
-          <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C03-attacklab/">
-            
-              
-                <span>CSAPP实验03 : attacklab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验02 : bomblab">
-        <div class="time-m-d">2021-01-24</div>
-        <div class="title">
-          <a href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C02-bomblab/">
-            
-              
-                <span>CSAPP实验02 : bomblab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验01 : datalab">
-        <div class="time-m-d">2021-01-14</div>
-        <div class="title">
-          <a href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C01-datalab/">
-            
-              
-                <span>CSAPP实验01 : datalab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="信息与计算科学导论02">
-        <div class="time-m-d">2021-01-06</div>
-        <div class="title">
-          <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA02/">
-            
-              
-                <span>信息与计算科学导论02</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="信息与计算科学导论03">
-        <div class="time-m-d">2021-01-06</div>
-        <div class="title">
-          <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA03/">
-            
-              
-                <span>信息与计算科学导论03</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="信息与计算科学导论01">
-        <div class="time-m-d">2021-01-06</div>
-        <div class="title">
-          <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA01/">
-            
-              
-                <span>信息与计算科学导论01</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="数学分析01 实数完备性的六个定理">
-        <div class="time-m-d">2021-01-01</div>
-        <div class="title">
-          <a href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%9001-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/">
-            
-              
-                <span>数学分析01 实数完备性的六个定理</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="C语言学习笔记">
-        <div class="time-m-d">2020-12-27</div>
-        <div class="title">
-          <a href="/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-            
-              
-                <span>C语言学习笔记</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="编译原理01 Introduction">
-        <div class="time-m-d">2020-12-26</div>
-        <div class="title">
-          <a href="/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%8601-Introduction/">
-            
-              
-                <span>编译原理01 Introduction</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="期末小作业——2048小游戏">
-        <div class="time-m-d">2020-12-15</div>
-        <div class="title">
-          <a href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/">
-            
-              
-                <span>期末小作业——2048小游戏</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="几个关于集合的有趣证明">
-        <div class="time-m-d">2020-11-23</div>
-        <div class="title">
-          <a href="/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/">
-            
-              
-                <span>几个关于集合的有趣证明</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="有关集合大小的比较">
-        <div class="time-m-d">2020-10-28</div>
-        <div class="title">
-          <a href="/2020/10/28/%E6%9C%89%E5%85%B3%E9%9B%86%E5%90%88%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%AF%94%E8%BE%83/">
-            
-              
-                <span>有关集合大小的比较</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="2020 ICPC 小米邀请赛 部分题解">
-        <div class="time-m-d">2020-10-26</div>
-        <div class="title">
-          <a href="/2020/10/26/2020-ICPC-%E5%B0%8F%E7%B1%B3%E9%82%80%E8%AF%B7%E8%B5%9B-%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/">
-            
-              
-                <span>2020 ICPC 小米邀请赛 部分题解</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World!">
-        <div class="time-m-d">2020-10-26</div>
-        <div class="title">
-          <a href="/2020/10/26/Hello-World/">
-            
-              
-                <span>Hello World!</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/3/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">4 / 4</span>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -650,6 +553,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
