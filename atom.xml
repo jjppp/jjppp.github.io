@@ -415,29 +415,6 @@
   </entry>
   
   <entry>
-    <title>用haskell写brainfuck解释器</title>
-    <link href="http://example.com/2022/01/17/%E7%94%A8haskell%E5%86%99brainfuck%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
-    <id>http://example.com/2022/01/17/%E7%94%A8haskell%E5%86%99brainfuck%E8%A7%A3%E9%87%8A%E5%99%A8/</id>
-    <published>2022-01-17T15:51:00.000Z</published>
-    <updated>2022-06-23T05:51:30.652Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近在看 Learn you a haskell for great</summary>
-        
-      
-    
-    
-    
-    
-    <category term="haskell" scheme="http://example.com/tags/haskell/"/>
-    
-  </entry>
-  
-  <entry>
     <title>大二上躺平经验</title>
     <link href="http://example.com/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/"/>
     <id>http://example.com/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/</id>
@@ -459,6 +436,32 @@
     
     
     <category term="想法" scheme="http://example.com/tags/%E6%83%B3%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PA4 附加关卡</title>
+    <link href="http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/"/>
+    <id>http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/</id>
+    <published>2022-01-10T17:05:00.000Z</published>
+    <updated>2022-06-23T05:47:13.078Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;试验进度&quot;&gt;试验进度&lt;/h2&gt;
+&lt;p&gt;我完成了全部必做内容，最后可以用F1、F2、F3分别玩nterm、pal和bird，默认初始打开的是nterm&lt;/p&gt;
+&lt;h2 id=&quot;思考题&quot;&gt;思考题&lt;/h2&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ICS" scheme="http://example.com/tags/ICS/"/>
     
   </entry>
   
