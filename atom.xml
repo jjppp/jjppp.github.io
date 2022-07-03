@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-07-03T08:00:51.258Z</updated>
+  <updated>2022-07-03T10:28:42.735Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统02 并发</title>
+    <link href="http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02-%E5%B9%B6%E5%8F%91/"/>
+    <id>http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02-%E5%B9%B6%E5%8F%91/</id>
+    <published>2022-07-03T08:01:52.000Z</published>
+    <updated>2022-07-03T10:28:42.735Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;并发&quot;&gt;并发&lt;/h1&gt;
+&lt;p&gt;如果两件事情在逻辑上同时发生了, 那么我们就说它们并发了.&lt;/p&gt;
+&lt;p&gt;在Linux上很容易用POSIX API创建新的执行流(线程), 可以利用 strace top man 等工具观察具体创建的原理</summary>
+        
+      
+    
+    
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>操作系统01 导引</title>
@@ -436,31 +461,6 @@
     
     
     <category term="数理逻辑" scheme="http://example.com/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大二上躺平经验</title>
-    <link href="http://example.com/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/"/>
-    <id>http://example.com/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/</id>
-    <published>2022-01-10T18:17:00.000Z</published>
-    <updated>2022-06-27T02:59:34.833Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;大二上躺平经验&quot;&gt;大二上躺平经验&lt;/h2&gt;
-&lt;p&gt;2021年的记忆都停留在了五六月份...现在不是很想回忆，但是那段时间确实又欣喜又自卑，随后的七八月一直在学校里过着昼夜颠倒的生活。再往后就没什么印象了，那之后也不怎么拍照，人是越活越不明白了&lt;/p&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-    <category term="想法" scheme="http://example.com/tags/%E6%83%B3%E6%B3%95/"/>
     
   </entry>
   
