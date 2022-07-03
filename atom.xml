@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-07-02T05:37:59.183Z</updated>
+  <updated>2022-07-03T08:00:51.258Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统01 导引</title>
+    <link href="http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01-%E5%AF%BC%E5%BC%95/"/>
+    <id>http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01-%E5%AF%BC%E5%BC%95/</id>
+    <published>2022-07-03T07:10:51.000Z</published>
+    <updated>2022-07-03T08:00:51.258Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
+&lt;p&gt;本科期间最期待的一门课, 就这么结束了有些可惜, 决心回头看看slides, 结合交大的教材再看看有没有什么可以新发掘一下的点.&lt;/p&gt;
+&lt;p&gt;现在看来是因为拔尖班的实操课程实在太少,</summary>
+        
+      
+    
+    
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>ANTLR4 笔记</title>
@@ -436,32 +461,6 @@
     
     
     <category term="想法" scheme="http://example.com/tags/%E6%83%B3%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PA4 附加关卡</title>
-    <link href="http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/"/>
-    <id>http://example.com/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/</id>
-    <published>2022-01-10T17:05:00.000Z</published>
-    <updated>2022-06-23T05:47:13.078Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;试验进度&quot;&gt;试验进度&lt;/h2&gt;
-&lt;p&gt;我完成了全部必做内容，最后可以用F1、F2、F3分别玩nterm、pal和bird，默认初始打开的是nterm&lt;/p&gt;
-&lt;h2 id=&quot;思考题&quot;&gt;思考题&lt;/h2&gt;
-&lt;h3</summary>
-        
-      
-    
-    
-    
-    
-    <category term="ICS" scheme="http://example.com/tags/ICS/"/>
     
   </entry>
   
