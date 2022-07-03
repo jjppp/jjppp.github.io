@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      博弈论1 策略游戏 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="jjppp" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">jjppp</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">博弈论1 策略游戏</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-03-12 22:29:00
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" title="博弈论">
+                    <b>#</b> 博弈论
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="pure-strategy-games">Pure Strategy Games</h1>
+<p>策略博弈说的是有限个玩家，每个玩家都有有限个决策，并且每个玩家的决策必须同时作出（即不能知悉其他人的决策），每个玩家都知道每一种决策组合的结果给每个玩家带来的收益。</p>
+<p>形式化地，有</p>
+<ol type="1">
+<li><p><span class="math inline">\(N\)</span> 个玩家构成有限的玩家集</p></li>
+<li><p>每个玩家 <span class="math inline">\(i\)</span> 都有一个有限的决策集 <span class="math inline">\(A_i\)</span>，表示其所有可以选择的决策</p></li>
+<li><p>一个局面 <span class="math inline">\(a\in A=\prod\limits_{i=1}^N A_i\)</span>，包含了场上所有玩家所作出的决策</p></li>
+<li><p>每个玩家 <span class="math inline">\(i\)</span> 都有一个收益函数 <span class="math inline">\(u_i\colon A\mapsto \mathbb K\)</span>，其中 <span class="math inline">\(\mathbb K\)</span> 是一个全序集</p></li>
+</ol>
+<p>之所以定义为全序集是因为并非所有收益都是可以计算出来的数值，但是我们希望任意两个收益是可以比较好坏的</p>
+<p>为了简化，规定</p>
+<ol type="1">
+<li><p><span class="math inline">\(a_{i-1}\in A_{-i}=\prod\limits_{i\neq j} A_j\)</span> 表示玩家 <span class="math inline">\(i\)</span> 的所有对手的某种决策局面</p></li>
+<li><p>由1，某个局面 <span class="math inline">\(a\)</span> 就可以写成是 <span class="math inline">\((a_i,a_{-i})\)</span>，注意到我们并不关心局面的枚举顺序，因此这里实际上是集合而不是笛卡尔积....</p></li>
+<li><p>记 <span class="math inline">\(B_i(a_{-i})=\underset{a_i}{\arg\max}\; u_i(a_i,a_{-i})\)</span> 为玩家 <span class="math inline">\(i\)</span> 的所有对手选择了 <span class="math inline">\(a_{-i}\)</span> 决策时，所有能最大化玩家 <span class="math inline">\(i\)</span> 的收益的决策集，称为 <span class="math inline">\(i\)</span> 的 Best Response</p></li>
+</ol>
+<h2 id="dominant-strategy">Dominant Strategy</h2>
+<p>对于玩家<span class="math inline">\(i\)</span>而言，某些决策严格劣于其余决策，因此是绝对不会选的，可以直接删掉。</p>
+<p>上述过程可以持续进行直至不存在被严格支配的决策，这样可以化简求解时的难度</p>
+<h2 id="nash-equilibrium">Nash Equilibrium</h2>
+<p>若一个局面 <span class="math inline">\(a=(a_i,a_{-i})\)</span> 满足对于一切的玩家 <span class="math inline">\(i\)</span> 都有命题 <span class="math inline">\(\forall c\in A_i\)</span> ，<span class="math inline">\(U_i(a_i,a_{-i})\succeq U_i(c,a_{-i})\)</span> 成立，那么称局面 <span class="math inline">\(a\)</span> 为一个（单一策略的）纳什均衡点</p>
+<p>可以这么考虑：在纳什均衡的局面下，每个玩家单方面地作出决策变动都将让ta的收益下降。</p>
+<p>一个简单的求解套路是对每个玩家 <span class="math inline">\(i\)</span> 求出 <span class="math inline">\(U_i(\cdot)\)</span>，然后求 <span class="math inline">\(\dfrac{\partial}{\partial a_i} U_i(a_i,a_{-i})\)</span> 来得到一个 <span class="math inline">\(a_i^{*}\in B_i(a_{-i})\)</span>。显然在均衡点时，每个玩家都要最大化，那么联立求解就得到了一组解 <span class="math inline">\(a^*=(a_i^*,a_{-i}^*)\)</span>。</p>
+<p>注意这里的纯策略纳什均衡不一定存在，反例非常好找。并且若存在也不一定唯一，例如"剪刀石头布"的博弈模型就有三个均衡点。</p>
+<h2 id="求解pne">求解PNE</h2>
+<p>可以枚举所有的outcome来逐一判断每个人是否都达到了最优，可以看成寻找一个超立方体上的“鞍点”。</p>
+<h1 id="mixed-strategy-game">Mixed Strategy Game</h1>
+<p>纯策略意味着每个人的决策是唯一确定的，这个前提太强。一个放松是给出选择每个决策的概率，即一个 <span class="math inline">\(A_i\)</span> 上的概率分布 <span class="math inline">\(p_i\)</span></p>
+<p>记 <span class="math inline">\(\Delta(A_i)\)</span> 为玩家 <span class="math inline">\(i\)</span> 的决策集 $A_i $ 上所有可能的概率分布的集合，那么每个玩家的决策就会是一个决策集上的分布 <span class="math inline">\(p_i\in \Delta(A_i)\)</span></p>
+<p>同样记 <span class="math inline">\(p=(p_i,p_{-i})\)</span></p>
+<p>给出 <span class="math inline">\(U_i(p)=\sum\limits_{a\in A}Pr[X=a]u_i(X)\)</span>，其中 <span class="math inline">\(X\sim p\)</span> 为一个随机变量</p>
+<p>注意到每个玩家互不交流，因此它们的决策相互独立，拆开就得到 <span class="math inline">\(U_i(p)=\sum\limits_{a\in A}u_i(a)\prod\limits_{i=1}^N p_j(a_j)\)</span>，这其实就是一个收益的期望，随机性来源于 <span class="math inline">\(N\)</span> 个独立分布的叠加。</p>
+<h2 id="定理1">定理1</h2>
+<p>若 <span class="math inline">\(p=(p_i,p_{-i})\)</span> 是一个纳什均衡，那么所有使得 <span class="math inline">\(p_i(a)&gt;0\)</span> 的决策 <span class="math inline">\(a\)</span> 都将会是局面 <span class="math inline">\((a,p_{-i})\)</span> 的 Best Response。</p>
+<p>意思是对于一个纳什均衡的局面 <span class="math inline">\(p=(p_i,p_{-i})\)</span>，在固定了对手的所有决策分布之后，玩家 <span class="math inline">\(i\)</span> 可能选择的单一决策（概率不为 <span class="math inline">\(0\)</span> 的那些决策）的每一个都将是应对 <span class="math inline">\(p_{-i}\)</span> 的最佳选择。</p>
+<p>证明只需要反证一下，假设某个 <span class="math inline">\(p_i(a)&gt;0\)</span> 但 <span class="math inline">\(a\not\in B_i(p_{-i})\)</span>，那么构造一个新的分布 <span class="math inline">\(p_i&#39;\)</span> 满足 <span class="math inline">\(p_i&#39;(a)=0\)</span> 且其余非零位置都乘上 <span class="math inline">\(\frac1{1-p_i(a)}\)</span>，可以证明新的分布下将达到更大的 <span class="math inline">\(U_i(p_i&#39;)\)</span>，这与 <span class="math inline">\((p_i,p_{-i})\)</span> 是纳什均衡矛盾；但是反过来不一定成立，例如可以存在多个单独最优解，但是我们不随机，只选择其中一个策略。</p>
+<p>这个引理还是比较强的，说明即使引入了随机性，每个玩家的选择仍然是固定的，只不过现在变成了固定的集合。</p>
+<h2 id="mixed-nash-equilibrium">Mixed Nash Equilibrium</h2>
+<p>每个finite strategy game都有至少一个混合策略的纳什均衡，称为Mixed Nash Equilibrium(MNE)</p>
+<p>这个定理也是Nash证明的，算是比较漂亮的定理了。</p>
+<h2 id="求解mne">求解MNE</h2>
+<h3 id="profile-enumeration">profile enumeration</h3>
+<p>对于一个非退化的2人游戏，可以 <span class="math inline">\(2^n\)</span> 枚举概率非 <span class="math inline">\(0\)</span> 的决策解一个不等式组。不妨设枚举出的行抽取出的矩阵为 <span class="math inline">\(A\)</span>，那么对于玩家1而言必然有 <span class="math inline">\(Aq\)</span> 的每一元素都相等（根据定理1）且严格大于剩余行的期望收益。</p>
+<h3 id="vertex-enumeration">vertex enumeration</h3>
+<p>可以发现上面等价于给定原收益矩阵 <span class="math inline">\(M\)</span>，要求对于玩家1而言满足</p>
+<span class="math display">\[\begin{aligned}
+
+\forall \text{distribution } q
+
+\\
+
+Mq\ge v\textbf1
+
+\\
+
+\text{maximize } v
+
+\end{aligned}\]</span>
+<p>这样的解构成了一个闭凸多边形，边界上的解代表某些约束取到了等号。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-03-12 22:29:00
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" title="博弈论">
+                        <b>#</b> 博弈论
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/05/08/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9502-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pure-strategy-games"><span class="toc-text">Pure Strategy Games</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dominant-strategy"><span class="toc-text">Dominant Strategy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nash-equilibrium"><span class="toc-text">Nash Equilibrium</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3pne"><span class="toc-text">求解PNE</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mixed-strategy-game"><span class="toc-text">Mixed Strategy Game</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%861"><span class="toc-text">定理1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mixed-nash-equilibrium"><span class="toc-text">Mixed Nash Equilibrium</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3mne"><span class="toc-text">求解MNE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#profile-enumeration"><span class="toc-text">profile enumeration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vertex-enumeration"><span class="toc-text">vertex enumeration</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/olahiuj">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mailto:jpwang@smail.nju.edu.cn">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/olahiuj">Copyright © 2022 jjppp</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

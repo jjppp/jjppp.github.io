@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      图论笔记3 染色 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="jjppp" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">jjppp</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">图论笔记3 染色</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2021-06-04 16:12:00
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E5%9B%BE%E8%AE%BA/" title="图论">
+                    <b>#</b> 图论
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h2 id="图染色coloring">图染色(Coloring)</h2>
+<h4 id="染色数coloring-index">染色数(Coloring Index)</h4>
+<p>图的染色分为点染色(vertex coloring)和边染色(edge coloring)</p>
+<p>点染色指的是构造映射 <span class="math inline">\(f_k\colon V(G)\mapsto \left\{\;1,2,\ldots k\;\right\}\)</span>，一个合法的染色(proper coloring) 则要求映射满足 <span class="math inline">\(\forall xy\in E(G)\Rightarrow f_k(x)\neq f_k(y)\)</span>，记 <span class="math inline">\(k\)</span> 为这个染色方案的染色数(chromatic number)。通常我们只关心最小的染色数，记作 <span class="math inline">\(\chi(G)\)</span></p>
+<p>下面讨论的染色都指的是proper coloring</p>
+<p>边染色则是类似地构造 <span class="math inline">\(f_k\colon E(G)\mapsto \left\{\;1,2,\ldots k\;\right\}\)</span>，proper的则要求满足 <span class="math inline">\(\forall e_1,e_2\in E(G),\; e_1\cap e_2\neq\varnothing\Rightarrow f_k(e_1)\neq f_k(e_2)\)</span></p>
+<p>类似地定义 <span class="math inline">\(\chi\prime (G)\)</span> 为最小的边染色数</p>
+<p>关于染色最经典的问题就是著名的“四色定理”的证明。定理的证明非常长.....有兴趣也不会去看的</p>
+<h4 id="团clique和独立集independent-set">团(clique)和独立集(independent set)</h4>
+<p>团的定义为 <span class="math inline">\(G\)</span> 的完全子图，即 <span class="math inline">\(H\subseteq G\)</span> 且 <span class="math inline">\(2||H||=|H|(|H|-1)\)</span></p>
+<p>定义clique number为最大团的大小，记为 <span class="math inline">\(\omega(G)=\max \left\{\;H \text{ is a clique}\mid H\subseteq G\;\right\}\)</span></p>
+<p>定义反团(co-clique)为 <span class="math inline">\(\overline G\)</span> 的团，即 <span class="math inline">\(G\)</span> 的一个独立集。同样定义 co-clique number 为最大独立集的大小，记为 <span class="math inline">\(\alpha(G)\)</span></p>
+<p>容易有如下数量关系：</p>
+<ol type="1">
+<li><p><span class="math inline">\(\alpha(G)\cdot \chi(G)\geqslant |G|\)</span></p></li>
+<li><p><span class="math inline">\(n-\alpha(G)\geqslant \chi(G)-1\)</span></p></li>
+<li><p><span class="math inline">\(\chi(G)\geqslant \omega(G)\)</span></p></li>
+<li><p><span class="math inline">\(\binom{\chi(G)}{2}\geqslant ||G||\)</span></p></li>
+</ol>
+<p>1直接由每个独立集染上同一种颜色得到</p>
+<p>2的意思是给最大的独立集染上一种颜色，剩下的点用 <span class="math inline">\(\chi(G)-1\)</span> 种颜色染</p>
+<p>3的意思是团内部的颜色互不相同</p>
+<p>4的意思是同色点之间不能连边，因此至多连 <span class="math inline">\(\binom{\chi(G)}{2}\)</span> 条边</p>
+<h3 id="图的色多项式">图的色多项式</h3>
+<p>对图 <span class="math inline">\(G\)</span> 用 <span class="math inline">\(k\)</span> 种颜色染色(我们认为每个节点都不一样)的方案数是关于 <span class="math inline">\(G\)</span> 和 <span class="math inline">\(k\)</span> 的函数，我们不妨记作 <span class="math inline">\(F(G,k)\)</span></p>
+<p>对 <span class="math inline">\(|G|\)</span> 进行归纳。当 <span class="math inline">\(|G|=1\)</span> 的时候 <span class="math inline">\(F(G,k)=k\)</span></p>
+<p>设当 <span class="math inline">\(|G|&lt;n\)</span> 时成立，则 <span class="math inline">\(|G|=n\)</span> 的时候，考虑 <span class="math inline">\(xy\in E(G)\)</span></p>
+<p>只有两种情况：</p>
+<ol type="1">
+<li><p><span class="math inline">\(x,y\)</span> 同色，此时可以把 <span class="math inline">\(x,y\)</span> 收缩成一个点而不改变方案数</p></li>
+<li><p><span class="math inline">\(x,y\)</span> 异色，此时就是 <span class="math inline">\(F(G,k)\)</span></p></li>
+</ol>
+<p>于是 <span class="math inline">\(F(G,k)+F(G\circ xy,k)=F(G-xy,k)\)</span></p>
+<p>很容易看出这是一个多项式，并且首项系数和次项系数与 <span class="math inline">\(|G|\)</span> 和 <span class="math inline">\(||G||\)</span>有关</p>
+<h3 id="染色的贪心算法">染色的贪心算法</h3>
+<p>关于染色的证明通常通过构造给出一个最小染色数的上界。构造出染色方案的一种常见算法是所谓“贪心算法”，用如下步骤描述：</p>
+<ol type="1">
+<li><p>维护已经染色的点集 <span class="math inline">\(V&#39;\)</span> 和未染色的点集 <span class="math inline">\({V}&#39;&#39;\)</span></p></li>
+<li><p>任取 <span class="math inline">\(x\in V&#39;&#39;\)</span>，给 <span class="math inline">\(x\)</span> 染上 <span class="math inline">\(N(x)\cap V&#39;\)</span> 中未出现、且最小的颜色</p></li>
+<li><p>把 <span class="math inline">\(x\)</span> 从 <span class="math inline">\(V&#39;&#39;\)</span> 中删去，再加入 <span class="math inline">\(V&#39;\)</span> 中</p></li>
+<li><p>若 <span class="math inline">\(V&#39;&#39;=\varnothing\)</span> 则结束算法，否则回到步骤2</p></li>
+</ol>
+<p>容易发现这个算法并不总能给出较好的染色数的界，但仍然给出了一个结果，并且算法的结果与给节点染色的顺序十分相关，因此我们要结合以下引理来改进以下这个算法的效果。</p>
+<h4 id="引理一">引理一</h4>
+<p>取图 <span class="math inline">\(G\)</span> 中的任意点 <span class="math inline">\(s\)</span>，都存在 <span class="math inline">\(V(G)\)</span> 的一个排列 <span class="math inline">\(v_1,v_2,\ldots v_{n-1}, s\)</span> 使得 <span class="math inline">\(\forall 1\leqslant i&lt; n\)</span> 都有 <span class="math inline">\(\exists j&gt;i,\;v_j\in N(v_i)\)</span>。</p>
+<p>为了好记我把这个叫排列引理</p>
+<p>只需要构造出这样的序列即可。我们取 <span class="math inline">\(G\)</span> 中以 <span class="math inline">\(s\)</span> 为根的生成树 <span class="math inline">\(T\)</span>，每次从 <span class="math inline">\(T\)</span> 中取出叶子，这样就能保证每个点在被放进序列时都有至少一个邻居在它的后面，且根是一定放在最后的。</p>
+<p>这样结合贪心染色可以得到 <span class="math inline">\(\chi(G)\leqslant \max\left\{\;\text{deg}(s)+1,\Delta(G-s)\;\right\}\)</span></p>
+<h4 id="引理二">引理二</h4>
+<p>若非完全图 <span class="math inline">\(G\)</span> 满足 <span class="math inline">\(\delta(G)\geqslant 3\)</span> 且 <span class="math inline">\(\kappa(G)\geqslant 2\)</span>，那么 <span class="math inline">\(\exists x,y\in V(G)\)</span> 使得 <span class="math inline">\(\exists v\in V(G),\; xv,yv\in E(G)\text{ and } xy\not\in E(G)\)</span></p>
+<p>并且有 <span class="math inline">\(G-\left\{\;x,y\;\right\}\)</span> 仍然连通。</p>
+<p>取 <span class="math inline">\(G\)</span> 的一个极小分隔集 <span class="math inline">\(T\)</span>，则 <span class="math inline">\(|T|=\kappa(G)\geqslant 2\)</span>。记 <span class="math inline">\(C\)</span> 为 <span class="math inline">\(G-T\)</span> 形成的连通分支的集合，那么有 <span class="math inline">\(\forall x\in T\)</span>，<span class="math inline">\(\forall c_i\in C,\; N_G(x)\cap c_i\neq\varnothing\)</span></p>
+<p>于是取 <span class="math inline">\(v\in T\)</span>，令 <span class="math inline">\(x,y\)</span> 分别取自不同的分支，那么必然有 <span class="math inline">\(xy\not\in E(G)\text{ and } xv,yv\in E(G)\)</span>。</p>
+<p>并且删去 <span class="math inline">\(x,y\)</span> 后它们所属的分支仍然连通(<span class="math inline">\(\kappa(c_x)\geqslant 2\text { and }\kappa(c_y)\geqslant 2\)</span>)，<span class="math inline">\(\left\{\;c_x,c_y,x\;\right\}\)</span> 仍然连通(<span class="math inline">\(\text{deg}(x)\geqslant 3\)</span>)，得到一个矛盾</p>
+<h3 id="染色数的平凡上界">染色数的平凡上界</h3>
+<p>任意图 <span class="math inline">\(G\)</span> 都有 <span class="math inline">\(\chi(G)\leqslant \Delta (G)+1\)</span>。</p>
+<p>这个上界直接由贪心算法得到。</p>
+<h3 id="brooks-theorem">Brooks Theorem</h3>
+<p><span class="math inline">\(G\)</span> 是连通图，那么 <span class="math inline">\(\chi(G)=\Delta(G) + [G \text{ is complete or an odd cycle}]\)</span>，其中 <span class="math inline">\([x]=1\)</span> 当且仅当表达式 <span class="math inline">\(x\)</span> 为真。</p>
+<p>首先 <span class="math inline">\(G\)</span> 是完全图的情况很显然，奇数圈的情况也很简单，反证法就可以说明不存在方案了。</p>
+<p>然后 <span class="math inline">\(\Delta(G)\leqslant 2\)</span> 的情况也很好讨论，就是一个圈，因此下面讨论的都是 <span class="math inline">\(\Delta(G)\geqslant3\)</span> 的图。</p>
+<p>对于 <span class="math inline">\(G\)</span> 不是完全图也不是奇数圈的情况我们对 <span class="math inline">\(|G|\)</span> 归纳证明：</p>
+<p>当 <span class="math inline">\(|G|=3\)</span> 时，<span class="math inline">\(G\)</span> 不是完全图也不是圈，因此 <span class="math inline">\(G\)</span> 只能是链，染色就很显然了；</p>
+<p>设当 <span class="math inline">\(|G|&lt; k\)</span> 时命题成立，则取 <span class="math inline">\(|G|=k\)</span> 的图，分如下几种情况讨论：</p>
+<ol type="1">
+<li><p><span class="math inline">\(\kappa(G)=1\)</span>，即 <span class="math inline">\(G\)</span> 存在一个割点 <span class="math inline">\(x\)</span>，则 <span class="math inline">\(G=G_1\cup G_2\)</span>，其中 <span class="math inline">\(G_1\cap G_2=\left\{\;x\;\right\}\)</span>。那么我们对 <span class="math inline">\(G_1\)</span>、<span class="math inline">\(G_2\)</span> 分别染色，由归纳假设得到他们方案的并就是 <span class="math inline">\(G\)</span> 的一个合法染色方案，因此 <span class="math inline">\(\chi(G)=\max\left\{\;\chi(G_1),\chi(G_2)\;\right\}\leqslant\max\left\{\;\Delta(G_1),\Delta(G_2)\;\right\}\leqslant \Delta(G)\)</span> 得证。</p></li>
+<li><p><span class="math inline">\(\kappa(G) \geqslant 2\)</span>，且存在 <span class="math inline">\(x\in V(G)\)</span> 使得 <span class="math inline">\(\text{deg}(x)&lt;\Delta(G)\)</span>，则根据引理一构造 <span class="math inline">\(x\)</span> 在最后的序列并贪心染色，这样就有 <span class="math inline">\(\chi(G)\leqslant\Delta(G)\)</span></p></li>
+<li><p><span class="math inline">\(\kappa(G)\geqslant 2\)</span>，且 <span class="math inline">\(\forall x\in V(G)\)</span> 都有 <span class="math inline">\(\text{deg}(x)=\Delta(G)=\delta(G)\)</span>，则根据引理二存在 <span class="math inline">\(x,y,v\in V(G)\)</span> 使得 <span class="math inline">\(xv,yv\in E(G)\)</span> 且 <span class="math inline">\(xy\not\in E(G)\)</span>。我们把 <span class="math inline">\(x,y\)</span> 染上同种颜色，根据引理一把 <span class="math inline">\(v\)</span> 放在序列末尾，这样就可以贪心地染出 <span class="math inline">\(\chi(G)\leqslant \Delta(G)\)</span> 了。</p></li>
+</ol>
+<h3 id="图的定向orientation">图的定向(orientation)</h3>
+<p>图定向的严格定义是构造映射 <span class="math inline">\(f\colon E(G)\mapsto V(G)\times V(G)\)</span>，简单地说就是给无向边定方向</p>
+<p>我们称有向无环图(Directed Acyclic Graph) 为DAG，DAG有许多优秀的性质</p>
+<h4 id="dag的染色算法">DAG的染色算法</h4>
+<p>对于给定的有向无环图 <span class="math inline">\(G\)</span>，我们给出如下染色算法步骤：</p>
+<ol type="1">
+<li><p>我们需要维护一个映射 <span class="math inline">\(g\colon V(G)\mapsto \mathbb N^+\)</span>，<span class="math inline">\(g(x)\)</span> 表示以节点 <span class="math inline">\(x\)</span> 为终点的最长路长度。</p></li>
+<li><p>找到 <span class="math inline">\(x\in V(G)\)</span> 使得 <span class="math inline">\(x\)</span> 的入度为0，在 <span class="math inline">\(N_G(x)\)</span> 中找到已经走过的点中 <span class="math inline">\(g(v)\)</span> 的最大值，令 <span class="math inline">\(g(x)=g(v)+1\)</span></p></li>
+<li><p>删去 <span class="math inline">\(x\)</span>，标记 <span class="math inline">\(x\)</span> 已经走过了。若还有未经过的点则返回步骤2</p></li>
+</ol>
+<p>细心的朋友们很快就可以发现这是一个拓扑排序上的计数。很显然 <span class="math inline">\(g\)</span> 下任意相邻节点的函数值都不相等。于是我们caim：找到的映射 <span class="math inline">\(g\)</span> 就是一个染色方案。</p>
+<p>不妨记 <span class="math inline">\(p(G)\)</span> 表示DAG图 <span class="math inline">\(G\)</span> 中最长路的长度，那么有 <span class="math inline">\(\chi(G)\leqslant p(G)\)</span></p>
+<p>复杂度是可以做到 <span class="math inline">\(\Theta(n+m)\)</span> 的</p>
+<h3 id="利用图定向给出染色数的紧界">利用图定向给出染色数的紧界</h3>
+<p>不妨设 <span class="math inline">\(H\)</span> 是图 <span class="math inline">\(G\)</span> 的任意一个定向，<span class="math inline">\(K\)</span> 是 <span class="math inline">\(H\)</span> 极大的不含有向圈的子图，那么有：</p>
+<p><span class="math inline">\(\chi(G)\leqslant p(K)\)</span>，并且存在一个定向使得它们<strong>恰好相等</strong></p>
+<p>这个结论是很强的。不等号的部分在DAG的染色中已经给出，我们只需要考虑 <span class="math inline">\(E(G)\backslash E(K)\)</span> 中的边加入后会不会产生相同颜色的相邻节点就好了。由 <span class="math inline">\(K\)</span> 的定义可知 <span class="math inline">\(\forall uv\in (E(G)\backslash E(K))\)</span>，有 <span class="math inline">\(K+uv\)</span> 会产生一个有向圈，即 <span class="math inline">\(K\)</span> 中存在一条 <span class="math inline">\(v-u\)</span> 有向路，这保证了 <span class="math inline">\(g(v)\neq g(u)\)</span></p>
+<p>下面证明存在一个定向的极大无圈子图 <span class="math inline">\(K\)</span> 使得 <span class="math inline">\(p(K)=\chi(G)\)</span>。我们只需要证明 <span class="math inline">\(p(K)\leqslant\chi(G)\)</span></p>
+<p>首先用 <span class="math inline">\(\chi(G)\)</span> 给 <span class="math inline">\(G\)</span> 染色，然后对 <span class="math inline">\(G\)</span> 定向：若 <span class="math inline">\(uv\in E(G)\)</span> 有 <span class="math inline">\(c(u)&lt;c(v)\)</span>，则构造定向 <span class="math inline">\(f(uv)=(u,v)\)</span>，否则 <span class="math inline">\(f(uv)=(v,u)\)</span></p>
+<p>即我们规定边只能从小颜色连向大颜色。这样 <span class="math inline">\(K\)</span> 中路的长度至多为 <span class="math inline">\(\chi(G)\)</span>，也就是 <span class="math inline">\(p(K)\leqslant \chi(G)\)</span></p>
+<p>这个定向实际上是在枚举所有贪心算法的操作序列，也就是说存在至少一种操作的顺序使得我们trivial的贪心算法能够摸到 <span class="math inline">\(\chi(G)\)</span> 的门槛。</p>
+<h3 id="平面图的五色定理">平面图的五色定理</h3>
+<p>四色定理太难勒，这里有一个比较好玩的弱化版本——任意平面图(plane graph)/可平面图(planar graph)是5-可着色(colorable)的</p>
+<h4 id="引理一-1">引理一</h4>
+<p>极大可平面图有等式 <span class="math inline">\(||G||=3|G|-6\)</span> 成立</p>
+<p>推论1：平均度为 <span class="math inline">\(\frac{2||G||}{|G|}=\frac{6|G|-12}{|G|}&lt;6\)</span>，因此 <span class="math inline">\(\exists x\in V(G)\)</span> 使得 <span class="math inline">\(\text{deg}(x)\leqslant 5\)</span></p>
+<p>推论2：极大可平面图删去任意点仍然是可平面图，因此 <span class="math inline">\(\forall x\in V(G)\)</span> 都有 <span class="math inline">\(\text{deg}(x)\geqslant 3\)</span></p>
+<h4 id="引理二-1">引理二</h4>
+<p>极大可平面图中任意点的邻居导出一个圈</p>
+<p>只需要找到一个平面画法，删去这个点，观察这个点所在的区域的边界即可。</p>
+<p>可平面图不好直接做，因此我们向 <span class="math inline">\(G\)</span> 加边直至 <span class="math inline">\(G\)</span> 成为极大可平面。只需证明新图 <span class="math inline">\(G&#39;\)</span> 仍然是 5-可染色即可。</p>
+<p>我们对极大可平面图的大小归纳。当 <span class="math inline">\(|G|=1\)</span> 是显然的。</p>
+<p>设当 <span class="math inline">\(|G|&lt;n\)</span> 时成立，则 <span class="math inline">\(|G|=n\)</span> 时取 <span class="math inline">\(x\in V(G)\)</span></p>
+<p>讨论：</p>
+<ol type="1">
+<li><p><span class="math inline">\(\text{deg}(x)&lt;5\)</span>，则由贪心算法可知加上 <span class="math inline">\(x\)</span> 也不需要超过5种颜色。</p></li>
+<li><p><span class="math inline">\(\text{deg}(x)=5\)</span>，则 <span class="math inline">\(x\)</span> 有恰好 <span class="math inline">\(5\)</span> 个邻居</p></li>
+<li><p>若5个邻居中存在两个颜色相同，则染上 <span class="math inline">\(x\)</span> 也只需要至多5种颜色</p></li>
+<li><p>若5个邻居互不相同，则需要特殊讨论。</p></li>
+</ol>
+<p>现在来看2.2的情况。根据引理二我们得到5个点共圈，不妨按顺序记为 <span class="math inline">\(v_1, v_2,\ldots v_5\)</span>，其颜色分别为 <span class="math inline">\(c_1,c_2\ldots c_5\)</span> 那么我们做如下操作：</p>
+<ol type="1">
+<li><p>把 <span class="math inline">\(v_1\)</span> 的颜色换成 <span class="math inline">\(c_3\)</span></p></li>
+<li><p>把与 <span class="math inline">\(v_1\)</span> 距离为1的点中，颜色为 <span class="math inline">\(c_3\)</span> 的点的颜色换成 <span class="math inline">\(c_1\)</span></p></li>
+<li><p>把距离为2的点做同样操作....</p></li>
+<li><p>直到不存在可以更改颜色的点剩下。</p></li>
+</ol>
+<p>若流程终止了，则我们通过switch得到了一个染色方案，而 <span class="math inline">\(c(v_1)\neq c(v_3)\)</span>，即5个邻居只用了4种颜色，那么 <span class="math inline">\(G\)</span> 就是5-可染色的了。</p>
+<p>若最后一直换到了 <span class="math inline">\(v_3\)</span>，即存在一条 <span class="math inline">\(v_1-v_3\)</span> 路，使得路上的节点颜色交替为 <span class="math inline">\(c_1,c_3,c_1,c_3\ldots c_3\)</span>，那么此次交换无效(没有达到预期的目的)</p>
+<p>再类似地考虑 <span class="math inline">\(v_2,v_4\)</span>，若成功则证明完毕，否则存在一条 <span class="math inline">\(v_2-v_4\)</span> 颜色交替路</p>
+<p>注意到 <span class="math inline">\(G\)</span> 是平面图，因此不存在这样两次都失败的情况(why？)，即 <span class="math inline">\(v_2-v_4\)</span> 和 <span class="math inline">\(v_1-v_3\)</span> 必然相交。因此证毕。</p>
+<h4 id="二分图的染色">二分图的染色</h4>
+<p>这个非常sb，二分图嘛，黑白染色黑白染色，<span class="math inline">\(\chi(G)=2\)</span></p>
+<p><del>还有边染色的部分，先去吃饭...</del></p>
+<p>回来填坑了</p>
+<h3 id="图的边染色">图的边染色</h3>
+<p>具体定义见上面</p>
+<p>首先给出一个简单的关于边染色的界的结论：</p>
+<p><span class="math inline">\(\forall G\)</span>, <span class="math inline">\(\chi&#39;(G)\geqslant \Delta(G)\)</span></p>
+<p>这个界的证明非常简单，只需要找到度数最大的节点，给它的边染上颜色就好了</p>
+<h4 id="二分图的边染色">二分图的边染色</h4>
+<p>若 <span class="math inline">\(G\)</span> 是二分图，则 <span class="math inline">\(\chi&#39;(G)=\Delta(G)\)</span></p>
+<p>首先有 <span class="math inline">\(\chi&#39;(G)\geqslant\Delta(G)\)</span>，因此只需要证明 <span class="math inline">\(\chi&#39;(G)\leqslant\Delta(G)\)</span> 即可</p>
+<p>我们对 <span class="math inline">\(||G||\)</span> 归纳，设当 <span class="math inline">\(||G||&lt;n\)</span> 时命题成立，则取 <span class="math inline">\(xy\in E(G)\)</span>，<span class="math inline">\(\chi&#39;(G-xy)\leqslant\Delta(G-xy)\leqslant\Delta(G)\)</span></p>
+<p>考虑加入 <span class="math inline">\(xy\)</span> 这条边，那么<span class="math inline">\(\text{deg}_{G-xy}(x)\leqslant\Delta(G),\text{deg}_{G-xy}(y)\leqslant\Delta(G)\)</span>。不妨记 <span class="math inline">\(M(x)\)</span> 为 <span class="math inline">\(x\)</span> 相邻的边中没被用过的颜色，则分两种情况讨论：</p>
+<ol type="1">
+<li><p><span class="math inline">\(M(x)\cap M(y)\neq\varnothing\)</span>，则给 <span class="math inline">\(xy\)</span> 染上 <span class="math inline">\(M(x)\cap M(y)\)</span> 中的任意一种颜色，<span class="math inline">\(\chi&#39;(G)\leqslant\Delta(G)\)</span></p></li>
+<li><p><span class="math inline">\(M(x)\cap M(y)=\varnothing\)</span>，则 <span class="math inline">\(\exists a\in M(x), b\in M(y)\)</span> 使得 <span class="math inline">\(a\not\in M(y),b\not\in M(x)\)</span>。类比点的染色，我们尝试通过交换来让出一种颜色。即令 <span class="math inline">\(x\)</span> 邻边中染上 <span class="math inline">\(b\)</span> 颜色的边换成 <span class="math inline">\(a\)</span> 颜色，并沿着这条边走向一个邻居；再令这个邻居染上 <span class="math inline">\(a\)</span> 颜色的邻边换成 <span class="math inline">\(b\)</span> 颜色..... 直至走到一个不用换颜色的节点，则停止</p></li>
+</ol>
+<ul>
+<li>我们claim这样的走法一定能换成功，即使走回了起点。原因在于这是一个二分图，所有的圈都是偶圈，而我们交替地走着 <span class="math inline">\(a,b,a,b,\ldots\)</span> 的边，因此最后必然可以走出一条路(这样就直接交换颜色)或一个圈(这样就相当于轮换了一圈的颜色)</li>
+</ul>
+<p>于是就证完了</p>
+<h4 id="一个任意图的更强的界">一个任意图的更强的界</h4>
+<p>事实上 <span class="math inline">\(\forall G\)</span> 都有 <span class="math inline">\(\Delta(G)\leqslant\chi&#39;(G)\leqslant\Delta(G)+1\)</span></p>
+<p>这个证明有点麻烦，咕了吧（</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2021/06/01/%E5%9B%BE%E8%AE%BA01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2021-06-04 16:12:00
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E5%9B%BE%E8%AE%BA/" title="图论">
+                        <b>#</b> 图论
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/06/11/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%9001-Intro/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E6%9F%93%E8%89%B2coloring"><span class="toc-text">图染色(Coloring)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%93%E8%89%B2%E6%95%B0coloring-index"><span class="toc-text">染色数(Coloring Index)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%A2clique%E5%92%8C%E7%8B%AC%E7%AB%8B%E9%9B%86independent-set"><span class="toc-text">团(clique)和独立集(independent set)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E8%89%B2%E5%A4%9A%E9%A1%B9%E5%BC%8F"><span class="toc-text">图的色多项式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%93%E8%89%B2%E7%9A%84%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="toc-text">染色的贪心算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%90%86%E4%B8%80"><span class="toc-text">引理一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%90%86%E4%BA%8C"><span class="toc-text">引理二</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%93%E8%89%B2%E6%95%B0%E7%9A%84%E5%B9%B3%E5%87%A1%E4%B8%8A%E7%95%8C"><span class="toc-text">染色数的平凡上界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#brooks-theorem"><span class="toc-text">Brooks Theorem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E5%AE%9A%E5%90%91orientation"><span class="toc-text">图的定向(orientation)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dag%E7%9A%84%E6%9F%93%E8%89%B2%E7%AE%97%E6%B3%95"><span class="toc-text">DAG的染色算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%9B%BE%E5%AE%9A%E5%90%91%E7%BB%99%E5%87%BA%E6%9F%93%E8%89%B2%E6%95%B0%E7%9A%84%E7%B4%A7%E7%95%8C"><span class="toc-text">利用图定向给出染色数的紧界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E9%9D%A2%E5%9B%BE%E7%9A%84%E4%BA%94%E8%89%B2%E5%AE%9A%E7%90%86"><span class="toc-text">平面图的五色定理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%90%86%E4%B8%80-1"><span class="toc-text">引理一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%90%86%E4%BA%8C-1"><span class="toc-text">引理二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E7%9A%84%E6%9F%93%E8%89%B2"><span class="toc-text">二分图的染色</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E8%BE%B9%E6%9F%93%E8%89%B2"><span class="toc-text">图的边染色</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E7%9A%84%E8%BE%B9%E6%9F%93%E8%89%B2"><span class="toc-text">二分图的边染色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E4%BB%BB%E6%84%8F%E5%9B%BE%E7%9A%84%E6%9B%B4%E5%BC%BA%E7%9A%84%E7%95%8C"><span class="toc-text">一个任意图的更强的界</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/olahiuj">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mailto:jpwang@smail.nju.edu.cn">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/olahiuj">Copyright © 2022 jjppp</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
