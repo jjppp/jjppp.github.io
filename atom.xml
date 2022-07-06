@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-07-03T18:15:54.648Z</updated>
+  <updated>2022-07-06T04:28:28.370Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>抽象代数01 群的定义</title>
+    <link href="http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B001-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/"/>
+    <id>http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B001-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/</id>
+    <published>2022-07-06T04:27:46.000Z</published>
+    <updated>2022-07-06T04:28:28.370Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;觉得要好好学一学这个东西了&lt;/p&gt;
+&lt;h1 id=&quot;代数系统&quot;&gt;代数系统&lt;/h1&gt;
+&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
+&lt;p&gt;称 &lt;span class=&quot;math inline&quot;&gt;\(\left&amp;lt;G,\circ\right&amp;gt;\)&lt;/span&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="抽象代数" scheme="http://example.com/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>操作系统03 内存管理</title>
@@ -428,32 +454,6 @@
         
     <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
 &lt;p&gt;命题逻辑（或者</summary>
-        
-      
-    
-    
-    
-    
-    <category term="数理逻辑" scheme="http://example.com/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数理逻辑02 推演系统</title>
-    <link href="http://example.com/2022/01/24/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9102-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://example.com/2022/01/24/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9102-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/</id>
-    <published>2022-01-24T10:53:00.000Z</published>
-    <updated>2022-06-23T05:50:41.791Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
-&lt;p&gt;在上一章给出了命题逻辑的语法、语义，公理化的定义，以及一种判定公式是否可满足/永真的算法，但是这还不够，因为：&lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;&lt;p&gt;并不是所有逻辑都有Decision</summary>
         
       
     
