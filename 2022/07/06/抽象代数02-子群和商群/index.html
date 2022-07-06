@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      抽象代数02 子群和商群 
+      
+      
+      |
     
      jjppp
   </title>
@@ -112,281 +115,171 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="ICPC 2021 银川划水记">
-        <div class="time-m-d">2021-05-17</div>
-        <div class="title">
-          <a href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">
-            
-              
-                <span>ICPC 2021 银川划水记</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">抽象代数02 子群和商群</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-07-06 18:06:58
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/" title="抽象代数">
+                    <b>#</b> 抽象代数
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="图论02 匹配">
-        <div class="time-m-d">2021-04-30</div>
-        <div class="title">
-          <a href="/2021/04/30/%E5%9B%BE%E8%AE%BA02-%E5%8C%B9%E9%85%8D/">
-            
-              
-                <span>图论02 匹配</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>主要关注怎么由已有群得到新的群. 如果上过正经高代应该会对这一套流程比较熟悉</p>
+<h1 id="子群">子群</h1>
+<p>$ G$ 为子群, 非空子集 <span class="math inline">\(H\subseteq G\)</span> 是 <span class="math inline">\(G\)</span> 的子群当且仅当 <span class="math inline">\(H\)</span> 在 <span class="math inline">\(G\)</span> 中同一运算下为群.</p>
+<p>必然有 <span class="math inline">\(e\in H\)</span>, 且 <span class="math inline">\(e_H=e_G\)</span>. 由反证法设 <span class="math inline">\(e_H\neq e_G\)</span>, 则 <span class="math inline">\(e_H e_G = e_H = e_G\)</span>, 此处的运算均在 <span class="math inline">\(G\)</span> 中进行.</p>
+<h1 id="子群的等价定义">子群的等价定义</h1>
+<h2 id="定义1">定义1</h2>
+<p><span class="math inline">\(H\subseteq G\)</span> 为子群, 当且仅当</p>
+<ol type="1">
+<li><span class="math inline">\(\forall a, b\in H, ab\in G\)</span></li>
+<li><span class="math inline">\(\forall a\in H, a^{-1}\in G\)</span></li>
+</ol>
+<p>容易验证此定义与 <span class="math inline">\(H\)</span> 为群等价.</p>
+<h2 id="定义2">定义2</h2>
+<p><span class="math inline">\(H\subseteq G\)</span> 为子群, 当且仅当 <span class="math inline">\(\forall a, b\in H, ab^{-1}\in H\)</span></p>
+<p>注意到 <span class="math inline">\(\forall a\in H, aa^{-1}=e\in H\)</span>, 且 <span class="math inline">\(\forall a\in H, ea^{-1}=a^{-1}\in H\)</span>. 易得定义2与定义1等价.</p>
+<h2 id="子群之交">子群之交</h2>
+<p>子群之交仍为子群.</p>
+<p>若 <span class="math inline">\(H_1,H_2\leqslant G\)</span> 且 <span class="math inline">\(H_1\neq H_2\)</span>, 那么 <span class="math inline">\(H_1\cap H_2\leqslant G\)</span></p>
+<p>很显然 <span class="math inline">\(H_1\cap H_2\)</span> 非空 (至少有 <span class="math inline">\(e\in H_1, e\in H_2\)</span>)</p>
+<p><span class="math inline">\(\forall a,b\in H_1\cap H_2\)</span>, 那么有 <span class="math inline">\(a,b\in H_1\)</span> 且 <span class="math inline">\(a,b\in H_2\)</span>. 这说明 <span class="math inline">\(ab^{-1}\in H_1\)</span> 且 <span class="math inline">\(ab^{-1}\in H_2\)</span>, 即 <span class="math inline">\(ab^{-1}\in H_1\cap H_2\)</span>. 由定义2可知 <span class="math inline">\(H_1\cap H_2\)</span> 为群.</p>
+<h2 id="子群之并">子群之并</h2>
+<p>子群之并不一定仍为子群.</p>
+<p>取 <span class="math inline">\(H_1,H_2\leqslant G\)</span>, 且 <span class="math inline">\(H_1\neq H_2\)</span> 没有包含关系.</p>
+<p>由反证法, 设 <span class="math inline">\(H_1\cup H_2\)</span> 仍为子群, 则取 <span class="math inline">\(a\in H_1\backslash H_2, b\in H_2\backslash H_1\)</span>, 观察 <span class="math inline">\(c=ab\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(c\in H_1\)</span>, 此时 <span class="math inline">\(a, c\in H_1\)</span>, 由定义2 <span class="math inline">\(ca^{-1}=b\in H_1\)</span> 矛盾;</li>
+<li><span class="math inline">\(c\in H_2\backslash H_1\)</span>, 此时 <span class="math inline">\(b, c\in H_2\)</span>, 由定义2 <span class="math inline">\(cb^{-1}=a\in H_2\)</span> 矛盾;</li>
+</ol>
+<p>故假设不成立, <span class="math inline">\(H_1\cup H_2\)</span> 不是子群.</p>
+<p>当然在 <span class="math inline">\(H_1\leqslant H_2\leqslant G\)</span> 的情况下, <span class="math inline">\(H_1\cup H_2=H_2\leqslant G\)</span> 是一个子群.</p>
+<h1 id="商群">商群</h1>
+
       </div>
-    
-      <div class="post-item" title="CSAPP实验06 : shlab">
-        <div class="time-m-d">2021-04-21</div>
-        <div class="title">
-          <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C06-shlab/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>CSAPP实验06 : shlab</span>
-              
+              <a href="/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B001-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-07-06 18:06:58
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/" title="抽象代数">
+                        <b>#</b> 抽象代数
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="奋斗逼的脸庞着实惹人爱">
-        <div class="time-m-d">2021-04-14</div>
-        <div class="title">
-          <a href="/2021/04/14/%E5%A5%8B%E6%96%97%E9%80%BC%E7%9A%84%E8%84%B8%E5%BA%9E%E7%9D%80%E5%AE%9E%E6%83%B9%E4%BA%BA%E7%88%B1/">
-            
-              
-                <span>奋斗逼的脸庞着实惹人爱</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4"><span class="toc-text">子群</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4%E7%9A%84%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="toc-text">子群的等价定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891"><span class="toc-text">定义1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%892"><span class="toc-text">定义2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4%E4%B9%8B%E4%BA%A4"><span class="toc-text">子群之交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4%E4%B9%8B%E5%B9%B6"><span class="toc-text">子群之并</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%95%86%E7%BE%A4"><span class="toc-text">商群</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="CSAPP实验05: cachelab">
-        <div class="time-m-d">2021-03-07</div>
-        <div class="title">
-          <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C05-cachelab/">
-            
-              
-                <span>CSAPP实验05: cachelab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="大一上存活经验">
-        <div class="time-m-d">2021-02-19</div>
-        <div class="title">
-          <a href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/">
-            
-              
-                <span>大一上存活经验</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验04: archlab">
-        <div class="time-m-d">2021-02-17</div>
-        <div class="title">
-          <a href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C04-archlab/">
-            
-              
-                <span>CSAPP实验04: archlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="半音阶口琴谱合辑">
-        <div class="time-m-d">2021-02-14</div>
-        <div class="title">
-          <a href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/">
-            
-              
-                <span>半音阶口琴谱合辑</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验03 : attacklab">
-        <div class="time-m-d">2021-02-04</div>
-        <div class="title">
-          <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C03-attacklab/">
-            
-              
-                <span>CSAPP实验03 : attacklab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验02 : bomblab">
-        <div class="time-m-d">2021-01-24</div>
-        <div class="title">
-          <a href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C02-bomblab/">
-            
-              
-                <span>CSAPP实验02 : bomblab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验01 : datalab">
-        <div class="time-m-d">2021-01-14</div>
-        <div class="title">
-          <a href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C01-datalab/">
-            
-              
-                <span>CSAPP实验01 : datalab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="信息与计算科学导论02">
-        <div class="time-m-d">2021-01-06</div>
-        <div class="title">
-          <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA02/">
-            
-              
-                <span>信息与计算科学导论02</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="信息与计算科学导论03">
-        <div class="time-m-d">2021-01-06</div>
-        <div class="title">
-          <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA03/">
-            
-              
-                <span>信息与计算科学导论03</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="信息与计算科学导论01">
-        <div class="time-m-d">2021-01-06</div>
-        <div class="title">
-          <a href="/2021/01/06/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA01/">
-            
-              
-                <span>信息与计算科学导论01</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="数学分析01 实数完备性的六个定理">
-        <div class="time-m-d">2021-01-01</div>
-        <div class="title">
-          <a href="/2021/01/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%9001-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/">
-            
-              
-                <span>数学分析01 实数完备性的六个定理</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="C语言学习笔记">
-        <div class="time-m-d">2020-12-27</div>
-        <div class="title">
-          <a href="/2020/12/27/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-            
-              
-                <span>C语言学习笔记</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="编译原理01 Introduction">
-        <div class="time-m-d">2020-12-26</div>
-        <div class="title">
-          <a href="/2020/12/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%8601-Introduction/">
-            
-              
-                <span>编译原理01 Introduction</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="期末小作业——2048小游戏">
-        <div class="time-m-d">2020-12-15</div>
-        <div class="title">
-          <a href="/2020/12/15/%E6%9C%9F%E6%9C%AB%E5%B0%8F%E4%BD%9C%E4%B8%9A%E2%80%94%E2%80%942048%E5%B0%8F%E6%B8%B8%E6%88%8F/">
-            
-              
-                <span>期末小作业——2048小游戏</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="几个关于集合的有趣证明">
-        <div class="time-m-d">2020-11-23</div>
-        <div class="title">
-          <a href="/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/">
-            
-              
-                <span>几个关于集合的有趣证明</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="有关集合大小的比较">
-        <div class="time-m-d">2020-10-28</div>
-        <div class="title">
-          <a href="/2020/10/28/%E6%9C%89%E5%85%B3%E9%9B%86%E5%90%88%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%AF%94%E8%BE%83/">
-            
-              
-                <span>有关集合大小的比较</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/3/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">4 / 5</span>
-    
-      <a href="/page/5/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -652,6 +545,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

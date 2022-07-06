@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-07-06T10:06:02.975Z</updated>
+  <updated>2022-07-06T10:46:30.046Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>抽象代数02 子群和商群</title>
+    <link href="http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B002-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/"/>
+    <id>http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B002-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/</id>
+    <published>2022-07-06T10:06:58.000Z</published>
+    <updated>2022-07-06T10:46:30.046Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;主要关注怎么由已有群得到新的群. 如果上过正经高代应该会对这一套流程比较熟悉&lt;/p&gt;
+&lt;h1 id=&quot;子群&quot;&gt;子群&lt;/h1&gt;
+&lt;p&gt;$ G$ 为子群, 非空子集 &lt;span class=&quot;math inline&quot;&gt;\(H\subseteq G\)&lt;/span&gt; 是</summary>
+        
+      
+    
+    
+    
+    
+    <category term="抽象代数" scheme="http://example.com/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>抽象代数01 群的定义</title>
     <link href="http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B001-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/"/>
     <id>http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B001-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/</id>
     <published>2022-07-06T04:27:46.000Z</published>
-    <updated>2022-07-06T10:06:02.975Z</updated>
+    <updated>2022-07-06T10:18:46.191Z</updated>
     
     
       
@@ -437,30 +462,6 @@
     
     
     <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数理逻辑03 一阶逻辑</title>
-    <link href="http://example.com/2022/02/13/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9103-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/"/>
-    <id>http://example.com/2022/02/13/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9103-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/</id>
-    <published>2022-02-13T04:04:00.000Z</published>
-    <updated>2022-06-23T05:50:44.839Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
-&lt;p&gt;命题逻辑（或者</summary>
-        
-      
-    
-    
-    
-    
-    <category term="数理逻辑" scheme="http://example.com/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/"/>
     
   </entry>
   
