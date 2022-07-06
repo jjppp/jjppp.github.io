@@ -211,6 +211,43 @@
 <p>故假设不成立, <span class="math inline">\(H_1\cup H_2\)</span> 不是子群.</p>
 <p>当然在 <span class="math inline">\(H_1\leqslant H_2\leqslant G\)</span> 的情况下, <span class="math inline">\(H_1\cup H_2=H_2\leqslant G\)</span> 是一个子群.</p>
 <h1 id="商群">商群</h1>
+<p>对于群 <span class="math inline">\(G\)</span> 和子群 <span class="math inline">\(H\leqslant G\)</span>, 可以定义 <span class="math inline">\(G\)</span> 上的二元关系 <span class="math inline">\(R_H\)</span> 为</p>
+<p><span class="math display">\[
+\forall a,b\in G, aR_Hb\iff a^{-1}b\in H
+\]</span></p>
+<p>易验证 <span class="math inline">\(R_H\)</span> 是 <span class="math inline">\(G\)</span> 上的等价关系, 由此可导出一个 <span class="math inline">\(G\)</span> 的划分 <span class="math inline">\(G/R_H\)</span>, 也可记作 <span class="math inline">\(G/H\)</span>.</p>
+<p>这个等价关系看起来也许有些奇怪, 可以考虑一个线性空间中的直观例子: 在三维欧式空间 <span class="math inline">\(V\)</span> 中, 取 <span class="math inline">\(z\)</span> 轴这个子空间 <span class="math inline">\(Z\)</span>.</p>
+<p><span class="math inline">\(\forall \alpha,\beta\in V\)</span>, 定义二元关系 <span class="math inline">\(\alpha R\beta\iff \alpha-\beta\in Z\)</span>. 可以发现, 这样定义的二元关系"连接"了 <span class="math inline">\(z\)</span> 轴垂直穿过的所有水平平面上的点, 此时作陪集划分 <span class="math inline">\(V/X\)</span> 就是把三维空间"压成"了二维平面, 新平面中的每个点表示原本的一条垂直线.</p>
+<h2 id="g-上关于-h-的陪集划分"><span class="math inline">\(G\)</span> 上关于 <span class="math inline">\(H\)</span> 的陪集划分</h2>
+<p>给定 <span class="math inline">\(H\leqslant G\)</span>, 关于元素 <span class="math inline">\(a\in G\)</span> 的左陪集定义为 <span class="math inline">\(aH=\Set{ah\mid h\in H}\)</span></p>
+<p>有 <span class="math inline">\(aH=[a]_R\)</span>, 即元素 <span class="math inline">\(a\)</span> 的左陪集恰好等于其在关系 <span class="math inline">\(R_H\)</span> 下的等价类. 即 <span class="math inline">\(\forall b\in G, aR_H b\iff b\in aH\)</span>. 证明是简单的.</p>
+<p>通常把 <span class="math inline">\(G/H\)</span> 称为 <span class="math inline">\(G\)</span> 关于 <span class="math inline">\(H\)</span> 的左陪集划分, 也叫 <span class="math inline">\(G\)</span> 关于 <span class="math inline">\(H\)</span> 的左商集空间.</p>
+<h3 id="指数和-lagrange-定理">指数和 Lagrange 定理</h3>
+<p><span class="math inline">\(G\)</span> 为有限群.</p>
+<p>定义 <span class="math inline">\([G:H] = \left\lvert G/H\right\rvert\)</span> 为 <span class="math inline">\(H\)</span> 在 <span class="math inline">\(G\)</span> 中的指数. 由左消去律可知 <span class="math inline">\(\forall a\in G, \left\lvert aH\right\rvert=\left\lvert H\right\rvert\)</span>, 且 <span class="math inline">\(G/H=\Set{aH\mid a\in G}\)</span> 为一个划分, 因此 <span class="math inline">\(\left\lvert H\right\rvert [G:H] = \left\lvert G\right\rvert\)</span></p>
+<p>若有 <span class="math inline">\(H\leqslant K\leqslant G\)</span> 为群, 那么有</p>
+<p><span class="math display">\[
+[G:K]=[G:H] [H:K]
+\]</span></p>
+<p>连续两次 Lagrange 定理即得.</p>
+<h2 id="同余关系">同余关系</h2>
+<p><span class="math inline">\(G\)</span> 中运算导出到 <span class="math inline">\(G/H\)</span> 中, 要求 <span class="math inline">\(R\)</span> 是同余关系, 即</p>
+<p><span class="math display">\[
+\left.
+\begin{aligned}
+a^{-1}b\in H
+\\
+c^{-1}d\in H
+\end{aligned}
+\right\}
+\Rightarrow 
+{c}^{-1}{a}^{-1}bd\in H
+\]</span></p>
+<p>为了形式上的对称, 可以写成</p>
+<p><span class="math display">\[
+{c}^{-1}{a}^{-1}b(c {c}^{-1})d={c}^{-1}({a}^{-1}b)c ({c}^{-1}d)\in H
+\]</span></p>
+<p>注意到 <span class="math inline">\({c}^{-1}d\in H\)</span>, 因此上式成立只需要 <span class="math inline">\({c}^{-1}({a}^{-1}b)c\in H\)</span>. 又由 <span class="math inline">\(a,b\)</span> 的任意性, 只需要 <span class="math inline">\({c}^{-1}gc\in H\)</span> 对任意的 <span class="math inline">\(g\in G\)</span> 成立. 这是正规子群的来源.</p>
 
       </div>
       
@@ -255,7 +292,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4"><span class="toc-text">子群</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4%E7%9A%84%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="toc-text">子群的等价定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891"><span class="toc-text">定义1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%892"><span class="toc-text">定义2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4%E4%B9%8B%E4%BA%A4"><span class="toc-text">子群之交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4%E4%B9%8B%E5%B9%B6"><span class="toc-text">子群之并</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%95%86%E7%BE%A4"><span class="toc-text">商群</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4"><span class="toc-text">子群</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4%E7%9A%84%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="toc-text">子群的等价定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891"><span class="toc-text">定义1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%892"><span class="toc-text">定义2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4%E4%B9%8B%E4%BA%A4"><span class="toc-text">子群之交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BE%A4%E4%B9%8B%E5%B9%B6"><span class="toc-text">子群之并</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%95%86%E7%BE%A4"><span class="toc-text">商群</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#g-%E4%B8%8A%E5%85%B3%E4%BA%8E-h-%E7%9A%84%E9%99%AA%E9%9B%86%E5%88%92%E5%88%86"><span class="toc-text">\(G\) 上关于 \(H\) 的陪集划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%92%8C-lagrange-%E5%AE%9A%E7%90%86"><span class="toc-text">指数和 Lagrange 定理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E4%BD%99%E5%85%B3%E7%B3%BB"><span class="toc-text">同余关系</span></a></li></ol></li></ol>
       
     </div>
   </div>
