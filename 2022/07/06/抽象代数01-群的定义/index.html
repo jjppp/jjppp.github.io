@@ -189,43 +189,42 @@
 <p>记 <span class="math inline">\(P=G/R\)</span> 为 <span class="math inline">\(G\)</span> 关于 <span class="math inline">\(R\)</span> 的商集, 映射 <span class="math inline">\(\pi\colon g\mapsto [g]\)</span> 称为自然映射. 其中 <span class="math inline">\([g]=\Set{x\mid xRg}\)</span></p>
 <p>可构造新代数系统 <span class="math inline">\(\left&lt;G/R, \circ&#39;\right&gt;\)</span>. 其中 <span class="math inline">\(\circ&#39;\)</span> 定义为 <span class="math inline">\([a]\circ&#39; [b]=[a\circ b]\)</span>.</p>
 <p>为了保证 <span class="math inline">\(\circ&#39;\)</span> 是良定义的 (<span class="math inline">\(\forall c\in [a], c\neq a\)</span> 都有 <span class="math inline">\([c\circ b]= [a\circ b]\)</span>), 应满足 <span class="math inline">\(\forall a_1,a_2,b_1,b_2\)</span>, <span class="math inline">\(a_1Rb_1\wedge a_2 R b_2\Rightarrow (a_1\circ a_2)R(b_1\circ b_2)\)</span></p>
-<h1 id="群">群</h1>
-<h2 id="半群">半群</h2>
+<h1 id="半群">半群</h1>
 <p><span class="math inline">\(\left&lt;G,\circ\right&gt;\)</span> 是半群当且仅当 <span class="math inline">\(G\)</span> 是代数系统, 且 <span class="math inline">\(\circ\)</span> 有结合律 <span class="math display">\[
 \forall a,b,c\in G, (ab)c=a(bc)
 \]</span></p>
-<h2 id="幺半群">幺半群</h2>
+<h1 id="幺半群">幺半群</h1>
 <p>半群 <span class="math inline">\(\left&lt;G,\circ\right&gt;\)</span> 是幺半群当且仅当存在幺元 <span class="math display">\[
 \exists e\in G \text{ s.t. } \forall a\in G, ae=ea=a
 \]</span></p>
-<h3 id="左右幺元">左右幺元</h3>
+<h2 id="左右幺元">左右幺元</h2>
 <p>左幺元定义为 <span class="math display">\[
 \exists e_L\in G \text{ s.t. } \forall a\in G, e_La=a
 \]</span> 若左右幺元皆存在, 那么它们必然相等: <span class="math display">\[
 e_L = e_Le_R = e_R
 \]</span></p>
-<h3 id="幺元">幺元</h3>
+<h2 id="幺元">幺元</h2>
 <p><span class="math inline">\(e\in G\)</span> 为幺元当且仅当 <span class="math inline">\(e\)</span> 既是左幺元, 又是右幺元.</p>
 <p>若幺元存在, 那么其必然唯一: <span class="math display">\[
 e_1 = e_1 e_2= e_2
 \]</span> 直接推论: 若幺半群有多余一个左幺元, 那么其必然没有右幺元 (否则假设存在, 这个右幺元必然与某个左幺元相等. 又因为幺元唯一, 与有至少 <span class="math inline">\(2\)</span> 个左幺元矛盾)</p>
-<h2 id="群-1">群</h2>
+<h1 id="群">群</h1>
 <p>称幺半群 <span class="math inline">\(\left&lt;G,\circ\right&gt;\)</span> 为群当且仅当 <span class="math inline">\(\forall a\in G, a^{-1}\in G\)</span></p>
-<h3 id="左右逆元">左右逆元</h3>
+<h2 id="左右逆元">左右逆元</h2>
 <p>定义元素 <span class="math inline">\(a\in G\)</span> 的左逆元 <span class="math inline">\(a_1\)</span> 为 <span class="math display">\[
 \exists a_1\in G \text{ s.t. } a_1a=e
 \]</span> 若左右逆元都存在, 那么它们相等且为 <span class="math inline">\(a\)</span> 的 逆元 <span class="math display">\[
 a_2 = (a_1 a) a_2 = a_1 a a_2 = a_1(a a_2) = a_1
 \]</span></p>
-<h3 id="逆元">逆元</h3>
+<h2 id="逆元">逆元</h2>
 <p><span class="math inline">\(a\in G\)</span> 的逆元定义为 <span class="math display">\[
 \exists a^{-1} \text{ s.t. } a^{-1}a=aa^{-1}=e
 \]</span> 类似地, 若 <span class="math inline">\(G\)</span> 中 <span class="math inline">\(a\)</span> 有至少 <span class="math inline">\(2\)</span> 个左逆, 那么其必然没有右逆.</p>
-<h3 id="消去律">消去律</h3>
+<h2 id="消去律">消去律</h2>
 <p>右消去律定义为 <span class="math display">\[
 \forall a,b,c\in G, \; ac=bc\Rightarrow a=b
 \]</span> 由逆元的存在性可知群满足消去律</p>
-<h3 id="群方程">群方程</h3>
+<h2 id="群方程">群方程</h2>
 <p>如下形式的方程称为群方程, <span class="math inline">\(x\)</span> 是未知元 <span class="math display">\[
 \begin{aligned}
 ax=b
@@ -233,8 +232,8 @@ ax=b
 xc=d
 \end{aligned}
 \]</span> 由逆元存在性和唯一性可知群方程解存在且唯一.</p>
-<h2 id="群的等价定义">群的等价定义</h2>
-<h3 id="单侧定义">单侧定义</h3>
+<h1 id="群的等价定义">群的等价定义</h1>
+<h2 id="单侧定义">单侧定义</h2>
 <p>称半群 <span class="math inline">\(G\)</span> 为群, 当且仅当</p>
 <ol type="1">
 <li><span class="math inline">\(\exists e_L\in G\)</span> 为左幺元</li>
@@ -246,26 +245,65 @@ e_L=a&#39;&#39;a&#39;=a&#39;&#39;e_La&#39;=a&#39;&#39;(a&#39;a)a&#39;=(a&#39;&#3
 a=ae_L=a(a&#39;a)=(aa&#39;)a=e_La
 \]</span> 说明 <span class="math inline">\(e_L\)</span> 亦是右幺元.</p>
 <p>证明的另一个方向是显然的, 因此单侧定义与群的一般定义等价.</p>
-<h3 id="群方程有解定义">群方程有解定义</h3>
+<h2 id="群方程有解定义">群方程有解定义</h2>
 <p>半群 <span class="math inline">\(G\)</span> 中任意群方程有解, 则 <span class="math inline">\(G\)</span> 为群.</p>
 <p>任取 <span class="math inline">\(a\in G\)</span>, 记方程 <span class="math inline">\(ax=a\)</span> 的一个解为 <span class="math inline">\(e\)</span>, 下面证明 <span class="math inline">\(e\)</span> 为 <span class="math inline">\(G\)</span> 中一个右幺元.</p>
 <p>任取 <span class="math inline">\(b\in G\)</span>, 有 <span class="math inline">\(aeb=(ae)b=ab\)</span></p>
 <p>此时构造群方程 <span class="math inline">\(xa=b\)</span>, 记一个解为 <span class="math inline">\(f\)</span>, 那么有 <span class="math inline">\(fa=b\)</span></p>
 <p>因此 <span class="math inline">\(be=fae=f(ae)=fa=b\)</span>, 由 <span class="math inline">\(b\)</span> 的任意性即得 <span class="math inline">\(e\)</span> 为右幺元.</p>
 <p>任取 <span class="math inline">\(a\in G\)</span>, 方程 <span class="math inline">\(ax=e\)</span> 的解即为 <span class="math inline">\(a\)</span> 的右逆元. 由群的单侧定义可知 <span class="math inline">\(G\)</span> 为群.</p>
-<h3 id="消去律定义">消去律定义</h3>
+<h2 id="消去律定义">消去律定义</h2>
 <p><strong>有限</strong>半群 <span class="math inline">\(G\)</span> 中满足左右消去律, 则 <span class="math inline">\(G\)</span> 为群</p>
-<h4 id="证明1">证明1</h4>
+<h3 id="证明1">证明1</h3>
 <p>任取 <span class="math inline">\(a\in G\)</span>, 定义 <span class="math inline">\(Ga=\Set{xa\mid x\in G}\)</span>, 由右消去律可知 <span class="math inline">\(|G|=|Ga|\)</span>, 即 <span class="math inline">\(G\)</span> 与 <span class="math inline">\(Ga\)</span> 存在双射.</p>
 <p>故存在 <span class="math inline">\(e\in G\)</span> 使得 <span class="math inline">\(ea=a\)</span>. 下证 <span class="math inline">\(e\)</span> 是左幺元.</p>
 <p>任取 <span class="math inline">\(c\in G\)</span>, 由左消去律可知 <span class="math inline">\(|aG|=|G|\)</span>, 即存在 <span class="math inline">\(d\in G\)</span> 使得 <span class="math inline">\(ad=c\)</span>, 因此 <span class="math inline">\(ec=ead=ad=c\)</span>. 由 <span class="math inline">\(c\)</span> 的任意性, <span class="math inline">\(e\)</span> 是左幺元.</p>
 <p>再证明左逆元的存在性.</p>
 <p>类似存在 <span class="math inline">\(a&#39;\in G\)</span> 使得 <span class="math inline">\(a&#39;a=e\)</span>. 由 <span class="math inline">\(a\)</span> 的任意性可知 <span class="math inline">\(G\)</span> 存在左逆元. 由群的单侧定义可知 <span class="math inline">\(G\)</span> 为群.</p>
-<h4 id="证明2">证明2</h4>
+<h3 id="证明2">证明2</h3>
 <p><span class="math inline">\(G\)</span> 有限, 因此可写成 <span class="math inline">\(G=\Set{a_1,a_2\ldots a_n}\)</span>, 群方程有 <span class="math inline">\(2n^2\)</span> 个, 形如 <span class="math inline">\(a_ix=a_j\)</span>, <span class="math inline">\(xa_i=a_j\)</span></p>
 <p>由右消去律, <span class="math inline">\(|G|=|Ga_i|\)</span>, 因此必然存在唯一的 <span class="math inline">\(a_x\)</span> 使得 <span class="math inline">\(a_x a_i=a_j\)</span>, 此时 <span class="math inline">\(a_x\)</span> 即为方程 <span class="math inline">\(xa_i=a_j\)</span> 的解.</p>
 <p>同理可得方程 <span class="math inline">\(a_i x=a_j\)</span> 存在唯一解</p>
 <p>故 <span class="math inline">\(G\)</span> 中任意群方程存在解, 由群方程有解定义可知 <span class="math inline">\(G\)</span> 为群.</p>
+<h1 id="阶">阶</h1>
+<p>元素 <span class="math inline">\(a\in G\)</span> 的阶定义为最小的自然数 <span class="math inline">\(n\in\mathbb N\)</span> 使得 <span class="math inline">\(a^n=e\)</span>, 记为 <span class="math inline">\(o(a)\)</span> 或 <span class="math inline">\(\left\lvert a\right\rvert\)</span></p>
+<p><span class="math inline">\(\left\lvert a\right\rvert=1\)</span> 当且仅当 <span class="math inline">\(a=e\)</span>, 并且有 <span class="math inline">\(\left\lvert a\right\rvert=\left\lvert a^{-1}\right\rvert\)</span></p>
+<h2 id="定理1">定理1</h2>
+<p><span class="math inline">\(a^k=e\)</span> 当且仅当 <span class="math inline">\(o(a)\mid k\)</span>.</p>
+<p>由反证法, 设根据带余除法得 <span class="math inline">\(k=q\cdot o(a)+r\)</span>, <span class="math inline">\(r\neq 0, r&lt;o(a)\)</span>, 那么有 <span class="math display">\[
+a^k=a^{q\cdot o(a)+r}=a^r=e
+\]</span> 这与 <span class="math inline">\(o(a)\)</span> 的定义矛盾, 故 <span class="math inline">\(r=0\)</span>.</p>
+<h2 id="定理2">定理2</h2>
+<p>记 <span class="math inline">\((a,b)\)</span> 为 <span class="math inline">\(a, b\)</span> 最大公约数 <span class="math display">\[
+o(a^k)=\frac{o(a)}{(k,o(a))}
+\]</span> 先证明 <span class="math inline">\(o(a^k)\leq \dfrac{o(a)}{(k,o(a))}\)</span> :</p>
+<p>注意到 <span class="math display">\[
+\left(a^k\right)^{\frac{o(a)}{(k,o(a))}}=\left(a^{o(a)}\right)^{\frac{k}{(k,o(a))}}=e
+\]</span> 根据定理1立得 <span class="math inline">\(o(a^k)\le \dfrac{o(a)}{(k,o(a))}\)</span></p>
+<p>再证明 <span class="math inline">\(o(a^k)\geq \dfrac{o(a)}{(k,o(a))}\)</span> :</p>
+<p>注意到 <span class="math display">\[
+\left(a^k\right)^{o(a^k)}=a^{k\cdot o(a^k)}=e
+\]</span> 根据定理1立得 <span class="math inline">\(o(a)\mid k\cdot o(a^k)\)</span>. 又因为 <span class="math inline">\(k\cdot o(a^k)\)</span> 同时是 <span class="math inline">\(k\)</span> 的倍数, 所以 <span class="math inline">\(k\cdot o(a^k)\)</span> 是 <span class="math inline">\(o(a), k\)</span> 的公倍数.</p>
+<p>而 <span class="math inline">\(\dfrac{k\cdot o(a)}{(k, o(a))}\)</span> 是 <span class="math inline">\(o(a), k\)</span> 的<strong>最小</strong>公倍数, 因此 <span class="math inline">\(k\cdot o(a^k)\geq \dfrac{k\cdot o(a)}{(k, o(a))}\)</span> , 化简即得证.</p>
+<p>因此 <span class="math inline">\(o(a^k)=\dfrac{k}{(k, o(a))}\)</span></p>
+<h2 id="定理3">定理3</h2>
+<p>若 <span class="math inline">\(a,b\in G\)</span> 可交换 (即 <span class="math inline">\(ab=ba\)</span>) 且 <span class="math inline">\(o(a),o(b)\in \mathbb N\)</span>, 那么 <span class="math display">\[
+\dfrac{nm}{d^2}\mid o(ab)
+\\
+o(ab)\mid\dfrac{nm}{d}
+\]</span></p>
+<p>方便起见, 记 <span class="math inline">\(m=o(a), n=o(b), d=(m, n)\)</span></p>
+<p>首先证明 <span class="math inline">\(o(ab)\mid \dfrac{mn}{d}\)</span> : <span class="math display">\[
+\left(ab\right)^{\frac{mn}{d}}=\left(a^m\right)^{\frac{n}{d}}\left(b^n\right)^{\frac{m}{d}}=e
+\]</span> 再证明 <span class="math inline">\(\dfrac{mn}{d^2}\mid o(ab)\)</span>. 方便起见可以分别证明 <span class="math inline">\(m\mid n\cdot o(ab)\)</span>, <span class="math inline">\(n\mid m\cdot o(ab)\)</span>. <span class="math display">\[
+\begin{aligned}
+\left(ab\right)^{n\cdot o(ab)}&amp;=\left[\left(ab\right)^{o(ab)}\right]^{n}=e
+\\
+\left(ab\right)^{n\cdot o(ab)}&amp;=a^{n\cdot o(ab)}\left(b^n\right)^{o(ab)}=a^{n\cdot o(ab)}=e
+\end{aligned}
+\]</span> 这说明 <span class="math inline">\(m\mid n\cdot o(ab)\)</span>, 即 <span class="math inline">\(\frac{m}{d}\mid \frac{n}{d}\cdot o(ab)\)</span>. 注意到 <span class="math inline">\(\frac{m}{d},\frac{n}{d}\)</span> 互质, 因此 <span class="math inline">\(\frac{m}{d}\mid o(ab)\)</span></p>
+<p>同理可得 <span class="math inline">\(\frac{n}{d}\mid o(ab)\)</span>, 又因为互质, 所以 <span class="math inline">\(\dfrac{nm}{d^2}\mid o(ab)\)</span>.</p>
+<p>特殊地, 若 <span class="math inline">\((o(a),o(b))=1\)</span>, 则有 <span class="math inline">\(o(ab)=o(a)o(b)\)</span></p>
 
       </div>
       
@@ -310,7 +348,7 @@ a=ae_L=a(a&#39;a)=(aa&#39;)a=e_La
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F"><span class="toc-text">代数系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB-%E5%88%92%E5%88%86"><span class="toc-text">等价关系 划分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BE%A4"><span class="toc-text">群</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8A%E7%BE%A4"><span class="toc-text">半群</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="toc-text">幺半群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E5%B9%BA%E5%85%83"><span class="toc-text">左右幺元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BA%E5%85%83"><span class="toc-text">幺元</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%A4-1"><span class="toc-text">群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E9%80%86%E5%85%83"><span class="toc-text">左右逆元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%86%E5%85%83"><span class="toc-text">逆元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E5%8E%BB%E5%BE%8B"><span class="toc-text">消去律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BE%A4%E6%96%B9%E7%A8%8B"><span class="toc-text">群方程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%A4%E7%9A%84%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="toc-text">群的等价定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%BE%A7%E5%AE%9A%E4%B9%89"><span class="toc-text">单侧定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BE%A4%E6%96%B9%E7%A8%8B%E6%9C%89%E8%A7%A3%E5%AE%9A%E4%B9%89"><span class="toc-text">群方程有解定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E5%8E%BB%E5%BE%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">消去律定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%81%E6%98%8E1"><span class="toc-text">证明1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%81%E6%98%8E2"><span class="toc-text">证明2</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F"><span class="toc-text">代数系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB-%E5%88%92%E5%88%86"><span class="toc-text">等价关系 划分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%8A%E7%BE%A4"><span class="toc-text">半群</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="toc-text">幺半群</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E5%B9%BA%E5%85%83"><span class="toc-text">左右幺元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BA%E5%85%83"><span class="toc-text">幺元</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BE%A4"><span class="toc-text">群</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E9%80%86%E5%85%83"><span class="toc-text">左右逆元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86%E5%85%83"><span class="toc-text">逆元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E5%8E%BB%E5%BE%8B"><span class="toc-text">消去律</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%A4%E6%96%B9%E7%A8%8B"><span class="toc-text">群方程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BE%A4%E7%9A%84%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="toc-text">群的等价定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BE%A7%E5%AE%9A%E4%B9%89"><span class="toc-text">单侧定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%A4%E6%96%B9%E7%A8%8B%E6%9C%89%E8%A7%A3%E5%AE%9A%E4%B9%89"><span class="toc-text">群方程有解定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E5%8E%BB%E5%BE%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">消去律定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%98%8E1"><span class="toc-text">证明1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%98%8E2"><span class="toc-text">证明2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%B6"><span class="toc-text">阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%861"><span class="toc-text">定理1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%862"><span class="toc-text">定理2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%863"><span class="toc-text">定理3</span></a></li></ol></li></ol>
       
     </div>
   </div>
