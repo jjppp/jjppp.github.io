@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      抽象代数03 同态与同构 
+      
+      
+      |
     
      jjppp
   </title>
@@ -112,281 +115,176 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="计算方法01 函数求根">
-        <div class="time-m-d">2022-03-07</div>
-        <div class="title">
-          <a href="/2022/03/07/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9501-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/">
-            
-              
-                <span>计算方法01 函数求根</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">抽象代数03 同态与同构</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-07-09 00:26:16
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/" title="抽象代数">
+                    <b>#</b> 抽象代数
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="数理逻辑03 一阶逻辑">
-        <div class="time-m-d">2022-02-13</div>
-        <div class="title">
-          <a href="/2022/02/13/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9103-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/">
-            
-              
-                <span>数理逻辑03 一阶逻辑</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>群的同构意味着二者本质上没有区别, 同态则可以导出某些同构.</p>
+<h1 id="定义">定义</h1>
+<p>下面默认 <span class="math inline">\(G_1, G_2\)</span> 是两个群.</p>
+<h2 id="同态">同态</h2>
+<p>若存在映射 <span class="math inline">\(f\colon G_1\mapsto G_2\)</span>, 且 <span class="math inline">\(\forall a,b\in G_1, f(ab)=f(a)f(b)\)</span>, 那么称 <span class="math inline">\(f\)</span> 是 <span class="math inline">\(G_1\)</span> 到 <span class="math inline">\(G_2\)</span> 的同态.</p>
+<p>若 <span class="math inline">\(f\)</span> 为单射, 则 <span class="math inline">\(f\)</span> 为 <span class="math inline">\(G_1\)</span> 到 <span class="math inline">\(G_2\)</span> 的单同态.</p>
+<p>若 <span class="math inline">\(f\)</span> 为满射, 则 <span class="math inline">\(f\)</span> 为 <span class="math inline">\(G_1\)</span> 到 <span class="math inline">\(G_2\)</span> 的满同态.</p>
+<p>下面默认 <span class="math inline">\(f\)</span> 是 <span class="math inline">\(G_1\mapsto G_2\)</span> 的同态.</p>
+<h3 id="定理1">定理1</h3>
+<p>若有同态 <span class="math inline">\(f\colon G_1\mapsto G_2, g\colon G_2\mapsto G_3\)</span>, 那么有同态 <span class="math inline">\(g\circ f\colon G_1\mapsto G_3\)</span></p>
+<p>证明是简单的.</p>
+<h3 id="定理2">定理2</h3>
+<p><span class="math inline">\(f(e_1)=e_2\)</span>, 其中 <span class="math inline">\(e_1, e_2\)</span> 分别为 <span class="math inline">\(G_1, G_2\)</span> 的幺元.</p>
+<p>注意到 <span class="math inline">\(f(e_1)f(e_1)=f(e_1e_1)e_2=f(e_1)e_2\)</span>, 由消去律 <span class="math inline">\(f(e_1)=e_2\)</span>.</p>
+<h3 id="定理3">定理3</h3>
+<p><span class="math inline">\(\text{Im}f\leqslant G_2\)</span>.</p>
+<ol type="1">
+<li>结合律是显然的</li>
+<li><span class="math inline">\(f(e_1)\)</span> 是幺元</li>
+<li><span class="math inline">\({f(a)}^{-1}f(b)=f({a}^{-1}b)\in\text{Im}f\)</span></li>
+</ol>
+<p>因此 <span class="math inline">\(\text{Im}f\)</span> 成群. 又因为 <span class="math inline">\(\text{Im}f\subseteq G_2\)</span>, 所以 <span class="math inline">\(\text{Im}f\leqslant G_2\)</span>.</p>
+<p>这说明 <span class="math inline">\(f\)</span> 即使不是满同态, 也可以选取 <span class="math inline">\(G_2&#39;=\text{Im}f\)</span> 来使得 <span class="math inline">\(f\)</span> 为 <span class="math inline">\(G_1\mapsto G_2&#39;\)</span> 的满同态.</p>
+<h2 id="核">核</h2>
+<p>定义 <span class="math inline">\(\ker f=\Set{a\in G_1\mid f(a)=e_2}\)</span>, 称为 <span class="math inline">\(f\)</span> 的核, 也叫零空间.</p>
+<h3 id="定理4">定理4</h3>
+<p><span class="math inline">\(\ker f\lhd G_1\)</span>.</p>
+<p>首先 <span class="math inline">\(e_1\in \ker f\)</span>, 且 <span class="math inline">\(\forall a,b\in G_1\)</span>, 若 <span class="math inline">\(f(a),f(b)\in \ker f\)</span>, 则 <span class="math inline">\(f({a}^{-1}b)=f({a}^{-1})f(b)=e_2\)</span>, 因此 <span class="math inline">\(\ker f\leqslant G_1\)</span>.</p>
+<p>接着 <span class="math inline">\(\forall g\in G_1, h\in \ker f\)</span>, 有 <span class="math inline">\(f({g}^{-1}hg)=f({g}^{-1})f(h)f(g)=f({g}^{-1}g)=e_2\)</span>.</p>
+<h3 id="定理5">定理5</h3>
+<p><span class="math inline">\(f\)</span> 是单同态, 当且仅当 <span class="math inline">\(\ker f=\set{e_1}\)</span>.</p>
+<p>若 <span class="math inline">\(\ker f=\set{e_1}\)</span>, 由反证法, 设 <span class="math inline">\(\exists a,b\in G_1 \text{ s.t. } f(a)=f(b)=c\in G_2\)</span></p>
+<p>那么有 <span class="math inline">\(f({a}^{-1}b)={f(a)}^{-1}f(b)={c}^{-1}c=e_2\)</span>, 而 <span class="math inline">\({a}^{-1}b\neq e_1\)</span>, 这与 <span class="math inline">\(\ker f=\set{e_1}\)</span> 矛盾. 故假设不成立.</p>
+<p>另一侧是显然的.</p>
+<h2 id="同构">同构</h2>
+<p>若 <span class="math inline">\(f\colon G_1\mapsto G_2\)</span> 即是满同态, 又是单同态, 那么 <span class="math inline">\(f\)</span> 就是一个同构.</p>
+
       </div>
-    
-      <div class="post-item" title="数理逻辑02 推演系统">
-        <div class="time-m-d">2022-01-24</div>
-        <div class="title">
-          <a href="/2022/01/24/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9102-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>数理逻辑02 推演系统</span>
-              
+              <a href="/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B002-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-07-09 00:26:16
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/" title="抽象代数">
+                        <b>#</b> 抽象代数
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="数理逻辑01 命题逻辑">
-        <div class="time-m-d">2022-01-20</div>
-        <div class="title">
-          <a href="/2022/01/20/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%9101-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/">
-            
-              
-                <span>数理逻辑01 命题逻辑</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%80%81"><span class="toc-text">同态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%861"><span class="toc-text">定理1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%862"><span class="toc-text">定理2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%863"><span class="toc-text">定理3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8"><span class="toc-text">核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%864"><span class="toc-text">定理4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%865"><span class="toc-text">定理5</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%9E%84"><span class="toc-text">同构</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="大二上躺平经验">
-        <div class="time-m-d">2022-01-11</div>
-        <div class="title">
-          <a href="/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/">
-            
-              
-                <span>大二上躺平经验</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA4 附加关卡">
-        <div class="time-m-d">2022-01-11</div>
-        <div class="title">
-          <a href="/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA4 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学07 OWF&HC">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A607-OWF-HC/">
-            
-              
-                <span>密码学07 OWF&HC</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学06 HASH">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/%E5%AF%86%E7%A0%81%E5%AD%A606-HASH/">
-            
-              
-                <span>密码学06 HASH</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学05 MAC">
-        <div class="time-m-d">2021-12-20</div>
-        <div class="title">
-          <a href="/2021/12/20/%E5%AF%86%E7%A0%81%E5%AD%A605-MAC/">
-            
-              
-                <span>密码学05 MAC</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA3 附加关卡">
-        <div class="time-m-d">2021-12-11</div>
-        <div class="title">
-          <a href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA3 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA2 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA2 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA1 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA1 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义05 Semantics">
-        <div class="time-m-d">2021-11-07</div>
-        <div class="title">
-          <a href="/2021/11/07/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8905-Semantics/">
-            
-              
-                <span>形式语义05 Semantics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学04 PRG&PRF">
-        <div class="time-m-d">2021-10-19</div>
-        <div class="title">
-          <a href="/2021/10/19/%E5%AF%86%E7%A0%81%E5%AD%A604-PRG-PRF/">
-            
-              
-                <span>密码学04 PRG&PRF</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义04 Types">
-        <div class="time-m-d">2021-10-05</div>
-        <div class="title">
-          <a href="/2021/10/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8904-Types/">
-            
-              
-                <span>形式语义04 Types</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学03 Computational">
-        <div class="time-m-d">2021-09-27</div>
-        <div class="title">
-          <a href="/2021/09/27/%E5%AF%86%E7%A0%81%E5%AD%A603-Computational/">
-            
-              
-                <span>密码学03 Computational</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义03 Lambda">
-        <div class="time-m-d">2021-09-16</div>
-        <div class="title">
-          <a href="/2021/09/16/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8903-Lambda/">
-            
-              
-                <span>形式语义03 Lambda</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学02 Perfect">
-        <div class="time-m-d">2021-09-15</div>
-        <div class="title">
-          <a href="/2021/09/15/%E5%AF%86%E7%A0%81%E5%AD%A602-Perfect/">
-            
-              
-                <span>密码学02 Perfect</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义01 Intro">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8901-Intro/">
-            
-              
-                <span>形式语义01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义02 Math">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%8902-Math/">
-            
-              
-                <span>形式语义02 Math</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">2 / 5</span>
-    
-      <a href="/page/3/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -652,6 +550,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
