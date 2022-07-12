@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-07-08T17:00:42.826Z</updated>
+  <updated>2022-07-12T17:17:36.447Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2022/07/09/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B003-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/"/>
     <id>http://example.com/2022/07/09/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B003-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/</id>
     <published>2022-07-08T16:26:16.000Z</published>
-    <updated>2022-07-08T17:00:42.826Z</updated>
+    <updated>2022-07-12T17:17:36.447Z</updated>
     
     
       
@@ -29,9 +29,9 @@
         
         
     <summary type="html">&lt;p&gt;群的同构意味着二者本质上没有区别, 同态则可以导出某些同构.&lt;/p&gt;
-&lt;h1 id=&quot;定义&quot;&gt;定义&lt;/h1&gt;
 &lt;p&gt;下面默认 &lt;span class=&quot;math inline&quot;&gt;\(G_1, G_2\)&lt;/span&gt; 是两个群.&lt;/p&gt;
-&lt;h2</summary>
+&lt;h1 id=&quot;同态&quot;&gt;同态&lt;/h1&gt;
+&lt;p&gt;若存在映射 &lt;span</summary>
         
       
     
@@ -47,7 +47,7 @@
     <link href="http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B002-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/"/>
     <id>http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B002-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/</id>
     <published>2022-07-06T10:06:58.000Z</published>
-    <updated>2022-07-08T16:25:21.839Z</updated>
+    <updated>2022-07-12T17:20:17.054Z</updated>
     
     
       
