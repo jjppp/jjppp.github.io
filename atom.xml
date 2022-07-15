@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-07-12T17:17:36.447Z</updated>
+  <updated>2022-07-15T17:14:11.579Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统04 进程与线程</title>
+    <link href="http://example.com/2022/07/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
+    <id>http://example.com/2022/07/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</id>
+    <published>2022-07-15T11:24:46.000Z</published>
+    <updated>2022-07-15T17:14:11.579Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;进程&quot;&gt;进程&lt;/h1&gt;
+&lt;p&gt;进程是运行中的程序实体。如果把代码视为状态机，那么进程即处于特定状态的状态机。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>抽象代数03 同态与同构</title>
@@ -98,7 +123,7 @@
     <link href="http://example.com/2022/07/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
     <id>http://example.com/2022/07/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
     <published>2022-07-03T17:46:50.000Z</published>
-    <updated>2022-07-03T18:15:54.648Z</updated>
+    <updated>2022-07-15T11:22:39.561Z</updated>
     
     
       
@@ -446,31 +471,6 @@
     
     
     <category term="博弈论" scheme="http://example.com/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu下的数电实验环境配置</title>
-    <link href="http://example.com/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    <id>http://example.com/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</id>
-    <published>2022-03-08T05:06:00.000Z</published>
-    <updated>2022-06-23T05:47:34.971Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;针对南京大学 数字逻辑与计算机组成实验 课程的环境配置，本机是Ubuntu 21.10&lt;/p&gt;
-&lt;h1 id=&quot;section&quot;&gt;1&lt;/h1&gt;
-&lt;p&gt;访问 &lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="DLCO" scheme="http://example.com/tags/DLCO/"/>
     
   </entry>
   

@@ -209,7 +209,7 @@
 <h2 id="buddy-system">Buddy-System</h2>
 <p>只能分配页面的 <span class="math inline">\(2^k\)</span> 倍大小的物理内存. 每次找到能容纳需求的最小块, 将其分裂成相等的两半直至恰好能容纳需求, 取走一块.</p>
 <p>本质上是个线段树, 但是可以用若干个独立的链表串联相同大小的块(也即写成非递归的线段树)</p>
-<p>任意时刻块的总数量不会超过 <span class="math inline">\(O(\log n)\)</span> 个.</p>
+<p>若只考虑分配不考虑回收，那么任意时刻块的总数量不会超过 <span class="math inline">\(O(\log n)\)</span> 个.</p>
 <blockquote>
 <p>考虑 <span class="math inline">\(n\)</span> 位二进制数字 <span class="math inline">\(B_n=10\ldots0\)</span>, 其中第 <span class="math inline">\(i\)</span> 位为 <span class="math inline">\(1\)</span> 表示有一个大小为 <span class="math inline">\(2^i\)</span> 的块 每次划分出大小为 <span class="math inline">\(2^k\)</span> 的块等价于计算 <span class="math inline">\(B_n&#39;=B_n - B_k\)</span>, 其中 <span class="math inline">\(B_k=0\ldots010\ldots0\)</span>, 第 <span class="math inline">\(k\)</span> 位为 <span class="math inline">\(1\)</span> 每次分裂等价于二进制向高位借位, 利用均摊分析可以轻松得到比特翻转操作的上界, 根据位数立即可得任意时刻块数量的上界</p>
 </blockquote>
@@ -217,6 +217,7 @@
 <h2 id="freelist">freelist</h2>
 <p>因为空闲内存是空的, 因此可以任意摆布. 一种玩法就是用链表的形式串联起来, 这样每次的分配就是遍历链表-删除节点</p>
 <h2 id="slab">SLAB</h2>
+<p>关键在于, 大块分配次数少且生存周期比较长, 小块分配频繁释放也频繁. 利用这一点可以结合 freelist + Buddy-System 来实现小块本地取 + 大块上锁统一分配。</p>
 <p>利用Buddy-System分配大块内存, 然后划分成相等的若干小块, 这样小块内存分配直接从 SLAB 中取走, 几乎是 <span class="math inline">\(O(1)\)</span> 的, 多核也有很好的表现.</p>
 <p>一个小细节是可以把元数据放在 SLAB 的头部并保证 SLAB 按页面对齐, 这样释放的时候就可以快速查询元数据了.</p>
 
