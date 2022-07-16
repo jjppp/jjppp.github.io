@@ -11,7 +11,7 @@
   
   <title>
     
-      操作系统04 进程与线程 
+      TAPL01 Intro 
       
       
       |
@@ -160,19 +160,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">操作系统04 进程与线程</div>
+      <div class="post-title">TAPL01 Intro</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2022-07-15 19:24:46
+          2022-07-16 22:44:40
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags" title="标签"></i>
                 
                 <span class="span--tag">
-                  <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">
-                    <b>#</b> 操作系统
+                  <a href="/tags/TAPL/" title="TAPL">
+                    <b>#</b> TAPL
                   </a>
                 </span>
                 
@@ -180,67 +180,49 @@
           
       </div>
       <div class="markdown-body">
-        <h1 id="进程">进程</h1>
-<p>进程是运行中的程序实体。如果把代码视为状态机，那么进程即处于特定状态的状态机。</p>
-<h2 id="进程的状态">进程的状态</h2>
-<p>经典的五态模型：新生-&gt;就绪-&gt;运行-&gt;阻塞-&gt;终止</p>
-<p>进程的状态由内核调度器负责维护</p>
-<p>此外还有一些其它状态（页表基地址、栈指针、进程组等等）储存在进程控制块(Process Control Block)内。本质上是一个内核里的数据结构。</p>
-<h2 id="进程切换">进程切换</h2>
-<p>回忆程序执行的<strong>上下文</strong>、上下文切换、栈切换等等ICS内容</p>
-<p>实际上现代操作系统的最小调度单位是线程，即单个进程内可以有多个并发的执行流。</p>
-<h2 id="进程相关api">进程相关API</h2>
-<p>主要是创建进程、销毁进程</p>
-<h3 id="fork"><code>fork()</code></h3>
-<p>语义是复制当前进程cp得到一个子进程sp。若cp存在多个执行流，那么sp中只有执行<code>fork()</code>的执行流被复制了一份。考虑到<code>fork()</code>来自上个世纪，这一点是很自然的。</p>
-<p><code>fork()</code>通过返回值区分父子进程，除此之外二者没有任何区别(不考虑多线程)。与<code>fork()</code>相关的重要技术是Copy-On-Write。</p>
-<p>Linux上的第一个进程是<code>/usr/sbin/init</code>，在Ubuntu22.04下可以看到是systemd的符号链接。想想还是很神奇的，所有的进程同宗同源，都是分裂来的。</p>
-<p>时至今日<code>fork()</code>也有了落后时代的地方，具体可以看微软那篇paper，一些quirk包括但不限于：</p>
-<ol type="1">
-<li>printf在buffered时fork会与预期不同</li>
-<li>多线程fork</li>
-<li>文件描述符继承带来的安全隐患</li>
-<li>性能问题</li>
-</ol>
-<h3 id="execve"><code>execve()</code></h3>
-<p>语义是将当前进程重置为指定程序的初始状态。常见做法是搭配 <code>fork()+execve()</code> 实现新进程运行新的程序，同时在二者之间可以做一些初始化的操作。</p>
-<h3 id="kill"><code>kill()</code></h3>
-<p>实际上<code>kill()</code>只负责发送信号，具体结束进程的操作是由sighandler实现的，可以看后续的进程间通信部分。</p>
-<h2 id="进程管理">进程管理</h2>
-<h3 id="wait"><code>wait()</code></h3>
-<p>进程同步，即可以等待子进程结束，具体参数看手册。</p>
-<p><code>wait()</code>带来的一个设计就是僵尸进程。如果父进程先于子进程挂掉了，那么这些孤儿进程将无法被<code>wait()</code>回收，这也是为什么叫僵尸</p>
-<p>Linux和xv6的设计是由init进程定期收养(手册原文是adopt，哈哈)僵尸进程，然后由init来<code>wait()</code></p>
-<h3 id="进程组process-group">进程组(process group)</h3>
-<p>定义为进程的集合，每个进程属于唯一的进程组，父子进程默认在同一个进程组。</p>
-<p>操作系统可以以进程组为接收单位发送信号(signal)，</p>
-<h3 id="会话session">会话(session)</h3>
-<p>定义为进程组的集合，分为前台进程组和后台进程组。那么一个会话就可以通过前台进程与用户交互，进而控制后台进程组中的进程。</p>
-<h1 id="线程">线程</h1>
-<p>进程创建和切换的开销比较大(涉及到地址空间切换，要预热cache冲刷TLB)，因此引入了更轻量级的调度单位线程。</p>
-<p>线程是一个进程内的执行流，共享同一个地址空间。为了实现多个执行流的并发执行，需要多个线程栈。</p>
-<h2 id="内核态线程">内核态线程</h2>
-<p>内核是最早的多线程程序，内核需要并行地为多个用户进程提供服务是原因之一。</p>
-<p>内核态线程是内核创建的线程(废话)，也是操作系统可以直接调度的实体。这意味着如果有n核n内核线程，那么这n个线程就是可以同时执行的。</p>
-<p>这也意味着内核线程的数量限制了内核并发提供系统调用的能力</p>
-<h2 id="用户态线程">用户态线程</h2>
-<p>用户态线程对内核透明。注意到实现多个逻辑上并发的执行流并不需要陷入内核<code>yield()</code>，因此可以利用例如<code>makecontext()</code>或<code>setjmp()</code>等API来构造用户态上下文，然后在用户态管理多个并发的执行流。</p>
-<p>一个例子是协程</p>
-<h2 id="线程本地存储thread-local-storage">线程本地存储(Thread Local Storage)</h2>
-<p>通过一个关键字即可实现Seemingly全局变量，Factually线程局部的全局变量。实现可以通过特殊的寄存器(X86用fs,risc-v用tp)加上偏移量</p>
-<h2 id="posix线程库">POSIX线程库</h2>
-<p>man -k pthread_*</p>
-<h1 id="纤程">纤程</h1>
-<p>多进程调度引入抢占式调度是因为不同进程相互隔离、互不信任，因此每个进程不能长时间霸占CPU，这是前提；</p>
-<p>而多线程同样利用抢占式的调度就不合理了，因为同一个进程内的执行流应当相互信任、相互配合以达到效果。因此引入纤程(用户态线程)的概念，使得用户程序能够利用更多的信息实现调度的最优化(例如主动让出调度)</p>
-<p>一些编程语言(C++ Go Lua)也支持用户态线程的创建和管理，称为协程。</p>
+        <h1 id="type-system">Type System</h1>
+<h2 id="definition">Definition</h2>
+<blockquote>
+<p>A type system is a tractable syntactic method for proving the absence of certain program behaviors by classifying phrases according to the kinds of values they compute.</p>
+</blockquote>
+<p>原文用的plausible来描述这段定义。实际上 Type System 说的就是种静态检查代码的一种方法，其计算的结果是对一段程序运行状态的近似(是不是想到了静态分析)。具体而言，这种计算是通过给元素赋予类型来进行的，赋予类型的过程通常是根据其语法结构开展的(syntax-directed/compositional)。</p>
+<h2 id="static-dynamic">static &amp; dynamic</h2>
+<p>我们说一种语言是静态类型的(statically typed)，意味着这门语言的类型检查(type checking)是在编译期完成的。对应的是动态类型(dynamically typed)，说明这门语言的类型检查是在运行时进行的。</p>
+<p>很显然type checker需要做出保守的估计，即某些实质上正确的程序没法通过type checking。这是因为type checker往往只能证明<strong>某些情况下</strong>的<strong>某些</strong>错误<strong>不存在</strong>。对于没法证明/太难证明但实质上正确的程序就会拒绝。这里就引入了表达能力(实质上正确的程序集合)和保守性(type checker认为正确的程序集合)的权衡，一般而言会偏向限制表达能力来让type checker更好做，这样也更容易写出正确的程序(参见抖S的Rust编译器)。</p>
+<p>通常 Type System 也只能证明通过检查的程序不会有某些错误，即只能检测所有错误的一个子集。那些Type System可以预防的错误称为运行时类型错误(run-time type errors)。然而前面说过type checker没法检测出所有错误，因此这些错误可以在运行时被检测处理。</p>
+<h2 id="safe-unsafe">safe &amp; unsafe</h2>
+<p>另一对概念是safe-unsafe，原文给的定义是</p>
+<blockquote>
+<p>A safe language is one that protects its own abstractions.</p>
+</blockquote>
+<p>也有说法是</p>
+<blockquote>
+<p>A safe language is completely defined by its programmer's manual.</p>
+</blockquote>
+<p>具体而言就是语言的行为完全由specification定义，不存在UB和编译器自由实现的部分。</p>
+<p>language safety和type safety是两回事。type checking是达到language safety的一种手段，另一种手段则是运行时检测处理，例如Java的ArrayOutOfBound异常等等。</p>
+<p>例如lisp就是动态类型且安全的语言，Java则是静态类型且安全的语言(回想Java中多如牛毛的Exception)。</p>
+<h2 id="benefits">Benefits</h2>
+<ul>
+<li>检测错误，把问题控制在编译期</li>
+<li>更好地抽象，类型本质上是给数据集合起名字</li>
+<li>可读性，类型可以附带语义信息</li>
+<li>语言安全</li>
+<li>效率更高，类型标注后可以省去不必要的运行时检查</li>
+</ul>
+<p>还可以带来一些安全性的提升，例如引入priority作为类型以保证高机密变量的值不会流入低机密的变量(回想SPA提到的Taint Analysis)</p>
+<h2 id="design">Design</h2>
+<p>通常类型系统的设计和语言息息相关。首先类型注解本身就是语法的一部分。动态类型的语言往往更灵活、(看起来)更简单。如果想要给动态类型语言加上静态的类型检查，往往要丧失一些表达能力(前面提到的type checker的保守性)。</p>
+<p>类型的设计也是可以取巧的，例如可以引入类型推导(type inference)使得语法更简洁，例如Java中就可以这么写</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>var sum = <span class="dv">1</span> + <span class="dv">2</span>;</span></code></pre></div>
+<p>此处<code>sum</code>的类型是可以在编译器获得的。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/07/09/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B003-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/" target="_self">
+              <a href="/2022/07/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F05-%E8%B0%83%E5%BA%A6/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -249,15 +231,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2022-07-15 19:24:46
+              2022-07-16 22:44:40
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags" title="标签"></i>
                     
                     <span class="span--tag">
-                      <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">
-                        <b>#</b> 操作系统
+                      <a href="/tags/TAPL/" title="TAPL">
+                        <b>#</b> TAPL
                       </a>
                     </span>
                     
@@ -265,11 +247,6 @@
               
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2022/07/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F05-%E8%B0%83%E5%BA%A6/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -283,7 +260,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B"><span class="toc-text">进程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">进程的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2"><span class="toc-text">进程切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9B%B8%E5%85%B3api"><span class="toc-text">进程相关API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fork"><span class="toc-text">fork()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#execve"><span class="toc-text">execve()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill"><span class="toc-text">kill()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#wait"><span class="toc-text">wait()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%BB%84process-group"><span class="toc-text">进程组(process group)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9Dsession"><span class="toc-text">会话(session)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-text">线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%80%81%E7%BA%BF%E7%A8%8B"><span class="toc-text">内核态线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%80%81%E7%BA%BF%E7%A8%8B"><span class="toc-text">用户态线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8thread-local-storage"><span class="toc-text">线程本地存储(Thread Local Storage)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#posix%E7%BA%BF%E7%A8%8B%E5%BA%93"><span class="toc-text">POSIX线程库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A4%E7%A8%8B"><span class="toc-text">纤程</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#type-system"><span class="toc-text">Type System</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#static-dynamic"><span class="toc-text">static &amp; dynamic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#safe-unsafe"><span class="toc-text">safe &amp; unsafe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#benefits"><span class="toc-text">Benefits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#design"><span class="toc-text">Design</span></a></li></ol></li></ol>
       
     </div>
   </div>
