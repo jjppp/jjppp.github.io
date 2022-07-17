@@ -11,7 +11,7 @@
   
   <title>
     
-      标签 
+      TAPL02 Basics 
       
       
       |
@@ -149,21 +149,149 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DLCO/" rel="tag">DLCO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAPL/" rel="tag">TAPL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XCPC/" rel="tag">XCPC</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E8%AE%A1%E5%AF%BC%E8%AE%BA/" rel="tag">信计导论</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E4%B9%89/" rel="tag">形式语义</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%B3%E6%B3%95/" rel="tag">想法</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/" rel="tag">抽象代数</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag">数学分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" rel="tag">数理逻辑</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/" rel="tag">程序设计基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/" rel="tag">计算方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/" rel="tag">软件分析</a><span class="tag-list-count">10</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">TAPL02 Basics</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-07-17 22:34:42
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/TAPL/" title="TAPL">
+                    <b>#</b> TAPL
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="notations">Notations</h1>
+<p>简单的就不说了</p>
+<h2 id="mathematics">Mathematics</h2>
+<h3 id="partial-function">Partial Function</h3>
+<p>称 <span class="math inline">\(f\subseteq A\times B\)</span> 这个二元关系为 partial function 当且仅当 <span class="math inline">\(\forall a\in A, \forall b_1,b_2\in B, afb_1\wedge afb_2\Rightarrow b_1=b_2\)</span>.</p>
+<p>之所以说是 partial 的是因为 <span class="math inline">\(f\)</span> 不一定对 <span class="math inline">\(A\)</span> 中所有元素都有定义。一个写法是 <span class="math inline">\(f(a)=\bot\)</span> 表示 <span class="math inline">\(a\not\in D(f)\)</span>，经典的含义是 <span class="math inline">\(f\)</span> 对输入 <span class="math inline">\(a\)</span> 不会终止。</p>
+<h3 id="relation-closure">Relation Closure</h3>
+<p>二元关系 <span class="math inline">\(R\)</span> 的 reflexive closure 记作 <span class="math inline">\(R^+\)</span>，transitive closure 记作 <span class="math inline">\(R^*\)</span></p>
+<h3 id="preservation-by-relation">Preservation by Relation</h3>
+<p>考虑 <span class="math inline">\(R\subseteq A\times B\)</span>，<span class="math inline">\(P\)</span> 是谓词，若 <span class="math inline">\(\forall a,b, P(a)\wedge aRb\Rightarrow P(b)\)</span>，那么称 <span class="math inline">\(P\)</span> 在 <span class="math inline">\(R\)</span> 下保持。</p>
+<h2 id="syntax">Syntax</h2>
+<p>可以用如下几种等价方式定义语法</p>
+<ul>
+<li>BNF</li>
+<li>递归构造句子的集合</li>
+<li>定义合法句子集合的性质，声明合法句子集合是满足这些性质的最小集</li>
+</ul>
+<h2 id="semantics">Semantics</h2>
+<p>主要是小步操作语义(Small Step Operational Semantics)，本质上是定义了一个抽象的状态机(不一定要是确定状态机)以及这个抽象状态机上的状态转换</p>
+<p>方便起见，下面记语言的集合为 <span class="math inline">\(T\)</span></p>
+<h3 id="reduction-relation">reduction relation</h3>
+<p>二元关系 <span class="math inline">\(\rightarrow\subseteq T\times T\)</span> 被称为 reduction relation。通常用若干规则(Inference Rules)来定义这样的规约关系。例如 <span class="math inline">\(\dfrac{a\rightarrow b\quad b\rightarrow c}{a\rightarrow c}\)</span> 就展示了一种有传递性的规约关系。</p>
+<h3 id="if-then-else">If-Then-Else</h3>
+<p>给出如下例子</p>
+<p><span class="math display">\[
+\dfrac{}{\text{if True then $s_1$ else $s_2$}\rightarrow s_1} 
+\\ \\
+\dfrac{e\rightarrow e&#39;}{\text{if $e$ then $s_1$ else $s_2$}\rightarrow \text{if $e&#39;$ then $s_1$ else $s_2$}} \\
+\]</span></p>
+<p>第一条规则称为公理(Axiom)，这样直接进行计算的规则也叫Computation Rule。</p>
+<p>第二条的前提(Premise)是 <span class="math inline">\(e\rightarrow e&#39;\)</span>，这样只是指出要对哪个 subterm 做规约的规则叫Congruence Rule(回忆Evaluation Context)</p>
+<h3 id="normal-formvalue">Normal Form/Value</h3>
+<p>如果一个项没法继续规约了，就称这个项为Normal Form Term。</p>
+<p>Value是认为规定的一个项的集合，通常希望Value是Normal Form的。</p>
+<p>一些非预期的Normal Form往往意味着违反了语言的语义(或是未定义行为)，此时可以给这样的错误情况定一个 <span class="math inline">\(\overline{t\rightarrow \bot}\)</span> 的规则，这样就是前面提到的运行时错误检查了(不存在UB)。</p>
+<h3 id="propertymetatheory">Property/Metatheory</h3>
+<p>一些这一章提到的比较基础的语言性质</p>
+<ul>
+<li>确定性(Determinism)，即每次只有唯一的规则可以推导</li>
+<li>终止性(Termination)，即推导有限次可以变成Normal Form</li>
+<li>Diamond Property，即使没有单步推导的确定性，也有总体上的确定性。</li>
+</ul>
+<p>Diamond Property是比较重要的，但是咕咕咕</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/07/16/TAPL01-Intro/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-07-17 22:34:42
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/TAPL/" title="TAPL">
+                        <b>#</b> TAPL
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#notations"><span class="toc-text">Notations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mathematics"><span class="toc-text">Mathematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#partial-function"><span class="toc-text">Partial Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relation-closure"><span class="toc-text">Relation Closure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#preservation-by-relation"><span class="toc-text">Preservation by Relation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#syntax"><span class="toc-text">Syntax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#semantics"><span class="toc-text">Semantics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reduction-relation"><span class="toc-text">reduction relation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if-then-else"><span class="toc-text">If-Then-Else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#normal-formvalue"><span class="toc-text">Normal Form&#x2F;Value</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#propertymetatheory"><span class="toc-text">Property&#x2F;Metatheory</span></a></li></ol></li></ol></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
 
-  
 
-  
 
-  
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">
