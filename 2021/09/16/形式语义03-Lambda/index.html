@@ -308,7 +308,7 @@
 <p>注意到，如果normal order reduction停止了，那么在规约过程中一定存在一个canonical form。因此提出normal order evaluation的求值策略，规则如下</p>
 <ol type="1">
 <li><p><span class="math inline">\(\lambda x. M\Rightarrow \lambda x.M\)</span>，意思是在此处停止</p></li>
-<li><p>如果<span class="math inline">\(M\Rightarrow\lambda x. M&#39;\)</span>，且$M'[N/x]<span class="math inline">\(P，那么\)</span>M; N P$，意思是先把function body规约成canonical form(也就是一个标准的function形式)，再带入parameter，最后整体化简</p></li>
+<li><p>如果<span class="math inline">\(M\Rightarrow\lambda x. M&#39;\)</span>，且 <span class="math inline">\(M&#39;[N/x]\Rightarrow P\)</span>，那么<span class="math inline">\(M\; N\Rightarrow P\)</span>，意思是先把function body规约成canonical form(也就是一个标准的function形式)，再带入parameter，最后整体化简</p></li>
 </ol>
 <h3 id="eager-evaluation-rules">Eager Evaluation Rules</h3>
 <p>这个考虑的则是applicative order reduction的evaluation，即先把parameter化成CF，再进行形参代换</p>
