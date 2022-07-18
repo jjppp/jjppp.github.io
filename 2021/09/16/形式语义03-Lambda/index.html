@@ -349,7 +349,7 @@
 <p>观察 <span class="math inline">\(YF=(\lambda x.F(x\; x))\,(\lambda x.F(x\;x))=F((\lambda x.F(x\;x))\,(\lambda x. F(x\;x)))=F(YF)\)</span></p>
 <p>大概的idea就是我们希望每次apply完之后，前面多出一个<span class="math inline">\(F\)</span>而后面保持不变，这样就可以得到不动点</p>
 <p>那么阶乘就可以写成</p>
-<p><span class="math inline">\(\lambda n.if(isZero\; n)then(1)else(mult\;n\;((Y\;(\lambda f.\lambda n.if (isZero\;n)then(1)else(f\;n\;(f\;(pred\; n))))\; (pred\; n)))))\)</span></p>
+<p><span class="math inline">\(Y\; Func\)</span></p>
 
       </div>
       
