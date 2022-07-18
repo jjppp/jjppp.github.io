@@ -341,7 +341,7 @@
 <p>很容易写出 <span class="math inline">\(fact=\lambda n.if (isZero\;n)then(1)else(mult\;n\;(fact\;(pred\; n)))\)</span></p>
 <p>问题在于等式两侧都出现了<span class="math inline">\(fact\)</span>，在具体语言中就表现为我们必须给递归函数一个<strong>名字</strong>才能调用递归</p>
 <p>接下来就是很神奇的操作了</p>
-<p>考虑这个函数 <span class="math inline">\(Func=\lambda f.\lambda n.if (isZero\;n)then(1)else(f\;n\;(f\;(pred\; n)))\)</span>，它接受一个函数 <span class="math inline">\(f\)</span>，返回一个<span class="math inline">\(f\)</span>的递归调用。那么上面的定义就可以解释为<strong><span class="math inline">\(fact\)</span>是函数<span class="math inline">\(Func\)</span>的不动点</strong>，即<span class="math inline">\(Func\;fact=fact\)</span></p>
+<p>考虑这个函数 <span class="math inline">\(Func=\lambda f.\lambda n.if (isZero\;n)then(1)else(mult\;n\;(f\;(pred\; n)))\)</span>，它接受一个函数 <span class="math inline">\(f\)</span>，返回一个<span class="math inline">\(f\)</span>的递归调用。那么上面的定义就可以解释为<strong><span class="math inline">\(fact\)</span>是函数<span class="math inline">\(Func\)</span>的不动点</strong>，即<span class="math inline">\(Func\;fact=fact\)</span></p>
 <p>也就是说，虽然我们不能给<span class="math inline">\(fact\)</span>命名，但是我们可以通过一个不含<span class="math inline">\(fact\)</span>的式子把它算出来</p>
 <p>算不动点也是很神奇的操作</p>
 <p>回忆之前的神奇表达式 <span class="math inline">\(\Omega=(\lambda x.x\; x)\,(\lambda x.x\; x)\)</span>，可以构造（怎么想到的？！）一个新的函数</p>
