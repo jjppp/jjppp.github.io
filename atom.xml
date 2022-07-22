@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-07-17T15:38:14.347Z</updated>
+  <updated>2022-07-22T17:38:07.847Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>TAPL03 Untyped Lambda</title>
+    <link href="http://example.com/2022/07/23/TAPL03-Untyped-Lambda/"/>
+    <id>http://example.com/2022/07/23/TAPL03-Untyped-Lambda/</id>
+    <published>2022-07-22T17:00:32.000Z</published>
+    <updated>2022-07-22T17:38:07.847Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;$$</summary>
+        
+      
+    
+    
+    
+    
+    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>TAPL02 Basics</title>
     <link href="http://example.com/2022/07/17/TAPL02-Basics/"/>
     <id>http://example.com/2022/07/17/TAPL02-Basics/</id>
     <published>2022-07-17T14:34:42.000Z</published>
-    <updated>2022-07-17T15:38:14.347Z</updated>
+    <updated>2022-07-22T17:00:14.062Z</updated>
     
     
       
@@ -467,23 +490,6 @@
     
     
     <summary type="html">感觉这部分穿插的有些怪</summary>
-    
-    
-    
-    
-    <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算方法04 图的随机游走</title>
-    <link href="http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9504-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/"/>
-    <id>http://example.com/2022/05/10/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9504-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/</id>
-    <published>2022-05-10T11:58:00.000Z</published>
-    <updated>2022-07-03T05:22:23.014Z</updated>
-    
-    
-    <summary type="html">Markov Chain 的本质是概率状态机，这么想就很简单了</summary>
     
     
     
