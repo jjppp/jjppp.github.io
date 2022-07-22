@@ -252,10 +252,12 @@ T::= x\mid \lambda x.\; T \mid T_1\;T_2
 <p>常数据、数据构造子、数据上的操作函数共同构成了抽象数据类型的“公理”，即定义了这个类型中元素的集合。</p>
 <p>以 list[A] 为例。我们不妨假设 <span class="math inline">\(A\)</span> 可以被 ULC encode，此时记 <span class="math inline">\(L\)</span> 为集合 <span class="math inline">\(A\)</span> 上所有 list 构成的集合，那么有</p>
 <p><span class="math display">\[
-\overline{\text{NIL}\in L} \\\;\\
-\frac{l\in L,a\in A}{\text{cons}(a,l)\in L}\\\;\\
-\frac{l\in L,a\in A}{\text{head}(\text{cons}(a,l))=a}\\\;\\
-\frac{l\in L,a\in A}{\text{tail}(\text{cons}(a,l))=l}
+\begin{aligned}
+&amp; \overline{\text{NIL}\in L} \\\;\\
+&amp; \frac{l\in L,a\in A}{\text{cons}(a,l)\in L}\\\;\\
+&amp; \frac{l\in L,a\in A}{\text{head}(\text{cons}(a,l))=a}\\\;\\
+&amp; \frac{l\in L,a\in A}{\text{tail}(\text{cons}(a,l))=l}
+\end{aligned}
 \]</span></p>
 <p>此处 <span class="math inline">\(\text{NIL}\)</span> 为常元，<span class="math inline">\(\text{cons}\colon A\times L\mapsto L\)</span> 是数据构造子，<span class="math inline">\(\text{head}\colon L\mapsto A\)</span> 和 <span class="math inline">\(\text{tail}\colon L\mapsto L\)</span> 是数据上的操作函数。这就是一个简单的代数(公理)系统。</p>
 <p>encoding 的过程就是构造所有 ULC 的项 <span class="math inline">\(T\)</span> 到所有链表 <span class="math inline">\(L\)</span> 的双射 <span class="math inline">\(\pi\colon L\mapsto T\)</span>，以及对应的数据构造子、操作函数，使得这些映射对于这些操作而言是同构的。</p>
