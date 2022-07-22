@@ -180,7 +180,32 @@
           
       </div>
       <div class="markdown-body">
-        <p>$$ \newcommand</p>
+        <p>之前写形式语义已经来过一次了，这里就跳过一点写过的</p>
+<h1 id="untyped-lambda-calculus">Untyped Lambda Calculus</h1>
+<p>如果说理解C语言的最好办法就是看看编译后得到的指令序列的执行过程，那么理解FP的最好办法就是看看最底层的 <span class="math inline">\(\lambda\)</span>-calculus 的执行过程。并且此处是 Untyped <span class="math inline">\(\lambda\)</span>-calculus，与汇编有奇妙的对应关系。</p>
+<p><span class="math inline">\(\lambda\)</span>-calculus 本身为理解语言(desugar)提供了工具，并且可以很容易地添加各种 construct 来得到更高级的语言，这与利用汇编来理解C语言和为 runtime 增加特性以支持上层语言也是类似的。</p>
+<h2 id="syntax">Syntax</h2>
+<p><span class="math display">\[
+T::= x\mid \lambda x.\; T \mid T_1\;T_2
+\]</span></p>
+<p>分别叫 Variable Abstraction Application</p>
+<h3 id="value">Value</h3>
+<p>定义 ULC 中的值为形如 <span class="math inline">\(\lambda x.\;T\)</span> 的项，其中 <span class="math inline">\(T\)</span> 是任意项。可以发现这样的项意味着一个函数，这与FP中函数作为一等公民(值)是对应的。</p>
+<h3 id="redex-beta-reduction">Redex, <span class="math inline">\(\beta\)</span>-reduction</h3>
+<p>定义形如 <span class="math inline">\((\lambda x.\; T)\;T&#39;\)</span> 的项为 redex(Reducible Expression)，含义为可以进行一步执行的语句。这样一次 apply 操作也叫做 <span class="math inline">\(\beta\)</span>-reduction。</p>
+<h2 id="semantics">Semantics</h2>
+<p>这里默认大家都会项的替换了(回去看数理逻辑/形式语义课件)，关键在于给 redex 定序</p>
+<h3 id="full-beta-reduction">full <span class="math inline">\(\beta\)</span>-reduction</h3>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \frac{T\rightarrow T&#39;}{\lambda x.\; T\rightarrow \lambda x.\; T&#39;} \\
+&amp; \frac{T_1\rightarrow T_1&#39;}{T_1\;T_2\rightarrow T_1&#39;\; T_2} \\
+&amp; \frac{T_2\rightarrow T_2&#39;}{T_1\;T_2\rightarrow T_1\; T_2&#39;} \\
+&amp; \overline{(\lambda x.\; T)\;T&#39;\rightarrow T[T&#39;/x]} \\
+\end{aligned}
+\]</span></p>
+<p>意思是每次随便挑一个 redex 做 <span class="math inline">\(\beta\)</span>-reduction</p>
+<h3 id="normal-order-strategy">normal order strategy</h3>
 
       </div>
       
@@ -218,6 +243,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#untyped-lambda-calculus"><span class="toc-text">Untyped Lambda Calculus</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#syntax"><span class="toc-text">Syntax</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#value"><span class="toc-text">Value</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redex-beta-reduction"><span class="toc-text">Redex, \(\beta\)-reduction</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#semantics"><span class="toc-text">Semantics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#full-beta-reduction"><span class="toc-text">full \(\beta\)-reduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#normal-order-strategy"><span class="toc-text">normal order strategy</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
