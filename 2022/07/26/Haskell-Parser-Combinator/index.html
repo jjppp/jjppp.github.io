@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      Haskell Parser Combinator 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="jjppp" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">jjppp</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Haskell Parser Combinator</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-07-26 00:00:45
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/haskell/" title="haskell">
+                    <b>#</b> haskell
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>欢迎指正本文的错误！</p>
+<h1 id="intro">Intro</h1>
+<blockquote>
+<p>What is Parser Combinator?</p>
+</blockquote>
+<p>传统的 Parsing 包括 Lexing 和 Parsing 两部分，指的是用算法来解析字符串以得到某些特定形态的数据结构(通常是AST这样的树形结构)</p>
+<p>实际上 Parsing 有非常 general 的结构，因此平时真正的用法都是把特定的语法 <span class="math inline">\(G\)</span> 喂给一个程序 <span class="math inline">\(P\)</span>，然后得到一个可以解析 <span class="math inline">\(G\)</span> 的程序 <span class="math inline">\(P_G\)</span>。通常会用一个 DSL(Domain Specific Language) 来描述 <span class="math inline">\(G\)</span>，这样的程序 <span class="math inline">\(P\)</span> 称为 Parser Generator。</p>
+<ul>
+<li>好处：比较高效</li>
+<li>坏处：生成代码可读性、换一个语法需要重写 DSL</li>
+</ul>
+<p>Parser Combinator 则是另一条路子：一个大的 parser 可以看成是若干小 parser 组合得来的，这样就可以把 structural 的语法信息包含在 parser 里，同时追求 parser 作为组件的复用。</p>
+<ul>
+<li>好处：清爽、调试方便、可以复用</li>
+<li>坏处：性能问题</li>
+</ul>
+<blockquote>
+<p>Why Haskell?</p>
+</blockquote>
+<p>实际上 Haskell 里的名字和符号都比较奇怪，我其实是看了 <span class="math inline">\(\text{F}\sharp\)</span> 的一个 talk 才恍然大悟的。用哪种语言都一样，Haskell 看起来更 Geek 一点。</p>
+<h1 id="single-char">Single Char</h1>
+<p>首先要清楚 parser 是什么。我们的 parser 应当有至少一个函数 <code>runParser</code>，它会</p>
+<ol type="1">
+<li>吃进一个字符串</li>
+<li>解析字符串</li>
+<li>如果解析成功，那么返回一个解析过的数据，以及剩下的输入</li>
+<li>如果解析失败，那么返回一个报错信息</li>
+</ol>
+<p>在 OO 的语言中(例如 Java)很容易设计一个 <code>class Parser</code>，然后实现一个 <code>runParser()</code> 方法。在 Haskell 中则是通过设计一个带 field 的数据，然后令这个类型的数据为一个函数来实现的。</p>
+<p>写成代码就是</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Parser</span> c a</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="ot">=</span> <span class="dt">Success</span> &#123;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ot">        getTerm::</span> a,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ot">        inputStream::</span> [c]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    &#125;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="op">|</span> <span class="dt">Failure</span> <span class="dt">String</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="op">|</span> <span class="dt">Parser</span> &#123;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="ot">        runParser::</span> [c] <span class="ot">-&gt;</span> (<span class="dt">Parser</span> c a)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    &#125;</span></code></pre></div>
+<p>这里比较巧妙的地方有两处：</p>
+<ol type="1">
+<li>利用 Type Variable 可以得到更 general 的 parser，即我们创造的是解析类型 <code>c</code> 得到类型 <code>a</code> 的 parser。</li>
+<li>Haskell data 的 field 本身可以是函数，这样就得到了类似 class + method 的结构。类似 OO 的 interface 多态也可以用这个办法实现。</li>
+</ol>
+<p>如果考虑最简单的 parser，那么就是</p>
+<ol type="1">
+<li>吃进一个字符串</li>
+<li>解析<strong>一个字符</strong></li>
+<li>如果解析成功，那么返回<strong>这个字符</strong>，以及剩下的输入</li>
+<li>如果解析失败，那么返回一个报错信息</li>
+</ol>
+<p>这就是一个最简单的 parser，也就是一个单字符的 lexer。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ot">satisfy::</span> (<span class="dt">Eq</span> c, <span class="dt">Show</span> c) <span class="ot">=&gt;</span> (c <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> <span class="dt">Parser</span> c [c]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>satisfy predicate <span class="ot">=</span> <span class="dt">Parser</span> go <span class="kw">where</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    go [] <span class="ot">=</span> <span class="dt">Failure</span> <span class="st">&quot;EOF&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    go (x<span class="op">:</span>xs)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>        <span class="op">|</span> predicate x <span class="ot">=</span> <span class="dt">Success</span> [x] xs</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>        <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> <span class="dt">Failure</span> <span class="op">$</span> <span class="st">&quot;Only to find &quot;</span> <span class="op">++</span> (<span class="fu">show</span> x)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="ot">pChar::</span> <span class="dt">Char</span> <span class="ot">-&gt;</span> <span class="dt">Parser</span> <span class="dt">Char</span> [<span class="dt">Char</span>]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>pChar c <span class="ot">=</span> satisfy (<span class="op">==</span> c)</span></code></pre></div>
+<p>同样是两个比较巧妙的地方</p>
+<ol type="1">
+<li>可以用一个简短的 helper 函数搭配 <code>where</code> 做到看起来更清晰</li>
+<li>type class 可以让 <code>satisfy</code> 很 general</li>
+</ol>
+<p>这样 <code>pc = pChar 'c'</code> 就得到了一个可以解析单个字符 <code>'c'</code> 的 parser <code>pc</code> 了。</p>
+<h1 id="combination">Combination</h1>
+<p>可以回忆 parsing 过程中都会出现哪些结构：</p>
+<ol type="1">
+<li>在解析 C 语言函数定义的时候，我们希望<strong>先</strong>解析一个类型，<strong>再</strong>解析一个标识符。即 <code>&lt;type&gt; &lt;identifier&gt; '(' &lt;optional_args&gt; ')' ';'</code> 这样的结构</li>
+<li>在解析 C 语言的基础类型时，可以是 <code>int</code> <strong>或者</strong> <code>float</code> <strong>或者</strong> <code>short</code> 等等。即 <code>&lt;type1&gt; | &lt;type2&gt; | &lt;type3&gt; ...</code> 这样的结构</li>
+<li>在解析 C 语言字面量的时候，我们希望把一个 <code>&lt;int_literal&gt;</code> 从字符串<strong>变成</strong>值储存在符号表中</li>
+</ol>
+<p>上述三种 pattern 就能抽象出三种组合 parser 的基本方式</p>
+<h2 id="map"><code>map</code></h2>
+<p>关键就是把 <code>Parser c</code> 这个具有 <code>*-&gt;*</code> 的 Kind 看成 Functor，含义则是“包含了结果(类型为 <code>a</code>)的一个上下文”</p>
+<p>那么结构3就是：给定一个包含了结果 <code>a1</code> 的 parser 和一个函数 <code>a1-&gt;a2</code>，我们希望得到一个能给出结果 <code>a2</code> 的新 parser，其中 <code>a2</code> 是通过函数作用于 <code>a1</code> 得来的。</p>
+<p>注意到此处某个类型为 <code>Parser c a</code> 的数据的 field 实际上是一个函数 <code>[c] -&gt; (Parser c a)</code>，这与逻辑上 <code>Parser c</code> 是解析结果的容器并不冲突。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">-- map</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Functor</span> (<span class="dt">Parser</span> c) <span class="kw">where</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="fu">fmap</span> f (<span class="dt">Parser</span> p) <span class="ot">=</span> <span class="dt">Parser</span> <span class="op">$</span> \input <span class="ot">-&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>        <span class="kw">case</span> p input <span class="kw">of</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>            <span class="dt">Failure</span> err <span class="ot">-&gt;</span> <span class="dt">Failure</span> err</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>            <span class="dt">Success</span> result rest <span class="ot">-&gt;</span> <span class="dt">Success</span> (f result)  rest</span></code></pre></div>
+<h2 id="andthen"><code>andThen</code></h2>
+<p>Haskell 是纯函数式的，这意味着 Haskell 中是没有副作用的。</p>
+<p>这句话也意味着在 Haskell 中，我们不应当对函数参数的求值顺序有任何假设。但这显然是不能满足我们要求的，例如我们现在就想要实现<strong>先</strong>执行一个 parser，<strong>再</strong>执行另一个 parser。</p>
+<p>这时就需要用到 Monad 了。</p>
+<h3 id="monad">Monad</h3>
+<p>Monad 的直觉就在于，我们虽然不能保证一个函数的各个参数的求值顺序，但是可以保证一个函数的参数必须在其结果之前求值。</p>
+<p>这样就可以把若干个过程按顺序串起来，最后得到一个顺序复合(Sequential Composition)。包一层 Monad 只是规定了这个处于上下文内的值的使用方法，仅此而已。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">-- andThen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Applicative</span> (<span class="dt">Parser</span> c) <span class="kw">where</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="fu">pure</span> x <span class="ot">=</span> <span class="dt">Parser</span> <span class="op">$</span> \input <span class="ot">-&gt;</span> <span class="dt">Success</span> x input</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    <span class="dt">Parser</span> f <span class="op">&lt;*&gt;</span> <span class="dt">Parser</span> p <span class="ot">=</span> <span class="dt">Parser</span> <span class="op">$</span> \input <span class="ot">-&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>        <span class="kw">case</span> f input <span class="kw">of</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>            <span class="dt">Failure</span> err1 <span class="ot">-&gt;</span> <span class="dt">Failure</span> err1</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>            <span class="dt">Success</span> result1 rest1 <span class="ot">-&gt;</span> <span class="kw">case</span> p rest1 <span class="kw">of</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>                <span class="dt">Failure</span> err2 <span class="ot">-&gt;</span> <span class="dt">Failure</span> err2</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>                <span class="dt">Success</span> result2 rest2 <span class="ot">-&gt;</span> <span class="dt">Success</span> (result1 result2) rest2</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Monad</span> (<span class="dt">Parser</span> c) <span class="kw">where</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    <span class="fu">return</span> <span class="ot">=</span> <span class="fu">pure</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="dt">Parser</span> p <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="dt">Parser</span> <span class="op">$</span> \input <span class="ot">-&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>        <span class="kw">case</span> p input <span class="kw">of</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>            <span class="dt">Failure</span> err <span class="ot">-&gt;</span> <span class="dt">Failure</span> err</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>            <span class="dt">Success</span> result rest <span class="ot">-&gt;</span> </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>                p&#39; rest <span class="kw">where</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>                    <span class="dt">Parser</span> p&#39; <span class="ot">=</span> f result</span></code></pre></div>
+<p>实际上我们只会用到一个 dummy Monad，即 <code>(Parser p1) &gt;&gt;= \_ -&gt; (Parser p2)</code> 表示两个 parser 的顺序组合，前一个 parser 结果的获取是捕获得来的(或者说在 do-notation 中不需要考虑这个)。</p>
+<p>有了 <code>andThen</code> 还可以得到很多有意思的组合子，例如</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="ot">pString::</span> [<span class="dt">Char</span>] <span class="ot">-&gt;</span> (<span class="dt">Parser</span> <span class="dt">Char</span> [[<span class="dt">Char</span>]])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>pString <span class="ot">=</span> <span class="fu">traverse</span> pChar</span></code></pre></div>
+<p>可以用来解析一个字符串，非常优雅</p>
+<h2 id="orelse"><code>orElse</code></h2>
+<p>需要一个新的 typeclass <code>Alternative</code></p>
+<p>然后就没啥好讲的了。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">-- orElse</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">class</span> (<span class="dt">Applicative</span> f) <span class="ot">=&gt;</span> <span class="dt">Alternative</span> f <span class="kw">where</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="ot">    empty::</span> f a</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="ot">    (&lt;|&gt;)::</span> f a <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f a</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">Alternative</span> (<span class="dt">Parser</span> c) <span class="kw">where</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>    empty <span class="ot">=</span> <span class="dt">Parser</span> <span class="op">$</span> \input <span class="ot">-&gt;</span> <span class="dt">Failure</span> <span class="st">&quot;empty&quot;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>    <span class="dt">Parser</span> p1 <span class="op">&lt;|&gt;</span> <span class="dt">Parser</span> p2 <span class="ot">=</span> <span class="dt">Parser</span> <span class="op">$</span> \input <span class="ot">-&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>        <span class="kw">case</span> p1 input <span class="kw">of</span> </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>            <span class="dt">Success</span> result1 rest1 <span class="ot">-&gt;</span> <span class="dt">Success</span> result1 rest1</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>            <span class="dt">Failure</span> err1 <span class="ot">-&gt;</span> <span class="kw">case</span> p2 input <span class="kw">of</span> </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a>                <span class="dt">Success</span> result2 rest2 <span class="ot">-&gt;</span> <span class="dt">Success</span> result2 rest2</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>                <span class="dt">Failure</span> err2 <span class="ot">-&gt;</span> <span class="dt">Failure</span> <span class="op">$</span> err1</span></code></pre></div>
+<p>一个比较好玩的组合子是 <code>anyOf</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ot">anyOf::</span> [<span class="dt">Parser</span> c a] <span class="ot">-&gt;</span> (<span class="dt">Parser</span> c a)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>anyOf (x<span class="op">:</span>[]) <span class="ot">=</span> x</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>anyOf (x<span class="op">:</span>xs) <span class="ot">=</span> x <span class="op">&lt;|&gt;</span> (anyOf xs)</span></code></pre></div>
+<p>即给定一串 parser，我们会得到一个新的 parser，新 parser 会挨个尝试这些链表中的 parser。</p>
+<p>于是在 Haskell 里就可以非常优雅地写出字母的 lexer 了：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>pAlphabet <span class="ot">=</span> anyOf <span class="op">$</span> pChar <span class="op">&lt;$&gt;</span> [<span class="ch">&#39;a&#39;</span><span class="op">..</span><span class="ch">&#39;z&#39;</span>]</span></code></pre></div>
+<h1 id="untyped-lambda-calculus">Untyped <span class="math inline">\(\lambda\)</span>-Calculus</h1>
+<p>周末一直在写这个，事实上一直在写 Parsing 的部分</p>
+<p>给出语法：</p>
+<pre><code>T ::= x
+    | (λx.T)
+    | (T T)</code></pre>
+<p>很显然加上了括号之后这是没有左递归的，并且也没有二义性</p>
+<p>代码里 Parsing 的部分也非常简单：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="co">-- parsing λ-terms</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>pID <span class="ot">=</span> anyOf <span class="op">$</span> pChar <span class="op">&lt;$&gt;</span> [<span class="ch">&#39;a&#39;</span><span class="op">..</span><span class="ch">&#39;z&#39;</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>pTerm <span class="ot">=</span> pVar <span class="op">&lt;|&gt;</span> pAbs <span class="op">&lt;|&gt;</span> pApp</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>pVar <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>    v <span class="ot">&lt;-</span> pID</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>    <span class="fu">return</span> <span class="op">$</span> <span class="dt">Var&#39;</span> v</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>pAbs <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>    pChar <span class="ch">&#39;(&#39;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a>    pChar <span class="ch">&#39;λ&#39;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a>    v <span class="ot">&lt;-</span> pVar</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a>    pChar <span class="ch">&#39;.&#39;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a>    t <span class="ot">&lt;-</span> pTerm</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a>    pChar <span class="ch">&#39;)&#39;</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a>    <span class="fu">return</span> <span class="op">$</span> <span class="dt">Abs&#39;</span> v t</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a>pApp <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a>    pChar <span class="ch">&#39;(&#39;</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a>    m <span class="ot">&lt;-</span> pTerm</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a>    pChar <span class="ch">&#39; &#39;</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a>    n <span class="ot">&lt;-</span> pTerm</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a>    pChar <span class="ch">&#39;)&#39;</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a>    <span class="fu">return</span> <span class="op">$</span> <span class="dt">App&#39;</span> m n</span></code></pre></div>
+<h1 id="summarize">Summarize</h1>
+<p>这个 parser 总共也才写了 107 行，除去看起来困难实际上繁琐的 AFM 也才 66 行，属于非常轻量的代码。如果用像 MegaParse 这样的库还可以写得更爽一些，也能有更好的性能。</p>
+<p>实际上还有很多可以挖掘</p>
+<ul>
+<li>能不能改善报错？AFM的过程中可以看到很多时候都在写错误处理，这里是可以加入更多信息来让错误更可读的</li>
+<li><code>Parser c a</code> 设计成结果和解析函数放在一起是否合适？用 <code>Either Error Result</code> 这样的类型是否更好？</li>
+<li>还有哪些组合 parser 的方法？这些就是全部了吗？</li>
+</ul>
+<p>但考虑到 tapl 后面的章节已经咕了很久，所以打算 move on 了。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/07/23/TAPL03-Untyped-Lambda/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-07-26 00:00:45
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/haskell/" title="haskell">
+                        <b>#</b> haskell
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#single-char"><span class="toc-text">Single Char</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#combination"><span class="toc-text">Combination</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-text">map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#andthen"><span class="toc-text">andThen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#monad"><span class="toc-text">Monad</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#orelse"><span class="toc-text">orElse</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#untyped-lambda-calculus"><span class="toc-text">Untyped \(\lambda\)-Calculus</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#summarize"><span class="toc-text">Summarize</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/olahiuj">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mailto:jpwang@smail.nju.edu.cn">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/olahiuj">Copyright © 2022 jjppp</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
