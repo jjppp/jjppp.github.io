@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-08-03T09:53:43.218Z</updated>
+  <updated>2022-08-03T10:00:11.563Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2022/08/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F05-%E8%B0%83%E5%BA%A6/"/>
     <id>http://example.com/2022/08/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F05-%E8%B0%83%E5%BA%A6/</id>
     <published>2022-08-03T09:14:57.000Z</published>
-    <updated>2022-08-03T09:53:43.218Z</updated>
+    <updated>2022-08-03T10:00:11.563Z</updated>
     
     
       
@@ -36,7 +36,7 @@
     
     
     
-    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
@@ -150,7 +150,7 @@
     <link href="http://example.com/2022/07/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
     <id>http://example.com/2022/07/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</id>
     <published>2022-07-15T11:24:46.000Z</published>
-    <updated>2022-07-15T17:14:11.579Z</updated>
+    <updated>2022-08-03T10:00:11.563Z</updated>
     
     
       
@@ -166,7 +166,7 @@
     
     
     
-    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
@@ -175,7 +175,7 @@
     <link href="http://example.com/2022/07/09/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B003-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/"/>
     <id>http://example.com/2022/07/09/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B003-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/</id>
     <published>2022-07-08T16:26:16.000Z</published>
-    <updated>2022-07-12T17:17:36.447Z</updated>
+    <updated>2022-08-03T09:59:46.433Z</updated>
     
     
       
@@ -192,7 +192,7 @@
     
     
     
-    <category term="抽象代数" scheme="http://example.com/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/"/>
+    <category term="Algebra" scheme="http://example.com/tags/Algebra/"/>
     
   </entry>
   
@@ -201,7 +201,7 @@
     <link href="http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B002-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/"/>
     <id>http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B002-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/</id>
     <published>2022-07-06T10:06:58.000Z</published>
-    <updated>2022-07-12T17:20:17.054Z</updated>
+    <updated>2022-08-03T09:59:46.433Z</updated>
     
     
       
@@ -217,7 +217,7 @@
     
     
     
-    <category term="抽象代数" scheme="http://example.com/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/"/>
+    <category term="Algebra" scheme="http://example.com/tags/Algebra/"/>
     
   </entry>
   
@@ -226,7 +226,7 @@
     <link href="http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B001-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/"/>
     <id>http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B001-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/</id>
     <published>2022-07-06T04:27:46.000Z</published>
-    <updated>2022-07-06T15:41:05.448Z</updated>
+    <updated>2022-08-03T09:59:46.433Z</updated>
     
     
       
@@ -243,7 +243,7 @@
     
     
     
-    <category term="抽象代数" scheme="http://example.com/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/"/>
+    <category term="Algebra" scheme="http://example.com/tags/Algebra/"/>
     
   </entry>
   
@@ -252,7 +252,7 @@
     <link href="http://example.com/2022/07/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
     <id>http://example.com/2022/07/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
     <published>2022-07-03T17:46:50.000Z</published>
-    <updated>2022-07-15T11:22:39.561Z</updated>
+    <updated>2022-08-03T10:00:11.563Z</updated>
     
     
       
@@ -268,7 +268,7 @@
     
     
     
-    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
@@ -277,7 +277,7 @@
     <link href="http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02-%E5%B9%B6%E5%8F%91/"/>
     <id>http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02-%E5%B9%B6%E5%8F%91/</id>
     <published>2022-07-03T08:01:52.000Z</published>
-    <updated>2022-07-03T10:28:42.735Z</updated>
+    <updated>2022-08-03T10:00:11.563Z</updated>
     
     
       
@@ -293,7 +293,7 @@
     
     
     
-    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
@@ -302,7 +302,7 @@
     <link href="http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01-%E5%AF%BC%E5%BC%95/"/>
     <id>http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01-%E5%AF%BC%E5%BC%95/</id>
     <published>2022-07-03T07:10:51.000Z</published>
-    <updated>2022-07-03T08:00:51.258Z</updated>
+    <updated>2022-08-03T10:00:11.563Z</updated>
     
     
       
@@ -318,7 +318,7 @@
     
     
     
-    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
@@ -351,7 +351,7 @@
     <link href="http://example.com/2022/06/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab3-uproc/"/>
     <id>http://example.com/2022/06/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab3-uproc/</id>
     <published>2022-06-23T11:19:50.000Z</published>
-    <updated>2022-06-23T11:23:17.150Z</updated>
+    <updated>2022-08-03T10:04:31.001Z</updated>
     
     
       
@@ -368,7 +368,7 @@
     
     
     
-    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
@@ -377,7 +377,7 @@
     <link href="http://example.com/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/"/>
     <id>http://example.com/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/</id>
     <published>2022-06-20T07:18:15.000Z</published>
-    <updated>2022-07-15T08:36:28.569Z</updated>
+    <updated>2022-08-03T10:02:04.439Z</updated>
     
     
       
@@ -393,7 +393,7 @@
     
     
     
-    <category term="想法" scheme="http://example.com/tags/%E6%83%B3%E6%B3%95/"/>
+    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
     
   </entry>
   
@@ -402,7 +402,7 @@
     <link href="http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9507-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/"/>
     <id>http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9507-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/</id>
     <published>2022-06-15T06:21:00.000Z</published>
-    <updated>2022-07-03T05:22:33.458Z</updated>
+    <updated>2022-08-03T10:01:19.804Z</updated>
     
     
       
@@ -419,7 +419,7 @@
     
     
     
-    <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
+    <category term="Numerical Method" scheme="http://example.com/tags/Numerical-Method/"/>
     
   </entry>
   
@@ -428,7 +428,7 @@
     <link href="http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9506-FFT/"/>
     <id>http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9506-FFT/</id>
     <published>2022-06-14T06:49:00.000Z</published>
-    <updated>2022-07-03T05:22:29.734Z</updated>
+    <updated>2022-08-03T10:01:19.804Z</updated>
     
     
     <summary type="html">据助教说不考这么麻烦的计算，我就摸了</summary>
@@ -436,7 +436,7 @@
     
     
     
-    <category term="计算方法" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/"/>
+    <category term="Numerical Method" scheme="http://example.com/tags/Numerical-Method/"/>
     
   </entry>
   
@@ -445,7 +445,7 @@
     <link href="http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA02-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/"/>
     <id>http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA02-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/</id>
     <published>2022-06-09T12:34:00.000Z</published>
-    <updated>2022-07-03T05:21:24.437Z</updated>
+    <updated>2022-08-03T10:05:54.874Z</updated>
     
     
       
@@ -460,7 +460,7 @@
     
     
     
-    <category term="博弈论" scheme="http://example.com/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    <category term="Game Theory" scheme="http://example.com/tags/Game-Theory/"/>
     
   </entry>
   
@@ -469,7 +469,7 @@
     <link href="http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab2-kmt/"/>
     <id>http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab2-kmt/</id>
     <published>2022-05-28T08:06:00.000Z</published>
-    <updated>2022-06-23T05:50:17.330Z</updated>
+    <updated>2022-08-03T10:04:31.001Z</updated>
     
     
       
@@ -485,7 +485,7 @@
     
     
     
-    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
@@ -494,7 +494,7 @@
     <link href="http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab1-pmm/"/>
     <id>http://example.com/2022/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab1-pmm/</id>
     <published>2022-05-28T08:03:00.000Z</published>
-    <updated>2022-06-23T05:50:07.290Z</updated>
+    <updated>2022-08-03T10:04:31.001Z</updated>
     
     
       
@@ -508,7 +508,7 @@
     
     
     
-    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
