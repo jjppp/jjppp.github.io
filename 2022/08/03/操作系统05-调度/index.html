@@ -164,19 +164,127 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2022-07-16 01:14:57
+          2022-08-03 17:14:57
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">
+                    <b>#</b> 操作系统
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <p>事实上后面还有很多关于实时性和 case study 的高端内容，打算咕咕咕了回头再看。</p>
+<h1 id="引入">引入</h1>
+<p>操作系统是硬件资源的统一管理者，因此需要由操作系统来“调度”这些资源以供程序使用。</p>
+<p>经常谈到的调度包括但不限于</p>
+<ul>
+<li>CPU 调度</li>
+<li>IO 调度</li>
+<li>页面调度</li>
+</ul>
+<p>可以想到操作系统是面向使用场景的，因此评估调度优劣的准则就有很多，针对不同的使用场景和用户会有完全不同的调度策略，也会带来具有很大差别的表现。</p>
+<p>实际上很多用户态的程序也需要调度，例如 golang 的协程调度、数据库的请求调度、甚至是 libc 库函数 <code>printf</code> 也会调度 syscall 来优化性能，这只是一个听起来厉害但是没啥大不了的概念。</p>
+<p>下面默认讨论任务调度</p>
+<h1 id="评价指标">评价指标</h1>
+<p>数据包括但不限于</p>
+<ul>
+<li>吞吐量，即单位时间完成任务的数量</li>
+<li>周转时间，即任务被发起到结束的时间</li>
+<li>响应时间，即任务被发起到产生IO的时间</li>
+<li>能耗，即调度器本身占用的资源</li>
+</ul>
+<p>评价维度包括但不限于</p>
+<ul>
+<li>公平性，即不同任务被调度的概率是否一致（或是否符合优先级关系）</li>
+<li>实时性，即对周转时间有要求</li>
+</ul>
+<p>而且因为现在程序比较复杂，调度器比较难做。jyy上课提到有用户程序可以自行提供调度特征来获得更好的表现的工作，可以类比操作系统提供绕开抽象层直接暴露底层接口给应用程序。</p>
+<p>并且多核心也给调度带来了很多问题，例如如何优化 cache 预热、更好地支持任务在核心间协作等等。这些都让调度非常的难。</p>
+<h1 id="机制">机制</h1>
+<p>任务的调度机制是基于任务状态切换的，回忆讲烂了的经典的五态模型。与之配套的有</p>
+<ul>
+<li>CPU 调度（基于上下文切换）</li>
+<li>页调度（基于虚拟内存）</li>
+</ul>
+<p>实际上我们说的调度器就是一个无情的操纵任务状态的操纵手</p>
+<p>交大的枫叶书上提到了三种不同的调度</p>
+<ul>
+<li>长期调度</li>
+<li>中期调度</li>
+<li>短期调度</li>
+</ul>
+<p>大意是把一个复杂的调度任务分解成</p>
+<ul>
+<li>根据资源选择一个任务的子集</li>
+<li>在子集里睡眠一些频繁切换/缺页的任务（经典的“挂起”）</li>
+<li>剩下的任务按照策略调度</li>
+</ul>
+<h1 id="策略">策略</h1>
+<h2 id="单核">单核</h2>
+<h3 id="fcfs">FCFS</h3>
+<p>先到先做</p>
+<p>经典的问题就是小任务略晚于大任务，就会让小任务等待，平均等待时间很长</p>
+<h3 id="sjf">SJF</h3>
+<p>贪心，最短的先做</p>
+<p>解决了大小任务同时到达的问题，但FCFS提到的问题还在</p>
+<h3 id="stcf">STCF</h3>
+<p>贪心，最先完成的先做</p>
+<p>FCFS 和 SJF 都是非抢占式的，而 STCF 则会中途打断用户程序去完成最早完成的任务</p>
+<h3 id="rr">RR</h3>
+<p>划分固定时间片(time slice)，规定每跑满一个时间片就调度一次。</p>
+<p>在忽略调度开销的时候，时间片越短越好；但实际上时间片太短则会导致花在调度上的开销太大</p>
+<h3 id="mlq">MLQ</h3>
+<p>单纯的 RR 会带来“一视同仁”的问题，因此可以引入优先级的概念</p>
+<p>MLQ 就是把任务集合对优先级等价关系作划分，每次从优先级最高的集合中选取一个调度，如果没有可以调度的就找更低优先级的任务集合</p>
+<p>缺点是显见的：在高优先级任务多的时候，低优先级任务没法调度</p>
+<p>优先级的引入搭配互斥锁还会带来<strong>优先级反转</strong>的问题</p>
+<h3 id="mlfq">MLFQ</h3>
+<p>核心的idea就是自动给程序评定优先级。初始都是最高，时间片用完了就优先级下沉</p>
+<p>这个策略是基于这样的观察：IO密集的程序往往CPU占用时间很少，因此可以保持较高优先级；而批处理任务则一直跑满，会沉底。</p>
+<p>最暴力美学的地方在于，如果所有任务都沉底了怎么办？那就定期重新来一次</p>
+<p>jyy针对这个MLFQ讲了一些比较好玩的东西，例如恶意程序可以“伪装”成IO密集的程序来骗取较高优先级。</p>
+<h3 id="fair-share">Fair share</h3>
+<p>有的时候会需要多个用户共享一台计算机，此时我们希望各个用户按照一定的比例来分配资源（例如 CPU 时间）</p>
+<p>此时先前的优先级就没法用了，因为①优先级只可比不可数，②同时基于任务的资源分配也比较麻烦</p>
+<p>②的解决方案很简单，只需要引入任务组，给任务组分配比例即可。每个任务组下又可以各自分配比例。</p>
+<p>①的解决方法用到了期望，即产生一个随机数，观察其落在哪个区间来决定当前时间片分配给哪个任务，这个办法叫做彩票算法</p>
+<p>实际上基于“份额”的概念还能玩出很多花样，也有很多相关的 trick 用于优化实现</p>
+<h3 id="stride">Stride</h3>
+<p>核心的idea在于给每个任务一个积累量，每次被调度则增加这个积累量</p>
+<p>优先级则是通过积累量的增长率来体现的，优先级越高的任务积累量的增长率越低，这意味着到达同样的积累量准线需要更多次调度高优先级任务，合理。</p>
+<p>这时候调度就变成了一个 findMin-&gt;updateValue-&gt;insertValue 的任务了，这也就是 Linux 里 CFS 的关键数据结构为什么要用红黑树</p>
+<p>jyy也提到了很多这方面的好玩的取舍，例如</p>
+<ul>
+<li>新生进程的积累量如何设定？</li>
+<li>长时间睡眠进程的积累量如何设定？</li>
+<li>父子进程的积累量是什么关系？</li>
+<li>内核源码里的 magic number 是怎么来的？</li>
+</ul>
+<h2 id="多核">多核</h2>
+<p>通常多核指的是 SMP 的情况，即对称多核心。更新的例如大小核异构架构的调度更是老大难问题。</p>
+<h3 id="load-sharing">Load sharing</h3>
+<p>最简单的就是抽象出一层虚拟单核 CPU 视为一个任务队列，每次调度任务就分配给一个空闲核执行，任务切换意味着把任务放回全局队列，并取出新的就绪任务执行。</p>
+<p>优点是非常简单，甚至不需要特殊设计。缺点则很多，例如任务分配和同步带来的开销、cache 预热带来的性能损失（相当于抹去了各个核心的区别）</p>
+<h3 id="层级调度">层级调度</h3>
+<p>就是给每个核心一个局部调度器，并且保证每个核心上的任务只会在局部等待队列被挂起，原本的全局调度器只负责任务的<strong>向下分派</strong>，而原本的 Load sharing 做法则是双向分派任务的。</p>
+<p>像不像做 kmt 时用到的 <code>thread_local</code> 链表？</p>
+<h3 id="协同调度">协同调度</h3>
+<p>意思是把一个任务进行依赖关系的拆分（画 DAG），那么只要两个子任务不存在依赖关系就可以并行调度了。</p>
+<p>当然这个最难的地方在于“知道”这是一个子任务的拆分</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/07/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" target="_self">
+              <a href="/2022/07/26/Haskell-Parser-Combinator/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -185,22 +293,45 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2022-07-16 01:14:57
+              2022-08-03 17:14:57
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">
+                        <b>#</b> 操作系统
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2022/07/16/TAPL01-Intro/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-text">引入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-text">评价指标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%88%B6"><span class="toc-text">机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AD%96%E7%95%A5"><span class="toc-text">策略</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%A0%B8"><span class="toc-text">单核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fcfs"><span class="toc-text">FCFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sjf"><span class="toc-text">SJF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stcf"><span class="toc-text">STCF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rr"><span class="toc-text">RR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mlq"><span class="toc-text">MLQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mlfq"><span class="toc-text">MLFQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fair-share"><span class="toc-text">Fair share</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stride"><span class="toc-text">Stride</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%A0%B8"><span class="toc-text">多核</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#load-sharing"><span class="toc-text">Load sharing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="toc-text">层级调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E5%90%8C%E8%B0%83%E5%BA%A6"><span class="toc-text">协同调度</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
