@@ -229,6 +229,36 @@
 <p><span class="math display">\[
 \frac{\Gamma\vdash M:\tau\rightarrow \sigma\quad \Gamma\vdash N:\tau}{\Gamma\vdash M\; N:\sigma}
 \]</span></p>
+<h1 id="meta-theorems">Meta Theorems</h1>
+<p>证明都是简单的，熟练掌握归纳法就可以了</p>
+<h2 id="uniqueness-of-types">Uniqueness of types</h2>
+<p>若 <span class="math inline">\(M:\tau\)</span>，则 <span class="math inline">\(\forall \sigma\in{\scr T}\)</span>，<span class="math inline">\(M:\sigma\Rightarrow \tau=\sigma\)</span></p>
+<p>只需要证明 derivation tree 到项存在双射即可。</p>
+<p>说的是前面提到的给参数加类型注解的方法需要保证</p>
+<ol type="1">
+<li>不会太弱，即尽可能多的项都能通过这个办法来标注类型</li>
+<li>不会太强，即所有项的类型必须唯一</li>
+</ol>
+<p>恰好对应了逻辑系统的 Soundness 和 Completeness</p>
+<h2 id="progress">Progress</h2>
+<p>若 <span class="math inline">\(\vdash M:\tau\)</span>，则</p>
+<ol type="1">
+<li>要么 <span class="math inline">\(M\)</span> 为值</li>
+<li>要么 <span class="math inline">\(\exists M&#39;\neq M\)</span> 使得 <span class="math inline">\(M\rightarrow M&#39;\)</span></li>
+</ol>
+<p>说的是我们的类型系统可以保证所有通过类型检查的项不会卡住</p>
+<h2 id="preservation">Preservation</h2>
+<p>几个比较显然的引理：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\Gamma\vdash M:\tau\)</span>，则 <span class="math inline">\(\Gamma,x:\sigma\vdash M:\tau\)</span></li>
+<li>若 <span class="math inline">\(\Gamma\vdash M:\tau\)</span>，则 <span class="math inline">\(\Delta\vdash M:\tau\)</span>，其中 <span class="math inline">\(\Delta\)</span> 为 <span class="math inline">\(\Gamma\)</span> 的任意重排</li>
+<li>若 <span class="math inline">\(\Gamma,x:\tau\vdash M:\sigma\)</span> 且 <span class="math inline">\(\Gamma\vdash N:\tau\)</span>，则 <span class="math inline">\(\Gamma\vdash M[N/x]:\sigma\)</span>。证明只需要对 <span class="math inline">\(M\)</span> 结构归纳即可。</li>
+</ol>
+<p>若 <span class="math inline">\(\Gamma\vdash M:\tau\)</span>，且 <span class="math inline">\(M\rightarrow M&#39;\)</span>，则 <span class="math inline">\(\Gamma\vdash M&#39;:\tau\)</span></p>
+<p>同样只需要对 <span class="math inline">\(M\)</span>结构归纳即可。</p>
+<h2 id="erasure-property">Erasure Property</h2>
+<p>定义类型擦除函数 <span class="math inline">\(\text{erase}(\cdot)\)</span>。Erasure Property 说的是 <span class="math inline">\(\text{erase}\)</span> 函数建立了 <span class="math inline">\(\lambda_\rightarrow\)</span> 到 <span class="math inline">\(\lambda\)</span> 的同构。或者你也可以说成是 <span class="math inline">\(\text{erase}\)</span> 函数与 <span class="math inline">\(\rightarrow\)</span> 是可交换的（虽然这里的两个箭头是各自项集上的二元关系）。</p>
+<p>通常把这个 erasure 也叫抽象的 compilation，这时候就说的是无类型的 low-level（汇编层面）语义和原语言等价。</p>
 
       </div>
       
@@ -273,7 +303,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#types"><span class="toc-text">Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typing-relation"><span class="toc-text">Typing relation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda-abstractions"><span class="toc-text">\(\lambda\)-abstractions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typing-context"><span class="toc-text">Typing context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#derivation-rules"><span class="toc-text">Derivation rules</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#types"><span class="toc-text">Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typing-relation"><span class="toc-text">Typing relation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda-abstractions"><span class="toc-text">\(\lambda\)-abstractions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typing-context"><span class="toc-text">Typing context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#derivation-rules"><span class="toc-text">Derivation rules</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#meta-theorems"><span class="toc-text">Meta Theorems</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#uniqueness-of-types"><span class="toc-text">Uniqueness of types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#progress"><span class="toc-text">Progress</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#preservation"><span class="toc-text">Preservation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#erasure-property"><span class="toc-text">Erasure Property</span></a></li></ol></li></ol>
       
     </div>
   </div>
