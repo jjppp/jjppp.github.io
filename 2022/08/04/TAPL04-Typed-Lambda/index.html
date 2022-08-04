@@ -11,7 +11,7 @@
   
   <title>
     
-      标签 
+      TAPL04 Typed Lambda 
       
       
       |
@@ -149,21 +149,180 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algebra/" rel="tag">Algebra</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compilers/" rel="tag">Compilers</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cryptography/" rel="tag">Cryptography</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DLCO/" rel="tag">DLCO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka-Moments/" rel="tag">Eureka Moments</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Formal-Semantics/" rel="tag">Formal Semantics</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game-Theory/" rel="tag">Game Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph-Theory/" rel="tag">Graph Theory</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS-Intro/" rel="tag">ICS Intro</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mathematical-Logic/" rel="tag">Mathematical Logic</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numerical-Method/" rel="tag">Numerical Method</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Operating-System/" rel="tag">Operating System</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Analysis/" rel="tag">Static Analysis</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAPL/" rel="tag">TAPL</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XCPC/" rel="tag">XCPC</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/haskell/" rel="tag">haskell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag">数学分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/" rel="tag">程序设计基础</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">TAPL04 Typed Lambda</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-08-04 19:16:48
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/TAPL/" title="TAPL">
+                    <b>#</b> TAPL
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>Simply Typed Lambda Calculus 通常记为 <span class="math inline">\(\lambda_{\rightarrow}\)</span></p>
+<h1 id="intro">Intro</h1>
+<p>在 ULC + Bool + Nat 中会出现某个项 <span class="math inline">\(T\)</span> 卡住的情况，意思是</p>
+<ol type="1">
+<li><span class="math inline">\(T\)</span> 不是值，且</li>
+<li>不存在 <span class="math inline">\(T&#39;\neq T\)</span> 使得 <span class="math inline">\(T\rightarrow T&#39;\)</span></li>
+</ol>
+<p>例如经典的 <code>suc True</code> 就没法推导</p>
+<p>解决方案是<strong>静态地</strong>给项加上类型，在运行前做类型检查，然后证明<em>所有通过类型检查的项都终会推导成值</em></p>
+<p>一个比较有意思的点是，我们可以将每个项都视为一种类型，这时候做类型检查（类型推导）就完全等价于对项本身进行推导。并且由于 LC 是图灵完备的（例如经典的 <span class="math inline">\(\Omega\)</span>），这样的类型推导可能不终止。</p>
+<p>这说明所有<strong>有用的</strong>类型推导（停机的类型推导）必将做出过近似。意思是存在一个不会卡住（well-behaved）的项 <span class="math inline">\(T_w\)</span>，<span class="math inline">\(T_w\)</span> 没法通过类型检查。</p>
+<p>还可以回想静态分析做的事情（也是在静态时过近似，用各种 derivation rules 做约束求解），所以说这玩意是同属于 PL 下的细分分支。甚至对于指针分析，只需要把对象集看成类型，那么求解过程本质上就是在定 type 了。</p>
+<h1 id="definition">Definition</h1>
+<h2 id="types">Types</h2>
+<p>定义类型集合 <span class="math inline">\(\scr T\)</span> 为满足如下约束的最小集</p>
+<ol type="1">
+<li><span class="math inline">\(\text{Bool}\in {\scr T}\)</span></li>
+<li><span class="math inline">\(\forall A,B\in {\scr T}, A\rightarrow B\in{\scr T}\)</span></li>
+</ol>
+<p>②实际上是引入了产生复杂类型的方法，称 <span class="math inline">\(\rightarrow\)</span> 为类型构造子。例如我们可以有 <span class="math inline">\(\newcommand{tBool}{\text{Bool}} (\tBool\rightarrow\tBool)\rightarrow\tBool\)</span> 这样的类型</p>
+<h2 id="typing-relation">Typing relation</h2>
+<p>我们把 <span class="math inline">\(M: \tau\)</span> 称为 typing judgement。又因为这实际上是 <span class="math inline">\(T, {\scr T}\)</span> 上的二元关系，因此也叫 typing relation。</p>
+<p>对于这样的二元关系也存在推导（derivation rules），通常写成 <span class="math inline">\(\dfrac{\text{premise}}{M:\tau}\)</span> 这样的形式。</p>
+<p>很显然并非所有的项都可以推导出一个类型（例如经典的 <span class="math inline">\(\Omega\)</span>），因此做关于类型的表述时通常说 “若项 <span class="math inline">\(M\)</span> 存在类型 <span class="math inline">\(\tau\)</span>” 这样的句子。</p>
+<h2 id="lambda-abstractions"><span class="math inline">\(\lambda\)</span>-abstractions</h2>
+<p>给出了类型集合的定义后，需要考虑的就是如何给项标记类型（怎么做 structural 的类型推导）。关键的地方在于形如 <span class="math inline">\(\lambda x.\; M\)</span> 的项要如何确定类型。</p>
+<blockquote>
+<p>这里插几句。由于前面提到的 <span class="math inline">\(\tBool\)</span>-calculus 是没有变量的，所有的符号都是常元，因此所有的类型都可以通过 structural 的过程得出。</p>
+<p>在这里因为引入了 <span class="math inline">\(\lambda\)</span>-abstraction，所以会出现变量（回忆函数内访问参数）。如何推导函数的类型，本质上就是如何推导函数参数和返回值的类型。</p>
+</blockquote>
+<ol type="1">
+<li>explicitly typed: 可以手动给参数加上类型注解，然后推导返回值的类型</li>
+<li>implicitly typed: 可以约束求解，此时得到的参数类型是一个可能类型的集合</li>
+</ol>
+<p>①很好理解，②可以类比 haskell 里面无类型注解的函数会用 typeclass 来限制参数的类型，这是一种从 body 到参数的类型推导</p>
+<p>为了简单，书选择了把项写成 <span class="math inline">\(\lambda x:\tau. M\)</span> 的形式</p>
+<h2 id="typing-context">Typing context</h2>
+<p>同时因为 <span class="math inline">\(\lambda\)</span>-abstraction 的出现，项 <span class="math inline">\(T\)</span> 中可能存在自由变元。这时候的 <span class="math inline">\(T\)</span> 的类型在这些自由变元取不同类型时可能有不同的类型，因此引入typing context <span class="math inline">\(\Gamma\)</span>。</p>
+<p><span class="math inline">\(\Gamma\)</span> 为 typing judgement 的集合，类似命题逻辑有 <span class="math inline">\(\Gamma\vdash M:\tau\)</span> 这样的记号，含义为“在假设 <span class="math inline">\(\Gamma\)</span> 成立时，<span class="math inline">\(M\)</span> 类型为 <span class="math inline">\(\tau\)</span>”</p>
+<h2 id="derivation-rules">Derivation rules</h2>
+<p>这个形式和命题逻辑的推理系统 G' 具有形式上的一致性，非常漂亮的一个结论。当然也可以认为做类型推导本身就是在构造一个逻辑系统，反过来命题逻辑恰好足够表达 STLC 的类型推导。 <span class="math display">\[
+\frac{}{\Gamma,x:\tau\vdash x:\tau}
+\]</span></p>
+<p><span class="math display">\[
+\dfrac{\Gamma,x:\tau\vdash M:\sigma}{\Gamma\vdash\lambda x:\tau.\; M:\tau\rightarrow\sigma}
+\]</span></p>
+<p><span class="math display">\[
+\frac{\Gamma\vdash M:\tau\rightarrow \sigma\quad \Gamma\vdash N:\tau}{\Gamma\vdash M\; N:\sigma}
+\]</span></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/08/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F05-%E8%B0%83%E5%BA%A6/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-08-04 19:16:48
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/TAPL/" title="TAPL">
+                        <b>#</b> TAPL
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#types"><span class="toc-text">Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typing-relation"><span class="toc-text">Typing relation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda-abstractions"><span class="toc-text">\(\lambda\)-abstractions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typing-context"><span class="toc-text">Typing context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#derivation-rules"><span class="toc-text">Derivation rules</span></a></li></ol></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
 
   
-
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
   
 
-  
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">
