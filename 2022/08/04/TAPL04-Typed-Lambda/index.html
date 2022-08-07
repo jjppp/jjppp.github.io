@@ -257,7 +257,7 @@
 <p>若 <span class="math inline">\(\Gamma\vdash M:\tau\)</span>，且 <span class="math inline">\(M\rightarrow M&#39;\)</span>，则 <span class="math inline">\(\Gamma\vdash M&#39;:\tau\)</span></p>
 <p>同样只需要对 <span class="math inline">\(M\)</span>结构归纳即可。</p>
 <h2 id="erasure-property">Erasure Property</h2>
-<p>定义类型擦除函数 <span class="math inline">\(\text{erase}(\cdot)\)</span>。Erasure Property 说的是 <span class="math inline">\(\text{erase}\)</span> 函数建立了 <span class="math inline">\(\lambda_\rightarrow\)</span> 到 <span class="math inline">\(\lambda\)</span> 的同构。或者你也可以说成是 <span class="math inline">\(\text{erase}\)</span> 函数与 <span class="math inline">\(\rightarrow\)</span> 是可交换的（虽然这里的两个箭头是各自项集上的二元关系）。</p>
+<p>定义类型擦除函数 <span class="math inline">\(\text{erase}(\cdot)\)</span>。Erasure Property 说的是 <span class="math inline">\(\text{erase}\)</span> 函数建立了 <span class="math inline">\(\lambda_\rightarrow\)</span> 到 <span class="math inline">\(\lambda\)</span> 的同态（很显然不是双射）。或者你也可以说成是 <span class="math inline">\(\text{erase}\)</span> 函数与 <span class="math inline">\(\rightarrow\)</span> 是可交换的（虽然这里的两个箭头是各自项集上的二元关系）。</p>
 <p>通常把这个 erasure 也叫抽象的 compilation，这时候就说的是无类型的 low-level（汇编层面）语义和原语言等价。</p>
 
       </div>
