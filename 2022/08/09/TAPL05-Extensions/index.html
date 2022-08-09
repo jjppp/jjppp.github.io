@@ -192,7 +192,8 @@
 &amp; \Gamma\vdash m\colon \tau \iff \Gamma \vdash^E t(m)\colon\tau
 \end{aligned}
 \]</span> 即如果某个语法和语义上的扩展，可以用纯语法替换的方式等价得到，那么就称这个扩展是“语法糖”(syntatic sugar)。此处等价特指 reduction relation 和 typing relation 保持。</p>
-<p>当然这里语法糖的要求是单步推导等价，这个条件还是比较强的</p>
+<p>当然这里语法糖的要求是单步推导等价，这个条件还是比较强的。</p>
+<p>这里的一个好处是可以在不修改语言 core 的情况下添加各种 feature。一个类似的例子是微内核+形式化验证的套路，把用户态组件看成是语法糖就行了。</p>
 <h1 id="base-types">Base Types</h1>
 <p>一般的语言会提供若干基础类型用于表示一些基本的值，在此之上可以用一些类型构造子构建更复杂的类型以表示复杂的数据。</p>
 <p>经典的比如 <code>int, float, char</code> 之类。</p>
@@ -201,8 +202,44 @@
 <p>也是常说的 trivial type。这个类型所含值的集合为单元集(singleton set)。</p>
 <p>扩展是通过加入一个特殊的值 <code>unit</code>，并规定其类型为 <code>Unit</code> 来实现的。</p>
 <h1 id="sequential">Sequential</h1>
-<p>即 <code>s1; s2</code> 这样的写法，用于保证求值顺序。书上提到的 化成 (<span class="math inline">\(\lambda x\colon \text{Unit}\; s_2)\; s_1\)</span> 能够等价的前提是推导是 Call-by-value 的</p>
+<p>即 <code>s1; s2</code> 这样的写法，用于保证求值顺序。书上提到的 desugar 成 (<span class="math inline">\(\lambda x\colon \text{Unit}.\; s_2)\; s_1\)</span> 能够等价的前提是推导是 Call-by-value 的</p>
 <h1 id="wildcard">Wildcard</h1>
+<p>即 <span class="math inline">\(\lambda \_.\; m\)</span> 这样的写法，表示我们并不会真的用到这个 binding。一个具体的例子就是 <code>s1; s2</code> 的 derived form</p>
+<p>desugar 之后就是选取 <span class="math inline">\(FV(m)\)</span> 中的 fresh 做 binding。</p>
+<h1 id="ascription">Ascription</h1>
+<p>也就是说的程序员自己写的类型注解，理解成 term-type assertion 也没啥问题</p>
+<p>ascription 本身也可以作为 derived form 添加进去，即 <span class="math inline">\((\lambda x\colon \tau.\; x)\; t\equiv t\text{ as } \tau\)</span></p>
+<p>具体定义去看书</p>
+<h1 id="let-binding"><code>let</code> Binding</h1>
+<p>即可以写出这样的代码(以 haskell 为例)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ot">dist::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>dist x y <span class="ot">=</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="kw">let</span> sqrX <span class="ot">=</span> x <span class="op">*</span> x</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>        sqrY <span class="ot">=</span> y <span class="op">*</span> y</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>        <span class="kw">in</span> <span class="fu">sqrt</span> <span class="op">$</span> sqrX <span class="op">+</span> sqrY</span></code></pre></div>
+<p>这同样是一个 derived form，但是区别在于在 derive 的时候需要有一个 type checker 来获得 binding 的类型。</p>
+<p>因为涉及到 typing relation 的修改，所以这个语法糖和前面的比起来要更不 trivial 一点。但是执行过程是没有区别的。</p>
+<p>具体定义去看书</p>
+<h1 id="record">Record</h1>
+<p>也叫 Product Type，一个例子就是 C 里面的 <code>struct</code></p>
+<p>field 是数字时就退化为 tuple，长度为 2 则退化成 pair。</p>
+<p>书上还讨论了顺序的问题，这里目前定义出来的都是要求顺序一致的。后续解决顺序可以用 subtyping 来做，咕咕咕咕。</p>
+<h1 id="pattern-matching">Pattern matching</h1>
+<p>这里的 pattern matching 仅能用作 <code>getter</code></p>
+<p>具体而言是通过定义语法上的 pattern，然后把 pattern matching 的行为定义为若干单变量替换的复合</p>
+<p>具体去看书。</p>
+<h1 id="variant">Variant</h1>
+<p>也叫 Sum Type，一个例子就是 C 里面的 <code>union</code></p>
+<p>所有构造子都只吃掉一个 <span class="math inline">\(\text{Unit}\)</span> 的时候退化成 Enum。只有两种的时候退化成 Either，其中一个是 <span class="math inline">\(\text{Unit}\)</span> 的时候退化成 Optional</p>
+<p>因为类型中的值是有限的，所以就可以 <code>case value of</code> 来进行操作的分派了。</p>
+<p>一个比较有意思的地方在于 Either 的出现会破坏类型的唯一性，即我们很难静态地确定 <span class="math inline">\(\text{Left 42}\)</span> 到底是什么类型。最简单的解决方法就是要求程序猿显式加上注解。</p>
+<h1 id="dynamic">Dynamic</h1>
+<p>即给项加上类型的标签，使得类型在动态运行时仍然附着在项上。同时提供一些动态对于类型的 <code>case</code> construct 来支持操作的分派。</p>
+<h1 id="recursion">Recursion</h1>
+<p>由于 STLC 中没法给 Y-Combinator 定类型，因此需要把这个东西提升到元语言的层级，作为一个 primitive。</p>
+<p>好玩的地方在于 <code>fix</code> 并没有规定只能求一个函数的不动点，因此可以把很多函数用 Record 打包，实现类似常系数线性齐幂次递推的互相调用的递归函数。树上给的例子是关于 isEven 和 isOdd 的。</p>
+<h1 id="list">List</h1>
+<p>重要的地方在于给出了一个不同于 <span class="math inline">\(\rightarrow\)</span> 的类型构造子 <span class="math inline">\(\text{List}\)</span>，剩下的就没啥了。</p>
 
       </div>
       
@@ -247,7 +284,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#derived-form"><span class="toc-text">Derived Form</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#base-types"><span class="toc-text">Base Types</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#unit-type"><span class="toc-text">Unit Type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sequential"><span class="toc-text">Sequential</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wildcard"><span class="toc-text">Wildcard</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#derived-form"><span class="toc-text">Derived Form</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#base-types"><span class="toc-text">Base Types</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#unit-type"><span class="toc-text">Unit Type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sequential"><span class="toc-text">Sequential</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wildcard"><span class="toc-text">Wildcard</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ascription"><span class="toc-text">Ascription</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#let-binding"><span class="toc-text">let Binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#record"><span class="toc-text">Record</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pattern-matching"><span class="toc-text">Pattern matching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#variant"><span class="toc-text">Variant</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dynamic"><span class="toc-text">Dynamic</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#recursion"><span class="toc-text">Recursion</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#list"><span class="toc-text">List</span></a></li></ol>
       
     </div>
   </div>
