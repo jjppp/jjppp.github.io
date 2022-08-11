@@ -201,6 +201,15 @@
 <h1 id="unit-type"><code>Unit</code> Type</h1>
 <p>也是常说的 trivial type。这个类型所含值的集合为单元集(singleton set)。</p>
 <p>扩展是通过加入一个特殊的值 <code>unit</code>，并规定其类型为 <code>Unit</code> 来实现的。</p>
+<h1 id="bot-type"><code>Bot</code> Type</h1>
+<p>为了方便，通常规定 <code>Bot</code> 是所有类型的子类型，用于表示某些异常项（例如 exception），同时保证带有 error handling 的项可以通过类型检查。</p>
+<p>这个类型所含的值的集合为空集：</p>
+<p>由反证法，设存在 <span class="math inline">\(\Gamma\vdash v\colon \text{Bot}\)</span>，那么根据子类型同时有 <span class="math inline">\(\Gamma\vdash v\colon \text{Top$\rightarrow$Top}\)</span> 和 <span class="math inline">\(\Gamma\vdash v\colon \{\}\)</span>。而 <span class="math inline">\(v\)</span> 不可能既是函数又是 variant，因此矛盾。</p>
+<h1 id="subtyping">Subtyping</h1>
+<p>称一个类型 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(B\)</span> 的子类型，当且仅当类型为 <span class="math inline">\(A\)</span> 的项可以无痛替换掉类型为 <span class="math inline">\(B\)</span> 的项，程序仍然可以正常执行。记作 <span class="math inline">\(A&lt;:B\)</span></p>
+<p>一个例子是 <span class="math inline">\(A=\{x:\text{Nat},y:\text{Bool}\}\)</span>，它是 <span class="math inline">\(B=\{x:\text{Nat}\}\)</span> 的子类型，因为所有用到类型 <span class="math inline">\(B\)</span> 的项至多访问 field <span class="math inline">\(x\)</span>。可以发现子类型的定义是完全根据喜好来的，通常可以根据需求规定不同的子类型关系。</p>
+<p>例如我们的 variant type，就可以通过规定所有 field 可以交换、加上若干 field 是子类型、field 的类型是子类型仍是子类型 这三条来得到一些比较方便的性质。</p>
+<p>可以发现 <code>Unit</code> 天然的就是 <code>Top</code>，并且我们很难通过构造的方法给出一个 <code>Bot</code> 类型，这里的 <code>Bot</code> 有点 limit order <span class="math inline">\(\omega\)</span> 的意味在里面了。</p>
 <h1 id="sequential">Sequential</h1>
 <p>即 <code>s1; s2</code> 这样的写法，用于保证求值顺序。书上提到的 desugar 成 (<span class="math inline">\(\lambda x\colon \text{Unit}.\; s_2)\; s_1\)</span> 能够等价的前提是推导是 Call-by-value 的</p>
 <h1 id="wildcard">Wildcard</h1>
@@ -240,6 +249,7 @@
 <p>好玩的地方在于 <code>fix</code> 并没有规定只能求一个函数的不动点，因此可以把很多函数用 Record 打包，实现类似常系数线性齐幂次递推的互相调用的递归函数。树上给的例子是关于 isEven 和 isOdd 的。</p>
 <h1 id="list">List</h1>
 <p>重要的地方在于给出了一个不同于 <span class="math inline">\(\rightarrow\)</span> 的类型构造子 <span class="math inline">\(\text{List}\)</span>，剩下的就没啥了。</p>
+<h1 id="exception">Exception</h1>
 
       </div>
       
@@ -284,7 +294,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#derived-form"><span class="toc-text">Derived Form</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#base-types"><span class="toc-text">Base Types</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#unit-type"><span class="toc-text">Unit Type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sequential"><span class="toc-text">Sequential</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wildcard"><span class="toc-text">Wildcard</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ascription"><span class="toc-text">Ascription</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#let-binding"><span class="toc-text">let Binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#record"><span class="toc-text">Record</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pattern-matching"><span class="toc-text">Pattern matching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#variant"><span class="toc-text">Variant</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dynamic"><span class="toc-text">Dynamic</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#recursion"><span class="toc-text">Recursion</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#list"><span class="toc-text">List</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#derived-form"><span class="toc-text">Derived Form</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#base-types"><span class="toc-text">Base Types</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#unit-type"><span class="toc-text">Unit Type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bot-type"><span class="toc-text">Bot Type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#subtyping"><span class="toc-text">Subtyping</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sequential"><span class="toc-text">Sequential</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wildcard"><span class="toc-text">Wildcard</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ascription"><span class="toc-text">Ascription</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#let-binding"><span class="toc-text">let Binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#record"><span class="toc-text">Record</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pattern-matching"><span class="toc-text">Pattern matching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#variant"><span class="toc-text">Variant</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dynamic"><span class="toc-text">Dynamic</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#recursion"><span class="toc-text">Recursion</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#list"><span class="toc-text">List</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#exception"><span class="toc-text">Exception</span></a></li></ol>
       
     </div>
   </div>
