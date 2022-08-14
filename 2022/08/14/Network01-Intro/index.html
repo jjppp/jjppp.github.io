@@ -11,7 +11,7 @@
   
   <title>
     
-      标签 
+      Network01 Intro 
       
       
       |
@@ -149,21 +149,237 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algebra/" rel="tag">Algebra</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compilers/" rel="tag">Compilers</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cryptography/" rel="tag">Cryptography</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DLCO/" rel="tag">DLCO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka-Moments/" rel="tag">Eureka Moments</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Formal-Semantics/" rel="tag">Formal Semantics</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game-Theory/" rel="tag">Game Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph-Theory/" rel="tag">Graph Theory</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS-Intro/" rel="tag">ICS Intro</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mathematical-Logic/" rel="tag">Mathematical Logic</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numerical-Method/" rel="tag">Numerical Method</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Operating-System/" rel="tag">Operating System</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Analysis/" rel="tag">Static Analysis</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAPL/" rel="tag">TAPL</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XCPC/" rel="tag">XCPC</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/haskell/" rel="tag">haskell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag">数学分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/" rel="tag">程序设计基础</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Network01 Intro</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-08-14 15:41:57
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Network/" title="Network">
+                    <b>#</b> Network
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="网络">网络</h1>
+<p>形式化的定义网络为图</p>
+<h1 id="计算机网络">计算机网络</h1>
+<h2 id="层级">层级</h2>
+<ul>
+<li>应用层（http ftp smtp）</li>
+<li>网络层（tcp udp）</li>
+<li>传输层（ip）</li>
+<li>链路层</li>
+<li>物理层</li>
+</ul>
+<p>每层都向上提供接口，利用下层的服务实现更强的功能</p>
+<p>逻辑上数据传输是在同层之间的，实际上是通过向下调用接口实现真正的传输，最终是物理信号在真实世界里的传输。</p>
+<h2 id="节点">节点</h2>
+<p>特别的，计算机网络中的节点有两种类型</p>
+<ul>
+<li>主机。通常用 <span class="math inline">\(\square\)</span> 表示</li>
+<li>网络交换设备，包括交换机、路由器等等。通常用 <span class="math inline">\(\bigcirc\)</span> 表示</li>
+</ul>
+<h2 id="边">边</h2>
+<p>链路指连接两个节点的边，同样有两种类型</p>
+<ul>
+<li>接入网链路，边的一端为主机。</li>
+<li>主干链路，非接入网链路。</li>
+</ul>
+<p>可以发现逻辑上我们只关心所有 <span class="math inline">\(\square\)</span> 组成的网络，所有的 <span class="math inline">\(\bigcirc\)</span> 只是为了中继。这是因为只有主机会产生和消费数据，而所有的交换设备只负责转发（当然也有交换设备会消耗数据，例如带拦截广告功能的软路由...）</p>
+<h1 id="互联网">互联网</h1>
+<p>以 TCP 和 IP 协议为主的最大的<strong>那个</strong>网络。感觉这个定义非常有意思。</p>
+<p>粗略地讲，可以把网络划分为三个部分</p>
+<ul>
+<li>核心，即非主机的、提供网络连接功能的部分</li>
+<li>接入，即主机到核心的连接</li>
+<li>边缘，即所有主机，提供了网络的应用服务</li>
+</ul>
+<h2 id="边缘">边缘</h2>
+<p>主要是上层应用。这些应用通过 OS 提供的网络 api 来进行远程进程通信</p>
+<h3 id="通信模式">通信模式</h3>
+<ul>
+<li>C/S 模式，即主从关系</li>
+<li>P2P 模式，即对等关系</li>
+</ul>
+<h3 id="通信方式">通信方式</h3>
+<ul>
+<li>面向连接，即在正式通信前需要建立连接，进行准备。</li>
+<li>无连接</li>
+</ul>
+<p>网络不过是另一种进程间通信，具体的细节对于用户进程而言是不可感知的。</p>
+<h2 id="核心">核心</h2>
+<h3 id="电路交换circuit-switch">电路交换(circuit switch)</h3>
+<p>从电话网来</p>
+<ul>
+<li>通信双方建立专有连接（耗时）</li>
+<li>中间节点需要维护通信状态</li>
+<li>每段线路划分为固定的片，每个用户每次只能用其中一片</li>
+<li>划分的方式包括：
+<ul>
+<li>时分复用</li>
+<li>频分复用</li>
+</ul></li>
+</ul>
+<h3 id="分组交换packet-switch">分组交换(packet switch)</h3>
+<ul>
+<li>无需建立专有连接</li>
+<li>中间节点无需感知通信状态</li>
+<li>通信数据被划分成段传输。任意时刻，数据独占一段通信线路，可以实现同时间内不同线路的共享</li>
+<li>转发节点内有等待队列</li>
+<li>本质上是一种离散的时分复用，也叫 statistical multiplexing</li>
+</ul>
+<p>还可以细分为 datagram switch 和 virtual circuit switch，后者本质上是希望 packet switch 能有 circuit switch 的某些特性提出来的 hack。</p>
+<h2 id="接入">接入</h2>
+<p>这部分解决了我对一些名词的陈年疑惑...非常奇妙</p>
+<h3 id="调制解调器modem">调制解调器(modem)</h3>
+<p>最早是利用已有的电话线路接入网络的。modem 负责把数字信号调制成音频信号，由电话线路传输后入网。</p>
+<ul>
+<li>上网和打电话不能同时进行</li>
+<li>带宽很低</li>
+<li>成本低，复用线路</li>
+<li>是专线</li>
+</ul>
+<p>有些实现把电话线频分复用，专门留出一部分给网络。其中又分出上下行专用的带宽，这样就可以同时打电话和上网了。这样的方式叫 DSL(Digital Subscriber Line)</p>
+<h3 id="有线电视">有线电视</h3>
+<p>同样是类似的思路，利用已有的有线电视线路。</p>
+<p>这下终于知道为什么以前爹妈拔掉机顶盒的线就没法上网了。</p>
+<h3 id="电网">电网</h3>
+<p>可以调制解调到电力(电流)上...</p>
+<h3 id="物理媒体">物理媒体</h3>
+<ul>
+<li>导引性媒体，有型介质、存在导体、可以定向传播，例如光纤、电缆</li>
+<li>非导引性媒体，例如电磁波</li>
+</ul>
+<h1 id="四层">四层</h1>
+<h2 id="传输层">传输层</h2>
+<h3 id="tcptransmission-control-protocol">TCP(Transmission Control Protocol)</h3>
+<ul>
+<li>面向连接，通信前需要握手建立连接</li>
+<li>可靠服务，保证顺序、正确性等等</li>
+<li>流量控制，可以协调发送方和接收方的传输速度</li>
+<li>拥塞控制，可以适应网络的拥堵</li>
+</ul>
+<h3 id="udpuser-datagram-protocol">UDP(User Datagram Protocol)</h3>
+<ul>
+<li>无连接</li>
+<li>不可靠</li>
+<li>无流量控制</li>
+<li>无拥塞控制</li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/08/09/TAPL05-Extensions/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-08-14 15:41:57
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Network/" title="Network">
+                        <b>#</b> Network
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-text">网络</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-text">计算机网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E7%BA%A7"><span class="toc-text">层级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9"><span class="toc-text">节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9"><span class="toc-text">边</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-text">互联网</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98"><span class="toc-text">边缘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">通信模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="toc-text">通信方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83"><span class="toc-text">核心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2circuit-switch"><span class="toc-text">电路交换(circuit switch)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2packet-switch"><span class="toc-text">分组交换(packet switch)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5"><span class="toc-text">接入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83%E5%99%A8modem"><span class="toc-text">调制解调器(modem)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E7%BA%BF%E7%94%B5%E8%A7%86"><span class="toc-text">有线电视</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E7%BD%91"><span class="toc-text">电网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%AA%92%E4%BD%93"><span class="toc-text">物理媒体</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E5%B1%82"><span class="toc-text">四层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-text">传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcptransmission-control-protocol"><span class="toc-text">TCP(Transmission Control Protocol)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udpuser-datagram-protocol"><span class="toc-text">UDP(User Datagram Protocol)</span></a></li></ol></li></ol></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
 
   
-
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
   
 
-  
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-08-11T09:53:56.323Z</updated>
+  <updated>2022-08-14T07:42:34.617Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Network01 Intro</title>
+    <link href="http://example.com/2022/08/14/Network01-Intro/"/>
+    <id>http://example.com/2022/08/14/Network01-Intro/</id>
+    <published>2022-08-14T07:41:57.000Z</published>
+    <updated>2022-08-14T07:42:34.617Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;网络&quot;&gt;网络&lt;/h1&gt;
+&lt;p&gt;形式化的定义网络为图&lt;/p&gt;
+&lt;h1 id=&quot;计算机网络&quot;&gt;计算机网络&lt;/h1&gt;
+&lt;h2 id=&quot;层级&quot;&gt;层级&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;应用层（http ftp smtp）&lt;/li&gt;
+&lt;li&gt;网络层（tcp</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Network" scheme="http://example.com/tags/Network/"/>
+    
+  </entry>
   
   <entry>
     <title>TAPL05 Extensions</title>
@@ -488,30 +517,6 @@
     
     
     <category term="Numerical Method" scheme="http://example.com/tags/Numerical-Method/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博弈论02 零和游戏</title>
-    <link href="http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA02-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/"/>
-    <id>http://example.com/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA02-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/</id>
-    <published>2022-06-09T12:34:00.000Z</published>
-    <updated>2022-08-03T10:05:54.874Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;zero-sum-games&quot;&gt;Zero Sum Games&lt;/h1&gt;
-&lt;p&gt;即原本讨论的收益矩阵有两个，分别对应于玩家1和玩家2。零和游戏保证了 &lt;span class=&quot;math</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Game Theory" scheme="http://example.com/tags/Game-Theory/"/>
     
   </entry>
   
