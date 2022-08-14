@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      数理逻辑03 一阶逻辑 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="jjppp" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">jjppp</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">数理逻辑03 一阶逻辑</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-02-13 12:04:00
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Mathematical-Logic/" title="Mathematical Logic">
+                    <b>#</b> Mathematical Logic
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="写在前面">写在前面</h1>
+<p>命题逻辑（或者 零阶逻辑）到一阶逻辑的变化，在于描述的粒度。命题逻辑只能描述命题之间的关系，以及它们如何构成更大的结构（新的命题）。在一阶逻辑中我们可以深入原子命题的内部，讨论命题的构成。</p>
+<p>为了做到这一点，需要引入集合上的n元关系。从集合论作为基础的角度看，这么做是比较和谐的。</p>
+<h1 id="命题逻辑">命题逻辑</h1>
+<p>命题逻辑的不同之处在于，我们既可以描述一个系统内的某些运算（通过函数、变量和常元），又可以描述由这些运算的结果得到的命题（通过谓词和逻辑连接符）。</p>
+<p>一个例子就是标准算术模型 <span class="math inline">\(\scr A\)</span>：</p>
+<p>我们希望能够描述一个系统 <span class="math inline">\(\scr A\)</span>，即描述清楚</p>
+<ol type="1">
+<li><p>系统内部存在一些元素（自然数）</p></li>
+<li><p>这些元素互相可以通过运算（加法、后继）得到新的自然数</p></li>
+<li><p>可以判断两个元素的大小关系（<span class="math inline">\(&lt;\)</span> 是二元谓词）、相等关系（<span class="math inline">\(=\)</span> 是二元谓词）</p></li>
+<li><p>可以把若干判断组合成一个更大的判断（通过命题构造子组合命题）</p></li>
+</ol>
+<p>注意到上述4条是有层级的，12位于系统内部，3可以根据需要构造，4在不同的系统中可以完全相同。</p>
+<h2 id="n元关系">n元关系</h2>
+<p>定义集合 <span class="math inline">\(D\)</span> 上的n元关系为n元函数 <span class="math inline">\(f\colon D^n\mapsto \left\{T,F\right\}\)</span>，取 <span class="math inline">\(P=\left\{x\mid x\in D,f(x)=T\right\}\)</span>，那么就可以仅用集合来表示n元关系。</p>
+<p>特别的，<span class="math inline">\(&lt;\)</span> 是一个二元关系。它同时是 <span class="math inline">\(\mathbb R,\mathbb N,\mathbb Z\)</span> 上的二元关系，因此可以看出n元关系的定义还要看其定义域，此处即论域</p>
+<h1 id="语法">语法</h1>
+<p>记 <span class="math inline">\(\scr P,C,V,F\)</span> 分别为 谓词、常量、变量、函数 符号的可数集，规定每个谓词 <span class="math inline">\(P\in{\scr P}\)</span> 和函数 <span class="math inline">\(F\in{\scr F}\)</span> 都有arity（有多少参数）<span class="math inline">\(\mu(P),\mu(F)\in\mathbb N\)</span>。<span class="math inline">\(0\)</span> 元谓词就是命题逻辑中的命题，<span class="math inline">\(0\)</span> 元函数即为常元。</p>
+<p>一阶逻辑中仍然存在命题构造子 <span class="math inline">\(\{\wedge,\vee,\rightarrow,\neg\}\)</span>，通常取一个完备集即可。</p>
+<p>规定<strong>量词</strong> <span class="math inline">\(\forall,\exists\)</span> 分别读作 任意 和 存在</p>
+<h2 id="项">项</h2>
+<p>项集 <span class="math inline">\({\scr T}\)</span> 由如下递归定义：</p>
+<ol type="1">
+<li><p><span class="math inline">\(\scr C\subseteq T\)</span>，常元是项</p></li>
+<li><p><span class="math inline">\(\scr V\subseteq T\)</span>，变量是项</p></li>
+<li><p><span class="math inline">\(f\in{\scr F},f(t_1,t_2\ldots t_{\mu(f)})\in{\scr T}\)</span>，由若干项作为实参的函数作用是项</p></li>
+<li><p>项仅限于此</p></li>
+</ol>
+<p>所谓的项集就是在描述系统内部的元素，产生新的项的方法只有函数作用。</p>
+<h2 id="原子公式">原子公式</h2>
+<p>形如 <span class="math inline">\(p(t_1,t_2\ldots t_{\mu(p)}),p\in{\scr P}\)</span> 的公式是原子公式</p>
+<p>原子公式承担了从项过度到公式（命题）的角色</p>
+<h2 id="公式">公式</h2>
+<p>给出BNF</p>
+<span class="math display">\[\begin{aligned}
+
+\begin{aligned}
+
+formula &amp;:= atomic\_formula\;|\; \neg formula\;|\;formula\vee
+formula\;|\;formula\wedge formula
+
+\\
+
+formula &amp;:= \exists x\,formula\;|\;\forall x\,formula
+
+\end{aligned}
+
+\end{aligned}\]</span>
+<p>一阶逻辑是对命题逻辑的简单拓展，仍然保持了树状结构，之前的证明套路仍然适用。</p>
+<p>在一阶逻辑中既然有变量就同样有作用域的问题。具体的定义类似<span class="math inline">\(\lambda\)</span>-演算：</p>
+<ol type="1">
+<li><p>公式 <span class="math inline">\(\forall x\, F\)</span>，<span class="math inline">\(\exists x\, F\)</span> 中，<span class="math inline">\(x\)</span> 的作用域为公式 <span class="math inline">\(F\)</span>，<span class="math inline">\(F\)</span> 不要求有 <span class="math inline">\(x\)</span> 出现</p></li>
+<li><p>称变量 <span class="math inline">\(x\)</span> 是公式 <span class="math inline">\(F\)</span> 中的自由变量，当且仅当 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(F\)</span> 中出现，且不在限定 <span class="math inline">\(x\)</span> 的任何作用域中。</p></li>
+<li><p>非自由变量就称其为约束变量。</p></li>
+<li><p>若公式 <span class="math inline">\(F\)</span> 中，任意变量都是约束变量，则称 <span class="math inline">\(F\)</span> 为封闭公式（Closed Formula），宋公的书叫做句子。</p></li>
+</ol>
+<h2 id="替换">替换</h2>
+<p>和 <span class="math inline">\(\lambda\)</span>-演算中的替换是一模一样的</p>
+<h1 id="语义">语义</h1>
+<p>命题逻辑的语义由<strong>解释</strong>给出，在一阶逻辑则不够</p>
+<p>回忆命题逻辑中解释的定义：<span class="math inline">\(\scr I\)</span> 是函数 <span class="math inline">\(U_A\mapsto \left\{T,F\right\}\)</span>，其中 <span class="math inline">\(U_A\)</span> 表示公式 <span class="math inline">\(A\)</span> 中全部原子命题构成的集合</p>
+<p>考虑还差了哪些。为了实现类似的效果，我们需要</p>
+<ol type="1">
+<li><p>给常量赋予含义</p></li>
+<li><p>给变量赋予含义</p></li>
+<li><p>给项赋予含义</p></li>
+<li><p>给谓词赋予含义</p></li>
+<li><p>给原子公式赋予含义</p></li>
+</ol>
+<h2 id="解释">解释</h2>
+<p>宋公的书把这个叫做结构，也行吧。</p>
+<p>规定公式 <span class="math inline">\(A\)</span> 的解释是一个三元组 <span class="math inline">\((D,\left\{R_1\ldots R_m\right\},\left\{d_1\ldots d_k\right\})\)</span></p>
+<p>其中 <span class="math inline">\(D\)</span> 是论域，<span class="math inline">\(R_i\)</span> 是论域 <span class="math inline">\(D\)</span> 上的关系，<span class="math inline">\(d_j\)</span> 是 <span class="math inline">\(D\)</span> 中的元素，其赋予了 <span class="math inline">\(A\)</span> 中常量含义。</p>
+<p>一个例子是 <span class="math inline">\(\textbf 1&lt;\textbf 2\)</span> 和 <span class="math inline">\(壹&lt;贰\)</span>，此处的 <span class="math inline">\(\left\{壹，贰\right\}\)</span> 都是常量，在规定解释为 <span class="math inline">\((\mathbb N,\left\{&lt;\right\},\left\{1,2\right\})\)</span> 时才能说等式成立（讨论其真值）。可能存在这么一个神奇的国度，它们把 <span class="math inline">\(1\)</span> 写作 <span class="math inline">\(\textbf 2\)</span>，把 <span class="math inline">\(2\)</span> 写作 <span class="math inline">\(\textbf 1\)</span>，那么式1在它们的国度（特定解释下）就不成立了。</p>
+<p>但这是不够的。考虑公式 <span class="math inline">\(x&lt;a\)</span>，其在任意解释下都不能讨论真值，因为自由变量 <span class="math inline">\(x\)</span> 的值无法确定，由此引入赋值的定义。</p>
+<h2 id="赋值">赋值</h2>
+<p>记 <span class="math inline">\({\scr I}_A\)</span> 是公式 <span class="math inline">\(A\)</span> 的解释，<span class="math inline">\(A\)</span> 的赋值 <span class="math inline">\(\sigma_{[{ {\scr I}_A}]}\)</span> 是函数 <span class="math inline">\({\scr V}\mapsto D\)</span>，其赋予了 <span class="math inline">\(A\)</span> 中所有自由变量唯一的论域中的元素作为值。</p>
+<p>可以通过类似于 <span class="math inline">\(\sigma_{[{\scr I}_A]}\left\{x\rightsquigarrow v\right\}\)</span> 来对映射进行单点修改，非常熟悉的味道</p>
+<h2 id="项的语义">项的语义</h2>
+<p>base case都很简单，需要注意的只有这么一点：项集是必然可数的，因此项的解释必然是可数的。</p>
+<p>大概可以这么理解：对于实数 <span class="math inline">\(\R\)</span>，我们必然没法用一阶语言来遍历（穷举）它，因为一阶的语言必然是可数的。</p>
+<p>这里就出现了一个gap，我们对任意的项进行解释，不一定能得到整个论域。</p>
+<h2 id="公式的语义">公式的语义</h2>
+<p>base case都很简单，需要注意</p>
+<p><span class="math inline">\(\forall x.P\)</span> 的解释为：对于一切 <span class="math inline">\(t\in d\)</span> 都有 <span class="math inline">\(P[\frac{d}{x}]\)</span> 为真。</p>
+<p>没了，就这么简单。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/01/24/Logic02-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-02-13 12:04:00
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Mathematical-Logic/" title="Mathematical Logic">
+                        <b>#</b> Mathematical Logic
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/03/07/Numerical01-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91"><span class="toc-text">命题逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#n%E5%85%83%E5%85%B3%E7%B3%BB"><span class="toc-text">n元关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9"><span class="toc-text">项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E5%85%AC%E5%BC%8F"><span class="toc-text">原子公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F"><span class="toc-text">公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2"><span class="toc-text">替换</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89"><span class="toc-text">语义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A"><span class="toc-text">解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC"><span class="toc-text">赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9A%84%E8%AF%AD%E4%B9%89"><span class="toc-text">项的语义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AD%E4%B9%89"><span class="toc-text">公式的语义</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/olahiuj">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mailto:jpwang@smail.nju.edu.cn">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/olahiuj">Copyright © 2022 jjppp</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

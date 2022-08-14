@@ -98,8 +98,8 @@
   
   <entry>
     <title>操作系统05 调度</title>
-    <link href="http://example.com/2022/08/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F05-%E8%B0%83%E5%BA%A6/"/>
-    <id>http://example.com/2022/08/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F05-%E8%B0%83%E5%BA%A6/</id>
+    <link href="http://example.com/2022/08/03/OS05-%E8%B0%83%E5%BA%A6/"/>
+    <id>http://example.com/2022/08/03/OS05-%E8%B0%83%E5%BA%A6/</id>
     <published>2022-08-03T09:14:57.000Z</published>
     <updated>2022-08-03T10:00:11.563Z</updated>
     
@@ -227,8 +227,8 @@
   
   <entry>
     <title>操作系统04 进程与线程</title>
-    <link href="http://example.com/2022/07/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
-    <id>http://example.com/2022/07/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</id>
+    <link href="http://example.com/2022/07/15/OS04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
+    <id>http://example.com/2022/07/15/OS04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</id>
     <published>2022-07-15T11:24:46.000Z</published>
     <updated>2022-08-03T10:00:11.563Z</updated>
     
@@ -251,11 +251,11 @@
   </entry>
   
   <entry>
-    <title>抽象代数03 同态与同构</title>
-    <link href="http://example.com/2022/07/09/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B003-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/"/>
-    <id>http://example.com/2022/07/09/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B003-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/</id>
+    <title>Algebra03 同态与同构</title>
+    <link href="http://example.com/2022/07/09/Algebra03-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/"/>
+    <id>http://example.com/2022/07/09/Algebra03-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/</id>
     <published>2022-07-08T16:26:16.000Z</published>
-    <updated>2022-08-03T09:59:46.433Z</updated>
+    <updated>2022-08-14T07:52:09.966Z</updated>
     
     
       
@@ -277,11 +277,11 @@
   </entry>
   
   <entry>
-    <title>抽象代数02 子群和商群</title>
-    <link href="http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B002-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/"/>
-    <id>http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B002-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/</id>
+    <title>Algebra02 子群和商群</title>
+    <link href="http://example.com/2022/07/06/Algebra02-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/"/>
+    <id>http://example.com/2022/07/06/Algebra02-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/</id>
     <published>2022-07-06T10:06:58.000Z</published>
-    <updated>2022-08-03T09:59:46.433Z</updated>
+    <updated>2022-08-14T07:52:04.805Z</updated>
     
     
       
@@ -302,11 +302,11 @@
   </entry>
   
   <entry>
-    <title>抽象代数01 群的定义</title>
-    <link href="http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B001-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/"/>
-    <id>http://example.com/2022/07/06/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B001-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/</id>
+    <title>Algebra01 群的定义</title>
+    <link href="http://example.com/2022/07/06/Algebra01-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/"/>
+    <id>http://example.com/2022/07/06/Algebra01-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/</id>
     <published>2022-07-06T04:27:46.000Z</published>
-    <updated>2022-08-03T09:59:46.433Z</updated>
+    <updated>2022-08-14T07:51:58.697Z</updated>
     
     
       
@@ -329,8 +329,8 @@
   
   <entry>
     <title>操作系统03 内存管理</title>
-    <link href="http://example.com/2022/07/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
-    <id>http://example.com/2022/07/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
+    <link href="http://example.com/2022/07/04/OS03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>http://example.com/2022/07/04/OS03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
     <published>2022-07-03T17:46:50.000Z</published>
     <updated>2022-08-03T10:00:11.563Z</updated>
     
@@ -354,8 +354,8 @@
   
   <entry>
     <title>操作系统02 并发</title>
-    <link href="http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02-%E5%B9%B6%E5%8F%91/"/>
-    <id>http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02-%E5%B9%B6%E5%8F%91/</id>
+    <link href="http://example.com/2022/07/03/OS02-%E5%B9%B6%E5%8F%91/"/>
+    <id>http://example.com/2022/07/03/OS02-%E5%B9%B6%E5%8F%91/</id>
     <published>2022-07-03T08:01:52.000Z</published>
     <updated>2022-08-03T10:00:11.563Z</updated>
     
@@ -379,8 +379,8 @@
   
   <entry>
     <title>操作系统01 导引</title>
-    <link href="http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01-%E5%AF%BC%E5%BC%95/"/>
-    <id>http://example.com/2022/07/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01-%E5%AF%BC%E5%BC%95/</id>
+    <link href="http://example.com/2022/07/03/OS01-%E5%AF%BC%E5%BC%95/"/>
+    <id>http://example.com/2022/07/03/OS01-%E5%AF%BC%E5%BC%95/</id>
     <published>2022-07-03T07:10:51.000Z</published>
     <updated>2022-08-03T10:00:11.563Z</updated>
     
@@ -428,8 +428,8 @@
   
   <entry>
     <title>操作系统 Lab3 uproc</title>
-    <link href="http://example.com/2022/06/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab3-uproc/"/>
-    <id>http://example.com/2022/06/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Lab3-uproc/</id>
+    <link href="http://example.com/2022/06/23/OSLab3-uproc/"/>
+    <id>http://example.com/2022/06/23/OSLab3-uproc/</id>
     <published>2022-06-23T11:19:50.000Z</published>
     <updated>2022-08-03T10:04:31.001Z</updated>
     
@@ -479,8 +479,8 @@
   
   <entry>
     <title>计算方法07 电阻网络</title>
-    <link href="http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9507-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/"/>
-    <id>http://example.com/2022/06/15/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9507-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/</id>
+    <link href="http://example.com/2022/06/15/Numerical07-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/"/>
+    <id>http://example.com/2022/06/15/Numerical07-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/</id>
     <published>2022-06-15T06:21:00.000Z</published>
     <updated>2022-08-03T10:01:19.804Z</updated>
     
@@ -505,8 +505,8 @@
   
   <entry>
     <title>计算方法06 FFT</title>
-    <link href="http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9506-FFT/"/>
-    <id>http://example.com/2022/06/14/%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%9506-FFT/</id>
+    <link href="http://example.com/2022/06/14/Numerical06-FFT/"/>
+    <id>http://example.com/2022/06/14/Numerical06-FFT/</id>
     <published>2022-06-14T06:49:00.000Z</published>
     <updated>2022-08-03T10:01:19.804Z</updated>
     

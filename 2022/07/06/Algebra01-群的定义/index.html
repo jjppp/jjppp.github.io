@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      Algebra01 群的定义 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="jjppp" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">jjppp</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Algebra01 群的定义</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-07-06 12:27:46
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Algebra/" title="Algebra">
+                    <b>#</b> Algebra
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>觉得要好好学一学这个东西了</p>
+<h1 id="代数系统">代数系统</h1>
+<h2 id="定义">定义</h2>
+<p>称 <span class="math inline">\(\left&lt;G,\circ\right&gt;\)</span> 为代数系统, 当且仅当 <span class="math inline">\(G\)</span> 为非空集合, <span class="math inline">\(\circ\colon G\times G\mapsto G\)</span> 为 <span class="math inline">\(G\)</span> 上封闭二元运算.</p>
+<h2 id="等价关系-划分">等价关系 划分</h2>
+<p>给出 <span class="math inline">\(G\)</span> 上的等价关系 <span class="math inline">\(R\subseteq G\times G\)</span>, 可得 <span class="math inline">\(G\)</span> 的划分 <span class="math inline">\(P=\Set{G_i}\)</span>. 反之给出划分亦可得由划分定义的等价关系.</p>
+<p>记 <span class="math inline">\(P=G/R\)</span> 为 <span class="math inline">\(G\)</span> 关于 <span class="math inline">\(R\)</span> 的商集, 映射 <span class="math inline">\(\pi\colon g\mapsto [g]\)</span> 称为自然映射. 其中 <span class="math inline">\([g]=\Set{x\mid xRg}\)</span></p>
+<p>可构造新代数系统 <span class="math inline">\(\left&lt;G/R, \circ&#39;\right&gt;\)</span>. 其中 <span class="math inline">\(\circ&#39;\)</span> 定义为 <span class="math inline">\([a]\circ&#39; [b]=[a\circ b]\)</span>.</p>
+<p>为了保证 <span class="math inline">\(\circ&#39;\)</span> 是良定义的 (<span class="math inline">\(\forall c\in [a], c\neq a\)</span> 都有 <span class="math inline">\([c\circ b]= [a\circ b]\)</span>), 应满足 <span class="math inline">\(\forall a_1,a_2,b_1,b_2\)</span>, <span class="math inline">\(a_1Rb_1\wedge a_2 R b_2\Rightarrow (a_1\circ a_2)R(b_1\circ b_2)\)</span>. 这个特殊的关系又叫<strong>同余关系</strong>.</p>
+<h1 id="半群">半群</h1>
+<p><span class="math inline">\(\left&lt;G,\circ\right&gt;\)</span> 是半群当且仅当 <span class="math inline">\(G\)</span> 是代数系统, 且 <span class="math inline">\(\circ\)</span> 有结合律 <span class="math display">\[
+\forall a,b,c\in G, (ab)c=a(bc)
+\]</span></p>
+<h1 id="幺半群">幺半群</h1>
+<p>半群 <span class="math inline">\(\left&lt;G,\circ\right&gt;\)</span> 是幺半群当且仅当存在幺元 <span class="math display">\[
+\exists e\in G \text{ s.t. } \forall a\in G, ae=ea=a
+\]</span></p>
+<h2 id="左右幺元">左右幺元</h2>
+<p>左幺元定义为 <span class="math display">\[
+\exists e_L\in G \text{ s.t. } \forall a\in G, e_La=a
+\]</span> 若左右幺元皆存在, 那么它们必然相等: <span class="math display">\[
+e_L = e_Le_R = e_R
+\]</span></p>
+<h2 id="幺元">幺元</h2>
+<p><span class="math inline">\(e\in G\)</span> 为幺元当且仅当 <span class="math inline">\(e\)</span> 既是左幺元, 又是右幺元.</p>
+<p>若幺元存在, 那么其必然唯一: <span class="math display">\[
+e_1 = e_1 e_2= e_2
+\]</span> 直接推论: 若幺半群有多余一个左幺元, 那么其必然没有右幺元 (否则假设存在, 这个右幺元必然与某个左幺元相等. 又因为幺元唯一, 与有至少 <span class="math inline">\(2\)</span> 个左幺元矛盾)</p>
+<h1 id="群">群</h1>
+<p>称幺半群 <span class="math inline">\(\left&lt;G,\circ\right&gt;\)</span> 为群当且仅当 <span class="math inline">\(\forall a\in G, a^{-1}\in G\)</span></p>
+<h2 id="左右逆元">左右逆元</h2>
+<p>定义元素 <span class="math inline">\(a\in G\)</span> 的左逆元 <span class="math inline">\(a_1\)</span> 为 <span class="math display">\[
+\exists a_1\in G \text{ s.t. } a_1a=e
+\]</span> 若左右逆元都存在, 那么它们相等且为 <span class="math inline">\(a\)</span> 的 逆元 <span class="math display">\[
+a_2 = (a_1 a) a_2 = a_1 a a_2 = a_1(a a_2) = a_1
+\]</span></p>
+<h2 id="逆元">逆元</h2>
+<p><span class="math inline">\(a\in G\)</span> 的逆元定义为 <span class="math display">\[
+\exists a^{-1} \text{ s.t. } a^{-1}a=aa^{-1}=e
+\]</span> 类似地, 若 <span class="math inline">\(G\)</span> 中 <span class="math inline">\(a\)</span> 有至少 <span class="math inline">\(2\)</span> 个左逆, 那么其必然没有右逆.</p>
+<h2 id="消去律">消去律</h2>
+<p>右消去律定义为 <span class="math display">\[
+\forall a,b,c\in G, \; ac=bc\Rightarrow a=b
+\]</span> 由逆元的存在性可知群满足消去律</p>
+<h2 id="群方程">群方程</h2>
+<p>如下形式的方程称为群方程, <span class="math inline">\(x\)</span> 是未知元 <span class="math display">\[
+\begin{aligned}
+ax=b
+\\
+xc=d
+\end{aligned}
+\]</span> 由逆元存在性和唯一性可知群方程解存在且唯一.</p>
+<h1 id="群的等价定义">群的等价定义</h1>
+<h2 id="单侧定义">单侧定义</h2>
+<p>称半群 <span class="math inline">\(G\)</span> 为群, 当且仅当</p>
+<ol type="1">
+<li><span class="math inline">\(\exists e_L\in G\)</span> 为左幺元</li>
+<li><span class="math inline">\(\forall a\in G, \exists a^{-1}\text{ s.t. } a^{-1}a=e_L\)</span>. 即任意元素存在左幺元</li>
+</ol>
+<p>称为群的单侧定义, 等价性的证明需要一些技巧. 任取 <span class="math inline">\(a\in G\)</span>, <span class="math inline">\(a&#39;\)</span> 是 <span class="math inline">\(a\)</span> 的左逆元, <span class="math inline">\(a&#39;&#39;\)</span> 是 <span class="math inline">\(a&#39;\)</span> 的左逆元 <span class="math display">\[
+e_L=a&#39;&#39;a&#39;=a&#39;&#39;e_La&#39;=a&#39;&#39;(a&#39;a)a&#39;=(a&#39;&#39;a&#39;)aa&#39;=e_Laa&#39;=aa&#39;=e_L
+\]</span> 说明 <span class="math inline">\(a&#39;\)</span> 亦是 <span class="math inline">\(a\)</span> 的右逆元. 这个证明的关键在于添一个幺元, 且左幺元不在最右侧时效果等同于幺元. <span class="math display">\[
+a=ae_L=a(a&#39;a)=(aa&#39;)a=e_La
+\]</span> 说明 <span class="math inline">\(e_L\)</span> 亦是右幺元.</p>
+<p>证明的另一个方向是显然的, 因此单侧定义与群的一般定义等价.</p>
+<h2 id="群方程有解定义">群方程有解定义</h2>
+<p>半群 <span class="math inline">\(G\)</span> 中任意群方程有解, 则 <span class="math inline">\(G\)</span> 为群.</p>
+<p>任取 <span class="math inline">\(a\in G\)</span>, 记方程 <span class="math inline">\(ax=a\)</span> 的一个解为 <span class="math inline">\(e\)</span>, 下面证明 <span class="math inline">\(e\)</span> 为 <span class="math inline">\(G\)</span> 中一个右幺元.</p>
+<p>任取 <span class="math inline">\(b\in G\)</span>, 有 <span class="math inline">\(aeb=(ae)b=ab\)</span></p>
+<p>此时构造群方程 <span class="math inline">\(xa=b\)</span>, 记一个解为 <span class="math inline">\(f\)</span>, 那么有 <span class="math inline">\(fa=b\)</span></p>
+<p>因此 <span class="math inline">\(be=fae=f(ae)=fa=b\)</span>, 由 <span class="math inline">\(b\)</span> 的任意性即得 <span class="math inline">\(e\)</span> 为右幺元.</p>
+<p>任取 <span class="math inline">\(a\in G\)</span>, 方程 <span class="math inline">\(ax=e\)</span> 的解即为 <span class="math inline">\(a\)</span> 的右逆元. 由群的单侧定义可知 <span class="math inline">\(G\)</span> 为群.</p>
+<h2 id="消去律定义">消去律定义</h2>
+<p><strong>有限</strong>半群 <span class="math inline">\(G\)</span> 中满足左右消去律, 则 <span class="math inline">\(G\)</span> 为群</p>
+<h3 id="证明1">证明1</h3>
+<p>任取 <span class="math inline">\(a\in G\)</span>, 定义 <span class="math inline">\(Ga=\Set{xa\mid x\in G}\)</span>, 由右消去律可知 <span class="math inline">\(|G|=|Ga|\)</span>, 即 <span class="math inline">\(G\)</span> 与 <span class="math inline">\(Ga\)</span> 存在双射.</p>
+<p>故存在 <span class="math inline">\(e\in G\)</span> 使得 <span class="math inline">\(ea=a\)</span>. 下证 <span class="math inline">\(e\)</span> 是左幺元.</p>
+<p>任取 <span class="math inline">\(c\in G\)</span>, 由左消去律可知 <span class="math inline">\(|aG|=|G|\)</span>, 即存在 <span class="math inline">\(d\in G\)</span> 使得 <span class="math inline">\(ad=c\)</span>, 因此 <span class="math inline">\(ec=ead=ad=c\)</span>. 由 <span class="math inline">\(c\)</span> 的任意性, <span class="math inline">\(e\)</span> 是左幺元.</p>
+<p>再证明左逆元的存在性.</p>
+<p>类似存在 <span class="math inline">\(a&#39;\in G\)</span> 使得 <span class="math inline">\(a&#39;a=e\)</span>. 由 <span class="math inline">\(a\)</span> 的任意性可知 <span class="math inline">\(G\)</span> 存在左逆元. 由群的单侧定义可知 <span class="math inline">\(G\)</span> 为群.</p>
+<h3 id="证明2">证明2</h3>
+<p><span class="math inline">\(G\)</span> 有限, 因此可写成 <span class="math inline">\(G=\Set{a_1,a_2\ldots a_n}\)</span>, 群方程有 <span class="math inline">\(2n^2\)</span> 个, 形如 <span class="math inline">\(a_ix=a_j\)</span>, <span class="math inline">\(xa_i=a_j\)</span></p>
+<p>由右消去律, <span class="math inline">\(|G|=|Ga_i|\)</span>, 因此必然存在唯一的 <span class="math inline">\(a_x\)</span> 使得 <span class="math inline">\(a_x a_i=a_j\)</span>, 此时 <span class="math inline">\(a_x\)</span> 即为方程 <span class="math inline">\(xa_i=a_j\)</span> 的解.</p>
+<p>同理可得方程 <span class="math inline">\(a_i x=a_j\)</span> 存在唯一解</p>
+<p>故 <span class="math inline">\(G\)</span> 中任意群方程存在解, 由群方程有解定义可知 <span class="math inline">\(G\)</span> 为群.</p>
+<h1 id="阶">阶</h1>
+<p>元素 <span class="math inline">\(a\in G\)</span> 的阶定义为最小的自然数 <span class="math inline">\(n\in\mathbb N\)</span> 使得 <span class="math inline">\(a^n=e\)</span>, 记为 <span class="math inline">\(o(a)\)</span> 或 <span class="math inline">\(\left\lvert a\right\rvert\)</span></p>
+<p><span class="math inline">\(\left\lvert a\right\rvert=1\)</span> 当且仅当 <span class="math inline">\(a=e\)</span>, 并且有 <span class="math inline">\(\left\lvert a\right\rvert=\left\lvert a^{-1}\right\rvert\)</span></p>
+<h2 id="定理1">定理1</h2>
+<p><span class="math inline">\(a^k=e\)</span> 当且仅当 <span class="math inline">\(o(a)\mid k\)</span>.</p>
+<p>由反证法, 设根据带余除法得 <span class="math inline">\(k=q\cdot o(a)+r\)</span>, <span class="math inline">\(r\neq 0, r&lt;o(a)\)</span>, 那么有 <span class="math display">\[
+a^k=a^{q\cdot o(a)+r}=a^r=e
+\]</span> 这与 <span class="math inline">\(o(a)\)</span> 的定义矛盾, 故 <span class="math inline">\(r=0\)</span>.</p>
+<h2 id="定理2">定理2</h2>
+<p>记 <span class="math inline">\((a,b)\)</span> 为 <span class="math inline">\(a, b\)</span> 最大公约数 <span class="math display">\[
+o(a^k)=\frac{o(a)}{(k,o(a))}
+\]</span> 先证明 <span class="math inline">\(o(a^k)\leq \dfrac{o(a)}{(k,o(a))}\)</span> :</p>
+<p>注意到 <span class="math display">\[
+\left(a^k\right)^{\frac{o(a)}{(k,o(a))}}=\left(a^{o(a)}\right)^{\frac{k}{(k,o(a))}}=e
+\]</span> 根据定理1立得 <span class="math inline">\(o(a^k)\le \dfrac{o(a)}{(k,o(a))}\)</span></p>
+<p>再证明 <span class="math inline">\(o(a^k)\geq \dfrac{o(a)}{(k,o(a))}\)</span> :</p>
+<p>注意到 <span class="math display">\[
+\left(a^k\right)^{o(a^k)}=a^{k\cdot o(a^k)}=e
+\]</span> 根据定理1立得 <span class="math inline">\(o(a)\mid k\cdot o(a^k)\)</span>. 又因为 <span class="math inline">\(k\cdot o(a^k)\)</span> 同时是 <span class="math inline">\(k\)</span> 的倍数, 所以 <span class="math inline">\(k\cdot o(a^k)\)</span> 是 <span class="math inline">\(o(a), k\)</span> 的公倍数.</p>
+<p>而 <span class="math inline">\(\dfrac{k\cdot o(a)}{(k, o(a))}\)</span> 是 <span class="math inline">\(o(a), k\)</span> 的<strong>最小</strong>公倍数, 因此 <span class="math inline">\(k\cdot o(a^k)\geq \dfrac{k\cdot o(a)}{(k, o(a))}\)</span> , 化简即得证.</p>
+<p>因此 <span class="math inline">\(o(a^k)=\dfrac{k}{(k, o(a))}\)</span></p>
+<h2 id="定理3">定理3</h2>
+<p>若 <span class="math inline">\(a,b\in G\)</span> 可交换 (即 <span class="math inline">\(ab=ba\)</span>) 且 <span class="math inline">\(o(a),o(b)\in \mathbb N\)</span>, 那么 <span class="math display">\[
+\dfrac{nm}{d^2}\mid o(ab)
+\\
+o(ab)\mid\dfrac{nm}{d}
+\]</span></p>
+<p>方便起见, 记 <span class="math inline">\(m=o(a), n=o(b), d=(m, n)\)</span></p>
+<p>首先证明 <span class="math inline">\(o(ab)\mid \dfrac{mn}{d}\)</span> : <span class="math display">\[
+\left(ab\right)^{\frac{mn}{d}}=\left(a^m\right)^{\frac{n}{d}}\left(b^n\right)^{\frac{m}{d}}=e
+\]</span> 再证明 <span class="math inline">\(\dfrac{mn}{d^2}\mid o(ab)\)</span>. 方便起见可以分别证明 <span class="math inline">\(m\mid n\cdot o(ab)\)</span>, <span class="math inline">\(n\mid m\cdot o(ab)\)</span>. <span class="math display">\[
+\begin{aligned}
+\left(ab\right)^{n\cdot o(ab)}&amp;=\left[\left(ab\right)^{o(ab)}\right]^{n}=e
+\\
+\left(ab\right)^{n\cdot o(ab)}&amp;=a^{n\cdot o(ab)}\left(b^n\right)^{o(ab)}=a^{n\cdot o(ab)}=e
+\end{aligned}
+\]</span> 这说明 <span class="math inline">\(m\mid n\cdot o(ab)\)</span>, 即 <span class="math inline">\(\frac{m}{d}\mid \frac{n}{d}\cdot o(ab)\)</span>. 注意到 <span class="math inline">\(\frac{m}{d},\frac{n}{d}\)</span> 互质, 因此 <span class="math inline">\(\frac{m}{d}\mid o(ab)\)</span></p>
+<p>同理可得 <span class="math inline">\(\frac{n}{d}\mid o(ab)\)</span>, 又因为互质, 所以 <span class="math inline">\(\dfrac{nm}{d^2}\mid o(ab)\)</span>.</p>
+<p>特殊地, 若 <span class="math inline">\((o(a),o(b))=1\)</span>, 则有 <span class="math inline">\(o(ab)=o(a)o(b)\)</span></p>
+<p>这里一个反例是 <span class="math inline">\(o(a)=o(a^{-1})=n\)</span>, 但是 <span class="math inline">\(o(aa^{-1})=o(e)=1\neq lcm(o(a),o(a^{-1}))=n\)</span></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/07/04/OS03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-07-06 12:27:46
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Algebra/" title="Algebra">
+                        <b>#</b> Algebra
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/07/06/Algebra02-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F"><span class="toc-text">代数系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB-%E5%88%92%E5%88%86"><span class="toc-text">等价关系 划分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%8A%E7%BE%A4"><span class="toc-text">半群</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="toc-text">幺半群</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E5%B9%BA%E5%85%83"><span class="toc-text">左右幺元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BA%E5%85%83"><span class="toc-text">幺元</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BE%A4"><span class="toc-text">群</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E9%80%86%E5%85%83"><span class="toc-text">左右逆元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86%E5%85%83"><span class="toc-text">逆元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E5%8E%BB%E5%BE%8B"><span class="toc-text">消去律</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%A4%E6%96%B9%E7%A8%8B"><span class="toc-text">群方程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BE%A4%E7%9A%84%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="toc-text">群的等价定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BE%A7%E5%AE%9A%E4%B9%89"><span class="toc-text">单侧定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BE%A4%E6%96%B9%E7%A8%8B%E6%9C%89%E8%A7%A3%E5%AE%9A%E4%B9%89"><span class="toc-text">群方程有解定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E5%8E%BB%E5%BE%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">消去律定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%98%8E1"><span class="toc-text">证明1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%98%8E2"><span class="toc-text">证明2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%B6"><span class="toc-text">阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%861"><span class="toc-text">定理1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%862"><span class="toc-text">定理2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%863"><span class="toc-text">定理3</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/olahiuj">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mailto:jpwang@smail.nju.edu.cn">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/olahiuj">Copyright © 2022 jjppp</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

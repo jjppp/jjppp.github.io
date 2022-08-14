@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="jpwang" />
+  <meta name="description" content="Young, Simple &amp; Naive" />
+  
+  
+  <title>
+    
+      Compiler01 Introduction 
+      
+      
+      |
+    
+     jjppp
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/color-scheme.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="stylesheet" href="/css/comments.css">
+
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="jjppp" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">jjppp</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Compiler01 Introduction</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2020-12-26 23:42:00
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Compiler/" title="Compiler">
+                    <b>#</b> Compiler
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>看的是英文版的龙书,各种翻译看看就好...</p>
+<p>大概前半段是课本，后半段是网课的笔记。因为课程好像都不讲Chap. 2，所以下一节的笔记大概就没有课堂内容了</p>
+<h1 id="language-processors">1.1 Language Processors</h1>
+<p>词汇:</p>
+<p>intermediate 中间的</p>
+<p>compile 编译</p>
+<p>interpret 解释</p>
+<p>assemble 汇编</p>
+<p>relocatable 可重定位的</p>
+<p>编译器指的是将源代码翻译成等价的另一种语言的程序的程序(饶舌)</p>
+<p>编译器的一项重要职责是检测error</p>
+<p>编译语言的编译和执行是分开的:</p>
+<ol type="1">
+<li><p>源代码-&gt;[编译]-&gt;程序</p></li>
+<li><p>输入-&gt;[执行程序]-&gt;输出</p></li>
+</ol>
+<p>解释器是另一种语言处理器,解释语言没有编译过程:</p>
+<ol type="1">
+<li>源代码+输入-&gt;[解释]-&gt;输出</li>
+</ol>
+<p>通常来讲编译器要比解释器快得多(显然)</p>
+<p>而解释器通常能更好的检测error(解释器一步步执行)</p>
+<p>Java语言结合了翻译(Translate)和解释(Interpret):</p>
+<ol type="1">
+<li><p>源代码-&gt;[翻译]-&gt;字节码(bytecode)</p></li>
+<li><p>字节码+输入-&gt;[虚拟机]-&gt;输出 这里的字节码是一种中间程序(intermediate program),其好处在于可以在编译后跨平台解释 有些java编译器直接把字节码翻译成机器语言来加速</p></li>
+</ol>
+<p>从源代码到可执行文件之间不止需要编译器一个程序(过程)</p>
+<p>源代码(source code)-&gt;[预处理器(preprocessor)]-&gt;修改过的源代码(modified sourcecode)-&gt;[<strong>编译器(compiler)</strong>]-&gt;汇编语言(assembly program)-&gt;[汇编(assembler)]-&gt;可重定位机器码(relocatable machine code)-&gt;[链接(Linker/Loader)]-&gt;目标机器码(target machine code)</p>
+<p>通常情况下源代码有多个,它们先被<strong>预处理器</strong>处理(宏展开 代码替换等)得到修改过的源代码</p>
+<p>修改过的源代码然后被给了编译器,编译后得到汇编程序(较抽象 方便调试)</p>
+<p>汇编程序传给汇编器后得到relocatable machine code.编译过程中可能会有多个源代码,这时候就要把它们(还有一些需要的部分)链接起来,最后才得到可执行的程序(executable program)</p>
+<h2 id="exercise-for-1.1">Exercise for 1.1</h2>
+<ol type="1">
+<li>编译器和解释器的区别？ 笔记里有</li>
+<li>编译器和解释器的优劣？ 笔记里有</li>
+<li>编译器为什么产生汇编程序而不直接得到机器语言？</li>
+<li>Assembly language is easier to produce as output</li>
+<li>It is easier to debug (there may be more than one source codes)</li>
+<li>把一种高级语言翻译成另一种高级语言的的编译器叫做“source-to-source translator”.那么用C作为目标语言的编译器有什么好处？ C语言比较通用、易于阅读(compared to other intermediate languages)...C语言的优势都算</li>
+<li>描述一下assembler的任务 笔记里有</li>
+</ol>
+<h1 id="the-structure-of-a-compiler">1.2 The Structure of a Compiler</h1>
+<p>词汇:</p>
+<p>grammar 语法</p>
+<p>lexical 词法的</p>
+<p>syntax syntactical 句法 句法的</p>
+<p>semantic 语义的</p>
+<p>synthesis 合成</p>
+<p>constituent 组成的</p>
+<p>impose 施加</p>
+<p>sound 合理的</p>
+<p>coercions 强制类型转换</p>
+<p>judicious 明智的</p>
+<p>phase 阶段</p>
+<p>pass 通路</p>
+<p>syntax-directed translation</p>
+<p>前面讲了整个编译的过程,后面主要讲Compiler这一部分</p>
+<p>编译可以分成两个部分:分析(Analysis)和合成(Synthesis)</p>
+<h2 id="analysis">Analysis:</h2>
+<p>compiler的<strong>前端</strong>(front end)</p>
+<p>把源代码分解成若干小部分,再用这些部分构建语法结构,并利用语法结构来建立一种中间表达(Intermediate Representation = IR)</p>
+<p>如果Analysis过程中检测到了error(语法错误、语义错误)compiler能够及时报错</p>
+<p>同时Analysis过程中compiler会收集一些信息储存在symbol table(一种数据结构)中,并连同IR一起传递给Synthesis过程</p>
+<p>##　Synthesis:</p>
+<p>compiler的<strong>后端</strong>(back end)</p>
+<p>接收IR和symbol table,并据此产生目标程序</p>
+<p>compiler的流程一套下来大概是这样的:</p>
+<p>characters-&gt;<a href="">lexical analysis</a>-&gt;tokens-&gt;<a href="">syntax analysis</a>-&gt;syntax tree(语法树)-&gt;<a href="">semantic analysis</a>-&gt;decorated syntax tree-&gt;<a href="">Intermediate code generator</a>-&gt;IR-&gt;<a href="">optimizer1</a>-&gt;IR-&gt;<a href="">code generator</a>-&gt;machine code-&gt;<a href="">optimizer2</a>-&gt;machine code</p>
+<p>其中symbol table全程在线,随时可用</p>
+<p>流程里的optimizer不一定都有,不一定没有,都属于可选项</p>
+<h3 id="lexical-analysis">Lexical Analysis</h3>
+<p>这是compiler的第一部分,这个部分compiler会读取字符流中的字符,然后得到若干词语(lexeme)组成的序列</p>
+<p>每个lexeme都可以表示为形式如下的token:</p>
+<p>&lt;token-name, value&gt;</p>
+<p>书中举了这样一个例子:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>position = initial + rate * <span class="dv">60</span>;</span></code></pre></div>
+<p>就会被翻译成类似</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>&lt;id, <span class="dv">1</span>&gt; &lt;=&gt; &lt;id, <span class="dv">2</span>&gt; &lt;+&gt; &lt;id, <span class="dv">3</span>&gt; &lt;*&gt; &lt;num, <span class="dv">60</span>&gt;</span></code></pre></div>
+<p>这样的语句.此时symbol table就会变成这个样子</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="dv">1</span> position <span class="dv">20</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="dv">2</span> initial <span class="dv">12</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="dv">3</span> rate <span class="fl">0.25</span></span></code></pre></div>
+<p>我们看到的</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>&lt;id, x&gt;</span></code></pre></div>
+<p>就可以理解成从symbol table中的第x个元素,其余的类似(如果学过汇编可能会理解得好一点)</p>
+<p>如果出现了无法识别的字符/词语,那么编译器就会报错</p>
+<p>否则Lexical Analysis就会把若干这样的tokens传递给下一个环节</p>
+<h3 id="syntax-analysisparsing">Syntax Analysis/Parsing</h3>
+<p>在这一环节parser会利用前面的tokens建立一个树形结构来表示语法结构</p>
+<p>一个例子是语法树(syntax tree).语法树的每一个节点都代表一个操作(operator),节点的儿子是操作的对象.</p>
+<p>语法树的结构有利于维持传统运算的优先级顺序,也就是说它直观上是很好理解的</p>
+<h3 id="semantic-analysis">Semantic Analysis</h3>
+<p>这一环节semantic analyzer会根据语言的规范，利用语法树和symbol table中的信息来检查源代码的语义.一个具体的检查例子就是typecheck</p>
+<p>有的时候语言还有隐式的类型转换，这种时候compiler就需要判断出转换的类型，一个简单的例子是(int x = 60.0 * 2;)</p>
+<p>同时，这一阶段还会收集变量的类型等各种信息用于后续过程</p>
+<h3 id="ir-generation">IR Generation</h3>
+<p>在编译过程中可能出现不止一种、不止一次IR，语法树只是其中常用的一种</p>
+<p>在词法分析、语法分析、语义分析后，compiler通常会产生一种特殊的IR</p>
+<p>它较低级(low-level)，靠近机器语言(machine-like)，所以</p>
+<ol type="1">
+<li><p>容易生成</p></li>
+<li><p>容易翻译成目标机器语言</p></li>
+</ol>
+<h4 id="ac">3AC</h4>
+<p>3AC(3-adress code)是IR一个例子 (这个东西的形式很像寄存器的各种操作，通常有各种中间变量)</p>
+<p>一条常见的3AC指令形如: A = B opt C</p>
+<ol type="1">
+<li><p>至多一个操作符(可以没有:赋值操作)，<strong>至多</strong>两个操作变量</p></li>
+<li><p>所有操作按固定顺序执行</p></li>
+</ol>
+<h3 id="opimization">Opimization</h3>
+<p>喜闻乐见的优化环节</p>
+<p>优化分两种，机器无关(machine dependent)/机器相关(machine independent)，通常指的是运行速度优化</p>
+<p>优化还可能包括(更少的能耗/更小的程序)</p>
+<p>对IR的优化属于机器无关的优化(为什么?)，其意图在于减少语句的同时保证所有的语句仍然符合IR规范</p>
+<p>现代编译器的区别主要在于optimization环节，致力于optimization的compiler被称为"optimizing compilers"</p>
+<h3 id="code-generation">Code Generation</h3>
+<p>这个环节compiler将IR转变为机器代码(直接操作寄存器、内存)的序列</p>
+<p>这一步的重点在于明智地分配寄存器和高效代码的生成</p>
+<p>本书到目前为止忽略了identifier(变量)的储存分配，现在只需要知道这在生成IR的环节或这一环节完成就行</p>
+<h3 id="symbol-table-management">Symbol Table Management</h3>
+<p>这个数据结构记录了变量、变量类型、使用位置、函数等等信息，并且应该支持快速的查找和修改各种信息</p>
+<p>(怎么看怎么像BST囧,哪来的table)</p>
+<h3 id="grouping-phases-into-passes">Grouping Phases into Passes</h3>
+<p>一个流程的各逻辑阶段叫做Phases。在实际操作中可能会把多个Phases同时实现(例如同时实现词法和语法分析)</p>
+<p>一个读入一段文件并输出一段文件的流程叫做Pass，是流程的实际阶段分割</p>
+<p>这一段讲的是compiler的组织结构和模块化</p>
+<p>在上面把compiler分为front end和back end的好处在于</p>
+<ol type="1">
+<li><p>可以用一个语言的前端配上不同机器的后端</p></li>
+<li><p>可以用不同语言的前端配上特定机器的后端</p></li>
+</ol>
+<h2 id="语言发展史">语言发展史</h2>
+<p>机器语言-&gt;汇编-&gt;Fortran、Cobol、Lisp、C、C++-&gt;NOMAD、SQL、Postscript-&gt;Prolog、OPS5</p>
+<p>一些概念(哪哪都是这几位)</p>
+<h3 id="命令式语言imperative">命令式语言(Imperative)</h3>
+<p>描述操作过程的语言</p>
+<h3 id="声明式语言declarative">声明式语言(Declarative)</h3>
+<p>描述操作目的的语言</p>
+<h3 id="冯诺依曼语言">冯诺依曼语言</h3>
+<p>所有以冯诺依曼体系结构为基础的语言都是。基于lambda验算的语言则不是</p>
+<h3 id="脚本语言">脚本语言</h3>
+<p>逐行执行，无需全文编译即可运行的语言</p>
+<h2 id="namevariableidentifier">Name&amp;Variable&amp;Identifier</h2>
+<p>Identifier是一段字符，用来表示某个实体(entity)</p>
+<p>Name指的是<strong>代码</strong>中的某个静态实体，可以是函数/变量/其它。所有的Id都是Name，但Name不都是Id(例如Id.Id也可以表示一个Name)</p>
+<p>Variable用来指代运行时Name的动态含义(某个Name究竟指内存中的哪段数据)。</p>
+<h2 id="静态动态">静态/动态</h2>
+<p>如果一个问题需要运行程序才能得到答案，那么这个问题就是"动态的"，否则是"静态的"</p>
+<p>一个经典的问题就是静态/动态的作用域。作用域设计的问题是：在某处提及的Name <code>x</code>究竟是在何处被声明的 <code>x</code>？</p>
+<p>静态的作用域很好理解；动态作用域的一个例子出现在OOP中。例如对于父类和子类都实现了的方法<code>method()</code>，<code>x.method();</code>究竟dispatch到哪一个，就依赖于<code>x</code>动态指向的对象。</p>
+<h2 id="environmentstate">Environment&amp;State</h2>
+<p>环境：从Name到储存位置的映射(左值)</p>
+<p>状态：从储存位置到值的映射(右值)</p>
+<p>那么上面说到的"OOP中函数的作用域由环境决定"的说法就可以理解了，即类中函数的作用域由receiver object在储存中的位置决定。</p>
+<p>从这个角度看，Allocation Site Abstraction就是在用Name对Variable建模</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2020/11/23/%E5%87%A0%E4%B8%AA%E5%85%B3%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E6%9C%89%E8%B6%A3%E8%AF%81%E6%98%8E/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2020-12-26 23:42:00
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Compiler/" title="Compiler">
+                        <b>#</b> Compiler
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/01/01/Calculus01-%E5%AE%9E%E6%95%B0%E5%AE%8C%E5%A4%87%E6%80%A7%E7%9A%84%E5%85%AD%E4%B8%AA%E5%AE%9A%E7%90%86/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#language-processors"><span class="toc-text">1.1 Language Processors</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#exercise-for-1.1"><span class="toc-text">Exercise for 1.1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#the-structure-of-a-compiler"><span class="toc-text">1.2 The Structure of a Compiler</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#analysis"><span class="toc-text">Analysis:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lexical-analysis"><span class="toc-text">Lexical Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#syntax-analysisparsing"><span class="toc-text">Syntax Analysis&#x2F;Parsing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#semantic-analysis"><span class="toc-text">Semantic Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ir-generation"><span class="toc-text">IR Generation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ac"><span class="toc-text">3AC</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#opimization"><span class="toc-text">Opimization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#code-generation"><span class="toc-text">Code Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#symbol-table-management"><span class="toc-text">Symbol Table Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grouping-phases-into-passes"><span class="toc-text">Grouping Phases into Passes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-text">语言发展史</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%BC%8F%E8%AF%AD%E8%A8%80imperative"><span class="toc-text">命令式语言(Imperative)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8F%E8%AF%AD%E8%A8%80declarative"><span class="toc-text">声明式语言(Declarative)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%AF%E8%AF%BA%E4%BE%9D%E6%9B%BC%E8%AF%AD%E8%A8%80"><span class="toc-text">冯诺依曼语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80"><span class="toc-text">脚本语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#namevariableidentifier"><span class="toc-text">Name&amp;Variable&amp;Identifier</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%8A%A8%E6%80%81"><span class="toc-text">静态&#x2F;动态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#environmentstate"><span class="toc-text">Environment&amp;State</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/olahiuj">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mailto:jpwang@smail.nju.edu.cn">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/olahiuj">Copyright © 2022 jjppp</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
