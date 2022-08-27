@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-08-14T07:42:34.617Z</updated>
+  <updated>2022-08-27T06:00:27.754Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TAPL06 References</title>
+    <link href="http://example.com/2022/08/27/TAPL06-References/"/>
+    <id>http://example.com/2022/08/27/TAPL06-References/</id>
+    <published>2022-08-27T04:04:59.000Z</published>
+    <updated>2022-08-27T06:00:27.754Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;之前提到的 &lt;code&gt;x=term&lt;/code&gt; 都是 name binding。因为所有的项都可以求值，并且都是纯的计算模型（只和 substitution 有关），所以本质上是 meta level</summary>
+        
+      
+    
+    
+    
+    
+    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
+    
+  </entry>
   
   <entry>
     <title>Network01 Intro</title>
@@ -495,23 +519,6 @@
 &lt;li&gt;&lt;p&gt;欧姆定律，即 &lt;span class=&quot;math</summary>
         
       
-    
-    
-    
-    
-    <category term="Numerical Method" scheme="http://example.com/tags/Numerical-Method/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算方法06 FFT</title>
-    <link href="http://example.com/2022/06/14/Numerical06-FFT/"/>
-    <id>http://example.com/2022/06/14/Numerical06-FFT/</id>
-    <published>2022-06-14T06:49:00.000Z</published>
-    <updated>2022-08-03T10:01:19.804Z</updated>
-    
-    
-    <summary type="html">据助教说不考这么麻烦的计算，我就摸了</summary>
     
     
     

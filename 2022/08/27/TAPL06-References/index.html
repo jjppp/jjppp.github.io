@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      TAPL06 References 
+      
+      
+      |
     
      jjppp
   </title>
@@ -112,281 +115,199 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="软件分析04 CGC">
-        <div class="time-m-d">2021-08-04</div>
-        <div class="title">
-          <a href="/2021/08/04/SPA04-CGC/">
-            
-              
-                <span>软件分析04 CGC</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">TAPL06 References</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-08-27 12:04:59
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/TAPL/" title="TAPL">
+                    <b>#</b> TAPL
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="大一下存活纪实">
-        <div class="time-m-d">2021-08-02</div>
-        <div class="title">
-          <a href="/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/">
-            
-              
-                <span>大一下存活纪实</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="intro">Intro</h1>
+<p>之前提到的 <code>x=term</code> 都是 name binding。因为所有的项都可以求值，并且都是纯的计算模型（只和 substitution 有关），所以本质上是 meta level 的语法替换。可以简单地理解为宏展开。</p>
+<p>这里引入的是可变引用（指针、C++的引用、rust的可变引用）这样的东西，即我们给某个变量绑定的不再是一个项，而是一个储存空间，其中储存着项。同时有两种方法“取出”和“存入”项。这就使得计算模型发生了变化（回想 SICP 引入 <code>set!</code> 之后的那一大坨话）</p>
+<p>同样是引用，不同的语言在语法设计上也存在差异，例如 C 语言的变量默认是可变的，会在使用过程中隐式地解引用；也可以设计成 <code>val</code> 和 <code>var</code> 的区别以显式地区分可变与不可变变量。</p>
+<p>当然书上的写法还是很像 C 的。</p>
+<p>印象里去年上课还扩充了 magic wand 之类的高端内容，当时是完全没听懂了。</p>
+<h1 id="side-effect-alias-shared-state">Side-effect, alias, shared state</h1>
+<p>副作用和状态很好理解，考虑如下项</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>gen start = </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="kw">let</span> counter = <span class="dt">ref</span> start <span class="kw">in</span> &#123;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>        inc = <span class="kw">fun</span> _: Unit (counter := !counter + <span class="dv">1</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>        get = <span class="kw">fun</span> _: Unit (!counter)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    &#125;</span></code></pre></div>
+<p>我们调用 <code>gen 0</code> 即得到一个 variant，每次调用 <code>variant.inc unit</code> 就会造成 <code>counter</code> 所存内容的增加，调用 <code>variant.get unit</code> 就可以查询到这个值。</p>
+<p>alias 也很好理解，考虑</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>x = <span class="dt">ref</span> <span class="dv">0</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>y = x;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>x := !x + <span class="dv">1</span>;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>!y</span></code></pre></div>
+<p>结果就会是 <code>1</code>。 alias 使得分析变得困难，这也是为什么别名分析需要花那么大力气去对 heap 和 obj 建模。</p>
+<p>共享状态就更好理解了，写过并发程序的话应该都懂的。</p>
+<h1 id="location-l">location <span class="math inline">\(L\)</span></h1>
+<p>store 是对 memory 的抽象，即我们认为内存是一个 <span class="math inline">\(L\mapsto V\)</span> 的映射。此时对分配操作而言，其结果就是产生一个 <span class="math inline">\(l\in L\)</span>，把值存进 <span class="math inline">\(\mu\)</span>。而后续通过这个 location <span class="math inline">\(l\)</span> 我们就可以得到具体的值。</p>
+<p>引出的一个问题就是 gc。在形式化讨论的时候完全可以不管 gc，如果需要对 gc 建模则要</p>
+<ol type="1">
+<li>形式化定义 garbage</li>
+<li>形式化定义 gc 的过程（即 <span class="math inline">\(\overset{\text{gc}}\rightarrow\)</span> 的操作语义）</li>
+</ol>
+<h1 id="typing">Typing</h1>
+<p>对于新加入的 location <span class="math inline">\(l\)</span> 也需要赋予一个类型。</p>
+<p>naive 的做法是通过访存 <span class="math inline">\(\mu\)</span> 来做 structural 的类型推导。考虑如下 store <span class="math display">\[
+\Set{l_1: \lambda x\colon\text{Nat}. (!l_2).x,l_2: \lambda x\colon\text{Nat}. (!l_1).x}
+\]</span> 这种 store 上的循环依赖将导致 naive 的类型推导不终止</p>
+<p>一个更加简单的方法是给每个 location 标注类型，即所有被动态分配出来的内存都应当维护这段内存中的比特串应当被解释为什么。</p>
+
       </div>
-    
-      <div class="post-item" title="集训补题合集">
-        <div class="time-m-d">2021-07-17</div>
-        <div class="title">
-          <a href="/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>集训补题合集</span>
-              
+              <a href="/2022/08/14/Network01-Intro/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-08-27 12:04:59
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/TAPL/" title="TAPL">
+                        <b>#</b> TAPL
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="图论04 平面图与可平面图">
-        <div class="time-m-d">2021-07-03</div>
-        <div class="title">
-          <a href="/2021/07/03/Graph04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/">
-            
-              
-                <span>图论04 平面图与可平面图</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#side-effect-alias-shared-state"><span class="toc-text">Side-effect, alias, shared state</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#location-l"><span class="toc-text">location \(L\)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#typing"><span class="toc-text">Typing</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="软件分析03 DFA">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA03-DFA/">
-            
-              
-                <span>软件分析03 DFA</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析02 IR">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA02-IR/">
-            
-              
-                <span>软件分析02 IR</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析01 Intro">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA01-Intro/">
-            
-              
-                <span>软件分析01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论03 染色">
-        <div class="time-m-d">2021-06-04</div>
-        <div class="title">
-          <a href="/2021/06/04/Graph03-%E6%9F%93%E8%89%B2/">
-            
-              
-                <span>图论03 染色</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论01 基本概念&定义">
-        <div class="time-m-d">2021-06-01</div>
-        <div class="title">
-          <a href="/2021/06/01/Graph01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/">
-            
-              
-                <span>图论01 基本概念&定义</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="数据结构01 搜索树">
-        <div class="time-m-d">2021-05-29</div>
-        <div class="title">
-          <a href="/2021/05/29/DS01-%E6%90%9C%E7%B4%A2%E6%A0%91/">
-            
-              
-                <span>数据结构01 搜索树</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="ICPC 2021 银川划水记">
-        <div class="time-m-d">2021-05-17</div>
-        <div class="title">
-          <a href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">
-            
-              
-                <span>ICPC 2021 银川划水记</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论02 匹配">
-        <div class="time-m-d">2021-04-30</div>
-        <div class="title">
-          <a href="/2021/04/30/Graph02-%E5%8C%B9%E9%85%8D/">
-            
-              
-                <span>图论02 匹配</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验06 : shlab">
-        <div class="time-m-d">2021-04-21</div>
-        <div class="title">
-          <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C06-shlab/">
-            
-              
-                <span>CSAPP实验06 : shlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验05: cachelab">
-        <div class="time-m-d">2021-03-07</div>
-        <div class="title">
-          <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C05-cachelab/">
-            
-              
-                <span>CSAPP实验05: cachelab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="大一上存活经验">
-        <div class="time-m-d">2021-02-19</div>
-        <div class="title">
-          <a href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/">
-            
-              
-                <span>大一上存活经验</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验04: archlab">
-        <div class="time-m-d">2021-02-17</div>
-        <div class="title">
-          <a href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C04-archlab/">
-            
-              
-                <span>CSAPP实验04: archlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="半音阶口琴谱合辑">
-        <div class="time-m-d">2021-02-14</div>
-        <div class="title">
-          <a href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/">
-            
-              
-                <span>半音阶口琴谱合辑</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验03 : attacklab">
-        <div class="time-m-d">2021-02-04</div>
-        <div class="title">
-          <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C03-attacklab/">
-            
-              
-                <span>CSAPP实验03 : attacklab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验02 : bomblab">
-        <div class="time-m-d">2021-01-24</div>
-        <div class="title">
-          <a href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C02-bomblab/">
-            
-              
-                <span>CSAPP实验02 : bomblab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验01 : datalab">
-        <div class="time-m-d">2021-01-14</div>
-        <div class="title">
-          <a href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C01-datalab/">
-            
-              
-                <span>CSAPP实验01 : datalab</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/3/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">4 / 5</span>
-    
-      <a href="/page/5/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -652,6 +573,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
