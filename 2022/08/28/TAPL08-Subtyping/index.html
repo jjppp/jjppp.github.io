@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      TAPL08 Subtyping 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,233 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="软件分析06 CSA">
-        <div class="time-m-d">2021-08-08</div>
-        <div class="title">
-          <a href="/2021/08/08/SPA06-CSA/">
-            
-              
-                <span>软件分析06 CSA</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">TAPL08 Subtyping</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-08-28 17:44:48
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/TAPL/" title="TAPL">
+                    <b>#</b> TAPL
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="软件分析05 PA">
-        <div class="time-m-d">2021-08-04</div>
-        <div class="title">
-          <a href="/2021/08/04/SPA05-PA/">
-            
-              
-                <span>软件分析05 PA</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="intro">Intro</h1>
+<p>Subtyping（或者说 Subtype Polymorphism）给出了一种类型间的转换关系（一种 preorder），使得程序猿可以写出很通用的代码。典型的子类型出现在各种 OO 语言里，例如 Java 的子类。</p>
+<p>同时需要指出的是，子类型和继承并非必须捆绑在一起</p>
+<ul>
+<li>子类型说的是具有一种类型的项可以无痛替换掉另一种类型的项</li>
+<li>继承强调的是代码复用</li>
+</ul>
+<p>Java 把这俩放在一起了，即创造子类型的同时天然地复用了父类型的代码。</p>
+<h1 id="subsumption">Subsumption</h1>
+<p>称 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(B\)</span> 的子类型，记为 <span class="math inline">\(A&lt;: B\)</span>。一个简单的基于朴素集合论的解释就是：类型为 <span class="math inline">\(A\)</span> 的项构成的集合是类型为 <span class="math inline">\(B\)</span> 的项构成的集合的子集。</p>
+<p>这说明，若 <span class="math inline">\(\Gamma\vdash a:A\)</span>，那么 <span class="math inline">\(\Gamma\vdash a:B\)</span>。即 <span class="math display">\[
+\frac{\Gamma \vdash a:A,\qquad A&lt;:B}{\Gamma\vdash a:B}
+\]</span></p>
+<h2 id="subtype-relation">Subtype relation</h2>
+<p>子类型关系是类型上的一个二元关系，由若干推导规则给出。</p>
+<h3 id="baiscs">Baiscs</h3>
+<p>通常子类型关系是任意的（对于不同的语言而言可以不同），因此存在可以设计的地方。但通常都包括下面两条（即子类型关系至少应该是一个 preorder） <span class="math display">\[
+\begin{aligned}
+\frac{}{A&lt;:A}
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{A&lt;:B\qquad B&lt;:C}{A&lt;:C}
+\end{aligned}
+\]</span></p>
+<h3 id="records">Records</h3>
+<p>书上花了很长的篇幅讲两个 record 什么情况下是子类型，其实就是看 field 的包含情况就可以了。</p>
+<h3 id="functions">Functions</h3>
+<p>这个就比较好玩 <span class="math display">\[
+\frac{S_1:&gt; S_2\qquad T_1&lt;:T_2}{S_1\rightarrow T_1&lt;:S_2\rightarrow T_2}
+\]</span></p>
+<ul>
+<li>函数的子类型与函数参数的子类型关系是<strong>反的</strong>，这个叫逆变（contravariant）</li>
+<li>函数的子类型与函数返回值的子类型关系是<strong>相同的</strong>，这个叫协变（covariant）</li>
+</ul>
+<h3 id="special-types">Special types</h3>
+<p>定义 <span class="math inline">\(\text{Bot, Top}\)</span> 为两个特殊类型，其中 <span class="math inline">\(\forall S. S&lt;:\text{Top}\)</span>，<span class="math inline">\(\text{Bot}\)</span> 类似。</p>
+<h3 id="variant">Variant</h3>
+<p>对于 Sum Type 而言，子类型多态的引入可以省去一个 ascription，因为类型可以自动提升。</p>
+<h3 id="list">List</h3>
+<p><span class="math display">\[
+\frac{A&lt;:B}{\text{List $A&lt;:$ List $B$}}
+\]</span></p>
+<h3 id="references">References</h3>
+<p><span class="math display">\[
+\frac{A&lt;:B\qquad B&lt;:A}{\text{ref $A&lt;:$ ref $B$}}
+\]</span></p>
+<p>之所以有这个要求，是因为一个引用既可以存入、也可以取出。</p>
+<p>我们只能往 <span class="math inline">\(\text{ref $B$}\)</span> 中存入 <span class="math inline">\(B\)</span> 的子类型，也只能取出 <span class="math inline">\(B\)</span> 的子类型，因此 <span class="math inline">\(\text{ref $A$}\)</span> 能替代 <span class="math inline">\(\text{ref }B\)</span> 的场合要求 <span class="math inline">\(A,B\)</span> 互为子类型。</p>
+<p>也可以把读和写分离，做成类似管道的东西，那么这时候就可以在两侧分别赋予不同的类型了（逆变/协变）。</p>
+<h3 id="array">Array</h3>
+<p>数组本质上也是一种引用（引用是长度为 1 的数组），因此很容易写出 <span class="math display">\[
+\frac{A&lt;:B\qquad B&lt;:A}{\text{Array $A&lt;:$ Array $B$}}
+\]</span> 书上也提到了 Java 的设计缺陷，看一乐</p>
+<h2 id="casting">Casting</h2>
+<p>一般分成 upCast 和 downCast</p>
+<ul>
+<li><p>upCast 就是之前提到的 ascription，即通过 subsumption 提升为父类型，这个没什么问题</p></li>
+<li><p>downCast 就是 Java 里一般会遇到的 cast，即把某个父类型的项强转成某个子类型。最经典的就是 Java 在还没有泛型的时候需要这样实现 List：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>ListOfObjects list = <span class="kw">new</span> ListOfObjects;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>Dog dog = <span class="kw">new</span> <span class="fu">Dog</span>();</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>list.<span class="fu">add</span>(dog);</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>Dog objDog = (Dog) list.<span class="fu">get</span>(<span class="dv">0</span>);</span></code></pre></div>
+<p>虽然即使有了本质上也还是这么实现的...</p>
+<p>或者 C 里面的 <code>void *</code></p>
+<p>当然，不正确的 downCast 会丧失 safety，因此还需要做动态的检查。也有些小技巧可以通过静态的指针分析来得到一些 sound 解，使得我们可以省去某些动态的检查。</p></li>
+</ul>
+
       </div>
-    
-      <div class="post-item" title="软件分析04 CGC">
-        <div class="time-m-d">2021-08-04</div>
-        <div class="title">
-          <a href="/2021/08/04/SPA04-CGC/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>软件分析04 CGC</span>
-              
+              <a href="/2022/08/28/TAPL07-Exceptions/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-08-28 17:44:48
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/TAPL/" title="TAPL">
+                        <b>#</b> TAPL
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="大一下存活纪实">
-        <div class="time-m-d">2021-08-02</div>
-        <div class="title">
-          <a href="/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/">
-            
-              
-                <span>大一下存活纪实</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#subsumption"><span class="toc-text">Subsumption</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#subtype-relation"><span class="toc-text">Subtype relation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#baiscs"><span class="toc-text">Baiscs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#records"><span class="toc-text">Records</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#functions"><span class="toc-text">Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#special-types"><span class="toc-text">Special types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#variant"><span class="toc-text">Variant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list"><span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#references"><span class="toc-text">References</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array"><span class="toc-text">Array</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#casting"><span class="toc-text">Casting</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="集训补题合集">
-        <div class="time-m-d">2021-07-17</div>
-        <div class="title">
-          <a href="/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/">
-            
-              
-                <span>集训补题合集</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论04 平面图与可平面图">
-        <div class="time-m-d">2021-07-03</div>
-        <div class="title">
-          <a href="/2021/07/03/Graph04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/">
-            
-              
-                <span>图论04 平面图与可平面图</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析03 DFA">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA03-DFA/">
-            
-              
-                <span>软件分析03 DFA</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析02 IR">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA02-IR/">
-            
-              
-                <span>软件分析02 IR</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析01 Intro">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA01-Intro/">
-            
-              
-                <span>软件分析01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论03 染色">
-        <div class="time-m-d">2021-06-04</div>
-        <div class="title">
-          <a href="/2021/06/04/Graph03-%E6%9F%93%E8%89%B2/">
-            
-              
-                <span>图论03 染色</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论01 基本概念&定义">
-        <div class="time-m-d">2021-06-01</div>
-        <div class="title">
-          <a href="/2021/06/01/Graph01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/">
-            
-              
-                <span>图论01 基本概念&定义</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="数据结构01 搜索树">
-        <div class="time-m-d">2021-05-29</div>
-        <div class="title">
-          <a href="/2021/05/29/DS01-%E6%90%9C%E7%B4%A2%E6%A0%91/">
-            
-              
-                <span>数据结构01 搜索树</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="ICPC 2021 银川划水记">
-        <div class="time-m-d">2021-05-17</div>
-        <div class="title">
-          <a href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">
-            
-              
-                <span>ICPC 2021 银川划水记</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论02 匹配">
-        <div class="time-m-d">2021-04-30</div>
-        <div class="title">
-          <a href="/2021/04/30/Graph02-%E5%8C%B9%E9%85%8D/">
-            
-              
-                <span>图论02 匹配</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验06 : shlab">
-        <div class="time-m-d">2021-04-21</div>
-        <div class="title">
-          <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C06-shlab/">
-            
-              
-                <span>CSAPP实验06 : shlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验05: cachelab">
-        <div class="time-m-d">2021-03-07</div>
-        <div class="title">
-          <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C05-cachelab/">
-            
-              
-                <span>CSAPP实验05: cachelab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="大一上存活经验">
-        <div class="time-m-d">2021-02-19</div>
-        <div class="title">
-          <a href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/">
-            
-              
-                <span>大一上存活经验</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验04: archlab">
-        <div class="time-m-d">2021-02-17</div>
-        <div class="title">
-          <a href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C04-archlab/">
-            
-              
-                <span>CSAPP实验04: archlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="半音阶口琴谱合辑">
-        <div class="time-m-d">2021-02-14</div>
-        <div class="title">
-          <a href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/">
-            
-              
-                <span>半音阶口琴谱合辑</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验03 : attacklab">
-        <div class="time-m-d">2021-02-04</div>
-        <div class="title">
-          <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C03-attacklab/">
-            
-              
-                <span>CSAPP实验03 : attacklab</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/3/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">4 / 5</span>
-    
-      <a href="/page/5/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +611,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
