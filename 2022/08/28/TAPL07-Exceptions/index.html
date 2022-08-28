@@ -11,7 +11,7 @@
   
   <title>
     
-      标签 
+      TAPL07 Exceptions 
       
       
       |
@@ -149,21 +149,181 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algebra/" rel="tag">Algebra</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compilers/" rel="tag">Compilers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cryptography/" rel="tag">Cryptography</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DLCO/" rel="tag">DLCO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka-Moments/" rel="tag">Eureka Moments</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Formal-Semantics/" rel="tag">Formal Semantics</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game-Theory/" rel="tag">Game Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph-Theory/" rel="tag">Graph Theory</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS-Intro/" rel="tag">ICS Intro</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mathematical-Logic/" rel="tag">Mathematical Logic</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numerical-Method/" rel="tag">Numerical Method</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Operating-System/" rel="tag">Operating System</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Analysis/" rel="tag">Static Analysis</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAPL/" rel="tag">TAPL</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XCPC/" rel="tag">XCPC</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/haskell/" rel="tag">haskell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag">数学分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">TAPL07 Exceptions</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-08-28 14:50:10
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/TAPL/" title="TAPL">
+                    <b>#</b> TAPL
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="intro">Intro</h1>
+<p>异常处理一直是老大难问题，大概有这么几个流派</p>
+<ol type="1">
+<li>用返回值区分，Rust 的 <code>Result</code>、Haskell 的 <code>Either a b</code>、C 的 <code>errno</code> 都是这类（其实我还想说 go 的）。</li>
+<li>用异常控制流（本质上是non-local jumps），例如 Java 的 <code>try ... catch ... finally</code>、Python 类似、C++ 也能做。</li>
+<li>遇到异常直接终止程序，例如防御性的 <code>assert()</code>、<code>panic()</code> 等等</li>
+</ol>
+<p>①和②往往针对可恢复的异常。书上大概讲的是②和③这种方法。</p>
+<h1 id="exceptions">Exceptions</h1>
+<h2 id="naive-raise">Naive raise</h2>
+<p>加入一个新的项 <span class="math inline">\(\text{error}\)</span>，规定 <span class="math display">\[
+\begin{aligned}
+\text{error}\; t\rightarrow \text{error}\\
+v\;\text{error}\rightarrow \text{error}
+\end{aligned}
+\]</span> 这表明 <span class="math inline">\(\text{error}\)</span> 具有“传染性”，当一处异常出现时，后续的求值将使得这个异常扩散到整个程序（最终 abort）。可以发现这两条规则保持了执行的顺序，即一个异常不会过早被扔出来，也不会过晚才出现（以免执行了后续有副作用的部分）</p>
+<p>同时 <span class="math inline">\(\text{error}\)</span> 本身并不是值，这表明 <span class="math inline">\((\lambda x:\text{Top}.\;x)\;\text{error}\)</span> 将不会执行 apply，而是直接变成 <span class="math inline">\(\text{error}\)</span>。否则将引入二义性的问题。</p>
+<h2 id="naive-raise-typing">Naive raise Typing</h2>
+<p>有几个技巧</p>
+<ol type="1">
+<li><span class="math inline">\(\text{error}\)</span> 可以具有类型 <span class="math inline">\(\text{Bot}\)</span>，这样在有子类型的类型系统中就可以被<strong>提升</strong>为任意其它类型</li>
+<li><span class="math inline">\(\text{error}\)</span> 可以具有类型 <span class="math inline">\(\forall X.X\)</span>，这样就可以被<strong>实例化</strong>为任意其它类型</li>
+<li>或者留着不动，在做 typecheck 的时候赋予 <span class="math inline">\(\text{error}\)</span> 我们需要的类型。但这样就违背了 unique type 的性质</li>
+</ol>
+<p>同时 preservation TH 也需要变换表述，即最终总会得到一个值<strong>或 <span class="math inline">\(\text{error}\)</span></strong></p>
+<h2 id="catch">Catch</h2>
+<p>就是设计这样的项 <span class="math inline">\(\text{try }t_1\text{ with }t_2\)</span>，规定 <span class="math display">\[
+\begin{aligned}
+\text{try error with } t_2&amp;\rightarrow t_2 \\
+\text{try $v$ with $t_2$} &amp;\rightarrow v
+\end{aligned}
+\]</span> 即如果异常了就执行后面的代码擦屁股，否则就正常返回。你也可以当成是套了一个 meta-level 的 wrapper</p>
+<p>这玩意的 typing 要求 <span class="math inline">\(t_1, t_2\)</span> 有相同的类型（回想 <span class="math inline">\(\text{if-then-else}\)</span>）。</p>
+<h2 id="raise-with-value">Raise with value</h2>
+<p>最经典的就是 C++ 里的 <code>e.what()</code>，即我们可以给异常带上一个值用于区分这是什么异常，同时在 handler 中利用这个携带值做一些事情。</p>
+<p>引入 <span class="math display">\[
+\begin{aligned}
+&amp;\text{raise $t$}\\
+&amp;\text{try $t_1$ with $t_2$}
+\end{aligned}
+\]</span> 其中 <span class="math inline">\(t_2\)</span> 是一个类型为 <span class="math inline">\(T&#39;\mapsto T\)</span> 函数，<span class="math inline">\(T,T&#39;\)</span> 分别为 <span class="math inline">\(t_1\)</span> 和 <span class="math inline">\(\text{raise}\)</span> 中信息的类型。</p>
+<p>书上规定 <span class="math inline">\(\text{raise $t$}\)</span> 仍然具有任意的类型。这里一个小问题就是我们没法通过 structural 的方法静态地知道一个异常内信息的类型了（否则等价于用 <code>Either a</code> Monad 做返回值）。</p>
+<p>当然书上给出的 argue 说的也是针对不可恢复的错误，我们是不需要关注其可能抛出的异常的（毕竟最终会支配整个程序）。但是对于可恢复的程序还是有必要的，例如 Java 就偏向于明确写出 <code>public foo() throws BarException</code> 这样的东西。</p>
+<p>此外，用一些别的小技巧还是可以静态分析出一段代码可能会扔什么异常的。</p>
+<p>另一个可以设计的地方在于内部信息的选择</p>
+<ol type="1">
+<li>用数字，这就是 C 的做法</li>
+<li>用 <code>String</code>，那就是最简单的 <code>e.what()</code></li>
+<li>用一个 Sum Type（或者像 Java 那样用类），这样就可以 match 不同的情况做不同的处理</li>
+</ol>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/08/27/TAPL06-References/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-08-28 14:50:10
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/TAPL/" title="TAPL">
+                        <b>#</b> TAPL
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#exceptions"><span class="toc-text">Exceptions</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#naive-raise"><span class="toc-text">Naive raise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#naive-raise-typing"><span class="toc-text">Naive raise Typing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#catch"><span class="toc-text">Catch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#raise-with-value"><span class="toc-text">Raise with value</span></a></li></ol></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
 
   
-
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
   
 
-  
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">
