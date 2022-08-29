@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-08-28T14:58:02.558Z</updated>
+  <updated>2022-08-29T15:16:41.669Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TAPL09 Recursive Types</title>
+    <link href="http://example.com/2022/08/29/TAPL09-Recursive-Types/"/>
+    <id>http://example.com/2022/08/29/TAPL09-Recursive-Types/</id>
+    <published>2022-08-29T15:16:41.000Z</published>
+    <updated>2022-08-29T15:16:41.669Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>TAPL08 Subtyping</title>
@@ -497,32 +519,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统 Lab3 uproc</title>
-    <link href="http://example.com/2022/06/23/OSLab3-uproc/"/>
-    <id>http://example.com/2022/06/23/OSLab3-uproc/</id>
-    <published>2022-06-23T11:19:50.000Z</published>
-    <updated>2022-08-03T10:04:31.001Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;lab3-uproc&quot;&gt;Lab3-uproc&lt;/h1&gt;
-&lt;h2 id=&quot;设计&quot;&gt;设计&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;在 L3 的时候实现了侵入式链表，这样就可以把原先 pmm 的 &lt;code&gt;free_list&lt;/code&gt;、kmt 的</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
