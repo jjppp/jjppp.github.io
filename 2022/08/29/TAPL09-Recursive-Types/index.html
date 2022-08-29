@@ -171,9 +171,43 @@
           2022-08-29 23:16:41
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/TAPL/" title="TAPL">
+                    <b>#</b> TAPL
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <h1 id="intro">Intro</h1>
+<p>有种前菜只是刚刚上完的感觉。</p>
+<p>递归数据结构是非常常见的结构，给递归数据结构赋予的类型通常会是一个递归的类型。</p>
+<p>经典的例如</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">IntList</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="ot">=</span> <span class="dt">Nil</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="op">|</span> <span class="dt">Cons</span> <span class="dt">Int</span> <span class="dt">IntList</span></span></code></pre></div>
+<p>当然这里还没有讲到参数化类型，因此这里 List 作为“容器”的概念，其内容类型的区分是通过名字完成的。</p>
+<p>为了避免这样自引用的情况（类似于 ULC 中定义递归的方式），引入算子 <span class="math inline">\(\mu\)</span>。那么上面的 haskell 类型定义就可以形式化地写成下面的样子 <span class="math display">\[
+\text{IntList=$\mu X.\left&lt;\text{Nil}, \Set{\text{hd=Int, tl=}X}\right&gt;$}
+\]</span> 一个分析中的例子可以是这样的：给定函数 <span class="math inline">\(f\)</span>，定义算子 <span class="math inline">\(\gamma\)</span> 使得 <span class="math inline">\(\gamma f\)</span> 为方程 <span class="math inline">\(f(x)=x\)</span> 的解集。此处 <span class="math inline">\(\mu\)</span> 的作用是类似的。</p>
+<p>类比 <span class="math inline">\(\text{fix}\)</span> combinator，这个 <span class="math inline">\(\mu\)</span> 同样可以像剥洋葱一样一层层剥开类型并且不收敛。</p>
+<h1 id="equivalence">Equivalence</h1>
+<p>书上讲有两种构造递归类型的方法，它们的区别在于对如下问题的回答不同：</p>
+<blockquote>
+<p>递归类型本身和它剥开一层后的类型，二者关系如何？</p>
+</blockquote>
+<p>这个“剥开”函数一般叫 <span class="math inline">\(\text{fold}\colon T\mapsto T\)</span></p>
+<ul>
+<li>equi-recursive approach 认为它们是同一个类型，在语境下可以等价替换，type checker 负责决定把具体的递归类型剥开到什么程度。</li>
+<li>iso-recursive approach 认为它们不同，但是是<strong>同构的</strong>。即 <span class="math inline">\(\text{unfold}\circ\text{fold}=id_T\)</span>。同时代码需要显式地在需要剥开的地方写出 <span class="math inline">\(\text{fold}\)</span> 和 <span class="math inline">\(\text{unfold}\)</span></li>
+</ul>
+<h1 id="subtyping">Subtyping</h1>
+<p>tnnd，卖了一个很大的关子就跑了，今天就到这吧。</p>
 
       </div>
       
@@ -192,6 +226,17 @@
               2022-08-29 23:16:41
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/TAPL/" title="TAPL">
+                        <b>#</b> TAPL
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
             
@@ -200,6 +245,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#subtyping"><span class="toc-text">Subtyping</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
