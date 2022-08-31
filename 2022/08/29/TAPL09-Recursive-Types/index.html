@@ -206,6 +206,35 @@
 <li>equi-recursive approach 认为它们是同一个类型，在语境下可以等价替换，type checker 负责决定把具体的递归类型剥开到什么程度。</li>
 <li>iso-recursive approach 认为它们不同，但是是<strong>同构的</strong>。即 <span class="math inline">\(\text{unfold}\circ\text{fold}=id_T\)</span>。同时代码需要显式地在需要剥开的地方写出 <span class="math inline">\(\text{fold}\)</span> 和 <span class="math inline">\(\text{unfold}\)</span></li>
 </ul>
+<h1 id="induction-coinduction">Induction, Coinduction</h1>
+<h2 id="定义">定义</h2>
+<p>若 <span class="math inline">\(F:2^U\mapsto 2^U\)</span> 满足 <span class="math inline">\(\forall X\subseteq Y, F(X)\subseteq F(Y)\)</span>， 则称 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(U\)</span> 上的单调函数</p>
+<p>通常把这个（朴素意义的）集合 <span class="math inline">\(U\)</span> 叫做 Universe，即我们所有可能讨论的所有元素组成的集合。</p>
+<ul>
+<li>若 <span class="math inline">\(F(X)\subseteq X\)</span>，则称 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(F\)</span>-closed 的</li>
+<li>若 <span class="math inline">\(X\subseteq F(X)\)</span> ，则称 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(F\)</span>-consistent 的</li>
+<li>若 <span class="math inline">\(F(X)=X\)</span>，则称 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(F\)</span> 的不动点（fixed point）</li>
+</ul>
+<p>可以发现 <span class="math inline">\(F\)</span> 本质上是定义在格上的函数，并且这个格是由 <span class="math inline">\(\left&lt;U,\subseteq\right&gt;\)</span> 导出的。</p>
+<p>通常把 <span class="math inline">\(F\)</span> 的最小不动点写成 <span class="math inline">\(\mu F\)</span>，最大不动点写成 <span class="math inline">\(\nu F\)</span>。</p>
+<h2 id="定理">定理</h2>
+<p>Knaster-Tarski 定理的叙述如下：</p>
+<ol type="1">
+<li>所有 <span class="math inline">\(F\)</span>-closed 集之交是 <span class="math inline">\(F\)</span> 的最小不动点</li>
+<li>所有 <span class="math inline">\(F\)</span>-consistent 集之并是 <span class="math inline">\(F\)</span> 的最大不动点</li>
+</ol>
+<p>证一下①：</p>
+<p>考虑 <span class="math inline">\(C=\Set{S\mid F(S)\subseteq S}\)</span>，不妨记 <span class="math inline">\(M=\bigcap C\)</span>，下面即证明 <span class="math inline">\(F(M)=M\)</span> 且 <span class="math inline">\(\forall X\subseteq U, F(X)=X\Rightarrow M\subseteq X\)</span></p>
+<p>注意到 <span class="math inline">\(\forall S\in C\)</span> 都有 <span class="math inline">\(M\subseteq S\)</span>，因此 <span class="math inline">\(\forall S\in C\)</span> 都有 <span class="math inline">\(F(M)\subseteq F(S)\)</span>，这说明 <span class="math inline">\(F(M)\subseteq \bigcap_{S\in C} F(S)\)</span></p>
+<p>又由 <span class="math inline">\(C\)</span> 的定义可知 <span class="math inline">\(F(M)\subseteq\bigcap_{S\in C} F(S)\subseteq \bigcap C=M\)</span>，因此 <span class="math inline">\(F(M)\subseteq M\)</span>；</p>
+<p>另一侧由反证法，不妨假设存在 <span class="math inline">\(x\in M\)</span> 使得 <span class="math inline">\(x\not\in F(M)\)</span>，此时记 <span class="math inline">\(M&#39;=F(M)\)</span>，那么有 <span class="math inline">\(M&#39;\subseteq M\)</span>，根据单调性有 <span class="math inline">\(F(M&#39;)\subseteq F(M)=M&#39;\)</span>，因此 <span class="math inline">\(M&#39;\in C\)</span>，这说明 <span class="math inline">\(M=\bigcap C\subseteq M&#39;=F(M)\)</span>，矛盾；故假设不成立，即 <span class="math inline">\(M\subseteq F(M)\)</span></p>
+<p>综上就有 <span class="math inline">\(M=F(M)\)</span>，这说明 <span class="math inline">\(M=\bigcap C\)</span> 是 <span class="math inline">\(F\)</span> 的一个不动点，下面证明这是最小的不动点。</p>
+<p>由反证法设存在更小不动点 <span class="math inline">\(M&#39;&#39;\subsetneq M\)</span>，则根据不动点定义有 <span class="math inline">\(M&#39;&#39;\in C\)</span>，这说明 <span class="math inline">\(M=\bigcap C\subseteq M&#39;&#39;\subsetneq M\)</span>，矛盾；故假设不成立，不存在更小的不动点了。</p>
+<p>②的证明是对偶的。定理的另一种叙述如下：</p>
+<ol type="1">
+<li><em>Principle of induction</em> 若 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(F\)</span>-closed 集，那么 <span class="math inline">\(\mu F\subseteq X\)</span></li>
+<li><em>Principle of coinduction</em> 若 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(F\)</span>-consistent 集，那么 <span class="math inline">\(X\subseteq\nu F\)</span></li>
+</ol>
 <h1 id="subtyping">Subtyping</h1>
 <p>tnnd，卖了一个很大的关子就跑了，今天就到这吧。</p>
 
@@ -252,7 +281,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#subtyping"><span class="toc-text">Subtyping</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#induction-coinduction"><span class="toc-text">Induction, Coinduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86"><span class="toc-text">定理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#subtyping"><span class="toc-text">Subtyping</span></a></li></ol>
       
     </div>
   </div>
