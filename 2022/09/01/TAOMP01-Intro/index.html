@@ -11,7 +11,7 @@
   
   <title>
     
-      标签 
+      TAOMP01 Intro 
       
       
       |
@@ -153,21 +153,210 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algebra/" rel="tag">Algebra</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compilers/" rel="tag">Compilers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cryptography/" rel="tag">Cryptography</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DLCO/" rel="tag">DLCO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka-Moments/" rel="tag">Eureka Moments</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Formal-Semantics/" rel="tag">Formal Semantics</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game-Theory/" rel="tag">Game Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph-Theory/" rel="tag">Graph Theory</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS-Intro/" rel="tag">ICS Intro</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mathematical-Logic/" rel="tag">Mathematical Logic</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numerical-Method/" rel="tag">Numerical Method</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Operating-System/" rel="tag">Operating System</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Analysis/" rel="tag">Static Analysis</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAOMP/" rel="tag">TAOMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAPL/" rel="tag">TAPL</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XCPC/" rel="tag">XCPC</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/haskell/" rel="tag">haskell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag">数学分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">TAOMP01 Intro</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-09-01 16:33:49
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/TAOMP/" title="TAOMP">
+                    <b>#</b> TAOMP
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>八月份已经过去了，放假前立下的 flag 还有好多没有实现...</p>
+<p>但是这本是上学期上 OS 就想看的书，更早是在吃土耳其烤肉的时候就被安利过</p>
+<p>开干吧...</p>
+<h1 id="intro">Intro</h1>
+<h2 id="why-multiprocessor">why multiprocessor</h2>
+<p>摩尔定律失效，现代的 CPU 已经引入了多核架构，现代的程序设计也在拥抱并行来提升性能</p>
+<h2 id="whats-different">what's different</h2>
+<p>多个并发的执行流操作若干共享的对象是一种常见的并发计算模型，在这之上会遇到</p>
+<ul>
+<li>正确性的问题，计算模型的变化使得原本正确的程序变得不正确</li>
+<li>性能的问题，对共享对象的操作需要某种“序列化”</li>
+<li>能力的问题，并非所有单线程程序都可以“改造”成多线程</li>
+<li>评估的问题，我们应当如何评价一个多线程程序的优劣？</li>
+</ul>
+<h2 id="whats-in-interest">what's in interest</h2>
+<ul>
+<li>liveness property，即并发的系统不会卡住。例如 deadlock-freedom</li>
+<li>safety property，即并发的系统不会进入某些错误状态。例如 mutual exclusion</li>
+</ul>
+<h1 id="shared-states">Shared states</h1>
+<p>又是那个经典的多线程共享 Counter 的栗子</p>
+<p>一句话解释：单线程计算模型下的编程语言没有提供语句的原子性保证，这一历史包袱导致了共享状态在多线程下需要做同步操作。</p>
+<p>解决办法是人为地打包捆绑某些指令，规定这些“指令包”是原子的。这样的性质（某段代码/某个对象 在同一时刻只能有一个线程执行/访问/修改）被称为 mutual exclusion。当然也可以叫做某种“协议”，指的是多个并发的执行流通过某种约定好的方式访问这些共享对象。</p>
+<h1 id="栗子">栗子</h1>
+<h2 id="描述">描述</h2>
+<p>Alice 和 Bob 各自养了宠物，他们共享一个花园。要求宠物不能同时出现在花园中，且两人的宠物都有进入花园的机会，要设计一个通信协议。他们各自可以举手，也可以看到对方有没有举手，除此之外没有别的交流手段。</p>
+<h2 id="协议">协议</h2>
+<p>对 Alice 而言</p>
+<ol type="1">
+<li>举手</li>
+<li>等待 Bob 放手</li>
+<li>放宠物进花园</li>
+<li>等宠物回来</li>
+<li>放手</li>
+</ol>
+<p>对 Bob 而言</p>
+<ol type="1">
+<li>举手</li>
+<li>看 Alice，如果 Alice 举手就放手，等待 Alice 放手后再举手</li>
+<li>放宠物进花园</li>
+<li>等宠物回来</li>
+<li>放手</li>
+</ol>
+<h2 id="mutual-exclusion">mutual exclusion</h2>
+<p>假设存在某个时刻两人的宠物都进了花园，分别考虑两人的最后一次通信流程：</p>
+<p>由 Alice 放了宠物可知，此前Alice 必然举起了手、看到了 Bob 放手。因此 Bob 最后一次举手必然发生在 Alice 最后一次看<strong>之后</strong>，这说明 Bob 必然能看到 Alice 举起了手。</p>
+<p>由 Bob 放了宠物可知，此前Bob 必然举起了手、看到了 Alice 放手。这就产生了矛盾，故假设不成立。</p>
+<h2 id="deadlock-free">deadlock-free</h2>
+<p>证明是类似的</p>
+<h2 id="starvation-free">starvation-free</h2>
+<p>是不满足的，例如当 Alice 和 Bob 总是同时举手时，Alice 的宠物总是优先进花园。</p>
+<h2 id="fault-tolerance">fault-tolerance</h2>
+<p>某一方可能出错，这时候另一方需要<strong>等待</strong>出错方恢复正常。</p>
+<p>一些分布式的协议则会有专门的询问/验证环节来容忍节点的错误甚至是离线</p>
+<h2 id="pattern">Pattern</h2>
+<p>可以发现类似的证明通常只关心若干时间之间的拓扑关系，通过协议来限制事件发生的顺序成为我们想要的形状。</p>
+<p>这样也就能理解为什么后面要抽象出 DAG 的证明模型了。</p>
+<h2 id="back-to-cs">Back to CS</h2>
+<ul>
+<li>这种基于 举手/看 的通信协议本质上是延时的，即双方不需要约定时间后建立连接</li>
+<li>举手/看 分别代表原子的 写/读 操作，并且各自只占据一个比特</li>
+</ul>
+<h1 id="producer-consumer">Producer-Consumer</h1>
+<p>这个就不写了。</p>
+<h2 id="producer-consumer-1">producer-consumer</h2>
+<p>这个性质说的是两个/两类线程满足</p>
+<ul>
+<li>一类读取共享缓冲区 当且仅当缓冲区已满</li>
+<li>一类写入共享缓冲区 当且仅当缓冲区为空</li>
+</ul>
+<h2 id="pattern-1">Pattern</h2>
+<p>涉及到状态存储的协议，就可以用探索状态的方式来证明正确性了。即“某协议保证XX不会出现”当且仅当“在任意合法的状态上XX都不成立”。而这又可以用 初始状态满足性质P + 状态转移保持性质P 这个套路来证明。</p>
+<h1 id="reader-writer">Reader-Writer</h1>
+<p>这个也不写了</p>
+<h1 id="amdahls-law">Amdahl’s law</h1>
+<p>一个简单的公式，含义为：我们如果能使得 <span class="math inline">\(p\)</span> 的任务加速 <span class="math inline">\(n\)</span> 倍（通过 <span class="math inline">\(n\)</span> 个核心），那么得到的效率增长是 <span class="math inline">\(S\)</span> 的 <span class="math display">\[
+S=\frac{1}{(1-p)+\dfrac{p}{n}}
+\]</span> 可以发现当 <span class="math inline">\(n\to \infty\)</span> 时，<span class="math inline">\(S\to \dfrac{1}{1-p}\)</span></p>
+<p>实际上并行处理是存在通信和同步开销的，这会反映在时间花费上。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/08/29/TAPL09-Recursive-Types/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-09-01 16:33:49
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/TAOMP/" title="TAOMP">
+                        <b>#</b> TAOMP
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#why-multiprocessor"><span class="toc-text">why multiprocessor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#whats-different"><span class="toc-text">what&#39;s different</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#whats-in-interest"><span class="toc-text">what&#39;s in interest</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shared-states"><span class="toc-text">Shared states</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%97%E5%AD%90"><span class="toc-text">栗子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0"><span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE"><span class="toc-text">协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mutual-exclusion"><span class="toc-text">mutual exclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deadlock-free"><span class="toc-text">deadlock-free</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#starvation-free"><span class="toc-text">starvation-free</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fault-tolerance"><span class="toc-text">fault-tolerance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pattern"><span class="toc-text">Pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#back-to-cs"><span class="toc-text">Back to CS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#producer-consumer"><span class="toc-text">Producer-Consumer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#producer-consumer-1"><span class="toc-text">producer-consumer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pattern-1"><span class="toc-text">Pattern</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reader-writer"><span class="toc-text">Reader-Writer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#amdahls-law"><span class="toc-text">Amdahl’s law</span></a></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
 
   
-
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
   
 
-  
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">

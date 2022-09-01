@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-08-31T06:54:12.692Z</updated>
+  <updated>2022-09-01T16:55:25.618Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TAOMP01 Intro</title>
+    <link href="http://example.com/2022/09/01/TAOMP01-Intro/"/>
+    <id>http://example.com/2022/09/01/TAOMP01-Intro/</id>
+    <published>2022-09-01T08:33:49.000Z</published>
+    <updated>2022-09-01T16:55:25.618Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;八月份已经过去了，放假前立下的 flag 还有好多没有实现...&lt;/p&gt;
+&lt;p&gt;但是这本是上学期上 OS 就想看的书，更早是在吃土耳其烤肉的时候就被安利过&lt;/p&gt;
+&lt;p&gt;开干吧...&lt;/p&gt;
+&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="TAOMP" scheme="http://example.com/tags/TAOMP/"/>
+    
+  </entry>
   
   <entry>
     <title>TAPL09 Recursive Types</title>
@@ -500,30 +527,6 @@
     
     
     <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ANTLR4 笔记</title>
-    <link href="http://example.com/2022/07/02/ANTLR4-%E7%AC%94%E8%AE%B0/"/>
-    <id>http://example.com/2022/07/02/ANTLR4-%E7%AC%94%E8%AE%B0/</id>
-    <published>2022-07-02T05:07:19.000Z</published>
-    <updated>2022-07-02T05:37:59.183Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
-&lt;p&gt;最近需要用到这个工具，官方推荐的Definitive ANTLR Book写得比较杂乱，于是想记一下比较有用的一些点&lt;/p&gt;
-&lt;h1 id=&quot;meta-language&quot;&gt;meta language&lt;/h1&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
