@@ -11,7 +11,7 @@
   
   <title>
     
-      TAOMP01 Intro 
+      TAOMP02 Mutex 
       
       
       |
@@ -164,11 +164,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">TAOMP01 Intro</div>
+      <div class="post-title">TAOMP02 Mutex</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2022-09-01 16:33:49
+          2022-09-02 17:03:21
         </span>
         
               <span class="post-tags">
@@ -184,92 +184,59 @@
           
       </div>
       <div class="markdown-body">
-        <p>八月份已经过去了，放假前立下的 flag 还有好多没有实现...</p>
-<p>但是这本是上学期上 OS 就想看的书，更早是在吃土耳其烤肉的时候就被安利过</p>
-<p>开干吧...</p>
-<h1 id="intro">Intro</h1>
-<h2 id="why-multiprocessor">why multiprocessor</h2>
-<p>摩尔定律失效，现代的 CPU 已经引入了多核架构，现代的程序设计也在拥抱并行来提升性能</p>
-<h2 id="whats-different">what's different</h2>
-<p>多个并发的执行流操作若干共享的对象是一种常见的并发计算模型，在这之上会遇到</p>
+        <h1 id="形式化">形式化</h1>
+<h2 id="定义">定义</h2>
 <ul>
-<li>正确性的问题，计算模型的变化使得原本正确的程序变得不正确</li>
-<li>性能的问题，对共享对象的操作需要某种“序列化”</li>
-<li>能力的问题，并非所有单线程程序都可以“改造”成多线程</li>
-<li>评估的问题，我们应当如何评价一个多线程程序的优劣？</li>
+<li><strong>事件</strong>是瞬间的、原子的，通常用 <span class="math inline">\(read, write\)</span> 这样的名字表示一个事件，记事件的集合为 <span class="math inline">\(E\)</span></li>
+<li>定义 <span class="math inline">\(\to\)</span> 为 <span class="math inline">\(E\)</span> 上的全序关系，其含义为两事件发生的顺序。因为事件是瞬时的，因此不存在两个事件同时发生。</li>
+<li><strong>过程</strong>或<strong>时间段</strong>是二元组 <span class="math inline">\((s,t)\in E\times E\)</span> 满足 <span class="math inline">\(s\rightarrow t\)</span>，其含义为两个时刻中间的时间</li>
+<li>定义 <span class="math inline">\(\rightarrow\)</span> 同时为 <span class="math inline">\(E\times E\)</span> 上的偏序关系，其含义为两个过程发生的顺序。很显然存在某些过程有重叠</li>
+<li>若过程 <span class="math inline">\(A,B\)</span> 重叠，则它们是<strong>并发</strong>的</li>
+<li>某些事件存在副作用。其含义为，若 <span class="math inline">\(P(A)\)</span> 成立，且 <span class="math inline">\(A\to B\)</span>，则 <span class="math inline">\(P(B)\)</span> 仍然成立，其中 <span class="math inline">\(P\)</span> 为关于事件的谓词。</li>
 </ul>
-<h2 id="whats-in-interest">what's in interest</h2>
+<h1 id="锁">锁</h1>
+<p>锁是一类对象，通常提供两种方法</p>
 <ul>
-<li>liveness property，即并发的系统不会卡住。例如 deadlock-freedom</li>
-<li>safety property，即并发的系统不会进入某些错误状态。例如 mutual exclusion</li>
+<li><code>lock()</code> 用于获取锁</li>
+<li><code>unlock()</code> 用于释放锁</li>
 </ul>
-<h1 id="shared-states">Shared states</h1>
-<p>又是那个经典的多线程共享 Counter 的栗子</p>
-<p>一句话解释：单线程计算模型下的编程语言没有提供语句的原子性保证，这一历史包袱导致了共享状态在多线程下需要做同步操作。</p>
-<p>解决办法是人为地打包捆绑某些指令，规定这些“指令包”是原子的。这样的性质（某段代码/某个对象 在同一时刻只能有一个线程执行/访问/修改）被称为 mutual exclusion。当然也可以叫做某种“协议”，指的是多个并发的执行流通过某种约定好的方式访问这些共享对象。</p>
-<h1 id="栗子">栗子</h1>
-<h2 id="描述">描述</h2>
-<p>Alice 和 Bob 各自养了宠物，他们共享一个花园。要求宠物不能同时出现在花园中，且两人的宠物都有进入花园的机会，要设计一个通信协议。他们各自可以举手，也可以看到对方有没有举手，除此之外没有别的交流手段。</p>
-<h2 id="协议">协议</h2>
-<p>对 Alice 而言</p>
-<ol type="1">
-<li>举手</li>
-<li>等待 Bob 放手</li>
-<li>放宠物进花园</li>
-<li>等宠物回来</li>
-<li>放手</li>
-</ol>
-<p>对 Bob 而言</p>
-<ol type="1">
-<li>举手</li>
-<li>看 Alice，如果 Alice 举手就放手，等待 Alice 放手后再举手</li>
-<li>放宠物进花园</li>
-<li>等宠物回来</li>
-<li>放手</li>
-</ol>
-<h2 id="mutual-exclusion">mutual exclusion</h2>
-<p>假设存在某个时刻两人的宠物都进了花园，分别考虑两人的最后一次通信流程：</p>
-<p>由 Alice 放了宠物可知，此前Alice 必然举起了手、看到了 Bob 放手。因此 Bob 最后一次举手必然发生在 Alice 最后一次看<strong>之后</strong>，这说明 Bob 必然能看到 Alice 举起了手。</p>
-<p>由 Bob 放了宠物可知，此前Bob 必然举起了手、看到了 Alice 放手。这就产生了矛盾，故假设不成立。</p>
-<h2 id="deadlock-free">deadlock-free</h2>
-<p>证明是类似的</p>
-<h2 id="starvation-free">starvation-free</h2>
-<p>是不满足的，例如当 Alice 和 Bob 总是同时举手时，Alice 的宠物总是优先进花园。</p>
-<h2 id="fault-tolerance">fault-tolerance</h2>
-<p>某一方可能出错，这时候另一方需要<strong>等待</strong>出错方恢复正常。</p>
-<p>一些分布式的协议则会有专门的询问/验证环节来容忍节点的错误甚至是离线</p>
-<h2 id="pattern">Pattern</h2>
-<p>可以发现类似的证明通常只关心若干时间之间的拓扑关系，通过协议来限制事件发生的顺序成为我们想要的形状。</p>
-<p>这样也就能理解为什么后面要抽象出 DAG 的证明模型了。</p>
-<h2 id="back-to-cs">Back to CS</h2>
+<p>规定一把锁至多被一个线程获取。若一把锁被某个线程持有，则称锁是忙的（busy）。</p>
+<h2 id="critical-sections">Critical Sections</h2>
+<blockquote>
+<p>Critical Section: A block of code that can be executed by only one thread at a time</p>
+</blockquote>
+<p>这样的性质叫 mutual exclusion，通常用锁来实现。</p>
+<p>形式化地说就是把进入和退出 critical section 视为事件 <span class="math inline">\(i,o\)</span>，那么对于线程 <span class="math inline">\(\set{0,1}\)</span> 而言，要么 <span class="math inline">\((i_0,o_0)\to(i_1,o_1)\)</span>，要么 <span class="math inline">\((i_1,o_1)\to(i_0,o_0)\)</span></p>
+<p>可以把 critical section 与一把特定的锁关联起来，并要求所有执行这段代码的线程都必须持有这把锁，这样就保证了 mutual exclusion 的性质。同样也可以把某个共享数据与一把锁关联，这样就起到了串行化对共享数据的访问和修改。</p>
+<h2 id="property-of-interests">Property of interests</h2>
+<p>在锁的语境下，前面提到的各种性质就可以叙述为</p>
 <ul>
-<li>这种基于 举手/看 的通信协议本质上是延时的，即双方不需要约定时间后建立连接</li>
-<li>举手/看 分别代表原子的 写/读 操作，并且各自只占据一个比特</li>
+<li>mutual exclusion：任意时刻只有至多一个线程持有锁</li>
+<li>deadlock-free：若某个线程尝试获取/释放锁，则最终将有至少一个线程得到/释放了锁。如果某个线程在 <code>lock()</code> 中卡住，那么其余线程必然能无数次进入 critical section。意思是可以有局部的卡住，但是相应的必然有<strong>某些</strong>线程能执行。</li>
+<li>starvation-free：所有获取/释放锁的尝试最终都会成功。意思是对于每个线程而言都不会卡住。</li>
 </ul>
-<h1 id="producer-consumer">Producer-Consumer</h1>
-<p>这个就不写了。</p>
-<h2 id="producer-consumer-1">producer-consumer</h2>
-<p>这个性质说的是两个/两类线程满足</p>
-<ul>
-<li>一类读取共享缓冲区 当且仅当缓冲区已满</li>
-<li>一类写入共享缓冲区 当且仅当缓冲区为空</li>
-</ul>
-<h2 id="pattern-1">Pattern</h2>
-<p>涉及到状态存储的协议，就可以用探索状态的方式来证明正确性了。即“某协议保证XX不会出现”当且仅当“在任意合法的状态上XX都不成立”。而这又可以用 初始状态满足性质P + 状态转移保持性质P 这个套路来证明。</p>
-<h1 id="reader-writer">Reader-Writer</h1>
-<p>这个也不写了</p>
-<h1 id="amdahls-law">Amdahl’s law</h1>
-<p>一个简单的公式，含义为：我们如果能使得 <span class="math inline">\(p\)</span> 的任务加速 <span class="math inline">\(n\)</span> 倍（通过 <span class="math inline">\(n\)</span> 个核心），那么得到的效率增长是 <span class="math inline">\(S\)</span> 的 <span class="math display">\[
-S=\frac{1}{(1-p)+\dfrac{p}{n}}
-\]</span> 可以发现当 <span class="math inline">\(n\to \infty\)</span> 时，<span class="math inline">\(S\to \dfrac{1}{1-p}\)</span></p>
-<p>实际上并行处理是存在通信和同步开销的，这会反映在时间花费上。</p>
+<p>其中 deadlock-free 指的是全局的 progress，而 starvation-free 则表明了每个线程的 progress。因此 starvation-free 必然是 deadlock-free 的。</p>
+<p>当然还有更好的保证等待时间的性质，这就比 starvation-free 要更强了。</p>
+<h2 id="锁1">锁1</h2>
+<p>伪代码是这样的</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">typedef</span> <span class="kw">struct</span> &#123;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="dt">bool</span> flag[<span class="dv">2</span>];</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>&#125; lock_t;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="dt">void</span> lock(lock_t *lck) &#123;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    lck-&gt;flag[current_thread_id()] = true;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="cf">while</span> (lck-&gt;flag[another_thread_id()])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>        ;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>&#125;</span></code></pre></div>
+<p>可以发现这样是保证了 mutual exclusion 的（简单反证一下），但是没有 liveness 的保证。例如两边同时设置了 <code>flag</code> 之后就会卡住。</p>
+<h2 id="锁2">锁2</h2>
+<h2 id="petersons-algorithm">Peterson's algorithm</h2>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/08/29/TAPL09-Recursive-Types/" target="_self">
+              <a href="/2022/09/01/TAOMP01-Intro/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -278,7 +245,7 @@ S=\frac{1}{(1-p)+\dfrac{p}{n}}
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2022-09-01 16:33:49
+              2022-09-02 17:03:21
             </span>
             
                   <span class="post-tags">
@@ -295,11 +262,6 @@ S=\frac{1}{(1-p)+\dfrac{p}{n}}
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2022/09/02/TAOMP02-Mutex/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -312,7 +274,7 @@ S=\frac{1}{(1-p)+\dfrac{p}{n}}
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#why-multiprocessor"><span class="toc-text">why multiprocessor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#whats-different"><span class="toc-text">what&#39;s different</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#whats-in-interest"><span class="toc-text">what&#39;s in interest</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shared-states"><span class="toc-text">Shared states</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%97%E5%AD%90"><span class="toc-text">栗子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0"><span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE"><span class="toc-text">协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mutual-exclusion"><span class="toc-text">mutual exclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deadlock-free"><span class="toc-text">deadlock-free</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#starvation-free"><span class="toc-text">starvation-free</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fault-tolerance"><span class="toc-text">fault-tolerance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pattern"><span class="toc-text">Pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#back-to-cs"><span class="toc-text">Back to CS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#producer-consumer"><span class="toc-text">Producer-Consumer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#producer-consumer-1"><span class="toc-text">producer-consumer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pattern-1"><span class="toc-text">Pattern</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reader-writer"><span class="toc-text">Reader-Writer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#amdahls-law"><span class="toc-text">Amdahl’s law</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E5%8C%96"><span class="toc-text">形式化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%94%81"><span class="toc-text">锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#critical-sections"><span class="toc-text">Critical Sections</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property-of-interests"><span class="toc-text">Property of interests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%811"><span class="toc-text">锁1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%812"><span class="toc-text">锁2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#petersons-algorithm"><span class="toc-text">Peterson&#39;s algorithm</span></a></li></ol></li></ol>
       
     </div>
   </div>

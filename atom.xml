@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-09-01T16:55:25.618Z</updated>
+  <updated>2022-09-02T10:05:15.286Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TAOMP02 Mutex</title>
+    <link href="http://example.com/2022/09/02/TAOMP02-Mutex/"/>
+    <id>http://example.com/2022/09/02/TAOMP02-Mutex/</id>
+    <published>2022-09-02T09:03:21.000Z</published>
+    <updated>2022-09-02T10:05:15.286Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;形式化&quot;&gt;形式化&lt;/h1&gt;
+&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;事件&lt;/strong&gt;是瞬间的、原子的，通常用 &lt;span class=&quot;math inline&quot;&gt;\(read, write\)&lt;/span&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="TAOMP" scheme="http://example.com/tags/TAOMP/"/>
+    
+  </entry>
   
   <entry>
     <title>TAOMP01 Intro</title>
@@ -495,31 +521,6 @@
     <summary type="html">&lt;h1 id=&quot;并发&quot;&gt;并发&lt;/h1&gt;
 &lt;p&gt;如果两件事情在逻辑上同时发生了, 那么我们就说它们并发了.&lt;/p&gt;
 &lt;p&gt;在Linux上很容易用POSIX API创建新的执行流(线程), 可以利用 strace top man 等工具观察具体创建的原理</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统01 导引</title>
-    <link href="http://example.com/2022/07/03/OS01-%E5%AF%BC%E5%BC%95/"/>
-    <id>http://example.com/2022/07/03/OS01-%E5%AF%BC%E5%BC%95/</id>
-    <published>2022-07-03T07:10:51.000Z</published>
-    <updated>2022-08-03T10:00:11.563Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
-&lt;p&gt;本科期间最期待的一门课, 就这么结束了有些可惜, 决心回头看看slides, 结合交大的教材再看看有没有什么可以新发掘一下的点.&lt;/p&gt;
-&lt;p&gt;现在看来是因为拔尖班的实操课程实在太少,</summary>
         
       
     
