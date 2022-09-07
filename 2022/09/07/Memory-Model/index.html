@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      Memory Models 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,225 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="操作系统02 并发">
-        <div class="time-m-d">2022-07-03</div>
-        <div class="title">
-          <a href="/2022/07/03/OS02-%E5%B9%B6%E5%8F%91/">
-            
-              
-                <span>操作系统02 并发</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Memory Models</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-09-07 15:23:04
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Concurrency/" title="Concurrency">
+                    <b>#</b> Concurrency
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="操作系统01 导引">
-        <div class="time-m-d">2022-07-03</div>
-        <div class="title">
-          <a href="/2022/07/03/OS01-%E5%AF%BC%E5%BC%95/">
-            
-              
-                <span>操作系统01 导引</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="intro">Intro</h1>
+<p>Memory Model 说的是内存具体的行为。通常并发程序的执行模型是多个执行流+唯一的共享内存，Memory Model 则决定了多个并发执行流的交互结果（因为它们共同读写这块内存）</p>
+<p>之所以要讨论这个，是因为</p>
+<ol type="1">
+<li>真正的硬件提供的机制很复杂，不一定和直觉一致</li>
+<li>这些硬件机制的描述通常不准确，需要正确的建模</li>
+</ol>
+<p>在开始之前要讲一下：</p>
+<ol type="1">
+<li>方便起见，不妨假设每条指令都是原子的。</li>
+<li>简单来说，并发的本质是存在多个并发的执行流，使得多个并发执行的代码片段 <span class="math inline">\(\Set{P_i}\)</span>（指令序列）最终以某种顺序被合并成了一个序列 <span class="math inline">\(L_M\)</span>（操作发生的先后顺序），并且按照这个序列执行了。其中 <span class="math inline">\(\to_P,\to_M\)</span> 分别是 <span class="math inline">\(P,L_M\)</span> 上的全序关系（事件发生的顺序）。</li>
+<li>Memory Model 更具体而言就是若干对 <span class="math inline">\(L_M\)</span> 中与内存相关的指令的限制（纯计算指令是无状态/线程局部的）</li>
+<li>方便起见，可以假设所有对于内存的操作都是立即见效的，那么 OoO（乱序执行）、batching（写缓冲）之类的操作就可以简单的理解为指令顺序的调换，同时也可以涵盖指令重排的行为。</li>
+</ol>
+<h1 id="sequential-consistency">Sequential Consistency</h1>
+<p>这个是大名鼎鼎的 Leslie Lamport 提出来的。比较像分布式里面说的 Linearizability。</p>
+<p>SC 的性质保证了 <span class="math inline">\(\forall C_i,C_j\in P,C_i\to_P C_j\Rightarrow C_i\to_M C_j\)</span>。即最终的执行序列中，所有来自同一线程的指令保持了它们所在指令序列（代码片段）的相对顺序。这说明线程内部严格按照顺序执行指令，唯一的不确定性仅来自于线程间的交错。</p>
+<p>规定 <span class="math inline">\(read(x)=\max \Set{C\in L_M\mid C\in Store\and C\to_M read(x)}\)</span>，即某次读取的结果只与最后一次写入有关。</p>
+<p>没有指令的重排意味着所有对内存的修改都是立刻全局可见的。</p>
+<p>例如 jyy 在 os 课上展示的 model-checker 就是基于 SC 的 memory model 的。</p>
+<h1 id="total-store-order">Total Store Order</h1>
+<p>在硬件上给每个核心一个写缓存队列（write buffer queue），所有的写入会</p>
+<ol type="1">
+<li>首先被放入队列中</li>
+<li>在一段时间后核心会冲刷队列，把所有的修改提交到共享内存</li>
+</ol>
+<p>所有的读都会</p>
+<ol type="1">
+<li>先查询本地的缓存，命中即返回</li>
+<li>再查询内存</li>
+</ol>
+<p>看起来是非常合理的优化，但是这样会导致一致性的问题，例如线程 A 对缓存的写入，线程 B 是看不到的。这就使得这样的情况可能发生：</p>
+<ol type="1">
+<li>初始时 <code>x=0</code></li>
+<li>线程 A 在缓存中写入了变量 <code>x=1</code></li>
+<li>线程 B 读取 <code>x=0</code></li>
+</ol>
+<p>此处虽然执行序列为 <code>writeA(x, 1), readB(x)</code>，但是 B 可能读到 <code>x=0</code> 或 <code>x=1</code>（取决于队列是否被冲刷了）</p>
+<p>对应到我们的假设（对内存的操作是立见的），那么此处的效果延迟则可以看成是“store 指令可能会被推迟”，即 <span class="math inline">\(P\)</span> 中的一对 store-load 指令 <span class="math inline">\(C_s,C_l\)</span>，<span class="math inline">\(C_s\to_P C_l\)</span> 并不能保证 <span class="math inline">\(C_s\to_M C_l\)</span>。</p>
+<p>规定 <span class="math inline">\(read(x)=\max \Set{C\in L_M\mid C\in Store\and C\to_M read(x) }\cup\Set{C\in L_M\mid C\in Store\and C\to_P read(x)}\)</span>，即某次读取的结果只与最后一次<strong>全局</strong>写入或最近一次<strong>局部</strong>写入有关，取决于它们的相对顺序。</p>
+<p>此外，TSO 也保证了 所有线程见到的内存写入历史都相同。这是因为线程对内存的读取是直接的。一个经典的例子是 IRIW</p>
+<blockquote>
+<p><em>Litmus Test: Independent Reads of Independent Writes (IRIW)</em> Can this program see <code>r1</code> <code>=</code> <code>1</code>, <code>r2</code> <code>=</code> <code>0</code>, <code>r3</code> <code>=</code> <code>1</code>, <code>r4</code> <code>=</code> <code>0</code>? (Can Threads 3 and 4 see <code>x</code> and <code>y</code> change in different orders?)</p>
+</blockquote>
+<pre><code>// Thread 1    // Thread 2    // Thread 3    // Thread 4
+x = 1          y = 1          r1 = x         r3 = y
+                              r2 = y         r4 = x</code></pre>
+<blockquote>
+<p>On sequentially consistent hardware: no. On x86 (or other TSO): no.</p>
+</blockquote>
+<p>但是如果线程1、3 线程2、4 各自共享写入缓存队列的话，考虑执行顺序如下：</p>
+<pre><code>write(x,1)
+r1=x=1
+r2=y=0
+write(y,1)
+r3=y=1
+r4=x=0 // in memory
+flush(1,3)
+flush(2,4)</code></pre>
+<p>这件事情非常像 git 的协作模式（不妨假设只允许 rebase）。每个人都有自己本地的 git 历史，同时有一个共享的remote branch。每个人的修改都是在本地进行的，因此他人不能立刻看到我的代码提交，而只有我 push 之后我的工作才会反映给其他人。并且所有人都能见到唯一的共享历史记录。</p>
+
       </div>
-    
-      <div class="post-item" title="ANTLR4 笔记">
-        <div class="time-m-d">2022-07-02</div>
-        <div class="title">
-          <a href="/2022/07/02/ANTLR4-%E7%AC%94%E8%AE%B0/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>ANTLR4 笔记</span>
-              
+              <a href="/2022/09/02/TAOMP02-Mutex/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-09-07 15:23:04
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Concurrency/" title="Concurrency">
+                        <b>#</b> Concurrency
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="操作系统 Lab3 uproc">
-        <div class="time-m-d">2022-06-23</div>
-        <div class="title">
-          <a href="/2022/06/23/OSLab3-uproc/">
-            
-              
-                <span>操作系统 Lab3 uproc</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sequential-consistency"><span class="toc-text">Sequential Consistency</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#total-store-order"><span class="toc-text">Total Store Order</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="大二下摸鱼记录">
-        <div class="time-m-d">2022-06-20</div>
-        <div class="title">
-          <a href="/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/">
-            
-              
-                <span>大二下摸鱼记录</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法07 电阻网络">
-        <div class="time-m-d">2022-06-15</div>
-        <div class="title">
-          <a href="/2022/06/15/Numerical07-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/">
-            
-              
-                <span>计算方法07 电阻网络</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法06 FFT">
-        <div class="time-m-d">2022-06-14</div>
-        <div class="title">
-          <a href="/2022/06/14/Numerical06-FFT/">
-            
-              
-                <span>计算方法06 FFT</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="博弈论02 零和游戏">
-        <div class="time-m-d">2022-06-09</div>
-        <div class="title">
-          <a href="/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA02-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/">
-            
-              
-                <span>博弈论02 零和游戏</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统 Lab2 kmt">
-        <div class="time-m-d">2022-05-28</div>
-        <div class="title">
-          <a href="/2022/05/28/OSLab2-kmt/">
-            
-              
-                <span>操作系统 Lab2 kmt</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统 Lab1 pmm">
-        <div class="time-m-d">2022-05-28</div>
-        <div class="title">
-          <a href="/2022/05/28/OSLab1-pmm/">
-            
-              
-                <span>操作系统 Lab1 pmm</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法05 图的代数性质">
-        <div class="time-m-d">2022-05-10</div>
-        <div class="title">
-          <a href="/2022/05/10/Numerical05-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/">
-            
-              
-                <span>计算方法05 图的代数性质</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法04 图的随机游走">
-        <div class="time-m-d">2022-05-10</div>
-        <div class="title">
-          <a href="/2022/05/10/Numerical04-%E5%9B%BE%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0/">
-            
-              
-                <span>计算方法04 图的随机游走</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法03 线性方程组求解">
-        <div class="time-m-d">2022-05-08</div>
-        <div class="title">
-          <a href="/2022/05/08/Numerical03-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3/">
-            
-              
-                <span>计算方法03 线性方程组求解</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法02 插值与函数逼近">
-        <div class="time-m-d">2022-05-08</div>
-        <div class="title">
-          <a href="/2022/05/08/Numerical02-%E6%8F%92%E5%80%BC%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/">
-            
-              
-                <span>计算方法02 插值与函数逼近</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="博弈论01 策略游戏">
-        <div class="time-m-d">2022-03-12</div>
-        <div class="title">
-          <a href="/2022/03/12/%E5%8D%9A%E5%BC%88%E8%AE%BA01-%E7%AD%96%E7%95%A5%E6%B8%B8%E6%88%8F/">
-            
-              
-                <span>博弈论01 策略游戏</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Ubuntu下的数电实验环境配置">
-        <div class="time-m-d">2022-03-08</div>
-        <div class="title">
-          <a href="/2022/03/08/Ubuntu%E4%B8%8B%E7%9A%84%E6%95%B0%E7%94%B5%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-            
-              
-                <span>Ubuntu下的数电实验环境配置</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法01 函数求根">
-        <div class="time-m-d">2022-03-07</div>
-        <div class="title">
-          <a href="/2022/03/07/Numerical01-%E5%87%BD%E6%95%B0%E6%B1%82%E6%A0%B9/">
-            
-              
-                <span>计算方法01 函数求根</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="数理逻辑03 一阶逻辑">
-        <div class="time-m-d">2022-02-13</div>
-        <div class="title">
-          <a href="/2022/02/13/Logic03-%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91/">
-            
-              
-                <span>数理逻辑03 一阶逻辑</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="数理逻辑02 推演系统">
-        <div class="time-m-d">2022-01-24</div>
-        <div class="title">
-          <a href="/2022/01/24/Logic02-%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F/">
-            
-              
-                <span>数理逻辑02 推演系统</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="数理逻辑01 命题逻辑">
-        <div class="time-m-d">2022-01-20</div>
-        <div class="title">
-          <a href="/2022/01/20/Logic01-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/">
-            
-              
-                <span>数理逻辑01 命题逻辑</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">2 / 5</span>
-    
-      <a href="/page/3/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +603,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

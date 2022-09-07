@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-09-04T04:25:13.810Z</updated>
+  <updated>2022-09-07T09:07:08.850Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Memory Models</title>
+    <link href="http://example.com/2022/09/07/Memory-Model/"/>
+    <id>http://example.com/2022/09/07/Memory-Model/</id>
+    <published>2022-09-07T07:23:04.000Z</published>
+    <updated>2022-09-07T09:07:08.850Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;Memory Model 说的是内存具体的行为。通常并发程序的执行模型是多个执行流+唯一的共享内存，Memory Model</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Concurrency" scheme="http://example.com/tags/Concurrency/"/>
+    
+  </entry>
   
   <entry>
     <title>TAOMP02 Mutex</title>
@@ -493,31 +517,6 @@
     <summary type="html">&lt;h1 id=&quot;虚拟地址&quot;&gt;虚拟地址&lt;/h1&gt;
 &lt;p&gt;通过地址翻译, 可以利用统一的虚拟地址空间来为用户程序提供内存, 同时还能隔离不同进程增强安全性&lt;/p&gt;
 &lt;p&gt;基于分页的地址翻译涉及到页表和radix-tree这种数据结构, 以及 TLB 这样的部件,</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统02 并发</title>
-    <link href="http://example.com/2022/07/03/OS02-%E5%B9%B6%E5%8F%91/"/>
-    <id>http://example.com/2022/07/03/OS02-%E5%B9%B6%E5%8F%91/</id>
-    <published>2022-07-03T08:01:52.000Z</published>
-    <updated>2022-08-03T10:00:11.563Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;并发&quot;&gt;并发&lt;/h1&gt;
-&lt;p&gt;如果两件事情在逻辑上同时发生了, 那么我们就说它们并发了.&lt;/p&gt;
-&lt;p&gt;在Linux上很容易用POSIX API创建新的执行流(线程), 可以利用 strace top man 等工具观察具体创建的原理</summary>
         
       
     
