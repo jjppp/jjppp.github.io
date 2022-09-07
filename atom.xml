@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-09-07T09:07:08.850Z</updated>
+  <updated>2022-09-07T14:58:12.706Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2022/09/07/Memory-Model/"/>
     <id>http://example.com/2022/09/07/Memory-Model/</id>
     <published>2022-09-07T07:23:04.000Z</published>
-    <updated>2022-09-07T09:07:08.850Z</updated>
+    <updated>2022-09-07T14:58:12.706Z</updated>
     
     
       
@@ -29,7 +29,8 @@
         
         
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;Memory Model 说的是内存具体的行为。通常并发程序的执行模型是多个执行流+唯一的共享内存，Memory Model</summary>
+&lt;p&gt;看了很多资料发现基本都是同一批人在写，&lt;a href=&quot;https://research.swtch.com/mm&quot;&gt;这篇&lt;/a&gt; 是我感觉讲得比较清楚同时也好懂的。&lt;/p&gt;
+&lt;p&gt;同时我发现很少有人用形式化的方法描述</summary>
         
       
     

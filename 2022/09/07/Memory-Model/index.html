@@ -185,6 +185,8 @@
       </div>
       <div class="markdown-body">
         <h1 id="intro">Intro</h1>
+<p>看了很多资料发现基本都是同一批人在写，<a target="_blank" rel="noopener" href="https://research.swtch.com/mm">这篇</a> 是我感觉讲得比较清楚同时也好懂的。</p>
+<p>同时我发现很少有人用形式化的方法描述 model，反而都是用各种 case 的执行结果来区分不同的 model，感觉有点捉急。</p>
 <p>Memory Model 说的是内存具体的行为。通常并发程序的执行模型是多个执行流+唯一的共享内存，Memory Model 则决定了多个并发执行流的交互结果（因为它们共同读写这块内存）</p>
 <p>之所以要讨论这个，是因为</p>
 <ol type="1">
@@ -201,7 +203,7 @@
 <h1 id="sequential-consistency">Sequential Consistency</h1>
 <p>这个是大名鼎鼎的 Leslie Lamport 提出来的。比较像分布式里面说的 Linearizability。</p>
 <p>SC 的性质保证了 <span class="math inline">\(\forall C_i,C_j\in P,C_i\to_P C_j\Rightarrow C_i\to_M C_j\)</span>。即最终的执行序列中，所有来自同一线程的指令保持了它们所在指令序列（代码片段）的相对顺序。这说明线程内部严格按照顺序执行指令，唯一的不确定性仅来自于线程间的交错。</p>
-<p>规定 <span class="math inline">\(read(x)=\max \Set{C\in L_M\mid C\in Store\and C\to_M read(x)}\)</span>，即某次读取的结果只与最后一次写入有关。</p>
+<p>规定 <span class="math inline">\(read(x)=\max \Set{C\in L_M\mid C\in Store\wedge C\to_M read(x)}\)</span>，即某次读取的结果只与最后一次写入有关。</p>
 <p>没有指令的重排意味着所有对内存的修改都是立刻全局可见的。</p>
 <p>例如 jyy 在 os 课上展示的 model-checker 就是基于 SC 的 memory model 的。</p>
 <h1 id="total-store-order">Total Store Order</h1>
@@ -226,7 +228,7 @@
 <p>规定 <span class="math inline">\(read(x)=\max \Set{C\in L_M\mid C\in Store\and C\to_M read(x) }\cup\Set{C\in L_M\mid C\in Store\and C\to_P read(x)}\)</span>，即某次读取的结果只与最后一次<strong>全局</strong>写入或最近一次<strong>局部</strong>写入有关，取决于它们的相对顺序。</p>
 <p>此外，TSO 也保证了 所有线程见到的内存写入历史都相同。这是因为线程对内存的读取是直接的。一个经典的例子是 IRIW</p>
 <blockquote>
-<p><em>Litmus Test: Independent Reads of Independent Writes (IRIW)</em> Can this program see <code>r1</code> <code>=</code> <code>1</code>, <code>r2</code> <code>=</code> <code>0</code>, <code>r3</code> <code>=</code> <code>1</code>, <code>r4</code> <code>=</code> <code>0</code>? (Can Threads 3 and 4 see <code>x</code> and <code>y</code> change in different orders?)</p>
+<p><em>Litmus Test: Independent Reads of Independent Writes (IRIW)</em> Can this program see <code>r1 = 1</code>, <code>r2 = 0</code>, <code>r3 = 1</code>, <code>r4 = 0</code>? (Can Threads 3 and 4 see <code>x</code> and <code>y</code> change in different orders?)</p>
 </blockquote>
 <pre><code>// Thread 1    // Thread 2    // Thread 3    // Thread 4
 x = 1          y = 1          r1 = x         r3 = y
@@ -243,6 +245,7 @@ r3=y=1
 r4=x=0 // in memory
 flush(1,3)
 flush(2,4)</code></pre>
+<p>就会出现虽然存在一个唯一的全局写入顺序，但是两个线程各自观察到了不同的写入顺序。<strong>它们眼中的历史出现了偏差</strong>，这句话挺有意思的。</p>
 <p>这件事情非常像 git 的协作模式（不妨假设只允许 rebase）。每个人都有自己本地的 git 历史，同时有一个共享的remote branch。每个人的修改都是在本地进行的，因此他人不能立刻看到我的代码提交，而只有我 push 之后我的工作才会反映给其他人。并且所有人都能见到唯一的共享历史记录。</p>
 
       </div>
