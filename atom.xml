@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-09-07T14:58:12.706Z</updated>
+  <updated>2022-09-12T14:49:33.379Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Network02 Application</title>
+    <link href="http://example.com/2022/09/12/Network02-Application/"/>
+    <id>http://example.com/2022/09/12/Network02-Application/</id>
+    <published>2022-09-12T12:44:14.000Z</published>
+    <updated>2022-09-12T14:49:33.379Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;应用一般跑在端系统上，此时网络对应用而言是透明的，所有的网络 API 起到进程间通信的作用。&lt;/p&gt;
+&lt;h1 id=&quot;application-architecture&quot;&gt;Application</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Network" scheme="http://example.com/tags/Network/"/>
+    
+  </entry>
   
   <entry>
     <title>Memory Models</title>
@@ -500,31 +525,6 @@
     
     
     <category term="Algebra" scheme="http://example.com/tags/Algebra/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统03 内存管理</title>
-    <link href="http://example.com/2022/07/04/OS03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
-    <id>http://example.com/2022/07/04/OS03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
-    <published>2022-07-03T17:46:50.000Z</published>
-    <updated>2022-08-03T10:00:11.563Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;虚拟地址&quot;&gt;虚拟地址&lt;/h1&gt;
-&lt;p&gt;通过地址翻译, 可以利用统一的虚拟地址空间来为用户程序提供内存, 同时还能隔离不同进程增强安全性&lt;/p&gt;
-&lt;p&gt;基于分页的地址翻译涉及到页表和radix-tree这种数据结构, 以及 TLB 这样的部件,</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   
