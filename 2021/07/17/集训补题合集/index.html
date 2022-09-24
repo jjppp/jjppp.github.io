@@ -201,8 +201,13 @@
 <p>于是就可以发现如果我们不断这么做下去，最终将得到若干条链的交，且这个交在不同层次的最长链上，删掉交里的点一定是最优秀的</p>
 <p>每次对当前的交二分（取中点），判断新的交在哪一侧，这样就只是再多了一个log</p>
 <h3 id="牛客多校1h">牛客多校1H</h3>
-<p>定义函数<span class="math inline">\(f_h(x)=x\text{ mod } h\)</span>，求最小的<span class="math inline">\(h\)</span>使得<span class="math inline">\(f_h\)</span>是给定有限正整数集的perfect hash</p>
-<p>不是perfect当且仅当存在<span class="math inline">\(a\neq b\)</span>，却<span class="math inline">\(f(a)=f(b)\)</span>，即 <span class="math inline">\(a_i-a_j\equiv 0\pmod h\)</span>，其中<span class="math inline">\(i\neq j\)</span></p>
+<p>定义函数<span class="math inline">\(f_h(x)=x\text{ mod }
+h\)</span>，求最小的<span class="math inline">\(h\)</span>使得<span
+class="math inline">\(f_h\)</span>是给定有限正整数集的perfect hash</p>
+<p>不是perfect当且仅当存在<span class="math inline">\(a\neq
+b\)</span>，却<span class="math inline">\(f(a)=f(b)\)</span>，即 <span
+class="math inline">\(a_i-a_j\equiv 0\pmod h\)</span>，其中<span
+class="math inline">\(i\neq j\)</span></p>
 <p>也就是说如果我们能算出任意两对数的差值，就可以方便地枚举答案了</p>
 <p>直接开两个桶bct[i]和bct[INF-i]，做卷积就好了....</p>
 <h3 id="牛客多校2i">牛客多校2I</h3>
@@ -222,21 +227,38 @@
 <p>n个人传1个球，初始球在1号人手上，每次拿球的人随机传给别人。现在已知球回到1号人的方案数为x，求这是传了几轮得到的方案数</p>
 <p>设f[i]表示i轮球回到1的方案数，则考虑1所在圈的大小：</p>
 <ol type="1">
-<li><p>恰好为2，就是f[i-2] * (n-1)，即1和另一个人配对组成长度为2的圈</p></li>
-<li><p>至少为3，就是f[i-1] * (n-2)，即在前一个圈中的最后一轮传球中插入一个除1和x外的第三人。</p></li>
+<li><p>恰好为2，就是f[i-2] *
+(n-1)，即1和另一个人配对组成长度为2的圈</p></li>
+<li><p>至少为3，就是f[i-1] *
+(n-2)，即在前一个圈中的最后一轮传球中插入一个除1和x外的第三人。</p></li>
 </ol>
 <p>于是就可以用特征根求通项，解一个BSGS就好了</p>
 <h3 id="hdu01j">hdu01J</h3>
 <p>给定序列<span class="math inline">\(\left\{a_n\right\}\)</span></p>
 <p>Q次询问求下标l到r，值域a到b之间出现了多少不同的数字</p>
 <p>已经不会套路了....</p>
-<p>记last[i]为第i个位置的数上一次出现的位置，那么统计区间内不同的数字，就是统计区间内last[x]&lt; l的x的数量</p>
+<p>记last[i]为第i个位置的数上一次出现的位置，那么统计区间内不同的数字，就是统计区间内last[x]&lt;
+l的x的数量</p>
 <p>于是就变成了一个三维偏序问题。经典的离线莫队分块平衡复杂度的操作可以看HH的项链(实在愧对队友，这题俺还写过...)</p>
 <h3 id="hdu02j">hdu02J</h3>
-<p>给定<span class="math inline">\(x,p\)</span>，<span class="math inline">\(p\)</span>为质数。规定<span class="math inline">\(a_n=nx\text{ mod } p\)</span>，求数列<span class="math inline">\(\left\{a_1,a_2,\ldots,a_{p-1}\right\}\)</span>逆序对的奇偶性</p>
-<p>这题就是Zolotarev定理...<span class="math inline">\({\mathbb {Z}_p}^*\)</span>中的元素<span class="math inline">\(a\)</span>的勒让德符号<span class="math inline">\(\left(\frac{a}{p}\right)\)</span>和排列<span class="math inline">\(p_i=ai\text{ mod } p\)</span>的奇偶性(逆序对的奇偶性)是相关的。</p>
+<p>给定<span class="math inline">\(x,p\)</span>，<span
+class="math inline">\(p\)</span>为质数。规定<span
+class="math inline">\(a_n=nx\text{ mod } p\)</span>，求数列<span
+class="math inline">\(\left\{a_1,a_2,\ldots,a_{p-1}\right\}\)</span>逆序对的奇偶性</p>
+<p>这题就是Zolotarev定理...<span class="math inline">\({\mathbb
+{Z}_p}^*\)</span>中的元素<span
+class="math inline">\(a\)</span>的勒让德符号<span
+class="math inline">\(\left(\frac{a}{p}\right)\)</span>和排列<span
+class="math inline">\(p_i=ai\text{ mod }
+p\)</span>的奇偶性(逆序对的奇偶性)是相关的。</p>
 <p>上课讲的方法比较神奇，这里其实可以直接算</p>
-<p>排列<span class="math inline">\(\left\{p_i\right\}\)</span>的逆序对可以这么算<span class="math inline">\({\dfrac{\prod\limits_{i&lt;j}{\left(p_i-p_j\right)} }{\prod\limits_{i&lt;j}{\left(i-j\right)} } }=\prod\limits_{i&lt;j}{\dfrac{p_i-p_j}{i-j} }=\prod\limits_{i&lt;j}{\dfrac{xi-xj}{i-j} }=x^{\frac{p-1}{2} }\)</span></p>
+<p>排列<span
+class="math inline">\(\left\{p_i\right\}\)</span>的逆序对可以这么算<span
+class="math inline">\({\dfrac{\prod\limits_{i&lt;j}{\left(p_i-p_j\right)}
+}{\prod\limits_{i&lt;j}{\left(i-j\right)} }
+}=\prod\limits_{i&lt;j}{\dfrac{p_i-p_j}{i-j}
+}=\prod\limits_{i&lt;j}{\dfrac{xi-xj}{i-j} }=x^{\frac{p-1}{2}
+}\)</span></p>
 <h3 id="牛客多校3b">牛客多校3B</h3>
 <p>这场好难，不过做的都1A了...算是可喜可贺吧</p>
 <p>给n*m的棋盘要求染色。每次染色代价为对因位置的权值，并且规定若某矩形的三个顶点染色了，则第四个点可以免费染。求染黑整个棋盘的最小代价。</p>

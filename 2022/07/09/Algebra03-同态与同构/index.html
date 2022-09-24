@@ -187,46 +187,103 @@
         <p>群的同构意味着二者本质上没有区别, 同态则可以导出某些同构.</p>
 <p>下面默认 <span class="math inline">\(G_1, G_2\)</span> 是两个群.</p>
 <h1 id="同态">同态</h1>
-<p>若存在映射 <span class="math inline">\(f\colon G_1\mapsto G_2\)</span>, 且 <span class="math inline">\(\forall a,b\in G_1, f(ab)=f(a)f(b)\)</span>, 那么称 <span class="math inline">\(f\)</span> 是 <span class="math inline">\(G_1\)</span> 到 <span class="math inline">\(G_2\)</span> 的同态.</p>
-<p>若 <span class="math inline">\(f\)</span> 为单射, 则 <span class="math inline">\(f\)</span> 为 <span class="math inline">\(G_1\)</span> 到 <span class="math inline">\(G_2\)</span> 的单同态.</p>
-<p>若 <span class="math inline">\(f\)</span> 为满射, 则 <span class="math inline">\(f\)</span> 为 <span class="math inline">\(G_1\)</span> 到 <span class="math inline">\(G_2\)</span> 的满同态.</p>
-<p>下面默认 <span class="math inline">\(f\)</span> 是 <span class="math inline">\(G_1\mapsto G_2\)</span> 的同态.</p>
+<p>若存在映射 <span class="math inline">\(f\colon G_1\mapsto
+G_2\)</span>, 且 <span class="math inline">\(\forall a,b\in G_1,
+f(ab)=f(a)f(b)\)</span>, 那么称 <span class="math inline">\(f\)</span>
+是 <span class="math inline">\(G_1\)</span> 到 <span
+class="math inline">\(G_2\)</span> 的同态.</p>
+<p>若 <span class="math inline">\(f\)</span> 为单射, 则 <span
+class="math inline">\(f\)</span> 为 <span
+class="math inline">\(G_1\)</span> 到 <span
+class="math inline">\(G_2\)</span> 的单同态.</p>
+<p>若 <span class="math inline">\(f\)</span> 为满射, 则 <span
+class="math inline">\(f\)</span> 为 <span
+class="math inline">\(G_1\)</span> 到 <span
+class="math inline">\(G_2\)</span> 的满同态.</p>
+<p>下面默认 <span class="math inline">\(f\)</span> 是 <span
+class="math inline">\(G_1\mapsto G_2\)</span> 的同态.</p>
 <h2 id="定理1">定理1</h2>
-<p>若有同态 <span class="math inline">\(f\colon G_1\mapsto G_2, g\colon G_2\mapsto G_3\)</span>, 那么有同态 <span class="math inline">\(g\circ f\colon G_1\mapsto G_3\)</span></p>
+<p>若有同态 <span class="math inline">\(f\colon G_1\mapsto G_2, g\colon
+G_2\mapsto G_3\)</span>, 那么有同态 <span class="math inline">\(g\circ
+f\colon G_1\mapsto G_3\)</span></p>
 <p>证明是简单的.</p>
 <h2 id="定理2">定理2</h2>
-<p><span class="math inline">\(f(e_1)=e_2\)</span>, 其中 <span class="math inline">\(e_1, e_2\)</span> 分别为 <span class="math inline">\(G_1, G_2\)</span> 的幺元.</p>
-<p>注意到 <span class="math inline">\(f(e_1)f(e_1)=f(e_1e_1)e_2=f(e_1)e_2\)</span>, 由消去律 <span class="math inline">\(f(e_1)=e_2\)</span>.</p>
+<p><span class="math inline">\(f(e_1)=e_2\)</span>, 其中 <span
+class="math inline">\(e_1, e_2\)</span> 分别为 <span
+class="math inline">\(G_1, G_2\)</span> 的幺元.</p>
+<p>注意到 <span
+class="math inline">\(f(e_1)f(e_1)=f(e_1e_1)e_2=f(e_1)e_2\)</span>,
+由消去律 <span class="math inline">\(f(e_1)=e_2\)</span>.</p>
 <h2 id="定理3">定理3</h2>
 <p><span class="math inline">\(\text{Im}f\leqslant G_2\)</span>.</p>
 <ol type="1">
 <li>结合律是显然的</li>
 <li><span class="math inline">\(f(e_1)\)</span> 是幺元</li>
-<li><span class="math inline">\({f(a)}^{-1}f(b)=f({a}^{-1}b)\in\text{Im}f\)</span></li>
+<li><span
+class="math inline">\({f(a)}^{-1}f(b)=f({a}^{-1}b)\in\text{Im}f\)</span></li>
 </ol>
-<p>因此 <span class="math inline">\(\text{Im}f\)</span> 成群. 又因为 <span class="math inline">\(\text{Im}f\subseteq G_2\)</span>, 所以 <span class="math inline">\(\text{Im}f\leqslant G_2\)</span>.</p>
-<p>这说明 <span class="math inline">\(f\)</span> 即使不是满同态, 也可以选取 <span class="math inline">\(G_2&#39;=\text{Im}f\)</span> 来使得 <span class="math inline">\(f\)</span> 为 <span class="math inline">\(G_1\mapsto G_2&#39;\)</span> 的满同态.</p>
+<p>因此 <span class="math inline">\(\text{Im}f\)</span> 成群. 又因为
+<span class="math inline">\(\text{Im}f\subseteq G_2\)</span>, 所以 <span
+class="math inline">\(\text{Im}f\leqslant G_2\)</span>.</p>
+<p>这说明 <span class="math inline">\(f\)</span> 即使不是满同态,
+也可以选取 <span class="math inline">\(G_2&#39;=\text{Im}f\)</span>
+来使得 <span class="math inline">\(f\)</span> 为 <span
+class="math inline">\(G_1\mapsto G_2&#39;\)</span> 的满同态.</p>
 <h1 id="核">核</h1>
-<p>定义 <span class="math inline">\(\ker f=\Set{a\in G_1\mid f(a)=e_2}\)</span>, 称为 <span class="math inline">\(f\)</span> 的核, 也叫零空间.</p>
+<p>定义 <span class="math inline">\(\ker f=\Set{a\in G_1\mid
+f(a)=e_2}\)</span>, 称为 <span class="math inline">\(f\)</span> 的核,
+也叫零空间.</p>
 <h2 id="定理4">定理4</h2>
 <p><span class="math inline">\(\ker f\lhd G_1\)</span>.</p>
-<p>首先 <span class="math inline">\(e_1\in \ker f\)</span>, 且 <span class="math inline">\(\forall a,b\in G_1\)</span>, 若 <span class="math inline">\(f(a),f(b)\in \ker f\)</span>, 则 <span class="math inline">\(f({a}^{-1}b)=f({a}^{-1})f(b)=e_2\)</span>, 因此 <span class="math inline">\(\ker f\leqslant G_1\)</span>.</p>
-<p>接着 <span class="math inline">\(\forall g\in G_1, h\in \ker f\)</span>, 有 <span class="math inline">\(f({g}^{-1}hg)=f({g}^{-1})f(h)f(g)=f({g}^{-1}g)=e_2\)</span>.</p>
+<p>首先 <span class="math inline">\(e_1\in \ker f\)</span>, 且 <span
+class="math inline">\(\forall a,b\in G_1\)</span>, 若 <span
+class="math inline">\(f(a),f(b)\in \ker f\)</span>, 则 <span
+class="math inline">\(f({a}^{-1}b)=f({a}^{-1})f(b)=e_2\)</span>, 因此
+<span class="math inline">\(\ker f\leqslant G_1\)</span>.</p>
+<p>接着 <span class="math inline">\(\forall g\in G_1, h\in \ker
+f\)</span>, 有 <span
+class="math inline">\(f({g}^{-1}hg)=f({g}^{-1})f(h)f(g)=f({g}^{-1}g)=e_2\)</span>.</p>
 <h2 id="定理5">定理5</h2>
-<p><span class="math inline">\(f\)</span> 是单同态, 当且仅当 <span class="math inline">\(\ker f=\set{e_1}\)</span>.</p>
-<p>若 <span class="math inline">\(\ker f=\set{e_1}\)</span>, 由反证法, 设 <span class="math inline">\(\exists a,b\in G_1 \text{ s.t. } f(a)=f(b)=c\in G_2\)</span></p>
-<p>那么有 <span class="math inline">\(f({a}^{-1}b)={f(a)}^{-1}f(b)={c}^{-1}c=e_2\)</span>, 而 <span class="math inline">\({a}^{-1}b\neq e_1\)</span>, 这与 <span class="math inline">\(\ker f=\set{e_1}\)</span> 矛盾. 故假设不成立.</p>
+<p><span class="math inline">\(f\)</span> 是单同态, 当且仅当 <span
+class="math inline">\(\ker f=\set{e_1}\)</span>.</p>
+<p>若 <span class="math inline">\(\ker f=\set{e_1}\)</span>, 由反证法,
+设 <span class="math inline">\(\exists a,b\in G_1 \text{ s.t. }
+f(a)=f(b)=c\in G_2\)</span></p>
+<p>那么有 <span
+class="math inline">\(f({a}^{-1}b)={f(a)}^{-1}f(b)={c}^{-1}c=e_2\)</span>,
+而 <span class="math inline">\({a}^{-1}b\neq e_1\)</span>, 这与 <span
+class="math inline">\(\ker f=\set{e_1}\)</span> 矛盾. 故假设不成立.</p>
 <p>另一侧是显然的.</p>
 <h1 id="同构">同构</h1>
-<p>若 <span class="math inline">\(f\colon G_1\mapsto G_2\)</span> 既是满同态, 又是单同态, 那么 <span class="math inline">\(f\)</span> 就是一个同构.</p>
+<p>若 <span class="math inline">\(f\colon G_1\mapsto G_2\)</span>
+既是满同态, 又是单同态, 那么 <span class="math inline">\(f\)</span>
+就是一个同构.</p>
 <h2 id="群同态第一定理">群同态第一定理</h2>
 <p>定理的顺序有很多说法</p>
-<p>若 <span class="math inline">\(f\colon G_1\mapsto G_2\)</span> 是满同态, <span class="math inline">\(\ker f\lhd G_1\)</span>, 那么 <span class="math inline">\(\sigma\colon G_1/\ker f\mapsto G_2\)</span> 是同构, 其中 <span class="math inline">\(\sigma(a\ker f)=f(a)\)</span>.</p>
-<p>有些地方会表述成 <span class="math inline">\(\sigma\colon G/\ker f\mapsto \text{Im }f\)</span>, 看起来更漂亮一些.</p>
-<p>首先需要证明 <span class="math inline">\(\sigma\)</span> 是良定义的映射, 即 <span class="math inline">\(\forall a,\forall b\in [a], \sigma(a\ker f)=\sigma(b\ker f)\)</span>. 注意到 <span class="math inline">\({a}^{-1}b\in\ker f\)</span>, 因此 <span class="math inline">\(f({a}^{-1}b)={f(a)}^{-1}f(b)=e_2\)</span>, 立即有 <span class="math inline">\(f(a)=f(b)\)</span>.</p>
+<p>若 <span class="math inline">\(f\colon G_1\mapsto G_2\)</span>
+是满同态, <span class="math inline">\(\ker f\lhd G_1\)</span>, 那么
+<span class="math inline">\(\sigma\colon G_1/\ker f\mapsto G_2\)</span>
+是同构, 其中 <span class="math inline">\(\sigma(a\ker
+f)=f(a)\)</span>.</p>
+<p>有些地方会表述成 <span class="math inline">\(\sigma\colon G/\ker
+f\mapsto \text{Im }f\)</span>, 看起来更漂亮一些.</p>
+<p>首先需要证明 <span class="math inline">\(\sigma\)</span>
+是良定义的映射, 即 <span class="math inline">\(\forall a,\forall b\in
+[a], \sigma(a\ker f)=\sigma(b\ker f)\)</span>. 注意到 <span
+class="math inline">\({a}^{-1}b\in\ker f\)</span>, 因此 <span
+class="math inline">\(f({a}^{-1}b)={f(a)}^{-1}f(b)=e_2\)</span>, 立即有
+<span class="math inline">\(f(a)=f(b)\)</span>.</p>
 <p><span class="math inline">\(\sigma\)</span> 显然是满同态;</p>
-<p><span class="math inline">\(\forall a,b\in G\)</span>, <span class="math inline">\(f(a)=f(b)\Rightarrow {a}^{-1}b\in \ker f\Rightarrow a\ker f=b\ker f\)</span>. 说明 <span class="math inline">\(\sigma\)</span> 是单射. 故 <span class="math inline">\(\sigma\)</span> 是同构.</p>
-<p>可以回忆一下高代里讲过 <span class="math inline">\(\dim V = \dim \ker V + \dim \text{Im }V\)</span>. 又因为 <span class="math inline">\(\dim (V/W)=\dim V - \dim W\)</span>, 结合有限维线性空间同构当且仅当维数相同, 其实就是 <span class="math inline">\(V/\ker V\mapsto \text{Im }V\)</span> 同构.</p>
+<p><span class="math inline">\(\forall a,b\in G\)</span>, <span
+class="math inline">\(f(a)=f(b)\Rightarrow {a}^{-1}b\in \ker
+f\Rightarrow a\ker f=b\ker f\)</span>. 说明 <span
+class="math inline">\(\sigma\)</span> 是单射. 故 <span
+class="math inline">\(\sigma\)</span> 是同构.</p>
+<p>可以回忆一下高代里讲过 <span class="math inline">\(\dim V = \dim \ker
+V + \dim \text{Im }V\)</span>. 又因为 <span class="math inline">\(\dim
+(V/W)=\dim V - \dim W\)</span>, 结合有限维线性空间同构当且仅当维数相同,
+其实就是 <span class="math inline">\(V/\ker V\mapsto \text{Im
+}V\)</span> 同构.</p>
 
       </div>
       

@@ -185,11 +185,16 @@
       </div>
       <div class="markdown-body">
         <h1 id="写在前面">写在前面</h1>
-<p>第一次看这本书的时候看得比较急，也没有一个big picture的把握，所以在细节上面耗费了很多时间....现在算是重构一次笔记了</p>
-<p>我们知道，形式逻辑是对推理的形式化（mathematical logic formalizes resoning），为了描述推理我们有各种各样的逻辑系统。对于一个逻辑系统，最关键的就是它的语法（Syntax）和语义（Semantics）。其中语法决定了逻辑系统中讨论的对象长什么样，而语义决定了我们如何解释这些逻辑系统中被研究的对象。</p>
-<p>比如说我们有研究命题的命题逻辑（Propositional Logic）、包含了函数 算术的一阶逻辑（First Order Logic）、对真值进行扩充得到的模态逻辑等等。这些逻辑的区别就在于它们的语法和语义。</p>
+<p>第一次看这本书的时候看得比较急，也没有一个big
+picture的把握，所以在细节上面耗费了很多时间....现在算是重构一次笔记了</p>
+<p>我们知道，形式逻辑是对推理的形式化（mathematical logic formalizes
+resoning），为了描述推理我们有各种各样的逻辑系统。对于一个逻辑系统，最关键的就是它的语法（Syntax）和语义（Semantics）。其中语法决定了逻辑系统中讨论的对象长什么样，而语义决定了我们如何解释这些逻辑系统中被研究的对象。</p>
+<p>比如说我们有研究命题的命题逻辑（Propositional Logic）、包含了函数
+算术的一阶逻辑（First Order
+Logic）、对真值进行扩充得到的模态逻辑等等。这些逻辑的区别就在于它们的语法和语义。</p>
 <p>同时，在熟悉这些逻辑系统的同时，还要分清什么是我们的研究对象。因为逻辑在研究推理的形式化，因此需要区分什么是逻辑系统中的形式化推理（研究对象），什么是我们对于研究对象的推理。后者被成为元逻辑、元语言，前者就是对象逻辑、对象语言了。所有的对象逻辑都应根据相应的逻辑系统的定义赋予其含义，而在元语言的层面则可以随意一些，就是正常的平时推理。</p>
-<p>本书是写给CSer的数理逻辑教材，因此会专门讲不同逻辑系统中的一类算法（Decision Procedure）的构造和正确性证明，这些是纯数不太感兴趣的东西，也是这本书多出来的东西。同时在看的时候，还要尤其注意什么是基础、什么是组合构造方法、这些逻辑对哪些东西做了抽象，这三板斧应该刻在DNA里。</p>
+<p>本书是写给CSer的数理逻辑教材，因此会专门讲不同逻辑系统中的一类算法（Decision
+Procedure）的构造和正确性证明，这些是纯数不太感兴趣的东西，也是这本书多出来的东西。同时在看的时候，还要尤其注意什么是基础、什么是组合构造方法、这些逻辑对哪些东西做了抽象，这三板斧应该刻在DNA里。</p>
 <p>废话不多说</p>
 <h1 id="命题逻辑">命题逻辑</h1>
 <p>命题逻辑是比较常见易懂的逻辑，它主要关心在给出若干基本命题（atoms）之后，如何通过组合小命题来获得大命题、如何给组合命题递归地赋予含义（Compositionality），因此用树形结构来展示这样的命题构造就是很自然的了。</p>
@@ -200,119 +205,344 @@
 {stmt = atom\;|\;(\neg\;stmt)\;|\;(stmt_1\;op\;stmt_2)}
 
 \end{aligned}\]</span>
-<p>为了方便，引入语法符号 <span class="math inline">\(\top,\bot\)</span>，规定任意解释下都有 <span class="math inline">\({\mathscr I}(\bot)=F,{\mathscr I}(\top)=T\)</span></p>
-<p>通常记所有公式组成的集合为 <span class="math inline">\(\mathscr F\)</span></p>
+<p>为了方便，引入语法符号 <span
+class="math inline">\(\top,\bot\)</span>，规定任意解释下都有 <span
+class="math inline">\({\mathscr I}(\bot)=F,{\mathscr
+I}(\top)=T\)</span></p>
+<p>通常记所有公式组成的集合为 <span class="math inline">\(\mathscr
+F\)</span></p>
 <h2 id="语义">语义</h2>
-<p>定义公式 <span class="math inline">\(A\)</span> 的一个解释 <span class="math inline">\(\mathscr I\)</span> 为一个函数 <span class="math inline">\(U_A\mapsto \left\{T,F\right\}\)</span>，其中 <span class="math inline">\(U_A\)</span> 为公式 <span class="math inline">\(A\)</span> 中包含的所有原子所组成的集合</p>
-<p>通过 <span class="math inline">\({\mathscr I}(A_1)\)</span> 和 <span class="math inline">\({\mathscr I}(A_2)\)</span> 给出 <span class="math inline">\({\mathscr I}(A_1\;op\;A_2)\)</span> ，以此来定义命题构造子（别人都叫他运算符，但我更喜欢这么说）<span class="math inline">\(op\)</span> 的含义</p>
-<p>若在某个解释 <span class="math inline">\(\scr I\)</span> 下公式 <span class="math inline">\(A\)</span> 满足 <span class="math inline">\({\scr I}(A)=T\)</span>，我们就说 <span class="math inline">\(A\)</span> 是可满足的（satisfiable），此时的 <span class="math inline">\({\scr I}\)</span> 是 <span class="math inline">\(A\)</span> 的一个模型（Model）</p>
-<p>若在任意解释 <span class="math inline">\({\scr I}\)</span> 下公式 <span class="math inline">\(A\)</span> 满足 <span class="math inline">\({\scr I}(A)=T\)</span>，我们就说 <span class="math inline">\(A\)</span> 是永真的（valid），记作 <span class="math inline">\(\models A\)</span></p>
-<p>类似可以定义永假的（即不可满足的 unsatisfiable）、可假的（fasifiable）记作 <span class="math inline">\(\not\models A\)</span>，在某些操作下这四种性质可以互相转化</p>
+<p>定义公式 <span class="math inline">\(A\)</span> 的一个解释 <span
+class="math inline">\(\mathscr I\)</span> 为一个函数 <span
+class="math inline">\(U_A\mapsto \left\{T,F\right\}\)</span>，其中 <span
+class="math inline">\(U_A\)</span> 为公式 <span
+class="math inline">\(A\)</span> 中包含的所有原子所组成的集合</p>
+<p>通过 <span class="math inline">\({\mathscr I}(A_1)\)</span> 和 <span
+class="math inline">\({\mathscr I}(A_2)\)</span> 给出 <span
+class="math inline">\({\mathscr I}(A_1\;op\;A_2)\)</span>
+，以此来定义命题构造子（别人都叫他运算符，但我更喜欢这么说）<span
+class="math inline">\(op\)</span> 的含义</p>
+<p>若在某个解释 <span class="math inline">\(\scr I\)</span> 下公式 <span
+class="math inline">\(A\)</span> 满足 <span class="math inline">\({\scr
+I}(A)=T\)</span>，我们就说 <span class="math inline">\(A\)</span>
+是可满足的（satisfiable），此时的 <span class="math inline">\({\scr
+I}\)</span> 是 <span class="math inline">\(A\)</span>
+的一个模型（Model）</p>
+<p>若在任意解释 <span class="math inline">\({\scr I}\)</span> 下公式
+<span class="math inline">\(A\)</span> 满足 <span
+class="math inline">\({\scr I}(A)=T\)</span>，我们就说 <span
+class="math inline">\(A\)</span> 是永真的（valid），记作 <span
+class="math inline">\(\models A\)</span></p>
+<p>类似可以定义永假的（即不可满足的
+unsatisfiable）、可假的（fasifiable）记作 <span
+class="math inline">\(\not\models
+A\)</span>，在某些操作下这四种性质可以互相转化</p>
 <p>需要注意的是，我们在命题逻辑中讨论的全都是命题变元（语法上的公式），而赋予其真值是解释做的事情（语义上的含义）。这也是为什么我没有通过给“运算符”列真值表来定义，这里的定义完全是基于解释的。</p>
 <h2 id="定义和定理">定义和定理</h2>
 <h3 id="公式组成的集合的解释">公式组成的集合的解释</h3>
-<p>记 <span class="math inline">\({\scr U}=\left\{A\right\}\)</span> 为公式的集合（在这里我们忽略无穷集，因为对于无穷的二元运算没有定义）</p>
-<p>若在某个解释 <span class="math inline">\({\scr I}\)</span> 下有 <span class="math inline">\({\scr I}(A)=T\)</span> 对 <span class="math inline">\({\scr U}\)</span> 中的每个公式都成立，则称 <span class="math inline">\({\scr U}\)</span> 是可满足的</p>
-<p>若在任意解释 <span class="math inline">\({\scr I}\)</span> 下都存在 <span class="math inline">\({\scr U}\)</span> 中的某个公式 <span class="math inline">\(A\)</span> 使得 <span class="math inline">\({\scr I}(A)=T\)</span>，则称 <span class="math inline">\({\scr U}\)</span> 是不可满足的</p>
-<p>容易发现这个定义就是在讨论 <span class="math inline">\(\bigwedge_{A\in {\scr U} } A\)</span> 在解释 <span class="math inline">\({\scr I}\)</span> 下的真值</p>
+<p>记 <span class="math inline">\({\scr U}=\left\{A\right\}\)</span>
+为公式的集合（在这里我们忽略无穷集，因为对于无穷的二元运算没有定义）</p>
+<p>若在某个解释 <span class="math inline">\({\scr I}\)</span> 下有 <span
+class="math inline">\({\scr I}(A)=T\)</span> 对 <span
+class="math inline">\({\scr U}\)</span> 中的每个公式都成立，则称 <span
+class="math inline">\({\scr U}\)</span> 是可满足的</p>
+<p>若在任意解释 <span class="math inline">\({\scr I}\)</span> 下都存在
+<span class="math inline">\({\scr U}\)</span> 中的某个公式 <span
+class="math inline">\(A\)</span> 使得 <span class="math inline">\({\scr
+I}(A)=T\)</span>，则称 <span class="math inline">\({\scr U}\)</span>
+是不可满足的</p>
+<p>容易发现这个定义就是在讨论 <span
+class="math inline">\(\bigwedge_{A\in {\scr U} } A\)</span> 在解释 <span
+class="math inline">\({\scr I}\)</span> 下的真值</p>
 <h3 id="运算符">运算符</h3>
-<p>一个 <span class="math inline">\(n\)</span> 元运算实际上是 <span class="math inline">\(\left\{T,F\right\}^n\mapsto \left\{T,F\right\}\)</span> 的一个函数，因此有 <span class="math inline">\(\scr F\)</span> 上的本质不同的 <span class="math inline">\(n\)</span> 元运算有 <span class="math inline">\(2^{2^n}\)</span> 种。</p>
+<p>一个 <span class="math inline">\(n\)</span> 元运算实际上是 <span
+class="math inline">\(\left\{T,F\right\}^n\mapsto
+\left\{T,F\right\}\)</span> 的一个函数，因此有 <span
+class="math inline">\(\scr F\)</span> 上的本质不同的 <span
+class="math inline">\(n\)</span> 元运算有 <span
+class="math inline">\(2^{2^n}\)</span> 种。</p>
 <p>在结构归纳法中我们需要讨论所有形式的公式（即，在每一种运算下产生的所有公式），非常麻烦。一种想法是找出尽可能基本的运算，在此之上构造剩余的运算。</p>
-<p>定义运算 <span class="math inline">\(\circ\)</span> 能被 <span class="math inline">\(O=\left\{\circ_1,\circ_2\ldots\circ_n\right\}\)</span> 表示，当且仅当对于任意 <span class="math inline">\(\scr F\)</span> 中的公式 <span class="math inline">\(A,B\)</span>，都有 <span class="math inline">\(A\circ B=C_X\circ_Y C_X\cdots C_X\)</span></p>
-<p>其中 <span class="math inline">\(C_X\in\left\{A,B\right\}\)</span>，<span class="math inline">\(\circ_Y\in O\)</span></p>
-<p>特殊地，对于单目运算符 <span class="math inline">\(\sim\)</span>，我们修改定义为 <span class="math inline">\(\sim A=A\circ_Y A\cdots A\)</span>，其中 <span class="math inline">\(\circ_Y\in O\)</span></p>
-<p>定义运算集 <span class="math inline">\(O\)</span> 是完备的（Adequate），当且仅当所有运算都可被 <span class="math inline">\(O\)</span> 表示。学过数电都知道 NAND和NOR 可以搭出所有电路，在逻辑系统中也有这样的性质，证明只需要简单的构造一下就好了。常用的完备集是 <span class="math inline">\(\left\{\wedge,\vee,\neg\right\}\)</span></p>
-<p>定理：二元运算的最小完备集只可能是 <span class="math inline">\(\uparrow\)</span> 或 <span class="math inline">\(\downarrow\)</span>，即NAND或NOR。具体的证明可以看后面的习题合辑（如果我没有咕咕咕的话）</p>
+<p>定义运算 <span class="math inline">\(\circ\)</span> 能被 <span
+class="math inline">\(O=\left\{\circ_1,\circ_2\ldots\circ_n\right\}\)</span>
+表示，当且仅当对于任意 <span class="math inline">\(\scr F\)</span>
+中的公式 <span class="math inline">\(A,B\)</span>，都有 <span
+class="math inline">\(A\circ B=C_X\circ_Y C_X\cdots C_X\)</span></p>
+<p>其中 <span
+class="math inline">\(C_X\in\left\{A,B\right\}\)</span>，<span
+class="math inline">\(\circ_Y\in O\)</span></p>
+<p>特殊地，对于单目运算符 <span
+class="math inline">\(\sim\)</span>，我们修改定义为 <span
+class="math inline">\(\sim A=A\circ_Y A\cdots A\)</span>，其中 <span
+class="math inline">\(\circ_Y\in O\)</span></p>
+<p>定义运算集 <span class="math inline">\(O\)</span>
+是完备的（Adequate），当且仅当所有运算都可被 <span
+class="math inline">\(O\)</span> 表示。学过数电都知道 NAND和NOR
+可以搭出所有电路，在逻辑系统中也有这样的性质，证明只需要简单的构造一下就好了。常用的完备集是
+<span class="math inline">\(\left\{\wedge,\vee,\neg\right\}\)</span></p>
+<p>定理：二元运算的最小完备集只可能是 <span
+class="math inline">\(\uparrow\)</span> 或 <span
+class="math inline">\(\downarrow\)</span>，即NAND或NOR。具体的证明可以看后面的习题合辑（如果我没有咕咕咕的话）</p>
 <h3 id="等价逻辑后承">等价、逻辑后承</h3>
-<p>定义 <span class="math inline">\(\mathscr F\)</span> 上的二元关系 <span class="math inline">\(\equiv\)</span> 逻辑等价（Logical Equivalence）为：</p>
-<p><span class="math inline">\(A_1\equiv A_2\)</span> 当且仅当在任意解释下，有 <span class="math inline">\({\mathscr I}(A_1)={\mathscr I}(A_2)\)</span></p>
+<p>定义 <span class="math inline">\(\mathscr F\)</span> 上的二元关系
+<span class="math inline">\(\equiv\)</span> 逻辑等价（Logical
+Equivalence）为：</p>
+<p><span class="math inline">\(A_1\equiv A_2\)</span>
+当且仅当在任意解释下，有 <span class="math inline">\({\mathscr
+I}(A_1)={\mathscr I}(A_2)\)</span></p>
 <p>定义逻辑后承（Logical Consequence）的含义为：</p>
-<p><span class="math inline">\({\scr U}\models A\)</span> 当且仅当在所有使得 <span class="math inline">\({\scr U}\)</span> 可满足的解释 <span class="math inline">\(\scr I\)</span> 下，都有 <span class="math inline">\({\scr I}(A)=T\)</span></p>
+<p><span class="math inline">\({\scr U}\models A\)</span>
+当且仅当在所有使得 <span class="math inline">\({\scr U}\)</span>
+可满足的解释 <span class="math inline">\(\scr I\)</span> 下，都有 <span
+class="math inline">\({\scr I}(A)=T\)</span></p>
 <p>我个人觉得也可以叫语义后承</p>
-<p><span class="math inline">\(A\leftrightarrow B\)</span> 永真当且仅当 <span class="math inline">\(A\equiv B\)</span></p>
-<p><span class="math inline">\(\bigwedge_{A\in {\scr U} }A\rightarrow B\)</span> 永真 当且仅当 <span class="math inline">\({\scr U}\models B\)</span></p>
+<p><span class="math inline">\(A\leftrightarrow B\)</span> 永真当且仅当
+<span class="math inline">\(A\equiv B\)</span></p>
+<p><span class="math inline">\(\bigwedge_{A\in {\scr U} }A\rightarrow
+B\)</span> 永真 当且仅当 <span class="math inline">\({\scr U}\models
+B\)</span></p>
 <p>这两个定理实际上是为命题逻辑系统中的语法符号作出了解释，即我们可以用一些逻辑系统内部满足的性质来代替元语言的描述</p>
 <h3 id="子公式替换">子公式、替换</h3>
-<p>子公式仍然是 <span class="math inline">\(\scr F\)</span> 上的二元关系，在不影响上下文理解的时候，我们将把 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(B\)</span> 的子公式简记作 <span class="math inline">\(A\subseteq B\)</span></p>
+<p>子公式仍然是 <span class="math inline">\(\scr F\)</span>
+上的二元关系，在不影响上下文理解的时候，我们将把 <span
+class="math inline">\(A\)</span> 是 <span
+class="math inline">\(B\)</span> 的子公式简记作 <span
+class="math inline">\(A\subseteq B\)</span></p>
 <p>子公式的严格定义可以通过公式作为树结构导出，只需要照抄子树的定义就好</p>
-<p>同样在树结构上操作，我们可以将一棵子树替换为另一棵子树，在公式中就表现为将一段子公式替换为另一个公式，记作 <span class="math inline">\(A\left\{B\leftarrow C\right\}\)</span>，其中 <span class="math inline">\(B\subseteq A\)</span>，解释为 把 <span class="math inline">\(A\)</span> 中的<strong>所有</strong>子公式 <span class="math inline">\(B\)</span> 替换为公式 <span class="math inline">\(C\)</span></p>
-<p>若 <span class="math inline">\(B\equiv C\)</span> 且 <span class="math inline">\(B\subseteq A\)</span>，则有 <span class="math inline">\(A\left\{B\leftarrow C\right\}\equiv A\)</span> 成立</p>
+<p>同样在树结构上操作，我们可以将一棵子树替换为另一棵子树，在公式中就表现为将一段子公式替换为另一个公式，记作
+<span class="math inline">\(A\left\{B\leftarrow C\right\}\)</span>，其中
+<span class="math inline">\(B\subseteq A\)</span>，解释为 把 <span
+class="math inline">\(A\)</span> 中的<strong>所有</strong>子公式 <span
+class="math inline">\(B\)</span> 替换为公式 <span
+class="math inline">\(C\)</span></p>
+<p>若 <span class="math inline">\(B\equiv C\)</span> 且 <span
+class="math inline">\(B\subseteq A\)</span>，则有 <span
+class="math inline">\(A\left\{B\leftarrow C\right\}\equiv A\)</span>
+成立</p>
 <p>具体的证明可以通过对树形结构来归纳做。</p>
 <h3 id="文字互补对">文字、互补对</h3>
 <p>这个翻译很怪</p>
-<p>对于原子 <span class="math inline">\(p\)</span>，我们把 <span class="math inline">\(p\)</span> 和 <span class="math inline">\(\neg p\)</span> 称为一对文字（Literals），其中 <span class="math inline">\(p\)</span> 是正文字（Positive），<span class="math inline">\(\neg p\)</span> 是负的（Negative）</p>
+<p>对于原子 <span class="math inline">\(p\)</span>，我们把 <span
+class="math inline">\(p\)</span> 和 <span class="math inline">\(\neg
+p\)</span> 称为一对文字（Literals），其中 <span
+class="math inline">\(p\)</span> 是正文字（Positive），<span
+class="math inline">\(\neg p\)</span> 是负的（Negative）</p>
 <p>同一个原子的两个文字组成一对互补对（Complementary Pair）</p>
-<p>若公式集 <span class="math inline">\({\scr U}\)</span> 存在一对互补对，即存在 <span class="math inline">\(p,\neg p\in {\scr U}\)</span>，当且仅当 <span class="math inline">\({\scr U}\)</span> 不可满足</p>
-<p>这是由定义即得的。互补对定理使得我们可以构造出一种正确的Decision Procedure</p>
+<p>若公式集 <span class="math inline">\({\scr U}\)</span>
+存在一对互补对，即存在 <span class="math inline">\(p,\neg p\in {\scr
+U}\)</span>，当且仅当 <span class="math inline">\({\scr U}\)</span>
+不可满足</p>
+<p>这是由定义即得的。互补对定理使得我们可以构造出一种正确的Decision
+Procedure</p>
 <h3 id="理论">理论</h3>
-<p>若公式集 <span class="math inline">\(\scr F\)</span> 在 <span class="math inline">\(\models\)</span> 二元关系下满足封闭性，则称 <span class="math inline">\(\scr F\)</span> 是一个理论（Theory），<span class="math inline">\(\scr F\)</span> 中的公式为定理（Theorem）</p>
-<p>对于一个理论 <span class="math inline">\(\scr F\)</span>，若存在 <span class="math inline">\(\scr U\subseteq F\)</span> 使得 <span class="math inline">\({\scr F=}\left\{A|{\scr U}\models A\right\}\)</span>，则称 <span class="math inline">\(\scr F\)</span> 是可公理化的（Axiomatizable），<span class="math inline">\(\scr U\)</span> 是 <span class="math inline">\(\scr F\)</span> 的一组公理。</p>
-<p>需要注意的是，这里对公理集的大小没有限制。考虑皮亚诺公理系统，我们对自然数集中的每个元素都作出了公理化的定义，因此皮亚诺公理系统的公理集合实际上是由一个Axiom Scheme产生的，我们把这个单独的Scheme作用到每个元素上就得到了无穷多个公理。</p>
+<p>若公式集 <span class="math inline">\(\scr F\)</span> 在 <span
+class="math inline">\(\models\)</span> 二元关系下满足封闭性，则称 <span
+class="math inline">\(\scr F\)</span> 是一个理论（Theory），<span
+class="math inline">\(\scr F\)</span> 中的公式为定理（Theorem）</p>
+<p>对于一个理论 <span class="math inline">\(\scr F\)</span>，若存在
+<span class="math inline">\(\scr U\subseteq F\)</span> 使得 <span
+class="math inline">\({\scr F=}\left\{A|{\scr U}\models
+A\right\}\)</span>，则称 <span class="math inline">\(\scr F\)</span>
+是可公理化的（Axiomatizable），<span class="math inline">\(\scr
+U\)</span> 是 <span class="math inline">\(\scr F\)</span>
+的一组公理。</p>
+<p>需要注意的是，这里对公理集的大小没有限制。考虑皮亚诺公理系统，我们对自然数集中的每个元素都作出了公理化的定义，因此皮亚诺公理系统的公理集合实际上是由一个Axiom
+Scheme产生的，我们把这个单独的Scheme作用到每个元素上就得到了无穷多个公理。</p>
 <h3 id="decision-procedure">Decision Procedure</h3>
-<p>对于 <span class="math inline">\(\scr F\)</span> ，一个算法 <span class="math inline">\({\scr F}\mapsto \left\{T,F\right\}\)</span> 被称为是一个Decision Procedure。记使其输出为 <span class="math inline">\(T\)</span> 的公式集合为 <span class="math inline">\(\scr U\)</span>，显然有 <span class="math inline">\(\scr U\subseteq F\)</span>，我们称这个算法是 Decision Procedure on <span class="math inline">\(\scr U\)</span></p>
-<p>通常我们会关注 Decision Procedure on Validity，即给定一个公式判断它是否永真</p>
+<p>对于 <span class="math inline">\(\scr F\)</span> ，一个算法 <span
+class="math inline">\({\scr F}\mapsto \left\{T,F\right\}\)</span>
+被称为是一个Decision Procedure。记使其输出为 <span
+class="math inline">\(T\)</span> 的公式集合为 <span
+class="math inline">\(\scr U\)</span>，显然有 <span
+class="math inline">\(\scr U\subseteq F\)</span>，我们称这个算法是
+Decision Procedure on <span class="math inline">\(\scr U\)</span></p>
+<p>通常我们会关注 Decision Procedure on
+Validity，即给定一个公式判断它是否永真</p>
 <h2 id="semantic-tableaux">Semantic Tableaux</h2>
 <p>ST是一种Decision Procedure，它能判定一个公式是否可满足</p>
 <h3 id="构造">构造</h3>
 <ol type="1">
-<li><p>令根节点的标记为由待判定的公式 <span class="math inline">\(A\)</span> 组成的集合 <span class="math inline">\(\left\{A\right\}\)</span>，记为 <span class="math inline">\(label(l)=\left\{A\right\}\)</span></p></li>
-<li><p>选取一个未被标记为open或closed的叶子 <span class="math inline">\(l\)</span>，若不存在则前往步骤8</p></li>
-<li><p>若 <span class="math inline">\(label(l)\)</span> 全是文字，则如果存在互补对，就标记为closed leaf并回到步骤2；如果不存在就标记为open leaf并回到步骤2。如果不全是文字，则前往步骤4</p></li>
-<li><p>记 <span class="math inline">\(label(l)\)</span> 中不是文字的公式为 <span class="math inline">\(W\)</span></p></li>
-<li><p>若 <span class="math inline">\(W\)</span> 形如 <span class="math inline">\(A_1\wedge A_2\)</span>，则构造 <span class="math inline">\(l\)</span> 的儿子 <span class="math inline">\(l&#39;\)</span>，其标记为 <span class="math inline">\(label(l&#39;)=label(l)-\left\{W\right\}+\left\{A_1,A_2\right\}\)</span>，回到步骤2</p></li>
-<li><p>若 <span class="math inline">\(W\)</span> 形如 <span class="math inline">\(A_1\vee A_2\)</span>，则构造 <span class="math inline">\(l&#39;,l&#39;&#39;\)</span>，其中 <span class="math inline">\(label(l&#39;)=label(l)-\left\{W\right\}+\left\{A_1\right\}\)</span>，<span class="math inline">\(label(l&#39;&#39;)=label(l)-\left\{W\right\}+\left\{A_2\right\}\)</span>，回到步骤2</p></li>
-<li><p>若 <span class="math inline">\(W\)</span> 形如 <span class="math inline">\(\neg A\)</span>，则根据De Morgan Law化进去，回到4</p></li>
+<li><p>令根节点的标记为由待判定的公式 <span
+class="math inline">\(A\)</span> 组成的集合 <span
+class="math inline">\(\left\{A\right\}\)</span>，记为 <span
+class="math inline">\(label(l)=\left\{A\right\}\)</span></p></li>
+<li><p>选取一个未被标记为open或closed的叶子 <span
+class="math inline">\(l\)</span>，若不存在则前往步骤8</p></li>
+<li><p>若 <span class="math inline">\(label(l)\)</span>
+全是文字，则如果存在互补对，就标记为closed
+leaf并回到步骤2；如果不存在就标记为open
+leaf并回到步骤2。如果不全是文字，则前往步骤4</p></li>
+<li><p>记 <span class="math inline">\(label(l)\)</span>
+中不是文字的公式为 <span class="math inline">\(W\)</span></p></li>
+<li><p>若 <span class="math inline">\(W\)</span> 形如 <span
+class="math inline">\(A_1\wedge A_2\)</span>，则构造 <span
+class="math inline">\(l\)</span> 的儿子 <span
+class="math inline">\(l&#39;\)</span>，其标记为 <span
+class="math inline">\(label(l&#39;)=label(l)-\left\{W\right\}+\left\{A_1,A_2\right\}\)</span>，回到步骤2</p></li>
+<li><p>若 <span class="math inline">\(W\)</span> 形如 <span
+class="math inline">\(A_1\vee A_2\)</span>，则构造 <span
+class="math inline">\(l&#39;,l&#39;&#39;\)</span>，其中 <span
+class="math inline">\(label(l&#39;)=label(l)-\left\{W\right\}+\left\{A_1\right\}\)</span>，<span
+class="math inline">\(label(l&#39;&#39;)=label(l)-\left\{W\right\}+\left\{A_2\right\}\)</span>，回到步骤2</p></li>
+<li><p>若 <span class="math inline">\(W\)</span> 形如 <span
+class="math inline">\(\neg A\)</span>，则根据De Morgan
+Law化进去，回到4</p></li>
 <li><p>如果所有叶子都是closed，则称这棵树也是closed的，输出不可满足；否则称这棵树是open的，输出可满足</p></li>
 </ol>
 <h3 id="termination">Termination</h3>
-<p>记公式 <span class="math inline">\(A\)</span> 所含二元运算的数量为 <span class="math inline">\(b(A)\)</span>，单目运算数量为 <span class="math inline">\(s(A)\)</span>，定义 <span class="math inline">\(b({\scr U})=\sum\limits_{u\in{\scr U} }b(u)\)</span>，<span class="math inline">\(s({\scr U})=\sum\limits_{u\in{\scr U} }s(u)\)</span></p>
-<p>对于节点 <span class="math inline">\(l\)</span>，构造其势能函数为 <span class="math inline">\(W(l)=b(label(l))+s(label(l))\)</span>，则有如下性质：</p>
+<p>记公式 <span class="math inline">\(A\)</span> 所含二元运算的数量为
+<span class="math inline">\(b(A)\)</span>，单目运算数量为 <span
+class="math inline">\(s(A)\)</span>，定义 <span
+class="math inline">\(b({\scr U})=\sum\limits_{u\in{\scr U}
+}b(u)\)</span>，<span class="math inline">\(s({\scr
+U})=\sum\limits_{u\in{\scr U} }s(u)\)</span></p>
+<p>对于节点 <span class="math inline">\(l\)</span>，构造其势能函数为
+<span
+class="math inline">\(W(l)=b(label(l))+s(label(l))\)</span>，则有如下性质：</p>
 <ol type="1">
-<li><p>任意树上的节点 <span class="math inline">\(l\)</span> 都有 <span class="math inline">\(W(l)\geqslant 0\)</span>。这是因为 <span class="math inline">\(b(\cdot),s(\cdot)\)</span> 都是非负的</p></li>
-<li><p>任意树上的节点 <span class="math inline">\(l\)</span> 及其子节点 <span class="math inline">\(l&#39;,l&#39;&#39;\)</span>，都有 <span class="math inline">\(W(l)&gt; W(l&#39;),W(l)&gt; W(l&#39;&#39;)\)</span>。这个只需要针对步骤5、6、7分别讨论就好了</p></li>
+<li><p>任意树上的节点 <span class="math inline">\(l\)</span> 都有 <span
+class="math inline">\(W(l)\geqslant 0\)</span>。这是因为 <span
+class="math inline">\(b(\cdot),s(\cdot)\)</span> 都是非负的</p></li>
+<li><p>任意树上的节点 <span class="math inline">\(l\)</span> 及其子节点
+<span class="math inline">\(l&#39;,l&#39;&#39;\)</span>，都有 <span
+class="math inline">\(W(l)&gt; W(l&#39;),W(l)&gt;
+W(l&#39;&#39;)\)</span>。这个只需要针对步骤5、6、7分别讨论就好了</p></li>
 </ol>
 <p>因此上述构造必然终止。并且因为必然终止，所以每个叶子要么open，要么closed</p>
 <h3 id="正确性">正确性</h3>
-<p>对于Decision Procedure的正确性要分成Soundness和Completeness两方面证明</p>
+<p>对于Decision
+Procedure的正确性要分成Soundness和Completeness两方面证明</p>
 <h4 id="soundness">Soundness</h4>
 <p>即证明：如果Semantic Tableaux closed，那么公式不可满足</p>
-<p>即证明：如果算法claim公式 <span class="math inline">\(A\)</span> 是不可满足的，那么 <span class="math inline">\(A\)</span> 确实是不可满足的</p>
+<p>即证明：如果算法claim公式 <span class="math inline">\(A\)</span>
+是不可满足的，那么 <span class="math inline">\(A\)</span>
+确实是不可满足的</p>
 <h4 id="completeness">Completeness</h4>
 <p>即证明：如果公式不可满足，则所有的Semantic Tableaux都closed</p>
-<p>即证明：如果公式 <span class="math inline">\(A\)</span> 不可满足，则上述算法构造出来的所有Semantic Tableaux都closed，算法永远claim <span class="math inline">\(A\)</span> 不可满足</p>
+<p>即证明：如果公式 <span class="math inline">\(A\)</span>
+不可满足，则上述算法构造出来的所有Semantic
+Tableaux都closed，算法永远claim <span class="math inline">\(A\)</span>
+不可满足</p>
 <p>证明就咕咕咕啦。这样，这一章就看完啦</p>
 <h3 id="compactness">Compactness</h3>
-<p>讨论的是任意大小的公式集 <span class="math inline">\(\scr U\)</span> 的可满足性</p>
-<p>定义使得性质 "任意 <span class="math inline">\({\scr S}\subseteq {\scr U}\)</span> 若 <span class="math inline">\(|{\scr S}|\in\mathbb N\)</span> 那么 <span class="math inline">\({\scr S}\)</span> 可满足" 成立的集合 <span class="math inline">\(\scr U\)</span> 为有限可满足公式集。有限可满足的公式集的所有有限子集都可满足。那么有定理：若 <span class="math inline">\(\scr U\)</span> 有限可满足，那么 <span class="math inline">\(\scr U\)</span> 仍然可满足。</p>
-<p>首先取有限可满足集 <span class="math inline">\(\Gamma_0\)</span>。注意到公式集 <span class="math inline">\(\scr F\)</span> 是可数集，因此可以构造公式序列 <span class="math inline">\({\scr F}=\left\{F_1,F_2,F_3\ldots\right\}\)</span></p>
-<p>定义若 <span class="math inline">\(\Gamma_{n}\cup\{F_{n+1}\}\)</span> 可满足，那么 <span class="math inline">\(\Gamma_{n+1}=\Gamma_n\cup\{F_{n+1}\}\)</span>，否则 <span class="math inline">\(\Gamma_{n+1}=\Gamma_{n}\cup\{\neg F_{n+1}\}\)</span></p>
-<p>有如下claim：<span class="math inline">\(\Gamma_n\)</span> 的存在性对于任意的正整数 <span class="math inline">\(n\)</span> 成立。由反证法，假设存在最小的 <span class="math inline">\(n&#39;\)</span> 使得 <span class="math inline">\(\Gamma_{n&#39;}\cup\{F_{n&#39;+1}\}\)</span> 与 <span class="math inline">\(\Gamma_{n&#39;}\cup\{\neg F_{n&#39;+1}\}\)</span> 都不是有限可满足公式集，则根据定义存在 <span class="math inline">\(\Delta_1,\Delta_2\subseteq \Gamma_{n&#39;}\)</span> 使得 <span class="math inline">\(\Delta_1\cup\{F_{n&#39;+1}\}\)</span> 与 <span class="math inline">\(\Delta_2\cup\{\neg F_{n&#39;+1}\}\)</span> 都不是可满足的。又因为 <span class="math inline">\(\Delta_1,\Delta_2\)</span> 是 <span class="math inline">\(\Gamma_{n&#39;}\)</span> 的子集，且 <span class="math inline">\(\Gamma_{n&#39;}\)</span> 有限可满足，因此存在解释 <span class="math inline">\(\scr I\)</span> 使得 <span class="math inline">\({\scr I}\models \Delta_1\cup\Delta_2\)</span></p>
+<p>讨论的是任意大小的公式集 <span class="math inline">\(\scr U\)</span>
+的可满足性</p>
+<p>定义使得性质 "任意 <span class="math inline">\({\scr S}\subseteq
+{\scr U}\)</span> 若 <span class="math inline">\(|{\scr S}|\in\mathbb
+N\)</span> 那么 <span class="math inline">\({\scr S}\)</span> 可满足"
+成立的集合 <span class="math inline">\(\scr U\)</span>
+为有限可满足公式集。有限可满足的公式集的所有有限子集都可满足。那么有定理：若
+<span class="math inline">\(\scr U\)</span> 有限可满足，那么 <span
+class="math inline">\(\scr U\)</span> 仍然可满足。</p>
+<p>首先取有限可满足集 <span
+class="math inline">\(\Gamma_0\)</span>。注意到公式集 <span
+class="math inline">\(\scr F\)</span> 是可数集，因此可以构造公式序列
+<span class="math inline">\({\scr
+F}=\left\{F_1,F_2,F_3\ldots\right\}\)</span></p>
+<p>定义若 <span class="math inline">\(\Gamma_{n}\cup\{F_{n+1}\}\)</span>
+可满足，那么 <span
+class="math inline">\(\Gamma_{n+1}=\Gamma_n\cup\{F_{n+1}\}\)</span>，否则
+<span class="math inline">\(\Gamma_{n+1}=\Gamma_{n}\cup\{\neg
+F_{n+1}\}\)</span></p>
+<p>有如下claim：<span class="math inline">\(\Gamma_n\)</span>
+的存在性对于任意的正整数 <span class="math inline">\(n\)</span>
+成立。由反证法，假设存在最小的 <span
+class="math inline">\(n&#39;\)</span> 使得 <span
+class="math inline">\(\Gamma_{n&#39;}\cup\{F_{n&#39;+1}\}\)</span> 与
+<span class="math inline">\(\Gamma_{n&#39;}\cup\{\neg
+F_{n&#39;+1}\}\)</span> 都不是有限可满足公式集，则根据定义存在 <span
+class="math inline">\(\Delta_1,\Delta_2\subseteq
+\Gamma_{n&#39;}\)</span> 使得 <span
+class="math inline">\(\Delta_1\cup\{F_{n&#39;+1}\}\)</span> 与 <span
+class="math inline">\(\Delta_2\cup\{\neg F_{n&#39;+1}\}\)</span>
+都不是可满足的。又因为 <span
+class="math inline">\(\Delta_1,\Delta_2\)</span> 是 <span
+class="math inline">\(\Gamma_{n&#39;}\)</span> 的子集，且 <span
+class="math inline">\(\Gamma_{n&#39;}\)</span> 有限可满足，因此存在解释
+<span class="math inline">\(\scr I\)</span> 使得 <span
+class="math inline">\({\scr I}\models \Delta_1\cup\Delta_2\)</span></p>
 <p>取这个解释</p>
 <ol type="1">
-<li><p>若 <span class="math inline">\({\scr I}\models F_{n&#39;+1}\)</span>，那么 <span class="math inline">\({\scr I}\models \Delta_1\cup\{F_{n&#39;+1}\}\)</span></p></li>
-<li><p>若 <span class="math inline">\({\scr I}\models \neg F_{n&#39;+1}\)</span>，那么 <span class="math inline">\({\scr I}\models\Delta_2\cup\{\neg F_{n&#39;+1}\}\)</span></p></li>
+<li><p>若 <span class="math inline">\({\scr I}\models
+F_{n&#39;+1}\)</span>，那么 <span class="math inline">\({\scr I}\models
+\Delta_1\cup\{F_{n&#39;+1}\}\)</span></p></li>
+<li><p>若 <span class="math inline">\({\scr I}\models \neg
+F_{n&#39;+1}\)</span>，那么 <span class="math inline">\({\scr
+I}\models\Delta_2\cup\{\neg F_{n&#39;+1}\}\)</span></p></li>
 </ol>
 <p>无论如何都与假设矛盾，因此假设不成立；</p>
-<p>此时再构造 <span class="math inline">\(\Delta=\bigcup\limits_{i=0}^{\infty} \Gamma_{i}\)</span>，则任取 <span class="math inline">\(\Delta\)</span> 的有限子集 <span class="math inline">\(S\)</span>，其中都存在下标最大的公式 <span class="math inline">\(F_{max}\in S\)</span>，那么根据定义有 <span class="math inline">\(S\subseteq\Gamma_{max}\subseteq\Delta\)</span>。由 <span class="math inline">\(\Gamma_{max}\)</span> 有限可满足即得 <span class="math inline">\(S\)</span> 有限可满足。由 <span class="math inline">\(S\)</span> 的任意性即得 <span class="math inline">\(\Delta\)</span> 有限可满足</p>
-<p>此时取所有原子命题的集合 <span class="math inline">\({\scr P}\)</span>，有 <span class="math inline">\({\scr P}\)</span> 中的任意原子 <span class="math inline">\(p\)</span>，要么 <span class="math inline">\(p\in\Delta\)</span>，要么 <span class="math inline">\(\neg p\in\Delta\)</span>，且二者不同时成立。</p>
-<p>不同时成立只需要反证一下，结合 <span class="math inline">\(\Delta\)</span> 有限可满足，且 <span class="math inline">\(\{p,\neg p\}\)</span> 不可满足就能得到</p>
-<p>同样反证 <span class="math inline">\(p\not\in\Delta\)</span> 且 <span class="math inline">\(\neg p\not\in\Delta\)</span>，由 <span class="math inline">\(p\in{\scr F}\)</span> 可知存在自然数 <span class="math inline">\(k\)</span> 使得 <span class="math inline">\(F_k=p\)</span>，构造一下 <span class="math inline">\(\Gamma_{k+1}\)</span> 就会发现必然有 <span class="math inline">\(p\in\Gamma_{k+1}\)</span> 或 <span class="math inline">\(\neg p\in\Gamma_{k+1}\)</span>，由<span class="math inline">\(\in\)</span> 符号的传递性即得 <span class="math inline">\(p\in\Delta\)</span> 或 <span class="math inline">\(\neg p\in\Delta\)</span></p>
-<p>对 <span class="math inline">\(\Delta\)</span> 中出现的原子进行 <span class="math inline">\(\scr I\)</span> 的构造：</p>
+<p>此时再构造 <span
+class="math inline">\(\Delta=\bigcup\limits_{i=0}^{\infty}
+\Gamma_{i}\)</span>，则任取 <span class="math inline">\(\Delta\)</span>
+的有限子集 <span
+class="math inline">\(S\)</span>，其中都存在下标最大的公式 <span
+class="math inline">\(F_{max}\in S\)</span>，那么根据定义有 <span
+class="math inline">\(S\subseteq\Gamma_{max}\subseteq\Delta\)</span>。由
+<span class="math inline">\(\Gamma_{max}\)</span> 有限可满足即得 <span
+class="math inline">\(S\)</span> 有限可满足。由 <span
+class="math inline">\(S\)</span> 的任意性即得 <span
+class="math inline">\(\Delta\)</span> 有限可满足</p>
+<p>此时取所有原子命题的集合 <span class="math inline">\({\scr
+P}\)</span>，有 <span class="math inline">\({\scr P}\)</span>
+中的任意原子 <span class="math inline">\(p\)</span>，要么 <span
+class="math inline">\(p\in\Delta\)</span>，要么 <span
+class="math inline">\(\neg p\in\Delta\)</span>，且二者不同时成立。</p>
+<p>不同时成立只需要反证一下，结合 <span
+class="math inline">\(\Delta\)</span> 有限可满足，且 <span
+class="math inline">\(\{p,\neg p\}\)</span> 不可满足就能得到</p>
+<p>同样反证 <span class="math inline">\(p\not\in\Delta\)</span> 且 <span
+class="math inline">\(\neg p\not\in\Delta\)</span>，由 <span
+class="math inline">\(p\in{\scr F}\)</span> 可知存在自然数 <span
+class="math inline">\(k\)</span> 使得 <span
+class="math inline">\(F_k=p\)</span>，构造一下 <span
+class="math inline">\(\Gamma_{k+1}\)</span> 就会发现必然有 <span
+class="math inline">\(p\in\Gamma_{k+1}\)</span> 或 <span
+class="math inline">\(\neg p\in\Gamma_{k+1}\)</span>，由<span
+class="math inline">\(\in\)</span> 符号的传递性即得 <span
+class="math inline">\(p\in\Delta\)</span> 或 <span
+class="math inline">\(\neg p\in\Delta\)</span></p>
+<p>对 <span class="math inline">\(\Delta\)</span> 中出现的原子进行 <span
+class="math inline">\(\scr I\)</span> 的构造：</p>
 <ol type="1">
-<li><p>若 <span class="math inline">\(p\in\Delta\)</span>，那么 <span class="math inline">\({\scr I}(p)=T\)</span></p></li>
-<li><p>否则必然有 <span class="math inline">\(\neg p\in\Delta\)</span>，此时规定 <span class="math inline">\({\scr I}(p)=F\)</span></p></li>
+<li><p>若 <span class="math inline">\(p\in\Delta\)</span>，那么 <span
+class="math inline">\({\scr I}(p)=T\)</span></p></li>
+<li><p>否则必然有 <span class="math inline">\(\neg
+p\in\Delta\)</span>，此时规定 <span class="math inline">\({\scr
+I}(p)=F\)</span></p></li>
 </ol>
-<p>下面证明 <span class="math inline">\({\scr I}\models \Delta\)</span>，只需要对 <span class="math inline">\(\Delta\)</span> 中的公式做结构归纳即可。其实可以证明一个更强的结论：<span class="math inline">\(A\in\Delta\)</span> 当且仅当 <span class="math inline">\(\models A\)</span></p>
+<p>下面证明 <span class="math inline">\({\scr I}\models
+\Delta\)</span>，只需要对 <span class="math inline">\(\Delta\)</span>
+中的公式做结构归纳即可。其实可以证明一个更强的结论：<span
+class="math inline">\(A\in\Delta\)</span> 当且仅当 <span
+class="math inline">\(\models A\)</span></p>
 <p>命题对原子命题显然成立；</p>
-<p>考虑 <span class="math inline">\(A=\neg B\)</span> 形式的命题 <span class="math inline">\(A\)</span>：</p>
+<p>考虑 <span class="math inline">\(A=\neg B\)</span> 形式的命题 <span
+class="math inline">\(A\)</span>：</p>
 <ol type="1">
-<li><p>由 <span class="math inline">\(A=\neg B\in\Delta\)</span> 可得 <span class="math inline">\(B\not\in\Delta\)</span>，故 <span class="math inline">\({\scr I}\not\models B\)</span>，即 <span class="math inline">\({\scr I}\models\neg B\)</span>，即 <span class="math inline">\({\scr I}\models A\)</span></p></li>
-<li><p>若 <span class="math inline">\(A=\neg B\not\in\Delta\)</span>，那么 <span class="math inline">\(B\in\Delta\)</span>，故 <span class="math inline">\({\scr I}\models B\)</span>，即 <span class="math inline">\({\scr I}\not\models\neg B\)</span>，即 <span class="math inline">\({\scr I}\not\models A\)</span></p></li>
+<li><p>由 <span class="math inline">\(A=\neg B\in\Delta\)</span> 可得
+<span class="math inline">\(B\not\in\Delta\)</span>，故 <span
+class="math inline">\({\scr I}\not\models B\)</span>，即 <span
+class="math inline">\({\scr I}\models\neg B\)</span>，即 <span
+class="math inline">\({\scr I}\models A\)</span></p></li>
+<li><p>若 <span class="math inline">\(A=\neg
+B\not\in\Delta\)</span>，那么 <span
+class="math inline">\(B\in\Delta\)</span>，故 <span
+class="math inline">\({\scr I}\models B\)</span>，即 <span
+class="math inline">\({\scr I}\not\models\neg B\)</span>，即 <span
+class="math inline">\({\scr I}\not\models A\)</span></p></li>
 </ol>
-<p>考虑 <span class="math inline">\(A=B\wedge C\)</span> 形式的命题 <span class="math inline">\(A\)</span>：</p>
-<p>必然有 <span class="math inline">\(B,C\in\Delta\)</span>，否则不妨假设 <span class="math inline">\(B\not\in\Delta\)</span>，则 <span class="math inline">\(\{\neg B,A\}\subseteq\Delta\)</span>，此时 <span class="math inline">\(\{\neg B,A\}\)</span> 不可满足，这与 <span class="math inline">\(\Delta\)</span> 有限可满足矛盾；</p>
-<p>由归纳假设，<span class="math inline">\({\scr I}\models\{B,C\}\)</span>，故 <span class="math inline">\({\scr I}\models A\)</span></p>
-<p><span class="math inline">\(A=B\vee C,A=B\rightarrow C\)</span> 同理....</p>
+<p>考虑 <span class="math inline">\(A=B\wedge C\)</span> 形式的命题
+<span class="math inline">\(A\)</span>：</p>
+<p>必然有 <span
+class="math inline">\(B,C\in\Delta\)</span>，否则不妨假设 <span
+class="math inline">\(B\not\in\Delta\)</span>，则 <span
+class="math inline">\(\{\neg B,A\}\subseteq\Delta\)</span>，此时 <span
+class="math inline">\(\{\neg B,A\}\)</span> 不可满足，这与 <span
+class="math inline">\(\Delta\)</span> 有限可满足矛盾；</p>
+<p>由归纳假设，<span class="math inline">\({\scr
+I}\models\{B,C\}\)</span>，故 <span class="math inline">\({\scr
+I}\models A\)</span></p>
+<p><span class="math inline">\(A=B\vee C,A=B\rightarrow C\)</span>
+同理....</p>
 
       </div>
       

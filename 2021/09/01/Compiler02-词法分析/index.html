@@ -207,32 +207,56 @@
 <p>对应Pattern:会喵喵叫和会汪汪叫</p>
 <p>对应Lexeme:我家的一只狸花和校门口的大黄</p>
 <p>这也说明了为什么token需要额外的信息来标记，因为光凭token不能知道lexeme具体的内容</p>
-<h2 id="词法单元的形式规定正则表达式">词法单元的形式规定(正则表达式)</h2>
+<h2
+id="词法单元的形式规定正则表达式">词法单元的形式规定(正则表达式)</h2>
 <h3 id="串和语言">串和语言</h3>
 <p>学一下形式化的定义....</p>
-<p>首先定义字符表(alphabet)为有限集<span class="math inline">\(S\)</span>​​，那么字符表<span class="math inline">\(S\)</span>​​上的串就定义为n元有序对<span class="math inline">\(L=\cup_{i\in\mathbb {N} }{S^i}\)</span>​​的集合中的元素</p>
-<p>串<span class="math inline">\(s\)</span>的长度定义为<span class="math inline">\(|s|\)</span>，即<span class="math inline">\(s\)</span>中符号的数量。我们称<span class="math inline">\(L\)</span>为字符表<span class="math inline">\(S\)</span>​上的语言。语言是可数的(可数个有限集的并仍然可数)，但不一定是有限的</p>
-<p>对于特殊的长度为0的串记作<span class="math inline">\(\epsilon\)</span></p>
+<p>首先定义字符表(alphabet)为有限集<span
+class="math inline">\(S\)</span>​​，那么字符表<span
+class="math inline">\(S\)</span>​​上的串就定义为n元有序对<span
+class="math inline">\(L=\cup_{i\in\mathbb {N}
+}{S^i}\)</span>​​的集合中的元素</p>
+<p>串<span class="math inline">\(s\)</span>的长度定义为<span
+class="math inline">\(|s|\)</span>，即<span
+class="math inline">\(s\)</span>中符号的数量。我们称<span
+class="math inline">\(L\)</span>为字符表<span
+class="math inline">\(S\)</span>​上的语言。语言是可数的(可数个有限集的并仍然可数)，但不一定是有限的</p>
+<p>对于特殊的长度为0的串记作<span
+class="math inline">\(\epsilon\)</span></p>
 <p>前缀：从串的尾部删除0个或多个字符得到的串</p>
 <p>后缀：从串的前部删除0个或多个字符得到的串</p>
 <p>子串：从串的前部和尾部删除0个或多个字符得到的串</p>
 <p>子序列：从串中删除0个或多个字符得到的串</p>
 <h4 id="串操作">串操作</h4>
-<p>连接(concatenation)：把串y放在x后得到xy，注意这是不可交换的运算。串x自身的n次连接可以简记作x<sup>n</sup>。特殊地，我们规定x<sup>0</sup>=<span class="math inline">\(\epsilon\)</span></p>
+<p>连接(concatenation)：把串y放在x后得到xy，注意这是不可交换的运算。串x自身的n次连接可以简记作x<sup>n</sup>。特殊地，我们规定x<sup>0</sup>=<span
+class="math inline">\(\epsilon\)</span></p>
 <h4 id="语言操作">语言操作</h4>
-<p>L和M的并：<span class="math inline">\(L\cup M=\left\{\;s|s\in L\text{ or }s\in M\;\right\}\)</span></p>
-<p>L和M的连接：<span class="math inline">\(LM=\left\{\;st|s\in L\text{ and }t\in M\;\right\}\)</span>，同样L自己的连接记作<span class="math inline">\(L^k\)</span></p>
-<p>L的Kleene闭包：<span class="math inline">\(L^*=\cup_{i=0}^{+\infty}L^i\)</span>，即将L重复0次或多次​</p>
-<p>L的正闭包：<span class="math inline">\(L^+=\cup_{i=1}^{+\infty}L^i\)</span>，即将L重复至少一次</p>
+<p>L和M的并：<span class="math inline">\(L\cup M=\left\{\;s|s\in L\text{
+or }s\in M\;\right\}\)</span></p>
+<p>L和M的连接：<span class="math inline">\(LM=\left\{\;st|s\in L\text{
+and }t\in M\;\right\}\)</span>，同样L自己的连接记作<span
+class="math inline">\(L^k\)</span></p>
+<p>L的Kleene闭包：<span
+class="math inline">\(L^*=\cup_{i=0}^{+\infty}L^i\)</span>，即将L重复0次或多次​</p>
+<p>L的正闭包：<span
+class="math inline">\(L^+=\cup_{i=1}^{+\infty}L^i\)</span>，即将L重复至少一次</p>
 <p>这样我们就有了构建复杂语言的工具了。</p>
 <h3 id="正则表达式">正则表达式</h3>
 <p>递归定义</p>
 <ol type="1">
-<li><p><span class="math inline">\(\epsilon\)</span>是正则表达式，<span class="math inline">\(L(\epsilon)=\varnothing\)</span></p></li>
-<li><p>若<span class="math inline">\(a\in S\)</span>，则<span class="math inline">\(L(a)=\left\{\;a\;\right\}\)</span></p></li>
-<li><p>若<span class="math inline">\(a,b\)</span>都是正则表达式，则<span class="math inline">\((a)|(b)\)</span>也是正则表达式，且<span class="math inline">\(L((a)|(b))=L(a)\cup L(b)\)</span></p></li>
-<li><p>若<span class="math inline">\(a,b\)</span>都是正则表达式，则<span class="math inline">\((a)(b)\)</span>也是正则表达式，且<span class="math inline">\(L((a)(b))=L(a)L(b)\)</span></p></li>
-<li><p>若<span class="math inline">\(a\)</span>都是正则表达式，则<span class="math inline">\((a)\)</span>也是正则表达式，<span class="math inline">\(L((a))=L(a)\)</span></p></li>
+<li><p><span class="math inline">\(\epsilon\)</span>是正则表达式，<span
+class="math inline">\(L(\epsilon)=\varnothing\)</span></p></li>
+<li><p>若<span class="math inline">\(a\in S\)</span>，则<span
+class="math inline">\(L(a)=\left\{\;a\;\right\}\)</span></p></li>
+<li><p>若<span class="math inline">\(a,b\)</span>都是正则表达式，则<span
+class="math inline">\((a)|(b)\)</span>也是正则表达式，且<span
+class="math inline">\(L((a)|(b))=L(a)\cup L(b)\)</span></p></li>
+<li><p>若<span class="math inline">\(a,b\)</span>都是正则表达式，则<span
+class="math inline">\((a)(b)\)</span>也是正则表达式，且<span
+class="math inline">\(L((a)(b))=L(a)L(b)\)</span></p></li>
+<li><p>若<span class="math inline">\(a\)</span>都是正则表达式，则<span
+class="math inline">\((a)\)</span>也是正则表达式，<span
+class="math inline">\(L((a))=L(a)\)</span></p></li>
 </ol>
 <p>可以用正则表达式定义的语言被称为<strong>正则集合</strong></p>
 <p>为了方便，可以给正则表达式命名。例如给表达式r命名为d，则写作<code>d-&gt;r</code></p>
@@ -253,39 +277,111 @@
 <h2 id="词法分析器生成工具及设计">词法分析器生成工具及设计</h2>
 <p>就讲了一波flex的用法....看文档！</p>
 <h2 id="有限状态自动机">有限状态自动机</h2>
-<p>事实上有限状态自动机有两种，分别是确定状态自动机(Deterministic Finite Automata)和非确定状态自动机(Nondeterministic Finite Automata)，即DFA和NFA</p>
-<p>自动机的形式化定义为一个五元组<span class="math inline">\((\Sigma,S,f,start,E)\)</span>​，分别表示字符集、状态集、转移函数、初始状态、接受状态</p>
+<p>事实上有限状态自动机有两种，分别是确定状态自动机(Deterministic Finite
+Automata)和非确定状态自动机(Nondeterministic Finite
+Automata)，即DFA和NFA</p>
+<p>自动机的形式化定义为一个五元组<span
+class="math inline">\((\Sigma,S,f,start,E)\)</span>​，分别表示字符集、状态集、转移函数、初始状态、接受状态</p>
 <h3 id="dfa">DFA</h3>
-<p>其中<span class="math inline">\(f:S\times\Sigma\mapsto S\)</span>​ 和 <span class="math inline">\(E\subseteq S\)</span>​​ 比较特别。</p>
-<p>对于字符<span class="math inline">\(c\)</span>​ 和一个状态 <span class="math inline">\(s\)</span>​，我们称自动机 <span class="math inline">\(D\)</span>​ 接受 <span class="math inline">\(c\)</span>​ 后的状态为 <span class="math inline">\(s&#39;\)</span>​ 当且仅当 <span class="math inline">\(f((s,c))\)</span>​有定义，且<span class="math inline">\(f((s,c))=s&#39;\)</span>​。对于DFA我们特殊规定 <span class="math inline">\(f((s,\epsilon))=s\)</span>，NFA后面再说</p>
-<p>对于字符串<span class="math inline">\(str=c_1c_2c_3\ldots c_n\)</span> 和一个状态 <span class="math inline">\(s\)</span>，我们称自动机<span class="math inline">\(D\)</span> 接受<span class="math inline">\(str\)</span> 后的状态为<span class="math inline">\(s&#39;&#39;\)</span> 当且仅当 <span class="math inline">\(f(f(\ldots f(f(s,c_1),c_2)\ldots,c_{n-1}),c_n)\)</span> 有定义且等于<span class="math inline">\(s&#39;&#39;\)</span></p>
-<p>很显然，若字符串 <span class="math inline">\(str=s_1s_2\)</span>，其中 <span class="math inline">\(s_1s_2\)</span> 都是串，那么有 <span class="math inline">\(f(f(state,s_1),s_2)=f(state,s_1s_2)=f(state,str)\)</span></p>
-<p>对于一个特定的DFA <span class="math inline">\(D=(\Sigma,S,f,start,E)\)</span>​，给定一个串 <span class="math inline">\(str\)</span>​，我们称 <span class="math inline">\(D\)</span>​ 接受串 <span class="math inline">\(str\)</span>​ 当且仅当 <span class="math inline">\(f^*(start,str)\in E\)</span>​</p>
-<p>记 <span class="math inline">\(L(D)=\left\{\;str\mid f^*(start,str)\in E\;\right\}\)</span>​，则<span class="math inline">\(L(D)\)</span>​ 称为 <span class="math inline">\(D\)</span>​ 的语言</p>
+<p>其中<span class="math inline">\(f:S\times\Sigma\mapsto S\)</span>​ 和
+<span class="math inline">\(E\subseteq S\)</span>​​ 比较特别。</p>
+<p>对于字符<span class="math inline">\(c\)</span>​ 和一个状态 <span
+class="math inline">\(s\)</span>​，我们称自动机 <span
+class="math inline">\(D\)</span>​ 接受 <span
+class="math inline">\(c\)</span>​ 后的状态为 <span
+class="math inline">\(s&#39;\)</span>​ 当且仅当 <span
+class="math inline">\(f((s,c))\)</span>​有定义，且<span
+class="math inline">\(f((s,c))=s&#39;\)</span>​。对于DFA我们特殊规定
+<span class="math inline">\(f((s,\epsilon))=s\)</span>，NFA后面再说</p>
+<p>对于字符串<span class="math inline">\(str=c_1c_2c_3\ldots
+c_n\)</span> 和一个状态 <span
+class="math inline">\(s\)</span>，我们称自动机<span
+class="math inline">\(D\)</span> 接受<span
+class="math inline">\(str\)</span> 后的状态为<span
+class="math inline">\(s&#39;&#39;\)</span> 当且仅当 <span
+class="math inline">\(f(f(\ldots
+f(f(s,c_1),c_2)\ldots,c_{n-1}),c_n)\)</span> 有定义且等于<span
+class="math inline">\(s&#39;&#39;\)</span></p>
+<p>很显然，若字符串 <span
+class="math inline">\(str=s_1s_2\)</span>，其中 <span
+class="math inline">\(s_1s_2\)</span> 都是串，那么有 <span
+class="math inline">\(f(f(state,s_1),s_2)=f(state,s_1s_2)=f(state,str)\)</span></p>
+<p>对于一个特定的DFA <span
+class="math inline">\(D=(\Sigma,S,f,start,E)\)</span>​，给定一个串 <span
+class="math inline">\(str\)</span>​，我们称 <span
+class="math inline">\(D\)</span>​ 接受串 <span
+class="math inline">\(str\)</span>​ 当且仅当 <span
+class="math inline">\(f^*(start,str)\in E\)</span>​</p>
+<p>记 <span class="math inline">\(L(D)=\left\{\;str\mid
+f^*(start,str)\in E\;\right\}\)</span>​，则<span
+class="math inline">\(L(D)\)</span>​ 称为 <span
+class="math inline">\(D\)</span>​ 的语言</p>
 <h3 id="nfa">NFA</h3>
-<p>与DFA的区别在于，<span class="math inline">\(f:S\times(\Sigma\cup\left\{\;\epsilon\;\right\})\mapsto 2^S\)</span> 转移函数的目标是若干状态组成的集合，表示这些状态都可以是当前状态加上某个字符后的后继状态</p>
-<p>说人话就是造出来的图可以有<span class="math inline">\(\epsilon\)</span> 作为标号的边，并且一条标号的边可以连接多个后继状态。</p>
+<p>与DFA的区别在于，<span
+class="math inline">\(f:S\times(\Sigma\cup\left\{\;\epsilon\;\right\})\mapsto
+2^S\)</span>
+转移函数的目标是若干状态组成的集合，表示这些状态都可以是当前状态加上某个字符后的后继状态</p>
+<p>说人话就是造出来的图可以有<span
+class="math inline">\(\epsilon\)</span>
+作为标号的边，并且一条标号的边可以连接多个后继状态。</p>
 <p>有几个等价关系</p>
 <h4 id="自动机等价">自动机等价</h4>
-<p>直观地，对于自动机 <span class="math inline">\(D_1,D_2\)</span>，我们称它们等价当且仅当 <span class="math inline">\(L(D_1)=L(D_2)\)</span></p>
+<p>直观地，对于自动机 <span
+class="math inline">\(D_1,D_2\)</span>，我们称它们等价当且仅当 <span
+class="math inline">\(L(D_1)=L(D_2)\)</span></p>
 <h4 id="状态等价">状态等价</h4>
-<p>对于状态 <span class="math inline">\(s_1,s_2\in S\)</span>，我们称它们等价当且仅当对任意的串 <span class="math inline">\(str\)</span>，都有 <span class="math inline">\(f^*(s_1,str)=f^*(s_2,str)\)</span></p>
+<p>对于状态 <span class="math inline">\(s_1,s_2\in
+S\)</span>，我们称它们等价当且仅当对任意的串 <span
+class="math inline">\(str\)</span>，都有 <span
+class="math inline">\(f^*(s_1,str)=f^*(s_2,str)\)</span></p>
 <p>于是自然要问：这两种不一样的自动机表达语言的能力相同吗？</p>
 <p>很显然DFA是一种特殊的NFA，因此NFA不会比DFA弱。</p>
 <p>考虑用DFA对NFA进行模拟。</p>
-<p>注意到不确定性的引入使得某一时刻NFA所处的状态可能有不止一个，因此可以用<span class="math inline">\(2^n\)</span>​状压枚举所有可能的状态，并对字符集连边</p>
+<p>注意到不确定性的引入使得某一时刻NFA所处的状态可能有不止一个，因此可以用<span
+class="math inline">\(2^n\)</span>​状压枚举所有可能的状态，并对字符集连边</p>
 <p>构造如下：</p>
-<p>给定NFA <span class="math inline">\(N=(\Sigma,S,f,start,E)\)</span></p>
-<h4 id="epsilontext-closure"><span class="math inline">\(\epsilon\text{-closure}\)</span></h4>
-<p>首先规定一个函数 <span class="math inline">\(c(S)=T\)</span>​​​​，满足 <span class="math inline">\(S\subseteq T\)</span>​​，且 <span class="math inline">\(\forall x\in T\)</span>​​ 都 <span class="math inline">\(\exists y\in T\)</span>​​ 使得 <span class="math inline">\(f(y,\epsilon)=x\)</span>​​。我们称 <span class="math inline">\(c(S)\)</span>​​ 是 <span class="math inline">\(S\)</span>​​ 的 <span class="math inline">\(\epsilon\text{-closure}\)</span>​​。</p>
-<p>函数<span class="math inline">\(c\)</span>的存在性是可以构造证明的。首先令 <span class="math inline">\(T_0=S\)</span>，对于自然数<span class="math inline">\(k\)</span>，我们任意地选取 <span class="math inline">\(T_k\)</span> 中的元素 <span class="math inline">\(x\)</span>，若<span class="math inline">\(f(x,\epsilon)\not\in T_k\)</span>，则令 <span class="math inline">\(f(x,\epsilon)\in T_{k+1}\)</span></p>
-<p>再规定对任意的自然数<span class="math inline">\(k\)</span>都有 <span class="math inline">\(T_k\subseteq T_{k+1}\)</span>，那么 <span class="math inline">\(T_0\subsetneq T_1\subsetneq T_2\ldots T_u\)</span>，由于总的状态集有限，且集合列的大小递增，故算法必然停止，这样就找到了<span class="math inline">\(c(S)\)</span></p>
+<p>给定NFA <span
+class="math inline">\(N=(\Sigma,S,f,start,E)\)</span></p>
+<h4 id="epsilontext-closure"><span
+class="math inline">\(\epsilon\text{-closure}\)</span></h4>
+<p>首先规定一个函数 <span class="math inline">\(c(S)=T\)</span>​​​​，满足
+<span class="math inline">\(S\subseteq T\)</span>​​，且 <span
+class="math inline">\(\forall x\in T\)</span>​​ 都 <span
+class="math inline">\(\exists y\in T\)</span>​​ 使得 <span
+class="math inline">\(f(y,\epsilon)=x\)</span>​​。我们称 <span
+class="math inline">\(c(S)\)</span>​​ 是 <span
+class="math inline">\(S\)</span>​​ 的 <span
+class="math inline">\(\epsilon\text{-closure}\)</span>​​。</p>
+<p>函数<span
+class="math inline">\(c\)</span>的存在性是可以构造证明的。首先令 <span
+class="math inline">\(T_0=S\)</span>，对于自然数<span
+class="math inline">\(k\)</span>，我们任意地选取 <span
+class="math inline">\(T_k\)</span> 中的元素 <span
+class="math inline">\(x\)</span>，若<span
+class="math inline">\(f(x,\epsilon)\not\in T_k\)</span>，则令 <span
+class="math inline">\(f(x,\epsilon)\in T_{k+1}\)</span></p>
+<p>再规定对任意的自然数<span class="math inline">\(k\)</span>都有 <span
+class="math inline">\(T_k\subseteq T_{k+1}\)</span>，那么 <span
+class="math inline">\(T_0\subsetneq T_1\subsetneq T_2\ldots
+T_u\)</span>，由于总的状态集有限，且集合列的大小递增，故算法必然停止，这样就找到了<span
+class="math inline">\(c(S)\)</span></p>
 <h4 id="转移函数">转移函数</h4>
-<p>对于任意状态<span class="math inline">\(s\in 2^S\)</span>​，我们规定<span class="math inline">\(g(s,ch)=c\left({\cup_{x\in s}{f\left(x,ch\right)} }\right)\)</span>​，容易用反证法证明函数<span class="math inline">\(g\)</span>​是well defined的</p>
+<p>对于任意状态<span class="math inline">\(s\in
+2^S\)</span>​，我们规定<span
+class="math inline">\(g(s,ch)=c\left({\cup_{x\in s}{f\left(x,ch\right)}
+}\right)\)</span>​，容易用反证法证明函数<span
+class="math inline">\(g\)</span>​是well defined的</p>
 <h4 id="初始接受状态">初始/接受状态</h4>
-<p>规定 <span class="math inline">\(s\in 2^S\)</span> 为接受状态当且仅当 <span class="math inline">\(\exists x\in s\)</span> 使得 <span class="math inline">\(x\)</span>是接受状态，初始状态则是<span class="math inline">\(c(\left\{start\right\})\)</span></p>
+<p>规定 <span class="math inline">\(s\in 2^S\)</span> 为接受状态当且仅当
+<span class="math inline">\(\exists x\in s\)</span> 使得 <span
+class="math inline">\(x\)</span>是接受状态，初始状态则是<span
+class="math inline">\(c(\left\{start\right\})\)</span></p>
 <p>下面证明这是一个DFA：</p>
-<p>首先对于任意状态<span class="math inline">\(s\in 2^S\)</span>​，<span class="math inline">\(\epsilon\text{-closure}\)</span>的过程确保了不存在<span class="math inline">\(\epsilon\)</span>的边，而 <span class="math inline">\(g\)</span> 的良定义确保了不存在多条同标号的边连向不同的后继状态</p>
+<p>首先对于任意状态<span class="math inline">\(s\in 2^S\)</span>​，<span
+class="math inline">\(\epsilon\text{-closure}\)</span>的过程确保了不存在<span
+class="math inline">\(\epsilon\)</span>的边，而 <span
+class="math inline">\(g\)</span>
+的良定义确保了不存在多条同标号的边连向不同的后继状态</p>
 <p>然后证明其与<span class="math inline">\(N\)</span>等价：</p>
 <p>只需要证明二者的接受状态集等价，且两个状态等价当且仅当它们输入同一个字符后得到的两个后继状态仍然等价，然后归纳即可。</p>
 <p>这样就证明了二者的表达能力是等价的....大概</p>

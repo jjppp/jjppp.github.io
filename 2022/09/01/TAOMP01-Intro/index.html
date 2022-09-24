@@ -185,11 +185,13 @@
       </div>
       <div class="markdown-body">
         <p>八月份已经过去了，放假前立下的 flag 还有好多没有实现...</p>
-<p>但是这本是上学期上 OS 就想看的书，更早是在吃土耳其烤肉的时候就被安利过</p>
+<p>但是这本是上学期上 OS
+就想看的书，更早是在吃土耳其烤肉的时候就被安利过</p>
 <p>开干吧...</p>
 <h1 id="intro">Intro</h1>
 <h2 id="why-multiprocessor">why multiprocessor</h2>
-<p>摩尔定律失效，现代的 CPU 已经引入了多核架构，现代的程序设计也在拥抱并行来提升性能</p>
+<p>摩尔定律失效，现代的 CPU
+已经引入了多核架构，现代的程序设计也在拥抱并行来提升性能</p>
 <h2 id="whats-different">what's different</h2>
 <p>多个并发的执行流操作若干共享的对象是一种常见的并发计算模型，在这之上会遇到</p>
 <ul>
@@ -201,15 +203,19 @@
 <h2 id="whats-in-interest">what's in interest</h2>
 <ul>
 <li>liveness property，即并发的系统不会卡住。例如 deadlock-freedom</li>
-<li>safety property，即并发的系统不会进入某些错误状态。例如 mutual exclusion</li>
+<li>safety property，即并发的系统不会进入某些错误状态。例如 mutual
+exclusion</li>
 </ul>
 <h1 id="shared-states">Shared states</h1>
 <p>又是那个经典的多线程共享 Counter 的栗子</p>
 <p>一句话解释：单线程计算模型下的编程语言没有提供语句的原子性保证，这一历史包袱导致了共享状态在多线程下需要做同步操作。</p>
-<p>解决办法是人为地打包捆绑某些指令，规定这些“指令包”是原子的。这样的性质（某段代码/某个对象 在同一时刻只能有一个线程执行/访问/修改）被称为 mutual exclusion。当然也可以叫做某种“协议”，指的是多个并发的执行流通过某种约定好的方式访问这些共享对象。</p>
+<p>解决办法是人为地打包捆绑某些指令，规定这些“指令包”是原子的。这样的性质（某段代码/某个对象
+在同一时刻只能有一个线程执行/访问/修改）被称为 mutual
+exclusion。当然也可以叫做某种“协议”，指的是多个并发的执行流通过某种约定好的方式访问这些共享对象。</p>
 <h1 id="栗子">栗子</h1>
 <h2 id="描述">描述</h2>
-<p>Alice 和 Bob 各自养了宠物，他们共享一个花园。要求宠物不能同时出现在花园中，且两人的宠物都有进入花园的机会，要设计一个通信协议。他们各自可以举手，也可以看到对方有没有举手，除此之外没有别的交流手段。</p>
+<p>Alice 和 Bob
+各自养了宠物，他们共享一个花园。要求宠物不能同时出现在花园中，且两人的宠物都有进入花园的机会，要设计一个通信协议。他们各自可以举手，也可以看到对方有没有举手，除此之外没有别的交流手段。</p>
 <h2 id="协议">协议</h2>
 <p>对 Alice 而言</p>
 <ol type="1">
@@ -229,12 +235,16 @@
 </ol>
 <h2 id="mutual-exclusion">mutual exclusion</h2>
 <p>假设存在某个时刻两人的宠物都进了花园，分别考虑两人的最后一次通信流程：</p>
-<p>由 Alice 放了宠物可知，此前Alice 必然举起了手、看到了 Bob 放手。因此 Bob 最后一次举手必然发生在 Alice 最后一次看<strong>之后</strong>，这说明 Bob 必然能看到 Alice 举起了手。</p>
-<p>由 Bob 放了宠物可知，此前Bob 必然举起了手、看到了 Alice 放手。这就产生了矛盾，故假设不成立。</p>
+<p>由 Alice 放了宠物可知，此前Alice 必然举起了手、看到了 Bob 放手。因此
+Bob 最后一次举手必然发生在 Alice 最后一次看<strong>之后</strong>，这说明
+Bob 必然能看到 Alice 举起了手。</p>
+<p>由 Bob 放了宠物可知，此前Bob 必然举起了手、看到了 Alice
+放手。这就产生了矛盾，故假设不成立。</p>
 <h2 id="deadlock-free">deadlock-free</h2>
 <p>证明是类似的</p>
 <h2 id="starvation-free">starvation-free</h2>
-<p>是不满足的，例如当 Alice 和 Bob 总是同时举手时，Alice 的宠物总是优先进花园。</p>
+<p>是不满足的，例如当 Alice 和 Bob 总是同时举手时，Alice
+的宠物总是优先进花园。</p>
 <h2 id="fault-tolerance">fault-tolerance</h2>
 <p>某一方可能出错，这时候另一方需要<strong>等待</strong>出错方恢复正常。</p>
 <p>一些分布式的协议则会有专门的询问/验证环节来容忍节点的错误甚至是离线</p>
@@ -243,7 +253,8 @@
 <p>这样也就能理解为什么后面要抽象出 DAG 的证明模型了。</p>
 <h2 id="back-to-cs">Back to CS</h2>
 <ul>
-<li>这种基于 举手/看 的通信协议本质上是延时的，即双方不需要约定时间后建立连接</li>
+<li>这种基于 举手/看
+的通信协议本质上是延时的，即双方不需要约定时间后建立连接</li>
 <li>举手/看 分别代表原子的 写/读 操作，并且各自只占据一个比特</li>
 </ul>
 <h1 id="producer-consumer">Producer-Consumer</h1>
@@ -255,13 +266,19 @@
 <li>一类写入共享缓冲区 当且仅当缓冲区为空</li>
 </ul>
 <h2 id="pattern-1">Pattern</h2>
-<p>涉及到状态存储的协议，就可以用探索状态的方式来证明正确性了。即“某协议保证XX不会出现”当且仅当“在任意合法的状态上XX都不成立”。而这又可以用 初始状态满足性质P + 状态转移保持性质P 这个套路来证明。</p>
+<p>涉及到状态存储的协议，就可以用探索状态的方式来证明正确性了。即“某协议保证XX不会出现”当且仅当“在任意合法的状态上XX都不成立”。而这又可以用
+初始状态满足性质P + 状态转移保持性质P 这个套路来证明。</p>
 <h1 id="reader-writer">Reader-Writer</h1>
 <p>这个也不写了</p>
 <h1 id="amdahls-law">Amdahl’s law</h1>
-<p>一个简单的公式，含义为：我们如果能使得 <span class="math inline">\(p\)</span> 的任务加速 <span class="math inline">\(n\)</span> 倍（通过 <span class="math inline">\(n\)</span> 个核心），那么得到的效率增长是 <span class="math inline">\(S\)</span> 的 <span class="math display">\[
+<p>一个简单的公式，含义为：我们如果能使得 <span
+class="math inline">\(p\)</span> 的任务加速 <span
+class="math inline">\(n\)</span> 倍（通过 <span
+class="math inline">\(n\)</span> 个核心），那么得到的效率增长是 <span
+class="math inline">\(S\)</span> 的 <span class="math display">\[
 S=\frac{1}{(1-p)+\dfrac{p}{n}}
-\]</span> 可以发现当 <span class="math inline">\(n\to \infty\)</span> 时，<span class="math inline">\(S\to \dfrac{1}{1-p}\)</span></p>
+\]</span> 可以发现当 <span class="math inline">\(n\to \infty\)</span>
+时，<span class="math inline">\(S\to \dfrac{1}{1-p}\)</span></p>
 <p>实际上并行处理是存在通信和同步开销的，这会反映在时间花费上。</p>
 
       </div>

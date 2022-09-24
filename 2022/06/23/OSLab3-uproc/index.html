@@ -187,28 +187,55 @@
         <h1 id="lab3-uproc">Lab3-uproc</h1>
 <h2 id="设计">设计</h2>
 <ul>
-<li><p>在 L3 的时候实现了侵入式链表，这样就可以把原先 pmm 的 <code>free_list</code>、kmt 的 <code>task_list</code>、<code>handler_list</code>、sem_t 的 <code>wait_list</code> 都统一起来。</p></li>
-<li><p>对进程（任务）操作封装了单独的 API，包括创建、删除、拷贝、页操作等等。</p></li>
-<li><p>把任务的地址空间抽象为映射的集合，物理页封装出 <code>page_t</code> 来储存物理地址、引用计数和访问权限。</p></li>
-<li><p><code>kill()</code> 的设计参考了 xv6 的代码，即只设置 <code>kill</code> 标志位，下一次该进程被调用就直接执行 <code>exit()</code> 系统调用。注意到信号量和自旋锁都只在内核空间，因此当这个 victim 进程刚刚进入 <code>os_trap()</code> 时不会持有锁。</p></li>
+<li><p>在 L3 的时候实现了侵入式链表，这样就可以把原先 pmm 的
+<code>free_list</code>、kmt 的
+<code>task_list</code>、<code>handler_list</code>、sem_t 的
+<code>wait_list</code> 都统一起来。</p></li>
+<li><p>对进程（任务）操作封装了单独的
+API，包括创建、删除、拷贝、页操作等等。</p></li>
+<li><p>把任务的地址空间抽象为映射的集合，物理页封装出
+<code>page_t</code> 来储存物理地址、引用计数和访问权限。</p></li>
+<li><p><code>kill()</code> 的设计参考了 xv6 的代码，即只设置
+<code>kill</code> 标志位，下一次该进程被调用就直接执行
+<code>exit()</code>
+系统调用。注意到信号量和自旋锁都只在内核空间，因此当这个 victim
+进程刚刚进入 <code>os_trap()</code> 时不会持有锁。</p></li>
 <li><p>注意到实验简化了僵尸进程的处理，因此我给每个任务保留了一个field用于回收其任意子进程的返回值，不同的子进程在<code>exit()</code>时会往其父进程的field里写入返回值，这样父进程就可以异步获得返回值了。</p></li>
 </ul>
 <h2 id="印象深刻的bug">印象深刻的Bug</h2>
 <p>主要是 <code>fork()</code> 相关。</p>
 <ul>
-<li><p>需要拷贝内核栈，并且亲子进程的 <code>ctx</code> 被我实现为指针了，那么就应当指向各自栈上相同的相对位置（而非直接复制指针）。</p></li>
-<li><p>L1-pmm 在实现的时候写了一些针对 OJ 的参数化代码，在本地就直接挂掉了（例如我会判断一下 CPU 的数量和空间大小来预留多少堆区空间给线段树的节点结构体，以区分 hard test 和 easy test）。具体表现为会分配超出堆区的内存作为某些进程的内核栈，然后这些地址就会被 init 线程的栈覆写，使得 <code>fork()</code> 之后得到的两个进程在内核栈上存在差异。</p></li>
-<li><p>接上条。因为要支持系统调用开中断，所以我在实现 <code>fork()</code> 的时候思考过“在自己的内核栈上赋值自己的内核栈”这样看起来很扯淡的问题。事实上只有第一次 <code>os_trap()</code> 时的内核栈指针以前的栈内容有意义，因为那才是我们希望精确赋值的进程状态。之后的部分也许会因为开中断而被写入其他东西，但是这些部分都不需要被子进程复制。因此在自己的内核栈上操作，也只会弄脏不需要的部分，这就不成问题了。</p></li>
-<li><p>系统调用要求开中断。期初我用一个 per-CPU 的数据结构来维护上下文指针，那么就会发生这样的情况：</p>
+<li><p>需要拷贝内核栈，并且亲子进程的 <code>ctx</code>
+被我实现为指针了，那么就应当指向各自栈上相同的相对位置（而非直接复制指针）。</p></li>
+<li><p>L1-pmm 在实现的时候写了一些针对 OJ
+的参数化代码，在本地就直接挂掉了（例如我会判断一下 CPU
+的数量和空间大小来预留多少堆区空间给线段树的节点结构体，以区分 hard test
+和 easy
+test）。具体表现为会分配超出堆区的内存作为某些进程的内核栈，然后这些地址就会被
+init 线程的栈覆写，使得 <code>fork()</code>
+之后得到的两个进程在内核栈上存在差异。</p></li>
+<li><p>接上条。因为要支持系统调用开中断，所以我在实现
+<code>fork()</code>
+的时候思考过“在自己的内核栈上赋值自己的内核栈”这样看起来很扯淡的问题。事实上只有第一次
+<code>os_trap()</code>
+时的内核栈指针以前的栈内容有意义，因为那才是我们希望精确赋值的进程状态。之后的部分也许会因为开中断而被写入其他东西，但是这些部分都不需要被子进程复制。因此在自己的内核栈上操作，也只会弄脏不需要的部分，这就不成问题了。</p></li>
+<li><p>系统调用要求开中断。期初我用一个 per-CPU
+的数据结构来维护上下文指针，那么就会发生这样的情况：</p>
 <pre class="sequence"><code>用户进程A -&gt; os_trap(): 系统调用自陷
 os_trap() -&gt; do_syscall(): 识别、执行
 do_syscall() -&gt; os_trap(): 时钟中断
 os_trap() -&gt; 用户进程B: 调度切换
 用户进程B -&gt; os_trap(): 时钟中断
 os_trap() -&gt; do_syscall(): 调度切换</code></pre>
-<p>此时经历了两次 <code>os_trap()</code>，因此这个 per-CPU 的数据结构（其实就是一个指针）就被覆盖成了第二次 <code>os_trap()</code> 的栈上的上下文，这点我也写在了注释里。</p>
-<p>解决方法也很粗暴，注意到一个 CPU 至多嵌套两次 <code>os_trap()</code>（首先至少可以两次，其次第二次必然不会是系统调用，因此第二次必然关中断），那么就只需要多一个 <code>task_t *fork_ctx</code> 来指示需要 <code>fork()</code> 的进程第一次 <code>os_trap()</code> 的时候的上下文即可。</p></li>
-<li><p>在实现 <code>exit(int *status)</code> 的时候，<code>status</code> 是一个指向虚拟地址的指针，因此需要先做一次地址翻译再写入内容。</p></li>
+<p>此时经历了两次 <code>os_trap()</code>，因此这个 per-CPU
+的数据结构（其实就是一个指针）就被覆盖成了第二次 <code>os_trap()</code>
+的栈上的上下文，这点我也写在了注释里。</p>
+<p>解决方法也很粗暴，注意到一个 CPU 至多嵌套两次
+<code>os_trap()</code>（首先至少可以两次，其次第二次必然不会是系统调用，因此第二次必然关中断），那么就只需要多一个
+<code>task_t *fork_ctx</code> 来指示需要 <code>fork()</code>
+的进程第一次 <code>os_trap()</code> 的时候的上下文即可。</p></li>
+<li><p>在实现 <code>exit(int *status)</code> 的时候，<code>status</code>
+是一个指向虚拟地址的指针，因此需要先做一次地址翻译再写入内容。</p></li>
 </ul>
 
       </div>

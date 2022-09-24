@@ -188,59 +188,149 @@
 <p>真的随机性是要求很强的东西，上一章是对安全性的适当弱化，而这一章就是对随机性的适当弱化，使得我们可以得到一个“不那么随机但是可以当成随机数用的随机数”</p>
 <p>也就是伪随机性</p>
 <h3 id="定义">定义</h3>
-<p>这里的随机性指的是一个比特串的分布的随机性，通常用 <span class="math inline">\(\text{Dist}\)</span> 表示</p>
-<p>为了使用，这个分布通常是计算出来的，即有一个<strong>多项式确定性</strong>算法 <span class="math inline">\(G\)</span>，可以通过一个真随机种子 <span class="math inline">\(s\)</span> 得到一个伪随机串 <span class="math inline">\(G(s)\)</span></p>
-<p>通常我们要求 <span class="math inline">\(G(s)\)</span> 的输出要比输入长（否则一个平凡的伪随机函数可以取 <span class="math inline">\(G(s)=s\)</span>，这没有意义；），因为在前面我们知道OTP的一大缺陷就在于双方需要共享很长（与密文等长）的秘钥。假若我们可以通过 <span class="math inline">\(G(\cdot)\)</span> 和一个较短的真随机数 <span class="math inline">\(s\)</span> 来获得一个较长的（和密文等长）的比特串，那么就可以部分解决OTP的问题了</p>
-<p>我们称一个 <span class="math inline">\(G(\cdot)\)</span> 是伪随机函数，当且仅当对于任意PPT的算法 <span class="math inline">\(D\)</span>，都有 <span class="math inline">\(|Pr\left[D(G(s))=1\right]-Pr[D(r)=1]|\leqslant\text{negl}(n)\)</span>，这里 <span class="math inline">\(r\)</span> 是一个真随机串，其中 <span class="math inline">\(D\)</span> 输出 <span class="math inline">\(1\)</span> 表示算法认为这是一个伪随机函数。</p>
-<p>这个式子的含义是：如果任何<strong>高效</strong>的算法都无法以一个大于 <span class="math inline">\(\text{negl}\)</span> 的概率区分出我们的<span class="math inline">\(G(\cdot)\)</span>和真随机的比特串，那么我们就可以认为这个生成器有比较好的随机性——即伪随机性</p>
+<p>这里的随机性指的是一个比特串的分布的随机性，通常用 <span
+class="math inline">\(\text{Dist}\)</span> 表示</p>
+<p>为了使用，这个分布通常是计算出来的，即有一个<strong>多项式确定性</strong>算法
+<span class="math inline">\(G\)</span>，可以通过一个真随机种子 <span
+class="math inline">\(s\)</span> 得到一个伪随机串 <span
+class="math inline">\(G(s)\)</span></p>
+<p>通常我们要求 <span class="math inline">\(G(s)\)</span>
+的输出要比输入长（否则一个平凡的伪随机函数可以取 <span
+class="math inline">\(G(s)=s\)</span>，这没有意义；），因为在前面我们知道OTP的一大缺陷就在于双方需要共享很长（与密文等长）的秘钥。假若我们可以通过
+<span class="math inline">\(G(\cdot)\)</span> 和一个较短的真随机数 <span
+class="math inline">\(s\)</span>
+来获得一个较长的（和密文等长）的比特串，那么就可以部分解决OTP的问题了</p>
+<p>我们称一个 <span class="math inline">\(G(\cdot)\)</span>
+是伪随机函数，当且仅当对于任意PPT的算法 <span
+class="math inline">\(D\)</span>，都有 <span
+class="math inline">\(|Pr\left[D(G(s))=1\right]-Pr[D(r)=1]|\leqslant\text{negl}(n)\)</span>，这里
+<span class="math inline">\(r\)</span> 是一个真随机串，其中 <span
+class="math inline">\(D\)</span> 输出 <span
+class="math inline">\(1\)</span> 表示算法认为这是一个伪随机函数。</p>
+<p>这个式子的含义是：如果任何<strong>高效</strong>的算法都无法以一个大于
+<span class="math inline">\(\text{negl}\)</span> 的概率区分出我们的<span
+class="math inline">\(G(\cdot)\)</span>和真随机的比特串，那么我们就可以认为这个生成器有比较好的随机性——即伪随机性</p>
 <p>注意到定义中我们没有对伪随机生成函数做出任何行为上的定义，即这样的函数其实是理想的模型，定义并不是构造的。通常我们可以认为目前已有的一些随机数生成器具有PRG的性质，即"某样东西是PRG"属于安全性证明前提中的假设部分</p>
 <h3 id="实现">实现</h3>
-<p>具体的典型PRG实现一般通过一个有限状态自动机来完成，即我们的每一步构造其实都是确定性的，但是每一步都依赖于随机种子 <span class="math inline">\(s\)</span></p>
+<p>具体的典型PRG实现一般通过一个有限状态自动机来完成，即我们的每一步构造其实都是确定性的，但是每一步都依赖于随机种子
+<span class="math inline">\(s\)</span></p>
 <p>一类比较经典的PRG其实可以生成任意长的比特串，然后再根据需要连续截取来获得不同的随机串</p>
 <h3 id="应用">应用</h3>
-<p>如果把OTP的真随机变成这里的PRG，那么就可以得到一个Computationally Secure的加密策略。注意到与原本需要共享与明文等长的key不同，此处只需要双方共享PRG的key，而根据PRG的定义这个key是要比明文的长度短的。这样就通过牺牲一些安全性（多了一个<span class="math inline">\(\text{negl}\)</span>）解决了key太长的问题</p>
+<p>如果把OTP的真随机变成这里的PRG，那么就可以得到一个Computationally
+Secure的加密策略。注意到与原本需要共享与明文等长的key不同，此处只需要双方共享PRG的key，而根据PRG的定义这个key是要比明文的长度短的。这样就通过牺牲一些安全性（多了一个<span
+class="math inline">\(\text{negl}\)</span>）解决了key太长的问题</p>
 <h2 id="multiple-encryptions">Multiple Encryptions</h2>
 <p>前面的EAV-secure都是基于一个假设的：每次通讯只会传输一条密文。这个假设显然是不够强的——我们肯定会有多条消息传输的需求，在这种情况下，之前的某些安全加密策略就变得不安全了</p>
-<p>同样先定义一个游戏 <span class="math inline">\(Priv^\text{mult}_{\mathcal A,\Pi}(n)\)</span> 如下：</p>
+<p>同样先定义一个游戏 <span
+class="math inline">\(Priv^\text{mult}_{\mathcal A,\Pi}(n)\)</span>
+如下：</p>
 <ol type="1">
 <li><p>首先生成一个key</p></li>
-<li><p><span class="math inline">\(\mathcal A\)</span> 给出两条<strong>明文向量</strong> <span class="math inline">\(\vec{m_0},\vec{m_1}\)</span></p></li>
-<li><p>Challenger随机一个比特 <span class="math inline">\(b\)</span>，把 <span class="math inline">\(\vec{c_b}\)</span> 发回给 <span class="math inline">\(\mathcal A\)</span></p></li>
-<li><p><span class="math inline">\(\mathcal A\)</span> 来猜 <span class="math inline">\(b\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal A\)</span>
+给出两条<strong>明文向量</strong> <span
+class="math inline">\(\vec{m_0},\vec{m_1}\)</span></p></li>
+<li><p>Challenger随机一个比特 <span class="math inline">\(b\)</span>，把
+<span class="math inline">\(\vec{c_b}\)</span> 发回给 <span
+class="math inline">\(\mathcal A\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal A\)</span> 来猜 <span
+class="math inline">\(b\)</span></p></li>
 </ol>
-<p>如果 <span class="math inline">\(Pr[Priv^\text{mult}_{\mathcal A,\Pi}(n)=1]\leqslant\dfrac1 2+\text{negl}(n)\)</span>，那么就称策略 <span class="math inline">\(\Pi\)</span> 是mult-secure的（这个词是我自己发明的....囧）</p>
+<p>如果 <span class="math inline">\(Pr[Priv^\text{mult}_{\mathcal
+A,\Pi}(n)=1]\leqslant\dfrac1 2+\text{negl}(n)\)</span>，那么就称策略
+<span class="math inline">\(\Pi\)</span>
+是mult-secure的（这个词是我自己发明的....囧）</p>
 <p>一个很重要的观察是，如果加密算法是确定性的，那么这个策略一定不是mult-secure的，攻击构造如下：</p>
 <ol type="1">
-<li><p><span class="math inline">\(\mathcal A\)</span> 只需要给出 <span class="math inline">\(\vec{m_0}=(M_1,M_1)\)</span>，<span class="math inline">\(\vec{m_1}=(M_1,M_2)\)</span>，其中 <span class="math inline">\(M_1\neq M_2\)</span></p></li>
-<li><p>对于接收到的 <span class="math inline">\(\vec{c_b}=(C_1,C_2)\)</span>，若 <span class="math inline">\(C_1=C_2\)</span> 就猜 <span class="math inline">\(b=0\)</span>，否则猜 <span class="math inline">\(b=1\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal A\)</span> 只需要给出 <span
+class="math inline">\(\vec{m_0}=(M_1,M_1)\)</span>，<span
+class="math inline">\(\vec{m_1}=(M_1,M_2)\)</span>，其中 <span
+class="math inline">\(M_1\neq M_2\)</span></p></li>
+<li><p>对于接收到的 <span
+class="math inline">\(\vec{c_b}=(C_1,C_2)\)</span>，若 <span
+class="math inline">\(C_1=C_2\)</span> 就猜 <span
+class="math inline">\(b=0\)</span>，否则猜 <span
+class="math inline">\(b=1\)</span></p></li>
 </ol>
-<p>用这个 <span class="math inline">\(\mathcal A\)</span> 去玩上面的游戏正确率是<span class="math inline">\(1\)</span>，因此这个策略不是mult-secure的。我们还可以发现前面讲过的弱化OTP也是确定性的，因此做不到mult-secure</p>
+<p>用这个 <span class="math inline">\(\mathcal A\)</span>
+去玩上面的游戏正确率是<span
+class="math inline">\(1\)</span>，因此这个策略不是mult-secure的。我们还可以发现前面讲过的弱化OTP也是确定性的，因此做不到mult-secure</p>
 <p>这提醒我们要给加密算法引入随机性，引入随机性的方法就是PRF</p>
 <h2 id="pseudo-random-functions">Pseudo random Functions</h2>
-<p>首先要引入functionality的概念，即一个概率的函数。对于函数 <span class="math inline">\(\hat F\)</span>，若对于某输入 <span class="math inline">\(x\)</span> 而言，其结果 <span class="math inline">\(\hat F(x)\)</span> 满足某概率分布，那么我们就称其为一个 functionality。可以发现传统的definite function也是一类特殊的functionality</p>
-<p>所谓PRF类似PRG，就是期望通过一类确定性的算法来模拟出随机函数的行为。因此概率的引入就全部在于密钥 <span class="math inline">\(k\)</span> 了</p>
-<p>也就是说我们有一个函数的集合(A family of functions) <span class="math inline">\(Func\)</span>，我们可以通过一个密钥 <span class="math inline">\(k\)</span> 来实例化出一个具体的函数 <span class="math inline">\(F_k\)</span>，这是一个确定性的函数。</p>
-<p>由于 <span class="math inline">\(k\)</span> 是完全随机的，所以在Adversary 眼中 <span class="math inline">\(F_k\)</span> 的行为也<strong>应该</strong>是完全随机的。但是因为我们的生成算法是多项式的，因此 <span class="math inline">\(|Func|\)</span> 也是多项式的，即 <span class="math inline">\(Func\)</span> 只能做到非常有限的采样，因此 <span class="math inline">\(F_k\)</span> 又<strong>不可能</strong>是完全随机的（这一段要体会一下）</p>
-<p>我们称一个函数集（族）是伪随机函数当且仅当对于任意PPT的算法 <span class="math inline">\(D\)</span>，都有 <span class="math inline">\(\left|Pr\left[D^{F_k(\cdot)}(1^n)=1\right]-Pr\left[D^{f(\cdot)}(1^n)=1\right]\right|\leqslant\text{negl}(n)\)</span> 成立。其中 <span class="math inline">\(D\)</span> 输出 <span class="math inline">\(1\)</span> 表示算法猜这<strong>是</strong>一个伪随机函数</p>
-<p>这个式子的随机性引入来自两方面：1. <span class="math inline">\(k\)</span> 的选取 2. <span class="math inline">\(f\)</span> 是一个真随机函数</p>
-<p>这里之所以把 <span class="math inline">\(F\)</span> 写在右上角是习惯问题，意思是 <span class="math inline">\(D\)</span> 不需要自己计算函数值，而是通过访问我们人为提供的oracle（谕示机，这名字好屌）来瞬间得到答案</p>
+<p>首先要引入functionality的概念，即一个概率的函数。对于函数 <span
+class="math inline">\(\hat F\)</span>，若对于某输入 <span
+class="math inline">\(x\)</span> 而言，其结果 <span
+class="math inline">\(\hat F(x)\)</span>
+满足某概率分布，那么我们就称其为一个
+functionality。可以发现传统的definite
+function也是一类特殊的functionality</p>
+<p>所谓PRF类似PRG，就是期望通过一类确定性的算法来模拟出随机函数的行为。因此概率的引入就全部在于密钥
+<span class="math inline">\(k\)</span> 了</p>
+<p>也就是说我们有一个函数的集合(A family of functions) <span
+class="math inline">\(Func\)</span>，我们可以通过一个密钥 <span
+class="math inline">\(k\)</span> 来实例化出一个具体的函数 <span
+class="math inline">\(F_k\)</span>，这是一个确定性的函数。</p>
+<p>由于 <span class="math inline">\(k\)</span>
+是完全随机的，所以在Adversary 眼中 <span
+class="math inline">\(F_k\)</span>
+的行为也<strong>应该</strong>是完全随机的。但是因为我们的生成算法是多项式的，因此
+<span class="math inline">\(|Func|\)</span> 也是多项式的，即 <span
+class="math inline">\(Func\)</span> 只能做到非常有限的采样，因此 <span
+class="math inline">\(F_k\)</span>
+又<strong>不可能</strong>是完全随机的（这一段要体会一下）</p>
+<p>我们称一个函数集（族）是伪随机函数当且仅当对于任意PPT的算法 <span
+class="math inline">\(D\)</span>，都有 <span
+class="math inline">\(\left|Pr\left[D^{F_k(\cdot)}(1^n)=1\right]-Pr\left[D^{f(\cdot)}(1^n)=1\right]\right|\leqslant\text{negl}(n)\)</span>
+成立。其中 <span class="math inline">\(D\)</span> 输出 <span
+class="math inline">\(1\)</span>
+表示算法猜这<strong>是</strong>一个伪随机函数</p>
+<p>这个式子的随机性引入来自两方面：1. <span
+class="math inline">\(k\)</span> 的选取 2. <span
+class="math inline">\(f\)</span> 是一个真随机函数</p>
+<p>这里之所以把 <span class="math inline">\(F\)</span>
+写在右上角是习惯问题，意思是 <span class="math inline">\(D\)</span>
+不需要自己计算函数值，而是通过访问我们人为提供的oracle（谕示机，这名字好屌）来瞬间得到答案</p>
 <p>这么做是因为如果我们把某个函数作为参数传入，则可能会需要处理指数级的信息，这与多项式时间复杂度是矛盾的。</p>
 <h3 id="实现-1">实现</h3>
 <p>对PRG进行定长采样就可以得到一个PRF了</p>
 <h3 id="应用-1">应用</h3>
 <p>可以构造如下加密策略：</p>
 <ol type="1">
-<li><p><span class="math inline">\(\text{Enc}(m)\)</span> 会随机生成一个 <span class="math inline">\(r\)</span>，然后把 <span class="math inline">\(\left&lt;r,m\oplus F_k(r)\right&gt;\)</span> 作为密文输出</p></li>
-<li><p><span class="math inline">\(\text{Dec}(\left&lt;r,c\right&gt;)\)</span> 则通过计算 <span class="math inline">\(c\oplus F_k(r)=m\oplus F_k(r)\oplus F_k(r)=m\)</span> 就能得到明文</p></li>
+<li><p><span class="math inline">\(\text{Enc}(m)\)</span> 会随机生成一个
+<span class="math inline">\(r\)</span>，然后把 <span
+class="math inline">\(\left&lt;r,m\oplus F_k(r)\right&gt;\)</span>
+作为密文输出</p></li>
+<li><p><span
+class="math inline">\(\text{Dec}(\left&lt;r,c\right&gt;)\)</span>
+则通过计算 <span class="math inline">\(c\oplus F_k(r)=m\oplus
+F_k(r)\oplus F_k(r)=m\)</span> 就能得到明文</p></li>
 </ol>
-<p>这个策略的安全性的保障在于，对于Adversary而言 <span class="math inline">\(k\)</span> 是未知的，而 <span class="math inline">\(F\)</span> 是PRF。要证明也很简单，只需要把 PRF换成真随机函数，这样就可以确保 <span class="math inline">\(\mathcal A\)</span> 只有 <span class="math inline">\(\dfrac12\)</span> 的成功率(why?)，而一个能<strong>有效</strong>攻击PRF策略的算法，必然也能用于<strong>有效</strong>区分PRF和真随机函数（证明这一点需要构造一下），这与PRF的定义矛盾，因此是不存在这样的策略的。</p>
-<h2 id="weakly-pseudo-random-function">Weakly Pseudo random Function</h2>
+<p>这个策略的安全性的保障在于，对于Adversary而言 <span
+class="math inline">\(k\)</span> 是未知的，而 <span
+class="math inline">\(F\)</span> 是PRF。要证明也很简单，只需要把
+PRF换成真随机函数，这样就可以确保 <span class="math inline">\(\mathcal
+A\)</span> 只有 <span class="math inline">\(\dfrac12\)</span>
+的成功率(why?)，而一个能<strong>有效</strong>攻击PRF策略的算法，必然也能用于<strong>有效</strong>区分PRF和真随机函数（证明这一点需要构造一下），这与PRF的定义矛盾，因此是不存在这样的策略的。</p>
+<h2 id="weakly-pseudo-random-function">Weakly Pseudo random
+Function</h2>
 <p>密码学的一个套路就是先引入一个问题，然后通过实践或者需求来强化/弱化某些条件，再猜想/证明这些情况下的构造仍然具有一些良好的性质</p>
-<p>所谓Weakly Pseudo random的意思就是，对于任意的PPT算法 <span class="math inline">\(D\)</span>，都有 <span class="math inline">\(\left|Pr\left[D^{F_k^\$(\cdot)}(1^n)=1\right]-Pr\left[D^{f^\$(\cdot)}(1^n)=1\right]\right|\leqslant\text{negl}(n)\)</span> 对任意的 <span class="math inline">\(\text{negl}(n)\)</span> 成立</p>
-<p>和PRF的区别在于，这里我们给 <span class="math inline">\(D\)</span> 的是一个概率oracle，即每次 <span class="math inline">\(D\)</span> 向oracle查询的时候，会由oracle生成一个随机数 <span class="math inline">\(r\)</span>，然后把 <span class="math inline">\(\left&lt;r,F(r)\right&gt;\)</span> 给 <span class="math inline">\(D\)</span></p>
-<p>意思是虽然 <span class="math inline">\(D\)</span> 有能力知道一些 <span class="math inline">\(F\)</span> 的取值，但是具体取到哪些 <span class="math inline">\(x\)</span> 并不由 <span class="math inline">\(D\)</span> 决定</p>
+<p>所谓Weakly Pseudo random的意思就是，对于任意的PPT算法 <span
+class="math inline">\(D\)</span>，都有 <span
+class="math inline">\(\left|Pr\left[D^{F_k^\$(\cdot)}(1^n)=1\right]-Pr\left[D^{f^\$(\cdot)}(1^n)=1\right]\right|\leqslant\text{negl}(n)\)</span>
+对任意的 <span class="math inline">\(\text{negl}(n)\)</span> 成立</p>
+<p>和PRF的区别在于，这里我们给 <span class="math inline">\(D\)</span>
+的是一个概率oracle，即每次 <span class="math inline">\(D\)</span>
+向oracle查询的时候，会由oracle生成一个随机数 <span
+class="math inline">\(r\)</span>，然后把 <span
+class="math inline">\(\left&lt;r,F(r)\right&gt;\)</span> 给 <span
+class="math inline">\(D\)</span></p>
+<p>意思是虽然 <span class="math inline">\(D\)</span> 有能力知道一些
+<span class="math inline">\(F\)</span> 的取值，但是具体取到哪些 <span
+class="math inline">\(x\)</span> 并不由 <span
+class="math inline">\(D\)</span> 决定</p>
 <p>有一个定理：一个PRF一定是WPRF，但反之不一定成立。证明比较简单，因为是课后习题所以不放具体证明了</p>
-<p>一个经典的构造如下：如果我们有一个PRF <span class="math inline">\(F\)</span>，那么我们就可以构造一个WPRF <span class="math inline">\(F&#39;(x)=\left\{\begin{aligned}F(y)&amp;,&amp;x=y||0\\F(y)&amp;,&amp;x=y||1\end{aligned}\right.\)</span></p>
+<p>一个经典的构造如下：如果我们有一个PRF <span
+class="math inline">\(F\)</span>，那么我们就可以构造一个WPRF <span
+class="math inline">\(F&#39;(x)=\left\{\begin{aligned}F(y)&amp;,&amp;x=y||0\\F(y)&amp;,&amp;x=y||1\end{aligned}\right.\)</span></p>
 <p>根据这个例子可以发现，构造同样长度的PRF要比WPRF简单的多，因为我们只需要一个更短的PRF就可以弱化得到一个更长的WPRF了</p>
 
       </div>
@@ -291,7 +381,8 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pseudo-random-generator"><span class="toc-text">Pseudo Random Generator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multiple-encryptions"><span class="toc-text">Multiple Encryptions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pseudo-random-functions"><span class="toc-text">Pseudo random Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8-1"><span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#weakly-pseudo-random-function"><span class="toc-text">Weakly Pseudo random Function</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pseudo-random-generator"><span class="toc-text">Pseudo Random Generator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multiple-encryptions"><span class="toc-text">Multiple Encryptions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pseudo-random-functions"><span class="toc-text">Pseudo random Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8-1"><span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#weakly-pseudo-random-function"><span class="toc-text">Weakly Pseudo random
+Function</span></a></li></ol>
       
     </div>
   </div>

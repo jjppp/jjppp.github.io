@@ -200,8 +200,10 @@
 <h2 id="节点">节点</h2>
 <p>特别的，计算机网络中的节点有两种类型</p>
 <ul>
-<li>主机（host）。通常用 <span class="math inline">\(\square\)</span> 表示</li>
-<li>网络交换设备（packet switch），包括交换机、路由器等等。通常用 <span class="math inline">\(\bigcirc\)</span> 表示</li>
+<li>主机（host）。通常用 <span class="math inline">\(\square\)</span>
+表示</li>
+<li>网络交换设备（packet switch），包括交换机、路由器等等。通常用 <span
+class="math inline">\(\bigcirc\)</span> 表示</li>
 </ul>
 <h2 id="边">边</h2>
 <p>链路指连接两个节点的边，同样有两种类型</p>
@@ -209,9 +211,13 @@
 <li>接入网链路，边的一端为主机。</li>
 <li>主干链路，非接入网链路。</li>
 </ul>
-<p>可以发现逻辑上我们只关心所有 <span class="math inline">\(\square\)</span> 组成的网络，所有的 <span class="math inline">\(\bigcirc\)</span> 只是为了中继。这是因为只有主机会产生和消费数据，而所有的交换设备只负责转发（当然也有交换设备会消耗数据，例如带拦截广告功能的软路由...）</p>
+<p>可以发现逻辑上我们只关心所有 <span
+class="math inline">\(\square\)</span> 组成的网络，所有的 <span
+class="math inline">\(\bigcirc\)</span>
+只是为了中继。这是因为只有主机会产生和消费数据，而所有的交换设备只负责转发（当然也有交换设备会消耗数据，例如带拦截广告功能的软路由...）</p>
 <h1 id="互联网">互联网</h1>
-<p>以 TCP 和 IP 协议为主的最大的<strong>那个</strong>网络。感觉这个定义非常有意思。</p>
+<p>以 TCP 和 IP
+协议为主的最大的<strong>那个</strong>网络。感觉这个定义非常有意思。</p>
 <p>粗略地讲，可以把网络划分为三个部分</p>
 <ul>
 <li>核心，即非主机的、提供网络连接功能的部分</li>
@@ -252,18 +258,22 @@
 <li>转发节点内有等待队列</li>
 <li>本质上是一种离散的时分复用，也叫 statistical multiplexing</li>
 </ul>
-<p>还可以细分为 datagram switch 和 virtual circuit switch，后者本质上是希望 packet switch 能有 circuit switch 的某些特性提出来的 hack。</p>
+<p>还可以细分为 datagram switch 和 virtual circuit
+switch，后者本质上是希望 packet switch 能有 circuit switch
+的某些特性提出来的 hack。</p>
 <h2 id="接入">接入</h2>
 <p>这部分解决了我对一些名词的陈年疑惑...非常奇妙</p>
 <h3 id="调制解调器modem">调制解调器(modem)</h3>
-<p>最早是利用已有的电话线路接入网络的。modem 负责把数字信号调制成音频信号，由电话线路传输后入网。</p>
+<p>最早是利用已有的电话线路接入网络的。modem
+负责把数字信号调制成音频信号，由电话线路传输后入网。</p>
 <ul>
 <li>上网和打电话不能同时进行</li>
 <li>带宽很低</li>
 <li>成本低，复用线路</li>
 <li>是专线</li>
 </ul>
-<p>有些实现把电话线频分复用，专门留出一部分给网络。其中又分出上下行专用的带宽，这样就可以同时打电话和上网了。这样的方式叫 DSL(Digital Subscriber Line)</p>
+<p>有些实现把电话线频分复用，专门留出一部分给网络。其中又分出上下行专用的带宽，这样就可以同时打电话和上网了。这样的方式叫
+DSL(Digital Subscriber Line)</p>
 <h3 id="有线电视cable">有线电视(cable)</h3>
 <p>同样是类似的思路，利用已有的有线电视线路。</p>
 <p>这下终于知道为什么以前爹妈拔掉机顶盒的线就没法上网了。</p>
@@ -276,13 +286,20 @@
 </ul>
 <h1 id="四层">四层</h1>
 <h2 id="应用层">应用层</h2>
-<p>注意到网络提供的服务本质上就是 RPC，因此协议做的事情和 shell 命令解析是同样的。</p>
-<p>有 HTTP FTP SMTP POP3 一大堆协议。这是因为应用很多，不同应用的协议通常不共享。</p>
-<p>应用层的许多协议因为历史原因，都是明文传输数据的（即协议本身不负责内容的加密）。解决的办法是在此之上加一层加密层（例如 HTTP + TLS = HTTPS），这样明文传输的就是加密后的内容了。</p>
-<p>进程通常在 OS 中通过 socket api 来管理和使用它与其它进程的连接。连接（即进程-进程对）与 socket 是一一对应的关系，而和端口号没有数量关系（一个进程可以通过一个端口和多个进程建立连接，此时多个连接共享一个端口，各自通过不同的 socket 把数据传递给对应的进程）</p>
+<p>注意到网络提供的服务本质上就是 RPC，因此协议做的事情和 shell
+命令解析是同样的。</p>
+<p>有 HTTP FTP SMTP POP3
+一大堆协议。这是因为应用很多，不同应用的协议通常不共享。</p>
+<p>应用层的许多协议因为历史原因，都是明文传输数据的（即协议本身不负责内容的加密）。解决的办法是在此之上加一层加密层（例如
+HTTP + TLS = HTTPS），这样明文传输的就是加密后的内容了。</p>
+<p>进程通常在 OS 中通过 socket api
+来管理和使用它与其它进程的连接。连接（即进程-进程对）与 socket
+是一一对应的关系，而和端口号没有数量关系（一个进程可以通过一个端口和多个进程建立连接，此时多个连接共享一个端口，各自通过不同的
+socket 把数据传递给对应的进程）</p>
 <h2 id="传输层">传输层</h2>
 <p>提供的是进程到进程的字节流通讯，进程通过端口号区分。</p>
-<h3 id="tcptransmission-control-protocol">TCP(Transmission Control Protocol)</h3>
+<h3 id="tcptransmission-control-protocol">TCP(Transmission Control
+Protocol)</h3>
 <ul>
 <li>面向连接，通信前需要握手建立连接</li>
 <li>可靠服务，保证顺序、正确性等等</li>
@@ -307,7 +324,10 @@
 </ul>
 <h2 id="链路层">链路层</h2>
 <p>也有可靠和不可靠的协议，通常介质越可靠则协议越不可靠；介质越不可靠则协议越可靠。</p>
-<p>还有被动介质的说法，例如 WiFi 的工作原理决定了所有的数据都会被发送给终端设备，那些不属于目标设备的数据帧将会被<strong>终端设备</strong>自行丢弃。这使得同一 WiFi 下的终端设备可以彼此看到对方的数据帧，从而还原出数据包，这就带来了潜在的窃听风险。</p>
+<p>还有被动介质的说法，例如 WiFi
+的工作原理决定了所有的数据都会被发送给终端设备，那些不属于目标设备的数据帧将会被<strong>终端设备</strong>自行丢弃。这使得同一
+WiFi
+下的终端设备可以彼此看到对方的数据帧，从而还原出数据包，这就带来了潜在的窃听风险。</p>
 
       </div>
       
@@ -357,7 +377,8 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-text">网络</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-text">计算机网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E7%BA%A7"><span class="toc-text">层级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9"><span class="toc-text">节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9"><span class="toc-text">边</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-text">互联网</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98"><span class="toc-text">边缘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">通信模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="toc-text">通信方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83"><span class="toc-text">核心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2circuit-switch"><span class="toc-text">电路交换(circuit switch)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2packet-switch"><span class="toc-text">分组交换(packet switch)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5"><span class="toc-text">接入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83%E5%99%A8modem"><span class="toc-text">调制解调器(modem)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E7%BA%BF%E7%94%B5%E8%A7%86cable"><span class="toc-text">有线电视(cable)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E7%BD%91"><span class="toc-text">电网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%AA%92%E4%BD%93"><span class="toc-text">物理媒体</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E5%B1%82"><span class="toc-text">四层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-text">应用层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-text">传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcptransmission-control-protocol"><span class="toc-text">TCP(Transmission Control Protocol)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udpuser-datagram-protocol"><span class="toc-text">UDP(User Datagram Protocol)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-text">网络层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-text">链路层</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-text">网络</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-text">计算机网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E7%BA%A7"><span class="toc-text">层级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9"><span class="toc-text">节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9"><span class="toc-text">边</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-text">互联网</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98"><span class="toc-text">边缘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">通信模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="toc-text">通信方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83"><span class="toc-text">核心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2circuit-switch"><span class="toc-text">电路交换(circuit switch)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2packet-switch"><span class="toc-text">分组交换(packet switch)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5"><span class="toc-text">接入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83%E5%99%A8modem"><span class="toc-text">调制解调器(modem)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E7%BA%BF%E7%94%B5%E8%A7%86cable"><span class="toc-text">有线电视(cable)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E7%BD%91"><span class="toc-text">电网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%AA%92%E4%BD%93"><span class="toc-text">物理媒体</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E5%B1%82"><span class="toc-text">四层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-text">应用层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-text">传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcptransmission-control-protocol"><span class="toc-text">TCP(Transmission Control
+Protocol)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udpuser-datagram-protocol"><span class="toc-text">UDP(User Datagram Protocol)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-text">网络层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-text">链路层</span></a></li></ol></li></ol>
       
     </div>
   </div>

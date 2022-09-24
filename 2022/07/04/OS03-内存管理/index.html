@@ -185,23 +185,34 @@
       </div>
       <div class="markdown-body">
         <h1 id="虚拟地址">虚拟地址</h1>
-<p>通过地址翻译, 可以利用统一的虚拟地址空间来为用户程序提供内存, 同时还能隔离不同进程增强安全性</p>
-<p>基于分页的地址翻译涉及到页表和radix-tree这种数据结构, 以及 TLB 这样的部件, 具体看ICS/CSAPP</p>
-<p>虚拟地址的引入也可以让进程间共享数据, 只需要将某段物理内存同时映射给两个不同的进程即可.</p>
-<p>当然per-process的地址空间带来了进程切换时的cache问题: 需要冲刷TLB, 预热缓存等等. 解决方法很多, 可以给 TLB 引入 <code>ASID</code> 使得不同地址空间的同一虚拟地址可以同时被缓存(会有安全问题吗?), 顺便增强 TLB 冲刷的粒度控制.</p>
+<p>通过地址翻译, 可以利用统一的虚拟地址空间来为用户程序提供内存,
+同时还能隔离不同进程增强安全性</p>
+<p>基于分页的地址翻译涉及到页表和radix-tree这种数据结构, 以及 TLB
+这样的部件, 具体看ICS/CSAPP</p>
+<p>虚拟地址的引入也可以让进程间共享数据,
+只需要将某段物理内存同时映射给两个不同的进程即可.</p>
+<p>当然per-process的地址空间带来了进程切换时的cache问题: 需要冲刷TLB,
+预热缓存等等. 解决方法很多, 可以给 TLB 引入 <code>ASID</code>
+使得不同地址空间的同一虚拟地址可以同时被缓存(会有安全问题吗?), 顺便增强
+TLB 冲刷的粒度控制.</p>
 <h2 id="缺页异常">缺页异常</h2>
-<p>把内存视为硬盘的cache, 那么就会出现访问虚拟地址时cache miss的情况. 这时就产生了缺页异常, 需要进exception handler从硬盘上读出被缓存的页</p>
-<p>这里还有很多可说的, 例如可以把不常用数据压缩以节省内存, 压缩后的数据也能更快在硬盘上读写.</p>
+<p>把内存视为硬盘的cache, 那么就会出现访问虚拟地址时cache miss的情况.
+这时就产生了缺页异常, 需要进exception handler从硬盘上读出被缓存的页</p>
+<p>这里还有很多可说的, 例如可以把不常用数据压缩以节省内存,
+压缩后的数据也能更快在硬盘上读写.</p>
 <h2 id="换页策略">换页策略</h2>
 <ol type="1">
 <li>FIFO, 每次换出最早缓存的页</li>
-<li>Second-Chance, 在FIFO的基础上给每个活跃的页一次机会(如果FIFO队尾曾被访问过, 就移回队头)</li>
+<li>Second-Chance,
+在FIFO的基础上给每个活跃的页一次机会(如果FIFO队尾曾被访问过,
+就移回队头)</li>
 <li>LRU, 算频率, 通常通过定期打标记来判断近一段时间是否活跃</li>
 <li>MRU, 在某些场合有用, 例如假设播放过的电影片段不会再立刻放一次</li>
 </ol>
 <p>理论上最优的策略是换出在未来最晚被访问的页</p>
 <h2 id="大页">大页</h2>
-<p>可以设置页的大小以减少TLB miss次数, 同时(在相同总内存下)降低页表的层数</p>
+<p>可以设置页的大小以减少TLB miss次数,
+同时(在相同总内存下)降低页表的层数</p>
 <h1 id="物理内存管理">物理内存管理</h1>
 <p>操作系统需要管理物理内存, 评价维度包括效率 利用率和Scalability</p>
 <h2 id="利用率">利用率</h2>
@@ -211,19 +222,41 @@
 </ol>
 <p>感觉这两种划分得不是很有必要...</p>
 <h2 id="buddy-system">Buddy-System</h2>
-<p>只能分配页面的 <span class="math inline">\(2^k\)</span> 倍大小的物理内存. 每次找到能容纳需求的最小块, 将其分裂成相等的两半直至恰好能容纳需求, 取走一块.</p>
-<p>本质上是个线段树, 但是可以用若干个独立的链表串联相同大小的块(也即写成非递归的线段树)</p>
-<p>若只考虑分配不考虑回收，那么任意时刻块的总数量不会超过 <span class="math inline">\(O(\log n)\)</span> 个.</p>
+<p>只能分配页面的 <span class="math inline">\(2^k\)</span>
+倍大小的物理内存. 每次找到能容纳需求的最小块,
+将其分裂成相等的两半直至恰好能容纳需求, 取走一块.</p>
+<p>本质上是个线段树,
+但是可以用若干个独立的链表串联相同大小的块(也即写成非递归的线段树)</p>
+<p>若只考虑分配不考虑回收，那么任意时刻块的总数量不会超过 <span
+class="math inline">\(O(\log n)\)</span> 个.</p>
 <blockquote>
-<p>考虑 <span class="math inline">\(n\)</span> 位二进制数字 <span class="math inline">\(B_n=10\ldots0\)</span>, 其中第 <span class="math inline">\(i\)</span> 位为 <span class="math inline">\(1\)</span> 表示有一个大小为 <span class="math inline">\(2^i\)</span> 的块 每次划分出大小为 <span class="math inline">\(2^k\)</span> 的块等价于计算 <span class="math inline">\(B_n&#39;=B_n - B_k\)</span>, 其中 <span class="math inline">\(B_k=0\ldots010\ldots0\)</span>, 第 <span class="math inline">\(k\)</span> 位为 <span class="math inline">\(1\)</span> 每次分裂等价于二进制向高位借位, 利用均摊分析可以轻松得到比特翻转操作的上界, 根据位数立即可得任意时刻块数量的上界</p>
+<p>考虑 <span class="math inline">\(n\)</span> 位二进制数字 <span
+class="math inline">\(B_n=10\ldots0\)</span>, 其中第 <span
+class="math inline">\(i\)</span> 位为 <span
+class="math inline">\(1\)</span> 表示有一个大小为 <span
+class="math inline">\(2^i\)</span> 的块 每次划分出大小为 <span
+class="math inline">\(2^k\)</span> 的块等价于计算 <span
+class="math inline">\(B_n&#39;=B_n - B_k\)</span>, 其中 <span
+class="math inline">\(B_k=0\ldots010\ldots0\)</span>, 第 <span
+class="math inline">\(k\)</span> 位为 <span
+class="math inline">\(1\)</span> 每次分裂等价于二进制向高位借位,
+利用均摊分析可以轻松得到比特翻转操作的上界,
+根据位数立即可得任意时刻块数量的上界</p>
 </blockquote>
 <p>实际上任意时刻, 特定大小的块至多有一个</p>
 <h2 id="freelist">freelist</h2>
-<p>因为空闲内存是空的, 因此可以任意摆布. 一种玩法就是用链表的形式串联起来, 这样每次的分配就是遍历链表-删除节点</p>
+<p>因为空闲内存是空的, 因此可以任意摆布.
+一种玩法就是用链表的形式串联起来,
+这样每次的分配就是遍历链表-删除节点</p>
 <h2 id="slab">SLAB</h2>
-<p>关键在于, 大块分配次数少且生存周期比较长, 小块分配频繁释放也频繁. 利用这一点可以结合 freelist + Buddy-System 来实现小块本地取 + 大块上锁统一分配。</p>
-<p>利用Buddy-System分配大块内存, 然后划分成相等的若干小块, 这样小块内存分配直接从 SLAB 中取走, 几乎是 <span class="math inline">\(O(1)\)</span> 的, 多核也有很好的表现.</p>
-<p>一个小细节是可以把元数据放在 SLAB 的头部并保证 SLAB 按页面对齐, 这样释放的时候就可以快速查询元数据了.</p>
+<p>关键在于, 大块分配次数少且生存周期比较长, 小块分配频繁释放也频繁.
+利用这一点可以结合 freelist + Buddy-System 来实现小块本地取 +
+大块上锁统一分配。</p>
+<p>利用Buddy-System分配大块内存, 然后划分成相等的若干小块,
+这样小块内存分配直接从 SLAB 中取走, 几乎是 <span
+class="math inline">\(O(1)\)</span> 的, 多核也有很好的表现.</p>
+<p>一个小细节是可以把元数据放在 SLAB 的头部并保证 SLAB 按页面对齐,
+这样释放的时候就可以快速查询元数据了.</p>
 
       </div>
       

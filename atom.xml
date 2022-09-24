@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-09-14T14:44:09.939Z</updated>
+  <updated>2022-09-24T17:06:16.584Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,72 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Concurrency03 Axiomatic</title>
+    <link href="http://example.com/2022/09/25/Concurrency03-Axiomatic/"/>
+    <id>http://example.com/2022/09/25/Concurrency03-Axiomatic/</id>
+    <published>2022-09-24T17:06:16.000Z</published>
+    <updated>2022-09-24T17:06:16.584Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Concurrency02 Operational</title>
+    <link href="http://example.com/2022/09/25/Concurrency02-Operational/"/>
+    <id>http://example.com/2022/09/25/Concurrency02-Operational/</id>
+    <published>2022-09-24T17:06:04.000Z</published>
+    <updated>2022-09-24T17:06:04.314Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Concurrency01 HMM</title>
+    <link href="http://example.com/2022/09/25/Concurrency01-HMM/"/>
+    <id>http://example.com/2022/09/25/Concurrency01-HMM/</id>
+    <published>2022-09-24T17:05:33.000Z</published>
+    <updated>2022-09-24T17:05:33.657Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Network02 Application</title>
@@ -29,7 +95,8 @@
         
         
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;应用一般跑在端系统上，此时网络对应用而言是透明的，所有的网络 API 起到进程间通信的作用。&lt;/p&gt;
+&lt;p&gt;应用一般跑在端系统上，此时网络对应用而言是透明的，所有的网络 API
+起到进程间通信的作用。&lt;/p&gt;
 &lt;h1 id=&quot;application-architecture&quot;&gt;Application</summary>
         
       
@@ -46,7 +113,7 @@
     <link href="http://example.com/2022/09/07/Memory-Model/"/>
     <id>http://example.com/2022/09/07/Memory-Model/</id>
     <published>2022-09-07T07:23:04.000Z</published>
-    <updated>2022-09-07T14:58:12.706Z</updated>
+    <updated>2022-09-24T17:06:50.977Z</updated>
     
     
       
@@ -54,7 +121,9 @@
         
         
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;看了很多资料发现基本都是同一批人在写，&lt;a href=&quot;https://research.swtch.com/mm&quot;&gt;这篇&lt;/a&gt; 是我感觉讲得比较清楚同时也好懂的。&lt;/p&gt;
+&lt;p&gt;看了很多资料发现基本都是同一批人在写，&lt;a
+href=&quot;https://research.swtch.com/mm&quot;&gt;这篇&lt;/a&gt;
+是我感觉讲得比较清楚同时也好懂的。&lt;/p&gt;
 &lt;p&gt;同时我发现很少有人用形式化的方法描述</summary>
         
       
@@ -71,7 +140,7 @@
     <link href="http://example.com/2022/09/02/TAOMP02-Mutex/"/>
     <id>http://example.com/2022/09/02/TAOMP02-Mutex/</id>
     <published>2022-09-02T09:03:21.000Z</published>
-    <updated>2022-09-04T04:25:13.810Z</updated>
+    <updated>2022-09-05T00:04:35.487Z</updated>
     
     
       
@@ -81,7 +150,8 @@
     <summary type="html">&lt;h1 id=&quot;形式化&quot;&gt;形式化&lt;/h1&gt;
 &lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;事件&lt;/strong&gt;是瞬间的、原子的，通常用 &lt;span class=&quot;math inline&quot;&gt;\(read, write\)&lt;/span&gt;</summary>
+&lt;li&gt;&lt;strong&gt;事件&lt;/strong&gt;是瞬间的、原子的，通常用 &lt;span
+class=&quot;math inline&quot;&gt;\(read,</summary>
         
       
     
@@ -105,7 +175,8 @@
         
         
     <summary type="html">&lt;p&gt;八月份已经过去了，放假前立下的 flag 还有好多没有实现...&lt;/p&gt;
-&lt;p&gt;但是这本是上学期上 OS 就想看的书，更早是在吃土耳其烤肉的时候就被安利过&lt;/p&gt;
+&lt;p&gt;但是这本是上学期上 OS
+就想看的书，更早是在吃土耳其烤肉的时候就被安利过&lt;/p&gt;
 &lt;p&gt;开干吧...&lt;/p&gt;
 &lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
 &lt;h2</summary>
@@ -159,7 +230,10 @@
         
         
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;Subtyping（或者说 Subtype Polymorphism）给出了一种类型间的转换关系（一种 preorder），使得程序猿可以写出很通用的代码。典型的子类型出现在各种 OO 语言里，例如 Java</summary>
+&lt;p&gt;Subtyping（或者说 Subtype
+Polymorphism）给出了一种类型间的转换关系（一种
+preorder），使得程序猿可以写出很通用的代码。典型的子类型出现在各种 OO
+语言里，例如 Java</summary>
         
       
     
@@ -185,7 +259,8 @@
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
 &lt;p&gt;异常处理一直是老大难问题，大概有这么几个流派&lt;/p&gt;
 &lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;用返回值区分，Rust 的 &lt;code&gt;Result&lt;/code&gt;、Haskell 的 &lt;code&gt;Either a</summary>
+&lt;li&gt;用返回值区分，Rust 的 &lt;code&gt;Result&lt;/code&gt;、Haskell 的
+&lt;code&gt;Either a</summary>
         
       
     
@@ -209,7 +284,9 @@
         
         
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;之前提到的 &lt;code&gt;x=term&lt;/code&gt; 都是 name binding。因为所有的项都可以求值，并且都是纯的计算模型（只和 substitution 有关），所以本质上是 meta level</summary>
+&lt;p&gt;之前提到的 &lt;code&gt;x=term&lt;/code&gt; 都是 name
+binding。因为所有的项都可以求值，并且都是纯的计算模型（只和 substitution
+有关），所以本质上是 meta level</summary>
         
       
     
@@ -259,7 +336,8 @@
         
         
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;这一章主要是给 STLC 加上各种常用的 construct，也就是在做语法糖化的过程。比较轻松&lt;/p&gt;
+&lt;p&gt;这一章主要是给 STLC 加上各种常用的
+construct，也就是在做语法糖化的过程。比较轻松&lt;/p&gt;
 &lt;h1 id=&quot;derived-form&quot;&gt;Derived Form&lt;/h1&gt;
 &lt;p&gt;考虑语言 &lt;span</summary>
         
@@ -284,7 +362,8 @@
       
         
         
-    <summary type="html">&lt;p&gt;Simply Typed Lambda Calculus 通常记为 &lt;span class=&quot;math inline&quot;&gt;\(\lambda_{\rightarrow}\)&lt;/span&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;Simply Typed Lambda Calculus 通常记为 &lt;span
+class=&quot;math inline&quot;&gt;\(\lambda_{\rightarrow}\)&lt;/span&gt;&lt;/p&gt;
 &lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
 &lt;p&gt;在 ULC +</summary>
         
@@ -309,7 +388,8 @@
       
         
         
-    <summary type="html">&lt;p&gt;事实上后面还有很多关于实时性和 case study 的高端内容，打算咕咕咕了回头再看。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;事实上后面还有很多关于实时性和 case study
+的高端内容，打算咕咕咕了回头再看。&lt;/p&gt;
 &lt;h1</summary>
         
       
@@ -338,7 +418,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;What is Parser Combinator?&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;传统的 Parsing 包括 Lexing 和 Parsing</summary>
+&lt;p&gt;传统的 Parsing 包括 Lexing 和</summary>
         
       
     
@@ -448,83 +528,6 @@
     
     
     <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Algebra03 同态与同构</title>
-    <link href="http://example.com/2022/07/09/Algebra03-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/"/>
-    <id>http://example.com/2022/07/09/Algebra03-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/</id>
-    <published>2022-07-08T16:26:16.000Z</published>
-    <updated>2022-08-14T07:52:09.966Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;群的同构意味着二者本质上没有区别, 同态则可以导出某些同构.&lt;/p&gt;
-&lt;p&gt;下面默认 &lt;span class=&quot;math inline&quot;&gt;\(G_1, G_2\)&lt;/span&gt; 是两个群.&lt;/p&gt;
-&lt;h1 id=&quot;同态&quot;&gt;同态&lt;/h1&gt;
-&lt;p&gt;若存在映射 &lt;span</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Algebra" scheme="http://example.com/tags/Algebra/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Algebra02 子群和商群</title>
-    <link href="http://example.com/2022/07/06/Algebra02-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/"/>
-    <id>http://example.com/2022/07/06/Algebra02-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/</id>
-    <published>2022-07-06T10:06:58.000Z</published>
-    <updated>2022-08-14T07:52:04.805Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;主要关注怎么由已有群得到新的群. 如果上过正经高代应该会对这一套流程比较熟悉&lt;/p&gt;
-&lt;h1 id=&quot;子群&quot;&gt;子群&lt;/h1&gt;
-&lt;p&gt;$ G$ 为子群, 非空子集 &lt;span class=&quot;math inline&quot;&gt;\(H\subseteq G\)&lt;/span&gt; 是</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Algebra" scheme="http://example.com/tags/Algebra/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Algebra01 群的定义</title>
-    <link href="http://example.com/2022/07/06/Algebra01-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/"/>
-    <id>http://example.com/2022/07/06/Algebra01-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/</id>
-    <published>2022-07-06T04:27:46.000Z</published>
-    <updated>2022-08-14T07:51:58.697Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;觉得要好好学一学这个东西了&lt;/p&gt;
-&lt;h1 id=&quot;代数系统&quot;&gt;代数系统&lt;/h1&gt;
-&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
-&lt;p&gt;称 &lt;span class=&quot;math inline&quot;&gt;\(\left&amp;lt;G,\circ\right&amp;gt;\)&lt;/span&gt;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Algebra" scheme="http://example.com/tags/Algebra/"/>
     
   </entry>
   

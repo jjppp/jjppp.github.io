@@ -186,25 +186,62 @@
       <div class="markdown-body">
         <h1 id="lab2-kmt">Lab2-kmt</h1>
 <p>花了整个五一三天假期，最后是听了答疑才知道怎么解决栈的数据竞争的....</p>
-<p>痛苦的部分主要是多核 logging 和怎么用 qemu debug 的问题。搞定了这些技术上的难题，剩下就是老老实实写代码了。</p>
+<p>痛苦的部分主要是多核 logging 和怎么用 qemu debug
+的问题。搞定了这些技术上的难题，剩下就是老老实实写代码了。</p>
 <h2 id="设计">设计</h2>
 <h3 id="spinlock">spinlock</h3>
-<p>去观摩了 xv6 的代码，发现不仅要自旋，还得关中断。并且关中断这事还得是嵌套的。</p>
+<p>去观摩了 xv6
+的代码，发现不仅要自旋，还得关中断。并且关中断这事还得是嵌套的。</p>
 <h3 id="semaphore">semaphore</h3>
-<p>每个信号量有一个等待队列 <code>wait_tid</code>，一个 <code>value</code>，还有一个 <code>wakeup</code> 表示需要唤醒多少个睡眠中的进程。</p>
-<p>我的实现需要在 <code>sem_signal</code> 和 <code>sem_wait</code> 中修改全局的任务链表。由于 <code>os_trap()</code> 中途也可以 <code>sem_signal</code>，所以需要保证对链表读写的互斥。同时由于 <code>os_trap()</code> 的第一个操作必须是保存上下文、最后必须是切换，因此需要保证这两个操作对进程状态的修改是符合 <code>save_context</code> 后和 <code>switch_task</code> 前的语义的。</p>
+<p>每个信号量有一个等待队列 <code>wait_tid</code>，一个
+<code>value</code>，还有一个 <code>wakeup</code>
+表示需要唤醒多少个睡眠中的进程。</p>
+<p>我的实现需要在 <code>sem_signal</code> 和 <code>sem_wait</code>
+中修改全局的任务链表。由于 <code>os_trap()</code> 中途也可以
+<code>sem_signal</code>，所以需要保证对链表读写的互斥。同时由于
+<code>os_trap()</code>
+的第一个操作必须是保存上下文、最后必须是切换，因此需要保证这两个操作对进程状态的修改是符合
+<code>save_context</code> 后和 <code>switch_task</code> 前的语义的。</p>
 <p>在调试过程中遇到过一个印象深刻的Bug</p>
-<p>一开始我认为只能调度 <code>RUNNABLE</code> 的任务，但实际上可以调度所有非 <code>RUNNING</code> 的任务。注意到等待信号量进入睡眠后需要一次切换让出 CPU，这就是一种从 <code>SLEEP</code> 调度的情况。</p>
+<p>一开始我认为只能调度 <code>RUNNABLE</code>
+的任务，但实际上可以调度所有非 <code>RUNNING</code>
+的任务。注意到等待信号量进入睡眠后需要一次切换让出 CPU，这就是一种从
+<code>SLEEP</code> 调度的情况。</p>
 <h2 id="栈的数据竞争">栈的数据竞争</h2>
-<p>一开始的上下文切换是通过记录栈上的指针完成的，即每个任务记录一个上下文指针，指向栈上由 AM 的 cte 保存的上下文。</p>
-<p>于是就可以观察到，某些时候 <code>os_trap()</code> 会返回到空的 <code>%rip</code>。</p>
-<p>后面每个任务的结构体里都单独拷贝一份上下文，这样就会在多核时出现经典的 triple fault。然后STFW发现可以用 <code>-d exec</code> 来打印 trace，用 <code>-d cpu-reset</code> 来打印寄存器的值。然后就可以发现每次都是一个线程的 <code>%rip</code> 跑飞了，triple fault 就恰好是三次越界指令访问。并且可以发现每次都是在 <code>cpu_current()</code> 调用后返回到了错误地址，意味着栈被改写了。</p>
-<p>然后我去翻了聊天记录，发现有同学问了一样的问题，但是没有看懂他的解决方案。于是中午去听了答疑，知道了怎么延迟任务T的调度来确保T的栈不会被两个 CPU 同时操作。感觉这个想法还是很厉害的。</p>
-<p>但是这样做会出现新的问题：如果用smp=2跑3个任务，那么就会出现问题。CPU[0]从 idle[0]-&gt;print，而 CPU[1] 此时无法从 idle[1] 跳到任何任务（一个正在运行，另一个由于栈切换必须等到 CPU[0] 下一次 <code>os_trap()</code> 才能调度，但是 <code>yield()</code> 的语义是让出 CPU[1]，因此会被我的 <code>assert</code> 抓到）</p>
-<p>解决方案也很简单。我开了2倍smp的 idle 任务，用于保证每个 CPU 至少可以切换到另一个 idle 上。这样虽然不太优雅，但也还能跑起来。</p>
+<p>一开始的上下文切换是通过记录栈上的指针完成的，即每个任务记录一个上下文指针，指向栈上由
+AM 的 cte 保存的上下文。</p>
+<p>于是就可以观察到，某些时候 <code>os_trap()</code> 会返回到空的
+<code>%rip</code>。</p>
+<p>后面每个任务的结构体里都单独拷贝一份上下文，这样就会在多核时出现经典的
+triple fault。然后STFW发现可以用 <code>-d exec</code> 来打印 trace，用
+<code>-d cpu-reset</code>
+来打印寄存器的值。然后就可以发现每次都是一个线程的 <code>%rip</code>
+跑飞了，triple fault 就恰好是三次越界指令访问。并且可以发现每次都是在
+<code>cpu_current()</code>
+调用后返回到了错误地址，意味着栈被改写了。</p>
+<p>然后我去翻了聊天记录，发现有同学问了一样的问题，但是没有看懂他的解决方案。于是中午去听了答疑，知道了怎么延迟任务T的调度来确保T的栈不会被两个
+CPU 同时操作。感觉这个想法还是很厉害的。</p>
+<p>但是这样做会出现新的问题：如果用smp=2跑3个任务，那么就会出现问题。CPU[0]从
+idle[0]-&gt;print，而 CPU[1] 此时无法从 idle[1]
+跳到任何任务（一个正在运行，另一个由于栈切换必须等到 CPU[0] 下一次
+<code>os_trap()</code> 才能调度，但是 <code>yield()</code> 的语义是让出
+CPU[1]，因此会被我的 <code>assert</code> 抓到）</p>
+<p>解决方案也很简单。我开了2倍smp的 idle 任务，用于保证每个 CPU
+至少可以切换到另一个 idle 上。这样虽然不太优雅，但也还能跑起来。</p>
 <h2 id="tty的神秘bug">tty的神秘Bug</h2>
-<p>一开始我开了 128 个 <code>task_struct</code>，然后在跑 <code>dev</code> 的时候滚键盘就会出现某个任务的结构体被修改了的情况。通过 <code>assert</code> 和断点找到了是 <code>tty_render</code> 会 <code>memset</code> 一段内存，然后这段内存恰好处在某两个结构体中间，结果就是改写了我的结构体信息。</p>
-<p>这个 Bug 比较难抓到，每7、8次才能复现一次，并且每次导致出错的 <code>memset</code> 地址都是一样的（非常整齐，恰好是页面的整数倍）。一开始我以为是 <code>pmm.c</code> 的问题，分配的内存和设备地址重叠了。但我打印之后发现并不是这样。而且更神奇的是，我把 <code>task_struct</code> 的数量减少到 64 之后，这个 Bug 就再也没法触发了。。。</p>
+<p>一开始我开了 128 个 <code>task_struct</code>，然后在跑
+<code>dev</code>
+的时候滚键盘就会出现某个任务的结构体被修改了的情况。通过
+<code>assert</code> 和断点找到了是 <code>tty_render</code> 会
+<code>memset</code>
+一段内存，然后这段内存恰好处在某两个结构体中间，结果就是改写了我的结构体信息。</p>
+<p>这个 Bug 比较难抓到，每7、8次才能复现一次，并且每次导致出错的
+<code>memset</code>
+地址都是一样的（非常整齐，恰好是页面的整数倍）。一开始我以为是
+<code>pmm.c</code>
+的问题，分配的内存和设备地址重叠了。但我打印之后发现并不是这样。而且更神奇的是，我把
+<code>task_struct</code> 的数量减少到 64 之后，这个 Bug
+就再也没法触发了。。。</p>
 
       </div>
       

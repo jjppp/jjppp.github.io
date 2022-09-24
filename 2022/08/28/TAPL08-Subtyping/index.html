@@ -185,22 +185,34 @@
       </div>
       <div class="markdown-body">
         <h1 id="intro">Intro</h1>
-<p>Subtyping（或者说 Subtype Polymorphism）给出了一种类型间的转换关系（一种 preorder），使得程序猿可以写出很通用的代码。典型的子类型出现在各种 OO 语言里，例如 Java 的子类。</p>
+<p>Subtyping（或者说 Subtype
+Polymorphism）给出了一种类型间的转换关系（一种
+preorder），使得程序猿可以写出很通用的代码。典型的子类型出现在各种 OO
+语言里，例如 Java 的子类。</p>
 <p>同时需要指出的是，子类型和继承并非必须捆绑在一起</p>
 <ul>
 <li>子类型说的是具有一种类型的项可以无痛替换掉另一种类型的项</li>
 <li>继承强调的是代码复用</li>
 </ul>
-<p>Java 把这俩放在一起了，即创造子类型的同时天然地复用了父类型的代码。</p>
+<p>Java
+把这俩放在一起了，即创造子类型的同时天然地复用了父类型的代码。</p>
 <h1 id="subtyping">Subtyping</h1>
-<p>称 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(B\)</span> 的子类型，记为 <span class="math inline">\(A&lt;: B\)</span>。一个简单的基于朴素集合论的解释就是：类型为 <span class="math inline">\(A\)</span> 的项构成的集合是类型为 <span class="math inline">\(B\)</span> 的项构成的集合的子集。</p>
-<p>这说明，若 <span class="math inline">\(\Gamma\vdash a:A\)</span>，那么 <span class="math inline">\(\Gamma\vdash a:B\)</span>。即 <span class="math display">\[
+<p>称 <span class="math inline">\(A\)</span> 是 <span
+class="math inline">\(B\)</span> 的子类型，记为 <span
+class="math inline">\(A&lt;:
+B\)</span>。一个简单的基于朴素集合论的解释就是：类型为 <span
+class="math inline">\(A\)</span> 的项构成的集合是类型为 <span
+class="math inline">\(B\)</span> 的项构成的集合的子集。</p>
+<p>这说明，若 <span class="math inline">\(\Gamma\vdash
+a:A\)</span>，那么 <span class="math inline">\(\Gamma\vdash
+a:B\)</span>。即 <span class="math display">\[
 \frac{\Gamma \vdash a:A,\qquad A&lt;:B}{\Gamma\vdash a:B}
 \]</span></p>
 <h2 id="subtype-relation">Subtype relation</h2>
 <p>子类型关系是类型上的一个二元关系，由若干推导规则给出。</p>
 <h3 id="baiscs">Baiscs</h3>
-<p>通常子类型关系是任意的（对于不同的语言而言可以不同），因此存在可以设计的地方。但通常都包括下面两条（即子类型关系至少应该是一个 preorder） <span class="math display">\[
+<p>通常子类型关系是任意的（对于不同的语言而言可以不同），因此存在可以设计的地方。但通常都包括下面两条（即子类型关系至少应该是一个
+preorder） <span class="math display">\[
 \begin{aligned}
 \frac{}{A&lt;:A}
 \end{aligned}
@@ -211,19 +223,25 @@
 \end{aligned}
 \]</span></p>
 <h3 id="records">Records</h3>
-<p>书上花了很长的篇幅讲两个 record 什么情况下是子类型，其实就是看 field 的包含情况就可以了。</p>
+<p>书上花了很长的篇幅讲两个 record 什么情况下是子类型，其实就是看 field
+的包含情况就可以了。</p>
 <h3 id="functions">Functions</h3>
 <p>这个就比较好玩 <span class="math display">\[
-\frac{S_1:&gt; S_2\qquad T_1&lt;:T_2}{S_1\rightarrow T_1&lt;:S_2\rightarrow T_2}
+\frac{S_1:&gt; S_2\qquad T_1&lt;:T_2}{S_1\rightarrow
+T_1&lt;:S_2\rightarrow T_2}
 \]</span></p>
 <ul>
 <li>函数的子类型与函数参数的子类型关系是<strong>反的</strong>，这个叫逆变（contravariant）</li>
 <li>函数的子类型与函数返回值的子类型关系是<strong>相同的</strong>，这个叫协变（covariant）</li>
 </ul>
 <h3 id="special-types">Special types</h3>
-<p>定义 <span class="math inline">\(\text{Bot, Top}\)</span> 为两个特殊类型，其中 <span class="math inline">\(\forall S. S&lt;:\text{Top}\)</span>，<span class="math inline">\(\text{Bot}\)</span> 类似。</p>
+<p>定义 <span class="math inline">\(\text{Bot, Top}\)</span>
+为两个特殊类型，其中 <span class="math inline">\(\forall S.
+S&lt;:\text{Top}\)</span>，<span
+class="math inline">\(\text{Bot}\)</span> 类似。</p>
 <h3 id="variant">Variant</h3>
-<p>对于 Sum Type 而言，子类型多态的引入可以省去一个 ascription，因为类型可以自动提升。</p>
+<p>对于 Sum Type 而言，子类型多态的引入可以省去一个
+ascription，因为类型可以自动提升。</p>
 <h3 id="list">List</h3>
 <p><span class="math display">\[
 \frac{A&lt;:B}{\text{List $A&lt;:$ List $B$}}
@@ -233,34 +251,54 @@
 \frac{A&lt;:B\qquad B&lt;:A}{\text{ref $A&lt;:$ ref $B$}}
 \]</span></p>
 <p>之所以有这个要求，是因为一个引用既可以存入、也可以取出。</p>
-<p>我们只能往 <span class="math inline">\(\text{ref $B$}\)</span> 中存入 <span class="math inline">\(B\)</span> 的子类型，也只能取出 <span class="math inline">\(B\)</span> 的子类型，因此 <span class="math inline">\(\text{ref $A$}\)</span> 能替代 <span class="math inline">\(\text{ref }B\)</span> 的场合要求 <span class="math inline">\(A,B\)</span> 互为子类型。</p>
+<p>我们只能往 <span class="math inline">\(\text{ref $B$}\)</span> 中存入
+<span class="math inline">\(B\)</span> 的子类型，也只能取出 <span
+class="math inline">\(B\)</span> 的子类型，因此 <span
+class="math inline">\(\text{ref $A$}\)</span> 能替代 <span
+class="math inline">\(\text{ref }B\)</span> 的场合要求 <span
+class="math inline">\(A,B\)</span> 互为子类型。</p>
 <p>也可以把读和写分离，做成类似管道的东西，那么这时候就可以在两侧分别赋予不同的类型了（逆变/协变）。</p>
 <h3 id="array">Array</h3>
-<p>数组本质上也是一种引用（引用是长度为 1 的数组），因此很容易写出 <span class="math display">\[
+<p>数组本质上也是一种引用（引用是长度为 1 的数组），因此很容易写出 <span
+class="math display">\[
 \frac{A&lt;:B\qquad B&lt;:A}{\text{Array $A&lt;:$ Array $B$}}
 \]</span> 书上也提到了 Java 的设计缺陷，看一乐</p>
 <h2 id="casting">Casting</h2>
 <p>一般分成 upCast 和 downCast</p>
 <ul>
-<li><p>upCast 就是之前提到的 ascription，即通过 subsumption 提升为父类型，这个没什么问题</p></li>
-<li><p>downCast 就是 Java 里一般会遇到的 cast，即把某个父类型的项强转成某个子类型。最经典的就是 Java 在还没有泛型的时候需要这样实现 List：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>ListOfObjects list = <span class="kw">new</span> ListOfObjects;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>Dog dog = <span class="kw">new</span> <span class="fu">Dog</span>();</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>list.<span class="fu">add</span>(dog);</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>Dog objDog = (Dog) list.<span class="fu">get</span>(<span class="dv">0</span>);</span></code></pre></div>
+<li><p>upCast 就是之前提到的 ascription，即通过 subsumption
+提升为父类型，这个没什么问题</p></li>
+<li><p>downCast 就是 Java 里一般会遇到的
+cast，即把某个父类型的项强转成某个子类型。最经典的就是 Java
+在还没有泛型的时候需要这样实现 List：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ListOfObjects list <span class="op">=</span> <span class="kw">new</span> ListOfObjects<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Dog dog <span class="op">=</span> <span class="kw">new</span> <span class="fu">Dog</span><span class="op">();</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>list<span class="op">.</span><span class="fu">add</span><span class="op">(</span>dog<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Dog objDog <span class="op">=</span> <span class="op">(</span>Dog<span class="op">)</span> list<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span></code></pre></div>
 <p>虽然即使有了本质上也还是这么实现的...</p>
 <p>或者 C 里面的 <code>void *</code></p>
-<p>当然，不正确的 downCast 会丧失 safety，因此还需要做动态的检查。也有些小技巧可以通过静态的指针分析来得到一些 sound 解，使得我们可以省去某些动态的检查。</p></li>
+<p>当然，不正确的 downCast 会丧失
+safety，因此还需要做动态的检查。也有些小技巧可以通过静态的指针分析来得到一些
+sound 解，使得我们可以省去某些动态的检查。</p></li>
 </ul>
 <h1 id="coercion-semantics">Coercion Semantics</h1>
 <p>这里花了一点时间才看明白在讲什么</p>
-<p>上面讲的其实是 high-level 的 subtyping 语义，即我们真正做的实际上是<strong>把父子类型之并视为父类型</strong>。在操作这些值的过程中它们的内部表示仍然是各自具体类型的，这就可能涉及到装箱和拆箱的代价。这就是所谓的 subset semantics</p>
-<p>而 Coercion Semantics 给了另一种方法，即我们可以把 high-level 的语言翻译到 low-level 且没有 subtyping 的语言。在这个过程中，我们通过添加若干 low-level 的 cast 函数来<strong>将子类型改写成父类型</strong>，这样在类型提升后，我们项的内部表示也得到了改变。这就是 coercion semantics</p>
+<p>上面讲的其实是 high-level 的 subtyping
+语义，即我们真正做的实际上是<strong>把父子类型之并视为父类型</strong>。在操作这些值的过程中它们的内部表示仍然是各自具体类型的，这就可能涉及到装箱和拆箱的代价。这就是所谓的
+subset semantics</p>
+<p>而 Coercion Semantics 给了另一种方法，即我们可以把 high-level
+的语言翻译到 low-level 且没有 subtyping
+的语言。在这个过程中，我们通过添加若干 low-level 的 cast
+函数来<strong>将子类型改写成父类型</strong>，这样在类型提升后，我们项的内部表示也得到了改变。这就是
+coercion semantics</p>
 <blockquote>
 <p>举个例子：</p>
 <p>struct A <code>&#123;x: Nat&#125;</code></p>
 <p>struct B <code>&#123;y: Bool -&gt; Bool, x: Nat&#125;</code></p>
-<p>很显然 <span class="math inline">\(B&lt;:A\)</span>。不妨记 <code>f = fun x: Nat (x + 1)</code>，立即有 <span class="math inline">\(f:\text{Nat$\rightarrow$Nat}\)</span></p>
+<p>很显然 <span class="math inline">\(B&lt;:A\)</span>。不妨记
+<code>f = fun x: Nat (x + 1)</code>，立即有 <span
+class="math inline">\(f:\text{Nat$\rightarrow$Nat}\)</span></p>
 <h4 id="subset-semantics">subset semantics</h4>
 <pre><code>  (fun arg: &#123;x: Nat&#125; (f arg.x)) &#123;y = id, x = 0&#125;
 -&gt;    f (&#123;y = id, x = 0&#125;.x)
@@ -273,14 +311,25 @@
 -&gt;    f (&#123;x = 0&#125;.x)
 -&gt;  f 0
 -&gt;  1</code></pre>
-<p>可以发现 subset semantics 要求我们能屏蔽一些底层细节，用统一的方法对不同类型（但属于同一个父类型）的项进行统一的操作。</p>
-<p>而 coercion semantics 则不要求上面这一点，不同实际类型可以用不同的方法来操作，子类型的提升是通过显式的语义函数完成的。</p>
+<p>可以发现 subset semantics
+要求我们能屏蔽一些底层细节，用统一的方法对不同类型（但属于同一个父类型）的项进行统一的操作。</p>
+<p>而 coercion semantics
+则不要求上面这一点，不同实际类型可以用不同的方法来操作，子类型的提升是通过显式的语义函数完成的。</p>
 </blockquote>
-<p>通常这个生成 cast function 的过程是自动化的，并且是基于 typing derivation tree 来的。你可以把它叫做 compilation，没什么问题。</p>
-<p>当然具体的规则自己去看书，只需要知道得分别对 类型、子类型提升、项 三个东西分别翻译就行了。</p>
+<p>通常这个生成 cast function 的过程是自动化的，并且是基于 typing
+derivation tree 来的。你可以把它叫做 compilation，没什么问题。</p>
+<p>当然具体的规则自己去看书，只需要知道得分别对 类型、子类型提升、项
+三个东西分别翻译就行了。</p>
 <h2 id="coherence">Coherence</h2>
-<p>Coercion Semantics 的代码生成是基于 typing derivation tree 的，因此如果某种类型的 derivation 不唯一，那么代码生成就可能有歧义。经典的例如 <span class="math inline">\(\text{Bool&lt;:Int&lt;:Float}\)</span>，那么在 <span class="math inline">\(\text{toSring}(True)\)</span> 时就会出现 <code>"1"</code> 和 <code>"1.000"</code> 的区别</p>
-<p>称一个翻译 coherent 当且仅当对于同一个 typing judgement <span class="math inline">\(J\)</span>，其任意 derivation tree 产生的翻译程序语义等价（原文用的 behaviourally equivalent）。</p>
+<p>Coercion Semantics 的代码生成是基于 typing derivation tree
+的，因此如果某种类型的 derivation
+不唯一，那么代码生成就可能有歧义。经典的例如 <span
+class="math inline">\(\text{Bool&lt;:Int&lt;:Float}\)</span>，那么在
+<span class="math inline">\(\text{toSring}(True)\)</span> 时就会出现
+<code>"1"</code> 和 <code>"1.000"</code> 的区别</p>
+<p>称一个翻译 coherent 当且仅当对于同一个 typing judgement <span
+class="math inline">\(J\)</span>，其任意 derivation tree
+产生的翻译程序语义等价（原文用的 behaviourally equivalent）。</p>
 
       </div>
       

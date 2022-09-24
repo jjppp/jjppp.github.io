@@ -184,67 +184,79 @@
           
       </div>
       <div class="markdown-body">
-        <p>针对南京大学 数字逻辑与计算机组成实验 课程的环境配置，本机是Ubuntu 21.10</p>
+        <p>针对南京大学 数字逻辑与计算机组成实验 课程的环境配置，本机是Ubuntu
+21.10</p>
 <h1 id="section">1</h1>
-<p>访问 <a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/software-kit/660904/intel-quartus-prime-lite-edition-design-software-version-20-1-1-for-linux.html?">这个网页</a>，选择Individual Files，只需要下载</p>
+<p>访问 <a
+target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/software-kit/660904/intel-quartus-prime-lite-edition-design-software-version-20-1-1-for-linux.html?">这个网页</a>，选择Individual
+Files，只需要下载</p>
 <ol type="1">
 <li><p>QuartusLiteSetup-20.1.1.720-linux.run (1.9GB)</p></li>
 <li><p>cyclonev-20.1.1.720.qdz (1.3GB)</p></li>
 </ol>
 <h1 id="section-1">2</h1>
 <p>进入下载目录，执行以下操作</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">chmod</span> +x QuartusLiteSetup-20.1.1.720-linux.run</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ex">./QuartusLiteSetup-20.1.1.720-linux.run</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x QuartusLiteSetup-20.1.1.720-linux.run</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./QuartusLiteSetup-20.1.1.720-linux.run</span></span></code></pre></div>
 <p>途中选择带有 Free License 字样的 Modelsim-Questa</p>
 <h1 id="section-2">3</h1>
-<p>再参照<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/31908525/modelsim-altera-error">这个回答</a>，命令行执行以下操作</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">sudo</span> apt-get install libxft2 libxft2:i386 lib32ncurses6</span></code></pre></div>
-<p>第二个是必须的，这样就解决了 RTL Simulation 时，弹窗报错需要 LD_LICENSE_FILE 环境变量的问题。</p>
+<p>再参照<a
+target="_blank" rel="noopener" href="https://stackoverflow.com/questions/31908525/modelsim-altera-error">这个回答</a>，命令行执行以下操作</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install libxft2 libxft2:i386 lib32ncurses6</span></code></pre></div>
+<p>第二个是必须的，这样就解决了 RTL Simulation 时，弹窗报错需要
+LD_LICENSE_FILE 环境变量的问题。</p>
 <h1 id="section-3">4</h1>
-<p>参照<a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/docs/programmable/683076/current/installing-on-red-hat-enterprise-5-and-6.html">Intel官方文档</a>，以su权限修改<code>/etc/udev/rules.d/51-usbblaster.rules</code>文件，添加：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co"># Blaster I</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="va">BUS=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS</span><span class="dt">&#123;idVendor&#125;</span>==<span class="st">&quot;09fb&quot;</span>, SYSFS<span class="dt">&#123;idProduct&#125;</span>==<span class="st">&quot;6001&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="va">BUS=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS</span><span class="dt">&#123;idVendor&#125;</span>==<span class="st">&quot;09fb&quot;</span>, SYSFS<span class="dt">&#123;idProduct&#125;</span>==<span class="st">&quot;6002&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="va">BUS=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS</span><span class="dt">&#123;idVendor&#125;</span>==<span class="st">&quot;09fb&quot;</span>, SYSFS<span class="dt">&#123;idProduct&#125;</span>==<span class="st">&quot;6003&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co"># Blaster II</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="va">BUS=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS</span><span class="dt">&#123;idVendor&#125;</span>==<span class="st">&quot;09fb&quot;</span>, SYSFS<span class="dt">&#123;idProduct&#125;</span>==<span class="st">&quot;6010&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="va">BUS=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS</span><span class="dt">&#123;idVendor&#125;</span>==<span class="st">&quot;09fb&quot;</span>, SYSFS<span class="dt">&#123;idProduct&#125;</span>==<span class="st">&quot;6810&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span></code></pre></div>
+<p>参照<a
+target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/docs/programmable/683076/current/installing-on-red-hat-enterprise-5-and-6.html">Intel官方文档</a>，以su权限修改<code>/etc/udev/rules.d/51-usbblaster.rules</code>文件，添加：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Blaster I</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">BUS</span><span class="op">=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS&#123;idVendor&#125;==</span><span class="st">&quot;09fb&quot;</span><span class="ex">,</span> SYSFS&#123;idProduct&#125;==<span class="st">&quot;6001&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">BUS</span><span class="op">=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS&#123;idVendor&#125;==</span><span class="st">&quot;09fb&quot;</span><span class="ex">,</span> SYSFS&#123;idProduct&#125;==<span class="st">&quot;6002&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">BUS</span><span class="op">=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS&#123;idVendor&#125;==</span><span class="st">&quot;09fb&quot;</span><span class="ex">,</span> SYSFS&#123;idProduct&#125;==<span class="st">&quot;6003&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Blaster II</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="va">BUS</span><span class="op">=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS&#123;idVendor&#125;==</span><span class="st">&quot;09fb&quot;</span><span class="ex">,</span> SYSFS&#123;idProduct&#125;==<span class="st">&quot;6010&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="va">BUS</span><span class="op">=</span>=<span class="st">&quot;usb&quot;</span>, <span class="ex">SYSFS&#123;idVendor&#125;==</span><span class="st">&quot;09fb&quot;</span><span class="ex">,</span> SYSFS&#123;idProduct&#125;==<span class="st">&quot;6810&quot;</span>, MODE=<span class="st">&quot;0666&quot;</span></span></code></pre></div>
 <p>具体关于udev是干什么的，可以看archwiki</p>
 <h1 id="section-4">5</h1>
 <p>在<code>/usr/share/applications/</code>目录下以su权限新建<code>quartus.desktop</code>，输入以下内容</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>[<span class="ex">Desktop</span> Entry]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="va">Type=</span>Application</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="va">Version=</span>0.9.4</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="va">Name=</span>Quartus <span class="kw">(</span><span class="ex">Quartus</span> Prime 20.1<span class="kw">)</span> <span class="ex">Lite</span> Edition</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="va">Comment=</span>Quartus <span class="kw">(</span><span class="ex">Quartus</span> Prime 20.1<span class="kw">)</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="va">Icon=</span>/home/jjppp/intelFPGA_lite/20.1/quartus/adm/quartusii.png</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="va">Exec=</span>/home/jjppp/intelFPGA_lite/20.1/quartus/bin/quartus <span class="ex">--64bit</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="va">Terminal=</span>false</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="va">Path=</span>/home/jjppp/intelFPGA_lite/20.1</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[Desktop</span> Entry]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">Type</span><span class="op">=</span>Application</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">Version</span><span class="op">=</span>0.9.4</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">Name</span><span class="op">=</span>Quartus <span class="kw">(</span><span class="ex">Quartus</span> Prime 20.1<span class="kw">)</span> <span class="ex">Lite</span> Edition</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="va">Comment</span><span class="op">=</span>Quartus <span class="kw">(</span><span class="ex">Quartus</span> Prime 20.1<span class="kw">)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="va">Icon</span><span class="op">=</span>/home/jjppp/intelFPGA_lite/20.1/quartus/adm/quartusii.png</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="va">Exec</span><span class="op">=</span>/home/jjppp/intelFPGA_lite/20.1/quartus/bin/quartus <span class="ex">--64bit</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="va">Terminal</span><span class="op">=</span>false</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="va">Path</span><span class="op">=</span>/home/jjppp/intelFPGA_lite/20.1</span></code></pre></div>
 <p>这样就可以找到quartus作为程序的图标了</p>
 <h1 id="section-5">6</h1>
-<p>可以安装wine，那么就可以利用System Builder来生成已经分配好引脚的工程文件了。</p>
+<p>可以安装wine，那么就可以利用System
+Builder来生成已经分配好引脚的工程文件了。</p>
 <h1 id="总结">总结</h1>
-<p>中途遇见了很多奇怪的问题，最奇怪的是LD_LICENSE_FILE的问题，明明是免费版本却出现了需要一个不存在的license.dat文件的情况.....最后是通过"Questa-Modelsim LD_LICENSE_FILE"搜到的解决方案，不然就得去翻log了。</p>
+<p>中途遇见了很多奇怪的问题，最奇怪的是LD_LICENSE_FILE的问题，明明是免费版本却出现了需要一个不存在的license.dat文件的情况.....最后是通过"Questa-Modelsim
+LD_LICENSE_FILE"搜到的解决方案，不然就得去翻log了。</p>
 
       </div>
       

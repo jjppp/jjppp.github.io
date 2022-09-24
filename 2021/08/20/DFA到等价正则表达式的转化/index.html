@@ -206,7 +206,10 @@
 </blockquote>
 <p>注意到<code>rem</code>的取值只能为<code>0,1,2</code>，因此可以建3个点，每个点两条出边表示对不同字符的处理转移，那么建出来的图如下</p>
 <figure>
-<img src="https://img2020.cnblogs.com/blog/1010529/202108/1010529-20210820110746913-1492292485.png" alt="" /><figcaption>image</figcaption>
+<img
+src="https://img2020.cnblogs.com/blog/1010529/202108/1010529-20210820110746913-1492292485.png"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>其中节点1,2,3分别表示<code>rem</code>对应为0,1,2的状态。</p>
 <p>"但是问题还没完啊，你不是要正则表达式吗"</p>
@@ -222,15 +225,27 @@
 <p>它们的优先级从上到下<strong>递增</strong></p>
 <p>那么自然应该想到，列出正则表达式的代数方程，也是可以解方程的</p>
 <h3 id="ardens-theorem">Arden's Theorem</h3>
-<p>定理的内容很简单，即对于形如 <span class="math inline">\(x=A|xB\)</span> 的方程，<span class="math inline">\(x\)</span> 的解都是 <span class="math inline">\(AB^*\)</span> 的形式</p>
-<p>对解的长度进行归纳。当 <span class="math inline">\(n=1\)</span>， <span class="math inline">\(x_1=A\)</span> 是原方程的一个解，满足 <span class="math inline">\(x=AB^*\)</span> 的形式</p>
-<p>设当 <span class="math inline">\(n&lt;k\)</span> 时成立，则 <span class="math inline">\(x_{n-1}=A\overbrace{B\ldots B}^{n-1\text{个}B}\)</span>，带入方程右侧就有 <span class="math inline">\(x_n=x_{n-1}B=A\overbrace{B\ldots B}^{n\text{个}B}\)</span></p>
-<p>由数学归纳法可知原方程的解都是 <span class="math inline">\(x=AB^*\)</span> 的形式，并且容易验证形如 <span class="math inline">\(AB^*\)</span> 的串都是方程的解。</p>
+<p>定理的内容很简单，即对于形如 <span
+class="math inline">\(x=A|xB\)</span> 的方程，<span
+class="math inline">\(x\)</span> 的解都是 <span
+class="math inline">\(AB^*\)</span> 的形式</p>
+<p>对解的长度进行归纳。当 <span class="math inline">\(n=1\)</span>，
+<span class="math inline">\(x_1=A\)</span> 是原方程的一个解，满足 <span
+class="math inline">\(x=AB^*\)</span> 的形式</p>
+<p>设当 <span class="math inline">\(n&lt;k\)</span> 时成立，则 <span
+class="math inline">\(x_{n-1}=A\overbrace{B\ldots
+B}^{n-1\text{个}B}\)</span>，带入方程右侧就有 <span
+class="math inline">\(x_n=x_{n-1}B=A\overbrace{B\ldots
+B}^{n\text{个}B}\)</span></p>
+<p>由数学归纳法可知原方程的解都是 <span
+class="math inline">\(x=AB^*\)</span> 的形式，并且容易验证形如 <span
+class="math inline">\(AB^*\)</span> 的串都是方程的解。</p>
 <p>类似的也有对 <span class="math inline">\(x=A|Bx\)</span> 的结论</p>
 <h2 id="自动机到正则表达式的转换">自动机到正则表达式的转换</h2>
 <p>我们知道，自动机的每个状态都对应着一个接受串的集合(从初始状态到当前状态所有路径组成的串的并)，而不同状态之间存在转移关系</p>
 <p>那么就可以设未知数列方程辣！</p>
-<p>对于最开始的那个DFA，我们可以设它的三个状态对应的接受串的正则表达式为<span class="math inline">\(x_0,x_1,x_2\)</span>，那么有如下关系</p>
+<p>对于最开始的那个DFA，我们可以设它的三个状态对应的接受串的正则表达式为<span
+class="math inline">\(x_0,x_1,x_2\)</span>，那么有如下关系</p>
 <span class="math display">\[\begin{aligned}
 
 \begin{cases}
@@ -239,9 +254,12 @@ x_1 &amp;=&amp; x_01|x_20 \\
 x_2 &amp;=&amp; x_10|x_21 \\
 \end{cases}
 \end{aligned}\]</span>
-<p>对式3用Arden's Theorem得到<span class="math inline">\(x_2=x_101^*\)</span></p>
-<p>代入式2得到 <span class="math inline">\(x_1=x_01|x_101^*0=x_01(01^*0)^*\)</span></p>
-<p>代入式1得到 <span class="math inline">\(x_0=x_00|x_01(01^*0)^*=x_0(0|1(01^*0)^*)=(0|1(01^*0)^*)^*\)</span></p>
+<p>对式3用Arden's Theorem得到<span
+class="math inline">\(x_2=x_101^*\)</span></p>
+<p>代入式2得到 <span
+class="math inline">\(x_1=x_01|x_101^*0=x_01(01^*0)^*\)</span></p>
+<p>代入式1得到 <span
+class="math inline">\(x_0=x_00|x_01(01^*0)^*=x_0(0|1(01^*0)^*)=(0|1(01^*0)^*)^*\)</span></p>
 <p>于是就得到了与该自动机等价的正则表达式</p>
 <p>需要注意的是，在这个表达式中，我们认为可以有任意的前缀零，并且空串和任意长度的0串都是3的倍数</p>
 <h2 id="升华一下">升华一下</h2>

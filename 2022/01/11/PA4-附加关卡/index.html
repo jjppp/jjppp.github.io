@@ -230,7 +230,8 @@
 <p>我发现这个问题是因为在打开STRACE后，程序crash的地点发生了变化，于是就开始观察测试代码，通过给测试代码打断点的方法定位crash的地方，最后发现是调用<code>gettimeofday</code>之后引发了问题，原因是我没有给<code>gettimeofday</code>的调用号分配对应的字符串</p>
 <h3 id="loader的bug1">loader的bug（1）</h3>
 <p>其实一共有两个，每个都是惊天地泣鬼神的bug（其实并不）</p>
-<p>背景是这样的：在执行用户程序的时候，用户程序会通过<code>brk</code>系统调用来设置program break，以此向OS动态申请内存。我们的OS就需要通过<code>mm_brk</code>来动态申请物理页，然后把对应新的虚拟地址页映射到物理页上。</p>
+<p>背景是这样的：在执行用户程序的时候，用户程序会通过<code>brk</code>系统调用来设置program
+break，以此向OS动态申请内存。我们的OS就需要通过<code>mm_brk</code>来动态申请物理页，然后把对应新的虚拟地址页映射到物理页上。</p>
 <p>第一个bug是这么观察到的：在执行用户程序的时候，<code>mm_brk</code>会一直分配物理页直到物理页耗尽！通过STRACE可以发现它第一次就用一个非常大的参数调用了<code>brk</code>（大概是0x81.....），这就让nanos-lite拼了命也搞不出足够的内存（欲求不满啊）</p>
 <p>问题出在哪里呢？通过ITRACE我也只能发现问题现场在<code>malloc_r</code>函数里。经过一番激烈的思想斗争，我就开始翻阅libc里面的<code>malloc</code>函数的具体实现。最后发现问题是这样的：<code>malloc</code>函数会通过一个全局变量来记录已经分配了多少空间，这个全局变量应该是<code>.bss</code>节的，出现这样的问题是因为我的loader没有正确的实现对<code>.bss</code>的处理——而在没有VME的时候是可以的。</p>
 <p>回去看loader就会发现问题是什么了：虽然同样是PT_LOAD段，但是并不是所有的页都需要写入内容，只需要改一改就可以解决了。</p>

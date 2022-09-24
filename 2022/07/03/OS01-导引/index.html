@@ -185,8 +185,10 @@
       </div>
       <div class="markdown-body">
         <h1 id="写在前面">写在前面</h1>
-<p>本科期间最期待的一门课, 就这么结束了有些可惜, 决心回头看看slides, 结合交大的教材再看看有没有什么可以新发掘一下的点.</p>
-<p>现在看来是因为拔尖班的实操课程实在太少, 这门课承担了太多夯实写代码能力的责任...</p>
+<p>本科期间最期待的一门课, 就这么结束了有些可惜, 决心回头看看slides,
+结合交大的教材再看看有没有什么可以新发掘一下的点.</p>
+<p>现在看来是因为拔尖班的实操课程实在太少,
+这门课承担了太多夯实写代码能力的责任...</p>
 <h1 id="什么是操作系统">什么是操作系统</h1>
 <p>本质是一个程序, 只不过这个程序需要</p>
 <ol type="1">
@@ -194,19 +196,26 @@
 <li>向下隐藏硬件的细节</li>
 <li>管理任务 分配资源</li>
 </ol>
-<p>显然操作系统并非一开始就存在, 它的形态和功能都是随着软硬件发展和需求发生变化的.</p>
+<p>显然操作系统并非一开始就存在,
+它的形态和功能都是随着软硬件发展和需求发生变化的.</p>
 <h1 id="什么是程序">什么是程序</h1>
-<p>程序描述了一个运行时的状态机, 我们说操作系统管理程序的含义就是管理这些状态机(的状态)</p>
+<p>程序描述了一个运行时的状态机,
+我们说操作系统管理程序的含义就是管理这些状态机(的状态)</p>
 <h2 id="为什么需要操作系统">为什么需要操作系统</h2>
-<p>希望有一个特殊的程序来执行"脏活", 把纯粹的计算留给普通程序, 产生副作用的操作交由这个特殊程序来完成.</p>
-<p>如果知道 IO monad 的话, 大致可以想象成操作系统是若干个 IO(State), 所有的纯计算都是 monad, 而只有操作系统可以对带来副作用的部分求值.</p>
-<p>类似的还有安全方面的考虑, 所有需要获取高特权级的操作都必须经由操作系统之手.</p>
+<p>希望有一个特殊的程序来执行"脏活", 把纯粹的计算留给普通程序,
+产生副作用的操作交由这个特殊程序来完成.</p>
+<p>如果知道 IO monad 的话, 大致可以想象成操作系统是若干个 IO(State),
+所有的纯计算都是 monad, 而只有操作系统可以对带来副作用的部分求值.</p>
+<p>类似的还有安全方面的考虑,
+所有需要获取高特权级的操作都必须经由操作系统之手.</p>
 <h2 id="什么是编译">什么是编译</h2>
-<p>两个程序等价当且仅当它们所有的 observable behaviour 一致. 又因为纯粹的计算无法产生副作用(因而无法被观测到结果), 因此编译的等价性需要依靠产生副作用的那些指令来定义.</p>
+<p>两个程序等价当且仅当它们所有的 observable behaviour 一致.
+又因为纯粹的计算无法产生副作用(因而无法被观测到结果),
+因此编译的等价性需要依靠产生副作用的那些指令来定义.</p>
 <p>对!就是syscall. 一个极端的例子是</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000</span>; ++ i) &#123;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="dt">int</span> g = <span class="dv">0</span>;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>&#125;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">1000</span><span class="op">;</span> <span class="op">++</span> i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> g <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
 <p>这段代码与<code>nop</code>无异.</p>
 <h2 id="strace">strace</h2>
 <p>要会用strace看syscall trace(程序的 observable behaviour)</p>

@@ -186,50 +186,116 @@
       <div class="markdown-body">
         <h2 id="message-authentication-code">Message Authentication Code</h2>
 <p>简称MAC。通常我们不仅希望保证一条消息的内容没有被泄露（例如你向女神告白的信的内容），还希望我们发出去的消息没有被篡改过（例如你给女神的告白信不会被换成/修改成除了告白信之外的别的东西）。前者属于secrecy的范畴，后者则是integrity的范畴。</p>
-<p>之所以会出现这样的需求，是因为我们开始考虑更“强大”的adversary了。原本的EAV-secure模型只能对窃听者进行建模，而通常我们的adversary不仅可以看（窃听），还可以摸（篡改消息）。并且我们发现原有的加密算法是无法保证integrity的。以OTP为例，攻击者在得到密文 <span class="math inline">\(c\)</span> 后，可以通过翻转 <span class="math inline">\(c\)</span> 任意的比特来实现篡改出任意可能的信息。即使他不知道消息本身是什么，他也可以伪造出任意的消息——反正任意的定长比特串都是合法消息</p>
+<p>之所以会出现这样的需求，是因为我们开始考虑更“强大”的adversary了。原本的EAV-secure模型只能对窃听者进行建模，而通常我们的adversary不仅可以看（窃听），还可以摸（篡改消息）。并且我们发现原有的加密算法是无法保证integrity的。以OTP为例，攻击者在得到密文
+<span class="math inline">\(c\)</span> 后，可以通过翻转 <span
+class="math inline">\(c\)</span>
+任意的比特来实现篡改出任意可能的信息。即使他不知道消息本身是什么，他也可以伪造出任意的消息——反正任意的定长比特串都是合法消息</p>
 <p>于是就有了MAC的闪亮登场！这样你给女神的真情表白就不会变成痴汉发言，战书，或者是别的什么东西了。</p>
 <h2 id="定义">定义</h2>
-<p>一个MAC包括三个PPT算法，<span class="math inline">\(\text{MAC=(Gen,Mac,Vrfy)}\)</span>，其中</p>
-<p><span class="math inline">\(\text{Gen}\)</span> 负责生成一个密钥 <span class="math inline">\(k\)</span>，<span class="math inline">\(\text{Mac}_k(m)=t\)</span> 负责根据 <span class="math inline">\(m,k\)</span> 生成一个标签(tag)，<span class="math inline">\(\text{Vrfy}_k(m,t)\)</span> 则会在 <span class="math inline">\(t\)</span> 是 <span class="math inline">\(m\)</span> 的一个合法tag时输出 <span class="math inline">\(1\)</span>，否则输出 <span class="math inline">\(0\)</span></p>
-<p>这里的 <span class="math inline">\(\text{Vrfy}\)</span> 是确定性算法，而 <span class="math inline">\(\text{Mac}\)</span> 则没有要求。这点是很显然，因为要保证：</p>
+<p>一个MAC包括三个PPT算法，<span
+class="math inline">\(\text{MAC=(Gen,Mac,Vrfy)}\)</span>，其中</p>
+<p><span class="math inline">\(\text{Gen}\)</span> 负责生成一个密钥
+<span class="math inline">\(k\)</span>，<span
+class="math inline">\(\text{Mac}_k(m)=t\)</span> 负责根据 <span
+class="math inline">\(m,k\)</span> 生成一个标签(tag)，<span
+class="math inline">\(\text{Vrfy}_k(m,t)\)</span> 则会在 <span
+class="math inline">\(t\)</span> 是 <span
+class="math inline">\(m\)</span> 的一个合法tag时输出 <span
+class="math inline">\(1\)</span>，否则输出 <span
+class="math inline">\(0\)</span></p>
+<p>这里的 <span class="math inline">\(\text{Vrfy}\)</span>
+是确定性算法，而 <span class="math inline">\(\text{Mac}\)</span>
+则没有要求。这点是很显然，因为要保证：</p>
 <ol type="1">
 <li><p>正确的tag能被识别</p></li>
 <li><p>错误的tag能被报出来</p></li>
 </ol>
 <p>也就又是所谓的sound&amp;complete了</p>
-<p>看起来很像私钥加密，但是又不太一样：<span class="math inline">\(\text{Vrfy}\)</span> 是需要借助 <span class="math inline">\(m\)</span> 来确认tag的正确性的，因此MAC往往不会单独使用，这里的 <span class="math inline">\(m\)</span> 还需要加密保护起来。</p>
+<p>看起来很像私钥加密，但是又不太一样：<span
+class="math inline">\(\text{Vrfy}\)</span> 是需要借助 <span
+class="math inline">\(m\)</span>
+来确认tag的正确性的，因此MAC往往不会单独使用，这里的 <span
+class="math inline">\(m\)</span> 还需要加密保护起来。</p>
 <p>然后就定义了几个性质</p>
 <h3 id="correctness">Correctness</h3>
-<p><span class="math inline">\(\forall k=\text{Gen}(1^n): \text{Vrfy}_k(m,\text{Mac}_k(m))=1\)</span></p>
+<p><span class="math inline">\(\forall k=\text{Gen}(1^n):
+\text{Vrfy}_k(m,\text{Mac}_k(m))=1\)</span></p>
 <p>没啥好说的，这个性质提示我们：</p>
-<p>如果我们的 <span class="math inline">\(\text{Mac}\)</span> 是确定性算法，那么我们的 <span class="math inline">\(\text{Vrfy}\)</span> 就可以通过重新计算一次 <span class="math inline">\(\text{Mac}_k(m)\)</span>，然后比较 <span class="math inline">\(\text{Mac}_k(m)\)</span> 和 <span class="math inline">\(t\)</span> 是否相同来判断这个tag是否合法。这被称为<strong>canonical way</strong></p>
+<p>如果我们的 <span class="math inline">\(\text{Mac}\)</span>
+是确定性算法，那么我们的 <span
+class="math inline">\(\text{Vrfy}\)</span> 就可以通过重新计算一次 <span
+class="math inline">\(\text{Mac}_k(m)\)</span>，然后比较 <span
+class="math inline">\(\text{Mac}_k(m)\)</span> 和 <span
+class="math inline">\(t\)</span>
+是否相同来判断这个tag是否合法。这被称为<strong>canonical
+way</strong></p>
 <h3 id="secrecy">Secrecy</h3>
 <p>其实就是如何保证我们的消息被篡改后，能从tag中反馈出来？</p>
-<p>密码学给出的回答是这样的：如果任何PPT算法都不能造出一个对应的message-tag pair出来，那么我们就可以认为没有人能够给一个修改过后的消息 <span class="math inline">\(m\)</span> 伪造tag，也即不存在消息被篡改后仍然能通过 <span class="math inline">\(\text{Vrfy}\)</span> 了</p>
-<p>形式化地写出来是一个 <span class="math inline">\(\text{Mac-forge}_{\cal A,\Pi}\)</span> game：</p>
+<p>密码学给出的回答是这样的：如果任何PPT算法都不能造出一个对应的message-tag
+pair出来，那么我们就可以认为没有人能够给一个修改过后的消息 <span
+class="math inline">\(m\)</span>
+伪造tag，也即不存在消息被篡改后仍然能通过 <span
+class="math inline">\(\text{Vrfy}\)</span> 了</p>
+<p>形式化地写出来是一个 <span
+class="math inline">\(\text{Mac-forge}_{\cal A,\Pi}\)</span> game：</p>
 <ol type="1">
-<li><p>首先生成一个 <span class="math inline">\(k\)</span>，然后给一个 <span class="math inline">\(\text{Mac}_k\)</span> 的oracle给adversary <span class="math inline">\(\cal A\)</span></p></li>
-<li><p><span class="math inline">\(\cal A\)</span> 可以任意查询oracle，然后输出一对答案 <span class="math inline">\((m,t)\)</span>。期间我们会维护一个集合 <span class="math inline">\(\cal Q\)</span>，表示 <span class="math inline">\(\cal A\)</span> 查询过的所有消息</p></li>
-<li><p>检查 <span class="math inline">\(\text{Vrfy}_k(m,t)\)</span>，如果满足1. <span class="math inline">\(\text{Vrfy}_k(m,t)=1\)</span> 且 2. <span class="math inline">\(m\not\in \cal Q\)</span>，就得到结果 <span class="math inline">\(1\)</span>，否则为 <span class="math inline">\(0\)</span></p></li>
+<li><p>首先生成一个 <span class="math inline">\(k\)</span>，然后给一个
+<span class="math inline">\(\text{Mac}_k\)</span> 的oracle给adversary
+<span class="math inline">\(\cal A\)</span></p></li>
+<li><p><span class="math inline">\(\cal A\)</span>
+可以任意查询oracle，然后输出一对答案 <span
+class="math inline">\((m,t)\)</span>。期间我们会维护一个集合 <span
+class="math inline">\(\cal Q\)</span>，表示 <span
+class="math inline">\(\cal A\)</span> 查询过的所有消息</p></li>
+<li><p>检查 <span
+class="math inline">\(\text{Vrfy}_k(m,t)\)</span>，如果满足1. <span
+class="math inline">\(\text{Vrfy}_k(m,t)=1\)</span> 且 2. <span
+class="math inline">\(m\not\in \cal Q\)</span>，就得到结果 <span
+class="math inline">\(1\)</span>，否则为 <span
+class="math inline">\(0\)</span></p></li>
 </ol>
-<p>我们称一个MAC scheme <span class="math inline">\(\Pi\)</span> 是安全的，当且仅当 <span class="math inline">\(Pr\left[\text{Mac-forge}_{\cal A,\Pi}(n)=1\right]\leqslant\text{negl}(n)\)</span>。这个安全性的全称也叫being existentially unforgeable under an adaptive chosen-message attack</p>
+<p>我们称一个MAC scheme <span class="math inline">\(\Pi\)</span>
+是安全的，当且仅当 <span
+class="math inline">\(Pr\left[\text{Mac-forge}_{\cal
+A,\Pi}(n)=1\right]\leqslant\text{negl}(n)\)</span>。这个安全性的全称也叫being
+existentially unforgeable under an adaptive chosen-message attack</p>
 <p>这个定义就是很好地抓住(capture)了“不能伪造tag”这句话，看下来是很自然的。</p>
-<p>如果细心一点可以发现，这里的 <span class="math inline">\(\text{Mac}\)</span> 不一定是确定性算法，因此可以有一个 <span class="math inline">\(m\)</span> 对应多个不同的 <span class="math inline">\(t\)</span>，这说明上述定义会出现一些问题——Adversary完全可以给一条已经查询过的消息 <span class="math inline">\(m\)</span> 构造出一个全新的tag。于是自然引出strongly secure MAC的定义：</p>
-<p>太懒了，只需要把上面的 <span class="math inline">\(m\not\in\cal Q\)</span> 改成 <span class="math inline">\((m,t)\not\in\cal Q\)</span> 就好了</p>
-<p>结合canonical way的MAC可知，对所有canonical MAC有：如果它是secure的，那么它自然地就是strongly secure的</p>
-<p>注意到这个strong secure的安全性要求仍然是很弱的。我们甚至并不要求Adversary输出的消息有含义，而只需要能构造出一条消息和对应的tag就好了。</p>
+<p>如果细心一点可以发现，这里的 <span
+class="math inline">\(\text{Mac}\)</span>
+不一定是确定性算法，因此可以有一个 <span
+class="math inline">\(m\)</span> 对应多个不同的 <span
+class="math inline">\(t\)</span>，这说明上述定义会出现一些问题——Adversary完全可以给一条已经查询过的消息
+<span class="math inline">\(m\)</span>
+构造出一个全新的tag。于是自然引出strongly secure MAC的定义：</p>
+<p>太懒了，只需要把上面的 <span class="math inline">\(m\not\in\cal
+Q\)</span> 改成 <span class="math inline">\((m,t)\not\in\cal Q\)</span>
+就好了</p>
+<p>结合canonical way的MAC可知，对所有canonical
+MAC有：如果它是secure的，那么它自然地就是strongly secure的</p>
+<p>注意到这个strong
+secure的安全性要求仍然是很弱的。我们甚至并不要求Adversary输出的消息有含义，而只需要能构造出一条消息和对应的tag就好了。</p>
 <h2 id="构造">构造</h2>
 <h3 id="fixed-length-mac">fixed-length MAC</h3>
-<p>构造一个定长MAC是比较简单的，只需要用一个PRF就好了。安全性的证明可以通过反证，然后构造一个区分PRF和真随机函数的攻击者 <span class="math inline">\(\cal A\)</span> 来完成，细节就留做习题吧~</p>
+<p>构造一个定长MAC是比较简单的，只需要用一个PRF就好了。安全性的证明可以通过反证，然后构造一个区分PRF和真随机函数的攻击者
+<span class="math inline">\(\cal A\)</span>
+来完成，细节就留做习题吧~</p>
 <h3 id="arbitrary-length-mac">arbitrary-length MAC</h3>
-<p>只讲讲怎么做到任意 <span class="math inline">\(l(n)\)</span> 的整数倍长度，其中 <span class="math inline">\(l\)</span> 是单个 <span class="math inline">\(\text{MAC}\)</span> 的extension factor（回忆上面说的用PRF构造MAC）</p>
-<p>假设现在给了 <span class="math inline">\(n\)</span> 个消息块，每个块都能单独用MAC构造tag，那么我们可以这么构造一个整体的tag：</p>
+<p>只讲讲怎么做到任意 <span class="math inline">\(l(n)\)</span>
+的整数倍长度，其中 <span class="math inline">\(l\)</span> 是单个 <span
+class="math inline">\(\text{MAC}\)</span> 的extension
+factor（回忆上面说的用PRF构造MAC）</p>
+<p>假设现在给了 <span class="math inline">\(n\)</span>
+个消息块，每个块都能单独用MAC构造tag，那么我们可以这么构造一个整体的tag：</p>
 <ol type="1">
-<li><p>规定 <span class="math inline">\(t_0=IV\)</span>，其中通常 <span class="math inline">\(IV=0\)</span>，initial vector的意思</p></li>
-<li><p>规定 <span class="math inline">\(t_i=MAC(t_{i-1}\oplus m_i)\)</span></p></li>
+<li><p>规定 <span class="math inline">\(t_0=IV\)</span>，其中通常 <span
+class="math inline">\(IV=0\)</span>，initial vector的意思</p></li>
+<li><p>规定 <span class="math inline">\(t_i=MAC(t_{i-1}\oplus
+m_i)\)</span></p></li>
 </ol>
 <p>最后输出 <span class="math inline">\(t_n\)</span> 就好了</p>
-<p>安全性的证明比较简单，只需要对着 <span class="math inline">\(n\)</span> 做数学归纳法就好了，可以发现每次都没法伪造的Adversary对于整体的tag束手无策</p>
+<p>安全性的证明比较简单，只需要对着 <span
+class="math inline">\(n\)</span>
+做数学归纳法就好了，可以发现每次都没法伪造的Adversary对于整体的tag束手无策</p>
 
       </div>
       

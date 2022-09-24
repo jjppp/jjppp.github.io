@@ -187,12 +187,27 @@
         <h1 id="形式化">形式化</h1>
 <h2 id="定义">定义</h2>
 <ul>
-<li><strong>事件</strong>是瞬间的、原子的，通常用 <span class="math inline">\(read, write\)</span> 这样的名字表示一个事件，记事件的集合为 <span class="math inline">\(E\)</span></li>
-<li>定义 <span class="math inline">\(\to\)</span> 为 <span class="math inline">\(E\)</span> 上的全序关系，其含义为两事件发生的顺序。因为事件是瞬时的，因此不存在两个事件同时发生。</li>
-<li><strong>过程</strong>或<strong>时间段</strong>是二元组 <span class="math inline">\((s,t)\in E\times E\)</span> 满足 <span class="math inline">\(s\rightarrow t\)</span>，其含义为两个时刻中间的时间</li>
-<li>定义 <span class="math inline">\(\rightarrow\)</span> 同时为 <span class="math inline">\(E\times E\)</span> 上的偏序关系，其含义为两个过程发生的顺序。很显然存在某些过程有重叠</li>
-<li>若过程 <span class="math inline">\(A,B\)</span> 重叠，则它们是<strong>并发</strong>的</li>
-<li>某些事件存在副作用。其含义为，若 <span class="math inline">\(P(A)\)</span> 成立，且 <span class="math inline">\(A\to B\)</span>，则 <span class="math inline">\(P(B)\)</span> 仍然成立，其中 <span class="math inline">\(P\)</span> 为关于事件的谓词。</li>
+<li><strong>事件</strong>是瞬间的、原子的，通常用 <span
+class="math inline">\(read, write\)</span>
+这样的名字表示一个事件，记事件的集合为 <span
+class="math inline">\(E\)</span></li>
+<li>定义 <span class="math inline">\(\to\)</span> 为 <span
+class="math inline">\(E\)</span>
+上的全序关系，其含义为两事件发生的顺序。因为事件是瞬时的，因此不存在两个事件同时发生。</li>
+<li><strong>过程</strong>或<strong>时间段</strong>是二元组 <span
+class="math inline">\((s,t)\in E\times E\)</span> 满足 <span
+class="math inline">\(s\rightarrow
+t\)</span>，其含义为两个时刻中间的时间</li>
+<li>定义 <span class="math inline">\(\rightarrow\)</span> 同时为 <span
+class="math inline">\(E\times E\)</span>
+上的偏序关系，其含义为两个过程发生的顺序。很显然存在某些过程有重叠</li>
+<li>若过程 <span class="math inline">\(A,B\)</span>
+重叠，则它们是<strong>并发</strong>的</li>
+<li>某些事件存在副作用。其含义为，若 <span
+class="math inline">\(P(A)\)</span> 成立，且 <span
+class="math inline">\(A\to B\)</span>，则 <span
+class="math inline">\(P(B)\)</span> 仍然成立，其中 <span
+class="math inline">\(P\)</span> 为关于事件的谓词。</li>
 <li>副作用可以被<strong>覆盖</strong>，因此某个性质是否成立需要类似于“最后一次xx”的前提</li>
 </ul>
 <h1 id="锁">锁</h1>
@@ -204,53 +219,76 @@
 <p>规定一把锁至多被一个线程获取。若一把锁被某个线程持有，则称锁是忙的（busy）。</p>
 <h2 id="critical-sections">Critical Sections</h2>
 <blockquote>
-<p>Critical Section: A block of code that can be executed by only one thread at a time</p>
+<p>Critical Section: A block of code that can be executed by only one
+thread at a time</p>
 </blockquote>
 <p>这样的性质叫 mutual exclusion，通常用锁来实现。</p>
-<p>形式化地说就是把进入和退出 critical section 视为事件 <span class="math inline">\(i,o\)</span>，那么对于线程 <span class="math inline">\(\set{0,1}\)</span> 而言，要么 <span class="math inline">\((i_0,o_0)\to(i_1,o_1)\)</span>，要么 <span class="math inline">\((i_1,o_1)\to(i_0,o_0)\)</span></p>
-<p>可以把 critical section 与一把特定的锁关联起来，并要求所有执行这段代码的线程都必须持有这把锁，这样就保证了 mutual exclusion 的性质。同样也可以把某个共享数据与一把锁关联，这样就起到了串行化对共享数据的访问和修改。</p>
+<p>形式化地说就是把进入和退出 critical section 视为事件 <span
+class="math inline">\(i,o\)</span>，那么对于线程 <span
+class="math inline">\(\set{0,1}\)</span> 而言，要么 <span
+class="math inline">\((i_0,o_0)\to(i_1,o_1)\)</span>，要么 <span
+class="math inline">\((i_1,o_1)\to(i_0,o_0)\)</span></p>
+<p>可以把 critical section
+与一把特定的锁关联起来，并要求所有执行这段代码的线程都必须持有这把锁，这样就保证了
+mutual exclusion
+的性质。同样也可以把某个共享数据与一把锁关联，这样就起到了串行化对共享数据的访问和修改。</p>
 <h2 id="property-of-interests">Property of interests</h2>
 <p>在锁的语境下，前面提到的各种性质就可以叙述为</p>
 <ul>
 <li>mutual exclusion：任意时刻只有至多一个线程持有锁</li>
-<li>deadlock-free：若某个线程尝试获取/释放锁，则最终将有至少一个线程得到/释放了锁。如果某个线程在 <code>lock()</code> 中卡住，那么其余线程必然能无数次进入 critical section。意思是可以有局部的卡住，但是相应的必然有<strong>某些</strong>线程能执行。</li>
+<li>deadlock-free：若某个线程尝试获取/释放锁，则最终将有至少一个线程得到/释放了锁。如果某个线程在
+<code>lock()</code> 中卡住，那么其余线程必然能无数次进入 critical
+section。意思是可以有局部的卡住，但是相应的必然有<strong>某些</strong>线程能执行。</li>
 <li>starvation-free：所有获取/释放锁的尝试最终都会成功。意思是对于每个线程而言都不会卡住。</li>
 </ul>
-<p>其中 deadlock-free 指的是全局的 progress，而 starvation-free 则表明了每个线程的 progress。因此 starvation-free 必然是 deadlock-free 的。</p>
-<p>当然还有更好的保证等待时间的性质，这就比 starvation-free 要更强了。</p>
+<p>其中 deadlock-free 指的是全局的 progress，而 starvation-free
+则表明了每个线程的 progress。因此 starvation-free 必然是 deadlock-free
+的。</p>
+<p>当然还有更好的保证等待时间的性质，这就比 starvation-free
+要更强了。</p>
 <h3 id="fairness">Fairness</h3>
-<p>fairness 讲的是锁算法能够保证先到先得。为了形式化说明“先到”，每个锁算法应当被划分成两部分：</p>
+<p>fairness
+讲的是锁算法能够保证先到先得。为了形式化说明“先到”，每个锁算法应当被划分成两部分：</p>
 <ol type="1">
-<li>doorway section，使得存在 <span class="math inline">\(n\in\mathbb N\)</span> 保证了这部分必然在 <span class="math inline">\(n\)</span> 步之内完成。</li>
+<li>doorway section，使得存在 <span class="math inline">\(n\in\mathbb
+N\)</span> 保证了这部分必然在 <span class="math inline">\(n\)</span>
+步之内完成。</li>
 <li>waiting section，这就是忙等的部分</li>
 </ol>
-<p>我们说某个锁算法满足公平性，当且仅当对于任意两个线程 <span class="math inline">\(A,B\)</span> 都有 <span class="math display">\[
+<p>我们说某个锁算法满足公平性，当且仅当对于任意两个线程 <span
+class="math inline">\(A,B\)</span> 都有 <span class="math display">\[
 D_A\to D_B\Rightarrow CS_A\to CS_B
-\]</span> 直观含义就是，率先完成 doorway section 的线程会更早进入 critical section。注意此处都是时间段的比较。</p>
-<p>这里引入的一个性质就叫 first-come-first-serve，如果一个锁既是 deadlock-free 又是 fcfs 的，那么它一定是 starvation-free 的。</p>
+\]</span> 直观含义就是，率先完成 doorway section 的线程会更早进入
+critical section。注意此处都是时间段的比较。</p>
+<p>这里引入的一个性质就叫 first-come-first-serve，如果一个锁既是
+deadlock-free 又是 fcfs 的，那么它一定是 starvation-free 的。</p>
 <h2 id="锁1">锁1</h2>
 <p>伪代码是这样的</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">typedef</span> <span class="kw">struct</span> &#123;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="dt">bool</span> flag[<span class="dv">2</span>];</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>&#125; lock_t;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="dt">void</span> lock(lock_t *lck) &#123;</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    lck-&gt;flag[current_thread_id()] = true;</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="cf">while</span> (lck-&gt;flag[another_thread_id()])</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>        ;</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>可以发现这样是保证了 mutual exclusion 的（简单反证一下），但是没有 liveness 的保证。例如两边同时设置了 <code>flag</code> 之后就会卡住。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">&#123;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> flag<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> lock_t<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lock<span class="op">(</span>lock_t <span class="op">*</span>lck<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    lck<span class="op">-&gt;</span>flag<span class="op">[</span>current_thread_id<span class="op">()]</span> <span class="op">=</span> true<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>lck<span class="op">-&gt;</span>flag<span class="op">[</span>another_thread_id<span class="op">()])</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<p>可以发现这样是保证了 mutual exclusion 的（简单反证一下），但是没有
+liveness 的保证。例如两边同时设置了 <code>flag</code> 之后就会卡住。</p>
 <h2 id="锁2">锁2</h2>
 <p>伪代码是这样的</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">typedef</span> <span class="kw">struct</span> &#123;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="dt">unsigned</span> victim;</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>&#125; lock_t;</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="dt">void</span> lock(lock_t *lck) &#123;</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    lck-&gt;victim = another_thread_id();</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="cf">while</span> (lck-&gt;victim != current_thread_id())</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>        ;</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>可以发现这样是保证了 mutual exclusion 的（因为 <code>victim</code> 只能取其一），但是也没有 liveness 保证。当只有一个线程活跃的时候它将永远等待下去。</p>
-<p>比较巧妙的点在于往 <code>victim</code> 中写入对方的 thread id，这是为了实现“先到先得”的效果。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">&#123;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> victim<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> lock_t<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lock<span class="op">(</span>lock_t <span class="op">*</span>lck<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    lck<span class="op">-&gt;</span>victim <span class="op">=</span> another_thread_id<span class="op">();</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>lck<span class="op">-&gt;</span>victim <span class="op">!=</span> current_thread_id<span class="op">())</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<p>可以发现这样是保证了 mutual exclusion 的（因为 <code>victim</code>
+只能取其一），但是也没有 liveness
+保证。当只有一个线程活跃的时候它将永远等待下去。</p>
+<p>比较巧妙的点在于往 <code>victim</code> 中写入对方的 thread
+id，这是为了实现“先到先得”的效果。</p>
 <h2 id="petersons-algorithm">Peterson's algorithm</h2>
 <p>神秘的地方在于，上述两种锁</p>
 <ol type="1">
@@ -258,19 +296,20 @@ D_A\to D_B\Rightarrow CS_A\to CS_B
 <li>各自在 存在争抢 和 不存在争抢 两种情况下表现良好</li>
 </ol>
 <p>所以把它们结合起来就得到了 Peterson's Algorithm，伪代码是这样的</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">typedef</span> <span class="kw">struct</span> &#123;</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>    <span class="dt">unsigned</span> victim;</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="dt">bool</span> flag[<span class="dv">2</span>];</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>&#125; lock_t;</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="dt">void</span> lock(lock_t *lck) &#123;</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    lck-&gt;flag[current_thread_id()] = true;</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    lck-&gt;victim = another_thread_id();</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="cf">while</span> ( lck-&gt;flag[another_thread_id()] == true</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>         &amp;&amp; lck-&gt;victim != current_thread_id())</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>        ;</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>&#125;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">&#123;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> victim<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> flag<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> lock_t<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lock<span class="op">(</span>lock_t <span class="op">*</span>lck<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    lck<span class="op">-&gt;</span>flag<span class="op">[</span>current_thread_id<span class="op">()]</span> <span class="op">=</span> true<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    lck<span class="op">-&gt;</span>victim <span class="op">=</span> another_thread_id<span class="op">();</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span> lck<span class="op">-&gt;</span>flag<span class="op">[</span>another_thread_id<span class="op">()]</span> <span class="op">==</span> true</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         <span class="op">&amp;&amp;</span> lck<span class="op">-&gt;</span>victim <span class="op">!=</span> current_thread_id<span class="op">())</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
 <p>证明可以直接讨论，此时算法退化成其中一种，就证完了。</p>
-<p>同时 Peterson's Algorithm 是满足 starvation-free 的，证明只需要注意到 <code>victim</code> 的设置在各自线程是不可逆的就行了。</p>
+<p>同时 Peterson's Algorithm 是满足 starvation-free 的，证明只需要注意到
+<code>victim</code> 的设置在各自线程是不可逆的就行了。</p>
 <h2 id="filter-lock">Filter lock</h2>
 <p>也就是推广后的 Peterson's Algorithm。大概的想法是</p>
 <ul>
@@ -283,23 +322,31 @@ D_A\to D_B\Rightarrow CS_A\to CS_B
 <li>所有被滞留的线程将等待直至下一个位置为空，然后争抢下一个位置。</li>
 </ul>
 <p>伪代码长这样</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">typedef</span> <span class="kw">struct</span> &#123;</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>    <span class="dt">unsigned</span> victim[N];</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="dt">unsigned</span> level[N];</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>&#125; lock_t;</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="dt">void</span> lock(lock_t *lck) &#123;</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="dt">int</span> curr = current_thread_id();</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; N; ++ i) &#123;</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>        lck-&gt;level[curr] = i;</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>        lck-&gt;victim[i] = curr;</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>        <span class="cf">while</span> (∃thread≠curr, lck-&gt;level[thread]≥i &amp;&amp; lck-&gt;victim[i]==curr)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>            ;</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>    &#125;</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>&#125;</span></code></pre></div>
-<p>可以发现这里的 <code>level[t]</code> 表示了线程 <code>t</code> 在队列中希望争抢的位置（<code>1</code> 是队尾），而 <code>victim[i]</code> 起到了区分争抢位置 <code>i</code> 的最后一个线程的作用</p>
-<p>mutual exclusion 的证明可以通过归纳 level 简单做到，starvation-free 的证明则需要反向归纳一下（所有进入 <span class="math inline">\(n-i\)</span> 层的线程最终都将返回，对 <span class="math inline">\(i\)</span> 归纳）</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">&#123;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> victim<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> level<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> lock_t<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lock<span class="op">(</span>lock_t <span class="op">*</span>lck<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> curr <span class="op">=</span> current_thread_id<span class="op">();</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span> i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        lck<span class="op">-&gt;</span>level<span class="op">[</span>curr<span class="op">]</span> <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        lck<span class="op">-&gt;</span>victim<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> curr<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>∃thread≠curr<span class="op">,</span> lck<span class="op">-&gt;</span>level<span class="op">[</span>thread<span class="op">]</span>≥i <span class="op">&amp;&amp;</span> lck<span class="op">-&gt;</span>victim<span class="op">[</span>i<span class="op">]==</span>curr<span class="op">)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            <span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<p>可以发现这里的 <code>level[t]</code> 表示了线程 <code>t</code>
+在队列中希望争抢的位置（<code>1</code> 是队尾），而
+<code>victim[i]</code> 起到了区分争抢位置 <code>i</code>
+的最后一个线程的作用</p>
+<p>mutual exclusion 的证明可以通过归纳 level 简单做到，starvation-free
+的证明则需要反向归纳一下（所有进入 <span
+class="math inline">\(n-i\)</span> 层的线程最终都将返回，对 <span
+class="math inline">\(i\)</span> 归纳）</p>
 <h2 id="bakery">Bakery</h2>
-<p>每个线程都会被分配一个唯一的编号，能进入 CS 当且仅当编号在它前面的线程都离开了 CS，其中分配编号的部分就是 doorway section。</p>
+<p>每个线程都会被分配一个唯一的编号，能进入 CS
+当且仅当编号在它前面的线程都离开了 CS，其中分配编号的部分就是 doorway
+section。</p>
 <p>有一些比较有意思的性质：</p>
 <ul>
 <li>编号是全局严格递增的</li>
@@ -308,14 +355,17 @@ D_A\to D_B\Rightarrow CS_A\to CS_B
 </ul>
 <h1 id="deadlock">Deadlock</h1>
 <h2 id="狭义的-deadlock">狭义的 deadlock</h2>
-<p>虽然 Peterson's Algorithm 本身是 deadlock-free 的，但是涉及到多个锁的时候，整个系统仍然会卡住。例如经典的 lock-ordering 问题。有的时候 deadlock 指的是这样的情形。</p>
+<p>虽然 Peterson's Algorithm 本身是 deadlock-free
+的，但是涉及到多个锁的时候，整个系统仍然会卡住。例如经典的 lock-ordering
+问题。有的时候 deadlock 指的是这样的情形。</p>
 <h2 id="livelock">livelock</h2>
 <p>书上讲得很模糊，大概意思是要满足</p>
 <ol type="1">
 <li>多个线程整体是卡住的</li>
 <li>它们各自在阻碍其它线程前进</li>
 </ol>
-<p>livelock 通常是可以通过特殊的调度来避免的，例如 OSTEP 里面提过的经典的 try-release-retry 这样的模式带来的 livelock。</p>
+<p>livelock 通常是可以通过特殊的调度来避免的，例如 OSTEP
+里面提过的经典的 try-release-retry 这样的模式带来的 livelock。</p>
 
       </div>
       

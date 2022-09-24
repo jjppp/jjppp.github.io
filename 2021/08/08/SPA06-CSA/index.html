@@ -186,34 +186,42 @@
       <div class="markdown-body">
         <p>不敏感的分析认为所有语句的执行顺序无法区分，也就是没有上下文的概念</p>
 <p>考虑如下代码片段</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">class</span> A;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>A a = <span class="kw">new</span> <span class="fu">A</span>(); <span class="co">// o1</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>A b = <span class="kw">new</span> <span class="fu">A</span>(); <span class="co">// o2</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>A pa = <span class="fu">func</span>(a);</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>A pb = <span class="fu">func</span>(b);</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>A <span class="fu">func</span>(A x) &#123; <span class="kw">return</span> x; &#125;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> A<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>A a <span class="op">=</span> <span class="kw">new</span> <span class="fu">A</span><span class="op">();</span> <span class="co">// o1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>A b <span class="op">=</span> <span class="kw">new</span> <span class="fu">A</span><span class="op">();</span> <span class="co">// o2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>A pa <span class="op">=</span> <span class="fu">func</span><span class="op">(</span>a<span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>A pb <span class="op">=</span> <span class="fu">func</span><span class="op">(</span>b<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>A <span class="fu">func</span><span class="op">(</span>A x<span class="op">)</span> <span class="op">&#123;</span> <span class="cf">return</span> x<span class="op">;</span> <span class="op">&#125;</span></span></code></pre></div>
 <p>CI静态分析pa,pb的指针集，容易发现pts(pa)=pts(pb)={o1,o2}，这与实际情况不符</p>
 <p>出现这种情况的原因在于</p>
 <ol type="1">
 <li><p>动态执行的程序的函数每次执行都有自己的栈空间(上下文)，即同一方法的不同调用产生的数据流不同</p></li>
 <li><p>CI中的建模认为同一函数的所有实体共享信息(指针集)</p></li>
 </ol>
-<p>因此一个直观的想法就是区分出不同的函数实体，一个实现类似allocation site abstraction</p>
-<p>即定义函数func的上下文为caller site的上下文+func的caller site，这样也是对调用栈的直观模拟</p>
-<p>此外，Java是OO语言，需要频繁对堆进行操作，这样的语言也叫Heap intensive语言。所以在进行load和store的处理时，不同函数实体中产生的<strong>对象</strong>也应该加以区分，这就是所谓的CS Heap</p>
-<p>处理的规则大同小异，区别在于处理方法调用的时候要多一步产生方法内的上下文的步骤，同时PFG点集变成<span class="math inline">\((C\times V)\cup(C\times V\times F)\)</span>，别的就没了</p>
+<p>因此一个直观的想法就是区分出不同的函数实体，一个实现类似allocation
+site abstraction</p>
+<p>即定义函数func的上下文为caller site的上下文+func的caller
+site，这样也是对调用栈的直观模拟</p>
+<p>此外，Java是OO语言，需要频繁对堆进行操作，这样的语言也叫Heap
+intensive语言。所以在进行load和store的处理时，不同函数实体中产生的<strong>对象</strong>也应该加以区分，这就是所谓的CS
+Heap</p>
+<p>处理的规则大同小异，区别在于处理方法调用的时候要多一步产生方法内的上下文的步骤，同时PFG点集变成<span
+class="math inline">\((C\times V)\cup(C\times V\times
+F)\)</span>，别的就没了</p>
 <p>提问：引入上下文的本质是区分了运行时的函数实体，那么对于递归/循环调用的情况如何处理？答案就是k-CFA的k的含义</p>
 <h2 id="几类cs变种">几类CS变种</h2>
 <ol type="1">
-<li><p>call-site sensitive，也叫call-string或k-CFA(k-Control Flow Analysis)，k的意思是取最后k位</p></li>
+<li><p>call-site sensitive，也叫call-string或k-CFA(k-Control Flow
+Analysis)，k的意思是取最后k位</p></li>
 <li><p>object sensitive</p></li>
 <li><p>type sensitive</p></li>
 </ol>
@@ -223,8 +231,10 @@
 <li><p>c'+o</p></li>
 <li><p>c'+type(o)，这里的type指的是包含o的allocation site的类，</p></li>
 </ol>
-<p>其中1是在对call stack建模，2是在对对象交互建模，3可以看成是1和2的结合和简化</p>
-<p><strong>这里一定要注意2,3的select函数</strong>，因为我们关注的是Object调用链，而每个方法的receiver object的context恰好就包含了前面所有的调用链信息</p>
+<p>其中1是在对call
+stack建模，2是在对对象交互建模，3可以看成是1和2的结合和简化</p>
+<p><strong>这里一定要注意2,3的select函数</strong>，因为我们关注的是Object调用链，而每个方法的receiver
+object的context恰好就包含了前面所有的调用链信息</p>
 <p>两位老师的论文对三种方法进行了比较(还没看过，惭愧....)，在k比较小且同一个类内的方法调用较多的时候，2更有优势(即存在调用路径的后缀完全相同且调用链较长，但调用者为两个不同的对象的情况)</p>
 <p>但是面对同一个对象在多处调用同一方法的情况，1就要优于2(这个的原因比较显然....)</p>
 <p>在实际情况中精度2&gt;3&gt;1，效率3&gt;2&gt;1</p>

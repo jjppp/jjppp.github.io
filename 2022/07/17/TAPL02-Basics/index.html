@@ -188,12 +188,27 @@
 <p>简单的就不说了</p>
 <h2 id="mathematics">Mathematics</h2>
 <h3 id="partial-function">Partial Function</h3>
-<p>称 <span class="math inline">\(f\subseteq A\times B\)</span> 这个二元关系为 partial function 当且仅当 <span class="math inline">\(\forall a\in A, \forall b_1,b_2\in B, afb_1\wedge afb_2\Rightarrow b_1=b_2\)</span>.</p>
-<p>之所以说是 partial 的是因为 <span class="math inline">\(f\)</span> 不一定对 <span class="math inline">\(A\)</span> 中所有元素都有定义。一个写法是 <span class="math inline">\(f(a)=\bot\)</span> 表示 <span class="math inline">\(a\not\in D(f)\)</span>，经典的含义是 <span class="math inline">\(f\)</span> 对输入 <span class="math inline">\(a\)</span> 不会终止。</p>
+<p>称 <span class="math inline">\(f\subseteq A\times B\)</span>
+这个二元关系为 partial function 当且仅当 <span
+class="math inline">\(\forall a\in A, \forall b_1,b_2\in B, afb_1\wedge
+afb_2\Rightarrow b_1=b_2\)</span>.</p>
+<p>之所以说是 partial 的是因为 <span class="math inline">\(f\)</span>
+不一定对 <span class="math inline">\(A\)</span>
+中所有元素都有定义。一个写法是 <span
+class="math inline">\(f(a)=\bot\)</span> 表示 <span
+class="math inline">\(a\not\in D(f)\)</span>，经典的含义是 <span
+class="math inline">\(f\)</span> 对输入 <span
+class="math inline">\(a\)</span> 不会终止。</p>
 <h3 id="relation-closure">Relation Closure</h3>
-<p>二元关系 <span class="math inline">\(R\)</span> 的 reflexive closure 记作 <span class="math inline">\(R^+\)</span>，transitive closure 记作 <span class="math inline">\(R^*\)</span></p>
+<p>二元关系 <span class="math inline">\(R\)</span> 的 reflexive closure
+记作 <span class="math inline">\(R^+\)</span>，transitive closure 记作
+<span class="math inline">\(R^*\)</span></p>
 <h3 id="preservation-by-relation">Preservation by Relation</h3>
-<p>考虑 <span class="math inline">\(R\subseteq A\times B\)</span>，<span class="math inline">\(P\)</span> 是谓词，若 <span class="math inline">\(\forall a,b, P(a)\wedge aRb\Rightarrow P(b)\)</span>，那么称 <span class="math inline">\(P\)</span> 在 <span class="math inline">\(R\)</span> 下保持。</p>
+<p>考虑 <span class="math inline">\(R\subseteq A\times B\)</span>，<span
+class="math inline">\(P\)</span> 是谓词，若 <span
+class="math inline">\(\forall a,b, P(a)\wedge aRb\Rightarrow
+P(b)\)</span>，那么称 <span class="math inline">\(P\)</span> 在 <span
+class="math inline">\(R\)</span> 下保持。</p>
 <h2 id="syntax">Syntax</h2>
 <p>可以用如下几种等价方式定义语法</p>
 <ul>
@@ -202,29 +217,43 @@
 <li>定义合法句子集合的性质，声明合法句子集合是满足这些性质的最小集</li>
 </ul>
 <h2 id="semantics">Semantics</h2>
-<p>主要是小步操作语义(Small Step Operational Semantics)，本质上是定义了一个抽象的状态机(不一定要是确定状态机)以及这个抽象状态机上的状态转换</p>
-<p>方便起见，下面记语言的集合为 <span class="math inline">\(T\)</span></p>
+<p>主要是小步操作语义(Small Step Operational
+Semantics)，本质上是定义了一个抽象的状态机(不一定要是确定状态机)以及这个抽象状态机上的状态转换</p>
+<p>方便起见，下面记语言的集合为 <span
+class="math inline">\(T\)</span></p>
 <h3 id="reduction-relation">reduction relation</h3>
-<p>二元关系 <span class="math inline">\(\rightarrow\subseteq T\times T\)</span> 被称为 reduction relation。通常用若干规则(Inference Rules)来定义这样的规约关系。例如 <span class="math inline">\(\dfrac{a\rightarrow b\quad b\rightarrow c}{a\rightarrow c}\)</span> 就展示了一种有传递性的规约关系。</p>
+<p>二元关系 <span class="math inline">\(\rightarrow\subseteq T\times
+T\)</span> 被称为 reduction relation。通常用若干规则(Inference
+Rules)来定义这样的规约关系。例如 <span
+class="math inline">\(\dfrac{a\rightarrow b\quad b\rightarrow
+c}{a\rightarrow c}\)</span> 就展示了一种有传递性的规约关系。</p>
 <h3 id="if-then-else">If-Then-Else</h3>
 <p>给出如下例子</p>
 <p><span class="math display">\[
-\dfrac{}{\text{if True then $s_1$ else $s_2$}\rightarrow s_1} 
+\dfrac{}{\text{if True then $s_1$ else $s_2$}\rightarrow s_1}
 \\ \\
-\dfrac{e\rightarrow e&#39;}{\text{if $e$ then $s_1$ else $s_2$}\rightarrow \text{if $e&#39;$ then $s_1$ else $s_2$}} \\
+\dfrac{e\rightarrow e&#39;}{\text{if $e$ then $s_1$ else
+$s_2$}\rightarrow \text{if $e&#39;$ then $s_1$ else $s_2$}} \\
 \]</span></p>
-<p>第一条规则称为公理(Axiom)，这样直接进行计算的规则也叫Computation Rule。</p>
-<p>第二条的前提(Premise)是 <span class="math inline">\(e\rightarrow e&#39;\)</span>，这样只是指出要对哪个 subterm 做规约的规则叫Congruence Rule(回忆Evaluation Context)</p>
+<p>第一条规则称为公理(Axiom)，这样直接进行计算的规则也叫Computation
+Rule。</p>
+<p>第二条的前提(Premise)是 <span class="math inline">\(e\rightarrow
+e&#39;\)</span>，这样只是指出要对哪个 subterm 做规约的规则叫Congruence
+Rule(回忆Evaluation Context)</p>
 <h3 id="normal-formvalue">Normal Form/Value</h3>
 <p>如果一个项没法继续规约了，就称这个项为Normal Form Term。</p>
 <p>Value是认为规定的一个项的集合，通常希望Value是Normal Form的。</p>
-<p>一些非预期的Normal Form往往意味着违反了语言的语义(或是未定义行为)，此时可以给这样的错误情况定一个 <span class="math inline">\(\overline{t\rightarrow \bot}\)</span> 的规则，这样就是前面提到的运行时错误检查了(不存在UB)。</p>
+<p>一些非预期的Normal
+Form往往意味着违反了语言的语义(或是未定义行为)，此时可以给这样的错误情况定一个
+<span class="math inline">\(\overline{t\rightarrow \bot}\)</span>
+的规则，这样就是前面提到的运行时错误检查了(不存在UB)。</p>
 <h3 id="propertymetatheory">Property/Metatheory</h3>
 <p>一些这一章提到的比较基础的语言性质</p>
 <ul>
 <li>确定性(Determinism)，即每次只有唯一的规则可以推导</li>
 <li>终止性(Termination)，即推导有限次可以变成Normal Form</li>
-<li>Diamond Property，即使没有单步推导的确定性，也有总体上的确定性。</li>
+<li>Diamond
+Property，即使没有单步推导的确定性，也有总体上的确定性。</li>
 </ul>
 <p>Diamond Property是比较重要的，但是咕咕咕</p>
 

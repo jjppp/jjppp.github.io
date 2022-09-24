@@ -174,7 +174,8 @@
       </div>
       <div class="markdown-body">
         <h1 id="写在前面">写在前面</h1>
-<p>最近需要用到这个工具，官方推荐的Definitive ANTLR Book写得比较杂乱，于是想记一下比较有用的一些点</p>
+<p>最近需要用到这个工具，官方推荐的Definitive ANTLR
+Book写得比较杂乱，于是想记一下比较有用的一些点</p>
 <h1 id="meta-language">meta language</h1>
 <h2 id="parser和lexer">Parser和Lexer</h2>
 <p>一条rule形如</p>
@@ -182,9 +183,12 @@
             | `product 2`
             | ...
             ;</code></pre>
-<p>若<code>rule_name</code>以小写字母开头则为Parser规则，否则为Lexer规则 存在二义性的时候ANTLR默认选择最先出现的Rule推导</p>
+<p>若<code>rule_name</code>以小写字母开头则为Parser规则，否则为Lexer规则
+存在二义性的时候ANTLR默认选择最先出现的Rule推导</p>
 <h2 id="fragment">fragment</h2>
-<p>为了不在Parser中引入新的token name但是又要用一个名称来指代一些符号以简化书写（类似macro expansion）</p>
+<p>为了不在Parser中引入新的token
+name但是又要用一个名称来指代一些符号以简化书写（类似macro
+expansion）</p>
 <pre><code>NUM: DIGIT | DIGIT_NONZ DIGIT*;
 
 fragment
@@ -194,7 +198,8 @@ DIGIT_NONZ: [1-9];</code></pre>
 <p>指定符号的结合性（默认左结合）</p>
 <pre><code>expr: expr &#39;^&#39;&lt;assoc=right&gt; expr;</code></pre>
 <h2 id="rulename">RuleName</h2>
-<p>一对多的产生式，可以标记上名字以在用Parser Visitor的时候可以单独处理每一种语法推导的情况</p>
+<p>一对多的产生式，可以标记上名字以在用Parser
+Visitor的时候可以单独处理每一种语法推导的情况</p>
 <pre><code>expr: NUM             # Number
     | expr &#39;*&#39; expr   # Mult
     | expr &#39;+&#39; expr   # Add

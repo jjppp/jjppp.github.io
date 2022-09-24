@@ -186,63 +186,147 @@
       <div class="markdown-body">
         <p>写的时候复制到笔记2那里去了...晕，这个点还不睡就是不行啦</p>
 <h2 id="cfg">CFG</h2>
-<p>上下文无关语法(Context Free Grammar)，或者说BNF(Backus Naur Form)，是用于描述一类语言的法则，也即是语法</p>
+<p>上下文无关语法(Context Free Grammar)，或者说BNF(Backus Naur
+Form)，是用于描述一类语言的法则，也即是语法</p>
 <p>语法包括：</p>
 <ol type="1">
-<li><p>终结符号(terminal)集 <span class="math inline">\(T\)</span></p></li>
-<li><p>非终结符号(nonterminal)集 <span class="math inline">\(N\)</span></p></li>
-<li><p>推导规则(rule of inference) <span class="math inline">\(R\)</span></p></li>
+<li><p>终结符号(terminal)集 <span
+class="math inline">\(T\)</span></p></li>
+<li><p>非终结符号(nonterminal)集 <span
+class="math inline">\(N\)</span></p></li>
+<li><p>推导规则(rule of inference) <span
+class="math inline">\(R\)</span></p></li>
 <li><p>起始符号 <span class="math inline">\(s_0\)</span></p></li>
 </ol>
 <p>任意规则有如下形式：</p>
-<p><span class="math inline">\(h\rightarrow B\)</span>，其中 <span class="math inline">\(h\)</span> 是非终结符，<span class="math inline">\(B\)</span> 是 <span class="math inline">\(T\cup N\)</span> 上的串</p>
-<p>对于给定的串 <span class="math inline">\(s\)</span>，若存在推导规则 <span class="math inline">\(r:h\rightarrow B\)</span>，且 <span class="math inline">\(h\in s\)</span>，则用 <span class="math inline">\(B\)</span> 替换 <span class="math inline">\(s\)</span> 中的一个 <span class="math inline">\(h\)</span> 得到新串 <span class="math inline">\(s&#39;\)</span> 称为一次<strong>推导</strong>，记作 <span class="math inline">\(s\underset{r}\Rightarrow s&#39;\)</span>，也可以简单记作 <span class="math inline">\(s\Rightarrow s&#39;\)</span></p>
-<p>若串 <span class="math inline">\(s\)</span> 中出现多个 <span class="math inline">\(h\)</span>，则我们称对最左侧的 <span class="math inline">\(h\)</span> 的替换推导为<strong>最左推导</strong>(left-most)，同理有最右推导的概念</p>
-<p>为了方便，规定 <span class="math inline">\(a\overset{*}\Rightarrow b\)</span> 表示 <span class="math inline">\(a\)</span> 经由零次或多次推导可以得到 <span class="math inline">\(b\)</span>，而 <span class="math inline">\(a\overset{lm}\Rightarrow b\)</span> 和 <span class="math inline">\(a\overset{rm}\Rightarrow b\)</span> 分别表示<strong>一次最左和最右推导</strong></p>
-<p>从起始符号 <span class="math inline">\(s_0\)</span> 开始，若存在串 <span class="math inline">\(e\)</span> 使得 <span class="math inline">\(s_0\overset{*}\Rightarrow e\)</span>，则我们称 <span class="math inline">\(e\)</span> 是该语法的一个<strong>句型/句式</strong>。若 <span class="math inline">\(\forall x(x\in e\rightarrow x\in T)\)</span>，则称 <span class="math inline">\(e\)</span> 是一个<strong>句子</strong></p>
-<p>用 <span class="math inline">\(L(T,N,R,s_0)\)</span> 表示该语法规定的语言，则容易知道所有的句子构成了语言本身(废话)</p>
+<p><span class="math inline">\(h\rightarrow B\)</span>，其中 <span
+class="math inline">\(h\)</span> 是非终结符，<span
+class="math inline">\(B\)</span> 是 <span class="math inline">\(T\cup
+N\)</span> 上的串</p>
+<p>对于给定的串 <span class="math inline">\(s\)</span>，若存在推导规则
+<span class="math inline">\(r:h\rightarrow B\)</span>，且 <span
+class="math inline">\(h\in s\)</span>，则用 <span
+class="math inline">\(B\)</span> 替换 <span
+class="math inline">\(s\)</span> 中的一个 <span
+class="math inline">\(h\)</span> 得到新串 <span
+class="math inline">\(s&#39;\)</span>
+称为一次<strong>推导</strong>，记作 <span
+class="math inline">\(s\underset{r}\Rightarrow
+s&#39;\)</span>，也可以简单记作 <span class="math inline">\(s\Rightarrow
+s&#39;\)</span></p>
+<p>若串 <span class="math inline">\(s\)</span> 中出现多个 <span
+class="math inline">\(h\)</span>，则我们称对最左侧的 <span
+class="math inline">\(h\)</span>
+的替换推导为<strong>最左推导</strong>(left-most)，同理有最右推导的概念</p>
+<p>为了方便，规定 <span class="math inline">\(a\overset{*}\Rightarrow
+b\)</span> 表示 <span class="math inline">\(a\)</span>
+经由零次或多次推导可以得到 <span class="math inline">\(b\)</span>，而
+<span class="math inline">\(a\overset{lm}\Rightarrow b\)</span> 和 <span
+class="math inline">\(a\overset{rm}\Rightarrow b\)</span>
+分别表示<strong>一次最左和最右推导</strong></p>
+<p>从起始符号 <span class="math inline">\(s_0\)</span> 开始，若存在串
+<span class="math inline">\(e\)</span> 使得 <span
+class="math inline">\(s_0\overset{*}\Rightarrow e\)</span>，则我们称
+<span class="math inline">\(e\)</span>
+是该语法的一个<strong>句型/句式</strong>。若 <span
+class="math inline">\(\forall x(x\in e\rightarrow x\in T)\)</span>，则称
+<span class="math inline">\(e\)</span> 是一个<strong>句子</strong></p>
+<p>用 <span class="math inline">\(L(T,N,R,s_0)\)</span>
+表示该语法规定的语言，则容易知道所有的句子构成了语言本身(废话)</p>
 <p>叫上下文无关，就是因为我们的推理规则要求推理的左侧只能是单独的非终结符，即替换可以发生在任何位置而与被替换的符号的上下文无关</p>
 <h3 id="表达能力">表达能力</h3>
 <p>如何比较语法的表达能力？或者说，怎么判断一种新的语法和已知语法的表达能力强弱？</p>
-<p>直观地，若 <span class="math inline">\(L(G_1)\subseteq L(G_2)\)</span>，则我们称语法 <span class="math inline">\(G_1\)</span> 表达能力不强于 <span class="math inline">\(G_2\)</span>。</p>
-<p>乔姆斯基把语法分成四类，其中两类便是CFG和RG(regular grammar)，可以证明他们的表达能力是存在差异的</p>
-<h4 id="命题正则语法的表达能力严格弱于上下文无关语法">命题：正则语法的表达能力严格弱于上下文无关语法</h4>
-<p>首先证明 <span class="math inline">\(L(RG)\subseteq L(CFG)\)</span>。根据正则表达式的递归定义，我们可以这么构造对应的CFG：</p>
+<p>直观地，若 <span class="math inline">\(L(G_1)\subseteq
+L(G_2)\)</span>，则我们称语法 <span class="math inline">\(G_1\)</span>
+表达能力不强于 <span class="math inline">\(G_2\)</span>。</p>
+<p>乔姆斯基把语法分成四类，其中两类便是CFG和RG(regular
+grammar)，可以证明他们的表达能力是存在差异的</p>
+<h4
+id="命题正则语法的表达能力严格弱于上下文无关语法">命题：正则语法的表达能力严格弱于上下文无关语法</h4>
+<p>首先证明 <span class="math inline">\(L(RG)\subseteq
+L(CFG)\)</span>。根据正则表达式的递归定义，我们可以这么构造对应的CFG：</p>
 <ol type="1">
-<li><p><span class="math inline">\(\epsilon\)</span>，对应 <span class="math inline">\(h(\epsilon)\rightarrow \epsilon\)</span></p></li>
-<li><p><span class="math inline">\(c,c\in\Sigma\)</span>，对应 <span class="math inline">\(h(c)\rightarrow c\)</span></p></li>
-<li><p><span class="math inline">\(s|t\)</span>，其中 <span class="math inline">\(s,t\)</span> 是正则表达式，对应 <span class="math inline">\(h(s|t)\rightarrow h(s)|h(t)\)</span></p></li>
-<li><p><span class="math inline">\(st\)</span>，对应 <span class="math inline">\(h(st)\rightarrow h(s)h(t)\)</span></p></li>
-<li><p><span class="math inline">\(s^*\)</span>，对应 <span class="math inline">\(h(s^*)\rightarrow h(s)h(s^*)|\epsilon\)</span></p></li>
-<li><p><span class="math inline">\((s)\)</span>，对应 <span class="math inline">\(h((s))\rightarrow h(s)\)</span></p></li>
+<li><p><span class="math inline">\(\epsilon\)</span>，对应 <span
+class="math inline">\(h(\epsilon)\rightarrow \epsilon\)</span></p></li>
+<li><p><span class="math inline">\(c,c\in\Sigma\)</span>，对应 <span
+class="math inline">\(h(c)\rightarrow c\)</span></p></li>
+<li><p><span class="math inline">\(s|t\)</span>，其中 <span
+class="math inline">\(s,t\)</span> 是正则表达式，对应 <span
+class="math inline">\(h(s|t)\rightarrow h(s)|h(t)\)</span></p></li>
+<li><p><span class="math inline">\(st\)</span>，对应 <span
+class="math inline">\(h(st)\rightarrow h(s)h(t)\)</span></p></li>
+<li><p><span class="math inline">\(s^*\)</span>，对应 <span
+class="math inline">\(h(s^*)\rightarrow
+h(s)h(s^*)|\epsilon\)</span></p></li>
+<li><p><span class="math inline">\((s)\)</span>，对应 <span
+class="math inline">\(h((s))\rightarrow h(s)\)</span></p></li>
 </ol>
-<p>注意到正则表达式长度有限，因此我们构造的非终结符有限，同理推导规则有限，因此这是一个CFG，并且可以归纳证明 <span class="math inline">\(L(CFG)=L(RG)\)</span>，即任意正则表达式都存在一种上下文无关语言，使得他们的表达能力相等。这就说明了 <span class="math inline">\(L(RG)\subseteq L(CFG)\)</span></p>
-<p>再证明 <span class="math inline">\(L(RG)\neq L(CFG)\)</span>，即存在一种CFG能表达但RE无法表达的语言。这个构造很强，而且能说明很多问题，值得体会一会儿</p>
+<p>注意到正则表达式长度有限，因此我们构造的非终结符有限，同理推导规则有限，因此这是一个CFG，并且可以归纳证明
+<span
+class="math inline">\(L(CFG)=L(RG)\)</span>，即任意正则表达式都存在一种上下文无关语言，使得他们的表达能力相等。这就说明了
+<span class="math inline">\(L(RG)\subseteq L(CFG)\)</span></p>
+<p>再证明 <span class="math inline">\(L(RG)\neq
+L(CFG)\)</span>，即存在一种CFG能表达但RE无法表达的语言。这个构造很强，而且能说明很多问题，值得体会一会儿</p>
 <p>考虑如下上下文无关语法：</p>
 <p><span class="math inline">\(S\rightarrow aSb|\epsilon\)</span></p>
-<p>它表示的是所有形如 <span class="math inline">\(ab,aabb,aaabbb\ldots\)</span> 的串的集合。下面证明正则表达式无法表示这种语言</p>
+<p>它表示的是所有形如 <span
+class="math inline">\(ab,aabb,aaabbb\ldots\)</span>
+的串的集合。下面证明正则表达式无法表示这种语言</p>
 <p>注意到任意正则表达式可以化为等价的DFA，因此只需要证明不存在可以识别该语言的DFA即可</p>
-<p>由反证法，假设存在这样一个DFA，不妨设其状态数为<span class="math inline">\(n\)</span>，则根据抽屉原理在识别前<span class="math inline">\(n\)</span>位的时候，必然存在 <span class="math inline">\(i\neq j\)</span> 使得 <span class="math inline">\(tr(start,a^i)=tr(start,a^j)\)</span></p>
-<p>根据定义，DFA能识别串 <span class="math inline">\(a^ib^i\)</span> 和 <span class="math inline">\(a^jb^j\)</span>，再根据状态转移的等式有 <span class="math inline">\(tr(start,a^ib^i)=tr(tr(start,a^i),b^i)=tr(tr(start,a^j),b^i)=tr(start,a^jb^i)\in E\)</span>，即该DFA也能识别串 <span class="math inline">\(a^jb^i\)</span>，这与假设矛盾。</p>
-<p>也就是说，任意的 <span class="math inline">\(n\in \mathbb N\)</span>，我们都能找到一个串使得其满足CFG规定的形式但是不能被DFA识别。于是证毕</p>
+<p>由反证法，假设存在这样一个DFA，不妨设其状态数为<span
+class="math inline">\(n\)</span>，则根据抽屉原理在识别前<span
+class="math inline">\(n\)</span>位的时候，必然存在 <span
+class="math inline">\(i\neq j\)</span> 使得 <span
+class="math inline">\(tr(start,a^i)=tr(start,a^j)\)</span></p>
+<p>根据定义，DFA能识别串 <span class="math inline">\(a^ib^i\)</span> 和
+<span class="math inline">\(a^jb^j\)</span>，再根据状态转移的等式有
+<span
+class="math inline">\(tr(start,a^ib^i)=tr(tr(start,a^i),b^i)=tr(tr(start,a^j),b^i)=tr(start,a^jb^i)\in
+E\)</span>，即该DFA也能识别串 <span
+class="math inline">\(a^jb^i\)</span>，这与假设矛盾。</p>
+<p>也就是说，任意的 <span class="math inline">\(n\in \mathbb
+N\)</span>，我们都能找到一个串使得其满足CFG规定的形式但是不能被DFA识别。于是证毕</p>
 <p>关于正则/DFA的证明大多依赖于反证法和抽屉原理这两大保健，然后结合状态转移的结合性来说明某个状态的接受性，最后得出矛盾。同时这里的问题也直观说明了正则表达式没法表示同时向左和向右无限延伸的串，因为DFA一旦从某一位开始无限延伸，就意味着它前面必须是有限位。</p>
 <p>(扯远点，也就是说CFL-Reachability不能简单地用DFA解决，而是要用一个PDA....一周前的我还是太naive了！)</p>
 <h2 id="st">ST</h2>
-<p>从初始符号开始到任意句子的推导过程隐式地产生了语法树(Syntax Tree)的结构，即考虑任意单次推导 <span class="math inline">\(a\Rightarrow b\)</span>，如果我们把 <span class="math inline">\(a\)</span> 视作根，<span class="math inline">\(b\)</span> 中的所有字母看作儿子，那么树形结构就出来了。具体的证明只需要注意到每个字符的父亲唯一(上下文无关的定义)，结合句子的定义说明一下就好了。</p>
-<p>有个比较显然的性质：任意语法树的叶子都是终结符，且从 <span class="math inline">\(s_0\)</span> 到句子 <span class="math inline">\(s\)</span> 的推导产生的语法树的 所有叶子的前序遍历序 恰好构成了 <span class="math inline">\(s\)</span> 本身</p>
+<p>从初始符号开始到任意句子的推导过程隐式地产生了语法树(Syntax
+Tree)的结构，即考虑任意单次推导 <span class="math inline">\(a\Rightarrow
+b\)</span>，如果我们把 <span class="math inline">\(a\)</span>
+视作根，<span class="math inline">\(b\)</span>
+中的所有字母看作儿子，那么树形结构就出来了。具体的证明只需要注意到每个字符的父亲唯一(上下文无关的定义)，结合句子的定义说明一下就好了。</p>
+<p>有个比较显然的性质：任意语法树的叶子都是终结符，且从 <span
+class="math inline">\(s_0\)</span> 到句子 <span
+class="math inline">\(s\)</span> 的推导产生的语法树的
+所有叶子的前序遍历序 恰好构成了 <span class="math inline">\(s\)</span>
+本身</p>
 <h3 id="最左推导">最左推导</h3>
 <p>很显然一个推导序列唯一地构造了一棵语法树，然而一棵语法树并不唯一对应一个推导序列(考虑同一层出现了多个非终结符号，选择的次序就产生了不同的推导)</p>
 <p>为了构造推导序列到语法树的双射，我们提出了最左推导的概念。即在最左推导下，语法树和推导序列是一一对应的。</p>
 <h3 id="二义性">二义性</h3>
 <p>注意到即使我们规定了最左推导，同一句子的推导仍然不唯一，构造的语法树也不唯一，因此自然引出二义性的问题</p>
-<p>注意二义性是针对语法而言的而与串无关，即语法 <span class="math inline">\(G\)</span> 有二义性当且仅当存在串 <span class="math inline">\(str\in L(G)\)</span>，使得存在两种从初始符号 <span class="math inline">\(s_0\)</span> 开始的推导序列 <span class="math inline">\(l_1,l_2\)</span> 满足 <span class="math inline">\(s_0\overset{*}{\underset{l_1}\Rightarrow}str\)</span> 且 <span class="math inline">\(s_0\overset{*}{\underset{l_2}\Rightarrow}str\)</span></p>
+<p>注意二义性是针对语法而言的而与串无关，即语法 <span
+class="math inline">\(G\)</span> 有二义性当且仅当存在串 <span
+class="math inline">\(str\in L(G)\)</span>，使得存在两种从初始符号 <span
+class="math inline">\(s_0\)</span> 开始的推导序列 <span
+class="math inline">\(l_1,l_2\)</span> 满足 <span
+class="math inline">\(s_0\overset{*}{\underset{l_1}\Rightarrow}str\)</span>
+且 <span
+class="math inline">\(s_0\overset{*}{\underset{l_2}\Rightarrow}str\)</span></p>
 <p>举个例子，考虑如下语法：</p>
-<p><span class="math inline">\(Expr\rightarrow \epsilon|Number|Expr+Expr|Expr*Expr\)</span></p>
-<p><span class="math inline">\(Number\rightarrow \text{[1-9][0-9]*}\)</span></p>
-<p>这里的 <span class="math inline">\(Number\)</span> 是用正则语言表达的</p>
-<p>这个语法对于语句 <span class="math inline">\(1+1*2\)</span> 就存在多种推导，但它们都是<strong>最左推导</strong></p>
-<p>例如 <span class="math inline">\(Expr\Rightarrow Expr+Expr\Rightarrow 1+Expr\Rightarrow 1+Expr*Expr\Rightarrow 1+1*Expr\Rightarrow 1+1*1\)</span></p>
-<p>和 <span class="math inline">\(Expr\Rightarrow Expr*Expr\Rightarrow Expr+Expr*Expr\Rightarrow 1+Expr*Expr\Rightarrow 1+1*Expr\Rightarrow 1+1*1\)</span></p>
+<p><span class="math inline">\(Expr\rightarrow
+\epsilon|Number|Expr+Expr|Expr*Expr\)</span></p>
+<p><span class="math inline">\(Number\rightarrow
+\text{[1-9][0-9]*}\)</span></p>
+<p>这里的 <span class="math inline">\(Number\)</span>
+是用正则语言表达的</p>
+<p>这个语法对于语句 <span class="math inline">\(1+1*2\)</span>
+就存在多种推导，但它们都是<strong>最左推导</strong></p>
+<p>例如 <span class="math inline">\(Expr\Rightarrow Expr+Expr\Rightarrow
+1+Expr\Rightarrow 1+Expr*Expr\Rightarrow 1+1*Expr\Rightarrow
+1+1*1\)</span></p>
+<p>和 <span class="math inline">\(Expr\Rightarrow Expr*Expr\Rightarrow
+Expr+Expr*Expr\Rightarrow 1+Expr*Expr\Rightarrow 1+1*Expr\Rightarrow
+1+1*1\)</span></p>
 <p>具体表现出来就是+*优先级冲突的问题</p>
 <h3 id="二义性的消除">二义性的消除</h3>
 <p>二义性的消除没有通用方法，需要根据语义和语法灵活处理(这不是说了等于没说吗喂)</p>
@@ -251,74 +335,159 @@
 <p>最左推导构造了语法树和推导序列的双射</p>
 <p>二义性的消除保证了句子的<strong>最左</strong>推导序列唯一，即每个句子和语法树存在双射</p>
 <h3 id="左递归">左递归</h3>
-<p>若语法 <span class="math inline">\(G\)</span> 存在 <span class="math inline">\(A\overset{*}\Rightarrow A\alpha\)</span>，其中 <span class="math inline">\(A\)</span> 是非终结符(废话)，<span class="math inline">\(\alpha\)</span> 是 <span class="math inline">\(N\cup T\)</span> 上的非空串，则我们称 <span class="math inline">\(G\)</span> 存在<strong>左递归</strong>(left recursion)</p>
-<p>为了消除二义性我们需要规定一个推导顺序，而规定了推导顺序后自然引出终止的问题。容易发现存在左递归的文法 <span class="math inline">\(G\)</span> 的推导过程不一定终止</p>
-<p>这个很好玩，好玩的地方在于它有点像前面造DFA的时候用Arden's TH解正则式状态方程(事实上这是一个右线性文法，确实是正则语言...)</p>
+<p>若语法 <span class="math inline">\(G\)</span> 存在 <span
+class="math inline">\(A\overset{*}\Rightarrow A\alpha\)</span>，其中
+<span class="math inline">\(A\)</span> 是非终结符(废话)，<span
+class="math inline">\(\alpha\)</span> 是 <span
+class="math inline">\(N\cup T\)</span> 上的非空串，则我们称 <span
+class="math inline">\(G\)</span> 存在<strong>左递归</strong>(left
+recursion)</p>
+<p>为了消除二义性我们需要规定一个推导顺序，而规定了推导顺序后自然引出终止的问题。容易发现存在左递归的文法
+<span class="math inline">\(G\)</span> 的推导过程不一定终止</p>
+<p>这个很好玩，好玩的地方在于它有点像前面造DFA的时候用Arden's
+TH解正则式状态方程(事实上这是一个右线性文法，确实是正则语言...)</p>
 <h3 id="左递归的消除">左递归的消除</h3>
-<p>考虑最简单的形式，即单个直接的左递归如何处理 <span class="math inline">\(A\Rightarrow A\alpha|\beta\)</span></p>
-<p>由 Arden's TH 可知 <span class="math inline">\(A\)</span> 能产生的所有串用正则语言表达就是 <span class="math inline">\(\beta{\alpha}^*\)</span>。注意到除了第一个字符外，剩下的部分都是若干片段的重复，因此考虑把两部分分开做。</p>
-<p>不妨设 <span class="math inline">\(A&#39;\rightarrow \alpha A&#39;|\epsilon\)</span>，而 <span class="math inline">\(A\rightarrow \beta A&#39;\)</span>，这样就用非左递归的方式表示出了原本存在左递归的语法</p>
-<p>对于间接的左递归(即存在推导序列 <span class="math inline">\(l\)</span> 使得 <span class="math inline">\(A\underset{l}\Rightarrow A\alpha\)</span>)，我们这么考虑：</p>
+<p>考虑最简单的形式，即单个直接的左递归如何处理 <span
+class="math inline">\(A\Rightarrow A\alpha|\beta\)</span></p>
+<p>由 Arden's TH 可知 <span class="math inline">\(A\)</span>
+能产生的所有串用正则语言表达就是 <span
+class="math inline">\(\beta{\alpha}^*\)</span>。注意到除了第一个字符外，剩下的部分都是若干片段的重复，因此考虑把两部分分开做。</p>
+<p>不妨设 <span class="math inline">\(A&#39;\rightarrow \alpha
+A&#39;|\epsilon\)</span>，而 <span class="math inline">\(A\rightarrow
+\beta
+A&#39;\)</span>，这样就用非左递归的方式表示出了原本存在左递归的语法</p>
+<p>对于间接的左递归(即存在推导序列 <span
+class="math inline">\(l\)</span> 使得 <span
+class="math inline">\(A\underset{l}\Rightarrow
+A\alpha\)</span>)，我们这么考虑：</p>
 <ol type="1">
-<li><p>首先为所有的非终结符号编号，设共有 <span class="math inline">\(n\)</span> 个，建图</p></li>
-<li><p>对于一对非终结符 <span class="math inline">\(A_i,A_j\)</span>，若存在推导序列 <span class="math inline">\(A_i\Rightarrow A_j\alpha\)</span>，则连边 <span class="math inline">\(i\rightarrow j\)</span></p></li>
-<li><p>于是存在左递归<span class="math inline">\(\iff\)</span> 存在有向圈</p></li>
+<li><p>首先为所有的非终结符号编号，设共有 <span
+class="math inline">\(n\)</span> 个，建图</p></li>
+<li><p>对于一对非终结符 <span
+class="math inline">\(A_i,A_j\)</span>，若存在推导序列 <span
+class="math inline">\(A_i\Rightarrow A_j\alpha\)</span>，则连边 <span
+class="math inline">\(i\rightarrow j\)</span></p></li>
+<li><p>于是存在左递归<span class="math inline">\(\iff\)</span>
+存在有向圈</p></li>
 </ol>
-<p>问题变成了存在一些具有传递性的边(即 <span class="math inline">\(i\rightarrow j,j\rightarrow k\)</span> 可得 <span class="math inline">\(i\rightarrow k\)</span>)，我们已知怎么去掉一个点的自环(消除直接左递归)，问要如何消除所有的有向圈</p>
-<p>一个做法就是规定编号为 <span class="math inline">\(i\)</span> 的点只能连向编号大于 <span class="math inline">\(i\)</span> 的点(容易归纳证明这样无环)，对于不满足的边我们用边的传递性使之越过若干中间节点。于是书上的算法就很好理解了</p>
+<p>问题变成了存在一些具有传递性的边(即 <span
+class="math inline">\(i\rightarrow j,j\rightarrow k\)</span> 可得 <span
+class="math inline">\(i\rightarrow
+k\)</span>)，我们已知怎么去掉一个点的自环(消除直接左递归)，问要如何消除所有的有向圈</p>
+<p>一个做法就是规定编号为 <span class="math inline">\(i\)</span>
+的点只能连向编号大于 <span class="math inline">\(i\)</span>
+的点(容易归纳证明这样无环)，对于不满足的边我们用边的传递性使之越过若干中间节点。于是书上的算法就很好理解了</p>
 <p><del>先写到这里，去睡觉/(ㄒoㄒ)/</del></p>
 <h2 id="top-down-parsing">Top-Down Parsing</h2>
-<p>再次回顾语法分析的目标：判断给定的串 <span class="math inline">\(code\)</span> 是否是语法 <span class="math inline">\(G\)</span> 的语言，如果是的话给出语法树结构</p>
+<p>再次回顾语法分析的目标：判断给定的串 <span
+class="math inline">\(code\)</span> 是否是语法 <span
+class="math inline">\(G\)</span> 的语言，如果是的话给出语法树结构</p>
 <p>为了讨论的方便，下面提到的文法都是无二义性文法</p>
-<p>考虑对起始符号 <span class="math inline">\(s_0\)</span> 的一个最左推导，若 <span class="math inline">\(s_0\overset *{\underset{lm}\Rightarrow}code\)</span>，由文法无二义性可知推导序列唯一，且其作为最左推导唯一对应与一棵语法树。</p>
-<p>Top-Down实际上就是在模拟这个过程。即我们每次从当前句型中取出最左的nonterminal <span class="math inline">\(N\)</span>，根据某个 <span class="math inline">\(N\)</span> 作为head的产生式替换得到新的句型</p>
+<p>考虑对起始符号 <span class="math inline">\(s_0\)</span>
+的一个最左推导，若 <span class="math inline">\(s_0\overset
+*{\underset{lm}\Rightarrow}code\)</span>，由文法无二义性可知推导序列唯一，且其作为最左推导唯一对应与一棵语法树。</p>
+<p>Top-Down实际上就是在模拟这个过程。即我们每次从当前句型中取出最左的nonterminal
+<span class="math inline">\(N\)</span>，根据某个 <span
+class="math inline">\(N\)</span> 作为head的产生式替换得到新的句型</p>
 <h4 id="递归下降">递归下降</h4>
 <p>没啥好讲的很sb的技术，也就是我们每次尝试所有可能的产生式，如果遇到了不能匹配情况就回溯....</p>
 <h3 id="ll1-文法">LL(1) 文法</h3>
 <p>在认真研读龙书前，我对语法分析的理解停留在递归下降的层面，并好奇工业上究竟是怎么解决这么一个复杂的问题的....</p>
 <p>现实令人吃惊，通常面对一个很难的问题，我们不仅可以用精巧的做法解决它，还可以用更简单的case回避它！LL(1)文法就是这么出现的</p>
 <h4 id="准备工作">准备工作</h4>
-<p>给定上下文无关文法 <span class="math inline">\(G(N,T,s_0,R)\)</span></p>
-<p>首先定义两个函数 <span class="math inline">\(FIRST(\alpha)\colon \left(N\cup T\right)^+\mapsto T\cup\left\{\;\epsilon\;\right\}\)</span> 和 <span class="math inline">\(FOLLOW(A)\colon N\mapsto T\)</span> ，含义分别如下</p>
-<p><span class="math inline">\(c\in FIRST(\alpha)\)</span> 当且仅当 <span class="math inline">\(\alpha\overset *\Rightarrow cy\)</span>，其中 <span class="math inline">\(\alpha\)</span> 是非终结符和终结符上的串， <span class="math inline">\(c\)</span> 是某个终结符，<span class="math inline">\(y\)</span> 是终结符上的串。若 <span class="math inline">\(\alpha\overset*\Rightarrow\epsilon\)</span>，则规定 <span class="math inline">\(\epsilon\in FIRST(\alpha)\)</span></p>
-<p><span class="math inline">\(c\in FOLLOW(A)\)</span> 当且仅当 <span class="math inline">\(\exists yc\in L(G)\)</span> 满足 <span class="math inline">\(A\overset*\Rightarrow y\)</span>，其中 <span class="math inline">\(A\)</span> 是某个非终结符，<span class="math inline">\(c\)</span> 是某个终结符，<span class="math inline">\(y\)</span> 是终结符上的串。特殊规定 <span class="math inline">\(code\)</span> 的末端有一个终结符 <span class="math inline">\(EOF\)</span>，且 <span class="math inline">\(EOF\)</span> 只能出现在串的末尾</p>
+<p>给定上下文无关文法 <span
+class="math inline">\(G(N,T,s_0,R)\)</span></p>
+<p>首先定义两个函数 <span class="math inline">\(FIRST(\alpha)\colon
+\left(N\cup T\right)^+\mapsto T\cup\left\{\;\epsilon\;\right\}\)</span>
+和 <span class="math inline">\(FOLLOW(A)\colon N\mapsto T\)</span>
+，含义分别如下</p>
+<p><span class="math inline">\(c\in FIRST(\alpha)\)</span> 当且仅当
+<span class="math inline">\(\alpha\overset *\Rightarrow
+cy\)</span>，其中 <span class="math inline">\(\alpha\)</span>
+是非终结符和终结符上的串， <span class="math inline">\(c\)</span>
+是某个终结符，<span class="math inline">\(y\)</span> 是终结符上的串。若
+<span
+class="math inline">\(\alpha\overset*\Rightarrow\epsilon\)</span>，则规定
+<span class="math inline">\(\epsilon\in FIRST(\alpha)\)</span></p>
+<p><span class="math inline">\(c\in FOLLOW(A)\)</span> 当且仅当 <span
+class="math inline">\(\exists yc\in L(G)\)</span> 满足 <span
+class="math inline">\(A\overset*\Rightarrow y\)</span>，其中 <span
+class="math inline">\(A\)</span> 是某个非终结符，<span
+class="math inline">\(c\)</span> 是某个终结符，<span
+class="math inline">\(y\)</span> 是终结符上的串。特殊规定 <span
+class="math inline">\(code\)</span> 的末端有一个终结符 <span
+class="math inline">\(EOF\)</span>，且 <span
+class="math inline">\(EOF\)</span> 只能出现在串的末尾</p>
 <p>LL(1) 文法要求：</p>
 <ol type="1">
-<li><p>任意共享同一个head的两个产生式 <span class="math inline">\(A\rightarrow \alpha\)</span> 和 <span class="math inline">\(A\rightarrow \beta\)</span>，都满足 <span class="math inline">\(FIRST(\alpha)\neq FIRST(\beta)\)</span></p></li>
-<li><p>任意共享同一个head的两个产生式 <span class="math inline">\(A\rightarrow\alpha\)</span> 和 <span class="math inline">\(A\rightarrow\beta\)</span>，都满足至多有一个body的 <span class="math inline">\(FIRST\)</span> 有 <span class="math inline">\(\epsilon\)</span></p></li>
-<li><p>任意共享同一个head的两个产生式 <span class="math inline">\(A\rightarrow\alpha\)</span> 和 <span class="math inline">\(A\rightarrow \beta\)</span>，若 <span class="math inline">\(\epsilon\in FIRST(\alpha)\)</span>，则必有 <span class="math inline">\(FOLLOW(A)\neq FIRST(\beta)\)</span>，反之亦然。</p></li>
+<li><p>任意共享同一个head的两个产生式 <span
+class="math inline">\(A\rightarrow \alpha\)</span> 和 <span
+class="math inline">\(A\rightarrow \beta\)</span>，都满足 <span
+class="math inline">\(FIRST(\alpha)\neq FIRST(\beta)\)</span></p></li>
+<li><p>任意共享同一个head的两个产生式 <span
+class="math inline">\(A\rightarrow\alpha\)</span> 和 <span
+class="math inline">\(A\rightarrow\beta\)</span>，都满足至多有一个body的
+<span class="math inline">\(FIRST\)</span> 有 <span
+class="math inline">\(\epsilon\)</span></p></li>
+<li><p>任意共享同一个head的两个产生式 <span
+class="math inline">\(A\rightarrow\alpha\)</span> 和 <span
+class="math inline">\(A\rightarrow \beta\)</span>，若 <span
+class="math inline">\(\epsilon\in FIRST(\alpha)\)</span>，则必有 <span
+class="math inline">\(FOLLOW(A)\neq
+FIRST(\beta)\)</span>，反之亦然。</p></li>
 </ol>
 <p>琢磨一下这几条规则的含义需要首先搞懂两个函数在干什么</p>
-<p><span class="math inline">\(FIRST(\alpha)\)</span> 表明了句型 <span class="math inline">\(\alpha\)</span> 最终产生的所有句子的可能的第一个字符</p>
-<p><span class="math inline">\(FOLLOW(A)\)</span> 表明了非终结符 <span class="math inline">\(A\)</span> 产生的所有终结符序列(不一定是句子，因为 <span class="math inline">\(A\)</span> 不一定是起始符号)在所有句子中后续紧邻着的字符</p>
+<p><span class="math inline">\(FIRST(\alpha)\)</span> 表明了句型 <span
+class="math inline">\(\alpha\)</span>
+最终产生的所有句子的可能的第一个字符</p>
+<p><span class="math inline">\(FOLLOW(A)\)</span> 表明了非终结符 <span
+class="math inline">\(A\)</span> 产生的所有终结符序列(不一定是句子，因为
+<span class="math inline">\(A\)</span>
+不一定是起始符号)在所有句子中后续紧邻着的字符</p>
 <p>也就是说，LL(1)文法所有共享head的产生式都走向了不相交的分支，确定走哪一个只需要根据下一个非终结符的从属关系就能判断了</p>
-<p>由此自然得到LL(1)文法的真正含义：从左往右读取(第一个L)，最左推导(第二个L)，推导非终结符时产生式的选择只需1个终结符即可判定 的文法</p>
+<p>由此自然得到LL(1)文法的真正含义：从左往右读取(第一个L)，最左推导(第二个L)，推导非终结符时产生式的选择只需1个终结符即可判定
+的文法</p>
 <p>于是也就可以理解为什么上面要提到提取左公因子的做法了，只是为了把非LL(1)文法改造成LL(1)文法而已</p>
-<h4 id="求-firstfollow">求 <span class="math inline">\(FIRST(),FOLLOW()\)</span></h4>
+<h4 id="求-firstfollow">求 <span
+class="math inline">\(FIRST(),FOLLOW()\)</span></h4>
 <p>先考虑怎么求FIRST</p>
 <p>终结符的FIRST很好求</p>
 <p>非终结符的FIRST只需要逐个判断产生式，再顺序判断产生式的每一项就好了</p>
 <p>终结符和非终结符的串的FIRST可以看成是某个不存在的非终结符的body，那么就和上面一样了</p>
 <p>再看看怎么求FOLLOW</p>
-<p>起始符号的FOLLOW很好求，是<span class="math inline">\(EOF\)</span></p>
+<p>起始符号的FOLLOW很好求，是<span
+class="math inline">\(EOF\)</span></p>
 <p>对于每个非终结符，找到所有body包含它的产生式，往后根据FIRST规定集合的约束。有些来自FOLLOW，有些来自head的FOLLOW，这部分和FIRST是差不多的</p>
 <h3 id="制表">制表</h3>
-<p>可以预处理出 <span class="math inline">\(N\times T\)</span> 的表，表示对于不同的状态(非终结符)和下一个输入(终结符)，我们应该采取哪一条产生式</p>
+<p>可以预处理出 <span class="math inline">\(N\times T\)</span>
+的表，表示对于不同的状态(非终结符)和下一个输入(终结符)，我们应该采取哪一条产生式</p>
 <p>由于任意两个产生式的FIRST不交，因此只需要枚举每个产生式和它body的FIRST，就可以得到表项了</p>
 <p>对于表中空出的位置我们可以填入报错信息，也可以额外填入对应的错误处理方法</p>
 <h2 id="pda">PDA</h2>
 <p>这个很有意思，但我还不是很懂，大概写一下定义就跑路(</p>
-<p>下推自动机的形式化定义为一个七元组 <span class="math inline">\((Q,\Sigma,\Gamma,\delta,q_0,Z_0,F)\)</span></p>
+<p>下推自动机的形式化定义为一个七元组 <span
+class="math inline">\((Q,\Sigma,\Gamma,\delta,q_0,Z_0,F)\)</span></p>
 <p><span class="math inline">\(Q\)</span>：状态的有穷集合</p>
 <p><span class="math inline">\(\Sigma\)</span>：符号的有穷集合</p>
-<p><span class="math inline">\(\Gamma\)</span>：一个叫堆栈(Stack)的数据结构，支持：1. 在顶端插入一个字符 2. 取出顶端的字符 3. 读取而不取出顶端的字符</p>
-<p><span class="math inline">\(\delta\)</span>：转移函数 <span class="math inline">\(Q\times \Sigma\times\Sigma\mapsto Q\)</span>，即转移状态由当前状态、输入和栈顶状态共同决定</p>
+<p><span
+class="math inline">\(\Gamma\)</span>：一个叫堆栈(Stack)的数据结构，支持：1.
+在顶端插入一个字符 2. 取出顶端的字符 3. 读取而不取出顶端的字符</p>
+<p><span class="math inline">\(\delta\)</span>：转移函数 <span
+class="math inline">\(Q\times \Sigma\times\Sigma\mapsto
+Q\)</span>，即转移状态由当前状态、输入和栈顶状态共同决定</p>
 <p><span class="math inline">\(q_0\)</span>：初始状态</p>
-<p><span class="math inline">\(Z_0\)</span>：初始符号，即初始栈中的元素</p>
+<p><span
+class="math inline">\(Z_0\)</span>：初始符号，即初始栈中的元素</p>
 <p><span class="math inline">\(F\)</span>：接受态的集合</p>
 <h2 id="bottom-up-parsing">Bottom-Up Parsing</h2>
 <p>自底向上语法分析期望做到这样一件事情：我们手上时刻保存着一个最右句型，并根据当前局面的情况作出如下操作：将连续若干符号收缩(用某条产生式的逆替换)成一个非终结符，且不改变最右句型这一性质。</p>
-<p>换句话说，假设我们得到了起始符号 <span class="math inline">\(s_0\)</span> 到最终句子 <span class="math inline">\(c\)</span> 的一个最右推导序列 <span class="math inline">\(l_{rm}\)</span>，那么我们需要希望通过对 <span class="math inline">\(c\)</span> 的分析得到 <span class="math inline">\(l_{rm}\)</span> 的逆 <span class="math inline">\({l_{rm} }&#39;\)</span>。</p>
+<p>换句话说，假设我们得到了起始符号 <span
+class="math inline">\(s_0\)</span> 到最终句子 <span
+class="math inline">\(c\)</span> 的一个最右推导序列 <span
+class="math inline">\(l_{rm}\)</span>，那么我们需要希望通过对 <span
+class="math inline">\(c\)</span> 的分析得到 <span
+class="math inline">\(l_{rm}\)</span> 的逆 <span
+class="math inline">\({l_{rm} }&#39;\)</span>。</p>
 <p>具体的实现需要用到一个栈，保存当前最右句型仍未展开的部分；以及剩余全部已经展开为终结符的字符流。在栈顶和字符流的最左端，就是上一次发生推导的位置。注意到所有在当前栈顶的非终结符展开之后才展开的非终结符，必然都已经展开成了字符流(有点绕但一定要看明白)，否则违反最右句型的定义。因此每次面临的选择只有两个：</p>
 <ol type="1">
 <li><p>规约(Reduce)，将栈顶的若干符号根据某产生式的逆，替换为一个非终结符，记作一次<strong>规约</strong></p></li>
@@ -333,72 +502,144 @@
 </ol>
 <p>与上面直观的分析不同，此处的栈储存的是状态</p>
 <p>这里通用的真正含义在于：所有不同的LR方法的区别仅在于构造的<code>GOTO</code>和<code>ACTION</code>表不同，或者说构造算法存在差异。这就很适合自动生成了</p>
-<p>实际上<code>GOTO</code>表、<code>ACTION</code>表、栈共同组成了一个下推自动机(Push Down Automata)</p>
+<p>实际上<code>GOTO</code>表、<code>ACTION</code>表、栈共同组成了一个下推自动机(Push
+Down Automata)</p>
 <h3 id="goto和action表">GOTO和ACTION表</h3>
-<p><span class="math inline">\(GOTO[x,ch]=y\)</span> 表示在PDA的状态<span class="math inline">\(x\)</span>，遇到<strong>非终结符</strong> <span class="math inline">\(ch\)</span> 时，会转移到状态 <span class="math inline">\(y\)</span></p>
-<p><span class="math inline">\(ACTION[x,tch]\)</span> 记录了在状态 <span class="math inline">\(x\)</span>，遇到<strong>终结符</strong> <span class="math inline">\(tch\)</span> 时，应该进行什么操作(移入还是规约？移入什么状态？用哪条产生式的逆进行规约？)。<strong>这是不同LR策略之间的最本质区别</strong></p>
+<p><span class="math inline">\(GOTO[x,ch]=y\)</span>
+表示在PDA的状态<span
+class="math inline">\(x\)</span>，遇到<strong>非终结符</strong> <span
+class="math inline">\(ch\)</span> 时，会转移到状态 <span
+class="math inline">\(y\)</span></p>
+<p><span class="math inline">\(ACTION[x,tch]\)</span> 记录了在状态 <span
+class="math inline">\(x\)</span>，遇到<strong>终结符</strong> <span
+class="math inline">\(tch\)</span>
+时，应该进行什么操作(移入还是规约？移入什么状态？用哪条产生式的逆进行规约？)。<strong>这是不同LR策略之间的最本质区别</strong></p>
 <p>于是一个通用LR Parser的工作流程就可以描述为：</p>
-<p>记栈顶为 <span class="math inline">\(top\)</span>， 每次读入符号 <span class="math inline">\(ch\)</span>，根据 <span class="math inline">\(ACTION[top,ch]\)</span> 判断是否规约</p>
+<p>记栈顶为 <span class="math inline">\(top\)</span>， 每次读入符号
+<span class="math inline">\(ch\)</span>，根据 <span
+class="math inline">\(ACTION[top,ch]\)</span> 判断是否规约</p>
 <ol type="1">
-<li><p>如果规约，则从栈中弹出产生式的右端(对应的状态)。记产生式的左端为 <span class="math inline">\(H\)</span>，那么当前到达的状态就是 <span class="math inline">\(GOTO[top&#39;,H]\)</span>，其中 <span class="math inline">\(top&#39;\)</span> 是弹出产生式右端后，得到的栈顶。</p></li>
-<li><p>否则根据<span class="math inline">\(ACTION\)</span>表，移入新的当前状态</p></li>
+<li><p>如果规约，则从栈中弹出产生式的右端(对应的状态)。记产生式的左端为
+<span class="math inline">\(H\)</span>，那么当前到达的状态就是 <span
+class="math inline">\(GOTO[top&#39;,H]\)</span>，其中 <span
+class="math inline">\(top&#39;\)</span>
+是弹出产生式右端后，得到的栈顶。</p></li>
+<li><p>否则根据<span
+class="math inline">\(ACTION\)</span>表，移入新的当前状态</p></li>
 </ol>
 <p>在处理过程中可能出现下面的冲突情况：</p>
 <ol type="1">
 <li><p>移入-规约冲突，即当前可以规约，但是再移入几个可以规约成更大的非终结符</p></li>
-<li><p>规约-规约冲突，即当前既可以规约栈的一个前缀<span class="math inline">\(s\)</span>，又可以规约栈的另一个前缀<span class="math inline">\(s&#39;\)</span></p></li>
+<li><p>规约-规约冲突，即当前既可以规约栈的一个前缀<span
+class="math inline">\(s\)</span>，又可以规约栈的另一个前缀<span
+class="math inline">\(s&#39;\)</span></p></li>
 </ol>
 <p>一个好的LR策略，应当恰当地处理这些冲突(后面会看到SLR的做法就是不处理....)</p>
 <h3 id="lr0-自动机">LR(0) 自动机</h3>
 <p>这是为后面的SLR技术作铺垫</p>
 <p>其实是PDA的一个真子集，可以看成是一个特殊的DFA</p>
-<p>首先对语法 <span class="math inline">\(G\)</span>，我们构造等价的增广语法 <span class="math inline">\(G&#39;\)</span>，唯一的区别在于增添一条产生式 <span class="math inline">\({s_0}&#39;\rightarrow s_0\)</span>，表示一个新的起始符号</p>
+<p>首先对语法 <span
+class="math inline">\(G\)</span>，我们构造等价的增广语法 <span
+class="math inline">\(G&#39;\)</span>，唯一的区别在于增添一条产生式
+<span class="math inline">\({s_0}&#39;\rightarrow
+s_0\)</span>，表示一个新的起始符号</p>
 <h3 id="项项集">项，项集</h3>
-<p>我们称一个项(term)为一个产生式加上一个点，例如 <span class="math inline">\(A\rightarrow ab\cdot cde\)</span></p>
-<p>直观的含义就是，我们目前已经读到了这个产生式右端的某个前缀，于是在这个前缀的位置打上标记。特殊地 规定 <span class="math inline">\(A\rightarrow \epsilon\)</span> 的项只有唯一的 <span class="math inline">\(A\rightarrow \cdot\)</span></p>
-<p>不妨记所有项组成的集合为 <span class="math inline">\(T\)</span>，一个粗略的估计为 <span class="math inline">\(|T|=\sum\limits_{p\text{ 是产生式，b是p的body} } {|b|+1}\)</span></p>
-<p>再造两个项上的操作 <span class="math inline">\(cur:T\mapsto \mathbb N\)</span> 和 <span class="math inline">\(next:T\mapsto T\)</span></p>
-<p>规定 <span class="math inline">\(cur(A\rightarrow\alpha\cdot c\beta)=c\)</span>，表示我们接下来需要一个终结符 <span class="math inline">\(c\)</span></p>
-<p>规定 <span class="math inline">\(next(A\rightarrow\alpha\cdot c\beta)=A\rightarrow\alpha c\cdot\beta\)</span>，表示我们又匹配上了一个字符 <span class="math inline">\(c\)</span></p>
+<p>我们称一个项(term)为一个产生式加上一个点，例如 <span
+class="math inline">\(A\rightarrow ab\cdot cde\)</span></p>
+<p>直观的含义就是，我们目前已经读到了这个产生式右端的某个前缀，于是在这个前缀的位置打上标记。特殊地
+规定 <span class="math inline">\(A\rightarrow \epsilon\)</span>
+的项只有唯一的 <span class="math inline">\(A\rightarrow
+\cdot\)</span></p>
+<p>不妨记所有项组成的集合为 <span
+class="math inline">\(T\)</span>，一个粗略的估计为 <span
+class="math inline">\(|T|=\sum\limits_{p\text{ 是产生式，b是p的body} }
+{|b|+1}\)</span></p>
+<p>再造两个项上的操作 <span class="math inline">\(cur:T\mapsto \mathbb
+N\)</span> 和 <span class="math inline">\(next:T\mapsto T\)</span></p>
+<p>规定 <span class="math inline">\(cur(A\rightarrow\alpha\cdot
+c\beta)=c\)</span>，表示我们接下来需要一个终结符 <span
+class="math inline">\(c\)</span></p>
+<p>规定 <span class="math inline">\(next(A\rightarrow\alpha\cdot
+c\beta)=A\rightarrow\alpha
+c\cdot\beta\)</span>，表示我们又匹配上了一个字符 <span
+class="math inline">\(c\)</span></p>
 <h3 id="项集合的闭包操作">项集合的闭包操作</h3>
-<p>对于一个项组成的集合(a set of terms) <span class="math inline">\(S\)</span>，我们构造地定义函数 <span class="math inline">\(I:2^T\mapsto 2^T\)</span> 如下：</p>
+<p>对于一个项组成的集合(a set of terms) <span
+class="math inline">\(S\)</span>，我们构造地定义函数 <span
+class="math inline">\(I:2^T\mapsto 2^T\)</span> 如下：</p>
 <ol type="1">
 <li><p><span class="math inline">\(S\subseteq I(S)\)</span></p></li>
-<li><p><span class="math inline">\(\forall t\in S\)</span>，若 <span class="math inline">\(t\)</span> 中的点后是一个非终结符(即 <span class="math inline">\(t\)</span> 的形式为 <span class="math inline">\(H\rightarrow \alpha\cdot A\beta\)</span>)，且存在产生式 <span class="math inline">\(A\rightarrow \gamma\)</span>，则 <span class="math inline">\(A\rightarrow\cdot\gamma\in I(S)\)</span></p></li>
+<li><p><span class="math inline">\(\forall t\in S\)</span>，若 <span
+class="math inline">\(t\)</span> 中的点后是一个非终结符(即 <span
+class="math inline">\(t\)</span> 的形式为 <span
+class="math inline">\(H\rightarrow \alpha\cdot
+A\beta\)</span>)，且存在产生式 <span class="math inline">\(A\rightarrow
+\gamma\)</span>，则 <span
+class="math inline">\(A\rightarrow\cdot\gamma\in I(S)\)</span></p></li>
 </ol>
-<p>感性的理解很直观，即如果我们已经读完了某个产生式右端的一个前缀，那么对于紧接着的一个非终结符 <span class="math inline">\(A\)</span>，我们接下来可以读任何以 <span class="math inline">\(A\)</span> 为head的产生式的右端的第一个符号。</p>
+<p>感性的理解很直观，即如果我们已经读完了某个产生式右端的一个前缀，那么对于紧接着的一个非终结符
+<span class="math inline">\(A\)</span>，我们接下来可以读任何以 <span
+class="math inline">\(A\)</span> 为head的产生式的右端的第一个符号。</p>
 <h3 id="项集作为状态的转移">项集作为状态的转移</h3>
 <p>现在有了一堆元素，自然考虑它们之间的关系以及它们和字符的相互作用。</p>
-<p>对于一个项集 <span class="math inline">\(S\)</span>，给定一个字符 <span class="math inline">\(c\)</span>，则我们记 <span class="math inline">\(trans(S,c)=T\)</span> 当且仅当：</p>
+<p>对于一个项集 <span class="math inline">\(S\)</span>，给定一个字符
+<span class="math inline">\(c\)</span>，则我们记 <span
+class="math inline">\(trans(S,c)=T\)</span> 当且仅当：</p>
 <ol type="1">
-<li><p><span class="math inline">\(\forall t\in T\)</span> 都有 <span class="math inline">\(\exists s\in S\)</span> 使得 <span class="math inline">\(next(s)=t\)</span> 且 <span class="math inline">\(cur(s)=c\)</span></p></li>
-<li><p><span class="math inline">\(\forall s\in S\)</span> 且 <span class="math inline">\(cur(s)=c\)</span> 都有 <span class="math inline">\(next(s)\in T\)</span></p></li>
+<li><p><span class="math inline">\(\forall t\in T\)</span> 都有 <span
+class="math inline">\(\exists s\in S\)</span> 使得 <span
+class="math inline">\(next(s)=t\)</span> 且 <span
+class="math inline">\(cur(s)=c\)</span></p></li>
+<li><p><span class="math inline">\(\forall s\in S\)</span> 且 <span
+class="math inline">\(cur(s)=c\)</span> 都有 <span
+class="math inline">\(next(s)\in T\)</span></p></li>
 </ol>
 <h2 id="slr">SLR</h2>
-<p>SLR(Simple LR Parsing)技术其实很简单，大概思路就是只分析最简单能分析得了的LR语法，其余一概不认</p>
-<p>假设我们的项集为 <span class="math inline">\(T=\left\{\;I_0,I_1,I_2\ldots\;\right\}\)</span></p>
+<p>SLR(Simple LR
+Parsing)技术其实很简单，大概思路就是只分析最简单能分析得了的LR语法，其余一概不认</p>
+<p>假设我们的项集为 <span
+class="math inline">\(T=\left\{\;I_0,I_1,I_2\ldots\;\right\}\)</span></p>
 <h3 id="构造action">构造<code>ACTION</code></h3>
 <p>假设我们要求 <span class="math inline">\(ACTION[S,c]\)</span></p>
 <ol type="1">
-<li><p>若 <span class="math inline">\(A\rightarrow\alpha\cdot\in S\)</span> ，且 <span class="math inline">\(c\in FOLLOW(A)\)</span>，则用 <span class="math inline">\(A\rightarrow\alpha\)</span> 规约</p></li>
-<li><p>若 <span class="math inline">\(A\rightarrow\alpha\cdot c\beta\in S\)</span>，则规定移入 <span class="math inline">\(trans(A,c)\)</span></p></li>
-<li><p>若 <span class="math inline">\({s_0}&#39;\rightarrow s_0\in S\)</span>，则表明完成了parsing</p></li>
+<li><p>若 <span class="math inline">\(A\rightarrow\alpha\cdot\in
+S\)</span> ，且 <span class="math inline">\(c\in
+FOLLOW(A)\)</span>，则用 <span
+class="math inline">\(A\rightarrow\alpha\)</span> 规约</p></li>
+<li><p>若 <span class="math inline">\(A\rightarrow\alpha\cdot c\beta\in
+S\)</span>，则规定移入 <span
+class="math inline">\(trans(A,c)\)</span></p></li>
+<li><p>若 <span class="math inline">\({s_0}&#39;\rightarrow s_0\in
+S\)</span>，则表明完成了parsing</p></li>
 <li><p>最后在空的地方填上错误处理/报错</p></li>
 </ol>
 <h3 id="构造-goto">构造 <code>GOTO</code></h3>
-<p>非常简单，规定 <span class="math inline">\(GOTO[x,ch]=trans(I_x,ch)\)</span></p>
+<p>非常简单，规定 <span
+class="math inline">\(GOTO[x,ch]=trans(I_x,ch)\)</span></p>
 <p>大概总结一下。LR分析最重要的就是解决"何时规约"的问题，因为如果不能规约就必须移入了</p>
-<p>SLR给出的方案就是，如果我们走到了某个产生式的右端，且紧接着出现了一个可以立即出现在产生式左端之后的终结符，那么就立刻规约到这个产生式。其余的情况则是能移入就移入。其实也就是"能规约就立刻规约，否则能移入就立刻移入" 的意思......</p>
+<p>SLR给出的方案就是，如果我们走到了某个产生式的右端，且紧接着出现了一个可以立即出现在产生式左端之后的终结符，那么就立刻规约到这个产生式。其余的情况则是能移入就移入。其实也就是"能规约就立刻规约，否则能移入就立刻移入"
+的意思......</p>
 <p>SLR的缺点很明显，存在规约-规约冲突的时候不能做(因为这不是SLR语法的范围)，并且规约策略过于"aggressive"，导致可能得到的局部解走不到一个全局解。课程视频说LALR很好地平衡了LR(1)和SLR的优缺点，但是这部分我还没看。</p>
 <h2 id="错误恢复">错误恢复</h2>
 <p>很显然我们不可能每次编译只找到一个错就停下来。假设每次只报一个错，代码有一万个错的话.....</p>
 <p>因此需要一种策略，在找到错误(无法匹配任何一种语法模式)时，迅速恢复到正常模式，对后续的(可能正常的)代码进行检测。</p>
-<p>主要讲三种：panic mode和phrase level recovery，还有一种属于体贴型服务</p>
+<p>主要讲三种：panic mode和phrase level
+recovery，还有一种属于体贴型服务</p>
 <p>xc原话"由于程序猿写bug的创造力实在太强，甚至会搞爆编译器，因此要求编译器正确找出所有的错也是很困难的事情。"</p>
-<p>error recovery的策略通常是根据经验得来的trick，也就是<strong>完全</strong>不具有普遍性。这也是为什么报错信息这么难读</p>
+<p>error
+recovery的策略通常是根据经验得来的trick，也就是<strong>完全</strong>不具有普遍性。这也是为什么报错信息这么难读</p>
 <h3 id="panic-mode">Panic Mode</h3>
-<p>这一策略可以描述为：若栈顶的终结符 <span class="math inline">\(A\)</span> 遇到了无法匹配的非终结符 <span class="math inline">\(c\)</span>，则开始一直往后读输入的字符流，直到找到某个字符 <span class="math inline">\(c&#39;\in Syn(A)\)</span>，停止panic mode并弹出栈顶，然后往后继续分析。</p>
-<p>这里的 <span class="math inline">\(Syn(A)\)</span> 是一个字符集，它<strong>通常</strong>表示了一个语法单元的结束(例如一个分号，一个换行，一个右花括号)。意思是 <span class="math inline">\(A\)</span> 已经识别不出来了，于是赶快找到(可能)包含 <span class="math inline">\(A\)</span> 的最小(尽可能小)语法单元，把它和 <span class="math inline">\(A\)</span> 一起丢弃。</p>
+<p>这一策略可以描述为：若栈顶的终结符 <span
+class="math inline">\(A\)</span> 遇到了无法匹配的非终结符 <span
+class="math inline">\(c\)</span>，则开始一直往后读输入的字符流，直到找到某个字符
+<span class="math inline">\(c&#39;\in Syn(A)\)</span>，停止panic
+mode并弹出栈顶，然后往后继续分析。</p>
+<p>这里的 <span class="math inline">\(Syn(A)\)</span>
+是一个字符集，它<strong>通常</strong>表示了一个语法单元的结束(例如一个分号，一个换行，一个右花括号)。意思是
+<span class="math inline">\(A\)</span>
+已经识别不出来了，于是赶快找到(可能)包含 <span
+class="math inline">\(A\)</span> 的最小(尽可能小)语法单元，把它和 <span
+class="math inline">\(A\)</span> 一起丢弃。</p>
 <p>举个生活中的例子就是，你一边听老师上课，一边记笔记。但是因为中间分神了，导致手上还在写第一页，老师已经讲到第五页了。于是你迅速往后跳，直到找到当前老师正在讲的位置，然后继续跟着记笔记(泪</p>
 <h3 id="phrase-level-recovery">Phrase Level Recovery</h3>
 <p>意思是我们可以对输入进行若干插入、删除、修改操作，使得它成为一段正确符合语法的串。</p>

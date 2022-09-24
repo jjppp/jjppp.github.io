@@ -185,12 +185,26 @@
       </div>
       <div class="markdown-body">
         <h1 id="zero-sum-games">Zero Sum Games</h1>
-<p>即原本讨论的收益矩阵有两个，分别对应于玩家1和玩家2。零和游戏保证了 <span class="math inline">\(A+B=O\)</span>，这说明只需要一个唯一的矩阵即可建模游戏收益，通常规定为玩家1的收益</p>
-<p>考虑一个混合策略outcome <span class="math inline">\((p,q)\)</span>，对于玩家1而言收益就是 <span class="math inline">\(p^\intercal Aq\)</span>，玩家2就是 <span class="math inline">\(-p^\intercal Aq\)</span>。对于纯策略只需要让概率分布坍缩为一个点就行了。</p>
+<p>即原本讨论的收益矩阵有两个，分别对应于玩家1和玩家2。零和游戏保证了
+<span
+class="math inline">\(A+B=O\)</span>，这说明只需要一个唯一的矩阵即可建模游戏收益，通常规定为玩家1的收益</p>
+<p>考虑一个混合策略outcome <span
+class="math inline">\((p,q)\)</span>，对于玩家1而言收益就是 <span
+class="math inline">\(p^\intercal Aq\)</span>，玩家2就是 <span
+class="math inline">\(-p^\intercal
+Aq\)</span>。对于纯策略只需要让概率分布坍缩为一个点就行了。</p>
 <h1 id="min-max">Min-Max</h1>
 <p>以下只讨论玩家1，玩家2是类似的。</p>
-<p>对于任意的玩家2的混合策略 <span class="math inline">\(q\)</span>，玩家1必然会选择使得 <span class="math inline">\(p^\intercal Aq\)</span> 最大化的 <span class="math inline">\(p\)</span>，即 <span class="math inline">\(p=\text{argmax } p^\intercal Aq\)</span></p>
-<p>而对于任意玩家1的混合策略 <span class="math inline">\(p\)</span>，玩家2必然会选择使得 <span class="math inline">\(p^\intercal Aq\)</span> 最小化的 <span class="math inline">\(q\)</span>，这说明 <span class="math inline">\(p=\text{argmax}_p\min_qp^\intercal Aq\)</span></p>
+<p>对于任意的玩家2的混合策略 <span
+class="math inline">\(q\)</span>，玩家1必然会选择使得 <span
+class="math inline">\(p^\intercal Aq\)</span> 最大化的 <span
+class="math inline">\(p\)</span>，即 <span
+class="math inline">\(p=\text{argmax } p^\intercal Aq\)</span></p>
+<p>而对于任意玩家1的混合策略 <span
+class="math inline">\(p\)</span>，玩家2必然会选择使得 <span
+class="math inline">\(p^\intercal Aq\)</span> 最小化的 <span
+class="math inline">\(q\)</span>，这说明 <span
+class="math inline">\(p=\text{argmax}_p\min_qp^\intercal Aq\)</span></p>
 <h2 id="定理1">定理1</h2>
 <span class="math display">\[\begin{aligned}
 
@@ -198,36 +212,49 @@
 
 \end{aligned}\]</span>
 <p>证明比较玄妙，就是一堆绕来绕去的min-max</p>
-<p>首先对于 <span class="math inline">\(U(p,q)\)</span> 将其视为关于 <span class="math inline">\(q\)</span> 的函数，那么有函数在任意点处的函数值不小于其最小值</p>
+<p>首先对于 <span class="math inline">\(U(p,q)\)</span> 将其视为关于
+<span class="math inline">\(q\)</span>
+的函数，那么有函数在任意点处的函数值不小于其最小值</p>
 <span class="math display">\[\begin{aligned}
 
 U(p,q)\ge \min_q U(p,q)
 
 \end{aligned}\]</span>
-<p>此时将 <span class="math inline">\(U(p,q)\)</span> 和 <span class="math inline">\(\min_q U(p,q)\)</span> 视为 <span class="math inline">\(p\)</span> 的函数，那么两侧加上关于 <span class="math inline">\(p\)</span> 的最大值仍然成立</p>
+<p>此时将 <span class="math inline">\(U(p,q)\)</span> 和 <span
+class="math inline">\(\min_q U(p,q)\)</span> 视为 <span
+class="math inline">\(p\)</span> 的函数，那么两侧加上关于 <span
+class="math inline">\(p\)</span> 的最大值仍然成立</p>
 <span class="math display">\[\begin{aligned}
 
 \max_p U(p,q)\geq \max_p \min_q U(p,q)
 
 \end{aligned}\]</span>
-<p>此时RHS是一个数，LHS是一个关于 <span class="math inline">\(q\)</span> 的函数，这说明函数的最小值至少为RHS，即</p>
+<p>此时RHS是一个数，LHS是一个关于 <span class="math inline">\(q\)</span>
+的函数，这说明函数的最小值至少为RHS，即</p>
 <span class="math display">\[\begin{aligned}
 
 \min_q \max_p U(p,q)\geq \max_p \min_q U(p,q)
 
 \end{aligned}\]</span>
 <h2 id="定理2">定理2</h2>
-<p>若 <span class="math inline">\(p^*,q^*\)</span> 分别是min-max和max-min时，有如下定理：</p>
-<p><span class="math inline">\((p^*,q^*)\)</span> 是MNE当且仅当它们得到的收益相等。</p>
+<p>若 <span class="math inline">\(p^*,q^*\)</span>
+分别是min-max和max-min时，有如下定理：</p>
+<p><span class="math inline">\((p^*,q^*)\)</span>
+是MNE当且仅当它们得到的收益相等。</p>
 <p>证明是某次作业</p>
 <h2 id="定理3">定理3</h2>
 <p>有限策略游戏的混合策略纳什均衡必然存在。</p>
-<p>这说明必然存在 <span class="math inline">\((p^*,q^*)\)</span> 这样的均衡局面，且这样的局面分别是min-max和max-min</p>
+<p>这说明必然存在 <span class="math inline">\((p^*,q^*)\)</span>
+这样的均衡局面，且这样的局面分别是min-max和max-min</p>
 <h2 id="定理4">定理4</h2>
-<p>在对称零和游戏中，均衡点必然收益为 <span class="math inline">\(0\)</span>。</p>
-<p>这是显然的，对称零和说明 <span class="math inline">\(A^\intercal=B=-A\)</span>，即对角线上收益为 <span class="math inline">\(0\)</span>。对于正收益的局面，玩家2总能移动到对角线上获得一个更高的收益；负收益局面玩家1同理。</p>
+<p>在对称零和游戏中，均衡点必然收益为 <span
+class="math inline">\(0\)</span>。</p>
+<p>这是显然的，对称零和说明 <span
+class="math inline">\(A^\intercal=B=-A\)</span>，即对角线上收益为 <span
+class="math inline">\(0\)</span>。对于正收益的局面，玩家2总能移动到对角线上获得一个更高的收益；负收益局面玩家1同理。</p>
 <h2 id="求解">求解</h2>
-<p>对于玩家1而言即为求解 <span class="math inline">\(\max_p \min_q p^\intercal Aq\)</span>，可以等价地转化为如下线性规划：</p>
+<p>对于玩家1而言即为求解 <span class="math inline">\(\max_p \min_q
+p^\intercal Aq\)</span>，可以等价地转化为如下线性规划：</p>
 <span class="math display">\[\begin{aligned}
 
 \text{maximize }v

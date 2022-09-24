@@ -186,31 +186,63 @@
       <div class="markdown-body">
         <p>##集合的大小</p>
 <p>有限集合的大小很容易比较，只需要数一数，比一比就完了</p>
-<p>而无限集不能这么做。我们在这里规定集合<span class="math inline">\(A\)</span>与<span class="math inline">\(B\)</span>大小相等当且仅当存在<span class="math inline">\(f: A\mapsto B\)</span>为双射</p>
+<p>而无限集不能这么做。我们在这里规定集合<span
+class="math inline">\(A\)</span>与<span
+class="math inline">\(B\)</span>大小相等当且仅当存在<span
+class="math inline">\(f: A\mapsto B\)</span>为双射</p>
 <p>定理：无限集至少和它的一个真子集有双射</p>
-<p>证明：考虑<span class="math inline">\(A\)</span>，由选择公理，我们可以取出<span class="math inline">\(B\subset A\)</span>且<span class="math inline">\(B\)</span>可数，那么<span class="math inline">\(f:A\mapsto A\backslash B_0\)</span>就可以取<span class="math inline">\(f(x)=\left\{\begin{aligned}\begin{equation}B_{i+1}, x=B_i\\x,x\not\in B\end{equation}\end{aligned}\right.\)</span></p>
+<p>证明：考虑<span
+class="math inline">\(A\)</span>，由选择公理，我们可以取出<span
+class="math inline">\(B\subset A\)</span>且<span
+class="math inline">\(B\)</span>可数，那么<span
+class="math inline">\(f:A\mapsto A\backslash B_0\)</span>就可以取<span
+class="math inline">\(f(x)=\left\{\begin{aligned}\begin{equation}B_{i+1},
+x=B_i\\x,x\not\in B\end{equation}\end{aligned}\right.\)</span></p>
 <p>##康托定理</p>
-<p>集合<span class="math inline">\(S\)</span>总是小于它的幂集<span class="math inline">\(2^S\)</span>，定义<span class="math inline">\(2^S=\left\{T|T\subset S\right\}\)</span></p>
+<p>集合<span class="math inline">\(S\)</span>总是小于它的幂集<span
+class="math inline">\(2^S\)</span>，定义<span
+class="math inline">\(2^S=\left\{T|T\subset S\right\}\)</span></p>
 <p>这里蕴含了一个幂集公理，即集合的幂集还是集合</p>
-<p>证明：假设存在一个双射<span class="math inline">\(f:S\mapsto 2^S\)</span>，那么取<span class="math inline">\(T=\left\{x|x\not\in f(x)\right\}\)</span>，显然这个集合不同于任何双射中的值域，这就得到了一个矛盾</p>
+<p>证明：假设存在一个双射<span class="math inline">\(f:S\mapsto
+2^S\)</span>，那么取<span class="math inline">\(T=\left\{x|x\not\in
+f(x)\right\}\)</span>，显然这个集合不同于任何双射中的值域，这就得到了一个矛盾</p>
 <p>这个方法叫对角线法则，很好用~</p>
 <p>##可数与不可数</p>
-<p>定义<span class="math inline">\(S\)</span>可数(countable)当且仅当<span class="math inline">\(\exists f:\mathbb N\mapsto S\)</span>为双射</p>
+<p>定义<span
+class="math inline">\(S\)</span>可数(countable)当且仅当<span
+class="math inline">\(\exists f:\mathbb N\mapsto S\)</span>为双射</p>
 <p>定理：<span class="math inline">\(\mathbb R\)</span>不可数</p>
 <p>证明：这是别处看来的，觉得更好理解一些(虽然没有用到对角线法则)</p>
-<p>这里先只证明<span class="math inline">\([0,1]\)</span>不可数。反证法：假设可数，则存在一种列举方式使得我们能穷尽所有的实数，记这个数列为<span class="math inline">\(\left\{a_n\right\}\)</span></p>
-<p>那么对于<span class="math inline">\(a_0\)</span>，我们可以把区间划分为<span class="math inline">\([0,\frac{1}{3}],[\frac{1}{3},\frac{2}{3}],[\frac{2}{3},1]\)</span>，则至多有两个区间包含了<span class="math inline">\(a_0\)</span>，取剩下的那个区间为下一次的操作区间，重复上述过程</p>
-<p>这样我们就得到了一系列区间套，最终会收敛到一个点<span class="math inline">\(\xi\)</span></p>
-<p><span class="math inline">\(\xi\in\mathbb R\)</span>，但是<span class="math inline">\(\forall i\)</span>都有<span class="math inline">\(a_i\neq \xi\)</span>，这样就推出了矛盾</p>
+<p>这里先只证明<span
+class="math inline">\([0,1]\)</span>不可数。反证法：假设可数，则存在一种列举方式使得我们能穷尽所有的实数，记这个数列为<span
+class="math inline">\(\left\{a_n\right\}\)</span></p>
+<p>那么对于<span
+class="math inline">\(a_0\)</span>，我们可以把区间划分为<span
+class="math inline">\([0,\frac{1}{3}],[\frac{1}{3},\frac{2}{3}],[\frac{2}{3},1]\)</span>，则至多有两个区间包含了<span
+class="math inline">\(a_0\)</span>，取剩下的那个区间为下一次的操作区间，重复上述过程</p>
+<p>这样我们就得到了一系列区间套，最终会收敛到一个点<span
+class="math inline">\(\xi\)</span></p>
+<p><span class="math inline">\(\xi\in\mathbb R\)</span>，但是<span
+class="math inline">\(\forall i\)</span>都有<span
+class="math inline">\(a_i\neq \xi\)</span>，这样就推出了矛盾</p>
 <p>##Cantor-Bernstein定理</p>
 <p>其实还有一个名字的，不会写……</p>
-<p>这个定理很直观：若<span class="math inline">\(|A|\le|B|\)</span>且<span class="math inline">\(|B|\le|A|\)</span>则<span class="math inline">\(|A|=|B|\)</span></p>
+<p>这个定理很直观：若<span
+class="math inline">\(|A|\le|B|\)</span>且<span
+class="math inline">\(|B|\le|A|\)</span>则<span
+class="math inline">\(|A|=|B|\)</span></p>
 <p>证明用到了巴拿赫定理</p>
 <p>##Banach定理</p>
-<p>若存在<span class="math inline">\(f:A\mapsto B\)</span>和<span class="math inline">\(g:B\mapsto A\)</span>都是单射，则</p>
-<p>存在<span class="math inline">\(A_0,A_1\)</span>满足<span class="math inline">\(A_0\cap A_1=\varnothing\)</span>，<span class="math inline">\(A_0\cup A_1=A\)</span></p>
-<p>存在<span class="math inline">\(B_0,B_1\)</span>满足<span class="math inline">\(B_0\cap B_1=\varnothing\)</span>，<span class="math inline">\(B_0\cup B_1=B\)</span></p>
-<p>使得<span class="math inline">\(f\left(A_0\right)=B_1\)</span>，<span class="math inline">\(g\left(B_0\right)=A_1\)</span></p>
+<p>若存在<span class="math inline">\(f:A\mapsto B\)</span>和<span
+class="math inline">\(g:B\mapsto A\)</span>都是单射，则</p>
+<p>存在<span class="math inline">\(A_0,A_1\)</span>满足<span
+class="math inline">\(A_0\cap A_1=\varnothing\)</span>，<span
+class="math inline">\(A_0\cup A_1=A\)</span></p>
+<p>存在<span class="math inline">\(B_0,B_1\)</span>满足<span
+class="math inline">\(B_0\cap B_1=\varnothing\)</span>，<span
+class="math inline">\(B_0\cup B_1=B\)</span></p>
+<p>使得<span class="math inline">\(f\left(A_0\right)=B_1\)</span>，<span
+class="math inline">\(g\left(B_0\right)=A_1\)</span></p>
 <p>证明有点长，先去吃个饭~</p>
 <p>剩下的内容可以看之前写过的集合大小比较的文章，差不多都齐了……</p>
 

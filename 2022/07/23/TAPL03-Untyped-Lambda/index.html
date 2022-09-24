@@ -186,41 +186,68 @@
       <div class="markdown-body">
         <p>之前写形式语义已经来过一次了，这里就跳过一点写过的</p>
 <h1 id="untyped-lambda-calculus">Untyped Lambda Calculus</h1>
-<p>如果说理解C语言的最好办法就是看看编译后得到的指令序列的执行过程，那么理解FP的最好办法就是看看最底层的 <span class="math inline">\(\lambda\)</span>-calculus 的执行过程。并且此处是 Untyped <span class="math inline">\(\lambda\)</span>-calculus，与汇编有奇妙的对应关系。</p>
-<p><span class="math inline">\(\lambda\)</span>-calculus 本身为理解语言(desugar)提供了工具，并且可以很容易地添加各种 construct 来得到更高级的语言，这与利用汇编来理解C语言和为 runtime 增加特性以支持上层语言也是类似的。</p>
+<p>如果说理解C语言的最好办法就是看看编译后得到的指令序列的执行过程，那么理解FP的最好办法就是看看最底层的
+<span class="math inline">\(\lambda\)</span>-calculus
+的执行过程。并且此处是 Untyped <span
+class="math inline">\(\lambda\)</span>-calculus，与汇编有奇妙的对应关系。</p>
+<p><span class="math inline">\(\lambda\)</span>-calculus
+本身为理解语言(desugar)提供了工具，并且可以很容易地添加各种 construct
+来得到更高级的语言，这与利用汇编来理解C语言和为 runtime
+增加特性以支持上层语言也是类似的。</p>
 <h2 id="syntax">Syntax</h2>
 <p><span class="math display">\[
 T::= x\mid \lambda x.\; T \mid T_1\;T_2
 \]</span></p>
 <p>分别叫 Variable Abstraction Application</p>
 <h3 id="value">Value</h3>
-<p>定义 ULC 中的值为形如 <span class="math inline">\(\lambda x.\;T\)</span> 的项，其中 <span class="math inline">\(T\)</span> 是任意项。可以发现这样意味着函数和值是等价的。</p>
+<p>定义 ULC 中的值为形如 <span class="math inline">\(\lambda
+x.\;T\)</span> 的项，其中 <span class="math inline">\(T\)</span>
+是任意项。可以发现这样意味着函数和值是等价的。</p>
 <h3 id="alpha"><span class="math inline">\(\alpha\)</span></h3>
-<p>即 renaming。若项 <span class="math inline">\(T\)</span> 经过 binder 换名后得到 <span class="math inline">\(T&#39;\)</span>，那么就称 <span class="math inline">\(T,T&#39; \;\alpha\)</span>-equivalent，记作 <span class="math inline">\(T=_\alpha T&#39;\)</span>，这是 <span class="math inline">\(T\)</span> 上的一个等价关系(同余关系)</p>
+<p>即 renaming。若项 <span class="math inline">\(T\)</span> 经过 binder
+换名后得到 <span class="math inline">\(T&#39;\)</span>，那么就称 <span
+class="math inline">\(T,T&#39; \;\alpha\)</span>-equivalent，记作 <span
+class="math inline">\(T=_\alpha T&#39;\)</span>，这是 <span
+class="math inline">\(T\)</span> 上的一个等价关系(同余关系)</p>
 <h3 id="beta"><span class="math inline">\(\beta\)</span></h3>
-<p>定义形如 <span class="math inline">\((\lambda x.\; T)\;T&#39;\)</span> 的项为 redex(Reducible Expression)，含义为可以进行一步执行的语句。这样一次 apply 操作也叫做 <span class="math inline">\(\beta\)</span>-reduction。</p>
-<p>基于 <span class="math inline">\(\beta\)</span>-reduction 可以定义二元关系 <span class="math inline">\(\rightarrow_\beta\)</span>、<span class="math inline">\(\twoheadrightarrow_\beta\)</span>、<span class="math inline">\(=_\beta\)</span>，分别表示一步规约、任意多步规约、在规约意义下的等价关系</p>
+<p>定义形如 <span class="math inline">\((\lambda x.\;
+T)\;T&#39;\)</span> 的项为 redex(Reducible
+Expression)，含义为可以进行一步执行的语句。这样一次 apply 操作也叫做
+<span class="math inline">\(\beta\)</span>-reduction。</p>
+<p>基于 <span class="math inline">\(\beta\)</span>-reduction
+可以定义二元关系 <span
+class="math inline">\(\rightarrow_\beta\)</span>、<span
+class="math inline">\(\twoheadrightarrow_\beta\)</span>、<span
+class="math inline">\(=_\beta\)</span>，分别表示一步规约、任意多步规约、在规约意义下的等价关系</p>
 <h2 id="semantics">Semantics</h2>
-<p>这里默认大家都会项的替换了(回去看数理逻辑/形式语义课件)，关键在于给 redex 定序</p>
-<h3 id="full-beta-reduction">full <span class="math inline">\(\beta\)</span>-reduction</h3>
+<p>这里默认大家都会项的替换了(回去看数理逻辑/形式语义课件)，关键在于给
+redex 定序</p>
+<h3 id="full-beta-reduction">full <span
+class="math inline">\(\beta\)</span>-reduction</h3>
 <p><span class="math display">\[
 \begin{aligned}
-&amp; \frac{T\rightarrow T&#39;}{\lambda x.\; T\rightarrow \lambda x.\; T&#39;} \\\;\\
-&amp; \frac{T_1\rightarrow T_1&#39;}{T_1\;T_2\rightarrow T_1&#39;\; T_2} \\\;\\
-&amp; \frac{T_2\rightarrow T_2&#39;}{T_1\;T_2\rightarrow T_1\; T_2&#39;} \\\;\\
+&amp; \frac{T\rightarrow T&#39;}{\lambda x.\; T\rightarrow \lambda x.\;
+T&#39;} \\\;\\
+&amp; \frac{T_1\rightarrow T_1&#39;}{T_1\;T_2\rightarrow T_1&#39;\; T_2}
+\\\;\\
+&amp; \frac{T_2\rightarrow T_2&#39;}{T_1\;T_2\rightarrow T_1\; T_2&#39;}
+\\\;\\
 &amp; \overline{(\lambda x.\; T)\;T&#39;\rightarrow T[T&#39;/x]}
 \end{aligned}
 \]</span></p>
-<p>这四条规则是平级的，意思是每次随便挑一个 redex 做 <span class="math inline">\(\beta\)</span>-reduction</p>
+<p>这四条规则是平级的，意思是每次随便挑一个 redex 做 <span
+class="math inline">\(\beta\)</span>-reduction</p>
 <h3 id="normal-order-strategy">normal order strategy</h3>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; \overline{(\lambda x.\; T)\;T&#39;\rightarrow T[T&#39;/x]} \\\;\\
-&amp; \frac{T\rightarrow T&#39;}{\lambda x.\; T\rightarrow \lambda x.\; T&#39;} \\\;\\
+&amp; \frac{T\rightarrow T&#39;}{\lambda x.\; T\rightarrow \lambda x.\;
+T&#39;} \\\;\\
 &amp; \frac{T_1\rightarrow T_1&#39;}{T_1\;T_2\rightarrow T_1&#39;\; T_2}
 \end{aligned}
 \]</span></p>
-<p>这三条规则是从上到下的顺序依次执行的。normal order strategy 说的就是每次找到最左、最外侧的 redex 执行一步。</p>
+<p>这三条规则是从上到下的顺序依次执行的。normal order strategy
+说的就是每次找到最左、最外侧的 redex 执行一步。</p>
 <h3 id="call-by-name-strategy">call by name strategy</h3>
 <p><span class="math display">\[
 \begin{aligned}
@@ -228,13 +255,20 @@ T::= x\mid \lambda x.\; T \mid T_1\;T_2
 &amp; \frac{T_1\rightarrow T_1&#39;}{T_1\;T_2\rightarrow T_1&#39;\; T_2}
 \end{aligned}
 \]</span></p>
-<p>意思是不能对函数体预先执行，并且在计算函数的时候将实参表达式作为整体替换掉函数体中的形参(回忆 <span class="math inline">\(\lambda\)</span>-calculus 中项的替换需要一些小操作满足替换后语义不变)，这就是 call-by-name 的含义。</p>
-<p>haskell 使用的是 call-by-name 的一个变体 call-by-need，含义就是把相同的多个表达式捏成一个(指向同一个表达式实体)，参数仍然整体代换，并只在需要时求值。这样得到的其实是一个 Abstract Syntax Graph。</p>
+<p>意思是不能对函数体预先执行，并且在计算函数的时候将实参表达式作为整体替换掉函数体中的形参(回忆
+<span class="math inline">\(\lambda\)</span>-calculus
+中项的替换需要一些小操作满足替换后语义不变)，这就是 call-by-name
+的含义。</p>
+<p>haskell 使用的是 call-by-name 的一个变体
+call-by-need，含义就是把相同的多个表达式捏成一个(指向同一个表达式实体)，参数仍然整体代换，并只在需要时求值。这样得到的其实是一个
+Abstract Syntax Graph。</p>
 <h3 id="call-by-value-strategy">call by value strategy</h3>
 <p><span class="math display">\[
 \begin{aligned}
-&amp; \overline{(\lambda x.\; T)\;(\lambda y.\; T&#39;)\rightarrow T[\lambda y.\; T&#39;/x]} \\\;\\
-&amp; \frac{T&#39;\rightarrow T&#39;&#39;}{(\lambda x.\; T)\;T&#39;\rightarrow (\lambda x.\; T)\;T&#39;&#39;} \\\;\\
+&amp; \overline{(\lambda x.\; T)\;(\lambda y.\; T&#39;)\rightarrow
+T[\lambda y.\; T&#39;/x]} \\\;\\
+&amp; \frac{T&#39;\rightarrow T&#39;&#39;}{(\lambda x.\;
+T)\;T&#39;\rightarrow (\lambda x.\; T)\;T&#39;&#39;} \\\;\\
 &amp; \frac{T_1\rightarrow T_1&#39;}{T_1\;T_2\rightarrow T_1&#39;\; T_2}
 \end{aligned}
 \]</span></p>
@@ -253,11 +287,20 @@ T::= x\mid \lambda x.\; T \mid T_1\;T_2
 <p><span class="math display">\[
 \text{false}\;\Omega\; id
 \]</span></p>
-<p>CBV 将不会终止，CBN 和 normal order 将会得到 <span class="math inline">\(\text{id}\)</span>，full <span class="math inline">\(\beta\)</span>-reduction 的结果则是不确定的(很显然它至少包含了其余三种的结果)</p>
+<p>CBV 将不会终止，CBN 和 normal order 将会得到 <span
+class="math inline">\(\text{id}\)</span>，full <span
+class="math inline">\(\beta\)</span>-reduction
+的结果则是不确定的(很显然它至少包含了其余三种的结果)</p>
 <h2 id="adt">ADT</h2>
-<p>之前也记了很多用 <span class="math inline">\(\lambda\)</span>-calculus 来编码数据的操作。当我们在讨论 encode sth. in ULC 的时候，我们<strong>实际上是在建立某个数学模型到代码的同构</strong>。</p>
+<p>之前也记了很多用 <span
+class="math inline">\(\lambda\)</span>-calculus
+来编码数据的操作。当我们在讨论 encode sth. in ULC
+的时候，我们<strong>实际上是在建立某个数学模型到代码的同构</strong>。</p>
 <p>常数据、数据构造子、数据上的操作函数共同构成了抽象数据类型的“公理”，即定义了这个类型中元素的集合。</p>
-<p>以 list[A] 为例。我们不妨假设 <span class="math inline">\(A\)</span> 可以被 ULC encode，此时记 <span class="math inline">\(L\)</span> 为集合 <span class="math inline">\(A\)</span> 上所有 list 构成的集合，那么有</p>
+<p>以 list[A] 为例。我们不妨假设 <span class="math inline">\(A\)</span>
+可以被 ULC encode，此时记 <span class="math inline">\(L\)</span> 为集合
+<span class="math inline">\(A\)</span> 上所有 list
+构成的集合，那么有</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; \overline{\text{NIL}\in L} \\\;\\
@@ -266,9 +309,19 @@ T::= x\mid \lambda x.\; T \mid T_1\;T_2
 &amp; \frac{l\in L,a\in A}{\text{tail}(\text{cons}(a,l))=l}
 \end{aligned}
 \]</span></p>
-<p>此处 <span class="math inline">\(\text{NIL}\)</span> 为常元，<span class="math inline">\(\text{cons}\colon A\times L\mapsto L\)</span> 是数据构造子，<span class="math inline">\(\text{head}\colon L\mapsto A\)</span> 和 <span class="math inline">\(\text{tail}\colon L\mapsto L\)</span> 是数据上的操作函数。这就是一个简单的代数(公理)系统。</p>
-<p>encoding 的过程就是构造所有 ULC 的项 <span class="math inline">\(T\)</span> 到所有链表 <span class="math inline">\(L\)</span> 的双射 <span class="math inline">\(\pi\colon L\mapsto T\)</span>，以及对应的数据构造子、操作函数，使得这些映射对于这些操作而言是同构的。</p>
-<p>从工程的角度看，这就是给出了一个 formal specification，然后我们用 formal 的方法证明了这个encoding(实现)是完全符合 spec 的。就这么简单。</p>
+<p>此处 <span class="math inline">\(\text{NIL}\)</span> 为常元，<span
+class="math inline">\(\text{cons}\colon A\times L\mapsto L\)</span>
+是数据构造子，<span class="math inline">\(\text{head}\colon L\mapsto
+A\)</span> 和 <span class="math inline">\(\text{tail}\colon L\mapsto
+L\)</span> 是数据上的操作函数。这就是一个简单的代数(公理)系统。</p>
+<p>encoding 的过程就是构造所有 ULC 的项 <span
+class="math inline">\(T\)</span> 到所有链表 <span
+class="math inline">\(L\)</span> 的双射 <span
+class="math inline">\(\pi\colon L\mapsto
+T\)</span>，以及对应的数据构造子、操作函数，使得这些映射对于这些操作而言是同构的。</p>
+<p>从工程的角度看，这就是给出了一个 formal specification，然后我们用
+formal 的方法证明了这个encoding(实现)是完全符合 spec
+的。就这么简单。</p>
 <h2 id="recursion">Recursion</h2>
 <p>大名鼎鼎的 Y-combinator，给出 call-by-name 时的一种定义</p>
 <p><span class="math display">\[
@@ -278,27 +331,55 @@ Y = \lambda F.\; (\lambda x.\; F\; (x\; x))\; (\lambda x.\; F\; (x\; x))
 <p><span class="math display">\[
 YF = F\; ((\lambda x.\; F\; (x\; x))\; (\lambda x.\; F\; (x\; x)))=F(YF)
 \]</span></p>
-<p>在 call-by-value 时，求值顺序会强迫 <span class="math inline">\(Y\)</span> 不断执行，意味着没法终止。这时需要一个小技巧把 <span class="math inline">\(x\; x\)</span> 这样的项在不改变语义的情况下变成值</p>
+<p>在 call-by-value 时，求值顺序会强迫 <span
+class="math inline">\(Y\)</span>
+不断执行，意味着没法终止。这时需要一个小技巧把 <span
+class="math inline">\(x\; x\)</span>
+这样的项在不改变语义的情况下变成值</p>
 <p><span class="math display">\[
-Y&#39;=\lambda F.\; (\lambda x.\; F\; (\lambda y.\; x\;x\;y))\; (\lambda x.\; F\; (\lambda y.\; x\;x\;y))
+Y&#39;=\lambda F.\; (\lambda x.\; F\; (\lambda y.\; x\;x\;y))\; (\lambda
+x.\; F\; (\lambda y.\; x\;x\;y))
 \]</span></p>
-<p>非常简单，用C语言类比也就是把一条可以执行化简的表达式 <code>a+b+c;</code> 变成了一个函数 <code>int func() &#123; return a+b+c; &#125;</code> 使得执行不能深入函数体内(hso)。</p>
+<p>非常简单，用C语言类比也就是把一条可以执行化简的表达式
+<code>a+b+c;</code> 变成了一个函数
+<code>int func() &#123; return a+b+c; &#125;</code>
+使得执行不能深入函数体内(hso)。</p>
 <h1 id="de-bruijn-form">De Bruijn Form</h1>
 <p>Q: 这个名字怎么念？</p>
-<p><span class="math inline">\(=_\alpha\)</span> 是等价关系，因此可以做 <span class="math inline">\(T/=_\alpha\)</span> 得到所有项在换名等价意义下的代表元。即我们希望研究一种等价意义下最简单的形式。</p>
-<p>实际上 De Bruijn 敏锐意识到自然数就可以作为变量名，并且自然数天生可以表征一些 AST 上的结构信息，使得我们的解释器可以写起来更方便。</p>
+<p><span class="math inline">\(=_\alpha\)</span> 是等价关系，因此可以做
+<span class="math inline">\(T/=_\alpha\)</span>
+得到所有项在换名等价意义下的代表元。即我们希望研究一种等价意义下最简单的形式。</p>
+<p>实际上 De Bruijn
+敏锐意识到自然数就可以作为变量名，并且自然数天生可以表征一些 AST
+上的结构信息，使得我们的解释器可以写起来更方便。</p>
 <h2 id="intuition">intuition</h2>
-<p>考虑 ULC 这个树形结构，一个约束变量的 binder 必然是其出现节点的祖先。De Bruijn Form 考虑的就是用自然数来表征每个约束变量 binder 的位置，即从当前节点要往上爬多少层 Abstraction 才能走到 binder(因为只有 Abstraction 会引入新的 binder)。不妨记这个为 binder depth。</p>
+<p>考虑 ULC 这个树形结构，一个约束变量的 binder
+必然是其出现节点的祖先。De Bruijn Form
+考虑的就是用自然数来表征每个约束变量 binder
+的位置，即从当前节点要往上爬多少层 Abstraction 才能走到 binder(因为只有
+Abstraction 会引入新的 binder)。不妨记这个为 binder depth。</p>
 <h2 id="naming-context">naming context</h2>
-<p>若 <span class="math inline">\(FV(T)=\varnothing\)</span>，则称 <span class="math inline">\(T\)</span> 为封闭项(closed term)或组合子(combinator)。</p>
-<p>还可以定义 <span class="math inline">\(\Lambda^k=\Set{t\in T\mid \lvert{FV(t)}\rvert=k}\)</span>，那么 combinator 就是 <span class="math inline">\(\Lambda^0\)</span></p>
-<p><span class="math inline">\(FV(T)\)</span> 中的变量是找不到 binder 的，因此引入 naming context 的概念来给自由变量规定 binder，定义 context 为 <span class="math inline">\(\Gamma\colon V\mapsto \mathbb N\)</span> 用以表示规约的环境。</p>
+<p>若 <span class="math inline">\(FV(T)=\varnothing\)</span>，则称 <span
+class="math inline">\(T\)</span> 为封闭项(closed
+term)或组合子(combinator)。</p>
+<p>还可以定义 <span class="math inline">\(\Lambda^k=\Set{t\in T\mid
+\lvert{FV(t)}\rvert=k}\)</span>，那么 combinator 就是 <span
+class="math inline">\(\Lambda^0\)</span></p>
+<p><span class="math inline">\(FV(T)\)</span> 中的变量是找不到 binder
+的，因此引入 naming context 的概念来给自由变量规定 binder，定义 context
+为 <span class="math inline">\(\Gamma\colon V\mapsto \mathbb N\)</span>
+用以表示规约的环境。</p>
 <h2 id="shifting">shifting</h2>
-<p>注意到替换 <span class="math inline">\(T[U/x]\)</span> 本质上是两棵 AST 的嫁接，<span class="math inline">\(U\)</span> 中的自由变量的 binder 应当整体增加 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(T\)</span> 中的 binder depth。</p>
-<p>结构归纳地定义函数 <span class="math inline">\(\uparrow_c^d(t)\)</span> 如下</p>
+<p>注意到替换 <span class="math inline">\(T[U/x]\)</span> 本质上是两棵
+AST 的嫁接，<span class="math inline">\(U\)</span> 中的自由变量的 binder
+应当整体增加 <span class="math inline">\(x\)</span> 在 <span
+class="math inline">\(T\)</span> 中的 binder depth。</p>
+<p>结构归纳地定义函数 <span
+class="math inline">\(\uparrow_c^d(t)\)</span> 如下</p>
 <p><span class="math display">\[
 \begin{aligned}
-\uparrow_c^d(k)&amp;=\left\{\begin{aligned}k+d&amp;,k\ge c\\k&amp;,k&lt;c\end{aligned}\right. \\
+\uparrow_c^d(k)&amp;=\left\{\begin{aligned}k+d&amp;,k\ge
+c\\k&amp;,k&lt;c\end{aligned}\right. \\
 \uparrow_c^d(\lambda x.\; t)&amp;=\lambda x. \uparrow_{c+1}^d(t) \\
 \uparrow_c^d(m\; n)&amp;=\uparrow_c^d(m)\;\uparrow_c^d(n)
 \end{aligned}

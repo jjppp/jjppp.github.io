@@ -187,13 +187,28 @@
         <h1 id="type-system">Type System</h1>
 <h2 id="definition">Definition</h2>
 <blockquote>
-<p>A type system is a tractable syntactic method for proving the absence of certain program behaviors by classifying phrases according to the kinds of values they compute.</p>
+<p>A type system is a tractable syntactic method for proving the absence
+of certain program behaviors by classifying phrases according to the
+kinds of values they compute.</p>
 </blockquote>
-<p>原文用的plausible来描述这段定义。实际上 Type System 说的就是种静态检查代码的一种方法，其计算的结果是对一段程序运行状态的近似(是不是想到了静态分析)。具体而言，这种计算是通过给元素赋予类型来进行的，赋予类型的过程通常是根据其语法结构开展的(syntax-directed/compositional)。</p>
+<p>原文用的plausible来描述这段定义。实际上 Type System
+说的就是种静态检查代码的一种方法，其计算的结果是对一段程序运行状态的近似(是不是想到了静态分析)。具体而言，这种计算是通过给元素赋予类型来进行的，赋予类型的过程通常是根据其语法结构开展的(syntax-directed/compositional)。</p>
 <h2 id="static-dynamic">static &amp; dynamic</h2>
-<p>我们说一种语言是静态类型的(statically typed)，意味着这门语言的类型检查(type checking)是在编译期完成的。对应的是动态类型(dynamically typed)，说明这门语言的类型检查是在运行时进行的。</p>
-<p>很显然type checker需要做出保守的估计，即某些实质上正确的程序没法通过type checking。这是因为type checker往往只能证明<strong>某些情况下</strong>的<strong>某些</strong>错误<strong>不存在</strong>。对于没法证明/太难证明但实质上正确的程序就会拒绝。这里就引入了表达能力(实质上正确的程序集合)和保守性(type checker认为正确的程序集合)的权衡，一般而言会偏向限制表达能力来让type checker更好做，这样也更容易写出正确的程序(参见抖S的Rust编译器)。</p>
-<p>通常 Type System 也只能证明通过检查的程序不会有某些错误，即只能检测所有错误的一个子集。那些Type System可以预防的错误称为运行时类型错误(run-time type errors)。然而前面说过type checker没法检测出所有错误，因此这些错误可以在运行时被检测处理。</p>
+<p>我们说一种语言是静态类型的(statically
+typed)，意味着这门语言的类型检查(type
+checking)是在编译期完成的。对应的是动态类型(dynamically
+typed)，说明这门语言的类型检查是在运行时进行的。</p>
+<p>很显然type
+checker需要做出保守的估计，即某些实质上正确的程序没法通过type
+checking。这是因为type
+checker往往只能证明<strong>某些情况下</strong>的<strong>某些</strong>错误<strong>不存在</strong>。对于没法证明/太难证明但实质上正确的程序就会拒绝。这里就引入了表达能力(实质上正确的程序集合)和保守性(type
+checker认为正确的程序集合)的权衡，一般而言会偏向限制表达能力来让type
+checker更好做，这样也更容易写出正确的程序(参见抖S的Rust编译器)。</p>
+<p>通常 Type System
+也只能证明通过检查的程序不会有某些错误，即只能检测所有错误的一个子集。那些Type
+System可以预防的错误称为运行时类型错误(run-time type
+errors)。然而前面说过type
+checker没法检测出所有错误，因此这些错误可以在运行时被检测处理。</p>
 <h2 id="safe-unsafe">safe &amp; unsafe</h2>
 <p>另一对概念是safe-unsafe，原文给的定义是</p>
 <blockquote>
@@ -204,7 +219,8 @@
 <p>A safe language is completely defined by its programmer's manual.</p>
 </blockquote>
 <p>具体而言就是语言的行为完全由specification定义，不存在UB和编译器自由实现的部分。</p>
-<p>language safety和type safety是两回事。type checking是达到language safety的一种手段，另一种手段则是运行时检测处理，例如Java的ArrayOutOfBound异常等等。</p>
+<p>language safety和type safety是两回事。type checking是达到language
+safety的一种手段，另一种手段则是运行时检测处理，例如Java的ArrayOutOfBound异常等等。</p>
 <p>例如lisp就是动态类型且安全的语言，Java则是静态类型且安全的语言(回想Java中多如牛毛的Exception)。</p>
 <h2 id="benefits">Benefits</h2>
 <ul>
@@ -214,11 +230,15 @@
 <li>语言安全</li>
 <li>效率更高，类型标注后可以省去不必要的运行时检查</li>
 </ul>
-<p>还可以带来一些安全性的提升，例如引入priority作为类型以保证高机密变量的值不会流入低机密的变量(回想SPA提到的Taint Analysis)</p>
+<p>还可以带来一些安全性的提升，例如引入priority作为类型以保证高机密变量的值不会流入低机密的变量(回想SPA提到的Taint
+Analysis)</p>
 <h2 id="design">Design</h2>
-<p>通常类型系统的设计和语言息息相关。首先类型注解本身就是语法的一部分。动态类型的语言往往更灵活、(看起来)更简单。如果想要给动态类型语言加上静态的类型检查，往往要丧失一些表达能力(前面提到的type checker的保守性)。</p>
-<p>类型的设计也是可以取巧的，例如可以引入类型推导(type inference)使得语法更简洁，例如Java中就可以这么写</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>var sum = <span class="dv">1</span> + <span class="dv">2</span>;</span></code></pre></div>
+<p>通常类型系统的设计和语言息息相关。首先类型注解本身就是语法的一部分。动态类型的语言往往更灵活、(看起来)更简单。如果想要给动态类型语言加上静态的类型检查，往往要丧失一些表达能力(前面提到的type
+checker的保守性)。</p>
+<p>类型的设计也是可以取巧的，例如可以引入类型推导(type
+inference)使得语法更简洁，例如Java中就可以这么写</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> sum <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span><span class="op">;</span></span></code></pre></div>
 <p>此处<code>sum</code>的类型是可以在编译器获得的。</p>
 
       </div>

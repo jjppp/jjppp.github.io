@@ -185,24 +185,63 @@
       </div>
       <div class="markdown-body">
         <h1 id="多项式的表示">多项式的表示</h1>
-<p>最熟悉的是系数表示法，例如 <span class="math inline">\(P(x)=\sum_{i=0}^n a_i x^i\)</span></p>
-<p>系数表示法有它的好处：例如将 <span class="math inline">\(\Set{1,x,x^2\ldots}\)</span> 视为一组基时，系数恰好就是多项式在这组基下的坐标；例如对于任给的点 <span class="math inline">\(x\)</span> 可以计算多项式的值（<span class="math inline">\(O(n)\)</span> 次乘法）。但是在给出系数表示法后，对两个 <span class="math inline">\(n\)</span> 次多项式很难高效算乘积（还记得天才本科生Karatsuba吗）</p>
-<p>还可以是点值表示法。根据lagrange插值可知，一个 <span class="math inline">\(n\)</span> 次多项式可以由 <span class="math inline">\(n+1\)</span> 个点唯一确定。因此 <span class="math inline">\(P(x)\overset{\text{def} }= \Set{(x_0,y_0),(x_1,y_1)\ldots}\)</span></p>
-<p>此时计算 <span class="math inline">\(P(x)Q(x)\)</span> 只需要求出 <span class="math inline">\(2n+1\)</span> 个点值，然后将这些取值对应相乘即可得到 <span class="math inline">\(R(x)=P(x)Q(x)\)</span> 的点值，也就唯一确定了 <span class="math inline">\(R(x)\)</span></p>
-<p>因此我们希望有一种方法，对于给定的系数表示多项式 <span class="math inline">\(F(x),G(x)\)</span>，能够选取 <span class="math inline">\(2n+1\)</span> 个点</p>
-<p>对这 <span class="math inline">\(2n+1\)</span> 个点做插值后得到 <span class="math inline">\(F^*(x),G^*(x)\)</span> 的点值表示，相乘最后还原得到 <span class="math inline">\(F(x)G(x)\)</span> 的系数表示。</p>
+<p>最熟悉的是系数表示法，例如 <span
+class="math inline">\(P(x)=\sum_{i=0}^n a_i x^i\)</span></p>
+<p>系数表示法有它的好处：例如将 <span
+class="math inline">\(\Set{1,x,x^2\ldots}\)</span>
+视为一组基时，系数恰好就是多项式在这组基下的坐标；例如对于任给的点 <span
+class="math inline">\(x\)</span> 可以计算多项式的值（<span
+class="math inline">\(O(n)\)</span>
+次乘法）。但是在给出系数表示法后，对两个 <span
+class="math inline">\(n\)</span>
+次多项式很难高效算乘积（还记得天才本科生Karatsuba吗）</p>
+<p>还可以是点值表示法。根据lagrange插值可知，一个 <span
+class="math inline">\(n\)</span> 次多项式可以由 <span
+class="math inline">\(n+1\)</span> 个点唯一确定。因此 <span
+class="math inline">\(P(x)\overset{\text{def} }=
+\Set{(x_0,y_0),(x_1,y_1)\ldots}\)</span></p>
+<p>此时计算 <span class="math inline">\(P(x)Q(x)\)</span> 只需要求出
+<span class="math inline">\(2n+1\)</span>
+个点值，然后将这些取值对应相乘即可得到 <span
+class="math inline">\(R(x)=P(x)Q(x)\)</span> 的点值，也就唯一确定了
+<span class="math inline">\(R(x)\)</span></p>
+<p>因此我们希望有一种方法，对于给定的系数表示多项式 <span
+class="math inline">\(F(x),G(x)\)</span>，能够选取 <span
+class="math inline">\(2n+1\)</span> 个点</p>
+<p>对这 <span class="math inline">\(2n+1\)</span> 个点做插值后得到 <span
+class="math inline">\(F^*(x),G^*(x)\)</span>
+的点值表示，相乘最后还原得到 <span
+class="math inline">\(F(x)G(x)\)</span> 的系数表示。</p>
 <p>这就是FFT</p>
 <h1 id="fft">FFT</h1>
 <h2 id="dft">DFT</h2>
 <p>不妨假设多项式是 <span class="math inline">\(n=2^k\)</span> 次的</p>
-<p>考虑方程 <span class="math inline">\(x^n=1\)</span> 的所有复数解，它们构成了复平面单位圆上等距分布的 <span class="math inline">\(n\)</span> 个点，记为 <span class="math inline">\(\Set{\omega_i\mid \omega_i^n=1}\)</span></p>
-<p>选择这些点出自如下考虑：取 <span class="math inline">\(\Omega_n\)</span>，那么有 <span class="math inline">\({\Omega_{2n} }^2\overset{\text{def} }=\Set{x^2\mid x\in \Omega_{2n} }=\Omega_n\)</span>。这暗示我们可以通过类似分治的算法来每次将问题的规模减小一半。并且对于 <span class="math inline">\(\Omega_n\)</span> 而言，只需要其生成元 <span class="math inline">\(\omega_1=e^{\frac{2\pi}{n+1}i}\)</span> 即可完全表示。</p>
-<p>假设需要对 <span class="math inline">\(F(x)=\sum_{i=0}^{2n} a_ix^i\)</span> 插值，那么记 <span class="math inline">\(G(x)=\sum_{i=0}^{n} a_{2i}x^{i}\)</span>，<span class="math inline">\(H(x)=\sum_{i=0}^n a_{2i+1}x^{i}\)</span>，显然有</p>
+<p>考虑方程 <span class="math inline">\(x^n=1\)</span>
+的所有复数解，它们构成了复平面单位圆上等距分布的 <span
+class="math inline">\(n\)</span> 个点，记为 <span
+class="math inline">\(\Set{\omega_i\mid \omega_i^n=1}\)</span></p>
+<p>选择这些点出自如下考虑：取 <span
+class="math inline">\(\Omega_n\)</span>，那么有 <span
+class="math inline">\({\Omega_{2n} }^2\overset{\text{def} }=\Set{x^2\mid
+x\in \Omega_{2n}
+}=\Omega_n\)</span>。这暗示我们可以通过类似分治的算法来每次将问题的规模减小一半。并且对于
+<span class="math inline">\(\Omega_n\)</span> 而言，只需要其生成元 <span
+class="math inline">\(\omega_1=e^{\frac{2\pi}{n+1}i}\)</span>
+即可完全表示。</p>
+<p>假设需要对 <span class="math inline">\(F(x)=\sum_{i=0}^{2n}
+a_ix^i\)</span> 插值，那么记 <span
+class="math inline">\(G(x)=\sum_{i=0}^{n} a_{2i}x^{i}\)</span>，<span
+class="math inline">\(H(x)=\sum_{i=0}^n
+a_{2i+1}x^{i}\)</span>，显然有</p>
 <ol type="1">
 <li><p><span class="math inline">\(F(x)=G(x^2)+xH(x^2)\)</span></p></li>
-<li><p>原本要对 <span class="math inline">\(F(x)\)</span> 在 <span class="math inline">\(\Omega_{2n}\)</span> 上插值，现在要对 <span class="math inline">\(G(x),H(x)\)</span> 在 <span class="math inline">\(\Omega_n\)</span> 上插值</p></li>
+<li><p>原本要对 <span class="math inline">\(F(x)\)</span> 在 <span
+class="math inline">\(\Omega_{2n}\)</span> 上插值，现在要对 <span
+class="math inline">\(G(x),H(x)\)</span> 在 <span
+class="math inline">\(\Omega_n\)</span> 上插值</p></li>
 </ol>
-<p>主定理算一下就是 <span class="math inline">\(O(n\log n)\)</span> 的。</p>
+<p>主定理算一下就是 <span class="math inline">\(O(n\log n)\)</span>
+的。</p>
 <h2 id="idft">IDFT</h2>
 <p>考虑如下矩阵形式的DFT</p>
 <span class="math display">\[\begin{aligned}
@@ -240,8 +279,15 @@ F(\omega^0) \\ F(\omega^1) \\ \vdots \\ F(\omega^n)
 \end{bmatrix}
 
 \end{aligned}\]</span>
-<p>即我们的 <span class="math inline">\(\Omega_n\)</span> 是一组基，<span class="math inline">\(\Set{a_n}\)</span> 则是基下的坐标，作用一下就能得到多项式在 <span class="math inline">\(\Omega_n\)</span> 上的点值。</p>
-<p>这个矩阵 <span class="math inline">\(W\)</span> 非常经典，算一下行列式和逆就会发现对于IDFT的操作只需要取 <span class="math inline">\(\omega_1&#39;=-\omega_1\)</span> 做DFT即可实现逆变换，最后需要除掉一个系数 <span class="math inline">\(\frac{1}{n+1}\)</span></p>
+<p>即我们的 <span class="math inline">\(\Omega_n\)</span>
+是一组基，<span class="math inline">\(\Set{a_n}\)</span>
+则是基下的坐标，作用一下就能得到多项式在 <span
+class="math inline">\(\Omega_n\)</span> 上的点值。</p>
+<p>这个矩阵 <span class="math inline">\(W\)</span>
+非常经典，算一下行列式和逆就会发现对于IDFT的操作只需要取 <span
+class="math inline">\(\omega_1&#39;=-\omega_1\)</span>
+做DFT即可实现逆变换，最后需要除掉一个系数 <span
+class="math inline">\(\frac{1}{n+1}\)</span></p>
 
       </div>
       

@@ -186,63 +186,98 @@
       <div class="markdown-body">
         <h1 id="并发">并发</h1>
 <p>如果两件事情在逻辑上同时发生了, 那么我们就说它们并发了.</p>
-<p>在Linux上很容易用POSIX API创建新的执行流(线程), 可以利用 strace top man 等工具观察具体创建的原理 跑起来的效果和参数含义</p>
+<p>在Linux上很容易用POSIX API创建新的执行流(线程), 可以利用 strace top
+man 等工具观察具体创建的原理 跑起来的效果和参数含义</p>
 <h1 id="并发bug">并发Bug</h1>
-<p>并发带来的问题是指令原子性的破坏. 例如语句 <code>a = a + 1;</code> 可能会被编译为多条指令, 而中断到来的时刻是任意的, 甚至多条指令是并行执行的(显然在逻辑上并发)</p>
-<p>原子性是重要的多线程程序性质, 一般的库函数都能看到 MT-Safe 这样的描述.</p>
+<p>并发带来的问题是指令原子性的破坏. 例如语句 <code>a = a + 1;</code>
+可能会被编译为多条指令, 而中断到来的时刻是任意的,
+甚至多条指令是并行执行的(显然在逻辑上并发)</p>
+<p>原子性是重要的多线程程序性质, 一般的库函数都能看到 MT-Safe
+这样的描述.</p>
 <h2 id="互斥">互斥</h2>
-<p>为了保证一段代码的原子性, 引入互斥锁的概念. 经典的互斥锁利用硬件提供的原子操作机制可以实现目标代码的串行化(所有线程至多一个在当前时刻执行这段代码)</p>
+<p>为了保证一段代码的原子性, 引入互斥锁的概念.
+经典的互斥锁利用硬件提供的原子操作机制可以实现目标代码的串行化(所有线程至多一个在当前时刻执行这段代码)</p>
 <p>被原子化的代码叫做 Critical Section</p>
 <h2 id="编译优化">编译优化</h2>
-<p>GCC 的编译优化是基于单线程假设的, 因此在多线程下可能会行为不一致(回忆<code>volatile</code>)</p>
+<p>GCC 的编译优化是基于单线程假设的,
+因此在多线程下可能会行为不一致(回忆<code>volatile</code>)</p>
 <p>甚至会出现指令的重排(编译器级别)导致的原子性丧失/语义不一致.</p>
-<p>然而CPU也是动态多发射的, 类似的指令乱序仍然可能发生. 这使得某些关于指令顺序的假设会改变(翻阅TSO内存模型). 注意到内存的读/写相对运算指令而言是副作用指令, 因此这也意味着两段程序的 observable behaviour 会与顺序执行的单线程程序不一样. 具体如何需要看 ISA 手册.</p>
+<p>然而CPU也是动态多发射的, 类似的指令乱序仍然可能发生.
+这使得某些关于指令顺序的假设会改变(翻阅TSO内存模型).
+注意到内存的读/写相对运算指令而言是副作用指令, 因此这也意味着两段程序的
+observable behaviour 会与顺序执行的单线程程序不一样. 具体如何需要看 ISA
+手册.</p>
 <h2 id="软件和硬件支持">软件和硬件支持</h2>
-<p>编译器指令 barrier, 硬件指令 fence 都可以一定程度上保证可观测行为与预期一致.</p>
+<p>编译器指令 barrier, 硬件指令 fence
+都可以一定程度上保证可观测行为与预期一致.</p>
 <h1 id="model-checking">Model Checking</h1>
-<p>为了说明并发程序的正确性(证明某段程序的性质) 可以使用 Model Checking 工具来建模, 本质是画状态机+设计谓词.</p>
+<p>为了说明并发程序的正确性(证明某段程序的性质) 可以使用 Model Checking
+工具来建模, 本质是画状态机+设计谓词.</p>
 <h1 id="锁">锁</h1>
 <p>用户程序眼中的锁就是两个有特殊语义的API</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">typedef</span> <span class="kw">struct</span> &#123;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  ...</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>&#125; lock_t;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="dt">void</span> lock(lock_t *lk);</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="dt">void</span> unlock(lock_t *lk);</span></code></pre></div>
-<p>对于同一把锁 <code>lk</code>, 多个调用 <code>lock(&amp;lk)</code> 的线程只能有一个返回, 其余都将等待直至持有锁的线程调用 <code>unlock(&amp;lk)</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">&#123;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> lock_t<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lock<span class="op">(</span>lock_t <span class="op">*</span>lk<span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> unlock<span class="op">(</span>lock_t <span class="op">*</span>lk<span class="op">);</span></span></code></pre></div>
+<p>对于同一把锁 <code>lk</code>, 多个调用 <code>lock(&amp;lk)</code>
+的线程只能有一个返回, 其余都将等待直至持有锁的线程调用
+<code>unlock(&amp;lk)</code>.</p>
 <h2 id="硬件支持">硬件支持</h2>
 <p>利用 x86 提供的 <code>lock xchg</code> 指令即可原子地读和写</p>
-<p>risc-v 则是提供了 load-reserved/store-conditional 的操作. 注意到一次原子操作可以拆解成load-exec-store三个步骤, risc-v 认为只有 load/store 是重要的. 每次 load 完都将对内存地址打上标记, 所有修改/访问了改地址的操作都将清除标记. 若 store 时标记仍然留着(说明没有别的操作修改过这个地址) 那么直接修改, 否则重新load-exec-store</p>
+<p>risc-v 则是提供了 load-reserved/store-conditional 的操作.
+注意到一次原子操作可以拆解成load-exec-store三个步骤, risc-v 认为只有
+load/store 是重要的. 每次 load 完都将对内存地址打上标记,
+所有修改/访问了改地址的操作都将清除标记. 若 store
+时标记仍然留着(说明没有别的操作修改过这个地址) 那么直接修改,
+否则重新load-exec-store</p>
 <h2 id="关中断">关中断</h2>
 <p>对于单线程系统而言, 只需要关掉中断即可终止所有的并发执行流.</p>
-<p>然而并非所有中断都可以忽略, 并且长时间关中断将失去中断本身带来的好处(IO性能)</p>
+<p>然而并非所有中断都可以忽略,
+并且长时间关中断将失去中断本身带来的好处(IO性能)</p>
 <h2 id="自旋锁">自旋锁</h2>
-<p>有了原子指令就可以原子地 <code>compare_and_swap()</code> 来实现互斥锁了, 所有没得到锁的线程都将 <code>while(1)</code> 等待(即自旋)</p>
+<p>有了原子指令就可以原子地 <code>compare_and_swap()</code>
+来实现互斥锁了, 所有没得到锁的线程都将 <code>while(1)</code>
+等待(即自旋)</p>
 <p>优点是简单, 缺点:</p>
 <ol type="1">
 <li>浪费 CPU</li>
-<li>获得锁的线程可能被操作系统休眠(即最trivial的实现中, 操作系统无法感知锁的持有)</li>
+<li>获得锁的线程可能被操作系统休眠(即最trivial的实现中,
+操作系统无法感知锁的持有)</li>
 </ol>
-<p>这就引入了Scalability的概念, 即我们希望算法的效率能够随着硬件的增加而增加(至少不会减少). 很显然自旋锁的 Scalability 不是太好</p>
+<p>这就引入了Scalability的概念,
+即我们希望算法的效率能够随着硬件的增加而增加(至少不会减少).
+很显然自旋锁的 Scalability 不是太好</p>
 <h2 id="睡眠锁">睡眠锁</h2>
-<p>为了让操作系统能感知锁的持有, 可以把锁的两个API换成两个系统调用, 对于不成功的<code>lock()</code>直接睡眠, <code>unlock()</code> 则唤醒等待当前锁的线程. 需要注意操作系统自身需要用自旋锁来保证共享数据结构操作的原子性.</p>
+<p>为了让操作系统能感知锁的持有, 可以把锁的两个API换成两个系统调用,
+对于不成功的<code>lock()</code>直接睡眠, <code>unlock()</code>
+则唤醒等待当前锁的线程.
+需要注意操作系统自身需要用自旋锁来保证共享数据结构操作的原子性.</p>
 <p>实际上就是把锁集中管理起来.</p>
 <h2 id="futex">Futex</h2>
 <p>先自旋, 再睡眠(我全都要)</p>
 <h1 id="条件变量">条件变量</h1>
-<p>支持两种操作的抽象数据类型: <code>wait()</code> 和 <code>signal()</code></p>
-<p>可以看成是一个管道(广播), <code>wait()</code> 操作将本线程挂起直至条件变量被广播. <code>signal()</code> 则会向所有等待着该条件变量的线程广播并唤醒</p>
+<p>支持两种操作的抽象数据类型: <code>wait()</code> 和
+<code>signal()</code></p>
+<p>可以看成是一个管道(广播), <code>wait()</code>
+操作将本线程挂起直至条件变量被广播. <code>signal()</code>
+则会向所有等待着该条件变量的线程广播并唤醒</p>
 <p>这是一个共享的数据结构, 很显然要锁保护(RTFM)</p>
 <h1 id="信号量">信号量</h1>
-<p>支持两种操作的抽象数据类型: <code>P()</code> 和 <code>V()</code>(也叫 <code>wait()</code> 和 <code>signal()</code>)</p>
-<p>可以看成一个容器, 所有的 <code>wait()</code> 都将先检查是否有空余, 然后进入临界区并占有容器中的一个位置.</p>
+<p>支持两种操作的抽象数据类型: <code>P()</code> 和 <code>V()</code>(也叫
+<code>wait()</code> 和 <code>signal()</code>)</p>
+<p>可以看成一个容器, 所有的 <code>wait()</code> 都将先检查是否有空余,
+然后进入临界区并占有容器中的一个位置.</p>
 <p>当信号量被初始化为 <code>1</code> 时, 这就是一个互斥锁了.</p>
 <h1 id="应对并发bug">应对并发Bug</h1>
 <h2 id="防御性措施">防御性措施</h2>
 <p>多加Assertion</p>
 <h2 id="lockordering">LockOrdering</h2>
-<p>不同的获取锁的顺序将带来死锁, 可以给锁定一个acquire顺序 但事实上很难实现这一点, 因为很多锁并不是透明可见的...</p>
-<p>Lockdep 这样的工具可以观察锁的执行序列来判断是否会出现顺序问题(Debug工具)</p>
+<p>不同的获取锁的顺序将带来死锁, 可以给锁定一个acquire顺序
+但事实上很难实现这一点, 因为很多锁并不是透明可见的...</p>
+<p>Lockdep
+这样的工具可以观察锁的执行序列来判断是否会出现顺序问题(Debug工具)</p>
 <h1 id="读写锁">读写锁</h1>
 <p>单纯的一把大锁很难实现高效, 因此考虑如下读写模型:</p>
 <p>某个共享区有数据, 有若干线程(读和写)将进入操作共享数据</p>
@@ -252,10 +287,13 @@
 </ul>
 <p>这样可以保证读线程的并行, 但不恰当的处理将导致写线程饥饿</p>
 <h1 id="rcu机制">RCU机制</h1>
-<p>针对单链表, Read-Copy-Update 机制可以实现读和写的并行化, 避免了写线程的饥饿</p>
-<p>本质是观察到单链表的插入和删除都只涉及至多一个指针的修改, 那么写线程可以预先写好内容, 然后原子地修改一个指针</p>
+<p>针对单链表, Read-Copy-Update 机制可以实现读和写的并行化,
+避免了写线程的饥饿</p>
+<p>本质是观察到单链表的插入和删除都只涉及至多一个指针的修改,
+那么写线程可以预先写好内容, 然后原子地修改一个指针</p>
 <p>这里巧妙之处在于把确认没有其余线程正在访问旧的数据延迟到了这些线程离开单链表.</p>
-<p>注意到所有写线程修改之后进入单链表的读线程都将读到新的内容, 因此只需要等待所有在修改之前进入单链表的读线程全部离开单链表时即可回收旧的节点.</p>
+<p>注意到所有写线程修改之后进入单链表的读线程都将读到新的内容,
+因此只需要等待所有在修改之前进入单链表的读线程全部离开单链表时即可回收旧的节点.</p>
 
       </div>
       
