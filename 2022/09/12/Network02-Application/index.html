@@ -285,6 +285,68 @@ get
 get 一次或者踢出缓存就好了。顺便一提，这也是社团仙贝 304 Not Modified
 这个昵称的由来（</p>
 <h1 id="mail">Mail</h1>
+<p>主要是几个比较有历史厚重感的协议</p>
+<h2 id="发">发</h2>
+<p>发送端通过 SMTP 协议发给服务器，发送服务器通过 SMTP
+协议发给接收服务器。</p>
+<p>SMTP
+协议要求报文是ASCII可显示的，这座屎山使得中文和附件这些东西得通过特殊的编码来发送。</p>
+<p>注意SMTP的报文本身有一层格式要求（表明身份、发出指令等等），同时邮件的内容也有格式的要求（主题、内容等等）</p>
+<h2 id="收">收</h2>
+<p>接收端则主动向接收服务器查询收件箱（HTTP/POP3/IMAP）</p>
+<p>这么做的一个好处是客户端可以不需要随时在线，同时一个服务器可以服务很多客户端。</p>
+<p>POP3收取后会删除服务器上的数据。</p>
+<p>实际上收发邮件就是在做文本传输的事情，因此用 HTTP
+协议也是可以的。</p>
+<h1 id="dns">DNS</h1>
+<p>互联网上的主机需要区分彼此，因此都有一个（可以视为唯一的）标识符 IP
+地址。但是为了方便称呼，还会有一个字符串组成的主机名。</p>
+<p>类比文件系统，DNS
+就是主机名解析。例如浏览器里输入的网址最后会被解析成 IP
+地址（文件系统中打开的文件最后会被解析成inode）。DNS 是跑在 UDP
+上的。</p>
+<p>当然 DNS 有两层含义</p>
+<ul>
+<li>DNS 系统，是一个世界范围的分布式解析系统，提供解析服务</li>
+<li>DNS 协议，通过协议来进行报文传递</li>
+</ul>
+<p>除了域名解析，DNS 还能做</p>
+<ul>
+<li>Host aliasing. 即可以给一个主机赋予不同的名字，其中一个叫 canonical
+name，其余的都是 alias。</li>
+<li>Load distribution. 可以把一个主机名解析到不同的 IP
+上，实现负载均衡。</li>
+</ul>
+<h2 id="dns-server-hierarchy">DNS Server Hierarchy</h2>
+<ul>
+<li>Root server，实际上有很多个</li>
+<li>TLD server，TLD 对应于域名中最后一段，例如 .cn .jp .fr .org。每个
+TLD 都会有自己的 DNS 服务器。</li>
+<li>Authoritative server。每个 hostname 都将最终被一台 DNS server
+给解析，这样的 server 叫做这个 hostname 的 authoritative server。</li>
+</ul>
+<p>本质上是把域名按照 "." 划分成若干段，每段只由一个服务器负责。</p>
+<p>网上则还有两层，每次解析一般会按照顺序从上到下查询 DNS
+server，最终定位到一个 authoritative server，然后从中获得 IP 地址。</p>
+<p>当然 ISP 还可以提供 local DNS server 这样的东西，本质上是一个 DNS
+proxy。</p>
+<ul>
+<li>recursive
+query，说的是客户端的解析请求由另一个主机代理完成查询，仅和代理主机通信。</li>
+<li>iterative
+query，说的是客户端的解析请求全部由自己完成，其与其它主机直接通信。</li>
+</ul>
+<p>DNS server 内部还可以做 caching，没啥好说的。</p>
+<h2 id="records">Records</h2>
+<p>格式形如 (Name, Value, Type, TTL)，其中 (Name, Value) 是 Key-Value
+pair</p>
+<ul>
+<li>Type A: (hostname, IP)</li>
+<li>Type NS: (hostname, dns server hostname)，同时还会有 (dns server
+hostname, IP, A, TTL)</li>
+<li>Type CNAME: (hostname, canonical name)</li>
+<li>Type MX: (hostname, canonical name)</li>
+</ul>
 
       </div>
       
@@ -334,7 +396,7 @@ get 一次或者踢出缓存就好了。顺便一提，这也是社团仙贝 304
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#application-architecture"><span class="toc-text">Application architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cs"><span class="toc-text">CS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p2p"><span class="toc-text">P2P</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#process-communication"><span class="toc-text">Process Communication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#socket"><span class="toc-text">socket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transport-layer-services"><span class="toc-text">Transport layer services</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp"><span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp"><span class="toc-text">UDP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-layer-protocol"><span class="toc-text">Application layer protocol</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#http1.0"><span class="toc-text">HTTP&#x2F;1.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie"><span class="toc-text">cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http2"><span class="toc-text">HTTP&#x2F;2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#frames"><span class="toc-text">frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#priority"><span class="toc-text">priority</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push"><span class="toc-text">push</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-cacheproxy-server"><span class="toc-text">Web cache&#x2F;Proxy server</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mail"><span class="toc-text">Mail</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#application-architecture"><span class="toc-text">Application architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cs"><span class="toc-text">CS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p2p"><span class="toc-text">P2P</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#process-communication"><span class="toc-text">Process Communication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#socket"><span class="toc-text">socket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transport-layer-services"><span class="toc-text">Transport layer services</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp"><span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp"><span class="toc-text">UDP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-layer-protocol"><span class="toc-text">Application layer protocol</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#http1.0"><span class="toc-text">HTTP&#x2F;1.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie"><span class="toc-text">cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http2"><span class="toc-text">HTTP&#x2F;2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#frames"><span class="toc-text">frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#priority"><span class="toc-text">priority</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push"><span class="toc-text">push</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-cacheproxy-server"><span class="toc-text">Web cache&#x2F;Proxy server</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mail"><span class="toc-text">Mail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91"><span class="toc-text">发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6"><span class="toc-text">收</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dns"><span class="toc-text">DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dns-server-hierarchy"><span class="toc-text">DNS Server Hierarchy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#records"><span class="toc-text">Records</span></a></li></ol></li></ol>
       
     </div>
   </div>
