@@ -188,7 +188,7 @@
 <p>应用一般跑在端系统上，此时网络对应用而言是透明的，所有的网络 API
 起到进程间通信的作用。</p>
 <h1 id="application-architecture">Application architecture</h1>
-<h2 id="cs">CS</h2>
+<h2 id="cs">C/S</h2>
 <p>服务器长时间开机提供服务，客户端与服务器建立连接来交换数据。服务器通常有固定
 IP。当然服务器可以有很多（集群）</p>
 <h2 id="p2p">P2P</h2>
@@ -273,12 +273,12 @@ TCP 连接来并行地传输对象。</p>
 <h3 id="priority">priority</h3>
 <p>请求块可以被赋予优先级。是不是很像实时操作系统的套路？</p>
 <h3 id="push">push</h3>
-<p>服务端可以预先推送未经请求的对象给客户端，也就是网络级别的
+<p>服务端可以预先推送未经请求的对象给客户端，也就是协议级别的
 prefetch</p>
 <h2 id="web-cacheproxy-server">Web cache/Proxy server</h2>
-<p>本质上是一台联网的计算机。所有用户的请求都会被先给到 proxy
-server，然后由 proxy server 请求真正的页面、缓存、返回，很好理解。</p>
-<p>之所以这么做是因为网络带宽由瓶颈链路决定，而代理服务器通常到客户端有较高的带宽，向外的请求则可以合并成一个降低流量强度。当然这么做要求请求的命中率要比较好。</p>
+<p>本质上是一台联网的计算机。用户的请求会被先给到 proxy server，然后由
+proxy server 请求真正的页面、缓存、返回，很好理解。</p>
+<p>之所以这么做是因为网络带宽由瓶颈链路决定，而代理服务器通常到客户端有较高的带宽，向外的请求则可以合并成一个降低流量强度。这么做要求请求的命中率要比较好。</p>
 <p>当然 cache 就带来了缓存一致性的问题，解决的办法就是加一个 conditional
 get
 请求，用来获得某个对象的修改时间。如果发现修改时间变动了说明缓存过期，那么重新
@@ -325,7 +325,7 @@ TLD 都会有自己的 DNS 服务器。</li>
 <li>Authoritative server。每个 hostname 都将最终被一台 DNS server
 给解析，这样的 server 叫做这个 hostname 的 authoritative server。</li>
 </ul>
-<p>本质上是把域名按照 "." 划分成若干段，每段只由一个服务器负责。</p>
+<p>本质上是把域名按照 "." 划分成若干段，每段只由一类服务器负责。</p>
 <p>网上则还有两层，每次解析一般会按照顺序从上到下查询 DNS
 server，最终定位到一个 authoritative server，然后从中获得 IP 地址。</p>
 <p>当然 ISP 还可以提供 local DNS server 这样的东西，本质上是一个 DNS
@@ -337,7 +337,7 @@ query，说的是客户端的解析请求由另一个主机代理完成查询，
 query，说的是客户端的解析请求全部由自己完成，其与其它主机直接通信。</li>
 </ul>
 <p>DNS server 内部还可以做 caching，没啥好说的。</p>
-<h2 id="records">Records</h2>
+<h2 id="resource-records">Resource Records</h2>
 <p>格式形如 (Name, Value, Type, TTL)，其中 (Name, Value) 是 Key-Value
 pair</p>
 <ul>
@@ -347,6 +347,64 @@ hostname, IP, A, TTL)</li>
 <li>Type CNAME: (hostname, canonical name)</li>
 <li>Type MX: (hostname, canonical name)</li>
 </ul>
+<h1 id="p2p-file-distribution">P2P File Distribution</h1>
+<p>大学生都爱玩的 PT</p>
+<h2 id="tracker">Tracker</h2>
+<p>指一类特殊的 host。所有 BT 客户端上线后都将向 Tracker 发出请求，随后
+Tracker
+将返回一份客户主机的名单，这份名单上的主机称为这个新上线客户端的邻居节点。</p>
+<h2 id="download">Download</h2>
+<ol type="1">
+<li>客户端会向邻居发出请求，得到若干份邻居所持有资源的表</li>
+<li>找到最稀有的一份资源，发出下载请求</li>
+</ol>
+<h2 id="upload">Upload</h2>
+<ol type="1">
+<li>客户端会给所有邻居打分，上传时优先满足分数最高的邻居。分数与之前的上传情况相关</li>
+<li>隔一段时间会随机挑选邻居重新评估分数</li>
+</ol>
+<p>有点 MFLQ 的味道在里面。</p>
+<p>关于 P2P 有一个定量的分析，比较简单就不说了。</p>
+<h1 id="video-streaming">Video Streaming</h1>
+<p>杀手级应用</p>
+<h2 id="dash-dynamic-adapting-streaming-over-http">DASH (Dynamic
+Adapting Streaming over HTTP)</h2>
+<p>说的是在向服务器请求文件的时候，服务器会返回同一个视频在不同码率下的
+URL，客户端就可以动态作出播放何种码率的视频的决策...</p>
+<p>同时 HTTP GET
+请求中可以附带块(chunks)座标，这样就可以按需加载以节省带宽。在我小学的时候老师很喜欢打开一个视频页面，等整个视频加载完再看，现在大概是做不到了。</p>
+<h2 id="cdn-content-distribution-network">CDN (Content Distribution
+Network)</h2>
+<p>CDN
+说的是把提供内容的服务器架设在各个地方，通过某种方式从中央服务器分发内容到各个
+CDN 服务器上，用户对于中央服务器中内容的请求最终会被重定向到 CDN
+服务器。</p>
+<p>可以发现网络相关的技术都是这么玩的——怎么在客户端无法感知的前提下提供更优质的
+underlying 服务</p>
+<p>CDN 后请求的大概流程会变成这样：</p>
+<ol type="1">
+<li>用户通过官方 URL 请求一个文件，这个 URL 中的域名部分会被 local DNS
+服务器解析</li>
+<li>local DNS 的 DNS request 经过层层查询来到了权威 DNS 服务器</li>
+<li>权威 DNS 服务器返回 CDN 权威服务器的域名</li>
+<li>CDN 权威服务器<strong>挑出</strong>一个 CDN 服务器，返回这个 CDN
+服务器的 IP 地址</li>
+<li>客户端拿到了 CDN 服务器的 IP 地址，就能请求到真正的视频文件了。</li>
+</ol>
+<p>可以发现这个“重定向”的操作是建立在 DNS
+之上的。即官方的服务器并没有直接提供数据，而是把请求重定向到了一个 CDN
+的服务器。因此也可以说 CDN 本质上只是加了一层域名解析。</p>
+<h3 id="content-update-strategy">Content Update Strategy</h3>
+<p>大概讲了两类</p>
+<ul>
+<li>Pull caching. 说的是用户最终的请求定向到了一个 CDN 服务器，但是这个
+CDN 服务器上没有这个资源，那么 CDN
+服务器就会向中央服务器请求这个资源、缓存、回传给用户</li>
+<li>Push. 说的是中央服务器会主动把内容分发到各个 CDN 服务器上</li>
+<li>当然它们可以混合</li>
+</ul>
+<h3 id="cdn-selection-strategy">CDN Selection Strategy</h3>
+<p>这就五花八门了，但总归还是评分排序</p>
 
       </div>
       
@@ -396,7 +454,9 @@ hostname, IP, A, TTL)</li>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#application-architecture"><span class="toc-text">Application architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cs"><span class="toc-text">CS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p2p"><span class="toc-text">P2P</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#process-communication"><span class="toc-text">Process Communication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#socket"><span class="toc-text">socket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transport-layer-services"><span class="toc-text">Transport layer services</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp"><span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp"><span class="toc-text">UDP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-layer-protocol"><span class="toc-text">Application layer protocol</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#http1.0"><span class="toc-text">HTTP&#x2F;1.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie"><span class="toc-text">cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http2"><span class="toc-text">HTTP&#x2F;2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#frames"><span class="toc-text">frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#priority"><span class="toc-text">priority</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push"><span class="toc-text">push</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-cacheproxy-server"><span class="toc-text">Web cache&#x2F;Proxy server</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mail"><span class="toc-text">Mail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91"><span class="toc-text">发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6"><span class="toc-text">收</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dns"><span class="toc-text">DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dns-server-hierarchy"><span class="toc-text">DNS Server Hierarchy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#records"><span class="toc-text">Records</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#application-architecture"><span class="toc-text">Application architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cs"><span class="toc-text">C&#x2F;S</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p2p"><span class="toc-text">P2P</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#process-communication"><span class="toc-text">Process Communication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#socket"><span class="toc-text">socket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transport-layer-services"><span class="toc-text">Transport layer services</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp"><span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp"><span class="toc-text">UDP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-layer-protocol"><span class="toc-text">Application layer protocol</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#http1.0"><span class="toc-text">HTTP&#x2F;1.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie"><span class="toc-text">cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http2"><span class="toc-text">HTTP&#x2F;2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#frames"><span class="toc-text">frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#priority"><span class="toc-text">priority</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push"><span class="toc-text">push</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-cacheproxy-server"><span class="toc-text">Web cache&#x2F;Proxy server</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mail"><span class="toc-text">Mail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91"><span class="toc-text">发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6"><span class="toc-text">收</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dns"><span class="toc-text">DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dns-server-hierarchy"><span class="toc-text">DNS Server Hierarchy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#resource-records"><span class="toc-text">Resource Records</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#p2p-file-distribution"><span class="toc-text">P2P File Distribution</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tracker"><span class="toc-text">Tracker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#download"><span class="toc-text">Download</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upload"><span class="toc-text">Upload</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#video-streaming"><span class="toc-text">Video Streaming</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dash-dynamic-adapting-streaming-over-http"><span class="toc-text">DASH (Dynamic
+Adapting Streaming over HTTP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cdn-content-distribution-network"><span class="toc-text">CDN (Content Distribution
+Network)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#content-update-strategy"><span class="toc-text">Content Update Strategy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cdn-selection-strategy"><span class="toc-text">CDN Selection Strategy</span></a></li></ol></li></ol></li></ol>
       
     </div>
   </div>
