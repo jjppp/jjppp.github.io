@@ -65,20 +65,23 @@
     <link href="http://example.com/2022/09/25/Concurrency01-HMM/"/>
     <id>http://example.com/2022/09/25/Concurrency01-HMM/</id>
     <published>2022-09-24T17:05:33.000Z</published>
-    <updated>2022-09-24T17:05:33.657Z</updated>
+    <updated>2022-10-01T06:16:36.958Z</updated>
     
     
       
       
         
         
-    <summary type="html">
-</summary>
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;弱内存模型的出现，本质上是因为单线程的程序优化(编译优化/执行优化)中应用了许多的技术，这些技术在进入多线程编程时代之后使得一些符合直觉的假设不再成立，即内存模型变&quot;弱&quot;了。&lt;/p&gt;
+&lt;p&gt;为了</summary>
         
       
     
     
     
+    
+    <category term="Concurrency" scheme="http://example.com/tags/Concurrency/"/>
     
   </entry>
   
