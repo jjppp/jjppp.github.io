@@ -43,20 +43,24 @@
     <link href="http://example.com/2022/09/25/Concurrency02-Operational/"/>
     <id>http://example.com/2022/09/25/Concurrency02-Operational/</id>
     <published>2022-09-24T17:06:04.000Z</published>
-    <updated>2022-09-24T17:06:04.314Z</updated>
+    <updated>2022-10-02T16:05:52.562Z</updated>
     
     
       
       
         
         
-    <summary type="html">
-</summary>
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;Memory Model 可以通过一种 Operational
+的方式来定义，在这种定义下，我们可以看到一个结果是如何一步一步产生的。&lt;/p&gt;
+&lt;p&gt;简单地说，一个并发的系统可以看成是 CPU +</summary>
         
       
     
     
     
+    
+    <category term="Concurrency" scheme="http://example.com/tags/Concurrency/"/>
     
   </entry>
   

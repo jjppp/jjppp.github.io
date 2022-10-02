@@ -171,9 +171,82 @@
           2022-09-25 01:06:04
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Concurrency/" title="Concurrency">
+                    <b>#</b> Concurrency
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <h1 id="intro">Intro</h1>
+<p>Memory Model 可以通过一种 Operational
+的方式来定义，在这种定义下，我们可以看到一个结果是如何一步一步产生的。</p>
+<p>简单地说，一个并发的系统可以看成是 CPU + 内存
+两个模块化的部分共同组成的，其中 CPU
+有并发的执行流和线程局部的寄存器，内存则可以和 CPU
+交互进行读写。这么做的好处在于：</p>
+<ol type="1">
+<li>CPU 通常没有太大的变化，可以单独抽象出来定义好，后续直接复用</li>
+<li>内存通过接口与 CPU
+交互，这样我们就可以简单地替换不同的内存模型观察执行的结果</li>
+</ol>
+<h1 id="cpu">CPU</h1>
+<p>这部分没啥好说的，主要是记号的问题。那几个函数的用法倒是挺巧妙的，可以把一些编号的信息
+encode 到参数里，这样就看起来很简洁。</p>
+<h1 id="memory">Memory</h1>
+<h2 id="interfacelabel">Interface/Label</h2>
+<p>我到今天都不知道到底是 l 还是 I</p>
+<p>注意到这里的 Interface
+并不是一种具体的行为，而是描述了一个结果，即这部分与细节无关，仍然是
+declarative 的。具体以 <code>U(x, v1, v2)</code> 举例。</p>
+<h3 id="ux-v1-v2">U(x, v1, v2)</h3>
+<p>例如有条规则长这样 <span class="math display">\[
+\frac{I\text{=U(x,s($e_r$),s($e_w$))}}
+{\text{r:=}\bold{CAS}\text{(x,$e_r$,$e_w$)},s\overset{I}\Rightarrow
+\bold{skip},s[r\mapsto1]}
+\]</span> 可以发现 CPU
+在获得内存返回值之前是不可能更改寄存器的值的，同理内存在获得 CPU
+提供的值之前也不可能返回比较的结果，因此者无论如何都不是一次通信就可以实现的。</p>
+<p>而这个接口记号的真正意义在于，它只描述了最后二者达成的共识：内存读到了
+<span class="math inline">\(s(e_r)\)</span>，写入 <span
+class="math inline">\(s(e_w)\)</span>，具体的实现则无关紧要，并且这个结果的达成本身是原子的。</p>
+<p>这部分讲得比较绕，但大概意思是这样。</p>
+<h2 id="rules">Rules</h2>
+<p>线程内部的 step rules 还是很简单的，重点在于 <code>CAS</code> 和
+<code>FAA</code></p>
+<h3 id="casx-e1-e2">CAS(x, e1, e2)</h3>
+<p>即 Compare-And-Swap。含义为</p>
+<ol type="1">
+<li>返回内存中的值与 <code>e1</code> 比较的结果</li>
+<li>如果相等，就写入 <code>e2</code></li>
+</ol>
+<p>需要注意的地方有两点：</p>
+<ol type="1">
+<li>此处的接口用的形式为
+<code>U(x, v1, v2)</code>，含义为“<code>x</code>读到<code>v1</code>，写入<code>v2</code>”</li>
+<li>如果不符合条件只会产生 <code>R(x, v1)</code> 的接口</li>
+<li>CAS 通常会作为一个同步操作，这点在后面可以看到</li>
+</ol>
+<h3 id="faax-e">FAA(x, e)</h3>
+<p>即 Fetch-And-Add</p>
+<h3 id="fence">Fence</h3>
+<p>一类特殊的指令，可以看成是对内存的状态控制指令。</p>
+<h1 id="whole">Whole</h1>
+<p>系统作为整体的 step 可以分为</p>
+<ol type="1">
+<li>CPU 内部进行计算</li>
+<li>内存内部进行状态的维护</li>
+<li>CPU 与内存通过接口进行交互，共同走一步</li>
+</ol>
+<p>通常把1、2叫做 silent
+transition，因为对外界而言它们是不可感知的。</p>
+<p>然后就没了，那个习题挺简单的。</p>
 
       </div>
       
@@ -192,6 +265,17 @@
               2022-09-25 01:06:04
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Concurrency/" title="Concurrency">
+                        <b>#</b> Concurrency
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
             
@@ -205,6 +289,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cpu"><span class="toc-text">CPU</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#memory"><span class="toc-text">Memory</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#interfacelabel"><span class="toc-text">Interface&#x2F;Label</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ux-v1-v2"><span class="toc-text">U(x, v1, v2)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rules"><span class="toc-text">Rules</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#casx-e1-e2"><span class="toc-text">CAS(x, e1, e2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#faax-e"><span class="toc-text">FAA(x, e)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fence"><span class="toc-text">Fence</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#whole"><span class="toc-text">Whole</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
