@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-09-24T17:06:16.584Z</updated>
+  <updated>2022-10-04T15:31:04.954Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Automata01 FSM</title>
+    <link href="http://example.com/2022/10/04/Automata01-FSM/"/>
+    <id>http://example.com/2022/10/04/Automata01-FSM/</id>
+    <published>2022-10-04T13:13:07.000Z</published>
+    <updated>2022-10-04T15:31:04.954Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;FSM(Finite State Machine/Finite Automata) 是一种 formal
+system，当然用处有很多了。&lt;/p&gt;
+&lt;h1 id=&quot;basics&quot;&gt;Basics&lt;/h1&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
+    
+  </entry>
   
   <entry>
     <title>Concurrency03 Axiomatic</title>
@@ -510,31 +537,6 @@ class=&quot;math inline&quot;&gt;\(\lambda_{\rightarrow}\)&lt;/span&gt;&lt;/p&gt
     
     
     <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统04 进程与线程</title>
-    <link href="http://example.com/2022/07/15/OS04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
-    <id>http://example.com/2022/07/15/OS04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</id>
-    <published>2022-07-15T11:24:46.000Z</published>
-    <updated>2022-08-03T10:00:11.563Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;进程&quot;&gt;进程&lt;/h1&gt;
-&lt;p&gt;进程是运行中的程序实体。如果把代码视为状态机，那么进程即处于特定状态的状态机。&lt;/p&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
     
   </entry>
   

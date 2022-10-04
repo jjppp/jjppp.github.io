@@ -11,7 +11,7 @@
   
   <title>
     
-      Concurrency03 Axiomatic 
+      Automata01 FSM 
       
       
       |
@@ -164,23 +164,148 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Concurrency03 Axiomatic</div>
+      <div class="post-title">Automata01 FSM</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2022-09-25 01:06:16
+          2022-10-04 21:13:07
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Automata/" title="Automata">
+                    <b>#</b> Automata
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <h1 id="intro">Intro</h1>
+<p>FSM(Finite State Machine/Finite Automata) 是一种 formal
+system，当然用处有很多了。</p>
+<h1 id="basics">Basics</h1>
+<h2 id="string">String</h2>
+<p>取定一个字符集 <span
+class="math inline">\(\Sigma\)</span>，其中元素称为字符。</p>
+<p>定义串是字符的有限序列，也可以归纳定义如下：</p>
+<ol type="1">
+<li><span class="math inline">\(\epsilon\)</span>
+是特殊的串，称为空串</li>
+<li>若 <span class="math inline">\(\alpha\)</span> 为串，且 <span
+class="math inline">\(x\in \Sigma\)</span>，则 <span
+class="math inline">\(x\alpha\)</span>
+也为串。此处表示为字符与串的顺序拼接。</li>
+</ol>
+<h2 id="language">Language</h2>
+<p>语言即串的集合，<span class="math inline">\(\varnothing\)</span> 和
+<span class="math inline">\(\Sigma^*\)</span> 是两个平凡的语言</p>
+<p>注意区分 <span class="math inline">\(\Set{\epsilon}\)</span> 和 <span
+class="math inline">\(\varnothing\)</span></p>
+<h1 id="dfa">DFA</h1>
+<h2 id="def">Def</h2>
+<p>定义为五元组 <span class="math display">\[
+FSM\overset{\text{def}}= (S, \Sigma, \delta, s_0, F)
+\]</span> 分别表示状态集、字符集、转移函数、初始状态、接受状态集。</p>
+<p>可以通过简单的归纳由 <span class="math inline">\(\delta:S\to
+\Sigma\to S\)</span> 构造 <span class="math inline">\(\hat\delta:S\to
+\Sigma^*\to S\)</span></p>
+<p>定义自动机接受串 <span class="math inline">\(\alpha\)</span> 当且仅当
+<span class="math inline">\(\hat\delta(s_0,\alpha)\in F\)</span></p>
+<p>对于自动机 <span
+class="math inline">\(A\)</span>，记它所能接受的串的集合为 <span
+class="math inline">\(L(A)\)</span>，称为自动机 <span
+class="math inline">\(A\)</span> 表示的语言。</p>
+<p>若某个语言 <span class="math inline">\(L\)</span> 可被某个 DFA <span
+class="math inline">\(A\)</span> 接受，则称 <span
+class="math inline">\(L\)</span> 为<strong>正则语言</strong></p>
+<h2 id="set0n1nmid-ninmathbb-n"><span
+class="math inline">\(\Set{0^n1^n\mid n\in\mathbb N^+}\)</span></h2>
+<p>下面证明这个不是正则语言（好像证过很多次了）</p>
+<p>由反证法设这是正则语言，则存在 DFA <span
+class="math inline">\(A\)</span> 使得 <span
+class="math inline">\(L(A)=\Set{0^n1^n\mid n\in\mathbb N^+}\)</span></p>
+<p>不妨设 <span class="math inline">\(A\)</span> 状态数为 <span
+class="math inline">\(m\)</span>，则必然存在 <span
+class="math inline">\(0^m1^m\in L(A)\)</span>。考虑 <span
+class="math inline">\(A\)</span> 正在识别 <span
+class="math inline">\(0^m1^m\)</span> 的前缀 <span
+class="math inline">\(0^m\)</span>，由鸽笼原理可知必然存在状态 <span
+class="math inline">\(s\)</span> 经过了两次，即 <span
+class="math inline">\(A\)</span> 中存在一个不为空的圈，且圈上只有 <span
+class="math inline">\(0\)</span>。这说明我们可以走出一个 <span
+class="math inline">\(0^{m+k}1^m\)</span> 的串后到达接受状态，这与 <span
+class="math inline">\(L(A)=\Set{0^n1^n\mid n\in\mathbb N^+}\)</span>
+矛盾。</p>
+<p>故假设不成立。</p>
+<h1 id="nfa">NFA</h1>
+<h2 id="def-1">Def</h2>
+<p>和 DFA 的区别仅在于转移函数 <span class="math display">\[
+\delta:S\to \Sigma\to 2^S
+\]</span> 其含义为：从状态 <span class="math inline">\(s\)</span>
+出发，经过一条字符边后可能到达哪些状态，NFA 的转移不一定是唯一的。</p>
+<p>不难发现 <span class="math inline">\(\delta\)</span> 本身是一个
+monad，此时的 <span class="math inline">\(\hat\delta=\text{return s
+&gt;&gt;= }\delta\)</span></p>
+<p>定义 NFA 接受串 <span class="math inline">\(\alpha\)</span> 当且仅当
+<span class="math inline">\(\hat\delta(s_0,\alpha)\cap
+F\neq\varnothing\)</span></p>
+<h2 id="subset-construction">Subset Construction</h2>
+<p>给定 NFA <span
+class="math inline">\(A=(S,\Sigma,\delta,s_0,F)\)</span>，我们可以构造
+DFA <span
+class="math inline">\(A&#39;=(2^S,\Sigma,\delta&#39;,\set{s_0},\Set{s\in
+2^S\mid s\cap F\neq \varnothing})\)</span></p>
+<p>关键的 <span class="math inline">\(\delta&#39;\)</span> 可以用 monad
+bind 定义...</p>
+<h2 id="equivalence">Equivalence</h2>
+<p>我们说 DFA 和 NFA 的表达能力是等价的，意思是：</p>
+<p>对于任意的 NFA <span class="math inline">\(A\)</span>，都存在 DFA
+<span class="math inline">\(A&#39;\)</span> 使得 <span
+class="math inline">\(L(A)=L(A&#39;)\)</span>，反之亦然。</p>
+<p>这也说明所有的 NFA 能表达的语言类与所有的 DFA
+能表达的语言类相等。</p>
+<p>"<span class="math inline">\(\Rightarrow\)</span>"：</p>
+<p>考虑 <span class="math inline">\(A\)</span> 的子集构造 <span
+class="math inline">\(A&#39;\)</span>，即证明对任意的串 <span
+class="math inline">\(\alpha\)</span>，有 <span
+class="math inline">\(\delta(s_0,\alpha)=\delta&#39;(\set{s_0},\alpha)\)</span>。简单地对
+<span class="math inline">\(|\alpha|\)</span> 归纳即可。</p>
+<p>"<span class="math inline">\(\Leftarrow\)</span>"：</p>
+<p>很显然 DFA 是一种特殊的 NFA。</p>
+<h1 id="epsilon-nfa"><span
+class="math inline">\(\epsilon\)</span>-NFA</h1>
+<h2 id="def-2">Def</h2>
+<p>符号集加上 <span class="math inline">\(\epsilon\)</span></p>
+<p>引入 closure 操作 <span class="math inline">\(C:S\to
+2^S\)</span>，含义为从某个状态出发，只走 <span
+class="math inline">\(\epsilon\)</span>-边能到达的状态集合。</p>
+<p>这一定义可以通过 monad bind 简单拓展为 <span
+class="math inline">\(C:2^S\to 2^S\)</span>，称为状态集的 <span
+class="math inline">\(\epsilon\)</span>-closure。这个操作显然是幂等的。</p>
+<p>不妨记不含 <span
+class="math inline">\(\epsilon\)</span>-边的转移函数为 <span
+class="math inline">\(\delta\)</span>，则加入 <span
+class="math inline">\(\epsilon\)</span>-边后的新转移函数可以简单定义为
+<span class="math inline">\(\delta&#39;=C\circ\delta\circ
+C\)</span>，意思是每走一步前后都做一次闭包。</p>
+<h2 id="equivalence-1">Equivalence</h2>
+<p>NFA 显然是一种特殊的 <span
+class="math inline">\(\epsilon\)</span>-NFA。</p>
+<p>注意到上面的 <span class="math inline">\(\delta-\delta&#39;\)</span>
+提供了一种消去 <span
+class="math inline">\(\epsilon\)</span>-边的方法，这样就能由 <span
+class="math inline">\(\epsilon\)</span>-NFA 得到等价的 NFA 了。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/09/25/Concurrency02-Operational/" target="_self">
+              <a href="/2022/09/25/Concurrency03-Axiomatic/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -189,22 +314,45 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2022-09-25 01:06:16
+              2022-10-04 21:13:07
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Automata/" title="Automata">
+                        <b>#</b> Automata
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2022/10/04/Automata01-FSM/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#basics"><span class="toc-text">Basics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#string"><span class="toc-text">String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#language"><span class="toc-text">Language</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dfa"><span class="toc-text">DFA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set0n1nmid-ninmathbb-n"><span class="toc-text">\(\Set{0^n1^n\mid n\in\mathbb N^+}\)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nfa"><span class="toc-text">NFA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def-1"><span class="toc-text">Def</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#subset-construction"><span class="toc-text">Subset Construction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#epsilon-nfa"><span class="toc-text">\(\epsilon\)-NFA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def-2"><span class="toc-text">Def</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equivalence-1"><span class="toc-text">Equivalence</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
