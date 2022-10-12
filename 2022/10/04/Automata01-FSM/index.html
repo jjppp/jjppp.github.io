@@ -299,6 +299,48 @@ class="math inline">\(\epsilon\)</span>-NFA。</p>
 提供了一种消去 <span
 class="math inline">\(\epsilon\)</span>-边的方法，这样就能由 <span
 class="math inline">\(\epsilon\)</span>-NFA 得到等价的 NFA 了。</p>
+<h1 id="minimization">Minimization</h1>
+<h2 id="simeq"><span class="math inline">\(\simeq\)</span></h2>
+<p>定义 DFA 上状态等价 <span
+class="math inline">\(\simeq\)</span>，当且仅当以它们为起点能接受的串的集合相等。由此可以立即得到接受状态和非接受状态不等价（考虑
+<span
+class="math inline">\(\epsilon\)</span>）。很显然这是一个二元等价关系。</p>
+<p>并且有引理：若状态 <span class="math inline">\(A_1,B_1\)</span>
+不等价，且 <span class="math inline">\(\exists c\in\Sigma\)</span> 使得
+<span
+class="math inline">\(\delta(A_2,c)=A_1,\delta(B_2,c)=B_1\)</span>，那么
+<span class="math inline">\(A_2,B_2\)</span> 不等价。</p>
+<p>引理的证明十分简单，由 <span class="math inline">\(A_1,B_1\)</span>
+的不等价性可知存在串 <span class="math inline">\(s\)</span> 使得 <span
+class="math inline">\(A_1,B_1\)</span> 中恰好一个接受 <span
+class="math inline">\(s\)</span>，此时考虑 <span
+class="math inline">\(cs\)</span> 即为区分出 <span
+class="math inline">\(A_2,B_2\)</span> 的串。</p>
+<p>引理的逆否形式也很有用，即等价状态的对应后继状态也会是等价的。</p>
+<p>由此得到一个构造算法：首先区分出所有的终止状态和非终止状态，然后进行如下操作：</p>
+<ol type="1">
+<li>枚举每对暂时无法区分的状态对，看看它们的后继状态是否可区分
+<ol type="1">
+<li>可区分，则它们也可以区分</li>
+<li>不可区分，则它们暂时不可区分</li>
+</ol></li>
+<li>更新分类，重复1操作直至收敛。</li>
+</ol>
+<p>此时得到一个状态集的划分，由此构造新的 DFA 即为最小化的 DFA。</p>
+<h2 id="proof">Proof</h2>
+<p>记最小化算法得到的 DFA 为 <span class="math inline">\(\bar
+A\)</span>，由反证法设存在更小 DFA <span
+class="math inline">\(A\)</span> 与之等价</p>
+<ol type="1">
+<li>必然有 <span class="math inline">\(\bar A\)</span> 的初始状态与
+<span class="math inline">\(A\)</span> 的初始状态等价（这里是跨越 DFA
+的等价）</li>
+<li>任意等价的状态对，它们的后继状态也等价</li>
+</ol>
+<p>因此必然存在 <span class="math inline">\(\bar A\)</span>
+中两个状态它们与同一个 <span class="math inline">\(A\)</span>
+中状态等价，由传递性可知它们彼此等价，这与 <span
+class="math inline">\(\bar A\)</span> 的定义矛盾。</p>
 
       </div>
       
@@ -343,7 +385,7 @@ class="math inline">\(\epsilon\)</span>-NFA 得到等价的 NFA 了。</p>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#basics"><span class="toc-text">Basics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#string"><span class="toc-text">String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#language"><span class="toc-text">Language</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dfa"><span class="toc-text">DFA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set0n1nmid-ninmathbb-n"><span class="toc-text">\(\Set{0^n1^n\mid n\in\mathbb N^+}\)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nfa"><span class="toc-text">NFA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def-1"><span class="toc-text">Def</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#subset-construction"><span class="toc-text">Subset Construction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#epsilon-nfa"><span class="toc-text">\(\epsilon\)-NFA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def-2"><span class="toc-text">Def</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equivalence-1"><span class="toc-text">Equivalence</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#basics"><span class="toc-text">Basics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#string"><span class="toc-text">String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#language"><span class="toc-text">Language</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dfa"><span class="toc-text">DFA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set0n1nmid-ninmathbb-n"><span class="toc-text">\(\Set{0^n1^n\mid n\in\mathbb N^+}\)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nfa"><span class="toc-text">NFA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def-1"><span class="toc-text">Def</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#subset-construction"><span class="toc-text">Subset Construction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#epsilon-nfa"><span class="toc-text">\(\epsilon\)-NFA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def-2"><span class="toc-text">Def</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equivalence-1"><span class="toc-text">Equivalence</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#minimization"><span class="toc-text">Minimization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#simeq"><span class="toc-text">\(\simeq\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proof"><span class="toc-text">Proof</span></a></li></ol></li></ol>
       
     </div>
   </div>
