@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-12T09:19:28.744Z</updated>
+  <updated>2022-10-16T13:21:00.253Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Network03 Transport</title>
+    <link href="http://example.com/2022/10/16/Network03-Transport/"/>
+    <id>http://example.com/2022/10/16/Network03-Transport/</id>
+    <published>2022-10-16T08:39:21.000Z</published>
+    <updated>2022-10-16T13:21:00.253Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;传输层向上给应用层提供进程间通信的服务，向下利用网络层提供的主机到主机的服务。&lt;/p&gt;
+&lt;p&gt;可以认为传输层本质是对网络层的复用(MUX</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Network" scheme="http://example.com/tags/Network/"/>
+    
+  </entry>
   
   <entry>
     <title>Automata01 FSM</title>
@@ -504,32 +529,6 @@ class=&quot;math inline&quot;&gt;\(\lambda_{\rightarrow}\)&lt;/span&gt;&lt;/p&gt
 &lt;h2 id=&quot;mathematics&quot;&gt;Mathematics&lt;/h2&gt;
 &lt;h3 id=&quot;partial-function&quot;&gt;Partial Function&lt;/h3&gt;
 &lt;p&gt;称</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAPL01 Intro</title>
-    <link href="http://example.com/2022/07/16/TAPL01-Intro/"/>
-    <id>http://example.com/2022/07/16/TAPL01-Intro/</id>
-    <published>2022-07-16T14:44:40.000Z</published>
-    <updated>2022-07-16T15:46:45.196Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;type-system&quot;&gt;Type System&lt;/h1&gt;
-&lt;h2 id=&quot;definition&quot;&gt;Definition&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A type system is a tractable syntactic method for</summary>
         
       
     

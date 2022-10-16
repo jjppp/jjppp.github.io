@@ -11,7 +11,7 @@
   
   <title>
     
-      标签 
+      Network03 Transport 
       
       
       |
@@ -153,21 +153,205 @@
 
 
 
-  <!-- 标签页 url形式：https://yoursite/tags/ -->
-  <div class="container tag-index">
-    <div>
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algebra/" rel="tag">Algebra</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Automata/" rel="tag">Automata</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSAPP/" rel="tag">CSAPP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/" rel="tag">Compiler</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Concurrency/" rel="tag">Concurrency</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cryptography/" rel="tag">Cryptography</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DLCO/" rel="tag">DLCO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka-Moments/" rel="tag">Eureka Moments</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Formal-Semantics/" rel="tag">Formal Semantics</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game-Theory/" rel="tag">Game Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph-Theory/" rel="tag">Graph Theory</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ICS-Intro/" rel="tag">ICS Intro</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mathematical-Logic/" rel="tag">Mathematical Logic</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numerical-Method/" rel="tag">Numerical Method</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Operating-System/" rel="tag">Operating System</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Analysis/" rel="tag">Static Analysis</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAOMP/" rel="tag">TAOMP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TAPL/" rel="tag">TAPL</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XCPC/" rel="tag">XCPC</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/haskell/" rel="tag">haskell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag">数学分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">1</span></li></ul>
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Network03 Transport</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-10-16 16:39:21
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Network/" title="Network">
+                    <b>#</b> Network
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="intro">Intro</h1>
+<p>传输层向上给应用层提供进程间通信的服务，向下利用网络层提供的主机到主机的服务。</p>
+<p>可以认为传输层本质是对网络层的复用(MUX -
+DEMUX)，因为实质上所有进程共享向外的网络通路，传输层负责把混在一起的网络层数据拆分整理成发到各个进程的数据（通过端口来区分）。当然实际上的做法更加聪明一些，通过
+socket 就可以把进程和数据传输的目的地解耦，这样 OS
+只需要通过端口号识别出 socket，然后进程主动和特定的 socket
+建立连接即可。</p>
+<p>通常把传输层的数据叫做 segment。</p>
+<h2 id="socket-port">Socket &amp;&amp; Port</h2>
+<p>端口号用于区分主机上的不同进程，是16bit的无符号整数。著名端口号一般在0~1023中取。</p>
+<p>无论是 TCP 还是 UDP，segment 中都包含了 <code>srcPort</code> 和
+<code>dstPort</code>。这是方便了接收方回传消息。</p>
+<ul>
+<li>接收方的 UDP_Socket 和 <code>(dstIP, dstPort)</code>
+一一对应，这意味着两个来自不同主机/进程的 UDP
+数据在给到同一个接收方的同一个端口号时，会被分发给同一个
+UDP_Socket。</li>
+<li>而 TCP_Socket 和 <code>(dstIP, dstPort, srcIP, srcPort)</code>
+一一对应（面向连接），这意味着两个来自不同主机/进程的 TCP
+数据必然会被分发给不同的 socket。</li>
+</ul>
+<p>注意这里讲的是<strong>已经建立连接</strong>之后的情况。考虑连接的建立则是</p>
+<ol type="1">
+<li>发送方发送特殊的 TCP 数据，用一个 bit
+标志表示希望建立连接，同时数据内有目标端口。</li>
+<li>接收方的 OS
+发现这是一个连接建立请求，因此拿着这个端口去寻找监听该端口且正在等待连接建立的进程（可能有多个）</li>
+<li>建立一个新 socket，将四元组与这个 socket 建立对应。</li>
+</ol>
+<h1 id="udp">UDP</h1>
+<ul>
+<li>不可靠，UDP 只是对 IP 的简单封装（包上端口号和checksum）</li>
+<li>短（header）小（封装）快（没有拥塞控制）</li>
+<li>无连接，对主机的资源消耗少</li>
+<li>进程到进程（只有目标地址+端口）</li>
+</ul>
+<p>虽然 UDP 看起来很挫，但是 UDP
+本身封装得很少，实现简单，没什么包袱，基于 UDP
+可以在应用层实现一些可靠的协议（同时比单纯的 TCP 高效），例如 QUIC。</p>
+<h2 id="header">Header</h2>
+<ol type="1">
+<li>srcPort</li>
+<li>dstPort</li>
+<li>length</li>
+<li>checksum</li>
+</ol>
+<h1 id="tcp">TCP</h1>
+<ul>
+<li>可靠</li>
+<li>拥塞控制</li>
+<li>面向连接</li>
+<li>进程到进程（源地址+端口，目标地址+端口）</li>
+</ul>
+<h2 id="re-implement-tcp">Re-implement TCP</h2>
+<p>这一段我还蛮喜欢的。下面谈到的适用于网络中的任何层</p>
+<h3 id="trivial">trivial</h3>
+<p>首先假设下层服务是可靠的，那么收发双方只需要直接调用下层服务即可，这样就能搭出一个可靠的服务。</p>
+<h3 id="bit-fliplost">bit flip/lost</h3>
+<p>假设下层服务只会出现数据错误（但仍然保序），这时引入 retransmission
+based ARQ protocols(Automatic Repeat reQuest)，通常需要有</p>
+<ul>
+<li>错误检查，即需要能发现 bit flip。这里假设这样的办法总是存在的</li>
+<li>接收方反馈，即接收后检查确认无误需要告知发送方。一般叫做 ACK(成功)
+NAK(失败)。</li>
+<li>重传策略，通常是超时后重传或得知 NAK 后重传。</li>
+<li>编号，防止接收方无法区分此次消息是重传还是正常发。例如发
+m1，收m1发ACK，ACK丢重传 m1，这时接收方就不知道自己的 ACK
+到底届到没，也就无从得知这时上一次的重传还是新消息。</li>
+</ul>
+<p>注意到一个简单的策略是遇到错误就丢包，因此丢包和错位没有太大区别。</p>
+<p>同时为了描述协议，通常用 DFA 的形式来规定状态和操作。</p>
+<p>这里的协议状态也很简单，只需要在发送后等待 ACK，在获得 NAK
+后重传并重新等待即可。</p>
+<h3 id="section"></h3>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/10/04/Automata01-FSM/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-10-16 16:39:21
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Network/" title="Network">
+                        <b>#</b> Network
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#socket-port"><span class="toc-text">Socket &amp;&amp; Port</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#udp"><span class="toc-text">UDP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#header"><span class="toc-text">Header</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tcp"><span class="toc-text">TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#re-implement-tcp"><span class="toc-text">Re-implement TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#trivial"><span class="toc-text">trivial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bit-fliplost"><span class="toc-text">bit flip&#x2F;lost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#section"><span class="toc-text"></span></a></li></ol></li></ol></li></ol>
+      
     </div>
   </div>
-  
 
   
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
 
   
-
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
   
 
-  
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
 
         
 <div class="footer">
