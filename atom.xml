@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-16T13:21:00.253Z</updated>
+  <updated>2022-10-17T06:03:48.933Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linguistics02 Phonetics</title>
+    <link href="http://example.com/2022/10/17/Linguistics02-Phonetics/"/>
+    <id>http://example.com/2022/10/17/Linguistics02-Phonetics/</id>
+    <published>2022-10-17T06:03:48.000Z</published>
+    <updated>2022-10-17T06:03:48.933Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linguistics01 Intro</title>
+    <link href="http://example.com/2022/10/17/Linguistics01-Intro/"/>
+    <id>http://example.com/2022/10/17/Linguistics01-Intro/</id>
+    <published>2022-10-17T06:03:18.000Z</published>
+    <updated>2022-10-17T06:30:22.084Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Linguistics" scheme="http://example.com/tags/Linguistics/"/>
+    
+  </entry>
   
   <entry>
     <title>Network03 Transport</title>
@@ -485,57 +530,6 @@ class=&quot;math inline&quot;&gt;\(\lambda_{\rightarrow}\)&lt;/span&gt;&lt;/p&gt
     
     
     <category term="haskell" scheme="http://example.com/tags/haskell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAPL03 Untyped Lambda</title>
-    <link href="http://example.com/2022/07/23/TAPL03-Untyped-Lambda/"/>
-    <id>http://example.com/2022/07/23/TAPL03-Untyped-Lambda/</id>
-    <published>2022-07-22T17:00:32.000Z</published>
-    <updated>2022-07-26T02:51:02.732Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;之前写形式语义已经来过一次了，这里就跳过一点写过的&lt;/p&gt;
-&lt;h1 id=&quot;untyped-lambda-calculus&quot;&gt;Untyped Lambda</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAPL02 Basics</title>
-    <link href="http://example.com/2022/07/17/TAPL02-Basics/"/>
-    <id>http://example.com/2022/07/17/TAPL02-Basics/</id>
-    <published>2022-07-17T14:34:42.000Z</published>
-    <updated>2022-07-22T17:00:14.062Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;notations&quot;&gt;Notations&lt;/h1&gt;
-&lt;p&gt;简单的就不说了&lt;/p&gt;
-&lt;h2 id=&quot;mathematics&quot;&gt;Mathematics&lt;/h2&gt;
-&lt;h3 id=&quot;partial-function&quot;&gt;Partial Function&lt;/h3&gt;
-&lt;p&gt;称</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
     
   </entry>
   

@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      Linguistics01 Intro 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,58 +119,211 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="有关集合大小的比较">
-        <div class="time-m-d">2020-10-28</div>
-        <div class="title">
-          <a href="/2020/10/28/%E6%9C%89%E5%85%B3%E9%9B%86%E5%90%88%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%AF%94%E8%BE%83/">
-            
-              
-                <span>有关集合大小的比较</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Linguistics01 Intro</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-10-17 14:03:18
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Linguistics/" title="Linguistics">
+                    <b>#</b> Linguistics
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="2020 ICPC 小米邀请赛 部分题解">
-        <div class="time-m-d">2020-10-26</div>
-        <div class="title">
-          <a href="/2020/10/26/2020-ICPC-%E5%B0%8F%E7%B1%B3%E9%82%80%E8%AF%B7%E8%B5%9B-%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/">
-            
-              
-                <span>2020 ICPC 小米邀请赛 部分题解</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="intro">Intro</h1>
+<p>回忆老罗讲的导论，感觉还是很有激情的。</p>
+<p>语言学研究的是广泛的语言，它的一些基本假设是这样的</p>
+<blockquote>
+<p>人之所以为人，是因为人有其它生物所不具备的能力和特质。</p>
+<p>研究我们何以为人就是在研究人类的本质。</p>
+<p>能使用语言是人类特有的能力和现象。</p>
+</blockquote>
+<p>宽泛地说，语言学家的任务是通过研究一些语言中的现象，得出某些关于语言的规律，并尝试用于预测更广泛层面上的现象（例如同语言中的其它现象、其它语言中的类似情况等等）。这么看来还是和物理学家很像的。</p>
+<h1 id="branches">Branches</h1>
+<p>语言学的分支大概可以分成三类，分别关于声音、语法、含义</p>
+<h2 id="phonetics">Phonetics</h2>
+<p>就是语音学，关心的是音素（phone）</p>
+<ul>
+<li>的物理属性，例如响度、音调</li>
+<li>人们如何听懂和理解</li>
+<li>如何产生，例如发声方式、发声部位等等</li>
+</ul>
+<p>当然还有可以到处乱跑的田野语音学家和坐办公室的一般语音学家，那些喜欢录音和学乱七八糟的语言的一般就是了。</p>
+<h2 id="phonology">Phonology</h2>
+<p>翻译是音系学，关心的是音位（phoneme）</p>
+<ul>
+<li>语音只是表象，人脑中真正的抽象表示是<strong>音位</strong>而非<strong>音素</strong></li>
+<li>不同音素可以对应一个音位，这说明语言有潜在的音位-&gt;音素变化规则</li>
+<li>使用不同语言的人理论上能发的音是一样的（都有正常的发声器官），早成了各语言无法理解的原因是不同语言中音素与音位的对应关系不同。</li>
+</ul>
+<p>这部分就比较有意思，假设和结果都很漂亮</p>
+<h2 id="morphology">Morphology</h2>
+<p>翻译是形态学，即造词法。关心的是语素（morpheme）</p>
+<p>不同语言偏好不同的扩充词汇的手段（例如加词缀、造合成词、变格），这些手段又反过来影响语法的具体形态</p>
+<p>当然语素究竟是什么也没有特别好的判定准则，并且通常作为 native speaker
+也会有拿不准的情况。</p>
+<p>一个例子： “俄罗斯” 和 “俄联邦” 分别有几个语素？那 “白俄罗斯”
+呢？</p>
+<h2 id="syntax">Syntax</h2>
+<p>翻译是语法，但也叫句法学。关心的是如何通过词汇得到表达含义的句子。</p>
+<p>涉及到的一个经典问题就是语序，通常形态学的一些特征会影响到句子的结构（例如格位变化多的语言可能就不那么在意语序）。</p>
+<h2 id="semantics">Semantics</h2>
+<p>咕咕</p>
+<h2 id="pragmatics">Pragmatics</h2>
+<p>咕咕</p>
+
       </div>
-    
-      <div class="post-item" title="Hello World!">
-        <div class="time-m-d">2020-10-26</div>
-        <div class="title">
-          <a href="/2020/10/26/Hello-World/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>Hello World!</span>
-              
+              <a href="/2022/10/16/Network03-Transport/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-10-17 14:03:18
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Linguistics/" title="Linguistics">
+                        <b>#</b> Linguistics
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/10/17/Linguistics02-Phonetics/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
         </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#branches"><span class="toc-text">Branches</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#phonetics"><span class="toc-text">Phonetics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phonology"><span class="toc-text">Phonology</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#morphology"><span class="toc-text">Morphology</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#syntax"><span class="toc-text">Syntax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#semantics"><span class="toc-text">Semantics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pragmatics"><span class="toc-text">Pragmatics</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/5/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">6 / 6</span>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -433,6 +589,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
