@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-17T06:03:48.933Z</updated>
+  <updated>2022-10-17T10:25:16.853Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,20 +21,21 @@
     <link href="http://example.com/2022/10/17/Linguistics02-Phonetics/"/>
     <id>http://example.com/2022/10/17/Linguistics02-Phonetics/</id>
     <published>2022-10-17T06:03:48.000Z</published>
-    <updated>2022-10-17T06:03:48.933Z</updated>
+    <updated>2022-10-17T10:25:16.853Z</updated>
     
     
       
       
         
         
-    <summary type="html">
-</summary>
+    <summary type="html">&lt;h1</summary>
         
       
     
     
     
+    
+    <category term="Linguistics" scheme="http://example.com/tags/Linguistics/"/>
     
   </entry>
   
