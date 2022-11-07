@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      Concurrency04 Promising 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,198 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="形式语义04 Types">
-        <div class="time-m-d">2021-10-05</div>
-        <div class="title">
-          <a href="/2021/10/05/Semantics04-Types/">
-            
-              
-                <span>形式语义04 Types</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Concurrency04 Promising</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2022-11-07 19:35:31
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Concurrency/" title="Concurrency">
+                    <b>#</b> Concurrency
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="密码学03 Computational">
-        <div class="time-m-d">2021-09-27</div>
-        <div class="title">
-          <a href="/2021/09/27/Crypto03-Computational/">
-            
-              
-                <span>密码学03 Computational</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="intro">Intro</h1>
+<p>C11 model 的最大问题有这么几个</p>
+<ol type="1">
+<li>OOTA，这说明 C11 model 太弱了</li>
+<li>UB，这让一些 type-safe 的语言没法用这个 model，因为 UB 本质上和 type
+safety 冲突。</li>
+</ol>
+<p>所以几个大家都很熟悉的人提出了 promising semantics，claim 他们解决了
+OOTA 的问题，同时还是 operational 的，这样就不会有 UB。</p>
+<p>当然这一段我不是太感冒，就当是夹带私活了。</p>
+<h1 id="idea">Idea</h1>
+<p>promising 的叫法来自于 model 中的一个特殊操作，make promises。</p>
+<p>这个操作的意义在于，一个线程可以在真正操作内存之前，向其它线程claim它将会完成一些内存的修改（写入）。</p>
+<p>在这个 model 中，内存 <span class="math inline">\(M\)</span>
+被视为一个消息的集合（set of messages），每个消息是三元组 <span
+class="math inline">\(\left&lt;x=v \text{ @t}\right&gt;\)</span>，表示在
+timestamp <span class="math inline">\(t\)</span> 时刻，<span
+class="math inline">\(x\)</span> 将被写入值 <span
+class="math inline">\(v\)</span>。每个线程对内存的视角（view）可以不同，这里视角定义为函数
+<span class="math inline">\(\text{loc}\mapsto
+M\vert_{\text{loc}}\)</span>，论文要求每个线程的 view 关于 timestamp
+必须是单调的，同时在读写内存时有一些 view 的修改的规定。</p>
+<p>为了解决 OOTA，论文还作出了 well-behaved
+这样的要求：即任意时刻，每个线程都需要保证它确实能够完成它的
+promise。当然这里的描述很模糊，具体可以去看论文。当然我觉得这样有些耍赖的感觉，毕竟每一步都要保证所有的结果都是可达的，自然就不存在
+OOTA 了。</p>
+<p>感觉之所以会讲这个主要是因为 PLAX 自己也在 follow
+做相关的东西。但是在不涉及真的形式化和真的验证的时候，好像很难说你真的懂了这个，以及这个东西真的有用处。看看论文就差不多了吧。</p>
+
       </div>
-    
-      <div class="post-item" title="形式语义03 Lambda">
-        <div class="time-m-d">2021-09-16</div>
-        <div class="title">
-          <a href="/2021/09/16/Semantics03-Lambda/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>形式语义03 Lambda</span>
-              
+              <a href="/2022/10/17/Linguistics02-Phonetics/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2022-11-07 19:35:31
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Concurrency/" title="Concurrency">
+                        <b>#</b> Concurrency
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/11/07/Concurrency05-Linearizability/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="密码学02 Perfect">
-        <div class="time-m-d">2021-09-15</div>
-        <div class="title">
-          <a href="/2021/09/15/Crypto02-Perfect/">
-            
-              
-                <span>密码学02 Perfect</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#idea"><span class="toc-text">Idea</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="形式语义01 Intro">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/Semantics01-Intro/">
-            
-              
-                <span>形式语义01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义02 Math">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/Semantics02-Math/">
-            
-              
-                <span>形式语义02 Math</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学01 Intro">
-        <div class="time-m-d">2021-09-02</div>
-        <div class="title">
-          <a href="/2021/09/02/Crypto01-Intro/">
-            
-              
-                <span>密码学01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Compiler03 语法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/Compiler03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>Compiler03 语法分析</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Compiler02 词法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/Compiler02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>Compiler02 词法分析</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="DFA到等价正则表达式的转化">
-        <div class="time-m-d">2021-08-20</div>
-        <div class="title">
-          <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/">
-            
-              
-                <span>DFA到等价正则表达式的转化</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析10 Soundiness">
-        <div class="time-m-d">2021-08-14</div>
-        <div class="title">
-          <a href="/2021/08/14/SPA10-Soundiness/">
-            
-              
-                <span>软件分析10 Soundiness</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析09 CFL-R&IFDS">
-        <div class="time-m-d">2021-08-13</div>
-        <div class="title">
-          <a href="/2021/08/13/SPA09-CFL-R-IFDS/">
-            
-              
-                <span>软件分析09 CFL-R&IFDS</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析08 Datalog">
-        <div class="time-m-d">2021-08-13</div>
-        <div class="title">
-          <a href="/2021/08/13/SPA08-Datalog/">
-            
-              
-                <span>软件分析08 Datalog</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析07 Security">
-        <div class="time-m-d">2021-08-08</div>
-        <div class="title">
-          <a href="/2021/08/08/SPA07-Security/">
-            
-              
-                <span>软件分析07 Security</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析06 CSA">
-        <div class="time-m-d">2021-08-08</div>
-        <div class="title">
-          <a href="/2021/08/08/SPA06-CSA/">
-            
-              
-                <span>软件分析06 CSA</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析05 PA">
-        <div class="time-m-d">2021-08-04</div>
-        <div class="title">
-          <a href="/2021/08/04/SPA05-PA/">
-            
-              
-                <span>软件分析05 PA</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析04 CGC">
-        <div class="time-m-d">2021-08-04</div>
-        <div class="title">
-          <a href="/2021/08/04/SPA04-CGC/">
-            
-              
-                <span>软件分析04 CGC</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="大一下存活纪实">
-        <div class="time-m-d">2021-08-02</div>
-        <div class="title">
-          <a href="/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/">
-            
-              
-                <span>大一下存活纪实</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="集训补题合集">
-        <div class="time-m-d">2021-07-17</div>
-        <div class="title">
-          <a href="/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/">
-            
-              
-                <span>集训补题合集</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论04 平面图与可平面图">
-        <div class="time-m-d">2021-07-03</div>
-        <div class="title">
-          <a href="/2021/07/03/Graph04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/">
-            
-              
-                <span>图论04 平面图与可平面图</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/3/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">4 / 6</span>
-    
-      <a href="/page/5/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +576,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

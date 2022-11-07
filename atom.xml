@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-17T12:12:07.985Z</updated>
+  <updated>2022-11-07T11:35:49.117Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Concurrency05 Linearizability</title>
+    <link href="http://example.com/2022/11/07/Concurrency05-Linearizability/"/>
+    <id>http://example.com/2022/11/07/Concurrency05-Linearizability/</id>
+    <published>2022-11-07T11:35:49.000Z</published>
+    <updated>2022-11-07T11:35:49.117Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Concurrency04 Promising</title>
+    <link href="http://example.com/2022/11/07/Concurrency04-Promising/"/>
+    <id>http://example.com/2022/11/07/Concurrency04-Promising/</id>
+    <published>2022-11-07T11:35:31.000Z</published>
+    <updated>2022-11-07T11:52:14.657Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;C11 model 的最大问题有这么几个&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;OOTA，这说明 C11 model 太弱了&lt;/li&gt;
+&lt;li&gt;UB，这让一些 type-safe 的语言没法用这个 model，因为</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Concurrency" scheme="http://example.com/tags/Concurrency/"/>
+    
+  </entry>
   
   <entry>
     <title>Linguistics02 Phonetics</title>
@@ -478,59 +527,6 @@ class=&quot;math inline&quot;&gt;\(\lambda_{\rightarrow}\)&lt;/span&gt;&lt;/p&gt
     
     
     <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统05 调度</title>
-    <link href="http://example.com/2022/08/03/OS05-%E8%B0%83%E5%BA%A6/"/>
-    <id>http://example.com/2022/08/03/OS05-%E8%B0%83%E5%BA%A6/</id>
-    <published>2022-08-03T09:14:57.000Z</published>
-    <updated>2022-08-03T10:00:11.563Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;事实上后面还有很多关于实时性和 case study
-的高端内容，打算咕咕咕了回头再看。&lt;/p&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Operating System" scheme="http://example.com/tags/Operating-System/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Haskell Parser Combinator</title>
-    <link href="http://example.com/2022/07/26/Haskell-Parser-Combinator/"/>
-    <id>http://example.com/2022/07/26/Haskell-Parser-Combinator/</id>
-    <published>2022-07-25T16:00:45.000Z</published>
-    <updated>2022-07-25T17:39:26.749Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;欢迎指正本文的错误！&lt;/p&gt;
-&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;What is Parser Combinator?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;传统的 Parsing 包括 Lexing 和</summary>
-        
-      
-    
-    
-    
-    
-    <category term="haskell" scheme="http://example.com/tags/haskell/"/>
     
   </entry>
   
