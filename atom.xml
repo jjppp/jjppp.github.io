@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-11-07T11:35:49.117Z</updated>
+  <updated>2022-11-09T08:50:28.990Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Automata03 CFL</title>
+    <link href="http://example.com/2022/11/09/Automata03-CFL/"/>
+    <id>http://example.com/2022/11/09/Automata03-CFL/</id>
+    <published>2022-11-09T06:56:58.000Z</published>
+    <updated>2022-11-09T08:50:28.990Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;上下文无关语言（Context Free
+Language）是一类比正则语言更强的语言。描述上下文无关语言的文法叫上下文无关文法（CFG）。&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Automata02 RE</title>
+    <link href="http://example.com/2022/11/09/Automata02-RE/"/>
+    <id>http://example.com/2022/11/09/Automata02-RE/</id>
+    <published>2022-11-09T06:56:43.000Z</published>
+    <updated>2022-11-09T06:56:43.221Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Concurrency05 Linearizability</title>
@@ -474,59 +522,6 @@ binding。因为所有的项都可以求值，并且都是纯的计算模型（�
     
     
     <category term="Network" scheme="http://example.com/tags/Network/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAPL05 Extensions</title>
-    <link href="http://example.com/2022/08/09/TAPL05-Extensions/"/>
-    <id>http://example.com/2022/08/09/TAPL05-Extensions/</id>
-    <published>2022-08-09T03:56:13.000Z</published>
-    <updated>2022-08-11T09:53:56.323Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;这一章主要是给 STLC 加上各种常用的
-construct，也就是在做语法糖化的过程。比较轻松&lt;/p&gt;
-&lt;h1 id=&quot;derived-form&quot;&gt;Derived Form&lt;/h1&gt;
-&lt;p&gt;考虑语言 &lt;span</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAPL04 Typed Lambda</title>
-    <link href="http://example.com/2022/08/04/TAPL04-Typed-Lambda/"/>
-    <id>http://example.com/2022/08/04/TAPL04-Typed-Lambda/</id>
-    <published>2022-08-04T11:16:48.000Z</published>
-    <updated>2022-08-07T03:14:50.964Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Simply Typed Lambda Calculus 通常记为 &lt;span
-class=&quot;math inline&quot;&gt;\(\lambda_{\rightarrow}\)&lt;/span&gt;&lt;/p&gt;
-&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;在 ULC +</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
     
   </entry>
   

@@ -11,7 +11,7 @@
   
   <title>
     
-      Concurrency05 Linearizability 
+      Automata03 CFL 
       
       
       |
@@ -164,23 +164,208 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Concurrency05 Linearizability</div>
+      <div class="post-title">Automata03 CFL</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2022-11-07 19:35:49
+          2022-11-09 14:56:58
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Automata/" title="Automata">
+                    <b>#</b> Automata
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <h1 id="intro">Intro</h1>
+<p>上下文无关语言（Context Free
+Language）是一类比正则语言更强的语言。描述上下文无关语言的文法叫上下文无关文法（CFG）。</p>
+<h1 id="cfg">CFG</h1>
+<p>上下文无关文法定义为四元组 <span
+class="math inline">\(G=(T,V,S,P)\)</span>，其中</p>
+<ul>
+<li><span class="math inline">\(T\)</span> 是符号集，也叫Terminals</li>
+<li><span class="math inline">\(V\)</span> 是变量集</li>
+<li><span class="math inline">\(S\)</span> 是初始变量</li>
+<li><span class="math inline">\(P\)</span> 是产生式的集合（Set of
+Productions）</li>
+</ul>
+<p>定义 <span class="math inline">\(T^*\)</span> 是串，<span
+class="math inline">\((T\cup V)^*\)</span> 是句子（sentential form）</p>
+<p>上下文无关文法的大概想法是这样的：我们总是可以从初始变量开始，通过不断地把一个句子中的符号替换成另一个句子，最终得到一个串。这里“替换”指的就是关于<strong>产生式</strong>的应用，并且“上下文无关”的名字来源于“我们可以无脑替换”这一操作策略。</p>
+<p>一个比较无聊的帮助理解的例子是这样的：可以把变量看成 STLC
+里的变量，然后在最前面加上 quantifier，这样所谓的应用产生式就是 function
+application，串就是 value，产生式就是 function。</p>
+<p>若 <span class="math inline">\(S\)</span> 能经过若干步替换得到句子
+<span class="math inline">\(\alpha\)</span>，我们就写作 <span
+class="math inline">\(S\Rightarrow^* \alpha\)</span>，称 <span
+class="math inline">\(S\)</span> 推导出（derives）<span
+class="math inline">\(\alpha\)</span>。通常不要求 <span
+class="math inline">\(S\)</span> 一定是变量。</p>
+<p>很显然 CFG <span class="math inline">\(G=(T,V,S,P)\)</span>
+定义的语言就是 <span class="math inline">\(\Set{s\mid S\Rightarrow^*
+s}\)</span></p>
+<h2 id="derivation">Derivation</h2>
+<p>这部分比较绕。</p>
+<p>注意到在定义“推导”的时候我们并没有规定替换符号的顺序，因此给定语法
+<span class="math inline">\(G\)</span> 时，对于某个串 <span
+class="math inline">\(s\)</span> 可能存在多个推导序列。一个平凡的例子是
+<span class="math inline">\(S\rightarrow AA, A\rightarrow 0\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(S\Rightarrow AA\Rightarrow 0A\Rightarrow
+00\)</span></li>
+<li><span class="math inline">\(S\Rightarrow AA\Rightarrow A0\Rightarrow
+00\)</span></li>
+</ol>
+<p>当然我们更关注的其实是推导作为树的结构，而不是线性序的形状，因此可以通过限定变量替换的顺序来得到推导树与推导序列的<strong>双射</strong>。常用的就是最左和最右推导。</p>
+<p>关于双射的证明可以用简单的归纳得到...</p>
+<h2 id="ambiguity">Ambiguity</h2>
+<p>消除了线性序上的歧义还不够，对于给定的 <span
+class="math inline">\(G\)</span> 和串 <span
+class="math inline">\(s\)</span>，如果存在 <span
+class="math inline">\(s\)</span> 的两个不同推导树，那么就称 <span
+class="math inline">\(G\)</span>
+是有歧义的（ambiguous）。由推导树与最左推导的双射可知，<span
+class="math inline">\(G\)</span> 有歧义 iff 存在 <span
+class="math inline">\(s\)</span> 有两个不同的最左推导。</p>
+<p>注意到这里的歧义是语法的性质，如果是编译课就会讲怎么设计文法消除歧义。但实际上并非所有的上下文无关语言都能消除歧义，一个例子是
+<span class="math inline">\(L=\Set{0^i1^j2^k\mid i=j\vee
+j=k}\)</span>：</p>
+<ol type="1">
+<li>先推出 <span class="math inline">\(i=j\)</span>，再推 <span
+class="math inline">\(j=k\)</span></li>
+<li>先推出 <span class="math inline">\(j=k\)</span>，再推 <span
+class="math inline">\(i=j\)</span></li>
+</ol>
+<h2 id="normal-form">Normal Form</h2>
+<p>讲的是对于给定的语法 <span
+class="math inline">\(G\)</span>，怎么化简得到等价的 <span
+class="math inline">\(G&#39;\)</span>。</p>
+<p>这里需要特殊处理一下 <span
+class="math inline">\(\epsilon\)</span>。若 <span
+class="math inline">\(\epsilon\in L(G)\)</span>，那么我们实际上可以构造
+<span class="math inline">\(G&#39;\)</span> 使得 <span
+class="math inline">\(L(G&#39;)=L(G)-\Set{\epsilon}\)</span>，最后单独考虑
+<span class="math inline">\(\epsilon\)</span>
+（通过单独加产生式）。之所以特殊处理是为了形式更简单更好看（<span
+class="math inline">\(\epsilon\)</span>
+在连接操作下是幂等的，可以任意出现而不改变语言，神出鬼没）。</p>
+<h3 id="epsilon-production"><span
+class="math inline">\(\epsilon\)</span>-Production</h3>
+<p>若 <span class="math inline">\(V\Rightarrow
+\epsilon\)</span>，那么就称这个产生式是 <span
+class="math inline">\(\epsilon\)</span>-Production，这一步的目的是去掉长成这样的产生式。</p>
+<h4 id="identification">Identification</h4>
+<p>归纳地定义变量上的谓词 <span
+class="math inline">\(\text{Nullable}\)</span> 如下：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(V\to \epsilon\)</span>，则 <span
+class="math inline">\(\text{Nullable}(V)\)</span></li>
+<li>若 <span class="math inline">\(V\to \alpha\)</span>，且对 <span
+class="math inline">\(\alpha\)</span> 中的任意变量 <span
+class="math inline">\(X\)</span> 都有 <span
+class="math inline">\(\text{Nullable}(X)\)</span>，则 <span
+class="math inline">\(\text{Nullable}(V)\)</span></li>
+</ol>
+<p>容易看出 <span class="math inline">\(\text{Nullable}(V)\)</span>
+的含义是 <span class="math inline">\(V\Rightarrow^*
+\epsilon\)</span>。</p>
+<h4 id="removal">Removal</h4>
+<p>对于一条产生式 <span class="math inline">\(V\to
+\alpha\)</span>，我们可以根据 <span
+class="math inline">\(\text{Nullable}()\)</span>
+的结果将这条产生式变成若干产生式。</p>
+<p>具体而言是这样的，假设 <span
+class="math inline">\(A\in\text{Nullable}\)</span>，那么我们必然可以引入中间变量
+<span class="math inline">\(A&#39;\)</span> 写成如下形式：</p>
+<ol type="1">
+<li><span class="math inline">\(A\to \epsilon\)</span></li>
+<li><span class="math inline">\(A\to A&#39;\)</span>，且 <span
+class="math inline">\(A&#39;\not\in \text{Nullable}\)</span></li>
+</ol>
+<p>当 <span class="math inline">\(A\)</span>
+出现在产生式的右侧时，我们不能直接删去1，考虑这个例子：</p>
+<p><span class="math inline">\(S\to AB\)</span>，<span
+class="math inline">\(A\to \epsilon\mid a\)</span>，<span
+class="math inline">\(B\to b\)</span>，这个语法规定的语言是 <span
+class="math inline">\(\Set{ab,b}\)</span>。假设我们删掉了 <span
+class="math inline">\(A\to\epsilon\)</span>，那么语言就会变成 <span
+class="math inline">\(\Set{ab}\)</span>，这样引入了语义变化。</p>
+<p>注意到表达“空”有两种办法：</p>
+<ol type="1">
+<li>变量推导出 <span class="math inline">\(\epsilon\)</span></li>
+<li>从产生式里删掉这个变量</li>
+</ol>
+<p>因此可以先构造 <span class="math inline">\(S\to A&#39;B\mid
+B\)</span> 来语法化表示 <span
+class="math inline">\(\epsilon\)</span>，此处的 <span
+class="math inline">\(A&#39;\)</span> 定义为 <span
+class="math inline">\(A&#39;\to a\)</span>，这样就维持了语义等价。</p>
+<p>推广到产生式右侧有 <span class="math inline">\(k\)</span> 个 <span
+class="math inline">\(\text{Nullable}\)</span> 变量，那么就是新构造
+<span class="math inline">\(2^k\)</span>
+个产生式，然后分别递归消消乐就好了。</p>
+<h3 id="unit-production">Unit Production</h3>
+<p>Unit Production 说的是形如 <span class="math inline">\(A\to B, B\to
+C\)</span> 这样的产生式。</p>
+<p>如果 <span class="math inline">\(A\Rightarrow ^* B\)</span>，且 <span
+class="math inline">\(B\to \alpha\)</span>，<span
+class="math inline">\(\alpha\)</span> 中不止一个变量，那么就引入新产生式
+<span class="math inline">\(A\to \alpha\)</span>。</p>
+<p>反复添加直至收敛，然后就可以删去那些 Unit Production 了。</p>
+<p>这个有点 copy propagation 的感觉，或者可以认为是图的
+contraction。</p>
+<h3 id="divergent">Divergent</h3>
+<p>如果一个符号 <span class="math inline">\(A\)</span> 满足 <span
+class="math inline">\(L(A)=\varnothing\)</span>，那么以 <span
+class="math inline">\(A\)</span>
+为起点的推导将永不终止。这样的符号也可以直接删掉。</p>
+<h4 id="identification-1">Identification</h4>
+<p>构造谓词 <span class="math inline">\(\text{Stoppable}\)</span>
+如下：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(V\to s\)</span>，那么 <span
+class="math inline">\(\text{Stoppable}(V)\)</span></li>
+<li>若 <span class="math inline">\(V\to\alpha\)</span>，且 <span
+class="math inline">\(\alpha\)</span> 中的一切变量 <span
+class="math inline">\(X\)</span> 都有 <span
+class="math inline">\(\text{Stoppable}(X)\)</span>，那么 <span
+class="math inline">\(\text{Stoppable}(V)\)</span></li>
+</ol>
+<h4 id="removal-1">Removal</h4>
+<p>对于 <span class="math inline">\(V\not\in
+\text{Stoppable}\)</span>，删去 <span class="math inline">\(V\)</span>
+所处的产生式（左侧和右侧都算出现）</p>
+<h3 id="unreachable">Unreachable</h3>
+<p>若 <span class="math inline">\(S\not\Rightarrow^* V\)</span>，那么
+<span class="math inline">\(V\)</span> 就是 unreachable
+symbol，它和它的产生式都可以直接删掉。</p>
+<p>这个就是 deadcode 了。</p>
+<h2 id="cnf">CNF</h2>
+<p>大名鼎鼎的 Chomsky Normal Form</p>
+<p>大概意思是在做完上面那些 clean up
+之后，我们的语法中的产生式右侧长度至少为 <span
+class="math inline">\(2\)</span>（没有 Unit Production 和 <span
+class="math inline">\(\epsilon\)</span>-Production）</p>
+<p>那么可以人为地引入变量把语法树变成二叉的，并且叶子全是 <span
+class="math inline">\(V\to c\)</span>，<span
+class="math inline">\(c\in\Sigma\)</span> 这样的形式。</p>
+<p>之所以这么做是为了证明上的方便，比如 CNF
+的形式可以给树高估一个界。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/11/07/Concurrency04-Promising/" target="_self">
+              <a href="/2022/11/09/Automata02-RE/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -189,22 +374,45 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2022-11-07 19:35:49
+              2022-11-09 14:56:58
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Automata/" title="Automata">
+                        <b>#</b> Automata
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2022/11/09/Automata02-RE/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cfg"><span class="toc-text">CFG</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#derivation"><span class="toc-text">Derivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ambiguity"><span class="toc-text">Ambiguity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#normal-form"><span class="toc-text">Normal Form</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#epsilon-production"><span class="toc-text">\(\epsilon\)-Production</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#identification"><span class="toc-text">Identification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#removal"><span class="toc-text">Removal</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unit-production"><span class="toc-text">Unit Production</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#divergent"><span class="toc-text">Divergent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#identification-1"><span class="toc-text">Identification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#removal-1"><span class="toc-text">Removal</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unreachable"><span class="toc-text">Unreachable</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cnf"><span class="toc-text">CNF</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
