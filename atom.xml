@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-11-09T08:50:28.990Z</updated>
+  <updated>2022-12-07T15:58:45.674Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Automata05 TM</title>
+    <link href="http://example.com/2022/12/07/Automata05-TM/"/>
+    <id>http://example.com/2022/12/07/Automata05-TM/</id>
+    <published>2022-12-07T11:46:50.000Z</published>
+    <updated>2022-12-07T15:58:45.674Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;图灵机最早是作为一种计算模型出现的，目的是讨论在这样一种机器上能解决什么样的问题。&lt;/p&gt;
+&lt;p&gt;形式化的图灵机定义为七元组 &lt;span
+class=&quot;math</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Automata04 PDA</title>
+    <link href="http://example.com/2022/11/09/Automata04-PDA/"/>
+    <id>http://example.com/2022/11/09/Automata04-PDA/</id>
+    <published>2022-11-09T08:53:04.000Z</published>
+    <updated>2022-11-09T08:53:04.119Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Automata03 CFL</title>
@@ -470,58 +518,6 @@ preorder），使得程序猿可以写出很通用的代码。典型的子类型
     
     
     <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAPL06 References</title>
-    <link href="http://example.com/2022/08/27/TAPL06-References/"/>
-    <id>http://example.com/2022/08/27/TAPL06-References/</id>
-    <published>2022-08-27T04:04:59.000Z</published>
-    <updated>2022-08-27T06:00:27.754Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;之前提到的 &lt;code&gt;x=term&lt;/code&gt; 都是 name
-binding。因为所有的项都可以求值，并且都是纯的计算模型（只和 substitution
-有关），所以本质上是 meta level</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Network01 Intro</title>
-    <link href="http://example.com/2022/08/14/Network01-Intro/"/>
-    <id>http://example.com/2022/08/14/Network01-Intro/</id>
-    <published>2022-08-14T07:41:57.000Z</published>
-    <updated>2022-09-06T14:53:21.932Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;网络&quot;&gt;网络&lt;/h1&gt;
-&lt;p&gt;形式化的定义网络为图&lt;/p&gt;
-&lt;h1 id=&quot;计算机网络&quot;&gt;计算机网络&lt;/h1&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Network" scheme="http://example.com/tags/Network/"/>
     
   </entry>
   

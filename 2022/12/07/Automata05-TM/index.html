@@ -11,7 +11,7 @@
   
   <title>
     
-      Automata03 CFL 
+      Automata05 TM 
       
       
       |
@@ -164,11 +164,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Automata03 CFL</div>
+      <div class="post-title">Automata05 TM</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2022-11-09 14:56:58
+          2022-12-07 19:46:50
         </span>
         
               <span class="post-tags">
@@ -185,187 +185,157 @@
       </div>
       <div class="markdown-body">
         <h1 id="intro">Intro</h1>
-<p>上下文无关语言（Context Free
-Language）是一类比正则语言更强的语言。描述上下文无关语言的文法叫上下文无关文法（CFG）。</p>
-<h1 id="cfg">CFG</h1>
-<p>上下文无关文法定义为四元组 <span
-class="math inline">\(G=(T,V,S,P)\)</span>，其中</p>
-<ul>
-<li><span class="math inline">\(T\)</span> 是符号集，也叫Terminals</li>
-<li><span class="math inline">\(V\)</span> 是变量集</li>
-<li><span class="math inline">\(S\)</span> 是初始变量</li>
-<li><span class="math inline">\(P\)</span> 是产生式的集合（Set of
-Productions）</li>
-</ul>
-<p>定义 <span class="math inline">\(T^*\)</span> 是串，<span
-class="math inline">\((T\cup V)^*\)</span> 是句子（sentential form）</p>
-<p>上下文无关文法的大概想法是这样的：我们总是可以从初始变量开始，通过不断地把一个句子中的符号替换成另一个句子，最终得到一个串。这里“替换”指的就是关于<strong>产生式</strong>的应用，并且“上下文无关”的名字来源于“我们可以无脑替换”这一操作策略。</p>
-<p>一个比较无聊的帮助理解的例子是这样的：可以把变量看成 STLC
-里的变量，然后在最前面加上 quantifier，这样所谓的应用产生式就是 function
-application，串就是 value，产生式就是 function。</p>
-<p>若 <span class="math inline">\(S\)</span> 能经过若干步替换得到句子
-<span class="math inline">\(\alpha\)</span>，我们就写作 <span
-class="math inline">\(S\Rightarrow^* \alpha\)</span>，称 <span
-class="math inline">\(S\)</span> 推导出（derives）<span
-class="math inline">\(\alpha\)</span>。通常不要求 <span
-class="math inline">\(S\)</span> 一定是变量。</p>
-<p>很显然 CFG <span class="math inline">\(G=(T,V,S,P)\)</span>
-定义的语言就是 <span class="math inline">\(\Set{s\mid S\Rightarrow^*
-s}\)</span></p>
-<h2 id="derivation">Derivation</h2>
-<p>这部分比较绕。</p>
-<p>注意到在定义“推导”的时候我们并没有规定替换符号的顺序，因此给定语法
-<span class="math inline">\(G\)</span> 时，对于某个串 <span
-class="math inline">\(s\)</span> 可能存在多个推导序列。一个平凡的例子是
-<span class="math inline">\(S\rightarrow AA, A\rightarrow 0\)</span></p>
+<p>图灵机最早是作为一种计算模型出现的，目的是讨论在这样一种机器上能解决什么样的问题。</p>
+<p>形式化的图灵机定义为七元组 <span
+class="math inline">\((Q,\Sigma,\Gamma,\delta,q_0,B,F)\)</span>，含义分别为：状态集、输入符号集、纸带符号集、转移函数、初始状态、空符号、接受状态集。</p>
+<p>和 PDA 的最大区别在于</p>
 <ol type="1">
-<li><span class="math inline">\(S\Rightarrow AA\Rightarrow 0A\Rightarrow
-00\)</span></li>
-<li><span class="math inline">\(S\Rightarrow AA\Rightarrow A0\Rightarrow
-00\)</span></li>
+<li>TM 的纸带两端无限长</li>
+<li>TM 可以读/写纸带</li>
+<li>TM 的读写头可以左右移动</li>
 </ol>
-<p>当然我们更关注的其实是推导作为树的结构，而不是线性序的形状，因此可以通过限定变量替换的顺序来得到推导树与推导序列的<strong>双射</strong>。常用的就是最左和最右推导。</p>
-<p>关于双射的证明可以用简单的归纳得到...</p>
-<h2 id="ambiguity">Ambiguity</h2>
-<p>消除了线性序上的歧义还不够，对于给定的 <span
-class="math inline">\(G\)</span> 和串 <span
-class="math inline">\(s\)</span>，如果存在 <span
-class="math inline">\(s\)</span> 的两个不同推导树，那么就称 <span
-class="math inline">\(G\)</span>
-是有歧义的（ambiguous）。由推导树与最左推导的双射可知，<span
-class="math inline">\(G\)</span> 有歧义 iff 存在 <span
-class="math inline">\(s\)</span> 有两个不同的最左推导。</p>
-<p>注意到这里的歧义是语法的性质，如果是编译课就会讲怎么设计文法消除歧义。但实际上并非所有的上下文无关语言都能消除歧义，一个例子是
-<span class="math inline">\(L=\Set{0^i1^j2^k\mid i=j\vee
-j=k}\)</span>：</p>
+<p>别的没有本质区别。</p>
+<p>对于 TM 的 ID <span
+class="math inline">\((q,\alpha,\text{Head})\)</span>，寸晷要求可以这么写：<span
+class="math inline">\(\gamma q\beta\)</span>，其中 <span
+class="math inline">\(\alpha=\gamma\beta\)</span>，且读头在 <span
+class="math inline">\(\beta\)</span> 的第一个字符上。</p>
+<p>ID 间的转移写作 <span class="math inline">\(ID\vdash
+ID&#39;\)</span></p>
+<h1 id="recursive-enumerable">Recursive Enumerable</h1>
+<p>给定 TM <span
+class="math inline">\(M\)</span>，有两种定义其接收语言的方法</p>
 <ol type="1">
-<li>先推出 <span class="math inline">\(i=j\)</span>，再推 <span
-class="math inline">\(j=k\)</span></li>
-<li>先推出 <span class="math inline">\(j=k\)</span>，再推 <span
-class="math inline">\(i=j\)</span></li>
+<li>定义 <span class="math inline">\(H(M)=\Set{w\mid M(w)\text{
+停机}}\)</span></li>
+<li>定义 <span class="math inline">\(L(M)=\Set{w\mid q_0w\vdash^*
+ID(q,\alpha,\text{Head})\wedge q\in F}\)</span></li>
 </ol>
-<h2 id="normal-form">Normal Form</h2>
-<p>讲的是对于给定的语法 <span
-class="math inline">\(G\)</span>，怎么化简得到等价的 <span
-class="math inline">\(G&#39;\)</span>。</p>
-<p>这里需要特殊处理一下 <span
-class="math inline">\(\epsilon\)</span>。若 <span
-class="math inline">\(\epsilon\in L(G)\)</span>，那么我们实际上可以构造
-<span class="math inline">\(G&#39;\)</span> 使得 <span
-class="math inline">\(L(G&#39;)=L(G)-\Set{\epsilon}\)</span>，最后单独考虑
-<span class="math inline">\(\epsilon\)</span>
-（通过单独加产生式）。之所以特殊处理是为了形式更简单更好看（<span
-class="math inline">\(\epsilon\)</span>
-在连接操作下是幂等的，可以任意出现而不改变语言，神出鬼没）。</p>
-<h3 id="epsilon-production"><span
-class="math inline">\(\epsilon\)</span>-Production</h3>
-<p>若 <span class="math inline">\(V\Rightarrow
-\epsilon\)</span>，那么就称这个产生式是 <span
-class="math inline">\(\epsilon\)</span>-Production，这一步的目的是去掉长成这样的产生式。</p>
-<h4 id="identification">Identification</h4>
-<p>归纳地定义变量上的谓词 <span
-class="math inline">\(\text{Nullable}\)</span> 如下：</p>
+<p>由 TM 定义的语言叫做<strong>递归可枚举语言（Recursive Enumerable
+Language）</strong></p>
+<p>定理：</p>
 <ol type="1">
-<li>若 <span class="math inline">\(V\to \epsilon\)</span>，则 <span
-class="math inline">\(\text{Nullable}(V)\)</span></li>
-<li>若 <span class="math inline">\(V\to \alpha\)</span>，且对 <span
-class="math inline">\(\alpha\)</span> 中的任意变量 <span
-class="math inline">\(X\)</span> 都有 <span
-class="math inline">\(\text{Nullable}(X)\)</span>，则 <span
-class="math inline">\(\text{Nullable}(V)\)</span></li>
+<li>任给 <span class="math inline">\(L=L(M)\)</span>，存在 <span
+class="math inline">\(M&#39;\)</span> 使得 <span
+class="math inline">\(L(M)=H(M&#39;)\)</span>；</li>
+<li>任给 <span class="math inline">\(L=H(M)\)</span>，存在 <span
+class="math inline">\(M&#39;&#39;\)</span> 使得 <span
+class="math inline">\(H(M)=L(M&#39;&#39;)\)</span></li>
 </ol>
-<p>容易看出 <span class="math inline">\(\text{Nullable}(V)\)</span>
-的含义是 <span class="math inline">\(V\Rightarrow^*
-\epsilon\)</span>。</p>
-<h4 id="removal">Removal</h4>
-<p>对于一条产生式 <span class="math inline">\(V\to
-\alpha\)</span>，我们可以根据 <span
-class="math inline">\(\text{Nullable}()\)</span>
-的结果将这条产生式变成若干产生式。</p>
-<p>具体而言是这样的，假设 <span
-class="math inline">\(A\in\text{Nullable}\)</span>，那么我们必然可以引入中间变量
-<span class="math inline">\(A&#39;\)</span> 写成如下形式：</p>
+<p>证明：</p>
 <ol type="1">
-<li><span class="math inline">\(A\to \epsilon\)</span></li>
-<li><span class="math inline">\(A\to A&#39;\)</span>，且 <span
-class="math inline">\(A&#39;\not\in \text{Nullable}\)</span></li>
-</ol>
-<p>当 <span class="math inline">\(A\)</span>
-出现在产生式的右侧时，我们不能直接删去1，考虑这个例子：</p>
-<p><span class="math inline">\(S\to AB\)</span>，<span
-class="math inline">\(A\to \epsilon\mid a\)</span>，<span
-class="math inline">\(B\to b\)</span>，这个语法规定的语言是 <span
-class="math inline">\(\Set{ab,b}\)</span>。假设我们删掉了 <span
-class="math inline">\(A\to\epsilon\)</span>，那么语言就会变成 <span
-class="math inline">\(\Set{ab}\)</span>，这样引入了语义变化。</p>
-<p>注意到表达“空”有两种办法：</p>
+<li>对 <span class="math inline">\(M\)</span> 稍作修改即可得到 <span
+class="math inline">\(M&#39;\)</span>
 <ol type="1">
-<li>变量推导出 <span class="math inline">\(\epsilon\)</span></li>
-<li>从产生式里删掉这个变量</li>
-</ol>
-<p>因此可以先构造 <span class="math inline">\(S\to A&#39;B\mid
-B\)</span> 来语法化表示 <span
-class="math inline">\(\epsilon\)</span>，此处的 <span
-class="math inline">\(A&#39;\)</span> 定义为 <span
-class="math inline">\(A&#39;\to a\)</span>，这样就维持了语义等价。</p>
-<p>推广到产生式右侧有 <span class="math inline">\(k\)</span> 个 <span
-class="math inline">\(\text{Nullable}\)</span> 变量，那么就是新构造
-<span class="math inline">\(2^k\)</span>
-个产生式，然后分别递归消消乐就好了。</p>
-<h3 id="unit-production">Unit Production</h3>
-<p>Unit Production 说的是形如 <span class="math inline">\(A\to B, B\to
-C\)</span> 这样的产生式。</p>
-<p>如果 <span class="math inline">\(A\Rightarrow ^* B\)</span>，且 <span
-class="math inline">\(B\to \alpha\)</span>，<span
-class="math inline">\(\alpha\)</span> 中不止一个变量，那么就引入新产生式
-<span class="math inline">\(A\to \alpha\)</span>。</p>
-<p>反复添加直至收敛，然后就可以删去那些 Unit Production 了。</p>
-<p>这个有点 copy propagation 的感觉，或者可以认为是图的
-contraction。</p>
-<h3 id="divergent">Divergent</h3>
-<p>如果一个符号 <span class="math inline">\(A\)</span> 满足 <span
-class="math inline">\(L(A)=\varnothing\)</span>，那么以 <span
-class="math inline">\(A\)</span>
-为起点的推导将永不终止。这样的符号也可以直接删掉。</p>
-<h4 id="identification-1">Identification</h4>
-<p>构造谓词 <span class="math inline">\(\text{Stoppable}\)</span>
-如下：</p>
+<li>把所有接收状态的所有后继状态都删掉</li>
+<li>对于非接收状态的未定义后继状态，设成一个死循环（永远往右走）</li>
+</ol></li>
+<li>同样对 <span class="math inline">\(M\)</span> 稍作修改即可得到 <span
+class="math inline">\(M&#39;&#39;\)</span>
 <ol type="1">
-<li>若 <span class="math inline">\(V\to s\)</span>，那么 <span
-class="math inline">\(\text{Stoppable}(V)\)</span></li>
-<li>若 <span class="math inline">\(V\to\alpha\)</span>，且 <span
-class="math inline">\(\alpha\)</span> 中的一切变量 <span
-class="math inline">\(X\)</span> 都有 <span
-class="math inline">\(\text{Stoppable}(X)\)</span>，那么 <span
-class="math inline">\(\text{Stoppable}(V)\)</span></li>
+<li>把所有未定义后继状态的转移都重定向到新造的接受状态</li>
+</ol></li>
 </ol>
-<h4 id="removal-1">Removal</h4>
-<p>对于 <span class="math inline">\(V\not\in
-\text{Stoppable}\)</span>，删去 <span class="math inline">\(V\)</span>
-所处的产生式（左侧和右侧都算出现）</p>
-<h3 id="unreachable">Unreachable</h3>
-<p>若 <span class="math inline">\(S\not\Rightarrow^* V\)</span>，那么
-<span class="math inline">\(V\)</span> 就是 unreachable
-symbol，它和它的产生式都可以直接删掉。</p>
-<p>这个就是 deadcode 了。</p>
-<h2 id="cnf">CNF</h2>
-<p>大名鼎鼎的 Chomsky Normal Form</p>
-<p>大概意思是在做完上面那些 clean up
-之后，我们的语法中的产生式右侧长度至少为 <span
-class="math inline">\(2\)</span>（没有 Unit Production 和 <span
-class="math inline">\(\epsilon\)</span>-Production）</p>
-<p>那么可以人为地引入变量把语法树变成二叉的，并且叶子全是 <span
-class="math inline">\(V\to c\)</span>，<span
-class="math inline">\(c\in\Sigma\)</span> 这样的形式。</p>
-<p>之所以这么做是为了证明上的方便，比如 CNF
-的形式可以给树高估一个界。</p>
+<p>注意到1的证明可能会删去一些路径：先进入接收状态，然后走出去，再次进入后停机。在修改过后这样的trace就没法出现了。但是根据定义可知，<span
+class="math inline">\(w\in L(M)\)</span>
+当且仅当<strong>存在</strong>一个 <span
+class="math inline">\(ID\)</span> 使得 <span
+class="math inline">\(q_0w\vdash^* ID\)</span> 且 <span
+class="math inline">\(ID\)</span>
+是接收状态，因此我们仍然可以接收这个串。即只要有一次进入接收态就算接收。</p>
+<h1 id="recursive">Recursive</h1>
+<p>给定 TM <span class="math inline">\(M\)</span>，且保证 <span
+class="math inline">\(M\)</span> 停机，则称 <span
+class="math inline">\(L(M)\)</span> 是<strong>递归语言（Recursive
+Language）</strong></p>
+<p>这样的 <span class="math inline">\(M\)</span>
+也叫算法（Algorithm）</p>
+<p>这样的定义意味着纯粹的 TM 不一定停机，也可能从未进入接收状态。</p>
+<h1 id="variation">Variation</h1>
+<p>这些变体都是等价的，即它们作为整体接收的语言都是同一类语言——递归可枚举语言。</p>
+<h2 id="multiple-tracks">Multiple Tracks</h2>
+<p>原本纸带上的每个位置只有一个符号，现在纸带上的每个位置可以有 <span
+class="math inline">\(k\)</span>
+个符号。例如内存是以字节（8位）为单位的。</p>
+<p>通过简单的编码就可以证明计算能力（capability）与单个纸带的等价性。</p>
+<h2 id="marks">Marks</h2>
+<p>利用 Multiple Track 可以给不同的位置打上标记</p>
+<h2 id="registers">Registers</h2>
+<p>状态集可以带上寄存器，其中装着有限长度的串。</p>
+<h2 id="semi-infinite-tape">Semi-infinite Tape</h2>
+<p>即单边无限的纸带。注意到存在平凡双射 <span
+class="math inline">\(\N\mapsto \Z\)</span> ，因此正常 TM
+的操作同样可以在 ST-TM 上完成。</p>
+<h2 id="multiple-tapes">Multiple Tapes</h2>
+<p>注意和 Multiple Tracks 的区别，这里是可以有 <span
+class="math inline">\(k\)</span> 个读写头独立操作的。</p>
+<p>这仍然和一般路过 TM
+在计算能力上等价，即单个读写头可以模拟多个读写头并行操作的情况（单核CPU仍然可以跑多任务）。</p>
+<h2 id="nondeterministic">Nondeterministic</h2>
+<p>NTM <span class="math inline">\(N\)</span>
+的每一步有多种选择可以走。定义 <span class="math inline">\(L(N)\)</span>
+为所有能走到接收状态的串 <span class="math inline">\(w\)</span>。</p>
+<p>注意到 <span class="math inline">\(N\)</span>
+本身也是可以编码的，可以用一个 TM <span class="math inline">\(M\)</span>
+来 bfs 模拟 <span class="math inline">\(N\)</span> 的执行，也就是做
+model checking。</p>
+<p>并且由于前面这些等价的拓展，我们可以假定被编码的 TM
+尽可能简单（例如都是 ST-TM），而作为 host 的外层 TM
+可以尽可能复杂（例如可以有多个读写头），这样会比较方便。</p>
+<h2 id="key-value-store">Key-Value Store</h2>
+<p>新开两条纸带分别存 Key 和 Value。插入和删除都在纸带上扫。</p>
+<h1 id="closure-property">Closure Property</h1>
+<p>不加解释说明是递归语言和递归可枚举语言共同具有的特性。</p>
+<h2 id="lm_1cup-lm_2"><span class="math inline">\(L(M_1)\cup
+L(M_2)\)</span></h2>
+<p>构造 <span class="math inline">\(M\)</span>：</p>
+<ol type="1">
+<li>有两个纸带，分别跑 <span class="math inline">\(M_1,M_2\)</span></li>
+<li>任意一个接收都接收。</li>
+</ol>
+<h2 id="lm_1cap-lm_2"><span class="math inline">\(L(M_1)\cap
+L(M_2)\)</span></h2>
+<p>和上面是类似的</p>
+<h2 id="overlinelm"><span
+class="math inline">\(\overline{L(M)}\)</span></h2>
+<p>对递归语言而言是封闭的。由终止性可知 <span
+class="math inline">\(M\)</span>
+必然会给出判定，只需要把结果取反即可。</p>
+<p>对递归可枚举语言而言是不封闭的。证明：</p>
+<p>若 <span class="math inline">\(L\)</span> 和 <span
+class="math inline">\(\bar L\)</span> 都是递归可枚举的，那么可以取 <span
+class="math inline">\(M,\bar M\)</span> 分别为判定 <span
+class="math inline">\(L,\bar L\)</span> 的 TM。</p>
+<ol type="1">
+<li>对于输入 <span class="math inline">\(w\)</span> 分别喂给 <span
+class="math inline">\(M,\bar M\)</span></li>
+<li>若 <span class="math inline">\(M\)</span>
+停机，则停机进入接收态</li>
+<li>若 <span class="math inline">\(\bar M\)</span>
+停机，则停机进入非接收态</li>
+</ol>
+<p>这说明 <span class="math inline">\(L\)</span> 将会是递归语言。</p>
+<p>注意到我们的论证仅依赖于 <span class="math inline">\(L\)</span> 及
+<span class="math inline">\(\bar L\)</span>
+是递归可枚举的，因此一切递归可枚举语言都是递归语言。</p>
+<p>上面这条很容易举出反例（例如后面会说的停机问题），矛盾；故假设不成立。</p>
+<h2 id="lr"><span class="math inline">\(LR\)</span></h2>
+<p>对于递归语言的联，只需要枚举分界线，然后用两个 TM
+分别判定就可以了。为了避免麻烦的停机，这里的分界线枚举可以用 NTM。</p>
+<p>对于递归可枚举语言需要保证两个 TM 是并行跑的（调度公平即可）</p>
+<h2 id="lr-1"><span class="math inline">\(L^R\)</span></h2>
+<p>只需要用 TM 把输入翻转一次就好了。</p>
+<h2 id="f-1l"><span class="math inline">\(f^{-1}(L)\)</span></h2>
+<p>对于输入 <span class="math inline">\(w\)</span> 得到 <span
+class="math inline">\(f(w)\)</span>，然后放在 <span
+class="math inline">\(L\)</span> 的 TM 上跑一下得到结果。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/11/09/Automata02-RE/" target="_self">
+              <a href="/2022/11/09/Automata04-PDA/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -374,7 +344,7 @@ class="math inline">\(c\in\Sigma\)</span> 这样的形式。</p>
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2022-11-09 14:56:58
+              2022-12-07 19:46:50
             </span>
             
                   <span class="post-tags">
@@ -391,11 +361,6 @@ class="math inline">\(c\in\Sigma\)</span> 这样的形式。</p>
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2022/11/09/Automata04-PDA/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -408,7 +373,9 @@ class="math inline">\(c\in\Sigma\)</span> 这样的形式。</p>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cfg"><span class="toc-text">CFG</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#derivation"><span class="toc-text">Derivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ambiguity"><span class="toc-text">Ambiguity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#normal-form"><span class="toc-text">Normal Form</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#epsilon-production"><span class="toc-text">\(\epsilon\)-Production</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#identification"><span class="toc-text">Identification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#removal"><span class="toc-text">Removal</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unit-production"><span class="toc-text">Unit Production</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#divergent"><span class="toc-text">Divergent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#identification-1"><span class="toc-text">Identification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#removal-1"><span class="toc-text">Removal</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unreachable"><span class="toc-text">Unreachable</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cnf"><span class="toc-text">CNF</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#recursive-enumerable"><span class="toc-text">Recursive Enumerable</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#recursive"><span class="toc-text">Recursive</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#variation"><span class="toc-text">Variation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#multiple-tracks"><span class="toc-text">Multiple Tracks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#marks"><span class="toc-text">Marks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#registers"><span class="toc-text">Registers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#semi-infinite-tape"><span class="toc-text">Semi-infinite Tape</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multiple-tapes"><span class="toc-text">Multiple Tapes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nondeterministic"><span class="toc-text">Nondeterministic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key-value-store"><span class="toc-text">Key-Value Store</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#closure-property"><span class="toc-text">Closure Property</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#lm_1cup-lm_2"><span class="toc-text">\(L(M_1)\cup
+L(M_2)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lm_1cap-lm_2"><span class="toc-text">\(L(M_1)\cap
+L(M_2)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#overlinelm"><span class="toc-text">\(\overline{L(M)}\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lr"><span class="toc-text">\(LR\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lr-1"><span class="toc-text">\(L^R\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#f-1l"><span class="toc-text">\(f^{-1}(L)\)</span></a></li></ol></li></ol>
       
     </div>
   </div>
