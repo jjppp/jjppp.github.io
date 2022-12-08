@@ -171,9 +171,85 @@
           2022-12-08 21:43:00
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Automata/" title="Automata">
+                    <b>#</b> Automata
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <h1 id="intro">Intro</h1>
+<p>TM 是比较基本的计算模型，后续对“计算”本身的讨论也都会基于 TM
+来做。</p>
+<p>对于给定的问题，我们会粗略地考虑“计算难度”上的分类：</p>
+<ol type="1">
+<li>这个问题可以判定吗？</li>
+<li>如果是可判定的，它花费的<strong>计算代价</strong>（Cost）是可接受的（Tractable
+Problems）吗？</li>
+</ol>
+<p>一般的套路就是各种各样的规约，再加上各种各样已知的问题，在密码学的时候就应该见得很多了（虽然我学得很烂..）</p>
+<h1 id="decidability">Decidability</h1>
+<p>从最大的讲起</p>
+<h2 id="sigma"><span class="math inline">\(\Sigma^*\)</span></h2>
+<p>注意到 TM 本身可以被编码（七元组中的元素都是有限的）为串，因此 <span
+class="math inline">\(\lvert{\Set{M\mid M\text{ is Turing
+Machine}}}\rvert=\aleph_0\)</span></p>
+<p>而 <span
+class="math inline">\(\lvert\Sigma^*\rvert=\aleph_0\)</span>，因此所有<strong>语言</strong>组成的集合
+<span class="math inline">\(\lvert 2^{\Sigma^*}\rvert
+&gt;\aleph_0\)</span> 本身是不可数的，这说明不存在所有 TM
+到所有语言的双射。</p>
+<p>即必然存在某个语言没法用 TM 描述。</p>
+<h2 id="repartially-decidable">RE/Partially Decidable</h2>
+<p>PD 的定义和 RE 是等价的，即不能保证停机的 TM <span
+class="math inline">\(M\)</span>
+定义出的语言恰好就是半可判定的。经典的半可判定算法有一阶谓词逻辑中判定
+skolem 范式是否永真的那个算法。</p>
+<h2 id="co-re">co-RE</h2>
+<p>前面说过 RE 在补操作下不封闭，那么某个 RE 的补会是什么呢？</p>
+<p>定义 <span class="math inline">\(L\)</span> 是 co-RE 当且仅当 <span
+class="math inline">\(\bar L\)</span> 是 RE。容易发现 <span
+class="math inline">\(\text{RE}\subsetneq \text{co-RE}\)</span>，且
+<span
+class="math inline">\(\text{Decidable}=\text{co-RE}\cap\text{RE}\)</span></p>
+<h2 id="decidable">Decidable</h2>
+<p>称必然停机的 TM <span class="math inline">\(M\)</span>
+为算法（Algorithm），<span class="math inline">\(L(M)\)</span>
+为递归语言或可判定</p>
+<h1 id="complexity">Complexity</h1>
+<p>对于可判定的问题才有讨论计算代价的必要，因此下面提到的 TM
+默认都是算法（会停机），默认讨论的是时间复杂度。</p>
+<p>渐进意义的复杂度已经讲烂了，这里只需要额外规定</p>
+<ol type="1">
+<li>TM 上的代价可以用磁头操作的次数表示（不动也算一次）</li>
+<li>TM 的输入规模用输入串的长度表示</li>
+</ol>
+<p>同样是从最大的讲起</p>
+<h2 id="exp">EXP</h2>
+<p>指需要代价为 <span class="math inline">\(O(2^n)\)</span> 的
+DTM。目前并不清楚是否有 <span class="math inline">\(\text{NP
+$\subsetneq$ EXP}\)</span>。</p>
+<h2 id="np">NP</h2>
+<p>指需要代价为 <span class="math inline">\(O(\text{poly}(n))\)</span>
+的 NTM。关于对 NTM 的时间复杂度的定义可以<a
+target="_blank" rel="noopener" href="https://cs.stackexchange.com/questions/146318/how-is-the-time-complexity-of-a-non-deterministic-turing-machine-defined">看这里</a>。</p>
+<p>另一个等价的定义是这样的：</p>
+<p>对于一个 NP 问题（语言） <span
+class="math inline">\(L\)</span>，我们总可以构造一个二元关系 <span
+class="math inline">\(R\)</span> 使得 <span
+class="math inline">\(L\)</span> 的一个等价定义为 <span
+class="math inline">\(L=\Set{w\mid \text{$\exists s$, s.t. $(w,s)\in
+R$}}\)</span>，并且 <span class="math inline">\(R\)</span> 作为语言是个
+P 问题。</p>
+<p>这里的 <span class="math inline">\(\exists s\)</span>
+是比较灵活的，并不需要严格是“问题本身的答案”。</p>
+<h2 id="p">P</h2>
 
       </div>
       
@@ -192,6 +268,17 @@
               2022-12-08 21:43:00
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Automata/" title="Automata">
+                        <b>#</b> Automata
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
             
@@ -200,6 +287,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#decidability"><span class="toc-text">Decidability</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sigma"><span class="toc-text">\(\Sigma^*\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repartially-decidable"><span class="toc-text">RE&#x2F;Partially Decidable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#co-re"><span class="toc-text">co-RE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#decidable"><span class="toc-text">Decidable</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#complexity"><span class="toc-text">Complexity</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#exp"><span class="toc-text">EXP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np"><span class="toc-text">NP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p"><span class="toc-text">P</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
