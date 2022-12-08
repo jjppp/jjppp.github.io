@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-12-07T15:58:45.674Z</updated>
+  <updated>2022-12-08T13:43:00.971Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Automata05 Complexity</title>
+    <link href="http://example.com/2022/12/08/Automata06-Complexity/"/>
+    <id>http://example.com/2022/12/08/Automata06-Complexity/</id>
+    <published>2022-12-08T13:43:00.000Z</published>
+    <updated>2022-12-08T13:43:00.971Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Automata05 TM</title>
@@ -484,33 +506,6 @@ class=&quot;math inline&quot;&gt;\(read,</summary>
 Polymorphism）给出了一种类型间的转换关系（一种
 preorder），使得程序猿可以写出很通用的代码。典型的子类型出现在各种 OO
 语言里，例如 Java</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAPL07 Exceptions</title>
-    <link href="http://example.com/2022/08/28/TAPL07-Exceptions/"/>
-    <id>http://example.com/2022/08/28/TAPL07-Exceptions/</id>
-    <published>2022-08-28T06:50:10.000Z</published>
-    <updated>2022-08-28T07:51:26.975Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;异常处理一直是老大难问题，大概有这么几个流派&lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;用返回值区分，Rust 的 &lt;code&gt;Result&lt;/code&gt;、Haskell 的
-&lt;code&gt;Either a</summary>
         
       
     
