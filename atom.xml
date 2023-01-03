@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-12-08T15:44:51.878Z</updated>
+  <updated>2023-01-03T07:17:40.940Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大三上昏睡日志</title>
+    <link href="http://example.com/2023/01/03/%E5%A4%A7%E4%B8%89%E4%B8%8A%E6%98%8F%E7%9D%A1%E6%97%A5%E5%BF%97/"/>
+    <id>http://example.com/2023/01/03/%E5%A4%A7%E4%B8%89%E4%B8%8A%E6%98%8F%E7%9D%A1%E6%97%A5%E5%BF%97/</id>
+    <published>2023-01-03T05:41:30.000Z</published>
+    <updated>2023-01-03T07:17:40.940Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
+&lt;p&gt;这学期实在过得没什么感觉，断断续续的网课+延迟的期末周着实让人昏睡。选的几门课也让人提不起精神，打算看的书也没怎么动，豆瓣的评分倒是多了很多。&lt;/p&gt;
+&lt;p&gt;有人说昏睡是 long covid</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
+    
+  </entry>
   
   <entry>
     <title>Automata06 Complexity</title>
@@ -484,33 +509,6 @@ class=&quot;math inline&quot;&gt;\(read,</summary>
 &lt;p&gt;递归数据结构是非常常见的结构，给递归数据结构赋予的类型通常会是一个递归的类型。&lt;/p&gt;
 &lt;p&gt;经典的例如&lt;/p&gt;
 &lt;div class=&quot;sourceCode&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAPL" scheme="http://example.com/tags/TAPL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAPL08 Subtyping</title>
-    <link href="http://example.com/2022/08/28/TAPL08-Subtyping/"/>
-    <id>http://example.com/2022/08/28/TAPL08-Subtyping/</id>
-    <published>2022-08-28T09:44:48.000Z</published>
-    <updated>2022-08-28T14:58:02.558Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;Subtyping（或者说 Subtype
-Polymorphism）给出了一种类型间的转换关系（一种
-preorder），使得程序猿可以写出很通用的代码。典型的子类型出现在各种 OO
-语言里，例如 Java</summary>
         
       
     
