@@ -147,20 +147,25 @@ Language）是一类比正则语言更强的语言。描述上下文无关语言
     <link href="http://example.com/2022/11/09/Automata02-RE/"/>
     <id>http://example.com/2022/11/09/Automata02-RE/</id>
     <published>2022-11-09T06:56:43.000Z</published>
-    <updated>2022-11-09T06:56:43.221Z</updated>
+    <updated>2023-01-05T16:14:14.117Z</updated>
     
     
       
       
         
         
-    <summary type="html">
-</summary>
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;正则表达式（Regular
+Expression）是描述正则语言的另一种方法，有时候用起来会比 DFA
+更方便。&lt;/p&gt;
+&lt;h1</summary>
         
       
     
     
     
+    
+    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
     
   </entry>
   

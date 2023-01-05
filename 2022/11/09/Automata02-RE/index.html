@@ -171,9 +171,95 @@
           2022-11-09 14:56:43
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Automata/" title="Automata">
+                    <b>#</b> Automata
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <h1 id="intro">Intro</h1>
+<p>正则表达式（Regular
+Expression）是描述正则语言的另一种方法，有时候用起来会比 DFA
+更方便。</p>
+<h1 id="definition">Definition</h1>
+<p>给出归纳定义：</p>
+<ol type="1">
+<li>单个字符 <span class="math inline">\(a\in\Sigma\)</span>
+是正则表达式</li>
+<li><span class="math inline">\(\epsilon\)</span> 是正则表达式</li>
+<li><span class="math inline">\(\varnothing\)</span> 是正则表达式</li>
+<li>如果 <span class="math inline">\(R_1,R_2\)</span> 是正则表达式，那么
+<span class="math inline">\(R_1+R_2\)</span> 也是正则表达式</li>
+<li>如果 <span class="math inline">\(R_1,R_2\)</span> 是正则表达式，那么
+<span class="math inline">\(R_1R_2\)</span> 也是正则表达式</li>
+<li>如果 <span class="math inline">\(R\)</span> 是正则表达式，那么 <span
+class="math inline">\(R^*\)</span> 也是正则表达式</li>
+<li>正则表达式仅限于此</li>
+</ol>
+<p>同时给出语义函数</p>
+<ol type="1">
+<li><span class="math inline">\(L(a)=\set{a}\)</span></li>
+<li><span class="math inline">\(L(\epsilon)=\set{\epsilon}\)</span></li>
+<li><span class="math inline">\(L(\varnothing)=\varnothing\)</span></li>
+<li><span class="math inline">\(L(R_1+R_2)=L(R_1)\cup
+L(R_2)\)</span></li>
+<li><span class="math inline">\(L(R_1R_2)=L(R_1)L(R_2)\)</span></li>
+<li><span class="math inline">\(L(R^*)=L(R)^*\)</span></li>
+</ol>
+<p>我们称一个语言 <span class="math inline">\(L\)</span>
+是<strong>正则语言</strong>（Regular
+Language），当且仅当存在一个正则表达式 <span
+class="math inline">\(R\)</span> 使得 <span
+class="math inline">\(L(R)=L\)</span>。</p>
+<h1 id="equivalence">Equivalence</h1>
+<p>任给一个正则表达式 <span
+class="math inline">\(R\)</span>，都能构造一个 <span
+class="math inline">\(\epsilon\)</span>-NFA <span
+class="math inline">\(N\)</span> 使得 <span
+class="math inline">\(L(R)=L(N)\)</span></p>
+<p>这个构造具体可以看之前写过的 RE-compiler</p>
+<p>任给一个 DFA <span class="math inline">\(D\)</span>，都能构造一个
+<span class="math inline">\(R\)</span> 使得 <span
+class="math inline">\(L(D)=L(R)\)</span></p>
+<p>大概的想法是这样的：对于任意一个 DFA <span
+class="math inline">\(D\)</span>，我们总可以挑出一个状态 <span
+class="math inline">\(q\in
+Q_D\)</span>，使得在进行一次状态削减操作后得到新的 DFA <span
+class="math inline">\(D&#39;\)</span>，且 <span
+class="math inline">\(Q_{D&#39;}=Q_D-\set{q}\)</span>。这样在至多 <span
+class="math inline">\(\lvert{Q}\rvert\)</span> 次操作后就能得到状态数为
+<span class="math inline">\(2\)</span>、仅含有一条边的
+DFA。这时唯一的边上的标号即为要求的正则表达式。</p>
+<h1 id="properties">Properties</h1>
+<h2 id="membership">Membership</h2>
+<p>即给定串 <span class="math inline">\(w\)</span> 和正则语言 <span
+class="math inline">\(L\)</span>，判定是否有 <span
+class="math inline">\(w\in L\)</span></p>
+<p>只需要找到 <span class="math inline">\(L\)</span> 的 DFA <span
+class="math inline">\(D\)</span>，然后跑一下 <span
+class="math inline">\(w\)</span> 即可</p>
+<h2 id="emptiness">Emptiness</h2>
+<p>给定正则语言 <span class="math inline">\(L\)</span>，判定是否有 <span
+class="math inline">\(L=\varnothing\)</span></p>
+<p>只需要取 DFA <span class="math inline">\(D\)</span>，然后从 <span
+class="math inline">\(D\)</span>
+的初始状态出发广搜，看看能不能找到接收状态即可</p>
+<h2 id="infiniteness">Infiniteness</h2>
+<p>给定正则语言 <span class="math inline">\(L\)</span>，判定是否有 <span
+class="math inline">\(\lvert L\rvert=\infty\)</span></p>
+<p>只需要取最小 DFA <span
+class="math inline">\(D\)</span>，去掉不可达状态，判断 <span
+class="math inline">\(D\)</span>
+中是否存在以初始状态为起点的圈即可。</p>
+<h2 id="pumping-lemma">Pumping Lemma</h2>
+<p>先睡觉了，咕咕咕</p>
 
       </div>
       
@@ -192,6 +278,17 @@
               2022-11-09 14:56:43
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Automata/" title="Automata">
+                        <b>#</b> Automata
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
             
@@ -205,6 +302,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#properties"><span class="toc-text">Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#membership"><span class="toc-text">Membership</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#emptiness"><span class="toc-text">Emptiness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#infiniteness"><span class="toc-text">Infiniteness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pumping-lemma"><span class="toc-text">Pumping Lemma</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
