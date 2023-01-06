@@ -237,6 +237,7 @@ class="math inline">\(Q_{D&#39;}=Q_D-\set{q}\)</span>。这样在至多 <span
 class="math inline">\(\lvert{Q}\rvert\)</span> 次操作后就能得到状态数为
 <span class="math inline">\(2\)</span>、仅含有一条边的
 DFA。这时唯一的边上的标号即为要求的正则表达式。</p>
+<p>PPT 上 k-PATH 的说法本质上是按照编号递增的顺序去缩减状态。</p>
 <h1 id="properties">Properties</h1>
 <h2 id="membership">Membership</h2>
 <p>即给定串 <span class="math inline">\(w\)</span> 和正则语言 <span
@@ -258,8 +259,94 @@ class="math inline">\(\lvert L\rvert=\infty\)</span></p>
 class="math inline">\(D\)</span>，去掉不可达状态，判断 <span
 class="math inline">\(D\)</span>
 中是否存在以初始状态为起点的圈即可。</p>
+<h2 id="equivalence-1">Equivalence</h2>
+<p>给定两个正则语言 <span
+class="math inline">\(L_1,L_2\)</span>，判定是否有 <span
+class="math inline">\(L_1=L_2\)</span></p>
+<p>取两个 DFA <span class="math inline">\(D_1,D_2\)</span>，
+只需要取乘积自动机 <span class="math inline">\(D_1\times
+D_2\)</span>，然后令 <span
+class="math inline">\(F&#39;=\Set{(q_1,q_2)\mid\text{$q_1$ 和 $q_2$
+恰有一个是接受状态}}\)</span></p>
+<p>可以发现 <span class="math inline">\(w\)</span> 被 <span
+class="math inline">\(D_1\times D_2\)</span> 接收当且仅当 <span
+class="math inline">\(w\)</span> 恰好被 <span
+class="math inline">\(D_1\)</span> 或 <span
+class="math inline">\(D_2\)</span> 中的一个接收。因此 <span
+class="math inline">\(D_1\times D_2\)</span> 的 emptiness 就能说明 <span
+class="math inline">\(D_1,D_2\)</span> 的等价性。</p>
+<p>类似的还可以做包含关系等等集合操作。</p>
 <h2 id="pumping-lemma">Pumping Lemma</h2>
-<p>先睡觉了，咕咕咕</p>
+<p>若 <span class="math inline">\(L\)</span> 是正则语言，则存在泵常数
+<span class="math inline">\(n\)</span> 使得一切长度大于等于 <span
+class="math inline">\(n\)</span> 的串 <span
+class="math inline">\(s\)</span> 都能写成 <span
+class="math inline">\(xyz\)</span> 的形式，满足</p>
+<ol type="1">
+<li><span class="math inline">\(\lvert y\rvert &gt;0\)</span></li>
+<li><span class="math inline">\(\lvert xy\rvert \le n\)</span></li>
+<li><span class="math inline">\(\forall i\in\mathbb N, xy^iz\in
+L\)</span></li>
+</ol>
+<p>证明是比较简单的，只需要取 <span class="math inline">\(n=\lvert
+Q_\text{DFA}\rvert\)</span> 就有串 <span
+class="math inline">\(s\)</span> 在 DFA
+上跑的时候必然经过了重复的两个状态。这个圈可以不断重复（或删去），最终仍然能在
+DFA 上走到终点。</p>
+<h2 id="closure">Closure</h2>
+<p>对正则语言做一些操作之后仍然会得到正则语言</p>
+<h3 id="union-intersection-difference-complement">Union, Intersection,
+Difference, Complement</h3>
+<p>用乘积自动机。Complement 本质上是 <span class="math inline">\(\bar
+L=\Sigma^*-L\)</span>，而 <span class="math inline">\(\Sigma^*\)</span>
+是正则的</p>
+<p>一个比较好用的性质是 <span class="math inline">\(L\cap R\)</span>
+仍然是正则的，我们可以构造一个特殊的 <span
+class="math inline">\(R\)</span>
+来“规范”字符出现的顺序，并利用反证法证明 <span
+class="math inline">\(L\)</span> 不是正则的。例如 <span
+class="math inline">\(\Set{s\mid s\in\set{0,1}^*, \lvert
+s\rvert_0=\lvert s\rvert_1}\)</span></p>
+<h3 id="concat-kleene-closure">Concat, Kleene Closure</h3>
+<p>这两个都是正则表达式里的操作，只需要取出语言对应的 RE
+然后操作一下就好了</p>
+<h3 id="reversal">Reversal</h3>
+<p>定义函数 <span
+class="math inline">\(\text{rev::RE$\to$RE}\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(\text{rev($a$)=}a\)</span></li>
+<li><span
+class="math inline">\(\text{rev($e_1+e_2$)=}\text{rev($e_1$)}+\text{rev($e_2$)}\)</span></li>
+<li><span
+class="math inline">\(\text{rev($e_1e_2$)=}\text{rev($e_2$)}\text{rev($e_1$)}\)</span></li>
+<li><span
+class="math inline">\(\text{rev($e^*$)=}\text{rev($e$)}^*\)</span></li>
+</ol>
+<h3 id="homomorphism">Homomorphism</h3>
+<p>同态说的是给定 <span class="math inline">\(\Sigma_1\)</span> 上的语言
+<span class="math inline">\(L_1\)</span> 和函数 <span
+class="math inline">\(f\colon\Sigma_1\to {\Sigma_2}^*\)</span>，定义
+<span class="math inline">\(\text{map}(f,s)=\prod_{i=1}^{\lvert s\rvert}
+f(s_i)\)</span>，那么可以构造新语言 <span
+class="math inline">\(L_2=\Set{\text{map}(f,s)\mid s\in
+L_1}\)</span>。称 <span class="math inline">\(L_2\)</span> 是 <span
+class="math inline">\(L_1\)</span> 关于 <span
+class="math inline">\(f\)</span> 的同态，记为 <span
+class="math inline">\(L_2=f(L_1)\)</span></p>
+<p>只需要取 <span class="math inline">\(L_1\)</span>
+的正则表达式，然后把所有符号映射一下就得到 <span
+class="math inline">\(L_2\)</span> 的正则表达式了。</p>
+<h3 id="inverse-homomorphism">Inverse Homomorphism</h3>
+<p>说的是给定 <span class="math inline">\(L_2\)</span> 和 <span
+class="math inline">\(f\)</span>，求 <span
+class="math inline">\(L_1=\Set{s\mid \text{map}(f,s)\in
+L_2}\)</span>，记作 <span
+class="math inline">\(L_1=f^{-1}(L_2)\)</span></p>
+<p>这里并不要求 <span class="math inline">\(f\)</span> 是可逆的</p>
+<p>取 <span class="math inline">\(L_2\)</span> 的 DFA <span
+class="math inline">\(D_2\)</span>，并以此构造 <span
+class="math inline">\(D_1\)</span>：<span
+class="math inline">\(\delta_1(x,c)=\delta_2(x,f(c))\)</span>，其余一模一样</p>
 
       </div>
       
@@ -309,7 +396,8 @@ class="math inline">\(D\)</span>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#properties"><span class="toc-text">Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#membership"><span class="toc-text">Membership</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#emptiness"><span class="toc-text">Emptiness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#infiniteness"><span class="toc-text">Infiniteness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pumping-lemma"><span class="toc-text">Pumping Lemma</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#properties"><span class="toc-text">Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#membership"><span class="toc-text">Membership</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#emptiness"><span class="toc-text">Emptiness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#infiniteness"><span class="toc-text">Infiniteness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equivalence-1"><span class="toc-text">Equivalence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pumping-lemma"><span class="toc-text">Pumping Lemma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#closure"><span class="toc-text">Closure</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#union-intersection-difference-complement"><span class="toc-text">Union, Intersection,
+Difference, Complement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat-kleene-closure"><span class="toc-text">Concat, Kleene Closure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reversal"><span class="toc-text">Reversal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#homomorphism"><span class="toc-text">Homomorphism</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inverse-homomorphism"><span class="toc-text">Inverse Homomorphism</span></a></li></ol></li></ol></li></ol>
       
     </div>
   </div>
