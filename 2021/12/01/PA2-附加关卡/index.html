@@ -190,9 +190,9 @@
 <p>讲几个主要的</p>
 <p>假设需要同时定义很多个东西，同时这些东西又有着相同的模式，并且我们希望能够方便地修改、添加这些东西（只需要维护一份唯一的列表），那么就可以这么做：</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LIST</span><span class="op">(</span><span class="pp">F</span><span class="op">)</span><span class="pp"> F</span><span class="op">(</span><span class="pp">item1</span><span class="op">)</span><span class="pp"> F</span><span class="op">(</span><span class="pp">item2</span><span class="op">)</span><span class="pp"> </span><span class="op">...</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LIST(F) F(item1) F(item2) ...</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define FUNC</span><span class="op">(</span><span class="pp">X</span><span class="op">)</span><span class="pp"> </span><span class="co">//blablabla</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define FUNC(X) </span><span class="co">//blablabla</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>LIST<span class="op">(</span>FUNC<span class="op">)</span></span></code></pre></div>

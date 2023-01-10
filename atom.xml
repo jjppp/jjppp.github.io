@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-01-09T07:03:36.163Z</updated>
+  <updated>2023-01-10T16:10:08.258Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CMU-DB Lab</title>
+    <link href="http://example.com/2023/01/10/CMU-DB-Lab/"/>
+    <id>http://example.com/2023/01/10/CMU-DB-Lab/</id>
+    <published>2023-01-10T15:54:11.000Z</published>
+    <updated>2023-01-10T16:10:08.258Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;学校里的数据库实在是讲得太烂了，是听了十分钟就会想激情退课的水准&lt;/p&gt;
+&lt;p&gt;cmu这个感觉就 andy 比较有激情，21年代课的老师也比较闷&lt;/p&gt;
+&lt;p&gt;听说这个 lab</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Database" scheme="http://example.com/tags/Database/"/>
+    
+  </entry>
   
   <entry>
     <title>Network04 Network</title>
@@ -482,34 +508,6 @@ href=&quot;https://research.swtch.com/mm&quot;&gt;这篇&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;事件&lt;/strong&gt;是瞬间的、原子的，通常用 &lt;span
 class=&quot;math inline&quot;&gt;\(read,</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAOMP" scheme="http://example.com/tags/TAOMP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAOMP01 Intro</title>
-    <link href="http://example.com/2022/09/01/TAOMP01-Intro/"/>
-    <id>http://example.com/2022/09/01/TAOMP01-Intro/</id>
-    <published>2022-09-01T08:33:49.000Z</published>
-    <updated>2022-09-01T16:55:25.618Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;八月份已经过去了，放假前立下的 flag 还有好多没有实现...&lt;/p&gt;
-&lt;p&gt;但是这本是上学期上 OS
-就想看的书，更早是在吃土耳其烤肉的时候就被安利过&lt;/p&gt;
-&lt;p&gt;开干吧...&lt;/p&gt;
-&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;h2</summary>
         
       
     
