@@ -171,9 +171,117 @@
           2022-11-09 16:53:04
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Automata/" title="Automata">
+                    <b>#</b> Automata
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <h1 id="intro">Intro</h1>
+<p>一般说的 PDA 本质上是带栈的 <span
+class="math inline">\(\epsilon\)</span>-NFA。PDA
+这块可以看到非确定性引入的能力差别，这在正则语言、递归可枚举语言里是没有的。</p>
+<h1 id="def">Def</h1>
+<p>形式化的 PDA 定义为七元组 <span
+class="math inline">\((Q,\Sigma,\Gamma,\delta,q_0,Z_0,F)\)</span>，其中
+<span class="math inline">\(\Gamma\)</span> 表示栈上的符号集，<span
+class="math inline">\(Z_0\in\Gamma\)</span> 表示栈上的初始符号。</p>
+<p>转移函数 <span class="math inline">\(\delta\)</span> 定义为 <span
+class="math inline">\(\delta(q,c,Z)=\Set{(p,\alpha)\mid p\in Q,
+\alpha\in\Gamma^*}\)</span>，表示在状态 <span
+class="math inline">\(q\)</span> 下看到符号 <span
+class="math inline">\(c\)</span> 和栈顶为 <span
+class="math inline">\(Z\)</span> 时，可以从集合中随便挑一个元组 <span
+class="math inline">\((p,\alpha)\)</span>，然后走到状态 <span
+class="math inline">\(p\)</span>，弹出栈顶 <span
+class="math inline">\(Z\)</span>，压入一串新的栈符号 <span
+class="math inline">\(Z\)</span>。</p>
+<h2 id="id">ID</h2>
+<p>要描述一个运行中的 PDA 状态只需要一个三元组 <span
+class="math inline">\((q,w,\alpha)\)</span>，其中 <span
+class="math inline">\(q\in Q,w\in\Sigma^*,\alpha\in
+\Gamma^*\)</span>。</p>
+<p>若 <span class="math inline">\(w=cx\)</span>，<span
+class="math inline">\(\alpha=Z\beta\)</span>，且 <span
+class="math inline">\((p,\gamma)\in\delta(q,c,Z)\)</span>，那么当前状态可以转移到
+<span class="math inline">\((p,x,\gamma\beta)\)</span>，记成 <span
+class="math inline">\((q,w,\alpha)\vdash(p,x,\gamma\beta)\)</span>。由
+<span class="math inline">\(\vdash\)</span> 归纳得到 <span
+class="math inline">\(\vdash^*\)</span> 是简单的。</p>
+<p>有定理：若 <span class="math inline">\((q,w,\alpha)\vdash^*
+(p,y,\beta)\)</span>，那么对一切 <span
+class="math inline">\(x\in\Sigma^*,\gamma\in \Gamma^*\)</span> 都有
+<span
+class="math inline">\((q,wx,\alpha\gamma)\vdash^*(p,yx,\beta\gamma)\)</span>，反过来不成立。</p>
+<p>直观地讲，这是因为栈单边有限，前一个转移序列的成立说明用不到后续的符号，因此可以任意叠。反过来不成立也是因为去掉底部垫着的符号可能会对空栈做
+pop 操作。</p>
+<h2 id="lp"><span class="math inline">\(L(P)\)</span></h2>
+<p>对于给定的 PDA <span
+class="math inline">\(P\)</span>，一种定义它接收的语言的方法为 <span
+class="math inline">\(L(P)=\Set{w\in \Sigma^*\mid (q_0,w,Z_0)\vdash^*
+(q,\epsilon,\alpha), q\in F}\)</span></p>
+<p>即如果消耗完了整个串之后进入了接收状态，那么就认为这个串被接收，很符合命名。</p>
+<h2 id="np"><span class="math inline">\(N(P)\)</span></h2>
+<p>另一种定义为 <span class="math inline">\(N(P)=\Set{w\in\Sigma^*\mid
+(q_0,w,Z_0)\vdash^*(q,\epsilon,\epsilon)}\)</span></p>
+<p>即一旦栈空了，那么就认为这个串被接收。</p>
+<h2 id="equivalence">Equivalence</h2>
+<p>任给一个 <span class="math inline">\(P\)</span>，我们必然可以构造一个
+<span class="math inline">\(P&#39;\)</span> 使得 <span
+class="math inline">\(L(P)=N(P&#39;)\)</span></p>
+<p>只需要在 <span class="math inline">\(P\)</span>
+的接收状态之后通过自环不断弹栈直到空即可。</p>
+<p>但这样可能会引入问题：在 <span class="math inline">\(L(P)\)</span>
+中可能经过某些非接收状态，并且栈恰好是空的。如果我们什么都不做的话就会引入原本无法接收的串。</p>
+<p>一个技巧是 <span class="math inline">\(P&#39;\)</span>
+引入一个新的栈符号 <span class="math inline">\(Z&#39;\)</span>
+放在栈底，然后再模拟 <span class="math inline">\(P\)</span>，这样由于
+<span class="math inline">\(P\)</span> 没有针对 <span
+class="math inline">\(Z&#39;\)</span>
+的转移，因此无论如何都不会空栈；并且最后的清理状态一视同仁地弹栈，也能保证接收。</p>
+<p>任给一个 <span class="math inline">\(P\)</span>，我们必然可以构造一个
+<span class="math inline">\(P&#39;&#39;\)</span> 使得 <span
+class="math inline">\(N(P)=L(P&#39;&#39;)\)</span></p>
+<p>同样引入 <span class="math inline">\(Z&#39;\)</span>，如果遇到 <span
+class="math inline">\(Z&#39;\)</span> 在栈顶就直接进入接收状态。即令
+<span class="math inline">\(\forall q\in
+Q,(F,Z&#39;)\in\delta(q,\epsilon,Z&#39;)\)</span></p>
+<h2 id="dpda">DPDA</h2>
+<p>一般的 PDA 说的是 NPDA</p>
+<p>DPDA 即必须有 <span class="math inline">\(\forall
+c\in\Sigma,\lvert\delta(q,c,Z)\rvert=1\)</span>，且 <span
+class="math inline">\(\forall c\in\Sigma,\lvert\delta(q,c,Z)\rvert +
+\lvert \delta(q,\epsilon,Z)\rvert &lt;2\)</span> 成立</p>
+<p>确定性的引入带来了能力上的损失，考虑语言 <span
+class="math inline">\(\Set{ww^R\mid
+w\in\Sigma^*}\)</span>。由于确定性可知对于串 <span
+class="math inline">\(0^n110^n\)</span>，DPDA
+必然会在某个位置把串划分为前后两部分，不妨假设这个 DPDA 正确地划分出了
+<span class="math inline">\(0^n1|10^n\)</span>。考虑新的输入 <span
+class="math inline">\(0^n11110^n\)</span>，这个新的输入和之前的输入有相同的前缀，因此必然有相同的分隔位置，但是是错的。</p>
+<h2 id="containment">Containment</h2>
+<p><span class="math display">\[
+\text{RE $\subseteq$ DPDA(L(P)) $\subseteq$ NPDA} \\
+\text{RE $\not\subseteq$ DPDA(N(P)) $\subseteq$ NPDA}
+\]</span></p>
+<p>第一行是比较显然的。</p>
+<p>第二行的不满足可以考虑 <span class="math inline">\(\Set{0}^*\)</span>
+这个语言，它是正则的，但不存在 <span class="math inline">\(P\)</span>
+使得 <span
+class="math inline">\(\text{DPDA(N(P))}=\Set{0}^*\)</span></p>
+<h2 id="ambiguity">Ambiguity</h2>
+<p>若存在 DPDA <span class="math inline">\(P\)</span> 使得 <span
+class="math inline">\(L=L(P)\)</span>，那么 <span
+class="math inline">\(L\)</span>
+必然存在非歧义的语法，反过来则不一定成立（考虑 <span
+class="math inline">\(\Set{ww^R\mid w\in \Sigma^*}\)</span>）</p>
 
       </div>
       
@@ -192,6 +300,17 @@
               2022-11-09 16:53:04
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Automata/" title="Automata">
+                        <b>#</b> Automata
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
             
@@ -205,6 +324,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#id"><span class="toc-text">ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lp"><span class="toc-text">\(L(P)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np"><span class="toc-text">\(N(P)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dpda"><span class="toc-text">DPDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#containment"><span class="toc-text">Containment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ambiguity"><span class="toc-text">Ambiguity</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

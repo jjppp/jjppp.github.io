@@ -148,20 +148,23 @@ class=&quot;math</summary>
     <link href="http://example.com/2022/11/09/Automata04-PDA/"/>
     <id>http://example.com/2022/11/09/Automata04-PDA/</id>
     <published>2022-11-09T08:53:04.000Z</published>
-    <updated>2022-11-09T08:53:04.119Z</updated>
+    <updated>2023-01-16T07:45:44.925Z</updated>
     
     
       
       
         
         
-    <summary type="html">
-</summary>
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;一般说的 PDA 本质上是带栈的 &lt;span
+class=&quot;math</summary>
         
       
     
     
     
+    
+    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
     
   </entry>
   
