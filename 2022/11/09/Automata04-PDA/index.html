@@ -202,7 +202,7 @@ class="math inline">\(Z\)</span> 时，可以从集合中随便挑一个元组 <
 class="math inline">\((p,\alpha)\)</span>，然后走到状态 <span
 class="math inline">\(p\)</span>，弹出栈顶 <span
 class="math inline">\(Z\)</span>，压入一串新的栈符号 <span
-class="math inline">\(Z\)</span>。</p>
+class="math inline">\(\alpha\)</span>。</p>
 <h2 id="id">ID</h2>
 <p>要描述一个运行中的 PDA 状态只需要一个三元组 <span
 class="math inline">\((q,w,\alpha)\)</span>，其中 <span
@@ -232,7 +232,8 @@ class="math inline">\(L(P)=\Set{w\in \Sigma^*\mid (q_0,w,Z_0)\vdash^*
 <p>另一种定义为 <span class="math inline">\(N(P)=\Set{w\in\Sigma^*\mid
 (q_0,w,Z_0)\vdash^*(q,\epsilon,\epsilon)}\)</span></p>
 <p>即一旦栈空了，那么就认为这个串被接收。</p>
-<h2 id="equivalence">Equivalence</h2>
+<h2 id="lpnp-equivalence"><span class="math inline">\(L(P),N(P)\)</span>
+Equivalence</h2>
 <p>任给一个 <span class="math inline">\(P\)</span>，我们必然可以构造一个
 <span class="math inline">\(P&#39;\)</span> 使得 <span
 class="math inline">\(L(P)=N(P&#39;)\)</span></p>
@@ -282,6 +283,49 @@ class="math inline">\(L=L(P)\)</span>，那么 <span
 class="math inline">\(L\)</span>
 必然存在非歧义的语法，反过来则不一定成立（考虑 <span
 class="math inline">\(\Set{ww^R\mid w\in \Sigma^*}\)</span>）</p>
+<p>由 DPDA 可知任意串存在唯一确定的 ID
+推导序列，这唯一对应了一个文法中的推导序列。</p>
+<h2 id="cfg-equivalence">CFG Equivalence</h2>
+<p>任给一个 CFG <span class="math inline">\(G\)</span>，都能构造出一个
+PDA <span class="math inline">\(P\)</span>，使得 <span
+class="math inline">\(L(G)=L(P)\)</span>；反过来也成立。</p>
+<p>对于给定的 <span class="math inline">\(G\)</span>，构造只有一个状态的
+<span class="math inline">\(P\)</span>，初始栈上放着变量 <span
+class="math inline">\(S\)</span>，每次从栈顶弹出符号 <span
+class="math inline">\(V\)</span></p>
+<ol type="1">
+<li>存在产生式 <span class="math inline">\(V\to w\alpha\)</span>，其中
+<span class="math inline">\(w\)</span> 是终止符号的序列，那么就消耗掉
+<span class="math inline">\(w\)</span>，压入 <span
+class="math inline">\(\alpha\)</span></li>
+<li>存在产生式 <span class="math inline">\(V\to \beta\)</span>，其中
+<span class="math inline">\(\beta\)</span> 的开头是非终止符，那么就压入
+<span class="math inline">\(\beta\)</span></li>
+</ol>
+<p>运用人类智慧可以发现这个东西本质上是在做非确定性的 DFS</p>
+<p>对于给定的 PDA <span class="math inline">\(P\)</span>，构造文法 <span
+class="math inline">\(G\)</span>，其中变量都是 <span
+class="math inline">\([pXq]\)</span> 的形式，我们希望有 <span
+class="math inline">\(L([pXq])=\Set{w\mid
+(p,w,X)\vdash^*(q,\epsilon,\epsilon)}\)</span> 成立</p>
+<p>首先需要限制一下 <span class="math inline">\(P\)</span>
+的形状，为了方便起见可以要求 <span class="math inline">\(P\)</span>
+的每次转移至多操纵一个符号（弹出/压入/修改一个符号）</p>
+<p>接下来对状态 <span class="math inline">\(p\)</span>
+处的转移分类讨论：</p>
+<ol type="1">
+<li><span class="math inline">\((p,\epsilon)\in
+\delta(p,c,X)\)</span>，说明这个转移只弹出 <span
+class="math inline">\(X\)</span>。因此引入产生式 <span
+class="math inline">\([pXq]\to c\)</span></li>
+<li><span
+class="math inline">\((r,Y)\in\delta(p,c,X)\)</span>，说明这个转移会先走到
+<span class="math inline">\(r\)</span>，然后把 <span
+class="math inline">\(X\)</span> 换成 <span
+class="math inline">\(Y\)</span>。因此引入产生式 <span
+class="math inline">\([pXq]\to c[rYq]\)</span></li>
+<li></li>
+</ol>
 
       </div>
       
@@ -331,7 +375,8 @@ class="math inline">\(\Set{ww^R\mid w\in \Sigma^*}\)</span>）</p>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#id"><span class="toc-text">ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lp"><span class="toc-text">\(L(P)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np"><span class="toc-text">\(N(P)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dpda"><span class="toc-text">DPDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#containment"><span class="toc-text">Containment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ambiguity"><span class="toc-text">Ambiguity</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#id"><span class="toc-text">ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lp"><span class="toc-text">\(L(P)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np"><span class="toc-text">\(N(P)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lpnp-equivalence"><span class="toc-text">\(L(P),N(P)\)
+Equivalence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dpda"><span class="toc-text">DPDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#containment"><span class="toc-text">Containment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ambiguity"><span class="toc-text">Ambiguity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfg-equivalence"><span class="toc-text">CFG Equivalence</span></a></li></ol></li></ol>
       
     </div>
   </div>

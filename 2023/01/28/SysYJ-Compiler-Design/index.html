@@ -11,6 +11,11 @@
   
   <title>
     
+      SysYJ Compiler Design 
+      
+      
+      |
+    
      jjppp
   </title>
 
@@ -114,279 +119,176 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="SysYJ Compiler Design">
-        <div class="time-m-d">2023-01-28</div>
-        <div class="title">
-          <a href="/2023/01/28/SysYJ-Compiler-Design/">
-            
-              
-                <span>SysYJ Compiler Design</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">SysYJ Compiler Design</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2023-01-28 23:29:06
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Compiler/" title="Compiler">
+                    <b>#</b> Compiler
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="CMU-DB Lab">
-        <div class="time-m-d">2023-01-10</div>
-        <div class="title">
-          <a href="/2023/01/10/CMU-DB-Lab/">
-            
-              
-                <span>CMU-DB Lab</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="intro">Intro</h1>
+<p>SysYJ 是用 Java 编写的编程语言 SysY 的编译器</p>
+<p>本文的主要目的是记录 SysYJ
+的细节和取舍，以记录分析和优化相关的内容、IR 设计的知识和从 LLVM
+那里抄来的东西（</p>
+<h1 id="analysis">Analysis</h1>
+<h2 id="loop">Loop</h2>
+<h2 id="dominator">Dominator</h2>
+<h1 id="optimization">Optimization</h1>
+<h2 id="local-value-numbering">Local Value Numbering</h2>
+<h2 id="loop-invariant">Loop Invariant</h2>
+
       </div>
-    
-      <div class="post-item" title="Network04 Network">
-        <div class="time-m-d">2023-01-09</div>
-        <div class="title">
-          <a href="/2023/01/09/Network04-Network/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>Network04 Network</span>
-              
+              <a href="/2023/01/10/CMU-DB-Lab/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2023-01-28 23:29:06
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Compiler/" title="Compiler">
+                        <b>#</b> Compiler
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="大三上昏睡日志">
-        <div class="time-m-d">2023-01-03</div>
-        <div class="title">
-          <a href="/2023/01/03/%E5%A4%A7%E4%B8%89%E4%B8%8A%E6%98%8F%E7%9D%A1%E6%97%A5%E5%BF%97/">
-            
-              
-                <span>大三上昏睡日志</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#analysis"><span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#loop"><span class="toc-text">Loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dominator"><span class="toc-text">Dominator</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#optimization"><span class="toc-text">Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#local-value-numbering"><span class="toc-text">Local Value Numbering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loop-invariant"><span class="toc-text">Loop Invariant</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="Automata06 Complexity">
-        <div class="time-m-d">2022-12-08</div>
-        <div class="title">
-          <a href="/2022/12/08/Automata06-Complexity/">
-            
-              
-                <span>Automata06 Complexity</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata05 TM">
-        <div class="time-m-d">2022-12-07</div>
-        <div class="title">
-          <a href="/2022/12/07/Automata05-TM/">
-            
-              
-                <span>Automata05 TM</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata04 PDA">
-        <div class="time-m-d">2022-11-09</div>
-        <div class="title">
-          <a href="/2022/11/09/Automata04-PDA/">
-            
-              
-                <span>Automata04 PDA</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata03 CFL">
-        <div class="time-m-d">2022-11-09</div>
-        <div class="title">
-          <a href="/2022/11/09/Automata03-CFL/">
-            
-              
-                <span>Automata03 CFL</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata02 RE">
-        <div class="time-m-d">2022-11-09</div>
-        <div class="title">
-          <a href="/2022/11/09/Automata02-RE/">
-            
-              
-                <span>Automata02 RE</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency05 Linearizability">
-        <div class="time-m-d">2022-11-07</div>
-        <div class="title">
-          <a href="/2022/11/07/Concurrency05-Linearizability/">
-            
-              
-                <span>Concurrency05 Linearizability</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency04 Promising">
-        <div class="time-m-d">2022-11-07</div>
-        <div class="title">
-          <a href="/2022/11/07/Concurrency04-Promising/">
-            
-              
-                <span>Concurrency04 Promising</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linguistics02 Phonetics">
-        <div class="time-m-d">2022-10-17</div>
-        <div class="title">
-          <a href="/2022/10/17/Linguistics02-Phonetics/">
-            
-              
-                <span>Linguistics02 Phonetics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linguistics01 Intro">
-        <div class="time-m-d">2022-10-17</div>
-        <div class="title">
-          <a href="/2022/10/17/Linguistics01-Intro/">
-            
-              
-                <span>Linguistics01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Network03 Transport">
-        <div class="time-m-d">2022-10-16</div>
-        <div class="title">
-          <a href="/2022/10/16/Network03-Transport/">
-            
-              
-                <span>Network03 Transport</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata01 FSM">
-        <div class="time-m-d">2022-10-04</div>
-        <div class="title">
-          <a href="/2022/10/04/Automata01-FSM/">
-            
-              
-                <span>Automata01 FSM</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency03 Axiomatic">
-        <div class="time-m-d">2022-09-25</div>
-        <div class="title">
-          <a href="/2022/09/25/Concurrency03-Axiomatic/">
-            
-              
-                <span>Concurrency03 Axiomatic</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency02 Operational">
-        <div class="time-m-d">2022-09-25</div>
-        <div class="title">
-          <a href="/2022/09/25/Concurrency02-Operational/">
-            
-              
-                <span>Concurrency02 Operational</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency01 HMM">
-        <div class="time-m-d">2022-09-25</div>
-        <div class="title">
-          <a href="/2022/09/25/Concurrency01-HMM/">
-            
-              
-                <span>Concurrency01 HMM</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Network02 Application">
-        <div class="time-m-d">2022-09-12</div>
-        <div class="title">
-          <a href="/2022/09/12/Network02-Application/">
-            
-              
-                <span>Network02 Application</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Memory Models">
-        <div class="time-m-d">2022-09-07</div>
-        <div class="title">
-          <a href="/2022/09/07/Memory-Model/">
-            
-              
-                <span>Memory Models</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 6</span>
-    
-      <a href="/page/2/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -652,6 +554,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

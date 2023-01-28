@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-01-10T16:10:08.258Z</updated>
+  <updated>2023-01-28T15:33:01.337Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SysYJ Compiler Design</title>
+    <link href="http://example.com/2023/01/28/SysYJ-Compiler-Design/"/>
+    <id>http://example.com/2023/01/28/SysYJ-Compiler-Design/</id>
+    <published>2023-01-28T15:29:06.000Z</published>
+    <updated>2023-01-28T15:33:01.337Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;SysYJ 是用 Java 编写的编程语言 SysY 的编译器&lt;/p&gt;
+&lt;p&gt;本文的主要目的是记录 SysYJ
+的细节和取舍，以记录分析和优化相关的内容、IR 设计的知识和从 LLVM
+那里抄来的东西（&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Compiler" scheme="http://example.com/tags/Compiler/"/>
+    
+  </entry>
   
   <entry>
     <title>CMU-DB Lab</title>
@@ -148,7 +176,7 @@ class=&quot;math</summary>
     <link href="http://example.com/2022/11/09/Automata04-PDA/"/>
     <id>http://example.com/2022/11/09/Automata04-PDA/</id>
     <published>2022-11-09T08:53:04.000Z</published>
-    <updated>2023-01-16T07:45:44.925Z</updated>
+    <updated>2023-01-18T12:46:25.393Z</updated>
     
     
       
@@ -491,33 +519,6 @@ href=&quot;https://research.swtch.com/mm&quot;&gt;这篇&lt;/a&gt;
     
     
     <category term="Concurrency" scheme="http://example.com/tags/Concurrency/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TAOMP02 Mutex</title>
-    <link href="http://example.com/2022/09/02/TAOMP02-Mutex/"/>
-    <id>http://example.com/2022/09/02/TAOMP02-Mutex/</id>
-    <published>2022-09-02T09:03:21.000Z</published>
-    <updated>2022-09-05T00:04:35.487Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;形式化&quot;&gt;形式化&lt;/h1&gt;
-&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;事件&lt;/strong&gt;是瞬间的、原子的，通常用 &lt;span
-class=&quot;math inline&quot;&gt;\(read,</summary>
-        
-      
-    
-    
-    
-    
-    <category term="TAOMP" scheme="http://example.com/tags/TAOMP/"/>
     
   </entry>
   
