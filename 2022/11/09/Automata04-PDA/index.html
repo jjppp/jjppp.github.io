@@ -285,7 +285,7 @@ class="math inline">\(L\)</span>
 class="math inline">\(\Set{ww^R\mid w\in \Sigma^*}\)</span>）</p>
 <p>由 DPDA 可知任意串存在唯一确定的 ID
 推导序列，这唯一对应了一个文法中的推导序列。</p>
-<h2 id="cfg-equivalence">CFG Equivalence</h2>
+<h1 id="cfg-equivalence">CFG Equivalence</h1>
 <p>任给一个 CFG <span class="math inline">\(G\)</span>，都能构造出一个
 PDA <span class="math inline">\(P\)</span>，使得 <span
 class="math inline">\(L(G)=L(P)\)</span>；反过来也成立。</p>
@@ -303,29 +303,36 @@ class="math inline">\(\alpha\)</span></li>
 <span class="math inline">\(\beta\)</span></li>
 </ol>
 <p>运用人类智慧可以发现这个东西本质上是在做非确定性的 DFS</p>
+<hr />
 <p>对于给定的 PDA <span class="math inline">\(P\)</span>，构造文法 <span
 class="math inline">\(G\)</span>，其中变量都是 <span
 class="math inline">\([pXq]\)</span> 的形式，我们希望有 <span
 class="math inline">\(L([pXq])=\Set{w\mid
 (p,w,X)\vdash^*(q,\epsilon,\epsilon)}\)</span> 成立</p>
-<p>首先需要限制一下 <span class="math inline">\(P\)</span>
-的形状，为了方便起见可以要求 <span class="math inline">\(P\)</span>
-的每次转移至多操纵一个符号（弹出/压入/修改一个符号）</p>
 <p>接下来对状态 <span class="math inline">\(p\)</span>
 处的转移分类讨论：</p>
 <ol type="1">
-<li><span class="math inline">\((p,\epsilon)\in
+<li><span class="math inline">\((q,\epsilon)\in
 \delta(p,c,X)\)</span>，说明这个转移只弹出 <span
 class="math inline">\(X\)</span>。因此引入产生式 <span
 class="math inline">\([pXq]\to c\)</span></li>
 <li><span
-class="math inline">\((r,Y)\in\delta(p,c,X)\)</span>，说明这个转移会先走到
-<span class="math inline">\(r\)</span>，然后把 <span
+class="math inline">\((r,Y)\in\delta(p,c,X)\)</span>，说明这个转移会先读一个
+<span class="math inline">\(c\)</span>，再走到 <span
+class="math inline">\(r\)</span>，然后把栈顶的 <span
 class="math inline">\(X\)</span> 换成 <span
 class="math inline">\(Y\)</span>。因此引入产生式 <span
 class="math inline">\([pXq]\to c[rYq]\)</span></li>
-<li></li>
+<li><span
+class="math inline">\((r,YX)\in\delta(p,c,X)\)</span>，即压入一个 <span
+class="math inline">\(Y\)</span>。我们枚举弹出当前 <span
+class="math inline">\(X\)</span> 之后的状态 <span
+class="math inline">\(s\)</span>，引入产生式 <span
+class="math inline">\([pXq]\to c[rYs][sZq]\)</span></li>
 </ol>
+<p>有这几个就足够了。最后还需要引入一个全新的初始变量 <span
+class="math inline">\(S\)</span>，然后规定 <span
+class="math inline">\(\forall p, S\to [q_0Z_0p]\)</span></p>
 
       </div>
       
@@ -376,7 +383,7 @@ class="math inline">\([pXq]\to c[rYq]\)</span></li>
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#id"><span class="toc-text">ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lp"><span class="toc-text">\(L(P)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np"><span class="toc-text">\(N(P)\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lpnp-equivalence"><span class="toc-text">\(L(P),N(P)\)
-Equivalence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dpda"><span class="toc-text">DPDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#containment"><span class="toc-text">Containment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ambiguity"><span class="toc-text">Ambiguity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfg-equivalence"><span class="toc-text">CFG Equivalence</span></a></li></ol></li></ol>
+Equivalence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dpda"><span class="toc-text">DPDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#containment"><span class="toc-text">Containment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ambiguity"><span class="toc-text">Ambiguity</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cfg-equivalence"><span class="toc-text">CFG Equivalence</span></a></li></ol>
       
     </div>
   </div>
