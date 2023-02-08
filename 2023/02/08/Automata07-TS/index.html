@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      Automata07 TS 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,261 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="大二上躺平经验">
-        <div class="time-m-d">2022-01-11</div>
-        <div class="title">
-          <a href="/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/">
-            
-              
-                <span>大二上躺平经验</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Automata07 TS</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2023-02-08 16:52:09
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Automata/" title="Automata">
+                    <b>#</b> Automata
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="PA4 附加关卡">
-        <div class="time-m-d">2022-01-11</div>
-        <div class="title">
-          <a href="/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA4 附加关卡</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="def">Def</h1>
+<p>Transition System 本质上是一个五元组 <span
+class="math inline">\(\mathcal{A}=\left&lt;S,S_0,T,\alpha,\beta\right&gt;\)</span>，分别表示状态集、初始状态、转移集和端点函数。这里
+<span class="math inline">\((\alpha(t),\beta(t))\)</span> 表示转移 <span
+class="math inline">\(t\)</span> 的起点和重点，这么做的一个好处是 <span
+class="math inline">\(T\)</span>
+可以任意多，并且两个状态间存在多个转移。</p>
+<p>当然本质上还是有限有向图。</p>
+<h2 id="path">Path</h2>
+<p>一条路径是一个序列 <span
+class="math inline">\(\Set{t_i}\)</span>，满足 <span
+class="math inline">\(\forall i,\beta(t_i)=\alpha(t_{i+1})\)</span>，且
+<span
+class="math inline">\(\alpha(t_0)=S_0\)</span>。即首尾相连的一系列边。</p>
+<p>有了路径就能定义联通性，比较 fancy 的写法是 <span
+class="math inline">\(\twoheadrightarrow\subseteq S\times S\)</span>
+是包含 <span class="math inline">\(\alpha(T)\times\beta(T)\)</span>
+的传递闭包。那么一个状态 <span class="math inline">\(s\in S\)</span>
+可达当且仅当 <span class="math inline">\(S_0\twoheadrightarrow
+s\)</span>。</p>
+<p>规定 <span class="math inline">\(T^+=\Set{\text{finite paths in
+$T$}}\)</span>，<span class="math inline">\(T^\omega=\Set{\text{infinite
+paths in $T$}}\)</span>，容易将 <span
+class="math inline">\(\alpha,\beta\)</span> 拓展到 <span
+class="math inline">\(T^+\)</span> 上</p>
+<p>同时可以把连接操作拓展到路径上，即 <span
+class="math inline">\(p_1\circ p_2\)</span>
+规定为两个序列的拼接。为了方便 <span class="math inline">\(p_1\)</span>
+不能为无穷路径。</p>
+<h2 id="terminal">Terminal</h2>
+<p><span class="math inline">\(\forall t\in S\)</span> 都不存在 <span
+class="math inline">\(s\twoheadrightarrow t\)</span>。即没有后继状态</p>
+<h2 id="deadlock">Deadlock</h2>
+<p>如果 <span class="math inline">\(s\)</span> 是 terminal 且
+reachable，那么 <span class="math inline">\(s\)</span> 也叫死锁状态</p>
+<h2 id="label">Label</h2>
+<p>可以多带一个 <span class="math inline">\(\lambda:T\mapsto A\)</span>
+表示给转移加上名字，<span class="math inline">\(A\)</span>
+就是名字集。</p>
+<h2 id="trace">Trace</h2>
+<p>给定一个路径 <span class="math inline">\(p\)</span>，那么定义 <span
+class="math inline">\(\text{trace}(p)=\text{map}(\lambda,p)\)</span></p>
+<h1 id="equivalence">Equivalence</h1>
+<p>给定两个 TS <span
+class="math inline">\(T_1,T_2\)</span>，我们可以寻找它们之间的若干``等价''关系。下面从强到弱给出。</p>
+<h2 id="homomorphism">Homomorphism</h2>
+<p>定义为一对映射 <span class="math inline">\((f,g)\)</span>，其中 <span
+class="math inline">\(f\colon S_1\mapsto S_2\)</span>，<span
+class="math inline">\(g\colon T_1\mapsto T_2\)</span></p>
+<p>满足：</p>
+<ol type="1">
+<li><span class="math inline">\(f\circ \alpha_1=\alpha_2\circ
+g\)</span></li>
+<li><span class="math inline">\(f\circ\beta_1=\beta_2\circ
+g\)</span></li>
+<li><span class="math inline">\(f\circ\lambda_1=\lambda_2\circ
+g\)</span></li>
+</ol>
+<p>如果 <span class="math inline">\((f,g)\)</span> 恰好都是满射，那么称
+<span class="math inline">\(T_1\)</span> 是 <span
+class="math inline">\(T_2\)</span> 的一个商（quotient）</p>
+<h2 id="strong-isomorphism">Strong Isomorphism</h2>
+<p><span class="math inline">\((f,g)\)</span> 均为双射</p>
+<p>强同构说明两个 TS 没有本质上的不同</p>
+<h2 id="weak-isomorphism">Weak Isomorphism</h2>
+<p><span class="math inline">\((f,g)\)</span> 定义在 reachable state
+上。即 <span class="math inline">\(T_1,T_2\)</span>
+删去不可达的点和边之后是 Strongly Isomorphic 的</p>
+<p>很显然强同构 implies 弱同构</p>
+<h2 id="bisimulation">Bisimulation</h2>
+<p>存在关系 <span class="math inline">\(\simeq\subseteq S_1\times
+S_2\)</span> 满足</p>
+<ol type="1">
+<li><span class="math inline">\(S_0\simeq S_1\)</span></li>
+<li><span class="math inline">\(s_1\sim s_1&#39;\)</span> 且 <span
+class="math inline">\(s_1\twoheadrightarrow s_2\)</span> implies <span
+class="math inline">\(s_2\simeq s_2&#39;\)</span> 且 <span
+class="math inline">\(s_1&#39;\twoheadrightarrow s_2&#39;\)</span></li>
+<li><span class="math inline">\(s_1\simeq s_1&#39;\)</span> 且 <span
+class="math inline">\(s_1&#39;\twoheadrightarrow s_2&#39;\)</span>
+implies <span class="math inline">\(s_2\simeq s_2&#39;\)</span> 且 <span
+class="math inline">\(s_1\twoheadrightarrow s_2\)</span></li>
+</ol>
+<p>给一个例子</p>
+<figure>
+<img src="bisim.png" alt="bisim" />
+<figcaption aria-hidden="true">bisim</figcaption>
+</figure>
+<h1 id="product">Product</h1>
+<p>定义两个 TS 的乘积为分别将状态、转移相乘。直接相乘叫做自由积 Free
+product</p>
+<p>可以给自由积加上限制 <span class="math inline">\(I\subseteq \prod
+A_i\)</span>，表示只有 <span class="math inline">\(I\)</span>
+中的转移才可以被触发。</p>
+<p>不难发现自由积定义出来的新 TS 默认所有转移是同时进行的。</p>
+<h1 id="temporal-logic">Temporal logic</h1>
+
       </div>
-    
-      <div class="post-item" title="密码学07 OWF&HC">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/Crypto07-OWF-HC/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>密码学07 OWF&HC</span>
-              
+              <a href="/2023/01/28/SysYJ-Compiler-Design/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2023-02-08 16:52:09
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Automata/" title="Automata">
+                        <b>#</b> Automata
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="密码学06 HASH">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/Crypto06-HASH/">
-            
-              
-                <span>密码学06 HASH</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#path"><span class="toc-text">Path</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#terminal"><span class="toc-text">Terminal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deadlock"><span class="toc-text">Deadlock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#label"><span class="toc-text">Label</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trace"><span class="toc-text">Trace</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#homomorphism"><span class="toc-text">Homomorphism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strong-isomorphism"><span class="toc-text">Strong Isomorphism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#weak-isomorphism"><span class="toc-text">Weak Isomorphism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bisimulation"><span class="toc-text">Bisimulation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#product"><span class="toc-text">Product</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#temporal-logic"><span class="toc-text">Temporal logic</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="密码学05 MAC">
-        <div class="time-m-d">2021-12-20</div>
-        <div class="title">
-          <a href="/2021/12/20/Crypto05-MAC/">
-            
-              
-                <span>密码学05 MAC</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA3 附加关卡">
-        <div class="time-m-d">2021-12-11</div>
-        <div class="title">
-          <a href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA3 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA2 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA2 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA1 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA1 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义05 Semantics">
-        <div class="time-m-d">2021-11-07</div>
-        <div class="title">
-          <a href="/2021/11/07/Semantics05-Semantics/">
-            
-              
-                <span>形式语义05 Semantics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学04 PRG&PRF">
-        <div class="time-m-d">2021-10-19</div>
-        <div class="title">
-          <a href="/2021/10/19/Crypto04-PRG-PRF/">
-            
-              
-                <span>密码学04 PRG&PRF</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义04 Types">
-        <div class="time-m-d">2021-10-05</div>
-        <div class="title">
-          <a href="/2021/10/05/Semantics04-Types/">
-            
-              
-                <span>形式语义04 Types</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学03 Computational">
-        <div class="time-m-d">2021-09-27</div>
-        <div class="title">
-          <a href="/2021/09/27/Crypto03-Computational/">
-            
-              
-                <span>密码学03 Computational</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义03 Lambda">
-        <div class="time-m-d">2021-09-16</div>
-        <div class="title">
-          <a href="/2021/09/16/Semantics03-Lambda/">
-            
-              
-                <span>形式语义03 Lambda</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学02 Perfect">
-        <div class="time-m-d">2021-09-15</div>
-        <div class="title">
-          <a href="/2021/09/15/Crypto02-Perfect/">
-            
-              
-                <span>密码学02 Perfect</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义01 Intro">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/Semantics01-Intro/">
-            
-              
-                <span>形式语义01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义02 Math">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/Semantics02-Math/">
-            
-              
-                <span>形式语义02 Math</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学01 Intro">
-        <div class="time-m-d">2021-09-02</div>
-        <div class="title">
-          <a href="/2021/09/02/Crypto01-Intro/">
-            
-              
-                <span>密码学01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Compiler03 语法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/Compiler03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>Compiler03 语法分析</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Compiler02 词法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/Compiler02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>Compiler02 词法分析</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="DFA到等价正则表达式的转化">
-        <div class="time-m-d">2021-08-20</div>
-        <div class="title">
-          <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/">
-            
-              
-                <span>DFA到等价正则表达式的转化</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/3/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">4 / 6</span>
-    
-      <a href="/page/5/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +639,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
