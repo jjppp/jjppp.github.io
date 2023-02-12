@@ -242,6 +242,80 @@ choice 的问题。</p>
 <code>RTT*C/SQRT(N)</code>，其中 <code>C</code>
 是链路带宽，<code>N</code> 是 TCP 连接数，<code>RTT</code> 一般为
 250ms</p>
+<h2 id="packet-scheduling">Packet Scheduling</h2>
+<p>谈来谈去就是那么几个</p>
+<ul>
+<li>FIFO</li>
+<li>分优先级</li>
+<li>RR</li>
+<li>WFQ/MLFQ</li>
+</ul>
+<h1 id="ipv4">IPv4</h1>
+<p><img src="Network04-Network/ipv4.png" style="zoom:50%;" /></p>
+<p>有几个比较重要的 field</p>
+<ul>
+<li>header 长度，因为有可选项</li>
+<li>总长度</li>
+<li>identifier, flags, fragmentation offset。这三个主要是为了实现 IPv4
+包的分片，即 IPv4 允许包在传输途中被切分（只要最终是完整的就行）。</li>
+<li>TTL</li>
+<li>header checksum</li>
+<li>源IP和目标IP</li>
+</ul>
+<h2 id="addressing">Addressing</h2>
+<p>每个主机和路由器的端口都需要有一个IP，网络层的数据包从一个IP地址发往另一个IP地址</p>
+<p>理论上每个主机和路由器的端口都有全局唯一的IP地址（用于辨认身份），在不考虑
+NAT 的情况下也确实如此。</p>
+<p><code>255.255.255.255</code>
+这个全1的地址是广播地址，向这个地址发包将会向子网内所有拥有IP地址的设备发包</p>
+<h3 id="子网">子网</h3>
+<h4 id="cidrclassless-interdomain-routing">CIDR=Classless Interdomain
+Routing</h4>
+<p>子网指的是一段前缀相同、连续的IP地址的集合。通常用 <span
+class="math inline">\(\text{(prefix,len)}\)</span>
+这样的二元组来描述一个子网。例如 <code>223.1.1.0/24</code>
+指的就是前24位与 <code>223.1.1.0</code>
+完全相同的所有IP地址的集合，它们组成一个子网。</p>
+<h4 id="caclassful-addressing">CA=Classful Addressing</h4>
+<p>说的是只能按照 <code>/8</code> <code>/16</code> <code>/24</code>
+进行子网划分，分别叫A类、B类、C类网络</p>
+<p>统计子网可以删去所有的节点（主机/路由器），剩下联通块的数量就是子网的数量。即两个节点之间如果不需要额外的主机和路由器即可通信，那么它们同属一个子网。</p>
+<h2 id="dhcp">DHCP</h2>
+<p>手动分配IP是很痛苦的事情，DHCP（Dynamic Host Configuration
+Protocol）做的就是让主机来自适应地获取它被分配到的IP地址。</p>
+<p>DHCP一般会有一个子网内的服务器，协议步骤如下：</p>
+<ol type="1">
+<li><p>造一个UDP包，端口67，从<code>0.0.0.0</code>发往<code>255.255.255.255</code></p>
+<p>UDP和67都是任意的，全0是因为当前主机还没有分配任何IP地址，广播是因为当前主机不知道DHCP服务器的IP地址</p></li>
+<li><p>服务器收到这个广播，然后也发一个广播。从服务器的IP地址发往<code>255.255.255.255</code>，提供</p>
+<ol type="1">
+<li>transaction ID，用于标记这是哪一次DHCP交互</li>
+<li>IP地址</li>
+<li>子网</li>
+<li>有效时间</li>
+</ol>
+<p>这时广播仍然是因为主机还没有IP地址，有效时间使得DHCP服务器可以定时更换主机的IP地址，或者收回地址资源（考虑主机频繁出入的无限局域网）。</p></li>
+<li><p>主机收到这个广播，向目标IP地址发一个确认消息</p></li>
+<li><p>服务器收到确认消息，向分配的IP地址发一个确认消息</p></li>
+</ol>
+<h2 id="nat">NAT</h2>
+<p>IPv4地址显然是不够用的，因此引入NAT（Network Address
+Translator）来缓解全局IP地址不够用的问题。</p>
+<p>NAT本质上是利用一个拥有公网IP地址的主机作为代理，实现了 <span
+class="math inline">\(\text{\texttt{(private\_ip,private\_port)}}\mapsto\texttt{(NAT\_ip,NAT\_port)}\)</span>
+的翻译。即私有网络中不同IP的主机，最终都被映射到了同一个NAT的公网IP的不同端口上。</p>
+<p>引入NAT也会引入一些问题，例如在P2P应用中经典端口被占用，这使得私有网络中的主机没法做server。</p>
+<h1 id="ipv6">IPv6</h1>
+<p>主要有几个变化</p>
+<ul>
+<li>地址长度变成了128位</li>
+<li>header 定长</li>
+<li>没有 checksum</li>
+<li>不允许划分IP数据包</li>
+</ul>
+<h2 id="tunneling">Tunneling</h2>
+<p>即如何让新协议跑在旧屎山硬件上。</p>
+<p>非常简单，把IPv6的整个包作为IPv4的数据中途传输即可。这个操作就叫隧穿。</p>
 
       </div>
       
@@ -291,7 +365,8 @@ choice 的问题。</p>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sdn"><span class="toc-text">SDN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#router"><span class="toc-text">Router</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#components"><span class="toc-text">Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forwarding-table"><span class="toc-text">Forwarding Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch-fabric"><span class="toc-text">Switch Fabric</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-text">Queue</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sdn"><span class="toc-text">SDN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#router"><span class="toc-text">Router</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#components"><span class="toc-text">Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forwarding-table"><span class="toc-text">Forwarding Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch-fabric"><span class="toc-text">Switch Fabric</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-text">Queue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#packet-scheduling"><span class="toc-text">Packet Scheduling</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ipv4"><span class="toc-text">IPv4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#addressing"><span class="toc-text">Addressing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91"><span class="toc-text">子网</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cidrclassless-interdomain-routing"><span class="toc-text">CIDR&#x3D;Classless Interdomain
+Routing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#caclassful-addressing"><span class="toc-text">CA&#x3D;Classful Addressing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dhcp"><span class="toc-text">DHCP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nat"><span class="toc-text">NAT</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ipv6"><span class="toc-text">IPv6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tunneling"><span class="toc-text">Tunneling</span></a></li></ol></li></ol>
       
     </div>
   </div>
