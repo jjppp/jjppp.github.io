@@ -316,6 +316,116 @@ class="math inline">\(\text{\texttt{(private\_ip,private\_port)}}\mapsto\texttt{
 <h2 id="tunneling">Tunneling</h2>
 <p>即如何让新协议跑在旧屎山硬件上。</p>
 <p>非常简单，把IPv6的整个包作为IPv4的数据中途传输即可。这个操作就叫隧穿。</p>
+<h1 id="routing">Routing</h1>
+<p>主要科普几个路由算法，要会做题。主要分为：</p>
+<ul>
+<li>中心化/分布式</li>
+<li>动态/静态</li>
+<li>负载敏感/不敏感，说的是会不会考虑瞬时的拥塞状况</li>
+</ul>
+<h2 id="link-state">Link-State</h2>
+<ul>
+<li>所有节点通过广播获得全局信息</li>
+<li>每个节点单独地以自己为起点跑Dijkstra算出到其余点的最短路径</li>
+<li>更新路由表</li>
+</ul>
+<p>oscillations
+指的是一类考虑瞬时负载时出现的问题，我们的路由算法可能会在两条路径之间来回震荡</p>
+<ol type="1">
+<li>选择路径1，此时路径1拥塞，路径2畅通</li>
+<li>第二轮选择路径2，此时路径2拥塞，路径1畅通</li>
+<li>反复</li>
+</ol>
+<p>解决的方法课本给了两种：</p>
+<ol type="1">
+<li>避免参考瞬时的链路评估</li>
+<li>避免所有的路由器同时运行LS路由算法</li>
+</ol>
+<p>做题的时候一般默认所有路由器得到相同的全局观，且同时完成算法。</p>
+<h2 id="distance-vector">Distance-Vector</h2>
+<ul>
+<li>每个节点只有局部的信息，向外广播自己的视角，通过接收广播来更新自己的视角</li>
+<li>每个节点根据当前视角、所有邻居的局部信息更新自己的视角</li>
+<li>更新路由表</li>
+</ul>
+<p>本质上是在跑一个并行的bellman-ford</p>
+<p>做题的时候一般默认每一轮都是同时进行的，并且每一轮只能看到上一轮的邻居视角。</p>
+<p>可能出现 count-to-infinity 的问题：</p>
+<ol type="1">
+<li>中途链路代价的变化可能导致出现环，从而一个包没法正确送到目的地</li>
+<li>在逐渐适应链路变化的过程中，环将一直存在，并且这个过程可能比较长</li>
+</ol>
+<p>解决这个问题的办法之一是给边的正反方向赋予不同的代价，以引导算法不走环。</p>
+<p>Poisoned Reverse 指的是这样的处理：</p>
+<p>如果 x 途径 y 到达 z，那么 x 就会向 y 汇报自己到 z 的距离是 <span
+class="math inline">\(\infty\)</span></p>
+<p>可以发现这样实际上避免了边 <span class="math inline">\(xy\)</span>
+被重复连续走两次。但这样避免不了更大的圈的问题。</p>
+<h2 id="对比">对比</h2>
+<ul>
+<li>LS需要交换全局信息，而DV不需要</li>
+<li>LS的复杂度就是Dijkstra的复杂度，而DV的收敛取决于链路状况</li>
+<li>LS的每个节点独立计算路由表，相对隔离；而DV在计算途中会传播计算结果</li>
+</ul>
+<h2 id="ospf">OSPF</h2>
+<p>这是一种 intra-AS（Autonomous System）
+路由算法，即在一组路由器内部进行路由的算法。</p>
+<p>OSPF 属于 Link-State 协议，加入了一些特色</p>
+<ul>
+<li>MD5校验，加强安全性</li>
+<li>允许同时使用多条代价相同的路径</li>
+<li>支持AS内部继续分组（sub-AS）</li>
+</ul>
+<h2 id="bgp">BGP</h2>
+<p>BGP 是一种 inter-AS
+路由协议，即在一堆的路由器集合之间进行路由的算法。</p>
+<p>所有的路由器被划分成两种：internal 和 gateway，分别运行 intra-AS 和
+inter-AS 的协议。</p>
+<p>运行 BGP 协议路由器的路由表以子网为单位，两个路由器通过 BGP
+connection 交换信息</p>
+<ul>
+<li>处于同一 AS 的路由器间的连接叫 iBGP(internal)</li>
+<li>处于不同 AS 的路由器间的连接叫 eBGP(external)</li>
+</ul>
+<h3 id="分发信息">分发信息</h3>
+<p>本质上是一个三元组
+<code>(AS-PATH, NEXT_HOP, TARGET_SUBNET_MASK)</code>，分别表示从当前 AS
+出发到达新主机的一条路径，和这条路径上<strong>第一个离开当前AS的</strong>路由器的IP地址，以及目标AS的子网掩码。</p>
+<p>某个主机会通过 iBGP 向 AS 内的路由器传达存在性，然后通过一个 external
+路由器向外，借助 eBGP 给另一个 AS 传达新主机的存在性</p>
+<p>在传达的途中，消息会被逐渐附加上消息途径的路径，这样接收方就能反推出到达新主机的路径了。同时消息会逐步更新
+<code>NEXT_HOP</code>，这是因为这个信息只对当前 AS
+有用，因此可以覆盖</p>
+<h3 id="选择路径">选择路径</h3>
+<p>不妨假设有许多从当前 AS 到达目标子网的 BGP
+路径信息，我们需要选出一条来</p>
+<h4 id="hot-potato-routing">Hot potato routing</h4>
+<p>即挑出一条路径使得当前路由器到 <code>NEXT_HOP</code> 的代价最小（通过
+intra-AS 协议获得的信息）。这么做的 idea
+在于尽可能快地让这个数据包离开当前 AS。</p>
+<h4 id="route-selection-algorithm">Route-selection algorithm</h4>
+<p>按照顺序执行下述策略</p>
+<ol type="1">
+<li>可以人为设置一个偏好值，例如更便宜的链路</li>
+<li>挑 <code>AS-PATH</code> 最短的</li>
+<li>hot potato</li>
+<li>通过 BGP-identifier 排序，虽然我感觉这里顺序是无所谓的</li>
+</ol>
+<h2 id="ip-cast">IP-cast</h2>
+<ul>
+<li>multicast，某个IP对应了一组设备</li>
+<li>unicast，某个IP对应一台设备</li>
+<li>broadcast，某个IP对应广播范围内所有设备</li>
+<li>anycast，某个IP对应一组设备中的任意一个设备</li>
+</ul>
+<p>前面提到的 DNS 可以做到域名的各种cast，而这里则是在IP层面实现的。</p>
+<p>通过 BGP 协议，我们可以布置许多服务器，然后给它们分配相同的 IP
+地址，这样在进行 BGP 广播的时候，接收方 AS
+将会认为存在多条路径通往同一个主机（而真实的情况是存在多条路径通往多个不同的主机，这些主机恰好提供相同的服务），然后根据路由选择算法挑一条路径出来（也就是挑一个主机出来）。</p>
+<p>稍微想想就会发现这样可能出现数据包交错发的情况，因为 BGP
+的路由选择算法本质上是启发式的。因此面向连接的协议就比较难办，例如
+TCP。而 DNS 这种基于 UDP 的服务就很方便，短平快而且实现了 IP
+层面的负载均衡。</p>
 
       </div>
       
@@ -366,7 +476,7 @@ class="math inline">\(\text{\texttt{(private\_ip,private\_port)}}\mapsto\texttt{
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sdn"><span class="toc-text">SDN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#router"><span class="toc-text">Router</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#components"><span class="toc-text">Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forwarding-table"><span class="toc-text">Forwarding Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch-fabric"><span class="toc-text">Switch Fabric</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-text">Queue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#packet-scheduling"><span class="toc-text">Packet Scheduling</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ipv4"><span class="toc-text">IPv4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#addressing"><span class="toc-text">Addressing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91"><span class="toc-text">子网</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cidrclassless-interdomain-routing"><span class="toc-text">CIDR&#x3D;Classless Interdomain
-Routing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#caclassful-addressing"><span class="toc-text">CA&#x3D;Classful Addressing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dhcp"><span class="toc-text">DHCP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nat"><span class="toc-text">NAT</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ipv6"><span class="toc-text">IPv6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tunneling"><span class="toc-text">Tunneling</span></a></li></ol></li></ol>
+Routing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#caclassful-addressing"><span class="toc-text">CA&#x3D;Classful Addressing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dhcp"><span class="toc-text">DHCP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nat"><span class="toc-text">NAT</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ipv6"><span class="toc-text">IPv6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tunneling"><span class="toc-text">Tunneling</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#routing"><span class="toc-text">Routing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#link-state"><span class="toc-text">Link-State</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#distance-vector"><span class="toc-text">Distance-Vector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94"><span class="toc-text">对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ospf"><span class="toc-text">OSPF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bgp"><span class="toc-text">BGP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%8F%91%E4%BF%A1%E6%81%AF"><span class="toc-text">分发信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E8%B7%AF%E5%BE%84"><span class="toc-text">选择路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hot-potato-routing"><span class="toc-text">Hot potato routing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#route-selection-algorithm"><span class="toc-text">Route-selection algorithm</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ip-cast"><span class="toc-text">IP-cast</span></a></li></ol></li></ol>
       
     </div>
   </div>
