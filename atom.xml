@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-02-08T15:46:09.778Z</updated>
+  <updated>2023-02-15T15:11:38.648Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Network05 Link</title>
+    <link href="http://example.com/2023/02/15/Network05-Link/"/>
+    <id>http://example.com/2023/02/15/Network05-Link/</id>
+    <published>2023-02-15T12:26:46.000Z</published>
+    <updated>2023-02-15T15:11:38.648Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;链路层的意义是补全网络层剩下要做的事情，主要有两种类型：&lt;/p&gt;
+&lt;ol</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Network" scheme="http://example.com/tags/Network/"/>
+    
+  </entry>
   
   <entry>
     <title>Automata07 TS</title>
@@ -491,32 +516,6 @@ system，当然用处有很多了。&lt;/p&gt;
     
     
     <category term="Concurrency" scheme="http://example.com/tags/Concurrency/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Network02 Application</title>
-    <link href="http://example.com/2022/09/12/Network02-Application/"/>
-    <id>http://example.com/2022/09/12/Network02-Application/</id>
-    <published>2022-09-12T12:44:14.000Z</published>
-    <updated>2022-10-01T05:31:51.073Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;应用一般跑在端系统上，此时网络对应用而言是透明的，所有的网络 API
-起到进程间通信的作用。&lt;/p&gt;
-&lt;h1 id=&quot;application-architecture&quot;&gt;Application</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Network" scheme="http://example.com/tags/Network/"/>
     
   </entry>
   
