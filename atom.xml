@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-02-15T15:11:38.648Z</updated>
+  <updated>2023-02-15T15:20:58.672Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Network06 Wireless</title>
+    <link href="http://example.com/2023/02/15/Network06-Wireless/"/>
+    <id>http://example.com/2023/02/15/Network06-Wireless/</id>
+    <published>2023-02-15T15:20:58.000Z</published>
+    <updated>2023-02-15T15:20:58.672Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Network05 Link</title>
@@ -484,31 +506,6 @@ system，当然用处有很多了。&lt;/p&gt;
 &lt;p&gt;Memory Model 可以通过一种 Operational
 的方式来定义，在这种定义下，我们可以看到一个结果是如何一步一步产生的。&lt;/p&gt;
 &lt;p&gt;简单地说，一个并发的系统可以看成是 CPU +</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Concurrency" scheme="http://example.com/tags/Concurrency/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Concurrency01 HMM</title>
-    <link href="http://example.com/2022/09/25/Concurrency01-HMM/"/>
-    <id>http://example.com/2022/09/25/Concurrency01-HMM/</id>
-    <published>2022-09-24T17:05:33.000Z</published>
-    <updated>2022-10-01T06:16:36.958Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;弱内存模型的出现，本质上是因为单线程的程序优化(编译优化/执行优化)中应用了许多的技术，这些技术在进入多线程编程时代之后使得一些符合直觉的假设不再成立，即内存模型变&quot;弱&quot;了。&lt;/p&gt;
-&lt;p&gt;为了</summary>
         
       
     
