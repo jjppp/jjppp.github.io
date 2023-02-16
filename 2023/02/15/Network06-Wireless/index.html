@@ -171,9 +171,142 @@
           2023-02-15 23:20:58
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Network/" title="Network">
+                    <b>#</b> Network
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <h1 id="intro">Intro</h1>
+<p>无线局域网的特征：</p>
+<ol type="1">
+<li>主机都是无线设备（废话）</li>
+<li>节点之间通过无线介质通信</li>
+<li>存在特殊的设备<strong>基站</strong>，责任包括：
+<ol type="1">
+<li>与覆盖范围内的无线设备通信</li>
+<li>协调接入设备对共享介质的使用</li>
+</ol></li>
+<li>终端可能会移动，从一个接入点到达另一个接入点（如何保证通信中的 TCP
+连接不断开）</li>
+</ol>
+<p>通常又会有两种工作模式：</p>
+<ol type="1">
+<li>infrastructure
+mode，即这些无线设备最终会接入互联网，它们只是普通的终端+无线网卡</li>
+<li>ad hoc
+mode，这些无线设备彼此组成了一个整体网络，每个节点要实现完整的网络协议栈</li>
+</ol>
+<p>无线链路（传输媒介）的特征：</p>
+<ol type="1">
+<li>信号强度衰减，也叫 path loss</li>
+<li>会受到信号干扰，例如工作频率为 2.4GHz 的蓝牙和 WiFi</li>
+<li>Multipath Propagation
+问题，即信号在反射后，沿着多条路径到达目的地（可能存在先后）</li>
+</ol>
+<p>信噪比（SNR-Signal to Noise
+Ratio）指的是传输中信号与环境噪声之比，单位是
+dB。信噪比越大，则越容易从噪声中分离出传输的信息。</p>
+<p>误码率（BER-Bit Error
+Rate）指的是传输过程中出现比特错误的概率。这个值越小越好。</p>
+<p>它们和传输带宽之间的关系可以粗略地看成 <span
+class="math inline">\(\text{SNR$\times$BER=Bandwidth}\)</span></p>
+<h2 id="hidden-terminal-problem">Hidden Terminal Problem</h2>
+<figure>
+<img src="hidden.png" alt="hidden" />
+<figcaption aria-hidden="true">hidden</figcaption>
+</figure>
+<p>说的是三个节点，其中两个无法感知到彼此，但它们同时传输造成的冲突又会干扰到第三个。</p>
+<h2 id="cdma">CDMA</h2>
+<p>后续讨论的比特实际上是 <span
+class="math inline">\(\mathbb{F}_2=\Set{1,-1}\)</span></p>
+<p>先确定一个长度 <span
+class="math inline">\(M\)</span>，每个节点发送一个比特的时间就会被划分成
+<span class="math inline">\(M\)</span> 份</p>
+<p>此后可以选取出至多 <span class="math inline">\(M\)</span>
+个互相正交的 <span class="math inline">\(\mathbb{F}_2\)</span> 上的
+<span class="math inline">\(M\)</span> 维向量 <span
+class="math inline">\(\Set{\vec{v}}_m\)</span></p>
+<p>以节点 <span class="math inline">\(i\)</span>
+为例，假设当前要传输的比特是 <span
+class="math inline">\(d\)</span>，它想发给 <span
+class="math inline">\(j\)</span>，那么最终它会被编码成 <span
+class="math inline">\(d\times \vec{v}_j\)</span>，然后发出去</p>
+<p>接收方收到之后再计算 <span class="math inline">\(\frac{d\times
+\vec{v}_j\times \vec{v}_j}{M}=d\)</span>，这样就完成了 <span
+class="math inline">\(i\to j\)</span>
+的传输。而其它节点即使收到了信号，也会因为编码彼此正交而得到 <span
+class="math inline">\(0\)</span>。</p>
+<h1 id="section">802.11</h1>
+<p>802.11 在链路层实现了可靠传输，靠的是 ACK。</p>
+<p>每个 AP 都有一个 SSID，有一个工作频道。</p>
+<p>被动探测：</p>
+<ol type="1">
+<li>每个AP定时发送 beacon 帧，包含 MAC 地址和 SSID</li>
+<li>终端扫描信道监听 beacon，选择一个 AP 接入</li>
+</ol>
+<p>主动探测：</p>
+<ol type="1">
+<li>终端主动广播一个帧</li>
+<li>AP收到之后回应一个帧，终端选一个接入</li>
+</ol>
+<p>探测完之后还需要终端发给 AP 确认，AP
+再回一个确认。这是因为在探测完后，AP 仍然不知道终端会不会选它。</p>
+<p>接入之后通常会发一个 DHCP 请求来获取
+IP，然后就和有线网络几乎每区别了。</p>
+<p>验证可以看 MAC 地址，也可以用密码</p>
+<h2 id="冲突避免vs冲突检测">冲突避免vs冲突检测</h2>
+<ol type="1">
+<li>有线，检测到了冲突立即停止传输，这是为了减少冲突；</li>
+<li>无线，没法检测只能预先避免冲突，这也是为了减少冲突；</li>
+</ol>
+<h2 id="csmaca">CSMA/CA</h2>
+<p>即带冲突避免的 CSMA。无线局域网没有冲突检测，因为：</p>
+<ol type="1">
+<li>隐藏终端问题导致不一定检测得到</li>
+<li>无线信号的冲突检测很困难</li>
+</ol>
+<p>没有冲突检测的意思是：<strong>一旦一个节点开始传输，它将传输完整个帧</strong>。</p>
+<p>流程如下：</p>
+<ol type="1">
+<li>先检测冲突，如果没有冲突的话等待一个固定的时间后开始传输</li>
+<li>如果冲突了就 back-off 一下再传输</li>
+<li>传完了等 ACK
+<ol type="1">
+<li>确认了，那么就回到1</li>
+<li>否则回到2，重新 back-off</li>
+</ol></li>
+</ol>
+<h2 id="rts-cts">RTS CTS</h2>
+<p>解决隐藏终端的步骤：</p>
+<ol type="1">
+<li>某个节点n想要发数据，向 AP 发一个 RTS（Request To Send）</li>
+<li>AP 收到后广播一个 CTS（Clear To Send），表示：
+<ol type="1">
+<li>同意n的发送</li>
+<li>通知其它节点暂停发送</li>
+</ol></li>
+<li>节点n开始发</li>
+<li>发完之后终端广播一个 ACK，所有节点继续工作。</li>
+</ol>
+<h2 id="速率自适应">速率自适应</h2>
+<p>802.11
+可以探测带宽，通过检测连续的ACK、连续的未ACK、超时等事件来进行决策</p>
+<h2 id="power-management">Power Management</h2>
+<ol type="1">
+<li>每个节点有两种状态：sleep, wake</li>
+<li>节点可以通过设置帧中的位，通知 AP 它将要省电了</li>
+<li>AP 将会缓存需要发给它的帧</li>
+<li>节点会在 AP 发送 beacon 之前唤醒，然后被 AP 告知是否有缓存的帧</li>
+<li>节点可以向 AP 获取之前缓存的帧，也可以继续省电</li>
+</ol>
 
       </div>
       
@@ -192,6 +325,17 @@
               2023-02-15 23:20:58
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Network/" title="Network">
+                        <b>#</b> Network
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
             
@@ -200,6 +344,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hidden-terminal-problem"><span class="toc-text">Hidden Terminal Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cdma"><span class="toc-text">CDMA</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#section"><span class="toc-text">802.11</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%B2%E7%AA%81%E9%81%BF%E5%85%8Dvs%E5%86%B2%E7%AA%81%E6%A3%80%E6%B5%8B"><span class="toc-text">冲突避免vs冲突检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#csmaca"><span class="toc-text">CSMA&#x2F;CA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rts-cts"><span class="toc-text">RTS CTS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9F%E7%8E%87%E8%87%AA%E9%80%82%E5%BA%94"><span class="toc-text">速率自适应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#power-management"><span class="toc-text">Power Management</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">
