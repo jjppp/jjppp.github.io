@@ -331,6 +331,102 @@ master 继续发令牌。</p>
 <h3 id="token-passing">Token passing</h3>
 <p>也就是击鼓传花，手上拿着令牌的节点可以传输，时间一到就传给下一个节点。</p>
 <p>问题还是鲁棒性，这个协议要求每个节点都必须正确地操作（让出令牌）。</p>
+<h1 id="mac-地址交换机">MAC 地址/交换机</h1>
+<p>48位，一般每个设备的 MAC 是不变的（回忆 IP，主机的 IP
+要设置为子网内有效 IP 地址，DHCP）</p>
+<p>需要注意的是，交换机与主机和路由器直接相连的端口，是没有 MAC
+地址的。这是因为这些链路上的主机和路由器不需要寻址，直接发就能被交换机收到（但主机和路由器的端口需要
+MAC 地址，这是为了交换机发送数据）</p>
+<p>链路层端口工作流程如下：</p>
+<ol type="1">
+<li>把 IP 数据包封装成帧，填入目标 MAC 地址，交给物理层打出去</li>
+<li>收到帧后查看目标 MAC 地址
+<ol type="1">
+<li>如果目标 MAC 地址就是当前端口的 MAC 地址，接收</li>
+<li>丢掉这个帧</li>
+</ol></li>
+<li>也可以广播，<code>FF-FF-FF-FF-FF-FF</code> 就是特殊的广播 MAC
+地址</li>
+</ol>
+<h2 id="arp">ARP</h2>
+<p>ARP（Address Resolution Protocol）是用来计算 IP 地址到 MAC
+地址的映射的</p>
+<p>计算 ARP 的模块通常包含若干表项，每个表项的内容为：</p>
+<ol type="1">
+<li>IP 地址</li>
+<li>MAC 地址</li>
+<li>TTL</li>
+</ol>
+<p>查询过程如下：</p>
+<ol type="1">
+<li>看看是否存在目标 IP 的映射
+<ol type="1">
+<li>存在，直接返回 MAC 地址</li>
+<li>不存在
+<ol type="1">
+<li>构造 ARP 包，目标 MAC 是广播地址，包含要查询的 IP 地址和源 MAC
+地址</li>
+<li>收到 ARP 包的节点会比较查询 IP 地址和自己的 IP 地址，然后给源 MAC
+发一个确认包</li>
+</ol></li>
+</ol></li>
+<li>根据 TTL 去掉超时映射</li>
+</ol>
+<p>需要注意的是，查询是广播而应答是点对点的。</p>
+<h2 id="以太网">以太网</h2>
+<p>以太网有这么几个优点：</p>
+<ol type="1">
+<li>发明得很早，大家都用</li>
+<li>很简单，成本低</li>
+<li>速度还不错</li>
+</ol>
+<h2 id="交换机">交换机</h2>
+<p>交换机对于主机和路由器而言是透明的，即主机只会标注目标路由器/主机的
+MAC 地址。</p>
+<ol type="1">
+<li>交换机消除了冲突</li>
+<li>引入交换机可以让不同链路跑在不同的速率</li>
+<li>能够提高网络的鲁棒性，例如过滤某些可疑的帧</li>
+</ol>
+<p>交换机的功能主要包括过滤和转发。不妨假设交换机的 x 端口收到了一个目标
+MAC 地址为 <code>M</code> 的帧：</p>
+<ol type="1">
+<li>如果交换机没有 <code>M</code> 的转发表，那么就广播这个帧（x
+端口除外）</li>
+<li>交换机中记录 <code>M</code> 的出端口为 x，那么就丢掉这个帧</li>
+<li>记录 <code>M</code> 的出端口为 y，那么就从 y 转发</li>
+</ol>
+<p>而交换机中的转发表则是通过预定算法求出来的</p>
+<ol type="1">
+<li>每从端口 x 收到一个源 MAC 地址为 <code>S</code> 的帧，就记录一个表项
+<code>(S,x,TTL)</code></li>
+<li>固定一段时间根据 TTL 清理表项</li>
+</ol>
+<h2 id="vlan">VLAN</h2>
+<p>即一个 LAN 仍然可以继续划分成若干个 VLAN。VLAN
+的功能需要交换机额外提供，可以提供更好的安全性和资源管理</p>
+<figure>
+<img src="vlan.png" alt="vlan" />
+<figcaption aria-hidden="true">vlan</figcaption>
+</figure>
+<h1 id="总览">总览</h1>
+<p>假设主机 A 要向主机 B 发 IP 数据包</p>
+<ol type="1">
+<li>A 先得到 B 的 IP 地址（或者利用 DNS 解析域名）</li>
+<li>判断 A, B 是否处于同一子网
+<ol type="1">
+<li>是，那么把 IP 数据包封装成帧，根据 IP 地址查询目标 MAC
+<ol type="1">
+<li>存在 IP-&gt;MAC 映射，发</li>
+<li>不存在，用 ARP 查询到 IP 对应的 MAC 地址，发</li>
+</ol></li>
+<li>否，那么把 IP 数据包封装成帧，根据默认路由的 IP 地址查询 MAC
+<ol type="1">
+<li>同上</li>
+<li>同上</li>
+</ol></li>
+</ol></li>
+</ol>
 
       </div>
       
@@ -380,7 +476,7 @@ master 继续发令牌。</p>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%A1%E9%AA%8C%E7%A0%81%E7%BA%A0%E9%94%99%E7%A0%81"><span class="toc-text">校验码&#x2F;纠错码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C"><span class="toc-text">奇偶校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%A1%E9%AA%8C%E5%92%8C"><span class="toc-text">校验和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crc"><span class="toc-text">CRC</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E4%BB%8B%E8%B4%A8%E5%8D%8F%E8%AE%AE"><span class="toc-text">共享介质协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#channel-partition"><span class="toc-text">Channel Partition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#random-access"><span class="toc-text">Random Access</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#slotted-aloha"><span class="toc-text">Slotted-ALOHA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aloha"><span class="toc-text">ALOHA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#csmacd"><span class="toc-text">CSMA&#x2F;CD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#take-turns"><span class="toc-text">Take turns</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#master-node"><span class="toc-text">Master node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#token-passing"><span class="toc-text">Token passing</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%A1%E9%AA%8C%E7%A0%81%E7%BA%A0%E9%94%99%E7%A0%81"><span class="toc-text">校验码&#x2F;纠错码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C"><span class="toc-text">奇偶校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%A1%E9%AA%8C%E5%92%8C"><span class="toc-text">校验和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crc"><span class="toc-text">CRC</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E4%BB%8B%E8%B4%A8%E5%8D%8F%E8%AE%AE"><span class="toc-text">共享介质协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#channel-partition"><span class="toc-text">Channel Partition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#random-access"><span class="toc-text">Random Access</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#slotted-aloha"><span class="toc-text">Slotted-ALOHA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aloha"><span class="toc-text">ALOHA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#csmacd"><span class="toc-text">CSMA&#x2F;CD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#take-turns"><span class="toc-text">Take turns</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#master-node"><span class="toc-text">Master node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#token-passing"><span class="toc-text">Token passing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mac-%E5%9C%B0%E5%9D%80%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="toc-text">MAC 地址&#x2F;交换机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#arp"><span class="toc-text">ARP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="toc-text">以太网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="toc-text">交换机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vlan"><span class="toc-text">VLAN</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-text">总览</span></a></li></ol>
       
     </div>
   </div>
