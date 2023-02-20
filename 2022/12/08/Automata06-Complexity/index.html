@@ -232,9 +232,30 @@ class="math inline">\(\text{Decidable}=\text{co-RE}\cap\text{RE}\)</span></p>
 </ol>
 <p>同样是从最大的讲起</p>
 <h2 id="exp">EXP</h2>
-<p>指需要代价为 <span class="math inline">\(O(2^n)\)</span> 的
+<p>指需要代价为 <span
+class="math inline">\(O(2^{\text{poly}(n)})\)</span> 的
 DTM。目前并不清楚是否有 <span class="math inline">\(\text{NP
 $\subsetneq$ EXP}\)</span>。</p>
+<h2 id="pspace">PSPACE</h2>
+<p>指需要<strong>空间</strong>代价为 <span
+class="math inline">\(O(\text{poly}(n))\)</span> 的 DTM。</p>
+<h2 id="np-hard">NP-hard</h2>
+<p>指难度不弱于 NP 的问题。即如果问题 A 满足 <span
+class="math inline">\(\forall B\in NP\)</span> 都有 <span
+class="math inline">\(B\le_P A\)</span>，那么 A 就是 NP-hard 的。</p>
+<p>这个定义可以拓展到 X-hard。即 <span class="math inline">\(A\in
+\text{X-hard}\iff \forall B\in \text{X},B\le_P A\)</span></p>
+<h2 id="np-complete">NP-complete</h2>
+<p>指 NP 中最难的那一批问题。定义为 <span
+class="math inline">\(\text{NP-complete}= \text{NP}
+\cap\text{NP-hard}\)</span></p>
+<p>这个定义可以拓展到 X-complete。</p>
+<h3 id="例子">例子</h3>
+<ol type="1">
+<li>HAMILTON</li>
+<li>3-SAT</li>
+<li>k-CLIQUE</li>
+</ol>
 <h2 id="np">NP</h2>
 <p>指需要代价为 <span class="math inline">\(O(\text{poly}(n))\)</span>
 的 NTM。关于对 NTM 的时间复杂度的定义可以<a
@@ -249,7 +270,92 @@ R$}}\)</span>，并且 <span class="math inline">\(R\)</span> 作为语言是个
 P 问题。</p>
 <p>这里的 <span class="math inline">\(\exists s\)</span>
 是比较灵活的，并不需要严格是“问题本身的答案”。</p>
+<p>一个经典的套路是用 DTM 模拟 NTM，此时状态数是指数增长的 <span
+class="math inline">\(\sum_{i}k^i\)</span>，其中 <span
+class="math inline">\(k\)</span> 为 NTM
+每一步的可选后继状态的最大值。</p>
 <h2 id="p">P</h2>
+<p>需要代价为 <span class="math inline">\(O(\text{poly}(n))\)</span> 的
+DTM。</p>
+<h1 id="规约">规约</h1>
+<p>已知问题 A 的可判定性/复杂性，用来证明问题 B 的可判定性/复杂性</p>
+<h2 id="decidability-1">Decidability</h2>
+<p>给几个不可判定的例子</p>
+<ol type="1">
+<li>HALT</li>
+<li><span class="math inline">\(A_{TM}=\Set{\braket{M,w}\mid \text{$M$
+accepts $w$}}\)</span></li>
+<li><span class="math inline">\(E_{TM}=\Set{\braket{M}\mid
+L(M)=\varnothing}\)</span></li>
+</ol>
+<p>HALT 的证明最经典，剩下两个都可以规约到 HALT。</p>
+<p>实际上根据 Rice's Theorem 可知，TM 上的非平凡性质都是不可判定的。</p>
+<h2 id="complexity-1">Complexity</h2>
+<p>涉及到复杂度的规约需要强调规约额外引入的复杂度。</p>
+<p>如果问题 A 能被多项式规约到 B，且 B 是 P，那么 A 也是 P。</p>
+<p>用符号描述就是 <span class="math inline">\(A\le_P B\)</span> 且 <span
+class="math inline">\(B\in P\)</span>，那么 <span
+class="math inline">\(A\in P\)</span>。</p>
+<h3 id="例子-1">例子</h3>
+<ol type="1">
+<li>k-SHORT-PATH 是 P 的</li>
+<li>k-LONG-PATH 是 NP-hard 的，可以把 HAMILTON 规约到它</li>
+</ol>
+<h1 id="rices-theorem">Rice's Theorem</h1>
+<p>TM 上的非平凡性质不可判定。称性质 <span
+class="math inline">\(P\)</span> 是非平凡的，当且仅当 <span
+class="math inline">\(\Set{M\mid P(M)}\)</span> 和 <span
+class="math inline">\(\Set{M\mid \neg P(M)}\)</span> 都非空。</p>
+<p>由反证法，设某个非平凡性质 <span class="math inline">\(P\)</span>
+存在判定算法 <span
+class="math inline">\(D\)</span>，我们以此来构造一个用来判定 HALT 的算法
+<span class="math inline">\(H\)</span>。</p>
+<p>由于 <span class="math inline">\(P\)</span> 非平凡，因此必然存在
+<span class="math inline">\(M\)</span> 满足 <span
+class="math inline">\(P(M)\)</span>。不妨假设 <span
+class="math inline">\(\varnothing\not\in P\)</span>，否则取 <span
+class="math inline">\(\bar P\)</span> 即可。</p>
+<p>我们的 <span class="math inline">\(H\)</span> 设计如下：</p>
+<ol type="1">
+<li>读入 <span class="math inline">\(\braket{TM,w}\)</span></li>
+<li>构造一个算法 <span class="math inline">\(S\)</span> 如下：
+<ol type="1">
+<li>读入 <span class="math inline">\(x\)</span></li>
+<li>模拟把 <span class="math inline">\(w\)</span> 喂给 <span
+class="math inline">\(TM\)</span></li>
+<li><strong>执行完2之后</strong>，模拟把 <span
+class="math inline">\(x\)</span> 喂给 <span
+class="math inline">\(M\)</span>，然后输出结果</li>
+</ol></li>
+<li>然后观察 <span class="math inline">\(D(S)\)</span>
+<ol type="1">
+<li>如果 <span class="math inline">\(D(S)\)</span> 接受，则说明 <span
+class="math inline">\(S\)</span> 最终等价与一个 <span
+class="math inline">\(M\)</span>，意味着 <span
+class="math inline">\(TM\)</span> 停机了</li>
+<li>如果 <span class="math inline">\(D(S)\)</span> 拒绝，则说明 <span
+class="math inline">\(TM\)</span> 没停机，<span
+class="math inline">\(L(S)=\varnothing\)</span></li>
+</ol></li>
+</ol>
+<p>写成代码大概是这样</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> H<span class="op">(</span>TM<span class="op">,</span> w<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">func</span> S<span class="op">(</span>x<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        TM<span class="op">(</span>w<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> M<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>D<span class="op">(</span>S<span class="op">))</span> <span class="op">&#123;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ot">true</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span> <span class="cf">else</span> <span class="op">&#123;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ot">false</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<p>即我们利用了一个阻塞的计算过程使得 <span
+class="math inline">\(S\)</span> 是否拥有性质 <span
+class="math inline">\(P\)</span> 取决于 <span
+class="math inline">\(\braket{TM,w}\)</span> 是否停机，这样就可以利用
+<span class="math inline">\(P\)</span>
+的算法来判定停机问题，从而导出一个矛盾。</p>
 
       </div>
       
@@ -299,7 +405,7 @@ P 问题。</p>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#decidability"><span class="toc-text">Decidability</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sigma"><span class="toc-text">\(\Sigma^*\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repartially-decidable"><span class="toc-text">RE&#x2F;Partially Decidable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#co-re"><span class="toc-text">co-RE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#decidable"><span class="toc-text">Decidable</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#complexity"><span class="toc-text">Complexity</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#exp"><span class="toc-text">EXP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np"><span class="toc-text">NP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p"><span class="toc-text">P</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#decidability"><span class="toc-text">Decidability</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sigma"><span class="toc-text">\(\Sigma^*\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repartially-decidable"><span class="toc-text">RE&#x2F;Partially Decidable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#co-re"><span class="toc-text">co-RE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#decidable"><span class="toc-text">Decidable</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#complexity"><span class="toc-text">Complexity</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#exp"><span class="toc-text">EXP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pspace"><span class="toc-text">PSPACE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np-hard"><span class="toc-text">NP-hard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np-complete"><span class="toc-text">NP-complete</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#np"><span class="toc-text">NP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p"><span class="toc-text">P</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%84%E7%BA%A6"><span class="toc-text">规约</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#decidability-1"><span class="toc-text">Decidability</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#complexity-1"><span class="toc-text">Complexity</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90-1"><span class="toc-text">例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rices-theorem"><span class="toc-text">Rice&#39;s Theorem</span></a></li></ol>
       
     </div>
   </div>

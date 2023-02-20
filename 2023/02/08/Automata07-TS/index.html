@@ -280,6 +280,13 @@ A_i\)</span>，表示只有 <span class="math inline">\(I\)</span>
 中的转移才可以被触发。</p>
 <p>不难发现自由积定义出来的新 TS 默认所有转移是同时进行的。</p>
 <h1 id="temporal-logic">Temporal logic</h1>
+<p>本质上是一种带状态机结构的谓词逻辑，可以表达例如 "eventually true"
+或者 "never true" 这样的句子。</p>
+<p>一般描述一个 TS <span class="math inline">\(\mathcal{A}\)</span>
+的时候会用元组 <span class="math inline">\((\mathcal{A}, AP, L)\)</span>
+来表示，其中 <span class="math inline">\(AP\)</span> 表示原子命题，<span
+class="math inline">\(L:S\to 2^{AP}\)</span>
+给每个状态标记上若干个原子命题，表示这个状态的性质。</p>
 
       </div>
       
