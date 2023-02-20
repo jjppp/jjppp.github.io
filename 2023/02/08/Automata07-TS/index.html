@@ -287,6 +287,76 @@ A_i\)</span>，表示只有 <span class="math inline">\(I\)</span>
 来表示，其中 <span class="math inline">\(AP\)</span> 表示原子命题，<span
 class="math inline">\(L:S\to 2^{AP}\)</span>
 给每个状态标记上若干个原子命题，表示这个状态的性质。</p>
+<p>一个 trace 是 <span class="math inline">\(\mathcal A\)</span>
+中状态的无穷序列 <span
+class="math inline">\(w=\Set{s_i}_{i=0}^\infty\)</span>，定义 <span
+class="math inline">\(w_k=s_k\)</span>，<span
+class="math inline">\(w^k=\Set{s_i}_{i=k}^{\infty}\)</span></p>
+<h2 id="ltl">LTL</h2>
+<p>Linear Temporal Logic 要求 <span class="math inline">\(\mathcal
+A\)</span> 中的自动机是线性的。</p>
+<h3 id="syntax">Syntax</h3>
+<p>主要是多了几个算子</p>
+<ul>
+<li><span class="math inline">\(X\)</span>，ne<strong>X</strong>t</li>
+<li><span class="math inline">\(U\)</span>，<strong>U</strong>ntil</li>
+<li><span class="math inline">\(G\)</span>，<strong>G</strong>lobally
+或者 Always</li>
+<li><span
+class="math inline">\(F\)</span>，<strong>F</strong>inally</li>
+<li><span
+class="math inline">\(R\)</span>，<strong>R</strong>elease</li>
+</ul>
+<h3 id="semantics">Semantics</h3>
+<p>对于给定的 trace <span class="math inline">\(w\)</span></p>
+<ul>
+<li><p><span class="math inline">\(w\models a\iff a\in
+w_0\)</span></p></li>
+<li><p><span class="math inline">\(w\models a\wedge b\iff w\models
+a\text{ and } w\models b\)</span></p></li>
+<li><p><span class="math inline">\(w\models Xa\iff w^1\models
+a\)</span></p>
+<p>即下一个状态满足。</p></li>
+<li><p><span class="math inline">\(w\models aUb\iff \exists k,
+w^k\models b\text{ and } \forall i&lt;k,w^i\models a\)</span>
+即存在一个时刻 <span class="math inline">\(b\)</span> 满足，并且在 <span
+class="math inline">\(b\)</span> 满足之前 <span
+class="math inline">\(a\)</span> 都得持续满足。</p></li>
+<li><p><span class="math inline">\(w\models Fa\iff w\models
+\text{true}Ua\)</span> 即存在一个时刻使得 <span
+class="math inline">\(a\)</span> 满足。</p></li>
+<li><p><span class="math inline">\(w\models Ga \iff w\models \neg F\neg
+a\)</span> 即并不存在一个时刻使得 <span class="math inline">\(a\)</span>
+满足 也就是说 <span class="math inline">\(a\)</span>
+会在任意时刻满足</p></li>
+<li><p><span class="math inline">\(w\models aRb\iff w\models\neg(\neg
+aU\neg b)\)</span> 即<strong>并非</strong>（<span
+class="math inline">\(\neg a U\neg b\)</span>）</p>
+<p>即并非（存在一个时刻满足 <span class="math inline">\(\neg
+b\)</span>，且在 <span class="math inline">\(\neg b\)</span> 满足之前
+<span class="math inline">\(\neg a\)</span> 一直满足）</p>
+<p>即（不存在一个时刻满足 <span class="math inline">\(\neg
+b\)</span>）或者（存在一个时刻满足 <span class="math inline">\(\neg
+b\)</span> 但是 <span class="math inline">\(\neg b\)</span> 满足之前
+<span class="math inline">\(\neg a\)</span> 并非一直满足）</p>
+<p>即（任意时刻都满足 <span
+class="math inline">\(b\)</span>）或者（存在一个时刻不满足 <span
+class="math inline">\(b\)</span>，但是 <span
+class="math inline">\(b\)</span> 不满足之前存在时刻满足 <span
+class="math inline">\(a\)</span>）</p>
+<p>即在 <span class="math inline">\(a\)</span> 满足之前，<span
+class="math inline">\(b\)</span> 必然一直满足。如果 <span
+class="math inline">\(a\)</span> 一直不满足，那么 <span
+class="math inline">\(b\)</span> 将一直满足。</p>
+<p>（有一种 <span class="math inline">\(U\)</span>
+逆转然后放松的感觉）</p></li>
+</ul>
+<h2 id="ctl">CTL</h2>
+<h3 id="syntax-1">Syntax</h3>
+<h3 id="semantics-1">Semantics</h3>
+<h2 id="ctl-1">CTL*</h2>
+<h3 id="syntax-2">Syntax</h3>
+<h3 id="semantics-2">Semantics</h3>
 
       </div>
       
@@ -336,7 +406,7 @@ class="math inline">\(L:S\to 2^{AP}\)</span>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#path"><span class="toc-text">Path</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#terminal"><span class="toc-text">Terminal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deadlock"><span class="toc-text">Deadlock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#label"><span class="toc-text">Label</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trace"><span class="toc-text">Trace</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#homomorphism"><span class="toc-text">Homomorphism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strong-isomorphism"><span class="toc-text">Strong Isomorphism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#weak-isomorphism"><span class="toc-text">Weak Isomorphism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bisimulation"><span class="toc-text">Bisimulation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#product"><span class="toc-text">Product</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#temporal-logic"><span class="toc-text">Temporal logic</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#path"><span class="toc-text">Path</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#terminal"><span class="toc-text">Terminal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deadlock"><span class="toc-text">Deadlock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#label"><span class="toc-text">Label</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trace"><span class="toc-text">Trace</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#equivalence"><span class="toc-text">Equivalence</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#homomorphism"><span class="toc-text">Homomorphism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strong-isomorphism"><span class="toc-text">Strong Isomorphism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#weak-isomorphism"><span class="toc-text">Weak Isomorphism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bisimulation"><span class="toc-text">Bisimulation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#product"><span class="toc-text">Product</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#temporal-logic"><span class="toc-text">Temporal logic</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ltl"><span class="toc-text">LTL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#syntax"><span class="toc-text">Syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#semantics"><span class="toc-text">Semantics</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ctl"><span class="toc-text">CTL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#syntax-1"><span class="toc-text">Syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#semantics-1"><span class="toc-text">Semantics</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ctl-1"><span class="toc-text">CTL*</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#syntax-2"><span class="toc-text">Syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#semantics-2"><span class="toc-text">Semantics</span></a></li></ol></li></ol></li></ol>
       
     </div>
   </div>
