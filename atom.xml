@@ -96,7 +96,7 @@ class=&quot;math</summary>
     <link href="http://example.com/2023/01/28/cmm-Design/"/>
     <id>http://example.com/2023/01/28/cmm-Design/</id>
     <published>2023-01-28T15:29:06.000Z</published>
-    <updated>2023-01-28T15:33:01.337Z</updated>
+    <updated>2023-03-05T07:24:06.624Z</updated>
     
     
       
@@ -104,10 +104,9 @@ class=&quot;math</summary>
         
         
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;SysYJ 是用 Java 编写的编程语言 SysY 的编译器&lt;/p&gt;
-&lt;p&gt;本文的主要目的是记录 SysYJ
-的细节和取舍，以记录分析和优化相关的内容、IR 设计的知识和从 LLVM
-那里抄来的东西（&lt;/p&gt;
+&lt;p&gt;cmm 是用 C99 编写的编程语言 cmm 的编译器&lt;/p&gt;
+&lt;p&gt;本文的主要目的是记录 cmm 的细节和取舍，以记录分析和优化相关的内容、IR
+设计的知识和从 LLVM/JDK 那里抄来的东西（&lt;/p&gt;
 &lt;h1</summary>
         
       

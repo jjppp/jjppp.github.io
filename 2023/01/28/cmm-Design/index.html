@@ -185,16 +185,203 @@
       </div>
       <div class="markdown-body">
         <h1 id="intro">Intro</h1>
-<p>SysYJ 是用 Java 编写的编程语言 SysY 的编译器</p>
-<p>本文的主要目的是记录 SysYJ
-的细节和取舍，以记录分析和优化相关的内容、IR 设计的知识和从 LLVM
-那里抄来的东西（</p>
+<p>cmm 是用 C99 编写的编程语言 cmm 的编译器</p>
+<p>本文的主要目的是记录 cmm 的细节和取舍，以记录分析和优化相关的内容、IR
+设计的知识和从 LLVM/JDK 那里抄来的东西（</p>
+<h1 id="parsing">Parsing</h1>
+<p>主要是基于 Flex/Bison 这套工具做的，然后顺便设计了一下 AST 的结构</p>
+<h2 id="flexbison">Flex/Bison</h2>
+<p>讲几个比较有用的小技巧（全都是从手册里抄来的）</p>
+<ol type="1">
+<li>可以给符号定义
+<code>%destructor</code>，从而实现一些资源的管理。例如 Bison
+的错误处理会不断从栈上弹出符号，这些符号相关资源的释放则会调用这个自定义的析构函数。</li>
+<li>可以设置自定义报错
+<code>%define parse.error custom</code>，然后在里面调用一些 Bison
+提供的函数获取一些解析。例如做成 “expected symbol XXX, got XXX”</li>
+</ol>
+<h2 id="ast">AST</h2>
+<p>用了一个 X-macro+OO 的操作来写得比较爽一点，具体可以看 repo。</p>
+<p>有了这俩之后就能做 visitor 了。具体而言有这么几个：</p>
+<ol type="1">
+<li><code>ast_alloc</code>，节点的构造函数</li>
+<li><code>ast_free</code>，节点的析构函数</li>
+<li><code>ast_check</code>，对节点做语义分析</li>
+</ol>
+<p>本来还想做一些 AST 上的常量折叠/表达式旋转的，但是摸了。</p>
+<p>当然这玩意的本质还是一个大的 switch-case，或者按照 tls
+的说法是“二维dispatch”</p>
+<h2 id="polymorphism">Polymorphism</h2>
+<p>实验手册给出的实现多态的方案是这样的：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> base <span class="op">&#123;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    type_t type<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span> <span class="op">&#123;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span> derived1 field1<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span> derived2 field2<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">/* other subclasses */</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;;</span></span></code></pre></div>
+<p>这样的好处是比较简单，而且很有 C 的风味。</p>
+<p>与手册中推荐的 <code>union</code>
+方式不同，我这里选取了"继承"的路子。考虑如下代码：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> base <span class="op">&#123;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    type_t type<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* base fields */</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> <span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> derived1 <span class="op">&#123;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> base super<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* other fields */</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> derived2 <span class="op">&#123;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> base super<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* other fields */</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;;</span></span></code></pre></div>
+<p>通过排布内存布局和指针类型的强转就可以实现一部分继承和子类型多态的特性。</p>
+<p>这样的写法可以让我们忽略 AST 节点的具体类型，但仍然保留遍历 AST
+的能力（回忆内核里的侵入式链表）；</p>
+<p>同时不需要滥用 <code>void *</code>，方便内存管理；在 cast
+之后还可以获得编辑器的补全，无需考虑 <code>union</code> 带来的误用。</p>
+<h1 id="typechecking">Typechecking</h1>
+<p>typechecking 可以用一个 visitor 实现。需要注意的细节会比较多。</p>
+<h2 id="symtab">symtab</h2>
+<p>符号表需要支持</p>
+<ol type="1">
+<li>嵌套作用域</li>
+<li>插入符号（长度有限的字符串），得到一个 <code>entry</code> 或
+<code>NULL</code>（表示重复插入），<code>entry</code> 可以写入信息</li>
+<li>查询符号，得到一个 <code>entry</code> 或
+<code>NULL</code>（表示不存在）</li>
+</ol>
+<p>实际上类似的结构在 IR 上的分析也会用到，因此抽出来一个
+<code>hashtab</code> 用于查询符号，插入则通过简单的写入 field
+来实现。<code>symtab</code> 只是简单包装了一层
+<code>hashtab</code>，这样底层的哈希函数和查找逻辑后面都可以改动（咕咕咕）。</p>
+<h2 id="type">type</h2>
+<p>类型相关的设计非常糟心。理想的类型应当是
+ADT，但实际上做起来很麻烦。</p>
+<ol type="1">
+<li><p>数组类型（<code>TYPE_ARRAY</code>）可以做成</p>
+<ol type="1">
+<li><div class="sourceCode" id="cb3"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>   <span class="kw">enum</span> Type <span class="op">&#123;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       TypeInt<span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>       TypeFlt<span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>       TypeArr(<span class="dt">u32</span><span class="op">,</span> <span class="dt">Box</span><span class="op">&lt;</span>Type<span class="op">&gt;</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>   <span class="op">&#125;</span></span></code></pre></div>
+<p>这样本质上是将数组视为类型构造子，有一层一层剥开的感觉，做 partial
+addressing 或者是 type equivalence checking 会很简单，但是生成 IR
+的时候算下标会比较麻烦。</p></li>
+<li><p>或者直接压平，做成</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Type <span class="op">&#123;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    TypeInt<span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    TypeFlt<span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    TypeArr(<span class="dt">u32</span><span class="op">,</span> <span class="dt">Vec</span><span class="op">&lt;</span>Type<span class="op">&gt;</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div></li>
+</ol>
+<p>当然最佳实践应当是做成多级的
+IR，这样就可以二者兼顾了。但我比较懒所以直接压平了。</p></li>
+<li><p>cmm 里可以定义结构体，考虑下面这么一段代码：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> A <span class="op">&#123;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> a<span class="op">,</span> b<span class="op">,</span> c<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> d<span class="op">;</span></span></code></pre></div>
+<p>这一段看上去只是 VarDecl，但它实际上还构造了一个类型
+<code>struct A</code>。这也解释了有没有 <code>d</code>
+不影响语法正确性。</p>
+<p>这里我引入了一个 TypeDecl
+的节点用来处理这种情况，那么其余所有地方都实质性地变成了对
+<code>struct A</code> 的引用。</p></li>
+<li><p>最怪的地方：cmm
+并不支持浮点数和整数的任意转换。当然到了后面才会发现这么做是因为 cmm
+里的浮点数都是酱油。</p></li>
+</ol>
+<h2 id="err-propagation">err propagation</h2>
+<p>不妨假设类型检查出错了，例如考虑如下代码：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> foo<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">&#123;</span> <span class="cf">return</span> x<span class="op">;</span> <span class="op">&#125;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> foo<span class="op">(</span><span class="dt">int</span> arr<span class="op">[</span><span class="dv">114</span><span class="op">])</span> <span class="op">&#123;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> foo<span class="op">(</span>arr<span class="op">);</span>     <span class="co">// ?</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">&#123;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> f <span class="op">=</span> foo<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">);</span> <span class="co">// ?</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> f <span class="op">=</span> bar<span class="op">(</span><span class="dv">1</span><span class="op">);</span>    <span class="co">// ?</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<ol type="1">
+<li><p><code>foo</code> 重复定义，那么第二个 <code>foo</code>
+里的错误要不要报？第三行的 <code>foo</code> 是哪个函数的引用？</p></li>
+<li><p><code>foo</code> 的参数不对。这里 <code>foo</code>
+的返回值仍然能保证是 <code>int</code> 吗？</p></li>
+<li><p><code>bar</code>
+不存在，这里返回值的类型应该是什么？应不应该报赋值两侧类型不匹配？</p>
+<p>（思考：C语言又会是什么情况？）</p></li>
+</ol>
+<h1 id="ir">IR</h1>
+<p>咕咕咕</p>
 <h1 id="analysis">Analysis</h1>
-<h2 id="loop">Loop</h2>
-<h2 id="dominator">Dominator</h2>
+<p>目前只实现了一个数据流分析，并且还没有抽出一个比较通用的数据流分析框架，因此下一步就是实现框架，通过“注册-管理”的模式来跑各种分析。</p>
+<h2 id="live-variables">Live Variables</h2>
+<p>简单的反向 may
+analysis。即判断一个赋值在未来是否仍然有用，如果没用说明这是 dead
+assignment，可以删去。</p>
 <h1 id="optimization">Optimization</h1>
+<p>目前只实现了两个（一个半）优化</p>
 <h2 id="local-value-numbering">Local Value Numbering</h2>
-<h2 id="loop-invariant">Loop Invariant</h2>
+<p>发现这玩意本质上就是 Available Expressions，但是不需要对两个 valtab
+进行 merge 操作，所以就更简单。</p>
+<p>定义：</p>
+<ol type="1">
+<li><span class="math inline">\(\text{cvar}\colon \text{Val}\mapsto
+2^\text{Var}\)</span>，即 <span
+class="math inline">\(\text{cvar(v)}\)</span> 表示持有值 <span
+class="math inline">\(\text v\)</span> 的所有变量</li>
+<li><span class="math inline">\(\text{holding} =
+\text{cvar}^{-1}\)</span>，即 <span
+class="math inline">\(\text{holding(v)}\)</span> 表示变量 <span
+class="math inline">\(\text v\)</span> 持有的值</li>
+<li><span class="math inline">\(\text{val}\colon \text{Expr}\mapsto
+\text{Val}\)</span>，即给表达式标号</li>
+</ol>
+<p>对 <span class="math inline">\(\text{val(e)}\)</span>
+递归定义如下：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\text{e}\)</span> 是
+<code>OPRD_LIT</code>，那么 <span class="math inline">\(\text{val(e) =
+e}\)</span></li>
+<li>若 <span class="math inline">\(\text{e}\)</span> 是
+<code>OPRD_VAR</code>
+<ol type="1">
+<li>如果 <span class="math inline">\(\text{e}\)</span>
+在当前块内、当前指令之前被定义过，那么 <span
+class="math inline">\(\text{val(e) = holding(e)}\)</span></li>
+<li>如果没有，那么 <span class="math inline">\(\text{e}\)</span> 本身是
+value （safe-approximation），<span class="math inline">\(\text{val(e) =
+encode(e)}\)</span></li>
+</ol></li>
+<li>若 <span class="math inline">\(\text{e}\)</span> 形如 <span
+class="math inline">\(\text{v$_1$ OP v$_2$}\)</span>，那么 <span
+class="math inline">\(\text{val(e) = encode(val(v$_1$), OP,
+val(v$_2$))}\)</span></li>
+</ol>
+<p>那么假设现在遇到了表达式
+<code>tar = lhs OP rhs</code>，那么先根据递归定义求出
+<code>val(lhs), val(rhs), val(lhs OP rhs)</code>。</p>
+<p>观察 <span class="math inline">\(\text{cvar(n)}\)</span>：</p>
+<ol type="1">
+<li>若非空则当前指令可以写成 <code>tar = cvar(n)</code>。</li>
+<li>否则我们分别观察 <code>lhs</code> 和
+<code>rhs</code>，用一些启发式的规则来重写（以 <code>lhs</code> 为例）：
+<ol type="1">
+<li>如果 <span class="math inline">\(\text{cvar(val(lhs))}\)</span>
+中存在<strong>非临时变量</strong>，那么把 <code>lhs</code>
+重写成该变量</li>
+<li>如果全是临时变量，那么挑一个最早的（编号最小的）</li>
+</ol></li>
+</ol>
+<p>这么做有如下考虑：</p>
+<ol type="1">
+<li>减少重复计算</li>
+<li>copy-propagation，即尽可能少的使用临时变量，尽可能让临时变量
+dead，尽可能让晚出现的临时变量 dead</li>
+</ol>
 
       </div>
       
@@ -244,7 +431,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#analysis"><span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#loop"><span class="toc-text">Loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dominator"><span class="toc-text">Dominator</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#optimization"><span class="toc-text">Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#local-value-numbering"><span class="toc-text">Local Value Numbering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loop-invariant"><span class="toc-text">Loop Invariant</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#parsing"><span class="toc-text">Parsing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#flexbison"><span class="toc-text">Flex&#x2F;Bison</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ast"><span class="toc-text">AST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#polymorphism"><span class="toc-text">Polymorphism</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#typechecking"><span class="toc-text">Typechecking</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#symtab"><span class="toc-text">symtab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#type"><span class="toc-text">type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#err-propagation"><span class="toc-text">err propagation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ir"><span class="toc-text">IR</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#analysis"><span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#live-variables"><span class="toc-text">Live Variables</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#optimization"><span class="toc-text">Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#local-value-numbering"><span class="toc-text">Local Value Numbering</span></a></li></ol></li></ol>
       
     </div>
   </div>
