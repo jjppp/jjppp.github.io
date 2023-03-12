@@ -318,12 +318,51 @@ IR，这样就可以二者兼顾了。但我比较懒所以直接压平了。</p
 <p>咕咕咕</p>
 <h1 id="analysis">Analysis</h1>
 <p>目前只实现了一个数据流分析，并且还没有抽出一个比较通用的数据流分析框架，因此下一步就是实现框架，通过“注册-管理”的模式来跑各种分析。</p>
+<h2 id="framework">Framework</h2>
+<p>这个框架可以说是改得最痛苦的部分了。实现了这么几个优化：</p>
+<h3 id="order">Order</h3>
+<p>事实上这个是最大的大头。这里抄一段讲义原话：</p>
+<blockquote>
+<p>格理论告诉我们，in和out集合的运算顺序不影响数据流方程解的收敛性，但会影响解的收敛速度。对于上述数据流方程而言，按照i从大到小的顺序来计算in和out往往要比按照i从小到大的顺序进行计算要快得多。</p>
+</blockquote>
+<h3 id="merge">Merge</h3>
+<p>对于 AVL 实现的 set 的
+merge，可以通过两次中序遍历+线性合并+中序遍历建树来实现 <span
+class="math inline">\(O(n)\)</span> 合并。</p>
+<p>打了一些 log 之后发现跑 <code>14Lab3Impossible.0.cmm</code> 的时候
+set 的大小普遍在 2K 左右，结合 perf
+可以发现这样做确实有不错的性能提升</p>
+<h3 id="monotonicity">Monotonicity</h3>
+<p>注意到经典的数据流分析实质上在解一堆数据流约束，并且每个图上的节点对应的抽象数据都存在单调性。也就是大概长这样：</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(BLOCK):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> PRED <span class="kw">in</span> BLOCK.pred():</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        IN[BLOCK].merge(OUT[PRED])          <span class="co"># A &lt;= MERGE(A,B) &amp;&amp; B &lt;= MERGE(A, B)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    OUT[BLOCK] <span class="op">=</span> BLOCK.transfer(IN[BLOCK])</span></code></pre></div>
+<p>因此可以这么优化：如果某个节点在 <code>merge</code>
+之后不变，那么无需触发后续的计算。</p>
+<p>这要求 <code>merge</code> 必须是单调的、能发现单调性的变化。</p>
+<p>当然 <code>transfer</code> 却并不一定是单调的。考虑如下情况：</p>
+<pre><code>a = NAC
+a = 0
+a = NAC</code></pre>
+<p>这个基本块内的 <code>a</code>
+的抽象值显然不单调。这种情况可以通过</p>
+<ol type="1">
+<li>改写成 SSA 形式（思考：为什么）</li>
+<li>以语句为单位而不是基本块为单位求解</li>
+</ol>
+<p>方案1是比较好的解法，但是写起来繁琐（实验要求的 IR 并不支持 <span
+class="math inline">\(\phi\)</span>
+操作）；方案2是比较简单的解法，但是存在效率上的问题。</p>
+<p>由于这里的数据流分析框架并没有对 IR
+的形式有任何要求，我也就没实现这个优化。</p>
 <h2 id="live-variables">Live Variables</h2>
-<p>简单的反向 may
-analysis。即判断一个赋值在未来是否仍然有用，如果没用说明这是 dead
-assignment，可以删去。</p>
+<p>简单的反向 may analysis。即判断一个赋值的 lhs
+在未来是否仍然有用。</p>
 <h1 id="optimization">Optimization</h1>
-<p>目前只实现了两个（一个半）优化</p>
+<p>调优化的过程可以说是非常坑了，大概花去了一周的时间才勉强克服各种 bug
+实现了两个半正确性有一定保障的优化。</p>
 <h2 id="local-value-numbering">Local Value Numbering</h2>
 <p>发现这玩意本质上就是 Available Expressions，但是不需要对两个 valtab
 进行 merge 操作，所以就更简单。</p>
@@ -382,6 +421,23 @@ val(v$_2$))}\)</span></li>
 <li>copy-propagation，即尽可能少的使用临时变量，尽可能让临时变量
 dead，尽可能让晚出现的临时变量 dead</li>
 </ol>
+<h2 id="constant-propagation">Constant Propagation</h2>
+<p>CP 说起来简单，但是实现也并非那么容易的。</p>
+<p>本质上的原理是设计了一个全格用于表示抽象值，每条运算指令都会在一个抽象的
+Configuration 下抽象执行，比较坑的地方有这么几个：</p>
+<ol type="1">
+<li>抽象值的运算法则。比如说除0怎么处理、运算溢出怎么处理（特别还是用 C
+写）、怎么利用代数恒等式提精度</li>
+<li>数据流框架怎么加速。因为传递的数据实际上是抽象
+Configuration，这样一个比较重的 map
+对象的拷贝和修改都是很耗时的，就要挤各种效率</li>
+</ol>
+<h2 id="dead-code-elimination">Dead Code Elimination</h2>
+<h3 id="unreachable">Unreachable</h3>
+<p>非常简单的分析，但是存在比较大的问题：我的 cfg
+并不支持很优雅地删除节点及其附带的边，所以暂时没有打开这个优化。</p>
+<h3 id="dead-assignment">Dead Assignment</h3>
+<p>利用 live 的分析结果，删去无用的指令。</p>
 
       </div>
       
@@ -431,7 +487,7 @@ dead，尽可能让晚出现的临时变量 dead</li>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#parsing"><span class="toc-text">Parsing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#flexbison"><span class="toc-text">Flex&#x2F;Bison</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ast"><span class="toc-text">AST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#polymorphism"><span class="toc-text">Polymorphism</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#typechecking"><span class="toc-text">Typechecking</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#symtab"><span class="toc-text">symtab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#type"><span class="toc-text">type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#err-propagation"><span class="toc-text">err propagation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ir"><span class="toc-text">IR</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#analysis"><span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#live-variables"><span class="toc-text">Live Variables</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#optimization"><span class="toc-text">Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#local-value-numbering"><span class="toc-text">Local Value Numbering</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#parsing"><span class="toc-text">Parsing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#flexbison"><span class="toc-text">Flex&#x2F;Bison</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ast"><span class="toc-text">AST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#polymorphism"><span class="toc-text">Polymorphism</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#typechecking"><span class="toc-text">Typechecking</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#symtab"><span class="toc-text">symtab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#type"><span class="toc-text">type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#err-propagation"><span class="toc-text">err propagation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ir"><span class="toc-text">IR</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#analysis"><span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#framework"><span class="toc-text">Framework</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#order"><span class="toc-text">Order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#merge"><span class="toc-text">Merge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#monotonicity"><span class="toc-text">Monotonicity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#live-variables"><span class="toc-text">Live Variables</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#optimization"><span class="toc-text">Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#local-value-numbering"><span class="toc-text">Local Value Numbering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constant-propagation"><span class="toc-text">Constant Propagation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dead-code-elimination"><span class="toc-text">Dead Code Elimination</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unreachable"><span class="toc-text">Unreachable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dead-assignment"><span class="toc-text">Dead Assignment</span></a></li></ol></li></ol></li></ol>
       
     </div>
   </div>
