@@ -185,7 +185,38 @@
       </div>
       <div class="markdown-body">
         <h1 id="intro">Intro</h1>
-<p>感觉 SDT</p>
+<p>经过语法分析后的代码将会变成一棵具有内部结构的语法树，SDT
+让我们能够在这棵树上做一些事情。</p>
+<p>事实上我感觉基于语义动作和属性文法的翻译本身已经比较老，并且讲起来非常绕。现在有更简单也更可操作的翻译策略（例如
+OO 的 Visitor Pattern, FP 里说的 Pattern
+Matching）。龙书提到这个设定也更像是为了引入后续各种 AST
+上的算法，同时提供一种 formal 的描述基于 AST 算法的语言，nothing
+more。</p>
+<h1 id="definition">Definition</h1>
+<p>定义了一套 SDT 的文法叫 SDD （Syntax Directed Definition）</p>
+<p>主要是定义两个东西：</p>
+<ol type="1">
+<li>属性。即可以在 AST 的节点上记录信息</li>
+<li>语义动作。即在什么时候执行什么代码</li>
+</ol>
+<h2 id="attributes">Attributes</h2>
+<p>龙书又给属性分了两大类：</p>
+<ol type="1">
+<li>Inherited
+Attribute，向下传递的属性。例：某个参数化泛型函数的某次调用的类型，这个类型是从环境中继承来的</li>
+<li>Synthesized
+Attribute，向上计算的属性。例：某个复杂表达式的类型，这个类型是从子表达式计算得来的</li>
+</ol>
+<p>这里的属性类型区别本质上在于它们的依赖关系方向不同。综合属性依赖于节点的所有孩子，继承属性依赖于节点的父亲。
+给属性分类意味着显式地画出数据依赖图，给出一个属性的计算顺序则意味着给依赖图定向。</p>
+<p>属性让我们可以一定程度上“改变” AST
+的形状。例如可以在非左递归的中缀表达式文法中利用属性来进行信息的传递，在一定程度上填补了
+CST 和 AST 之间的 gap。</p>
+<p>只有综合属性的文法叫 S-attributed SDD，代码片段没有副作用的
+S-attributed SDD
+又叫属性文法，意思是我们无需考虑属性之间的计算顺序。</p>
+<p>聪明的读者可以发现这实际上是在区分 DFS 中的两个阶段。在 ANTLR
+中我们可以通过在 visit 方法前后添加对应的代码来实现等价的功能。</p>
 
       </div>
       
@@ -230,7 +261,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#definition"><span class="toc-text">Definition</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#attributes"><span class="toc-text">Attributes</span></a></li></ol></li></ol>
       
     </div>
   </div>
