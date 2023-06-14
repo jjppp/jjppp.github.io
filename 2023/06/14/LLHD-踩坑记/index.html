@@ -11,6 +11,11 @@
   
   <title>
     
+      LLHD 踩坑记 
+      
+      
+      |
+    
      jjppp
   </title>
 
@@ -114,279 +119,188 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="LLHD 踩坑记">
-        <div class="time-m-d">2023-06-14</div>
-        <div class="title">
-          <a href="/2023/06/14/LLHD-%E8%B8%A9%E5%9D%91%E8%AE%B0/">
-            
-              
-                <span>LLHD 踩坑记</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">LLHD 踩坑记</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2023-06-14 23:31:45
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E8%B8%A9%E5%9D%91/" title="踩坑">
+                    <b>#</b> 踩坑
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="Compiler04 语法制导翻译">
-        <div class="time-m-d">2023-03-18</div>
-        <div class="title">
-          <a href="/2023/03/18/Compiler04-%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%BF%BB%E8%AF%91/">
-            
-              
-                <span>Compiler04 语法制导翻译</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>最近要用到这个</p>
+<h1 id="moore">Moore</h1>
+<p>Moore 是生成 LLHD 代码的一个前端，支持一部分的 SystemVerilog 语法，用
+rust 写的</p>
+<h2 id="build">Build</h2>
+<h3 id="rustc">rustc</h3>
+<p>首先根据 issue <a
+target="_blank" rel="noopener" href="https://github.com/fabianschuiki/moore/issues/251">#251</a>，我们需要切换到
+1.62.0 的rustc</p>
+<p>具体操作是这样的(默认用rustup管理你的rust工具链)</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$MOORE_PROJECT_DIR</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rustup</span> override set 1.62.0</span></code></pre></div>
+<p>如果希望全局修改，那么就用</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rustup</span> default 1.62.0</span></code></pre></div>
+<h3 id="fibers-...-exceptions-...">Fibers ... exceptions ...</h3>
+<p>这个问题 CIRCT 仓库已经修了，参照这个 PR <a
+target="_blank" rel="noopener" href="https://github.com/llvm/circt/pull/3576">#3576</a></p>
+<p>比较坑跌的地方在于这个 submodule
+的依赖是和日期相关的，而这个问题在依赖的不久后就给修了，非常的无语</p>
+<h3 id="cstdio"><code>&lt;cstdio&gt;</code></h3>
+<p>编译 CIRCT 的时候会报几个错，include 对应的头文件就行</p>
+
       </div>
-    
-      <div class="post-item" title="Network06 Wireless">
-        <div class="time-m-d">2023-02-15</div>
-        <div class="title">
-          <a href="/2023/02/15/Network06-Wireless/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>Network06 Wireless</span>
-              
+              <a href="/2023/03/18/Compiler04-%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%BF%BB%E8%AF%91/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2023-06-14 23:31:45
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E8%B8%A9%E5%9D%91/" title="踩坑">
+                        <b>#</b> 踩坑
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="Network05 Link">
-        <div class="time-m-d">2023-02-15</div>
-        <div class="title">
-          <a href="/2023/02/15/Network05-Link/">
-            
-              
-                <span>Network05 Link</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#moore"><span class="toc-text">Moore</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#build"><span class="toc-text">Build</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rustc"><span class="toc-text">rustc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fibers-...-exceptions-..."><span class="toc-text">Fibers ... exceptions ...</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cstdio"><span class="toc-text">&lt;cstdio&gt;</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="Automata07 TS">
-        <div class="time-m-d">2023-02-08</div>
-        <div class="title">
-          <a href="/2023/02/08/Automata07-TS/">
-            
-              
-                <span>Automata07 TS</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="cmm Compiler Design">
-        <div class="time-m-d">2023-01-28</div>
-        <div class="title">
-          <a href="/2023/01/28/cmm-Design/">
-            
-              
-                <span>cmm Compiler Design</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CMU-DB Lab">
-        <div class="time-m-d">2023-01-10</div>
-        <div class="title">
-          <a href="/2023/01/10/CMU-DB-Lab/">
-            
-              
-                <span>CMU-DB Lab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Network04 Network">
-        <div class="time-m-d">2023-01-09</div>
-        <div class="title">
-          <a href="/2023/01/09/Network04-Network/">
-            
-              
-                <span>Network04 Network</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="大三上昏睡日志">
-        <div class="time-m-d">2023-01-03</div>
-        <div class="title">
-          <a href="/2023/01/03/%E5%A4%A7%E4%B8%89%E4%B8%8A%E6%98%8F%E7%9D%A1%E6%97%A5%E5%BF%97/">
-            
-              
-                <span>大三上昏睡日志</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata06 Complexity">
-        <div class="time-m-d">2022-12-08</div>
-        <div class="title">
-          <a href="/2022/12/08/Automata06-Complexity/">
-            
-              
-                <span>Automata06 Complexity</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata05 TM">
-        <div class="time-m-d">2022-12-07</div>
-        <div class="title">
-          <a href="/2022/12/07/Automata05-TM/">
-            
-              
-                <span>Automata05 TM</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata04 PDA">
-        <div class="time-m-d">2022-11-09</div>
-        <div class="title">
-          <a href="/2022/11/09/Automata04-PDA/">
-            
-              
-                <span>Automata04 PDA</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata03 CFL">
-        <div class="time-m-d">2022-11-09</div>
-        <div class="title">
-          <a href="/2022/11/09/Automata03-CFL/">
-            
-              
-                <span>Automata03 CFL</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata02 RE">
-        <div class="time-m-d">2022-11-09</div>
-        <div class="title">
-          <a href="/2022/11/09/Automata02-RE/">
-            
-              
-                <span>Automata02 RE</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency05 Linearizability">
-        <div class="time-m-d">2022-11-07</div>
-        <div class="title">
-          <a href="/2022/11/07/Concurrency05-Linearizability/">
-            
-              
-                <span>Concurrency05 Linearizability</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency04 Promising">
-        <div class="time-m-d">2022-11-07</div>
-        <div class="title">
-          <a href="/2022/11/07/Concurrency04-Promising/">
-            
-              
-                <span>Concurrency04 Promising</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linguistics02 Phonetics">
-        <div class="time-m-d">2022-10-17</div>
-        <div class="title">
-          <a href="/2022/10/17/Linguistics02-Phonetics/">
-            
-              
-                <span>Linguistics02 Phonetics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linguistics01 Intro">
-        <div class="time-m-d">2022-10-17</div>
-        <div class="title">
-          <a href="/2022/10/17/Linguistics01-Intro/">
-            
-              
-                <span>Linguistics01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Network03 Transport">
-        <div class="time-m-d">2022-10-16</div>
-        <div class="title">
-          <a href="/2022/10/16/Network03-Transport/">
-            
-              
-                <span>Network03 Transport</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata01 FSM">
-        <div class="time-m-d">2022-10-04</div>
-        <div class="title">
-          <a href="/2022/10/04/Automata01-FSM/">
-            
-              
-                <span>Automata01 FSM</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 6</span>
-    
-      <a href="/page/2/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -652,6 +566,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

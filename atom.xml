@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-05-01T13:36:31.199Z</updated>
+  <updated>2023-06-14T15:40:34.063Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LLHD 踩坑记</title>
+    <link href="http://example.com/2023/06/14/LLHD-%E8%B8%A9%E5%9D%91%E8%AE%B0/"/>
+    <id>http://example.com/2023/06/14/LLHD-%E8%B8%A9%E5%9D%91%E8%AE%B0/</id>
+    <published>2023-06-14T15:31:45.000Z</published>
+    <updated>2023-06-14T15:40:34.063Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近要用到这个&lt;/p&gt;
+&lt;h1 id=&quot;moore&quot;&gt;Moore&lt;/h1&gt;
+&lt;p&gt;Moore 是生成 LLHD 代码的一个前端，支持一部分的 SystemVerilog 语法，用
+rust 写的&lt;/p&gt;
+&lt;h2 id=&quot;build&quot;&gt;Build&lt;/h2&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+    <category term="踩坑" scheme="http://example.com/tags/%E8%B8%A9%E5%9D%91/"/>
+    
+  </entry>
   
   <entry>
     <title>Compiler04 语法制导翻译</title>
@@ -490,28 +518,6 @@ system，当然用处有很多了。&lt;/p&gt;
     
     
     <category term="Automata" scheme="http://example.com/tags/Automata/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Concurrency03 Axiomatic</title>
-    <link href="http://example.com/2022/09/25/Concurrency03-Axiomatic/"/>
-    <id>http://example.com/2022/09/25/Concurrency03-Axiomatic/</id>
-    <published>2022-09-24T17:06:16.000Z</published>
-    <updated>2022-09-24T17:06:16.584Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">
-</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
