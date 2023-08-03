@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-06-14T15:40:34.063Z</updated>
+  <updated>2023-08-03T06:54:18.978Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大三下荒唐实录</title>
+    <link href="http://example.com/2023/08/03/%E5%A4%A7%E4%B8%89%E4%B8%8B%E8%8D%92%E5%94%90%E5%AE%9E%E5%BD%95/"/>
+    <id>http://example.com/2023/08/03/%E5%A4%A7%E4%B8%89%E4%B8%8B%E8%8D%92%E5%94%90%E5%AE%9E%E5%BD%95/</id>
+    <published>2023-08-03T05:04:12.000Z</published>
+    <updated>2023-08-03T06:54:18.978Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今年非常懒，决定不再按照月份写流水帐了。&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
+    
+  </entry>
   
   <entry>
     <title>LLHD 踩坑记</title>
@@ -491,33 +515,6 @@ Expression）是描述正则语言的另一种方法，有时候用起来会比 
     
     
     <category term="Network" scheme="http://example.com/tags/Network/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Automata01 FSM</title>
-    <link href="http://example.com/2022/10/04/Automata01-FSM/"/>
-    <id>http://example.com/2022/10/04/Automata01-FSM/</id>
-    <published>2022-10-04T13:13:07.000Z</published>
-    <updated>2022-10-12T09:19:28.744Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;FSM(Finite State Machine/Finite Automata) 是一种 formal
-system，当然用处有很多了。&lt;/p&gt;
-&lt;h1 id=&quot;basics&quot;&gt;Basics&lt;/h1&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
     
   </entry>
   
