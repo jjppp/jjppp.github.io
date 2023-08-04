@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-03T06:54:18.978Z</updated>
+  <updated>2023-08-04T15:27:52.795Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spa01 Type</title>
+    <link href="http://example.com/2023/08/04/spa01-Type/"/>
+    <id>http://example.com/2023/08/04/spa01-Type/</id>
+    <published>2023-08-04T13:51:29.000Z</published>
+    <updated>2023-08-04T15:27:52.795Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;看的是Anders Moller那本教材，感觉还挺全面的&lt;/p&gt;
+&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+&lt;ol</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Static Analysis" scheme="http://example.com/tags/Static-Analysis/"/>
+    
+  </entry>
   
   <entry>
     <title>大三下荒唐实录</title>
@@ -490,31 +515,6 @@ Expression）是描述正则语言的另一种方法，有时候用起来会比 
     
     
     <category term="Linguistics" scheme="http://example.com/tags/Linguistics/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Network03 Transport</title>
-    <link href="http://example.com/2022/10/16/Network03-Transport/"/>
-    <id>http://example.com/2022/10/16/Network03-Transport/</id>
-    <published>2022-10-16T08:39:21.000Z</published>
-    <updated>2022-10-16T13:21:00.253Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;传输层向上给应用层提供进程间通信的服务，向下利用网络层提供的主机到主机的服务。&lt;/p&gt;
-&lt;p&gt;可以认为传输层本质是对网络层的复用(MUX</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Network" scheme="http://example.com/tags/Network/"/>
     
   </entry>
   
