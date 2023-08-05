@@ -11,7 +11,7 @@
   
   <title>
     
-      spa01 Type 
+      SA01 Type 
       
       
       |
@@ -164,7 +164,7 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">spa01 Type</div>
+      <div class="post-title">SA01 Type</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
@@ -243,6 +243,35 @@ class="math inline">\(\sigma_2\)</span>
 更通用（general）。直观的解释就是“<span
 class="math inline">\(\sigma_1\)</span>能作为解的地方，<span
 class="math inline">\(\sigma_2\)</span>也能；反过来则不一定成立”</p>
+<h2 id="unification">Unification</h2>
+<p>简单的并查集应用</p>
+<p>注意到约束实质上是等价关系、约束要求两侧的对应子项仍然保持约束，因此最终解必然是若干类型上的等价类，并且代表元都是具体类型</p>
+<p>此时把每个类型变元的解设置为其所属等价类的代表元就行</p>
+<h2 id="recursive-types">Recursive types</h2>
+<p>上述基于并查集的解法并不能处理递归类型，一个例子如下：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> alloc null</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>p <span class="op">=</span> p</span></code></pre></div>
+<p>这段代码的含义为：</p>
+<ol type="1">
+<li>为 <code>p</code> 分配一段地址，这段地址被初始化为空指针
+<code>null</code></li>
+<li>将 <code>p</code> 的值（一个指针）存入 <code>p</code>
+所指向的内存中</li>
+</ol>
+<p>分析一下就会得到长成这样的约束集 <span class="math display">\[
+\left\{
+\begin{align*}
+\text{null}&amp;={\bf{ptr}\text{ }} \alpha \\
+\text{p}&amp;=\text{null}\\
+\text{p}&amp;={\bf{ptr}}\text{ p}
+\end{align*}
+\right.
+\]</span> 考虑这个约束： <span class="math display">\[
+\alpha={\bf{ptr}}\text{ }\alpha
+\]</span>
+想想我们都干了什么：把一个指针作为值存入了它指向的内存，这说明它是一个指向自己所属类型的值的指针，套娃了</p>
+<p>可以发现这样的约束在求解过程中不会影响其它约束（why?）且会保留到最后（why?），因此只需要先解一遍，然后找到这种形式的解人为改写成
+<span class="math inline">\(\mu\)</span> 构造子的形式就好了</p>
 
       </div>
       
@@ -288,7 +317,7 @@ class="math inline">\(\sigma_2\)</span>也能；反过来则不一定成立”</
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#background"><span class="toc-text">Background</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#describing-types"><span class="toc-text">Describing types</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#constraint-solving-typing-procedure"><span class="toc-text">Constraint-solving typing
-procedure</span></a></li></ol>
+procedure</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unification"><span class="toc-text">Unification</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#recursive-types"><span class="toc-text">Recursive types</span></a></li></ol></li></ol>
       
     </div>
   </div>
