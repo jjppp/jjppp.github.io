@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-05T09:29:40.750Z</updated>
+  <updated>2023-08-11T07:52:38.376Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SA02 lattice</title>
+    <link href="http://example.com/2023/08/11/SA02-lattice/"/>
+    <id>http://example.com/2023/08/11/SA02-lattice/</id>
+    <published>2023-08-11T07:52:38.000Z</published>
+    <updated>2023-08-11T07:52:38.376Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>SA01 Type</title>
     <link href="http://example.com/2023/08/04/spa01-Type/"/>
     <id>http://example.com/2023/08/04/spa01-Type/</id>
     <published>2023-08-04T13:51:29.000Z</published>
-    <updated>2023-08-05T09:29:40.750Z</updated>
+    <updated>2023-08-12T04:35:10.920Z</updated>
     
     
       
@@ -478,29 +500,6 @@ Expression）是描述正则语言的另一种方法，有时候用起来会比 
     <id>http://example.com/2022/10/17/Linguistics02-Phonetics/</id>
     <published>2022-10-17T06:03:48.000Z</published>
     <updated>2022-10-17T12:12:07.985Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Linguistics" scheme="http://example.com/tags/Linguistics/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linguistics01 Intro</title>
-    <link href="http://example.com/2022/10/17/Linguistics01-Intro/"/>
-    <id>http://example.com/2022/10/17/Linguistics01-Intro/</id>
-    <published>2022-10-17T06:03:18.000Z</published>
-    <updated>2022-10-17T06:30:22.084Z</updated>
     
     
       

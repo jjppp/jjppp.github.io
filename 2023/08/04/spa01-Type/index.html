@@ -272,6 +272,29 @@ class="math inline">\(\sigma_2\)</span>也能；反过来则不一定成立”</
 想想我们都干了什么：把一个指针作为值存入了它指向的内存，这说明它是一个指向自己所属类型的值的指针，套娃了</p>
 <p>可以发现这样的约束在求解过程中不会影响其它约束（why?）且会保留到最后（why?），因此只需要先解一遍，然后找到这种形式的解人为改写成
 <span class="math inline">\(\mu\)</span> 构造子的形式就好了</p>
+<h1 id="limitations">Limitations</h1>
+<p>定义 Slack 为无法通过检查但仍然不会发生错误的程序集，根据 Rice
+定理此处 Slack 必然非空，我们来看看它里面都会有哪些情况。</p>
+<h2 id="flow-sensitive-typing">Flow-sensitive typing</h2>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> x</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> y <span class="op">=</span> <span class="fu">input</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> y <span class="op">==</span> <span class="dv">1</span> &#123;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="st">&quot;1&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>&#125; <span class="cf">else</span> &#123;</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>&#125;</span></code></pre></div>
+<p>对于不同的控制流分支，<code>x</code>
+将拥有不同的类型。上述类型检查算法并没有考虑顺序和控制分支的情形。</p>
+<h2 id="let-polymorphism">let-polymorphism</h2>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">first ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>first x _ <span class="ot">=</span> x</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>append (first [<span class="dv">1</span>, <span class="dv">2</span>] [<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       (first <span class="dv">3</span> <span class="st">&quot;3&quot;</span>)</span></code></pre></div>
+<p>对于不同的调用点，我们希望实例化出不同的类型：此处的两个
+<code>first</code> 实质上拥有完全不同的类型</p>
 
       </div>
       
@@ -304,6 +327,11 @@ class="math inline">\(\sigma_2\)</span>也能；反过来则不一定成立”</
           </div>
           <div class="post-foot-prev">
             
+              <a href="/2023/08/11/SA02-lattice/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -317,7 +345,7 @@ class="math inline">\(\sigma_2\)</span>也能；反过来则不一定成立”</
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#background"><span class="toc-text">Background</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#describing-types"><span class="toc-text">Describing types</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#constraint-solving-typing-procedure"><span class="toc-text">Constraint-solving typing
-procedure</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unification"><span class="toc-text">Unification</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#recursive-types"><span class="toc-text">Recursive types</span></a></li></ol></li></ol>
+procedure</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unification"><span class="toc-text">Unification</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#recursive-types"><span class="toc-text">Recursive types</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#limitations"><span class="toc-text">Limitations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#flow-sensitive-typing"><span class="toc-text">Flow-sensitive typing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#let-polymorphism"><span class="toc-text">let-polymorphism</span></a></li></ol></li></ol>
       
     </div>
   </div>
