@@ -171,9 +171,94 @@
           2023-08-11 15:52:38
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Static-Analysis/" title="Static Analysis">
+                    <b>#</b> Static Analysis
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        
+        <p>因为懒，所以具体的含义请读之前仔细认领一下，不对符号重载滥用造成的误解负责，但可以戳我...</p>
+<h1 id="def">Def</h1>
+<h2 id="posets-bounds">posets &amp; bounds</h2>
+<p>给定集合 <span class="math inline">\(S\)</span>
+与其上一个二元偏序关系 <span
+class="math inline">\(\le\)</span>，这样的结构 <span
+class="math inline">\((S,\le)\)</span> 称为偏序集（poset）</p>
+<p>通常这样的偏序关系是带有信息（方向）的，即规定 <span
+class="math inline">\(x\le y\)</span> 表明 <span
+class="math inline">\(x\)</span> 比 <span
+class="math inline">\(y\)</span> 更精确（或 <span
+class="math inline">\(y\)</span> 是 <span
+class="math inline">\(x\)</span> 的估计）。</p>
+<p>元素间的偏序关系可以推广到集合上，即对于 <span
+class="math inline">\(X\subseteq S\)</span>，<span
+class="math inline">\(X\le y\)</span> 定义为 <span
+class="math inline">\(\forall x\in X, x\le y\)</span>，此时称 <span
+class="math inline">\(y\)</span> 为集合 <span
+class="math inline">\(X\)</span>
+的<strong>一个</strong>上界；关于下界的讨论是类似的。</p>
+<p>上界可能有零个或多个。如果存在上界，那么可以讨论<strong>最小</strong>上界。将
+<span class="math inline">\(X\)</span> 的最小上界记为 <span
+class="math inline">\(\text{lub}(X)\)</span>，它应当满足 <span
+class="math inline">\(\forall y\in S, X\le y\Rightarrow \text{lub}(X)\le
+y\)</span>。</p>
+<h2 id="lattice">lattice</h2>
+<p>如果任取 <span class="math inline">\(x,y\in S\)</span> 都满足：</p>
+<ol type="1">
+<li>存在 <span class="math inline">\(z_1\in S\)</span> 使得 <span
+class="math inline">\(z_1=\text{lub}(\Set{x,y})\)</span></li>
+<li>存在 <span class="math inline">\(z_2\in S\)</span> 使得 <span
+class="math inline">\(z_2=\text{glb}(\Set{x,y})\)</span></li>
+</ol>
+<p>即 <span class="math inline">\(\text{lub, glb}\)</span> 是 <span
+class="math inline">\(\Set{X\in 2^S\mid |X|=2}\)</span>
+上的全函数，那么称 <span class="math inline">\((S,\le)\)</span>
+是格（lattice），并规定</p>
+<ol type="1">
+<li><span class="math inline">\(x\cup
+y=\text{lub}(\Set{x,y})\)</span></li>
+<li><span class="math inline">\(x\cap
+y=\text{glb}(\Set{x,y})\)</span></li>
+</ol>
+<p>如果对于任意的 <span class="math inline">\(X\subseteq S\)</span>
+都存在 <span class="math inline">\(\text{lub}(X)\)</span> 和 <span
+class="math inline">\(\text{glb}(X)\)</span>，即 <span
+class="math inline">\(\text{lub, glb}\)</span> 是定义在 <span
+class="math inline">\(2^S\)</span> 上的全函数，那么称 <span
+class="math inline">\((S,\le)\)</span> 是全格。</p>
+<p>注意这里并没有构造地给出 join 和 meet，而只是表明了它们应有的性质</p>
+<blockquote>
+<p>有限格必然是全格</p>
+<p>任取 <span class="math inline">\(x, y, z\)</span>，我们 claim <span
+class="math inline">\(\text{lub}(\Set{x,y,z})=(x\cup y)\cup
+z\)</span>。</p>
+<p>首先证明这是良定义的。注意到 <span
+class="math inline">\(\text{lub}\)</span> 是定义在集合上的，因此 <span
+class="math inline">\(x,y,z\)</span> 应当有轮换对称性。而 <span
+class="math inline">\((x\cup y)\cup z\)</span> 是 <span
+class="math inline">\(\Set{x,y,z}\)</span> 的一个上界，因此也是 <span
+class="math inline">\(\Set{y,z}\)</span> 的一个上界，有 <span
+class="math inline">\(y\cup z\le (x\cup y)\cup z\)</span> 和 <span
+class="math inline">\(x\le (x\cup y)\cup z\)</span>，这说明 $
+x(yz)(xy)z$，类似可以证得 <span class="math inline">\(x\cup(y\cup
+z)=(x\cup y)\cup z=(x\cup z)\cup y\)</span>，故这个取法是良定义的</p>
+<p>接着证明这是最小上界。任取 <span
+class="math inline">\(\Set{x,y,z}\)</span> 的上界 <span
+class="math inline">\(t\)</span>，根据定义有 <span
+class="math inline">\(x\le t, y\le t,z\le t\)</span>，因此有 <span
+class="math inline">\((x\cup y)\cup z\le t\)</span>。由 <span
+class="math inline">\(t\)</span> 的任意性可知 <span
+class="math inline">\((x\cup y)\cup z\)</span> 是三者最小上界。</p>
+<p>然后就可以愉快地根据集合大小归纳了，<span
+class="math inline">\(S\)</span> 的有限性保证了归纳法的正确。</p>
+</blockquote>
 
       </div>
       
@@ -192,6 +277,17 @@
               2023-08-11 15:52:38
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Static-Analysis/" title="Static Analysis">
+                        <b>#</b> Static Analysis
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
             
@@ -200,6 +296,23 @@
       
     </div>
     
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#posets-bounds"><span class="toc-text">posets &amp; bounds</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lattice"><span class="toc-text">lattice</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
       <div class="comments-container">

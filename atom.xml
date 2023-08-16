@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-11T07:52:38.376Z</updated>
+  <updated>2023-08-16T03:03:19.650Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,20 +21,24 @@
     <link href="http://example.com/2023/08/11/SA02-lattice/"/>
     <id>http://example.com/2023/08/11/SA02-lattice/</id>
     <published>2023-08-11T07:52:38.000Z</published>
-    <updated>2023-08-11T07:52:38.376Z</updated>
+    <updated>2023-08-16T03:03:19.650Z</updated>
     
     
       
       
         
         
-    <summary type="html">
-</summary>
+    <summary type="html">&lt;p&gt;因为懒，所以具体的含义请读之前仔细认领一下，不对符号重载滥用造成的误解负责，但可以戳我...&lt;/p&gt;
+&lt;h1 id=&quot;def&quot;&gt;Def&lt;/h1&gt;
+&lt;h2 id=&quot;posets-bounds&quot;&gt;posets &amp;amp; bounds&lt;/h2&gt;
+&lt;p&gt;给定集合 &lt;span</summary>
         
       
     
     
     
+    
+    <category term="Static Analysis" scheme="http://example.com/tags/Static-Analysis/"/>
     
   </entry>
   
