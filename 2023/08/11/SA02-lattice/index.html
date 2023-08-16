@@ -259,6 +259,148 @@ class="math inline">\((x\cup y)\cup z\)</span> 是三者最小上界。</p>
 <p>然后就可以愉快地根据集合大小归纳了，<span
 class="math inline">\(S\)</span> 的有限性保证了归纳法的正确。</p>
 </blockquote>
+<p>更进一步，<span class="math inline">\(\text{glb, lub}\)</span>
+二者只需要其一就能导出另一个</p>
+<blockquote>
+<p>若偏序集 <span class="math inline">\((S,\le)\)</span> 上有全函数
+<span class="math inline">\(\cup\)</span>，那么必然也存在全函数 <span
+class="math inline">\(\cap\)</span></p>
+<p>记 <span class="math inline">\(L=\Set{y\in S\mid y\le X}\)</span>，取
+<span class="math inline">\(\bigcap X=\bigcup L\)</span>，即取出集合
+<span class="math inline">\(X\)</span>
+所有的下界，然后找到这些下界的最小上界，它就是 <span
+class="math inline">\(X\)</span> 的最大下界。</p>
+<p>最大是显然的。下界：<span class="math inline">\(\bigcap X\)</span> 是
+<span class="math inline">\(X\)</span> 所有下界的最小上界，这说明 <span
+class="math inline">\(\forall z\in S, L\le z\Rightarrow \bigcap X\le
+z\)</span>。可以发现此处满足条件的 <span
+class="math inline">\(z\)</span> 包含了全部 <span
+class="math inline">\(X\)</span> 中的元素，这说明 <span
+class="math inline">\(\bigcap X\)</span> 是 <span
+class="math inline">\(X\)</span> 的一个下界。</p>
+</blockquote>
+<p>如果是有限全格，那么必然存在全局最大和最小值，通常记为 <span
+class="math inline">\(\top, \bot\)</span>。最长的形如 <span
+class="math inline">\(\bot\le\cdots\le\top\)</span>
+的链的长度称为格的高度。</p>
+<h1 id="common-lattices">Common lattices</h1>
+<p>鉴于这本书实际上想讲的是静态分析，所以通常只关心有限格，而通常它们又都是全格。可以开动脑筋想想介绍这些特殊格的动机。</p>
+<p>任给集合 <span class="math inline">\(S\)</span> 都自动构成一个格
+<span class="math inline">\((2^S,\subseteq)\)</span>。</p>
+<p>定义 <span class="math inline">\(flat(S)=(S\cup\Set{\bot,\top},
+(\Set{\bot}\times S)\cup (S\times\Set{\top}))\)</span>，即只有 <span
+class="math inline">\(\top, \bot\)</span> 可以比较的格。</p>
+<p>给定若干格 <span
+class="math inline">\(\Set{(L_n,\le_n)}\)</span>，那么 <span
+class="math inline">\((\prod_{i=1}^n L_i,\le&#39;)\)</span> 也是格，其中
+<span class="math inline">\((\ldots x_i\ldots)\le&#39;(\ldots
+y_i\ldots)\)</span> 定义为 <span class="math inline">\(\forall i,
+x_i\le_i y_i\)</span>。这个叫 product lattice</p>
+<p>给定集合 <span class="math inline">\(D,S\)</span> 和函数集 <span
+class="math inline">\(F= S^D\)</span>，若 <span
+class="math inline">\((S,\le)\)</span> 是全格，那么 <span
+class="math inline">\((F, \le&#39;)\)</span> 也是全格，此处 <span
+class="math inline">\(f\le&#39; g\)</span> 定义为 <span
+class="math inline">\(\forall x\in D, f(x)\le g(x)\)</span>。这个叫 map
+lattice</p>
+<p>给定全格 <span class="math inline">\((S,\le)\)</span>，那么 <span
+class="math inline">\((S\cup\Set{\bot}, \le&#39;)\)</span>
+也是全格，此处 <span class="math inline">\(\le&#39;\)</span>
+的定义就是你想的那样。这个叫 lift lattice</p>
+<h1 id="properties">Properties</h1>
+<p>下面默认 <span class="math inline">\(f\colon S\mapsto
+T\)</span>，<span class="math inline">\((S,\le)\)</span> 和 <span
+class="math inline">\((T,\le&#39;)\)</span> 都是全格</p>
+<h2 id="distributive">Distributive</h2>
+<p>若 <span class="math inline">\(\forall x, y \in S\)</span>，<span
+class="math inline">\(f(x\cup y)=f(x)\cup f(y)\)</span>，那么称 <span
+class="math inline">\(f\)</span> 可分配。</p>
+<h2 id="monotone">Monotone</h2>
+<p>若 <span class="math inline">\(\forall x, y\in S, x\le y\Rightarrow
+f(x)\le f(y)\)</span>，则称 <span class="math inline">\(f\)</span>
+是单调的，含义为给 <span class="math inline">\(f\)</span>
+更精确的输入不会让结果更不精确。</p>
+<p>单调的定义可以拓展到多参输入，这里只需要对单个参数单调即可。</p>
+<ol type="1">
+<li><blockquote>
+<p>单调函数在复合运算下封闭</p>
+<p>这个是显然的。</p>
+</blockquote></li>
+<li><blockquote>
+<p>常函数单调</p>
+<p>这个也是显然的。</p>
+</blockquote></li>
+<li><blockquote>
+<p>集合差操作 <span class="math inline">\(\backslash\)</span> 非单调</p>
+<p>这个也是显然的。</p>
+</blockquote>
+<p>话说这个能不能叫协单调/逆单调（认真脸</p></li>
+<li><blockquote>
+<p><span class="math inline">\(\cap, \cup\)</span> 都单调</p>
+<p>固定 <span class="math inline">\(x, y\)</span>，任取 <span
+class="math inline">\(z\)</span></p>
+<ol type="1">
+<li>假设 <span class="math inline">\(x\le z\)</span>，那么 <span
+class="math inline">\(x\le z\le z\cup y, y\le z\cup y\)</span> ，故
+<span class="math inline">\(z\cup y\)</span> 是 <span
+class="math inline">\(\Set{x, y}\)</span> 的上界，由 <span
+class="math inline">\(x\cup y\)</span> 的定义即得 <span
+class="math inline">\(x\cup y\le z\cup y\)</span></li>
+<li>由对称性直接得到</li>
+</ol>
+<p><span class="math inline">\(\cap\)</span> 的讨论是类似的。</p>
+</blockquote></li>
+<li><blockquote>
+<p>可分配函数单调</p>
+<p>若 <span class="math inline">\(x\le y\)</span>，则 <span
+class="math inline">\(x\cup y=y\)</span></p>
+<p>带入定义有 <span class="math inline">\(f(y)=f(x\cup y)=f(x)\cup
+f(y)\)</span>，而 <span class="math inline">\(f(x)\le f(x)\cup
+f(y)=f(x\cup y)=f(y)\)</span></p>
+</blockquote></li>
+<li><blockquote>
+<p><span class="math inline">\(f\)</span> 单调的一个充要条件是 <span
+class="math inline">\(\forall x,y\in S\)</span>，<span
+class="math inline">\(f(x)\cup f(y)\le f(x\cup y)\)</span></p>
+<p><span class="math inline">\(\Rightarrow\)</span>：</p>
+<p>显然有 <span class="math inline">\(x\le x\cup y, y\le x\cup
+y\)</span>，由单调性得 <span class="math inline">\(f(x)\le f(x\cup y),
+f(y)\le f(x\cup y)\)</span></p>
+<p>又 <span class="math inline">\(f(x)\cup f(y)\)</span> 是 <span
+class="math inline">\(\Set{f(x), f(y)}\)</span> 的最小上界，因此 <span
+class="math inline">\(f(x)\cup f(y)\le f(x\cup y)\)</span></p>
+<p><span class="math inline">\(\Leftarrow\)</span>：</p>
+<p>不妨设 <span class="math inline">\(x\le y\)</span>，那么 <span
+class="math inline">\(x\cup y = y\)</span>，带入有 <span
+class="math inline">\(f(x)\cup f(y)\le f(x\cup y)=f(y)\)</span></p>
+<p>这说明 <span class="math inline">\(f(y)\)</span> 是 <span
+class="math inline">\(\Set{f(x), f(y)}\)</span> 的上界，根据定义 <span
+class="math inline">\(f(x)\le f(y)\)</span>。</p>
+</blockquote></li>
+<li><blockquote>
+<p>给定单调函数 <span class="math inline">\(f\colon L_1\mapsto(A\mapsto
+L_2)\)</span>，<span class="math inline">\(g\colon A\mapsto
+L_2\)</span>，其中 <span class="math inline">\(L_1, L_2\)</span>
+都是全格，<span class="math inline">\(A\)</span> 是定义域，<span
+class="math inline">\(A\mapsto L_2\)</span> 是 map lattice。对于给定的
+<span class="math inline">\(a\in A\)</span>，证明 <span
+class="math inline">\(h(x)=f(x)[a\mapsto g(x)]\)</span> 单调</p>
+<p>不妨假设 <span class="math inline">\(x\le y\)</span>，我们需要证明
+<span class="math inline">\(f(x)[a\mapsto g(x)]\le f(y)[a\mapsto
+g(y)]\)</span>，而它的定义则是 <span class="math inline">\(\forall w\in
+A, f(x)[a\mapsto g(x)](w)\le f(y)[a\mapsto g(y)](w)\)</span></p>
+<ol type="1">
+<li>如果 <span class="math inline">\(a=w\)</span>，那么我们只需要证明
+<span class="math inline">\(g(x)\le g(y)\)</span>，而 <span
+class="math inline">\(g\)</span> 单调；</li>
+<li>如果 <span class="math inline">\(a\ne w\)</span>，那么我们只需要证明
+<span class="math inline">\(f(x)(w)\le f(y)(w)\)</span>，而 <span
+class="math inline">\(f\)</span> 单调；</li>
+</ol>
+<p>综上，<span class="math inline">\(h\)</span> 单调。</p>
+</blockquote>
+<p>这个的证明像在写 coq</p></li>
+</ol>
 
       </div>
       
@@ -303,7 +445,7 @@ class="math inline">\(S\)</span> 的有限性保证了归纳法的正确。</p>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#posets-bounds"><span class="toc-text">posets &amp; bounds</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lattice"><span class="toc-text">lattice</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#posets-bounds"><span class="toc-text">posets &amp; bounds</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lattice"><span class="toc-text">lattice</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#common-lattices"><span class="toc-text">Common lattices</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#properties"><span class="toc-text">Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#distributive"><span class="toc-text">Distributive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#monotone"><span class="toc-text">Monotone</span></a></li></ol></li></ol>
       
     </div>
   </div>
