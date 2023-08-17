@@ -401,6 +401,33 @@ class="math inline">\(f\)</span> 单调；</li>
 </blockquote>
 <p>这个的证明像在写 coq</p></li>
 </ol>
+<h1 id="fixed-point">Fixed point</h1>
+<p>抽象解释本质上是在构造一组抽象映射 <span
+class="math inline">\(\sigma\)</span>
+的方程，最后我们希望能求出一个在精确意义上最优的解。</p>
+<p>即对于一系列方程 <span class="math display">\[
+\left\{
+\begin{align*}
+\sigma_1&amp;=f_1(\sigma) \\
+&amp;\cdots \\
+\sigma_n&amp;=f_n(\sigma) \\
+\end{align*}
+\right.
+\]</span> 其中 <span class="math display">\[
+\sigma=(\ldots \sigma_i \ldots)
+\]</span> <span class="math inline">\(\sigma_i\)</span> 表示在 program
+point <span class="math inline">\(i\)</span> 处的抽象映射。把 <span
+class="math inline">\(\Set{f_i}\)</span> 视为一整个大函数 <span
+class="math inline">\(F\)</span>，则上面的方程组实质上是 <span
+class="math display">\[
+\sigma=F(\sigma)
+\]</span> 即我们要求 <span class="math inline">\(F\)</span>
+的不动点。解可能有多个，最好是精确意义上最优的解。</p>
+<h2 id="iteration">Iteration</h2>
+<p>喜闻乐见的迭代，考虑 <span class="math inline">\(\bigcup_{i&gt;0}
+f^i(\bot)\)</span>，收敛性、正确性和解的最优性质都是比较简单的。解方程的部分还有一些和线性规划类似的把不等号改写成等号的技巧。</p>
+<p>实际的 solver
+写起来有各种各样的技巧，比如利用单调性避免重复计算/根据CFG的结构选择计算顺序/SCC缩点后按照拓扑序计算等等</p>
 
       </div>
       
@@ -445,7 +472,7 @@ class="math inline">\(f\)</span> 单调；</li>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#posets-bounds"><span class="toc-text">posets &amp; bounds</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lattice"><span class="toc-text">lattice</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#common-lattices"><span class="toc-text">Common lattices</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#properties"><span class="toc-text">Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#distributive"><span class="toc-text">Distributive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#monotone"><span class="toc-text">Monotone</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#posets-bounds"><span class="toc-text">posets &amp; bounds</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lattice"><span class="toc-text">lattice</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#common-lattices"><span class="toc-text">Common lattices</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#properties"><span class="toc-text">Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#distributive"><span class="toc-text">Distributive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#monotone"><span class="toc-text">Monotone</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fixed-point"><span class="toc-text">Fixed point</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iteration"><span class="toc-text">Iteration</span></a></li></ol></li></ol>
       
     </div>
   </div>
