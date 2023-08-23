@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-17T04:42:36.440Z</updated>
+  <updated>2023-08-23T07:40:14.878Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Cpp Lambda Quirks</title>
+    <link href="http://example.com/2023/08/23/Cpp-Lambda-Captures/"/>
+    <id>http://example.com/2023/08/23/Cpp-Lambda-Captures/</id>
+    <published>2023-08-23T06:12:22.000Z</published>
+    <updated>2023-08-23T07:40:14.878Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;C++11 引入了匿名函数。类似 Java，C++
+中的匿名函数也是通过构造匿名类来实现的，不同之处在于 C++ 允许重载
+&lt;code&gt;operator()&lt;/code&gt;，因此可以实现看上去和函数一样的调用语法。本文主要关注
+lambda</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Cpp" scheme="http://example.com/tags/Cpp/"/>
+    
+  </entry>
   
   <entry>
     <title>SA02 lattice</title>
@@ -495,29 +521,6 @@ Expression）是描述正则语言的另一种方法，有时候用起来会比 
     
     
     <category term="Concurrency" scheme="http://example.com/tags/Concurrency/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linguistics02 Phonetics</title>
-    <link href="http://example.com/2022/10/17/Linguistics02-Phonetics/"/>
-    <id>http://example.com/2022/10/17/Linguistics02-Phonetics/</id>
-    <published>2022-10-17T06:03:48.000Z</published>
-    <updated>2022-10-17T12:12:07.985Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Linguistics" scheme="http://example.com/tags/Linguistics/"/>
     
   </entry>
   
