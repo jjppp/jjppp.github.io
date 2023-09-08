@@ -219,19 +219,17 @@ class="math inline">\(A\)</span>
 <h2 id="公理">公理</h2>
 <p>含有互补对的公式集是公理</p>
 <h2 id="推演规则">推演规则</h2>
-<p>有两类规则</p>
-<span class="math display">\[\begin{aligned}
+<p>有两类规则 $$ <span class="math display">\[\begin{align*}
 
-\frac{\vdash U\cup\left\{\alpha_1,\alpha_2\right\} }{\vdash
+&amp;\frac{\vdash U\cup\left\{\alpha_1,\alpha_2\right\} }{\vdash
 U\cup\left\{\alpha\right\} }
 
-\\
 
-\frac{\vdash U\cup\left\{\beta_1\right\}\text{\quad}\vdash
+
+&amp;\frac{\vdash U\cup\left\{\beta_1\right\}\text{\quad}\vdash
 U\cup\left\{\beta_2\right\} }{\vdash U\cup\left\{\beta\right\} }
 
-\end{aligned}\]</span>
-<p>一个常见的例子是令 <span
+\end{align*}\]</span> $$ 一个常见的例子是令 <span
 class="math inline">\(\alpha=\alpha_1\vee\alpha_2\)</span>，<span
 class="math inline">\(\beta=\beta_1\wedge\beta_2\)</span></p>
 <p>在 <span class="math inline">\(\scr G\)</span>
@@ -366,9 +364,8 @@ G\)</span> 到 <span class="math inline">\(\scr T\)</span>
 中用大写字母表示命题变元（即可带入任意的命题）</p>
 <p>下面给出Hilbert 系统的定义</p>
 <h2 id="公理-1">公理</h2>
+$$
 <span class="math display">\[\begin{aligned}
-
-\begin{aligned}
 
 \textbf{Axiom 1  } &amp;\vdash A\rightarrow (B\rightarrow A)
 
@@ -383,17 +380,17 @@ C))\rightarrow((A\rightarrow B)\rightarrow (A\rightarrow C))
 A)\rightarrow(A\rightarrow
 B)
 
-\end{aligned}
-
 \end{aligned}\]</span>
+<p>$$</p>
 <h2 id="推演规则-1">推演规则</h2>
 <p>只有一条</p>
+$$
 <span class="math display">\[\begin{aligned}
 
 \frac{\vdash A\;\;\;\vdash A\rightarrow B}{\vdash B}
 
 \end{aligned}\]</span>
-<p>也叫做肯定前件（modus ponens），记为MP</p>
+<p>$$ 也叫做肯定前件（modus ponens），记为MP</p>
 <h2 id="对证明的拓展">对证明的拓展</h2>
 <p>设 <span class="math inline">\(\scr U\)</span> 是公式集，<span
 class="math inline">\(A\)</span> 是某个公式，则符号 <span
@@ -418,6 +415,7 @@ class="math inline">\(B\)</span> 是否可被证明。</p>
 are now doing composition!</p>
 <p>具体可以把这些规则看成是一些语法上的宏，展开就能得到纯MP和公理组成的推演规则。</p>
 <h3 id="deduction-rule">Deduction Rule</h3>
+$$
 <span class="math display">\[\begin{aligned}
 
 \frac{  {\scr U}\cup \left\{A\right\}\vdash B}{  {\scr U}\vdash
@@ -425,6 +423,7 @@ A\rightarrow
 B}
 
 \end{aligned}\]</span>
+<p>$$</p>
 <p>这条规则就反映了拓展证明的意图，这条规则保证了我们可以在证明 <span
 class="math inline">\(A\rightarrow B\)</span> 时先假设 <span
 class="math inline">\(A\)</span>，再证明 <span
@@ -971,8 +970,25 @@ A\)</span></p>
 <p>由此可以得到一个很有用的定理，<span class="math inline">\({\scr
 U}\vdash A\)</span> 当且仅当 <span class="math inline">\({\scr
 U}\cup\left\{\neg A\right\}\)</span> 不一致</p>
-<p>后面还有一些关于可数无穷多个公式的真值的讨论，还是咕咕咕咕</p>
-<p>这样这一章就讲完啦</p>
+<h2 id="consistency-completeness">Consistency &amp; Completeness</h2>
+<p>前文关于命题逻辑 <span class="math inline">\({\scr H}\)</span>
+的完全性证明依赖于 <span class="math inline">\({\scr G}\)</span>
+的完全性证明，而 <span class="math inline">\({\scr G}\)</span>
+的特殊结构使得它的完全性证明可以比较简单地由归纳得到。因此这里实际上是走了一个小捷径的。</p>
+<p>利用一致性可以给出完全性的另一定义，即下列命题等价：</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\Gamma\)</span> 一致则 <span
+class="math inline">\(\Gamma\)</span> 可满足</li>
+<li>若 <span class="math inline">\(\Gamma\models \phi\)</span> 则 <span
+class="math inline">\(\Gamma\vdash\phi\)</span></li>
+</ol>
+<p>因此完全性证明只需要针对(1)的情况即可。 假定有一个一致的公式集 <span
+class="math inline">\(\Gamma\)</span>，我们可以通过一些手段对其扩充，得到极大一致的公式集
+<span class="math inline">\(\Gamma&#39;\)</span>。 然后我们根据 <span
+class="math inline">\(\Gamma&#39;\)</span>
+可以构造一个赋值/指派，从而可以证明 <span
+class="math inline">\(\Gamma&#39;\)</span> 在这个赋值下可满足，自然有
+<span class="math inline">\(\Gamma\)</span> 可满足，于是命题得证。</p>
 
       </div>
       
@@ -1023,7 +1039,7 @@ U}\cup\left\{\neg A\right\}\)</span> 不一致</p>
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A8%E6%BC%94%E7%B3%BB%E7%BB%9F"><span class="toc-text">推演系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E6%98%8E"><span class="toc-text">证明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#scr-g"><span class="toc-text">\(\scr G\)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E7%90%86"><span class="toc-text">公理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E6%BC%94%E8%A7%84%E5%88%99"><span class="toc-text">推演规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="toc-text">正确性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%98%8E-1"><span class="toc-text">证明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#soundness-completeness"><span class="toc-text">Soundness &amp; Completeness</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#scr-h"><span class="toc-text">\(\scr H\)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E7%90%86-1"><span class="toc-text">公理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E6%BC%94%E8%A7%84%E5%88%99-1"><span class="toc-text">推演规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%AF%81%E6%98%8E%E7%9A%84%E6%8B%93%E5%B1%95"><span class="toc-text">对证明的拓展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8D%E7%94%9F%E8%A7%84%E5%88%99"><span class="toc-text">衍生规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#deduction-rule"><span class="toc-text">Deduction Rule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#contrapositive-rule"><span class="toc-text">Contrapositive Rule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transitivity-rule"><span class="toc-text">Transitivity Rule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exchange-of-antecedent-rule"><span class="toc-text">Exchange of antecedent Rule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#double-negation-rule"><span class="toc-text">Double negation Rule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reductio-ad-absurdum"><span class="toc-text">Reductio ad absurdum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#commutativity"><span class="toc-text">Commutativity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#weakening"><span class="toc-text">Weakening</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#associativity"><span class="toc-text">Associativity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#distributivity"><span class="toc-text">Distributivity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scr-h-%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="toc-text">\(\scr H\)
-的正确性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#soundness"><span class="toc-text">Soundness</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#completeness"><span class="toc-text">Completeness</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">一致性</span></a></li></ol>
+的正确性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#soundness"><span class="toc-text">Soundness</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#completeness"><span class="toc-text">Completeness</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">一致性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#consistency-completeness"><span class="toc-text">Consistency &amp; Completeness</span></a></li></ol></li></ol>
       
     </div>
   </div>
