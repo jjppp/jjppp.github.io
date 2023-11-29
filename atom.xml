@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-23T07:40:14.878Z</updated>
+  <updated>2023-11-29T15:00:18.938Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SA03 narrowing &amp; widening</title>
+    <link href="http://example.com/2023/11/29/SA03-narrowing-widening/"/>
+    <id>http://example.com/2023/11/29/SA03-narrowing-widening/</id>
+    <published>2023-11-29T14:31:58.000Z</published>
+    <updated>2023-11-29T15:00:18.938Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一句话：Widening 和 Narrowing
+分别提供了对格上数据流分析的加速trick和精度trick。&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Static Analysis" scheme="http://example.com/tags/Static-Analysis/"/>
+    
+  </entry>
   
   <entry>
     <title>Cpp Lambda Quirks</title>
@@ -47,7 +72,7 @@ lambda</summary>
     <link href="http://example.com/2023/08/11/SA02-lattice/"/>
     <id>http://example.com/2023/08/11/SA02-lattice/</id>
     <published>2023-08-11T07:52:38.000Z</published>
-    <updated>2023-08-17T04:42:36.440Z</updated>
+    <updated>2023-11-29T14:33:26.854Z</updated>
     
     
       
@@ -494,33 +519,6 @@ Expression）是描述正则语言的另一种方法，有时候用起来会比 
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>Concurrency04 Promising</title>
-    <link href="http://example.com/2022/11/07/Concurrency04-Promising/"/>
-    <id>http://example.com/2022/11/07/Concurrency04-Promising/</id>
-    <published>2022-11-07T11:35:31.000Z</published>
-    <updated>2022-11-07T11:52:14.657Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;C11 model 的最大问题有这么几个&lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;OOTA，这说明 C11 model 太弱了&lt;/li&gt;
-&lt;li&gt;UB，这让一些 type-safe 的语言没法用这个 model，因为</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Concurrency" scheme="http://example.com/tags/Concurrency/"/>
     
   </entry>
   

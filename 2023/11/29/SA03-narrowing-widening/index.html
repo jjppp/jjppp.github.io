@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      SA03 narrowing &amp; widening 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,227 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="Haskell Parser Combinator">
-        <div class="time-m-d">2022-07-26</div>
-        <div class="title">
-          <a href="/2022/07/26/Haskell-Parser-Combinator/">
-            
-              
-                <span>Haskell Parser Combinator</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">SA03 narrowing & widening</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2023-11-29 22:31:58
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Static-Analysis/" title="Static Analysis">
+                    <b>#</b> Static Analysis
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="TAPL03 Untyped Lambda">
-        <div class="time-m-d">2022-07-23</div>
-        <div class="title">
-          <a href="/2022/07/23/TAPL03-Untyped-Lambda/">
-            
-              
-                <span>TAPL03 Untyped Lambda</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>一句话：Widening 和 Narrowing
+分别提供了对格上数据流分析的加速trick和精度trick。</p>
+<h1 id="widening">Widening</h1>
+<p>某些格无限高，迭代算法不一定停机（即便最小不动点存在）。</p>
+<p>数学意义上（超穷构造）的存在并不意味着可以通过停机的算法构造，一个经典的例子是收敛数列的极限。</p>
+<h2 id="修改格抽象">修改格抽象</h2>
+<p>朴实的想法是对于太高的格 <span
+class="math inline">\(S_h\)</span>，作一个新的更实际的格抽象 <span
+class="math inline">\(S_l\)</span>，通过一个简单函数翻译 <span
+class="math inline">\(w\colon S_h\to S_l\)</span></p>
+<h2 id="修改转移函数">修改转移函数</h2>
+<p>另一个想法是让迭代的转移函数跑得快些，这样可以得到一个收敛但不太精确的解。对于原本的转移函数
+<span class="math inline">\(t\)</span>，构造一个修正函数 <span
+class="math inline">\(w\)</span>，使得 <span
+class="math inline">\(w\circ f\)</span> 的不动点更好算，并且 <span
+class="math inline">\(w\circ f\)</span> 的不动点是 <span
+class="math inline">\(f\)</span> 不动点的一个安全估计。</p>
+<p>聪明的读者可以发现第二种方法中的 <span
+class="math inline">\(w\)</span> 类型会是 <span
+class="math inline">\(S\to S\)</span>，也是一个翻译函数</p>
+<h2 id="requirements">Requirements</h2>
+<p>回忆我们的目的：</p>
+<ol type="1">
+<li>构造一个修正函数 <span class="math inline">\(w\)</span></li>
+<li><span class="math inline">\(w\circ t\)</span>
+单调，可以迭代求不动点</li>
+<li><span class="math inline">\(w\circ t\)</span>
+的不动点应当停机（或更快停机）</li>
+<li><span class="math inline">\(w\circ t\)</span> 的不动点应当是 <span
+class="math inline">\(t\)</span> 不动点的安全估计</li>
+</ol>
+<p>这要求</p>
+<ol type="1">
+<li><span class="math inline">\(w\colon S\to S\)</span></li>
+<li><span class="math inline">\(\forall x, y\in S, x\le y\Rightarrow
+w(x)\le w(y)\)</span></li>
+<li><span class="math inline">\(w(S)=\Set{w(s)\mid s\in S}\)</span>
+尽可能小</li>
+<li><span class="math inline">\(\forall x\in S, x\le
+w(x)\)</span>，这样才有 <span class="math inline">\(\forall x\in S,
+t(x)\le w(t(x))\)</span></li>
+</ol>
+<p>不妨记 <span class="math inline">\(f_t, f_w\)</span> 分别为 <span
+class="math inline">\(t, w\circ t\)</span> 的最小不动点</p>
+<p>一个简单粗暴的实现是——截断。就像模拟信号到数字信号的采样一样，多余的部分直接提升到
+<span class="math inline">\(\top\)</span>，非常直观</p>
+<p>于是就获得了一个 <span class="math inline">\(w\circ t\)</span>
+这样好算简单的新函数，对它迭代就得到了一个原函数不动点的安全估计</p>
+<h1 id="narrowing">Narrowing</h1>
+<p>指的是得到 <span class="math inline">\(f_w\)</span> 后，继续计算
+<span class="math inline">\(t(f_w)\)</span> 的过程</p>
+<p>注意到 <span class="math inline">\(f_t=t(f_t)\le t(f_w)\le
+w(t(f_w))=f_w\)</span></p>
+<p>这说明 <span class="math inline">\(t(f_w)\)</span> 仍然是 <span
+class="math inline">\(f_t\)</span> 的安全估计，但不会比 <span
+class="math inline">\(f_w\)</span> 更大。</p>
+<p>实际上这样的迭代是是单调不增的，即从 <span
+class="math inline">\(f_w\)</span>
+出发求一个尽可能小的不动点，但并不一定收敛（此处迭代的是 <span
+class="math inline">\(t\)</span>）。</p>
+<p>这个过程精度不断提升，属于 more pay more gain</p>
+<p>怎么样，是不是非常简单呢？</p>
+
       </div>
-    
-      <div class="post-item" title="TAPL02 Basics">
-        <div class="time-m-d">2022-07-17</div>
-        <div class="title">
-          <a href="/2022/07/17/TAPL02-Basics/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>TAPL02 Basics</span>
-              
+              <a href="/2023/08/23/Cpp-Lambda-Captures/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2023-11-29 22:31:58
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Static-Analysis/" title="Static Analysis">
+                        <b>#</b> Static Analysis
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="TAPL01 Intro">
-        <div class="time-m-d">2022-07-16</div>
-        <div class="title">
-          <a href="/2022/07/16/TAPL01-Intro/">
-            
-              
-                <span>TAPL01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#widening"><span class="toc-text">Widening</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%A0%BC%E6%8A%BD%E8%B1%A1"><span class="toc-text">修改格抽象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%BD%AC%E7%A7%BB%E5%87%BD%E6%95%B0"><span class="toc-text">修改转移函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#requirements"><span class="toc-text">Requirements</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#narrowing"><span class="toc-text">Narrowing</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="操作系统04 进程与线程">
-        <div class="time-m-d">2022-07-15</div>
-        <div class="title">
-          <a href="/2022/07/15/OS04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">
-            
-              
-                <span>操作系统04 进程与线程</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Algebra03 同态与同构">
-        <div class="time-m-d">2022-07-09</div>
-        <div class="title">
-          <a href="/2022/07/09/Algebra03-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/">
-            
-              
-                <span>Algebra03 同态与同构</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Algebra02 子群和商群">
-        <div class="time-m-d">2022-07-06</div>
-        <div class="title">
-          <a href="/2022/07/06/Algebra02-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/">
-            
-              
-                <span>Algebra02 子群和商群</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Algebra01 群的定义">
-        <div class="time-m-d">2022-07-06</div>
-        <div class="title">
-          <a href="/2022/07/06/Algebra01-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/">
-            
-              
-                <span>Algebra01 群的定义</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统03 内存管理">
-        <div class="time-m-d">2022-07-04</div>
-        <div class="title">
-          <a href="/2022/07/04/OS03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
-            
-              
-                <span>操作系统03 内存管理</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统02 并发">
-        <div class="time-m-d">2022-07-03</div>
-        <div class="title">
-          <a href="/2022/07/03/OS02-%E5%B9%B6%E5%8F%91/">
-            
-              
-                <span>操作系统02 并发</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统01 导引">
-        <div class="time-m-d">2022-07-03</div>
-        <div class="title">
-          <a href="/2022/07/03/OS01-%E5%AF%BC%E5%BC%95/">
-            
-              
-                <span>操作系统01 导引</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="ANTLR4 笔记">
-        <div class="time-m-d">2022-07-02</div>
-        <div class="title">
-          <a href="/2022/07/02/ANTLR4-%E7%AC%94%E8%AE%B0/">
-            
-              
-                <span>ANTLR4 笔记</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统 Lab3 uproc">
-        <div class="time-m-d">2022-06-23</div>
-        <div class="title">
-          <a href="/2022/06/23/OSLab3-uproc/">
-            
-              
-                <span>操作系统 Lab3 uproc</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="大二下摸鱼记录">
-        <div class="time-m-d">2022-06-20</div>
-        <div class="title">
-          <a href="/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/">
-            
-              
-                <span>大二下摸鱼记录</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法07 电阻网络">
-        <div class="time-m-d">2022-06-15</div>
-        <div class="title">
-          <a href="/2022/06/15/Numerical07-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/">
-            
-              
-                <span>计算方法07 电阻网络</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法06 FFT">
-        <div class="time-m-d">2022-06-14</div>
-        <div class="title">
-          <a href="/2022/06/14/Numerical06-FFT/">
-            
-              
-                <span>计算方法06 FFT</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="博弈论02 零和游戏">
-        <div class="time-m-d">2022-06-09</div>
-        <div class="title">
-          <a href="/2022/06/09/%E5%8D%9A%E5%BC%88%E8%AE%BA02-%E9%9B%B6%E5%92%8C%E6%B8%B8%E6%88%8F/">
-            
-              
-                <span>博弈论02 零和游戏</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统 Lab2 kmt">
-        <div class="time-m-d">2022-05-28</div>
-        <div class="title">
-          <a href="/2022/05/28/OSLab2-kmt/">
-            
-              
-                <span>操作系统 Lab2 kmt</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统 Lab1 pmm">
-        <div class="time-m-d">2022-05-28</div>
-        <div class="title">
-          <a href="/2022/05/28/OSLab1-pmm/">
-            
-              
-                <span>操作系统 Lab1 pmm</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法05 图的代数性质">
-        <div class="time-m-d">2022-05-10</div>
-        <div class="title">
-          <a href="/2022/05/10/Numerical05-%E5%9B%BE%E7%9A%84%E4%BB%A3%E6%95%B0%E6%80%A7%E8%B4%A8/">
-            
-              
-                <span>计算方法05 图的代数性质</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/2/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">3 / 7</span>
-    
-      <a href="/page/4/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +605,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
