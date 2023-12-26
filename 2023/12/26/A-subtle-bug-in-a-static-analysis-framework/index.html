@@ -11,7 +11,7 @@
   
   <title>
     
-      SA03 narrowing &amp; widening 
+      A subtle bug in a static analysis framework 
       
       
       |
@@ -164,19 +164,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">SA03 narrowing & widening</div>
+      <div class="post-title">A subtle bug in a static analysis framework</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="更新时间"></i>
-          2023-11-29 22:31:58
+          2023-12-26 16:26:13
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags" title="标签"></i>
                 
                 <span class="span--tag">
-                  <a href="/tags/Static-Analysis/" title="Static Analysis">
-                    <b>#</b> Static Analysis
+                  <a href="/tags/Eureka-Moments/" title="Eureka Moments">
+                    <b>#</b> Eureka Moments
                   </a>
                 </span>
                 
@@ -184,75 +184,139 @@
           
       </div>
       <div class="markdown-body">
-        <p>一句话：Widening 和 Narrowing
-分别提供了对格上数据流分析的加速trick和精度trick。</p>
-<h1 id="widening">Widening</h1>
-<p>某些格无限高，迭代算法不一定停机（即便最小不动点存在）。</p>
-<p>数学意义上（超穷构造）的存在并不意味着可以通过停机的算法构造，一个经典的例子是收敛数列的极限。</p>
-<h2 id="修改格抽象">修改格抽象</h2>
-<p>朴实的想法是对于太高的格 <span
-class="math inline">\(S_h\)</span>，作一个新的更实际的格抽象 <span
-class="math inline">\(S_l\)</span>，通过一个简单函数翻译 <span
-class="math inline">\(w\colon S_h\to S_l\)</span></p>
-<h2 id="修改转移函数">修改转移函数</h2>
-<p>另一个想法是让迭代的转移函数跑得快些，这样可以得到一个收敛但不太精确的解。对于原本的转移函数
-<span class="math inline">\(t\)</span>，构造一个修正函数 <span
-class="math inline">\(w\)</span>，使得 <span
-class="math inline">\(w\circ f\)</span> 的不动点更好算，并且 <span
-class="math inline">\(w\circ f\)</span> 的不动点是 <span
-class="math inline">\(f\)</span> 不动点的一个安全估计。</p>
-<p>聪明的读者可以发现第二种方法中的 <span
-class="math inline">\(w\)</span> 类型会是 <span
-class="math inline">\(S\to S\)</span>，也是一个翻译函数</p>
-<h2 id="requirements">Requirements</h2>
-<p>回忆我们的目的：</p>
+        <p>编译器的bug已经让人痛苦了，作为抽象的编译器——静态分析器里的bug只会更微妙、更隐蔽。</p>
+<h1 id="intro">Intro</h1>
+<p>最近在关心基于抽象解释的单调分析框架和基于这类框架的分析算法设计，于是很自然地参考了一些著名的开源静态分析框架算法，在这期间我发现了一个这样的问题：</p>
+<blockquote>
+<p>某个常量传播 evaluator 简化后的设计如下：</p>
+<pre class="coq"><code>def evalBinary(lhs, rhs, op):
+  match (lhs, op, rhs) with
+  | _, DIV, (Const 0) =&gt; UNDEF
+  | (Const c1), _, (Const c2) =&gt; op.apply(c1, c2)
+  | (Const 0), MUL, _ =&gt; (Const 0)
+  | _, MUL, (Const 0) =&gt; (Const 0)
+  | NAC, _, NAC =&gt; NAC
+  | _, _, _ =&gt; UNDEF
+  end.</code></pre>
+<p>可以发现这个函数不单调</p>
+</blockquote>
+<p>这里于某次 commit 中引入了一个基于代数恒等式的简单优化，即 <span
+class="math inline">\(\forall x, 0\times
+x=0\)</span>。简单思索之后可以发现这是不单调的！只需要考虑输入 <span
+class="math inline">\((NAC, UNDEF), (NAC, 0)\)</span> 即可。</p>
+<p>一个自然的疑问是：我们能利用上这个 bug 来做点有趣的事情吗？</p>
+<h1 id="a-quick-dive-into-monotonicity">A quick dive into
+monotonicity</h1>
+<p>首先需要知道为什么我能 claim 这是一个 bug</p>
+<p>基于格抽象的静态分析框架通过抽象程序的执行状态、定义抽象状态上的状态转换、迭代执行抽象操作直至收敛
+这三步完成一个抽象解释执行程序的艰巨任务。</p>
+<p>而收敛（算法终止）的关键则在于对程序状态的抽象上——我们需要保证抽象状态的转换“不走回头路”，也就是不会兜圈子。</p>
+<p>这种性质在数学上的刻画就叫单调性。如果失去了单调性，分析算法可能就不能结束输出结果，而是进入一个死循环。</p>
+<h1 id="yes-but-how">Yes, but how?</h1>
+<p>再回头看我们究竟发现什么破坏了单调性：当某个变量的抽象值从 UNDEF 变为
+0 时，它与 NAC 的乘积会从 NAC 变为 0。</p>
+<p>想要构造出死循环，意味着我们需要构造至少两个彼此依赖的变量 <span
+class="math inline">\(\Set{x_1,x_2}\)</span> 使得：</p>
 <ol type="1">
-<li>构造一个修正函数 <span class="math inline">\(w\)</span></li>
-<li><span class="math inline">\(w\circ t\)</span>
-单调，可以迭代求不动点</li>
-<li><span class="math inline">\(w\circ t\)</span>
-的不动点应当停机（或更快停机）</li>
-<li><span class="math inline">\(w\circ t\)</span> 的不动点应当是 <span
-class="math inline">\(t\)</span> 不动点的安全估计</li>
+<li><span class="math inline">\(x_1\)</span> UNDEF-&gt;0，<span
+class="math inline">\(x_{2}\)</span> NAC-&gt;0</li>
+<li><span class="math inline">\(x_{2}\)</span> NAC-&gt;0，<span
+class="math inline">\(x_{1}\)</span> 0-&gt;UNDEF</li>
 </ol>
-<p>这要求</p>
+<p>一个个看怎么办：</p>
 <ol type="1">
-<li><span class="math inline">\(w\colon S\to S\)</span></li>
-<li><span class="math inline">\(\forall x, y\in S, x\le y\Rightarrow
-w(x)\le w(y)\)</span></li>
-<li><span class="math inline">\(w(S)=\Set{w(s)\mid s\in S}\)</span>
-尽可能小</li>
-<li><span class="math inline">\(\forall x\in S, x\le
-w(x)\)</span>，这样才有 <span class="math inline">\(\forall x\in S,
-t(x)\le w(t(x))\)</span></li>
+<li>当然是用 <code>x2 = x1 * NAC</code></li>
+<li>看起来有点麻烦</li>
 </ol>
-<p>不妨记 <span class="math inline">\(f_t, f_w\)</span> 分别为 <span
-class="math inline">\(t, w\circ t\)</span> 的最小不动点</p>
-<p>一个简单粗暴的实现是——截断。就像模拟信号到数字信号的采样一样，多余的部分直接提升到
-<span class="math inline">\(\top\)</span>，非常直观</p>
-<p>于是就获得了一个 <span class="math inline">\(w\circ t\)</span>
-这样好算简单的新函数，对它迭代就得到了一个原函数不动点的安全估计</p>
-<h1 id="narrowing">Narrowing</h1>
-<p>指的是得到 <span class="math inline">\(f_w\)</span> 后，继续计算
-<span class="math inline">\(t(f_w)\)</span> 的过程</p>
-<p>注意到 <span class="math inline">\(f_t=t(f_t)\le t(f_w)\le
-w(t(f_w))=f_w\)</span></p>
-<p>这说明 <span class="math inline">\(t(f_w)\)</span> 仍然是 <span
-class="math inline">\(f_t\)</span> 的安全估计，但不会比 <span
-class="math inline">\(f_w\)</span> 更大。</p>
-<p>实际上这样的迭代是是单调不增的，即从 <span
-class="math inline">\(f_w\)</span>
-出发求一个尽可能小的不动点，但并不一定收敛（此处迭代的是 <span
-class="math inline">\(t\)</span>）。</p>
-<p>这个过程精度不断提升，属于 more pay more gain</p>
-<p>怎么样，是不是非常简单呢？</p>
+<h1 id="柳暗花明又一村">柳暗花明又一村</h1>
+<p>在找到反例之前我也以为这样的例子是不存在的，直到我的朋友告诉了我一个分析器中常见的优化小技巧：edge
+transfer</p>
+<p>考虑如下代码：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>x <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> <span class="cf">else</span> <span class="op">&#123;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<p>if 的判断条件是带有额外信息的，这意味着在 true branch
+内我们都可以安全地假设 <code>x</code> 的值要么是
+<code>UNDEF</code>，要么是 <code>1</code>，而不可能是其它值。</p>
+<p>形式化地讲，就是 <span
+class="math inline">\([\![x&#39;]\!]=[\![x]\!]\sqcap[\![1]\!]\)</span>，一个格上的
+meet 操作。</p>
+<p>利用这个 trick，我们就可以构造出程序使得某个变量的值发生 0 -&gt;
+UNDEF 的变化——又一处不单调！</p>
+<p>一个例子是这样的：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>x <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> x <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> <span class="cf">else</span> <span class="op">&#123;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> y <span class="op">/</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<p>这里额外用到了一个 <code>x / 0 = UNDEF</code> 的 trick</p>
+<p>当 <code>x</code> 在 0 和 NAC 之间震荡时，根据 meet 会有
+<code>x' - 1</code> 在 UNDEF 和 0 之间震荡，这恰好就是我们想要的2</p>
+<h1 id="putting-all-together">Putting all together</h1>
+<p>最终人肉综合出来的程序大概长这样</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span><span class="op">,</span> y <span class="op">=</span> NAC<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> x <span class="op">*</span> y<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>z <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> z <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span> <span class="cf">else</span> <span class="op">&#123;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<p>可以跑一跑得到这样的 trace：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> UNDEF<span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> UNDEF<span class="op">]</span>@<span class="dv">2</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">// 第一轮</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> UNDEF<span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> NAC<span class="op">]</span>  @<span class="dv">3</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> UNDEF<span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> <span class="dv">1</span><span class="op">]</span>    @<span class="dv">4</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> <span class="dv">0</span><span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> <span class="dv">1</span><span class="op">]</span>        @<span class="dv">5</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> UNDEF<span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> NAC<span class="op">]</span>  @<span class="dv">7</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> <span class="dv">0</span><span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> NAC<span class="op">]</span>      @<span class="dv">8</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">// 第二轮</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> <span class="dv">0</span><span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> <span class="dv">0</span><span class="op">]</span>        @<span class="dv">3</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> <span class="dv">0</span><span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> UNDEF<span class="op">]</span>    @<span class="dv">4</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> UNDEF<span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> UNDEF<span class="op">]</span>@<span class="dv">5</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> UNDEF<span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> NAC<span class="op">]</span>  @<span class="dv">7</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>x<span class="op">:</span> UNDEF<span class="op">,</span> y<span class="op">:</span> NAC<span class="op">,</span> z<span class="op">:</span> NAC<span class="op">]</span>  @<span class="dv">8</span></span></code></pre></div>
+<p>对比就能发现循环两次之后的抽象状态完全相等，但每次迭代之后每个基本块对应的状态都会发生变化，因此不会停机</p>
+<p>...吗？</p>
+<h1 id="analysis-framework-a-bottom-up-perspective">Analysis Framework:
+A bottom-up perspective</h1>
+<p>在进行了详尽的测试之后，存在这个 bug
+的框架并没有如预想般死在我面前，而是成功停机了。</p>
+<p>读了代码之后有如下观察：</p>
+<ol type="1">
+<li>框架通过一个 map 给每个基本块的入口和出口都分配了一个
+<code>AbsEnv</code></li>
+<li>每次合并前驱计算转换时，通过枚举计算结果（<code>Var</code>-<code>Value</code>
+mapping）来更新出口 <code>AbsEnv</code>，此为 <code>update</code>
+方法</li>
+<li><code>AbsEnv</code> 中通过 absent key 来表示 UNDEF</li>
+</ol>
+<p>这意味着：</p>
+<ol type="1">
+<li>当出现了 0-&gt;UNDEF 的突变时，<code>AbsEnv</code>
+会直接删掉这个元素</li>
+<li>枚举更新的方式则会直接忽视所有 UNDEF，进而保证了与 UNDEF
+相关的非单调性不会影响终止</li>
+</ol>
+<p>所以很遗憾，这是一个被框架设计兜底了的 bug</p>
+<h1 id="想法">想法</h1>
+<ul>
+<li>抽象解释的理论很简洁，但实践很复杂</li>
+<li>静态分析器也可能会有微妙的 bug</li>
+<li>并非所有 bug 都会显现，有时是框架擦了屁股</li>
+<li>我们能像测试编译器一样测试静态分析器吗？</li>
+</ul>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2023/08/23/Cpp-Lambda-Captures/" target="_self">
+              <a href="/2023/11/29/SA03-narrowing-widening/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -261,15 +325,15 @@ class="math inline">\(t\)</span>）。</p>
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="更新时间"></i>
-              2023-11-29 22:31:58
+              2023-12-26 16:26:13
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags" title="标签"></i>
                     
                     <span class="span--tag">
-                      <a href="/tags/Static-Analysis/" title="Static Analysis">
-                        <b>#</b> Static Analysis
+                      <a href="/tags/Eureka-Moments/" title="Eureka Moments">
+                        <b>#</b> Eureka Moments
                       </a>
                     </span>
                     
@@ -277,11 +341,6 @@ class="math inline">\(t\)</span>）。</p>
               
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2023/12/26/A-subtle-bug-in-a-static-analysis-framework/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -295,7 +354,9 @@ class="math inline">\(t\)</span>）。</p>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#widening"><span class="toc-text">Widening</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%A0%BC%E6%8A%BD%E8%B1%A1"><span class="toc-text">修改格抽象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%BD%AC%E7%A7%BB%E5%87%BD%E6%95%B0"><span class="toc-text">修改转移函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#requirements"><span class="toc-text">Requirements</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#narrowing"><span class="toc-text">Narrowing</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#a-quick-dive-into-monotonicity"><span class="toc-text">A quick dive into
+monotonicity</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#yes-but-how"><span class="toc-text">Yes, but how?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%B3%E6%9A%97%E8%8A%B1%E6%98%8E%E5%8F%88%E4%B8%80%E6%9D%91"><span class="toc-text">柳暗花明又一村</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#putting-all-together"><span class="toc-text">Putting all together</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#analysis-framework-a-bottom-up-perspective"><span class="toc-text">Analysis Framework:
+A bottom-up perspective</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%83%B3%E6%B3%95"><span class="toc-text">想法</span></a></li></ol>
       
     </div>
   </div>
