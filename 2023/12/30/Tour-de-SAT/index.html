@@ -277,14 +277,24 @@ class="math inline">\(\alpha\)</span> 不可满足，那么对 <span
 class="math inline">\(\alpha\)</span> 做 resolution 将得到形如 <span
 class="math inline">\(P\wedge\neg P\)</span> 的结果</p>
 <p>这说明可以利用 resolution 判定公式是否不可满足</p>
+<h3 id="unit-resolution">Unit resolution</h3>
+<p>也叫 Boolean propagation。对于只含一个变量的 clause <span
+class="math inline">\(P\)</span>，为了保证可满足需要赋予 <span
+class="math inline">\(\sigma(P)=\textbf{true}\)</span>。这里的 <span
+class="math inline">\(P\)</span> 就叫 unit clause。</p>
+<p>有点 <code>simpl.</code> 的感觉</p>
 <h2 id="strategies">Strategies</h2>
 <p>现在问题变成了：</p>
 <ul>
 <li>可以挑一个变量对 CNF 做 resolution</li>
 <li>可以挑一个变量猜一个值，猜错了回溯</li>
 </ul>
-<h3 id="unit-resolution">Unit resolution</h3>
-<p>Boolean propagation</p>
+<p>由于所有的 solver
+本质上都是爆搜+回溯，那么搜索策略就变得比较有讲究了：</p>
+<ul>
+<li>挑哪个变量做 resolution？</li>
+<li>猜什么值？</li>
+</ul>
 <h3 id="linear-resolution">Linear resolution</h3>
 <p>resolve <span class="math inline">\(\alpha,\beta\)</span> iff</p>
 <ol type="1">
@@ -293,6 +303,30 @@ class="math inline">\(P\wedge\neg P\)</span> 的结果</p>
 class="math inline">\(\beta\)</span></li>
 </ol>
 <h3 id="directed-resolutiondp">Directed resolution(DP)</h3>
+<p>大名鼎鼎，而且很古老</p>
+<p>指的是按照一个顺序 resolve 变量，每次只 resolve 那些没有被动过的
+clause（不走回头路）</p>
+<p>更具体地，给定变量集 <span class="math inline">\(V\)</span> 上的顺序
+<span class="math inline">\(\preceq\)</span>，定义 <span
+class="math inline">\(c(P)=\Set{\text{$\alpha$ is a clause}\mid \forall
+R\in var(\alpha), P\preceq R}\)</span>，即所有出现了 <span
+class="math inline">\(P\)</span> 但没有出现比 <span
+class="math inline">\(P\)</span> 更小的变量的 clause。</p>
+<p>算法是这样的：</p>
+<ol type="1">
+<li>初始化 <span class="math inline">\(c\)</span></li>
+<li>按顺序枚举变量 <span class="math inline">\(P\)</span></li>
+<li>两两 resolve <span class="math inline">\(c(P)\)</span> 中的
+clause</li>
+<li>将结果更新到对应的 <span class="math inline">\(c\)</span> 中</li>
+</ol>
+<h3 id="dpll">DPLL</h3>
+<p>名气更大</p>
+<p>其实就是爆搜。枚举每个变量的取值后将得到一棵 dfs 树</p>
+<p>每次搜完都利用 unit resolution
+做一步化简，通过花费一点线性代价来换取搜索空间变小</p>
+<p>对决策树做子树合并就得到了大名鼎鼎的 BDD</p>
+<p>按照 DP 逆序操作带入也能还原出这棵决策树</p>
 
       </div>
       
@@ -338,7 +372,7 @@ class="math inline">\(\beta\)</span></li>
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#basics"><span class="toc-text">Basics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#quantified-propositional-logic"><span class="toc-text">Quantified Propositional
-logic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cnf"><span class="toc-text">CNF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#operations"><span class="toc-text">Operations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#normalization"><span class="toc-text">Normalization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#decomposition"><span class="toc-text">Decomposition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resolution"><span class="toc-text">Resolution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#completeness"><span class="toc-text">Completeness</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strategies"><span class="toc-text">Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unit-resolution"><span class="toc-text">Unit resolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linear-resolution"><span class="toc-text">Linear resolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#directed-resolutiondp"><span class="toc-text">Directed resolution(DP)</span></a></li></ol></li></ol></li></ol>
+logic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cnf"><span class="toc-text">CNF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#operations"><span class="toc-text">Operations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#normalization"><span class="toc-text">Normalization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#decomposition"><span class="toc-text">Decomposition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resolution"><span class="toc-text">Resolution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#completeness"><span class="toc-text">Completeness</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unit-resolution"><span class="toc-text">Unit resolution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strategies"><span class="toc-text">Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linear-resolution"><span class="toc-text">Linear resolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#directed-resolutiondp"><span class="toc-text">Directed resolution(DP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dpll"><span class="toc-text">DPLL</span></a></li></ol></li></ol></li></ol>
       
     </div>
   </div>
