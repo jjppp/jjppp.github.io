@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      Tour de SAT 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,275 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="图论04 平面图与可平面图">
-        <div class="time-m-d">2021-07-03</div>
-        <div class="title">
-          <a href="/2021/07/03/Graph04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/">
-            
-              
-                <span>图论04 平面图与可平面图</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Tour de SAT</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2023-12-30 00:29:50
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/SAT/" title="SAT">
+                    <b>#</b> SAT
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="软件分析03 DFA">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA03-DFA/">
-            
-              
-                <span>软件分析03 DFA</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>最近对 SAT 求解器很感兴趣，来个三天带我入门</p>
+<h1 id="basics">Basics</h1>
+<p>why SAT</p>
+<ul>
+<li>通用，意味着解决了它就能解决很多问题</li>
+<li>重要，例如做硬件验证大量用到 SAT 建模问题</li>
+<li>高情商：有理论上的意义</li>
+</ul>
+<p>why PL</p>
+<ul>
+<li>简单，存在判定算法</li>
+<li>和一阶逻辑比起来虽然表现力不够，但足够解决一些实际问题</li>
+<li>与有限结构的一阶逻辑等价</li>
+</ul>
+<h2 id="quantified-propositional-logic">Quantified Propositional
+logic</h2>
+<p>除去大家都懂的部分，额外多了</p>
+<ul>
+<li><span class="math inline">\(\gamma\mid R\)</span></li>
+<li><span class="math inline">\(\theta\mid\neg R\)</span></li>
+<li><span class="math inline">\(\forall P,\alpha\)</span></li>
+<li><span class="math inline">\(\exists Q,\beta\)</span></li>
+</ul>
+<p>它们分别被定义为</p>
+<ol type="1">
+<li><span class="math inline">\(\gamma\mid R=\gamma[R\mapsto
+\bold{true}]\)</span></li>
+<li><span class="math inline">\(\theta\mid \neg R=\theta[R\mapsto
+\bold{false}]\)</span></li>
+<li><span class="math inline">\(\forall P,\alpha=(\alpha\mid P)\wedge
+(\alpha\mid\neg P)\)</span></li>
+<li><span class="math inline">\(\exists Q,\beta=(\beta\mid
+P)\vee(\beta\mid \neg P)\)</span></li>
+</ol>
+<p>这方面一些关于知识表示/AI 的术语非常高大上</p>
+<h2 id="cnf">CNF</h2>
+<p><span class="math display">\[
+\bigwedge_{i}\left(\bigvee_{j} C_{j}\right)
+\]</span></p>
+<p>一些术语：</p>
+<ul>
+<li>atom/literal：<span class="math inline">\(P\)</span> or <span
+class="math inline">\(\neg P\)</span></li>
+<li>clause：<span class="math inline">\(\vee\)</span> of atoms</li>
+<li>term：<span class="math inline">\(\wedge\)</span> of terms</li>
+<li><span class="math inline">\(\alpha\)</span> satisfiable：存在一组解
+<span class="math inline">\(\sigma\)</span> 使得 <span
+class="math inline">\(\sigma\models\alpha\)</span></li>
+</ul>
+<h2 id="operations">Operations</h2>
+<h3 id="normalization">Normalization</h3>
+<p>说人话：把任给的公式“编译”到特定形式，一般默认是 CNF。这就是逻辑人的
+IR。</p>
+<p>CNF 是 universal 的，这意味着它有足够的表现力</p>
+<p>可以通过一些基本操作得到 CNF</p>
+<ul>
+<li><span class="math inline">\(\neg\)</span> 分配</li>
+<li><span class="math inline">\(\vee\)</span> 分配</li>
+<li><span class="math inline">\(\neg\neg\)</span> 消去</li>
+</ul>
+<p>也可以通过引入新变量构造 CNF</p>
+<p>why CNF：</p>
+<ul>
+<li>简单</li>
+<li>相较而言 DNF 下的 SAT 问题是平凡的</li>
+</ul>
+<h3 id="decomposition">Decomposition</h3>
+<p>对于公式 <span
+class="math inline">\(\alpha\)</span>，可以提取变量得到 <span
+class="math inline">\((P\wedge(\alpha\mid P))\vee(\neg
+P\wedge(\alpha\mid\neg P))\)</span></p>
+<p>相当于把一个公式拆成并行的两份分别运算，最后用一个 MUX
+挑出真正的结果</p>
+<h3 id="resolution">Resolution</h3>
+<p>对于形如 <span class="math inline">\((P\vee\alpha)\wedge(\neg
+P\vee\beta)\)</span> 的公式，可以推导得到 <span
+class="math inline">\((\alpha\vee\beta)\)</span></p>
+<p>这样的操作叫 resolution between <span class="math inline">\((P\vee
+\alpha)\)</span> and <span class="math inline">\((\neg
+P\vee\beta)\)</span> over <span
+class="math inline">\(P\)</span>，得到的结果 <span
+class="math inline">\((\alpha\vee\beta)\)</span> 叫 <span
+class="math inline">\(P\)</span>-resolvent</p>
+<h4 id="completeness">Completeness</h4>
+<p>就是你想的那个 completeness。</p>
+<p>Resolution 并非 complete，考虑 <span
+class="math inline">\(\alpha=A\)</span>，它并不能 resolve 得到 <span
+class="math inline">\(\neg\neg A\)</span></p>
+<p>但 resolution is refutation-complete，意味着如果 <span
+class="math inline">\(\alpha\)</span> 不可满足，那么对 <span
+class="math inline">\(\alpha\)</span> 做 resolution 将得到形如 <span
+class="math inline">\(P\wedge\neg P\)</span> 的结果</p>
+<p>这说明可以利用 resolution 判定公式是否不可满足</p>
+<h2 id="strategies">Strategies</h2>
+<p>现在问题变成了：</p>
+<ul>
+<li>可以挑一个变量对 CNF 做 resolution</li>
+<li>可以挑一个变量猜一个值，猜错了回溯</li>
+</ul>
+<h3 id="unit-resolution">Unit resolution</h3>
+<p>Boolean propagation</p>
+<h3 id="linear-resolution">Linear resolution</h3>
+<p>resolve <span class="math inline">\(\alpha,\beta\)</span> iff</p>
+<ol type="1">
+<li><span class="math inline">\(\alpha,\beta\)</span> are roots, or</li>
+<li><span class="math inline">\(\alpha\)</span> is the ancestor of <span
+class="math inline">\(\beta\)</span></li>
+</ol>
+<h3 id="directed-resolutiondp">Directed resolution(DP)</h3>
+
       </div>
-    
-      <div class="post-item" title="软件分析02 IR">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA02-IR/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>软件分析02 IR</span>
-              
+              <a href="/2023/12/26/A-subtle-bug-in-a-static-analysis-framework/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2023-12-30 00:29:50
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/SAT/" title="SAT">
+                        <b>#</b> SAT
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="软件分析01 Intro">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA01-Intro/">
-            
-              
-                <span>软件分析01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#basics"><span class="toc-text">Basics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#quantified-propositional-logic"><span class="toc-text">Quantified Propositional
+logic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cnf"><span class="toc-text">CNF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#operations"><span class="toc-text">Operations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#normalization"><span class="toc-text">Normalization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#decomposition"><span class="toc-text">Decomposition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resolution"><span class="toc-text">Resolution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#completeness"><span class="toc-text">Completeness</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strategies"><span class="toc-text">Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unit-resolution"><span class="toc-text">Unit resolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linear-resolution"><span class="toc-text">Linear resolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#directed-resolutiondp"><span class="toc-text">Directed resolution(DP)</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="图论03 染色">
-        <div class="time-m-d">2021-06-04</div>
-        <div class="title">
-          <a href="/2021/06/04/Graph03-%E6%9F%93%E8%89%B2/">
-            
-              
-                <span>图论03 染色</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论01 基本概念&定义">
-        <div class="time-m-d">2021-06-01</div>
-        <div class="title">
-          <a href="/2021/06/01/Graph01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/">
-            
-              
-                <span>图论01 基本概念&定义</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="数据结构01 搜索树">
-        <div class="time-m-d">2021-05-29</div>
-        <div class="title">
-          <a href="/2021/05/29/DS01-%E6%90%9C%E7%B4%A2%E6%A0%91/">
-            
-              
-                <span>数据结构01 搜索树</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="ICPC 2021 银川划水记">
-        <div class="time-m-d">2021-05-17</div>
-        <div class="title">
-          <a href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">
-            
-              
-                <span>ICPC 2021 银川划水记</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论02 匹配">
-        <div class="time-m-d">2021-04-30</div>
-        <div class="title">
-          <a href="/2021/04/30/Graph02-%E5%8C%B9%E9%85%8D/">
-            
-              
-                <span>图论02 匹配</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验06 : shlab">
-        <div class="time-m-d">2021-04-21</div>
-        <div class="title">
-          <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C06-shlab/">
-            
-              
-                <span>CSAPP实验06 : shlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验05: cachelab">
-        <div class="time-m-d">2021-03-07</div>
-        <div class="title">
-          <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C05-cachelab/">
-            
-              
-                <span>CSAPP实验05: cachelab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="大一上存活经验">
-        <div class="time-m-d">2021-02-19</div>
-        <div class="title">
-          <a href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/">
-            
-              
-                <span>大一上存活经验</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验04: archlab">
-        <div class="time-m-d">2021-02-17</div>
-        <div class="title">
-          <a href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C04-archlab/">
-            
-              
-                <span>CSAPP实验04: archlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="半音阶口琴谱合辑">
-        <div class="time-m-d">2021-02-14</div>
-        <div class="title">
-          <a href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/">
-            
-              
-                <span>半音阶口琴谱合辑</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验03 : attacklab">
-        <div class="time-m-d">2021-02-04</div>
-        <div class="title">
-          <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C03-attacklab/">
-            
-              
-                <span>CSAPP实验03 : attacklab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验02 : bomblab">
-        <div class="time-m-d">2021-01-24</div>
-        <div class="title">
-          <a href="/2021/01/24/CSAPP%E5%AE%9E%E9%AA%8C02-bomblab/">
-            
-              
-                <span>CSAPP实验02 : bomblab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验01 : datalab">
-        <div class="time-m-d">2021-01-14</div>
-        <div class="title">
-          <a href="/2021/01/14/CSAPP%E5%AE%9E%E9%AA%8C01-datalab/">
-            
-              
-                <span>CSAPP实验01 : datalab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="信息与计算科学导论02">
-        <div class="time-m-d">2021-01-06</div>
-        <div class="title">
-          <a href="/2021/01/06/ICS-Intro02/">
-            
-              
-                <span>信息与计算科学导论02</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="信息与计算科学导论03">
-        <div class="time-m-d">2021-01-06</div>
-        <div class="title">
-          <a href="/2021/01/06/ICS-Intro03/">
-            
-              
-                <span>信息与计算科学导论03</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="信息与计算科学导论01">
-        <div class="time-m-d">2021-01-06</div>
-        <div class="title">
-          <a href="/2021/01/06/ICS-Intro01/">
-            
-              
-                <span>信息与计算科学导论01</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/5/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">6 / 7</span>
-    
-      <a href="/page/7/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +653,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

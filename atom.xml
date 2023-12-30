@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-12-26T15:29:49.882Z</updated>
+  <updated>2023-12-30T08:04:58.139Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Tour de SAT</title>
+    <link href="http://example.com/2023/12/30/Tour-de-SAT/"/>
+    <id>http://example.com/2023/12/30/Tour-de-SAT/</id>
+    <published>2023-12-29T16:29:50.000Z</published>
+    <updated>2023-12-30T08:04:58.139Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近对 SAT 求解器很感兴趣，来个三天带我入门&lt;/p&gt;
+&lt;h1 id=&quot;basics&quot;&gt;Basics&lt;/h1&gt;
+&lt;p&gt;why SAT&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通用，意味着解决了它就能解决很多问题&lt;/li&gt;
+&lt;li&gt;重要，例如做硬件验证大量用到 SAT</summary>
+        
+      
+    
+    
+    
+    
+    <category term="SAT" scheme="http://example.com/tags/SAT/"/>
+    
+  </entry>
   
   <entry>
     <title>A subtle bug in a static analysis framework</title>
@@ -486,33 +514,6 @@ class=&quot;math</summary>
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
 &lt;p&gt;上下文无关语言（Context Free
 Language）是一类比正则语言更强的语言。描述上下文无关语言的文法叫上下文无关文法（CFG）。&lt;/p&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Automata02 RE</title>
-    <link href="http://example.com/2022/11/09/Automata02-RE/"/>
-    <id>http://example.com/2022/11/09/Automata02-RE/</id>
-    <published>2022-11-09T06:56:43.000Z</published>
-    <updated>2023-01-06T06:22:09.873Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;正则表达式（Regular
-Expression）是描述正则语言的另一种方法，有时候用起来会比 DFA
-更方便。&lt;/p&gt;
 &lt;h1</summary>
         
       
