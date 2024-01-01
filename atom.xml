@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-12-30T17:58:27.698Z</updated>
+  <updated>2024-01-01T19:31:21.313Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SA04 Abstract interpretation</title>
+    <link href="http://example.com/2024/01/02/SA04-Abstract-interpretation/"/>
+    <id>http://example.com/2024/01/02/SA04-Abstract-interpretation/</id>
+    <published>2024-01-01T18:09:34.000Z</published>
+    <updated>2024-01-01T19:31:21.313Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;整点抽象的&lt;/p&gt;
+&lt;p&gt;下面默认 &lt;span class=&quot;math inline&quot;&gt;\(x\le y\)&lt;/span&gt; 意味着 &lt;span
+class=&quot;math inline&quot;&gt;\(x\)&lt;/span&gt; 比 &lt;span
+class=&quot;math</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Static Analysis" scheme="http://example.com/tags/Static-Analysis/"/>
+    
+  </entry>
   
   <entry>
     <title>Tour de SAT</title>
@@ -489,32 +515,6 @@ class=&quot;math</summary>
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
 &lt;p&gt;一般说的 PDA 本质上是带栈的 &lt;span
 class=&quot;math</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Automata03 CFL</title>
-    <link href="http://example.com/2022/11/09/Automata03-CFL/"/>
-    <id>http://example.com/2022/11/09/Automata03-CFL/</id>
-    <published>2022-11-09T06:56:58.000Z</published>
-    <updated>2022-11-09T08:50:28.990Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;上下文无关语言（Context Free
-Language）是一类比正则语言更强的语言。描述上下文无关语言的文法叫上下文无关文法（CFG）。&lt;/p&gt;
-&lt;h1</summary>
         
       
     
