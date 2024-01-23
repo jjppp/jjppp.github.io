@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-01-01T19:31:21.313Z</updated>
+  <updated>2024-01-23T13:53:01.817Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DB01 Intro</title>
+    <link href="http://example.com/2024/01/23/DB01-Intro/"/>
+    <id>http://example.com/2024/01/23/DB01-Intro/</id>
+    <published>2024-01-23T12:09:24.000Z</published>
+    <updated>2024-01-23T13:53:01.817Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;鸽了很久，再一次打算补上了。去年在家看网课的时候遇上了手机脱焊，希望今年能平安无事地搞完。&lt;/p&gt;
+&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;DB 一般指有组织的数据，组织数据的软件则叫</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Database" scheme="http://example.com/tags/Database/"/>
+    
+  </entry>
   
   <entry>
     <title>SA04 Abstract interpretation</title>
@@ -489,31 +514,6 @@ class=&quot;math</summary>
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
 &lt;p&gt;图灵机最早是作为一种计算模型出现的，目的是讨论在这样一种机器上能解决什么样的问题。&lt;/p&gt;
 &lt;p&gt;形式化的图灵机定义为七元组 &lt;span
-class=&quot;math</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Automata04 PDA</title>
-    <link href="http://example.com/2022/11/09/Automata04-PDA/"/>
-    <id>http://example.com/2022/11/09/Automata04-PDA/</id>
-    <published>2022-11-09T08:53:04.000Z</published>
-    <updated>2023-02-08T08:38:34.680Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;一般说的 PDA 本质上是带栈的 &lt;span
 class=&quot;math</summary>
         
       

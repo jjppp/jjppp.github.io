@@ -11,8 +11,8 @@
   
   <title>
     
-      标签 
-       : Database
+      DB01 Intro 
+      
       
       |
     
@@ -119,39 +119,237 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>Database</span>
-    </h2>
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">DB01 Intro</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2024-01-23 20:09:24
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Database/" title="Database">
+                    <b>#</b> Database
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>鸽了很久，再一次打算补上了。去年在家看网课的时候遇上了手机脱焊，希望今年能平安无事地搞完。</p>
+<h1 id="intro">Intro</h1>
+<p>DB 一般指有组织的数据，组织数据的软件则叫 DBMS。简单来说，DBMS
+就是用户和数据之间的交互接口。</p>
+<p>不难想象 DBMS 有很多应用，通常对 DBMS 的要求有这么几方面：</p>
+<ol type="1">
+<li>consistency：对同一数据的多个拷贝修改，应当使结果保持一致</li>
+<li>integrity：修改操作不应该破坏数据原有的语义</li>
+<li>confidentiality：机密数据不应泄露</li>
+<li>还有一些别的可以畅想的</li>
+</ol>
+<h2 id="data-model">Data model</h2>
+<p>讲的是用户和 DBMS 如何看待和描述 DB 中的数据。</p>
+<p>以关系模型为例，DB
+中的数据就是若干“关系”（或者有序集合），这些“关系”（集合）可以通过操作得到新的“关系”（集合）。用户通过提供“关系操作”来描述期望的查询结果。</p>
+<p>relation 也叫 table，后者是更直观的名字。</p>
+<h2 id="layering">Layering</h2>
+<p>就是你想的那样</p>
+<ul>
+<li>物理层</li>
+<li>逻辑层</li>
+<li>用户层</li>
+</ul>
+<h2 id="ddldml">DDL/DML</h2>
+<p>Data Definition Language，说的是用来定义和描述数据的语言。用 DDL
+而不是直接写裸数据有这么些原因：</p>
+<ol type="1">
+<li>描述数据的语义约束，例如身份证校验、邮箱格式</li>
+<li>提供一些数据的元信息，例如权限、名称</li>
+<li>易用</li>
+</ol>
+<p>Data Manipulation
+Language，说的是用来操作数据的语言。操作包括大家都知道的增删查改，类型有大家喜爱的
+declarative 和 procedural。</p>
+<h2 id="schemainstance">Schema/Instance</h2>
+<p>出现在这里显得很奇怪的两个词，找到的各种解释都不太满意</p>
+<p>schema 给人的感觉是数据的组织结构，instance 就是你想的那个意思</p>
+<h1 id="dbms-structure">DBMS structure</h1>
+<p>粗略地看，DBMS 和 OS 没有太大差别，都是一个 shell 用来交互用户和
+kernel 状态，然后还要上并发和文件系统</p>
+<h2 id="storage-management">Storage Management</h2>
+<p>负责</p>
+<ul>
+<li>和存储设备交互</li>
+<li>做一些 caching</li>
+<li>权限检查</li>
+</ul>
+<p>通常要实现一些特别的数据结构来提供这些服务</p>
+<h2 id="query-management">Query Management</h2>
+<p>负责</p>
+<ul>
+<li>把查询翻译成数据查询操作</li>
+<li>把 DDL 翻译成数据表示</li>
+<li>做一些查询/修改的（语言上的）优化</li>
+</ul>
+<p>简单地说，就是一个 SQL 编译器</p>
+<h2 id="transaction-management">Transaction Management</h2>
+<p>网红概念辨析</p>
+<p>transaction 说的是实现了某个单一目标的一组操作。通常要求</p>
+<ol type="1">
+<li>Atomic：这一组操作要么全部完成，要么全部失败（实质是单一目标的原子性：要么成功，要么失败，没有中间态）</li>
+<li>Consistent：应该叫 consistency-preservation，即 consistent
+的数据库在操作后仍然 consistent</li>
+<li>Isolation：多个目标对应的多组操作互不影响</li>
+<li>Durability：操作的结果不会丢失</li>
+</ol>
+<p>所以 Transaction Manager 需要负责</p>
+<ul>
+<li>错误恢复</li>
+<li>并发控制</li>
+<li>和一些你懂得的活</li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/01/02/SA04-Abstract-interpretation/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2024-01-23 20:09:24
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Database/" title="Database">
+                        <b>#</b> Database
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
   </div>
-  
-    <div class="post-list">
-      <div class="post-item" title="DB01 Intro">
-        <span class="time-m-d">2024-01-23</span>
-        <a href="/2024/01/23/DB01-Intro/">
-          <span>DB01 Intro</span>
-        </a>
-      </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#intro"><span class="toc-text">Intro</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#data-model"><span class="toc-text">Data model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#layering"><span class="toc-text">Layering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ddldml"><span class="toc-text">DDL&#x2F;DML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#schemainstance"><span class="toc-text">Schema&#x2F;Instance</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dbms-structure"><span class="toc-text">DBMS structure</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#storage-management"><span class="toc-text">Storage Management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#query-management"><span class="toc-text">Query Management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transaction-management"><span class="toc-text">Transaction Management</span></a></li></ol></li></ol>
+      
     </div>
+  </div>
+
   
-    <div class="post-list">
-      <div class="post-item" title="CMU-DB Lab">
-        <span class="time-m-d">2023-01-10</span>
-        <a href="/2023/01/10/CMU-DB-Lab/">
-          <span>CMU-DB Lab</span>
-        </a>
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
-    </div>
-  
-  <nav class="post-navigation">
     
-    <span class="page-num">1 / 1</span>
-    
-  </nav>
-</div>
+  </div>
+
 
         
 <div class="footer">
@@ -417,6 +615,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
