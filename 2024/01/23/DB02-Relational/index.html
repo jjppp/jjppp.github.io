@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      DB02 Relational 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,258 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="TAPL06 References">
-        <div class="time-m-d">2022-08-27</div>
-        <div class="title">
-          <a href="/2022/08/27/TAPL06-References/">
-            
-              
-                <span>TAPL06 References</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">DB02 Relational</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2024-01-23 21:54:30
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Database/" title="Database">
+                    <b>#</b> Database
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="Network01 Intro">
-        <div class="time-m-d">2022-08-14</div>
-        <div class="title">
-          <a href="/2022/08/14/Network01-Intro/">
-            
-              
-                <span>Network01 Intro</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="def">Def</h1>
+<p>简单来说，我们称 <span class="math inline">\(R\subseteq D_1\times
+D_2\cdots\times D_n\)</span> 这样一个 <span
+class="math inline">\(n\)</span>-tuple 构成的集合 <span
+class="math inline">\(R\)</span> 为为 <span
+class="math inline">\(n\)</span>-relation over domain <span
+class="math inline">\(D_1\ldots D_n\)</span>，简称为 <span
+class="math inline">\(n\)</span>-relation。简单地说，一个 relation
+包含了所有使这个关系成立的元素（组），因此在数据库的语境下“关系”与“集合”是等价的。</p>
+<p>直观来看，一个关系实为一张巨大的 <span
+class="math inline">\(n\)</span>
+列表，每行为一个满足该关系的元素，每列代表了一个属性。</p>
+<p>需要注意的是，在数据库的语境下，“集合”通常指“无序可重集合”，即两个元素的比较是
+identity equality 而非 domain-induced equality。因此后面讲到的 primary
+key/super key
+的重要性也就很直观了，因为这里（可能）需要统计重复出现的元素。</p>
+<p>这两个视角没什么区别，感觉也没啥好说的。</p>
+<p>一些边角要求</p>
+<ul>
+<li>通常 domain 有一个特殊的占位值，即取 <span
+class="math inline">\(D_\bot=D\cup\{\bot\}\)</span> 作为真正使用的
+domain（群友最爱的 <code>optional&lt;T&gt;</code>）</li>
+<li>一般要求 <span class="math inline">\(D\)</span>
+中的元素是原子的，例如 <code>int</code>；非原子的例子有
+<code>varchar</code>、逻辑上的集合</li>
+</ul>
+<p>这一切都看起来和命题演算那么熟悉，像啊，很像啊</p>
+<h2 id="strict-structure">Strict structure</h2>
+<p>关系这样非常固化的结构带来了一些后果：</p>
+<ul>
+<li>处理起来非常简单</li>
+<li>用起来也非常简单</li>
+<li>不够灵活多变</li>
+</ul>
+<h1 id="keys">Keys</h1>
+<p>数据库语境下的关系 <span class="math inline">\((R,\equiv)\)</span>
+实际上是二元组，分别由定义域和 tuple 上的等价关系组成</p>
+<p>以网课签到为例，一个签到记录由三元组 <code>(学号，名称，地点)</code>
+组成。</p>
+<ul>
+<li>一个人可以在不同地方签到多次，但只应被记录一次</li>
+<li>两个人只要学号和名称不同时相等，那么他们的签到就应当分开算</li>
+</ul>
+<h2 id="primary">primary</h2>
+<p>这里 <code>(学号，名称)</code> 就是一组 primary key，它唯一确定了一个
+tuple 的 identity</p>
+<p>比我聪明的读者会发现这也说明</p>
+<ul>
+<li>签到表本质上是一个函数，即 <code>(学号，名称) -&gt; 地点</code></li>
+<li>以及 primary key constraint 本质上是 deterministic function
+constraint</li>
+<li>接上条，数据的本质是一堆 primary key 间的映射</li>
+</ul>
+<h2 id="candidate">candidate</h2>
+<p>指极小的列集合 <span class="math inline">\(K\)</span> 满足 <span
+class="math inline">\(\forall r_1,r_2\in R,\forall k\in K,
+r_1\text{.}k\ne r_2\text{.}k\rightarrow r_1\text{.}k\not\equiv
+r_2\text{.}k\)</span></p>
+<p>说人话：只要 <span class="math inline">\(K\)</span>
+中的属性不全相同，就认为是不同的 tuple</p>
+<p>此处 candidate 的意思是可以作为 primary key 的备胎</p>
+<h2 id="foreignreferential">foreign/referential</h2>
+<p>考虑 tuple <span class="math inline">\(t_1\in R_1,t_2\in
+R_2\)</span>，如果 <span
+class="math inline">\(\text{$t_1$.$k_1$=$t_2$.$k_2$}\)</span>，那么我们称
+<span class="math inline">\(k_1,k_2\)</span> 是 <span
+class="math inline">\(R_1,R_2\)</span> 之间的 referential
+key。不失一般性地，如果 <span class="math inline">\(k_1\)</span> 是
+primary key，那么 <span class="math inline">\(k_2\)</span> 就称为 <span
+class="math inline">\(R_2\)</span> 到 <span
+class="math inline">\(R_1\)</span> 的 foreign key</p>
+<p>如果用 <span class="math inline">\(\sigma_k\)</span> 表示投影到 key
+<span class="math inline">\(k\)</span>，那么约束写出来就是 <span
+class="math inline">\(\sigma_{k_1}(R_1)\subseteq
+\sigma_{k_2}(R_2)\)</span>，so easy</p>
+<p>需要注意的是，某个 foreign key 可能也是 primary
+key，这二者并不矛盾</p>
+<h3 id="联谊">联谊</h3>
+<p>以大学生喜闻乐见的脱单为例，不妨假设有一个男女配对环节，表
+<code>B=(名字，身高)</code>， <code>G=(名字，院系)</code> 和
+<code>N=(名字，twitter_id)</code> 分别表示男女和非二元性别，并且名字都是
+primary key</p>
+<ul>
+<li><p>一张用来表示心动嘉宾的表 <code>L=(名字，名字)</code> 就由两个
+foreign key 组成，foreign key constraint
+的意义在于每个人的心动嘉宾应当出席了活动</p></li>
+<li><p>一张用来表示心动身高的表 <code>D=(名字，身高)</code> 就由 foreign
+key 和 referential key 组成，因为身高并非 primary key。referential key
+constraint 的意义在于活动中确实有人长这么高</p></li>
+</ul>
+<p>不难发现 foreign key 是 referential key 的一个特例。直观上看，foreign
+key 更好实现（目标明确），referential key 适用范围更广（海王）</p>
+<h1 id="relational-algebra">Relational algebra</h1>
+
       </div>
-    
-      <div class="post-item" title="TAPL05 Extensions">
-        <div class="time-m-d">2022-08-09</div>
-        <div class="title">
-          <a href="/2022/08/09/TAPL05-Extensions/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>TAPL05 Extensions</span>
-              
+              <a href="/2024/01/23/DB01-Intro/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2024-01-23 21:54:30
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Database/" title="Database">
+                        <b>#</b> Database
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="TAPL04 Typed Lambda">
-        <div class="time-m-d">2022-08-04</div>
-        <div class="title">
-          <a href="/2022/08/04/TAPL04-Typed-Lambda/">
-            
-              
-                <span>TAPL04 Typed Lambda</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#def"><span class="toc-text">Def</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#strict-structure"><span class="toc-text">Strict structure</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#keys"><span class="toc-text">Keys</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#primary"><span class="toc-text">primary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#candidate"><span class="toc-text">candidate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foreignreferential"><span class="toc-text">foreign&#x2F;referential</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E8%B0%8A"><span class="toc-text">联谊</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#relational-algebra"><span class="toc-text">Relational algebra</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="操作系统05 调度">
-        <div class="time-m-d">2022-08-03</div>
-        <div class="title">
-          <a href="/2022/08/03/OS05-%E8%B0%83%E5%BA%A6/">
-            
-              
-                <span>操作系统05 调度</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Haskell Parser Combinator">
-        <div class="time-m-d">2022-07-26</div>
-        <div class="title">
-          <a href="/2022/07/26/Haskell-Parser-Combinator/">
-            
-              
-                <span>Haskell Parser Combinator</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="TAPL03 Untyped Lambda">
-        <div class="time-m-d">2022-07-23</div>
-        <div class="title">
-          <a href="/2022/07/23/TAPL03-Untyped-Lambda/">
-            
-              
-                <span>TAPL03 Untyped Lambda</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="TAPL02 Basics">
-        <div class="time-m-d">2022-07-17</div>
-        <div class="title">
-          <a href="/2022/07/17/TAPL02-Basics/">
-            
-              
-                <span>TAPL02 Basics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="TAPL01 Intro">
-        <div class="time-m-d">2022-07-16</div>
-        <div class="title">
-          <a href="/2022/07/16/TAPL01-Intro/">
-            
-              
-                <span>TAPL01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统04 进程与线程">
-        <div class="time-m-d">2022-07-15</div>
-        <div class="title">
-          <a href="/2022/07/15/OS04-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">
-            
-              
-                <span>操作系统04 进程与线程</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Algebra03 同态与同构">
-        <div class="time-m-d">2022-07-09</div>
-        <div class="title">
-          <a href="/2022/07/09/Algebra03-%E5%90%8C%E6%80%81%E4%B8%8E%E5%90%8C%E6%9E%84/">
-            
-              
-                <span>Algebra03 同态与同构</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Algebra02 子群和商群">
-        <div class="time-m-d">2022-07-06</div>
-        <div class="title">
-          <a href="/2022/07/06/Algebra02-%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4/">
-            
-              
-                <span>Algebra02 子群和商群</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Algebra01 群的定义">
-        <div class="time-m-d">2022-07-06</div>
-        <div class="title">
-          <a href="/2022/07/06/Algebra01-%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89/">
-            
-              
-                <span>Algebra01 群的定义</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统03 内存管理">
-        <div class="time-m-d">2022-07-04</div>
-        <div class="title">
-          <a href="/2022/07/04/OS03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
-            
-              
-                <span>操作系统03 内存管理</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统02 并发">
-        <div class="time-m-d">2022-07-03</div>
-        <div class="title">
-          <a href="/2022/07/03/OS02-%E5%B9%B6%E5%8F%91/">
-            
-              
-                <span>操作系统02 并发</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统01 导引">
-        <div class="time-m-d">2022-07-03</div>
-        <div class="title">
-          <a href="/2022/07/03/OS01-%E5%AF%BC%E5%BC%95/">
-            
-              
-                <span>操作系统01 导引</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="ANTLR4 笔记">
-        <div class="time-m-d">2022-07-02</div>
-        <div class="title">
-          <a href="/2022/07/02/ANTLR4-%E7%AC%94%E8%AE%B0/">
-            
-              
-                <span>ANTLR4 笔记</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="操作系统 Lab3 uproc">
-        <div class="time-m-d">2022-06-23</div>
-        <div class="title">
-          <a href="/2022/06/23/OSLab3-uproc/">
-            
-              
-                <span>操作系统 Lab3 uproc</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="大二下摸鱼记录">
-        <div class="time-m-d">2022-06-20</div>
-        <div class="title">
-          <a href="/2022/06/20/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%91%B8%E9%B1%BC%E8%AE%B0%E5%BD%95/">
-            
-              
-                <span>大二下摸鱼记录</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算方法07 电阻网络">
-        <div class="time-m-d">2022-06-15</div>
-        <div class="title">
-          <a href="/2022/06/15/Numerical07-%E7%94%B5%E9%98%BB%E7%BD%91%E7%BB%9C/">
-            
-              
-                <span>计算方法07 电阻网络</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/2/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">3 / 7</span>
-    
-      <a href="/page/4/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +636,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

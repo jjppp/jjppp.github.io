@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-01-23T13:53:01.817Z</updated>
+  <updated>2024-01-23T17:40:39.654Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DB02 Relational</title>
+    <link href="http://example.com/2024/01/23/DB02-Relational/"/>
+    <id>http://example.com/2024/01/23/DB02-Relational/</id>
+    <published>2024-01-23T13:54:30.000Z</published>
+    <updated>2024-01-23T17:40:39.654Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;def&quot;&gt;Def&lt;/h1&gt;
+&lt;p&gt;简单来说，我们称 &lt;span class=&quot;math inline&quot;&gt;\(R\subseteq D_1\times
+D_2\cdots\times D_n\)&lt;/span&gt; 这样一个 &lt;span
+class=&quot;math</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Database" scheme="http://example.com/tags/Database/"/>
+    
+  </entry>
   
   <entry>
     <title>DB01 Intro</title>
@@ -489,32 +515,6 @@ class=&quot;math</summary>
 来做。&lt;/p&gt;
 &lt;p&gt;对于给定的问题，我们会粗略地考虑“计算难度”上的分类：&lt;/p&gt;
 &lt;ol</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Automata05 TM</title>
-    <link href="http://example.com/2022/12/07/Automata05-TM/"/>
-    <id>http://example.com/2022/12/07/Automata05-TM/</id>
-    <published>2022-12-07T11:46:50.000Z</published>
-    <updated>2023-02-08T08:10:38.347Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;图灵机最早是作为一种计算模型出现的，目的是讨论在这样一种机器上能解决什么样的问题。&lt;/p&gt;
-&lt;p&gt;形式化的图灵机定义为七元组 &lt;span
-class=&quot;math</summary>
         
       
     
