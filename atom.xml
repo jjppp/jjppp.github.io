@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-01-30T16:07:56.044Z</updated>
+  <updated>2024-02-27T06:18:17.076Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DB03 SQL</title>
+    <link href="http://example.com/2024/02/05/DB03-SQL/"/>
+    <id>http://example.com/2024/02/05/DB03-SQL/</id>
+    <published>2024-02-05T15:44:12.000Z</published>
+    <updated>2024-02-27T06:18:17.076Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;其实有点无聊，不过俺还从来没写过SQL，所以记一记&lt;/p&gt;
+&lt;h1 id=&quot;basics&quot;&gt;Basics&lt;/h1&gt;
+&lt;p&gt;常用的语法是&lt;/p&gt;
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb1&quot;&gt;&lt;pre
+class=&quot;sourceCode</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Database" scheme="http://example.com/tags/Database/"/>
+    
+  </entry>
   
   <entry>
     <title>浅谈Verilog中的X</title>
@@ -45,7 +72,7 @@
     <link href="http://example.com/2024/01/23/DB02-Relational/"/>
     <id>http://example.com/2024/01/23/DB02-Relational/</id>
     <published>2024-01-23T13:54:30.000Z</published>
-    <updated>2024-01-26T05:57:40.168Z</updated>
+    <updated>2024-02-05T16:15:46.165Z</updated>
     
     
       
@@ -494,31 +521,6 @@ class=&quot;math</summary>
     
     
     <category term="Network" scheme="http://example.com/tags/Network/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大三上昏睡日志</title>
-    <link href="http://example.com/2023/01/03/%E5%A4%A7%E4%B8%89%E4%B8%8A%E6%98%8F%E7%9D%A1%E6%97%A5%E5%BF%97/"/>
-    <id>http://example.com/2023/01/03/%E5%A4%A7%E4%B8%89%E4%B8%8A%E6%98%8F%E7%9D%A1%E6%97%A5%E5%BF%97/</id>
-    <published>2023-01-03T05:41:30.000Z</published>
-    <updated>2023-01-03T07:17:40.940Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;写在前面&quot;&gt;写在前面&lt;/h1&gt;
-&lt;p&gt;这学期实在过得没什么感觉，断断续续的网课+延迟的期末周着实让人昏睡。选的几门课也让人提不起精神，打算看的书也没怎么动，豆瓣的评分倒是多了很多。&lt;/p&gt;
-&lt;p&gt;有人说昏睡是 long covid</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
     
   </entry>
   

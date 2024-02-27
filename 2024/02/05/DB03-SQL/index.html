@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      DB03 SQL 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,218 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="软件分析06 CSA">
-        <div class="time-m-d">2021-08-08</div>
-        <div class="title">
-          <a href="/2021/08/08/SPA06-CSA/">
-            
-              
-                <span>软件分析06 CSA</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">DB03 SQL</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2024-02-05 23:44:12
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Database/" title="Database">
+                    <b>#</b> Database
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="软件分析05 PA">
-        <div class="time-m-d">2021-08-04</div>
-        <div class="title">
-          <a href="/2021/08/04/SPA05-PA/">
-            
-              
-                <span>软件分析05 PA</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>其实有点无聊，不过俺还从来没写过SQL，所以记一记</p>
+<h1 id="basics">Basics</h1>
+<p>常用的语法是</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> expr1, expr2 <span class="op">..</span>.</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> table1, table2 <span class="op">..</span>.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> SEL<span class="op">-</span>predicate</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> col1, col2 <span class="op">..</span>.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> GB<span class="op">-</span>predicate</span></code></pre></div>
+<p>语义写成伪代码是</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">product</span>(tables) <span class="op">|&gt;</span> (eval exprs <span class="op">&lt;$&gt;</span>) <span class="op">|&gt;</span> (<span class="fu">filter</span> <span class="dt">SEL</span><span class="op">-</span>predicate)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                <span class="op">|&gt;</span> (toMap columns)  <span class="op">|&gt;</span> (<span class="fu">filter</span> <span class="dt">GB</span><span class="op">-</span>predicate)</span></code></pre></div>
+<p>注意两个 filter 的顺序</p>
+<p>还有一些集合上的操作和类似let
+binding的语法，以及一些表达副作用的更新操作</p>
+<h1 id="others">Others</h1>
+<p>上面感觉就已经足够cover绝大部分日常工作了</p>
+<h2 id="view">View</h2>
+<p>我的理解就是带 lazy evaluation 的全局 let binding，因为 SELECT
+非常的纯真所以可以延迟求值的同时做一些优化</p>
+<p>这里把 cached view 叫做 materialized view</p>
+<h2 id="transaction">Transaction</h2>
+<p>我的理解是副作用需要一个东西来管理，SQL 就提供了最简单的类似 TX-begin
+TX-end 的结构来保证若干个副作用满足原子性和顺序</p>
+<h2 id="constraints">Constraints</h2>
+<p>书上说只有开销比较小的检查才支持，我感觉怪怪的.jpg</p>
+<ul>
+<li>not null 类似于类型修饰符，加在类型后面</li>
+<li>unique 表达 super key 限制，和 primary 的区别在于可以 null</li>
+<li>constraint check(Predicate) 相当于一些简单的 assertion</li>
+</ul>
+<p>constraint 可以有自己的名字，并且可以随时添加/删除</p>
+<h2 id="foreign-key">Foreign key</h2>
+<ul>
+<li>可以用
+<code>foreign key (col_name) references talbe_name(ref_col_name)</code>
+来表达引用的取值范围（也就是一个泛型 <code>ref&lt;T&gt;</code>）</li>
+<li>可以用 <code>on delete/update cascade</code> 来保证当被引用的 tuple
+发生变更时，对应的引用也一起变更（也就是一个GC）</li>
+</ul>
+<h3 id="cyclic-reference">Cyclic reference</h3>
+<p>这个问题还挺常见的，办法有这么几个</p>
+<ul>
+<li>constraint 检查可以被推迟，例如出现相互引用的 foreign key
+时可以在一个 transaction 内暂时不顾 referential integrity</li>
+<li>foreign key 可以设置为 null，变成 mutable 的形状</li>
+</ul>
+<h2 id="user-defined-types">User Defined Types</h2>
+<p>看关键字的意思是还可以 non final(有 subtype)。很裤，不说话</p>
+<p>Domain 我的理解就是 duck typing，更裤了</p>
+<h2 id="others-1">Others</h2>
+<p>还有很多很多细碎的</p>
+
       </div>
-    
-      <div class="post-item" title="软件分析04 CGC">
-        <div class="time-m-d">2021-08-04</div>
-        <div class="title">
-          <a href="/2021/08/04/SPA04-CGC/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>软件分析04 CGC</span>
-              
+              <a href="/2024/01/30/%E6%B5%85%E8%B0%88Verilog%E4%B8%AD%E7%9A%84X/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2024-02-05 23:44:12
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Database/" title="Database">
+                        <b>#</b> Database
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="大一下存活纪实">
-        <div class="time-m-d">2021-08-02</div>
-        <div class="title">
-          <a href="/2021/08/02/%E5%A4%A7%E4%B8%80%E4%B8%8B%E5%AD%98%E6%B4%BB%E7%BA%AA%E5%AE%9E/">
-            
-              
-                <span>大一下存活纪实</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#basics"><span class="toc-text">Basics</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#others"><span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#view"><span class="toc-text">View</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transaction"><span class="toc-text">Transaction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constraints"><span class="toc-text">Constraints</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foreign-key"><span class="toc-text">Foreign key</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cyclic-reference"><span class="toc-text">Cyclic reference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#user-defined-types"><span class="toc-text">User Defined Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#others-1"><span class="toc-text">Others</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="集训补题合集">
-        <div class="time-m-d">2021-07-17</div>
-        <div class="title">
-          <a href="/2021/07/17/%E9%9B%86%E8%AE%AD%E8%A1%A5%E9%A2%98%E5%90%88%E9%9B%86/">
-            
-              
-                <span>集训补题合集</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论04 平面图与可平面图">
-        <div class="time-m-d">2021-07-03</div>
-        <div class="title">
-          <a href="/2021/07/03/Graph04-%E5%B9%B3%E9%9D%A2%E5%9B%BE%E4%B8%8E%E5%8F%AF%E5%B9%B3%E9%9D%A2%E5%9B%BE/">
-            
-              
-                <span>图论04 平面图与可平面图</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析03 DFA">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA03-DFA/">
-            
-              
-                <span>软件分析03 DFA</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析02 IR">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA02-IR/">
-            
-              
-                <span>软件分析02 IR</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析01 Intro">
-        <div class="time-m-d">2021-06-11</div>
-        <div class="title">
-          <a href="/2021/06/11/SPA01-Intro/">
-            
-              
-                <span>软件分析01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论03 染色">
-        <div class="time-m-d">2021-06-04</div>
-        <div class="title">
-          <a href="/2021/06/04/Graph03-%E6%9F%93%E8%89%B2/">
-            
-              
-                <span>图论03 染色</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论01 基本概念&定义">
-        <div class="time-m-d">2021-06-01</div>
-        <div class="title">
-          <a href="/2021/06/01/Graph01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-%E5%AE%9A%E4%B9%89/">
-            
-              
-                <span>图论01 基本概念&定义</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="数据结构01 搜索树">
-        <div class="time-m-d">2021-05-29</div>
-        <div class="title">
-          <a href="/2021/05/29/DS01-%E6%90%9C%E7%B4%A2%E6%A0%91/">
-            
-              
-                <span>数据结构01 搜索树</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="ICPC 2021 银川划水记">
-        <div class="time-m-d">2021-05-17</div>
-        <div class="title">
-          <a href="/2021/05/17/ICPC-2021-%E9%93%B6%E5%B7%9D%E5%88%92%E6%B0%B4%E8%AE%B0/">
-            
-              
-                <span>ICPC 2021 银川划水记</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="图论02 匹配">
-        <div class="time-m-d">2021-04-30</div>
-        <div class="title">
-          <a href="/2021/04/30/Graph02-%E5%8C%B9%E9%85%8D/">
-            
-              
-                <span>图论02 匹配</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验06 : shlab">
-        <div class="time-m-d">2021-04-21</div>
-        <div class="title">
-          <a href="/2021/04/21/CSAPP%E5%AE%9E%E9%AA%8C06-shlab/">
-            
-              
-                <span>CSAPP实验06 : shlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验05: cachelab">
-        <div class="time-m-d">2021-03-07</div>
-        <div class="title">
-          <a href="/2021/03/07/CSAPP%E5%AE%9E%E9%AA%8C05-cachelab/">
-            
-              
-                <span>CSAPP实验05: cachelab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="大一上存活经验">
-        <div class="time-m-d">2021-02-19</div>
-        <div class="title">
-          <a href="/2021/02/19/%E5%A4%A7%E4%B8%80%E4%B8%8A%E5%AD%98%E6%B4%BB%E7%BB%8F%E9%AA%8C/">
-            
-              
-                <span>大一上存活经验</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验04: archlab">
-        <div class="time-m-d">2021-02-17</div>
-        <div class="title">
-          <a href="/2021/02/17/CSAPP%E5%AE%9E%E9%AA%8C04-archlab/">
-            
-              
-                <span>CSAPP实验04: archlab</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="半音阶口琴谱合辑">
-        <div class="time-m-d">2021-02-14</div>
-        <div class="title">
-          <a href="/2021/02/14/%E5%8D%8A%E9%9F%B3%E9%98%B6%E5%8F%A3%E7%90%B4%E8%B0%B1%E5%90%88%E8%BE%91/">
-            
-              
-                <span>半音阶口琴谱合辑</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSAPP实验03 : attacklab">
-        <div class="time-m-d">2021-02-04</div>
-        <div class="title">
-          <a href="/2021/02/04/CSAPP%E5%AE%9E%E9%AA%8C03-attacklab/">
-            
-              
-                <span>CSAPP实验03 : attacklab</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/5/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">6 / 7</span>
-    
-      <a href="/page/7/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +596,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
