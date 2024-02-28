@@ -237,6 +237,32 @@ TX-end 的结构来保证若干个副作用满足原子性和顺序</p>
 <p>Domain 我的理解就是 duck typing，更裤了</p>
 <h2 id="others-1">Others</h2>
 <p>还有很多很多细碎的</p>
+<h1 id="pldb">PL+DB</h1>
+<p>一句话：在通用编程语言(PL)里访问和操作数据库(DB)</p>
+<p>按照我的理解粗暴分成两类</p>
+<ul>
+<li>static/compiled/<code>PreparedStatement</code>：传给 DBMS
+的查询是某种解析/优化过后的 IR</li>
+<li>dynamic/interpretive/<code>Statement</code>：直接给 DBMS 传 SQL
+语句</li>
+</ul>
+<p>这里的 static/dynamic 是相对于 DBMS 而言的，在 host
+语言里可能全是动态行为(比如 JDBC
+的字符串)，也可能是编译期行为(比如大名鼎鼎的 LINQ)</p>
+<p>传 IR 的好处显而易见：</p>
+<ul>
+<li>可以做优化</li>
+<li>可以做安全性检查</li>
+</ul>
+<p><img src="DB03-SQL/eSQL.png" alt="eSQL" style="zoom:100%;" /></p>
+<p>对着这张图看</p>
+<ul>
+<li>最左是 LINQ 那种编译期可以做 lint 检查的 embedded SQL 做法</li>
+<li>中间是 JDBC 那种运行期间拼接字符串产生 SQL 查询，调用 API
+的做法</li>
+<li>最右的两个箭头展示了 static 和 dynamic 的区别(以 JDBC 为例，就是
+<code>PreparedStatement</code> 和 <code>Statement</code> 的区别)</li>
+</ul>
 
       </div>
       
@@ -281,7 +307,7 @@ TX-end 的结构来保证若干个副作用满足原子性和顺序</p>
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#basics"><span class="toc-text">Basics</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#others"><span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#view"><span class="toc-text">View</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transaction"><span class="toc-text">Transaction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constraints"><span class="toc-text">Constraints</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foreign-key"><span class="toc-text">Foreign key</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cyclic-reference"><span class="toc-text">Cyclic reference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#user-defined-types"><span class="toc-text">User Defined Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#others-1"><span class="toc-text">Others</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#basics"><span class="toc-text">Basics</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#others"><span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#view"><span class="toc-text">View</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transaction"><span class="toc-text">Transaction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constraints"><span class="toc-text">Constraints</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foreign-key"><span class="toc-text">Foreign key</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cyclic-reference"><span class="toc-text">Cyclic reference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#user-defined-types"><span class="toc-text">User Defined Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#others-1"><span class="toc-text">Others</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pldb"><span class="toc-text">PL+DB</span></a></li></ol>
       
     </div>
   </div>
