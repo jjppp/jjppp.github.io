@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-02-28T08:46:44.292Z</updated>
+  <updated>2024-03-01T12:53:06.361Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DB04 Storage</title>
+    <link href="http://example.com/2024/03/01/DB04-Storage/"/>
+    <id>http://example.com/2024/03/01/DB04-Storage/</id>
+    <published>2024-03-01T11:47:15.000Z</published>
+    <updated>2024-03-01T12:53:06.361Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;开头讲了一些硬件小常识&lt;/p&gt;
+&lt;p&gt;一个有意思的表达：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;strawman idea: 翻译过来大概是“抛砖引玉”或者“初步的想法”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Database" scheme="http://example.com/tags/Database/"/>
+    
+  </entry>
   
   <entry>
     <title>DB03 SQL</title>
@@ -498,29 +526,6 @@ class=&quot;math</summary>
     
     
     <category term="Database" scheme="http://example.com/tags/Database/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Network04 Network</title>
-    <link href="http://example.com/2023/01/09/Network04-Network/"/>
-    <id>http://example.com/2023/01/09/Network04-Network/</id>
-    <published>2023-01-09T05:08:26.000Z</published>
-    <updated>2023-02-18T12:57:38.559Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Network" scheme="http://example.com/tags/Network/"/>
     
   </entry>
   

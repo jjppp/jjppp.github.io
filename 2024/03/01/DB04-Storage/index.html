@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      DB04 Storage 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,213 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="Network04 Network">
-        <div class="time-m-d">2023-01-09</div>
-        <div class="title">
-          <a href="/2023/01/09/Network04-Network/">
-            
-              
-                <span>Network04 Network</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">DB04 Storage</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2024-03-01 19:47:15
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Database/" title="Database">
+                    <b>#</b> Database
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="大三上昏睡日志">
-        <div class="time-m-d">2023-01-03</div>
-        <div class="title">
-          <a href="/2023/01/03/%E5%A4%A7%E4%B8%89%E4%B8%8A%E6%98%8F%E7%9D%A1%E6%97%A5%E5%BF%97/">
-            
-              
-                <span>大三上昏睡日志</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>开头讲了一些硬件小常识</p>
+<p>一个有意思的表达：</p>
+<blockquote>
+<p>strawman idea: 翻译过来大概是“抛砖引玉”或者“初步的想法”</p>
+</blockquote>
+<h1 id="storage-hierarchy">Storage Hierarchy</h1>
+<p>简单来说，数据库的数据是这么存的：</p>
+<ul>
+<li><em>一个</em>数据库的数据划分存在<em>许多</em>文件里</li>
+<li><em>一个</em>文件里有<em>许多</em> block/page</li>
+<li><em>一个</em> block 里有<em>许多</em> tuple</li>
+</ul>
+<p>为了实现的方便，书上又做了一些假设：</p>
+<ul>
+<li>tuple 不会跨 block 储存</li>
+<li>block 不会跨文件储存</li>
+</ul>
+<h2 id="tuple">Tuple</h2>
+<p>最简单的实现就是照猫画虎地序列化一个 C struct</p>
+<p>需要注意：</p>
+<ul>
+<li>tuple 内部的值可以不定长</li>
+<li>tuple 可以有 null value</li>
+</ul>
+<p>解法也很简单，只需要加一个 tuple header 来存各个 attribute
+的信息就行。通常这个 header 是定长的</p>
+<h2 id="block">Block</h2>
+<p>实际上要处理两个问题：</p>
+<ol type="1">
+<li>怎么访问有用的数据（比如遍历 block 内的所有 tuple）</li>
+<li>怎么管理空闲的位置（比如找到任意一个空闲位置）</li>
+</ol>
+<p>解法也很简单：</p>
+<ol type="1">
+<li>用数据结构组织已分配的位置（链表/数组/...）</li>
+<li>用数据结构组织未分配的位置（链表/树/...）</li>
+</ol>
+<p>因为插入和删除的位置可以是任意的，所以用数组就会很呆。如果做过 oslab
+就会知道需要加 header 各种挤 metadata 的空间</p>
+<h3 id="fixed-length">fixed-length</h3>
+<p>这时候 fixed-length tuple 的假设就非常好了，回想 slab-page + bit flag
+的设计，这里对应就是 block-tuple + bit flag</p>
+<h3 id="variable-length">variable-length</h3>
+<p>最简单的办法就是像 slab 一样把 block 分类，每类只装大小为 4B 8B 16B
+32B... 的 tuple（大小不足的向上取整），这样就变成 fixed-length
+的问题了</p>
+<p>书上还列举了很多比较具体的做法，都不是很难</p>
+<h2 id="file">File</h2>
+
       </div>
-    
-      <div class="post-item" title="Automata06 Complexity">
-        <div class="time-m-d">2022-12-08</div>
-        <div class="title">
-          <a href="/2022/12/08/Automata06-Complexity/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>Automata06 Complexity</span>
-              
+              <a href="/2024/02/05/DB03-SQL/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2024-03-01 19:47:15
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Database/" title="Database">
+                        <b>#</b> Database
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="Automata05 TM">
-        <div class="time-m-d">2022-12-07</div>
-        <div class="title">
-          <a href="/2022/12/07/Automata05-TM/">
-            
-              
-                <span>Automata05 TM</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#storage-hierarchy"><span class="toc-text">Storage Hierarchy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple"><span class="toc-text">Tuple</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block"><span class="toc-text">Block</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fixed-length"><span class="toc-text">fixed-length</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#variable-length"><span class="toc-text">variable-length</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file"><span class="toc-text">File</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="Automata04 PDA">
-        <div class="time-m-d">2022-11-09</div>
-        <div class="title">
-          <a href="/2022/11/09/Automata04-PDA/">
-            
-              
-                <span>Automata04 PDA</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata03 CFL">
-        <div class="time-m-d">2022-11-09</div>
-        <div class="title">
-          <a href="/2022/11/09/Automata03-CFL/">
-            
-              
-                <span>Automata03 CFL</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata02 RE">
-        <div class="time-m-d">2022-11-09</div>
-        <div class="title">
-          <a href="/2022/11/09/Automata02-RE/">
-            
-              
-                <span>Automata02 RE</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency05 Linearizability">
-        <div class="time-m-d">2022-11-07</div>
-        <div class="title">
-          <a href="/2022/11/07/Concurrency05-Linearizability/">
-            
-              
-                <span>Concurrency05 Linearizability</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency04 Promising">
-        <div class="time-m-d">2022-11-07</div>
-        <div class="title">
-          <a href="/2022/11/07/Concurrency04-Promising/">
-            
-              
-                <span>Concurrency04 Promising</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linguistics02 Phonetics">
-        <div class="time-m-d">2022-10-17</div>
-        <div class="title">
-          <a href="/2022/10/17/Linguistics02-Phonetics/">
-            
-              
-                <span>Linguistics02 Phonetics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linguistics01 Intro">
-        <div class="time-m-d">2022-10-17</div>
-        <div class="title">
-          <a href="/2022/10/17/Linguistics01-Intro/">
-            
-              
-                <span>Linguistics01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Network03 Transport">
-        <div class="time-m-d">2022-10-16</div>
-        <div class="title">
-          <a href="/2022/10/16/Network03-Transport/">
-            
-              
-                <span>Network03 Transport</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Automata01 FSM">
-        <div class="time-m-d">2022-10-04</div>
-        <div class="title">
-          <a href="/2022/10/04/Automata01-FSM/">
-            
-              
-                <span>Automata01 FSM</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency03 Axiomatic">
-        <div class="time-m-d">2022-09-25</div>
-        <div class="title">
-          <a href="/2022/09/25/Concurrency03-Axiomatic/">
-            
-              
-                <span>Concurrency03 Axiomatic</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency02 Operational">
-        <div class="time-m-d">2022-09-25</div>
-        <div class="title">
-          <a href="/2022/09/25/Concurrency02-Operational/">
-            
-              
-                <span>Concurrency02 Operational</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Concurrency01 HMM">
-        <div class="time-m-d">2022-09-25</div>
-        <div class="title">
-          <a href="/2022/09/25/Concurrency01-HMM/">
-            
-              
-                <span>Concurrency01 HMM</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Network02 Application">
-        <div class="time-m-d">2022-09-12</div>
-        <div class="title">
-          <a href="/2022/09/12/Network02-Application/">
-            
-              
-                <span>Network02 Application</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Memory Models">
-        <div class="time-m-d">2022-09-07</div>
-        <div class="title">
-          <a href="/2022/09/07/Memory-Model/">
-            
-              
-                <span>Memory Models</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="TAOMP02 Mutex">
-        <div class="time-m-d">2022-09-02</div>
-        <div class="title">
-          <a href="/2022/09/02/TAOMP02-Mutex/">
-            
-              
-                <span>TAOMP02 Mutex</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="TAOMP01 Intro">
-        <div class="time-m-d">2022-09-01</div>
-        <div class="title">
-          <a href="/2022/09/01/TAOMP01-Intro/">
-            
-              
-                <span>TAOMP01 Intro</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">2 / 7</span>
-    
-      <a href="/page/3/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +591,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
