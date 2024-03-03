@@ -222,7 +222,7 @@
 <li>用数据结构组织未分配的位置（链表/树/...）</li>
 </ol>
 <p>因为插入和删除的位置可以是任意的，所以用数组就会很呆。如果做过 oslab
-就会知道需要加 header 各种挤 metadata 的空间</p>
+就会想到加 header 各种挤 metadata 的空间</p>
 <h3 id="fixed-length">fixed-length</h3>
 <p>这时候 fixed-length tuple 的假设就非常好了，回想 slab-page + bit flag
 的设计，这里对应就是 block-tuple + bit flag</p>
@@ -232,6 +232,29 @@
 的问题了</p>
 <p>书上还列举了很多比较具体的做法，都不是很难</p>
 <h2 id="file">File</h2>
+<p>和 block 管理是类似的，不同之处在于一些假设</p>
+<h3 id="unordered">Unordered</h3>
+<p>即 tuple 的顺序无所谓，每个 block
+都是同等地位的。这个和内存分配是一样的</p>
+<h3 id="ordered">Ordered</h3>
+<p>要求 tuple 之间按照某个 key 排序。由于目前的架构是 tuple-block-file
+三层的，这实际上提出了两个要求：</p>
+<ol type="1">
+<li>block 内部的 tuple 要(逻辑上)有序</li>
+<li>file 内部的 block 要(逻辑上)有序</li>
+</ol>
+<p>解决办法：</p>
+<ol type="1">
+<li>如果用数组就可以直接移动位置排序，如果用链表就可以操作引用来排序。总之是排个序</li>
+<li>数组可以定时合并，链表可以横跨 block 排序</li>
+</ol>
+<p>如果比我聪明的话应该马上就能想到用 B 树这样的数据结构来维护
+树-结点-数据 这样的三层结构了。</p>
+<h2 id="tricks">Tricks</h2>
+<ul>
+<li>prejoin：意思是把某些实际上相关的表提前 join 在一起</li>
+<li>partitioning：意思是把某些表划分成子表，这些子表内部满足一些性质(比如有序)，以此利用查询时的局部性</li>
+</ul>
 
       </div>
       
@@ -276,7 +299,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#storage-hierarchy"><span class="toc-text">Storage Hierarchy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple"><span class="toc-text">Tuple</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block"><span class="toc-text">Block</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fixed-length"><span class="toc-text">fixed-length</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#variable-length"><span class="toc-text">variable-length</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file"><span class="toc-text">File</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#storage-hierarchy"><span class="toc-text">Storage Hierarchy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple"><span class="toc-text">Tuple</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block"><span class="toc-text">Block</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fixed-length"><span class="toc-text">fixed-length</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#variable-length"><span class="toc-text">variable-length</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file"><span class="toc-text">File</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unordered"><span class="toc-text">Unordered</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ordered"><span class="toc-text">Ordered</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tricks"><span class="toc-text">Tricks</span></a></li></ol></li></ol>
       
     </div>
   </div>
