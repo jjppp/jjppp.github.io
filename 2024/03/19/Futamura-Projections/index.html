@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      Futamura Projections 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,209 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="密码学07 OWF&HC">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/Crypto07-OWF-HC/">
-            
-              
-                <span>密码学07 OWF&HC</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Futamura Projections</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2024-03-19 23:53:49
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Eureka-Moments/" title="Eureka Moments">
+                    <b>#</b> Eureka Moments
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="密码学06 HASH">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/Crypto06-HASH/">
-            
-              
-                <span>密码学06 HASH</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>看论文时发现的潮词</p>
+<p>对于一个程序 <span class="math inline">\(f\)</span>，它的输入是 <span
+class="math inline">\((a,b)\)</span>，输出是 <span
+class="math inline">\(o\)</span>，我们写作 <span
+class="math inline">\(f\colon A\times B\to O\)</span></p>
+<p>如果存在一个奇妙程序 <span
+class="math inline">\(s\)</span>，它能把给定的程序 <span
+class="math inline">\(f\)</span> 和一部分输入 <span
+class="math inline">\(a\)</span> 结合在一起，得到一个新的程序 <span
+class="math inline">\(f_a\)</span>，那么我们就把 <span
+class="math inline">\(s\)</span> 叫做 specializer，这里 <span
+class="math inline">\(s\colon F\times A\to F\)</span></p>
+<p>从几何的角度看，这就是一个高维向量在 <span
+class="math inline">\(a\)</span> 处的投影，所以世人也叫 <span
+class="math inline">\(s\)</span> 为 projection</p>
+<p>如果 <span class="math inline">\(f\)</span> 是一个解释器，<span
+class="math inline">\(a\)</span> 是一段代码，<span
+class="math inline">\(b\)</span> 是程序的输入，那么</p>
+<h1 id="type-i">type I</h1>
+<p><span class="math display">\[
+\forall b\in B, s(f,a)(b)\overset{\text{def}}= f_a(b)=f(a, b)
+\]</span></p>
+<p>我们就从解释器 <span class="math inline">\(f\)</span> 和代码 <span
+class="math inline">\(a\)</span> 得到了可执行文件 <span
+class="math inline">\(f_a\)</span></p>
+<h1 id="type-ii">type II</h1>
+<p><span class="math display">\[
+\forall a\in A, s(s, f)(a)\overset{\text{def}}= s_f(a)=s(f, a)=f_a
+\]</span></p>
+<p>根据 type I，<span class="math inline">\(f_a\)</span>
+是可执行文件，所以这里 <span class="math inline">\(s_f\)</span>​
+是一个只要给出代码就能产生可执行文件的——编译器</p>
+<p>我们就从specializer <span class="math inline">\(s\)</span> 和解释器 $
+f$ 得到了编译器 <span class="math inline">\(s_f\)</span></p>
+<h1 id="type-iii">type III</h1>
+<p><span class="math display">\[
+\forall f\in F,s(s, s)(f)\overset{\text{def}}= s_s(f)=s(s,
+f)\overset{\text{def}}=s_f
+\]</span></p>
+<p>根据 type II，<span class="math inline">\(s_f\)</span>
+是编译器，所以这里的 <span class="math inline">\(s_s\)</span>
+是一个只要给出解释器就能产生编译器的——元编译器！</p>
+<p>我们就从两个 specializer <span class="math inline">\(s\)</span>
+得到了 compiler generator <span class="math inline">\(s_s\)</span></p>
+
       </div>
-    
-      <div class="post-item" title="密码学05 MAC">
-        <div class="time-m-d">2021-12-20</div>
-        <div class="title">
-          <a href="/2021/12/20/Crypto05-MAC/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>密码学05 MAC</span>
-              
+              <a href="/2024/03/01/DB04-Storage/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2024-03-19 23:53:49
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Eureka-Moments/" title="Eureka Moments">
+                        <b>#</b> Eureka Moments
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="PA3 附加关卡">
-        <div class="time-m-d">2021-12-11</div>
-        <div class="title">
-          <a href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA3 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#type-i"><span class="toc-text">type I</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#type-ii"><span class="toc-text">type II</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#type-iii"><span class="toc-text">type III</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="PA2 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA2 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA1 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA1 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义05 Semantics">
-        <div class="time-m-d">2021-11-07</div>
-        <div class="title">
-          <a href="/2021/11/07/Semantics05-Semantics/">
-            
-              
-                <span>形式语义05 Semantics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学04 PRG&PRF">
-        <div class="time-m-d">2021-10-19</div>
-        <div class="title">
-          <a href="/2021/10/19/Crypto04-PRG-PRF/">
-            
-              
-                <span>密码学04 PRG&PRF</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义04 Types">
-        <div class="time-m-d">2021-10-05</div>
-        <div class="title">
-          <a href="/2021/10/05/Semantics04-Types/">
-            
-              
-                <span>形式语义04 Types</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学03 Computational">
-        <div class="time-m-d">2021-09-27</div>
-        <div class="title">
-          <a href="/2021/09/27/Crypto03-Computational/">
-            
-              
-                <span>密码学03 Computational</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义03 Lambda">
-        <div class="time-m-d">2021-09-16</div>
-        <div class="title">
-          <a href="/2021/09/16/Semantics03-Lambda/">
-            
-              
-                <span>形式语义03 Lambda</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学02 Perfect">
-        <div class="time-m-d">2021-09-15</div>
-        <div class="title">
-          <a href="/2021/09/15/Crypto02-Perfect/">
-            
-              
-                <span>密码学02 Perfect</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义01 Intro">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/Semantics01-Intro/">
-            
-              
-                <span>形式语义01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义02 Math">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/Semantics02-Math/">
-            
-              
-                <span>形式语义02 Math</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学01 Intro">
-        <div class="time-m-d">2021-09-02</div>
-        <div class="title">
-          <a href="/2021/09/02/Crypto01-Intro/">
-            
-              
-                <span>密码学01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Compiler03 语法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/Compiler03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>Compiler03 语法分析</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Compiler02 词法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/Compiler02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>Compiler02 词法分析</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="DFA到等价正则表达式的转化">
-        <div class="time-m-d">2021-08-20</div>
-        <div class="title">
-          <a href="/2021/08/20/DFA%E5%88%B0%E7%AD%89%E4%BB%B7%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BD%AC%E5%8C%96/">
-            
-              
-                <span>DFA到等价正则表达式的转化</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析10 Soundiness">
-        <div class="time-m-d">2021-08-14</div>
-        <div class="title">
-          <a href="/2021/08/14/SPA10-Soundiness/">
-            
-              
-                <span>软件分析10 Soundiness</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="软件分析09 CFL-R&IFDS">
-        <div class="time-m-d">2021-08-13</div>
-        <div class="title">
-          <a href="/2021/08/13/SPA09-CFL-R-IFDS/">
-            
-              
-                <span>软件分析09 CFL-R&IFDS</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/4/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">5 / 7</span>
-    
-      <a href="/page/6/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +587,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
