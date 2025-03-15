@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-04-12T06:02:03.970Z</updated>
+  <updated>2025-03-15T15:28:24.422Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我是如何成为TA的</title>
+    <link href="http://example.com/2025/03/15/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BATA%E7%9A%84/"/>
+    <id>http://example.com/2025/03/15/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BATA%E7%9A%84/</id>
+    <published>2025-03-15T14:26:17.000Z</published>
+    <updated>2025-03-15T15:28:24.422Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
+    
+  </entry>
   
   <entry>
     <title>DOM</title>
@@ -496,31 +519,6 @@ rust 写的&lt;/p&gt;
     
     
     <category term="Network" scheme="http://example.com/tags/Network/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Automata07 TS</title>
-    <link href="http://example.com/2023/02/08/Automata07-TS/"/>
-    <id>http://example.com/2023/02/08/Automata07-TS/</id>
-    <published>2023-02-08T08:52:09.000Z</published>
-    <updated>2023-02-21T08:39:53.757Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;def&quot;&gt;Def&lt;/h1&gt;
-&lt;p&gt;Transition System 本质上是一个五元组 &lt;span
-class=&quot;math</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Automata" scheme="http://example.com/tags/Automata/"/>
     
   </entry>
   
