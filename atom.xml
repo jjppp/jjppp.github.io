@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>jjppp</title>
-  <icon>https://jjppp.github.io/icon.png</icon>
+  <icon>http://example.com/icon.png</icon>
   <subtitle>Blog of jjppp</subtitle>
-  <link href="https://jjppp.github.io/atom.xml" rel="self"/>
+  <link href="http://example.com/atom.xml" rel="self"/>
   
-  <link href="https://jjppp.github.io/"/>
+  <link href="http://example.com/"/>
   <updated>2025-03-15T15:28:24.422Z</updated>
-  <id>https://jjppp.github.io/</id>
+  <id>http://example.com/</id>
   
   <author>
     <name>jpwang</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>我是如何成为TA的</title>
-    <link href="https://jjppp.github.io/2025/03/15/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BATA%E7%9A%84/"/>
-    <id>https://jjppp.github.io/2025/03/15/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BATA%E7%9A%84/</id>
+    <link href="http://example.com/2025/03/15/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BATA%E7%9A%84/"/>
+    <id>http://example.com/2025/03/15/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BATA%E7%9A%84/</id>
     <published>2025-03-15T14:26:17.000Z</published>
     <updated>2025-03-15T15:28:24.422Z</updated>
     
@@ -35,14 +35,14 @@
     
     
     
-    <category term="Eureka Moments" scheme="https://jjppp.github.io/tags/Eureka-Moments/"/>
+    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
     
   </entry>
   
   <entry>
     <title>DOM</title>
-    <link href="https://jjppp.github.io/2024/04/12/DOM/"/>
-    <id>https://jjppp.github.io/2024/04/12/DOM/</id>
+    <link href="http://example.com/2024/04/12/DOM/"/>
+    <id>http://example.com/2024/04/12/DOM/</id>
     <published>2024-04-12T06:02:03.000Z</published>
     <updated>2024-04-12T06:02:03.970Z</updated>
     
@@ -63,8 +63,8 @@
   
   <entry>
     <title>Futamura Projections</title>
-    <link href="https://jjppp.github.io/2024/03/19/Futamura-Projections/"/>
-    <id>https://jjppp.github.io/2024/03/19/Futamura-Projections/</id>
+    <link href="http://example.com/2024/03/19/Futamura-Projections/"/>
+    <id>http://example.com/2024/03/19/Futamura-Projections/</id>
     <published>2024-03-19T15:53:49.000Z</published>
     <updated>2024-11-20T16:15:16.911Z</updated>
     
@@ -83,14 +83,14 @@ class=&quot;math</summary>
     
     
     
-    <category term="Eureka Moments" scheme="https://jjppp.github.io/tags/Eureka-Moments/"/>
+    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
     
   </entry>
   
   <entry>
     <title>DB04 Storage</title>
-    <link href="https://jjppp.github.io/2024/03/01/DB04-Storage/"/>
-    <id>https://jjppp.github.io/2024/03/01/DB04-Storage/</id>
+    <link href="http://example.com/2024/03/01/DB04-Storage/"/>
+    <id>http://example.com/2024/03/01/DB04-Storage/</id>
     <published>2024-03-01T11:47:15.000Z</published>
     <updated>2024-03-03T07:56:50.115Z</updated>
     
@@ -111,14 +111,14 @@ class=&quot;math</summary>
     
     
     
-    <category term="Database" scheme="https://jjppp.github.io/tags/Database/"/>
+    <category term="Database" scheme="http://example.com/tags/Database/"/>
     
   </entry>
   
   <entry>
     <title>DB03 SQL</title>
-    <link href="https://jjppp.github.io/2024/02/05/DB03-SQL/"/>
-    <id>https://jjppp.github.io/2024/02/05/DB03-SQL/</id>
+    <link href="http://example.com/2024/02/05/DB03-SQL/"/>
+    <id>http://example.com/2024/02/05/DB03-SQL/</id>
     <published>2024-02-05T15:44:12.000Z</published>
     <updated>2024-02-28T08:46:44.292Z</updated>
     
@@ -138,14 +138,14 @@ class=&quot;sourceCode</summary>
     
     
     
-    <category term="Database" scheme="https://jjppp.github.io/tags/Database/"/>
+    <category term="Database" scheme="http://example.com/tags/Database/"/>
     
   </entry>
   
   <entry>
     <title>浅谈Verilog中的X</title>
-    <link href="https://jjppp.github.io/2024/01/30/%E6%B5%85%E8%B0%88Verilog%E4%B8%AD%E7%9A%84X/"/>
-    <id>https://jjppp.github.io/2024/01/30/%E6%B5%85%E8%B0%88Verilog%E4%B8%AD%E7%9A%84X/</id>
+    <link href="http://example.com/2024/01/30/%E6%B5%85%E8%B0%88Verilog%E4%B8%AD%E7%9A%84X/"/>
+    <id>http://example.com/2024/01/30/%E6%B5%85%E8%B0%88Verilog%E4%B8%AD%E7%9A%84X/</id>
     <published>2024-01-30T14:17:08.000Z</published>
     <updated>2024-01-30T16:07:56.044Z</updated>
     
@@ -162,14 +162,14 @@ class=&quot;sourceCode</summary>
     
     
     
-    <category term="Eureka Moments" scheme="https://jjppp.github.io/tags/Eureka-Moments/"/>
+    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
     
   </entry>
   
   <entry>
     <title>DB02 Relational</title>
-    <link href="https://jjppp.github.io/2024/01/23/DB02-Relational/"/>
-    <id>https://jjppp.github.io/2024/01/23/DB02-Relational/</id>
+    <link href="http://example.com/2024/01/23/DB02-Relational/"/>
+    <id>http://example.com/2024/01/23/DB02-Relational/</id>
     <published>2024-01-23T13:54:30.000Z</published>
     <updated>2024-02-05T16:15:46.165Z</updated>
     
@@ -188,14 +188,14 @@ class=&quot;math</summary>
     
     
     
-    <category term="Database" scheme="https://jjppp.github.io/tags/Database/"/>
+    <category term="Database" scheme="http://example.com/tags/Database/"/>
     
   </entry>
   
   <entry>
     <title>DB01 Intro</title>
-    <link href="https://jjppp.github.io/2024/01/23/DB01-Intro/"/>
-    <id>https://jjppp.github.io/2024/01/23/DB01-Intro/</id>
+    <link href="http://example.com/2024/01/23/DB01-Intro/"/>
+    <id>http://example.com/2024/01/23/DB01-Intro/</id>
     <published>2024-01-23T12:09:24.000Z</published>
     <updated>2024-01-23T13:53:01.817Z</updated>
     
@@ -213,14 +213,14 @@ class=&quot;math</summary>
     
     
     
-    <category term="Database" scheme="https://jjppp.github.io/tags/Database/"/>
+    <category term="Database" scheme="http://example.com/tags/Database/"/>
     
   </entry>
   
   <entry>
     <title>SA04 Abstract interpretation</title>
-    <link href="https://jjppp.github.io/2024/01/02/SA04-Abstract-interpretation/"/>
-    <id>https://jjppp.github.io/2024/01/02/SA04-Abstract-interpretation/</id>
+    <link href="http://example.com/2024/01/02/SA04-Abstract-interpretation/"/>
+    <id>http://example.com/2024/01/02/SA04-Abstract-interpretation/</id>
     <published>2024-01-01T18:09:34.000Z</published>
     <updated>2024-01-01T19:31:21.313Z</updated>
     
@@ -239,14 +239,14 @@ class=&quot;math</summary>
     
     
     
-    <category term="Static Analysis" scheme="https://jjppp.github.io/tags/Static-Analysis/"/>
+    <category term="Static Analysis" scheme="http://example.com/tags/Static-Analysis/"/>
     
   </entry>
   
   <entry>
     <title>Tour de SAT</title>
-    <link href="https://jjppp.github.io/2023/12/30/Tour-de-SAT/"/>
-    <id>https://jjppp.github.io/2023/12/30/Tour-de-SAT/</id>
+    <link href="http://example.com/2023/12/30/Tour-de-SAT/"/>
+    <id>http://example.com/2023/12/30/Tour-de-SAT/</id>
     <published>2023-12-29T16:29:50.000Z</published>
     <updated>2023-12-30T17:58:27.698Z</updated>
     
@@ -267,14 +267,14 @@ class=&quot;math</summary>
     
     
     
-    <category term="SAT" scheme="https://jjppp.github.io/tags/SAT/"/>
+    <category term="SAT" scheme="http://example.com/tags/SAT/"/>
     
   </entry>
   
   <entry>
     <title>A subtle bug in a static analysis framework</title>
-    <link href="https://jjppp.github.io/2023/12/26/A-subtle-bug-in-a-static-analysis-framework/"/>
-    <id>https://jjppp.github.io/2023/12/26/A-subtle-bug-in-a-static-analysis-framework/</id>
+    <link href="http://example.com/2023/12/26/A-subtle-bug-in-a-static-analysis-framework/"/>
+    <id>http://example.com/2023/12/26/A-subtle-bug-in-a-static-analysis-framework/</id>
     <published>2023-12-26T08:26:13.000Z</published>
     <updated>2023-12-26T15:29:49.882Z</updated>
     
@@ -291,14 +291,14 @@ class=&quot;math</summary>
     
     
     
-    <category term="Eureka Moments" scheme="https://jjppp.github.io/tags/Eureka-Moments/"/>
+    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
     
   </entry>
   
   <entry>
     <title>SA03 narrowing &amp; widening</title>
-    <link href="https://jjppp.github.io/2023/11/29/SA03-narrowing-widening/"/>
-    <id>https://jjppp.github.io/2023/11/29/SA03-narrowing-widening/</id>
+    <link href="http://example.com/2023/11/29/SA03-narrowing-widening/"/>
+    <id>http://example.com/2023/11/29/SA03-narrowing-widening/</id>
     <published>2023-11-29T14:31:58.000Z</published>
     <updated>2023-11-29T15:00:18.938Z</updated>
     
@@ -316,14 +316,14 @@ class=&quot;math</summary>
     
     
     
-    <category term="Static Analysis" scheme="https://jjppp.github.io/tags/Static-Analysis/"/>
+    <category term="Static Analysis" scheme="http://example.com/tags/Static-Analysis/"/>
     
   </entry>
   
   <entry>
     <title>Cpp Lambda Quirks</title>
-    <link href="https://jjppp.github.io/2023/08/23/Cpp-Lambda-Captures/"/>
-    <id>https://jjppp.github.io/2023/08/23/Cpp-Lambda-Captures/</id>
+    <link href="http://example.com/2023/08/23/Cpp-Lambda-Captures/"/>
+    <id>http://example.com/2023/08/23/Cpp-Lambda-Captures/</id>
     <published>2023-08-23T06:12:22.000Z</published>
     <updated>2023-08-23T07:40:14.878Z</updated>
     
@@ -342,14 +342,14 @@ lambda</summary>
     
     
     
-    <category term="Cpp" scheme="https://jjppp.github.io/tags/Cpp/"/>
+    <category term="Cpp" scheme="http://example.com/tags/Cpp/"/>
     
   </entry>
   
   <entry>
     <title>SA02 lattice</title>
-    <link href="https://jjppp.github.io/2023/08/11/SA02-lattice/"/>
-    <id>https://jjppp.github.io/2023/08/11/SA02-lattice/</id>
+    <link href="http://example.com/2023/08/11/SA02-lattice/"/>
+    <id>http://example.com/2023/08/11/SA02-lattice/</id>
     <published>2023-08-11T07:52:38.000Z</published>
     <updated>2023-11-29T14:33:26.854Z</updated>
     
@@ -368,14 +368,14 @@ lambda</summary>
     
     
     
-    <category term="Static Analysis" scheme="https://jjppp.github.io/tags/Static-Analysis/"/>
+    <category term="Static Analysis" scheme="http://example.com/tags/Static-Analysis/"/>
     
   </entry>
   
   <entry>
     <title>SA01 Type</title>
-    <link href="https://jjppp.github.io/2023/08/04/spa01-Type/"/>
-    <id>https://jjppp.github.io/2023/08/04/spa01-Type/</id>
+    <link href="http://example.com/2023/08/04/spa01-Type/"/>
+    <id>http://example.com/2023/08/04/spa01-Type/</id>
     <published>2023-08-04T13:51:29.000Z</published>
     <updated>2023-08-12T04:35:10.920Z</updated>
     
@@ -393,14 +393,14 @@ lambda</summary>
     
     
     
-    <category term="Static Analysis" scheme="https://jjppp.github.io/tags/Static-Analysis/"/>
+    <category term="Static Analysis" scheme="http://example.com/tags/Static-Analysis/"/>
     
   </entry>
   
   <entry>
     <title>大三下荒唐实录</title>
-    <link href="https://jjppp.github.io/2023/08/03/%E5%A4%A7%E4%B8%89%E4%B8%8B%E8%8D%92%E5%94%90%E5%AE%9E%E5%BD%95/"/>
-    <id>https://jjppp.github.io/2023/08/03/%E5%A4%A7%E4%B8%89%E4%B8%8B%E8%8D%92%E5%94%90%E5%AE%9E%E5%BD%95/</id>
+    <link href="http://example.com/2023/08/03/%E5%A4%A7%E4%B8%89%E4%B8%8B%E8%8D%92%E5%94%90%E5%AE%9E%E5%BD%95/"/>
+    <id>http://example.com/2023/08/03/%E5%A4%A7%E4%B8%89%E4%B8%8B%E8%8D%92%E5%94%90%E5%AE%9E%E5%BD%95/</id>
     <published>2023-08-03T05:04:12.000Z</published>
     <updated>2023-08-03T06:54:18.978Z</updated>
     
@@ -417,14 +417,14 @@ lambda</summary>
     
     
     
-    <category term="Eureka Moments" scheme="https://jjppp.github.io/tags/Eureka-Moments/"/>
+    <category term="Eureka Moments" scheme="http://example.com/tags/Eureka-Moments/"/>
     
   </entry>
   
   <entry>
     <title>LLHD 踩坑记</title>
-    <link href="https://jjppp.github.io/2023/06/14/LLHD-%E8%B8%A9%E5%9D%91%E8%AE%B0/"/>
-    <id>https://jjppp.github.io/2023/06/14/LLHD-%E8%B8%A9%E5%9D%91%E8%AE%B0/</id>
+    <link href="http://example.com/2023/06/14/LLHD-%E8%B8%A9%E5%9D%91%E8%AE%B0/"/>
+    <id>http://example.com/2023/06/14/LLHD-%E8%B8%A9%E5%9D%91%E8%AE%B0/</id>
     <published>2023-06-14T15:31:45.000Z</published>
     <updated>2023-06-14T15:40:34.063Z</updated>
     
@@ -445,14 +445,14 @@ rust 写的&lt;/p&gt;
     
     
     
-    <category term="踩坑" scheme="https://jjppp.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
+    <category term="踩坑" scheme="http://example.com/tags/%E8%B8%A9%E5%9D%91/"/>
     
   </entry>
   
   <entry>
     <title>Compiler04 语法制导翻译</title>
-    <link href="https://jjppp.github.io/2023/03/18/Compiler04-%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%BF%BB%E8%AF%91/"/>
-    <id>https://jjppp.github.io/2023/03/18/Compiler04-%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%BF%BB%E8%AF%91/</id>
+    <link href="http://example.com/2023/03/18/Compiler04-%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%BF%BB%E8%AF%91/"/>
+    <id>http://example.com/2023/03/18/Compiler04-%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%BF%BB%E8%AF%91/</id>
     <published>2023-03-18T15:51:56.000Z</published>
     <updated>2023-05-01T13:36:31.199Z</updated>
     
@@ -468,14 +468,14 @@ rust 写的&lt;/p&gt;
     
     
     
-    <category term="Compiler" scheme="https://jjppp.github.io/tags/Compiler/"/>
+    <category term="Compiler" scheme="http://example.com/tags/Compiler/"/>
     
   </entry>
   
   <entry>
     <title>Network06 Wireless</title>
-    <link href="https://jjppp.github.io/2023/02/15/Network06-Wireless/"/>
-    <id>https://jjppp.github.io/2023/02/15/Network06-Wireless/</id>
+    <link href="http://example.com/2023/02/15/Network06-Wireless/"/>
+    <id>http://example.com/2023/02/15/Network06-Wireless/</id>
     <published>2023-02-15T15:20:58.000Z</published>
     <updated>2023-02-16T13:50:29.104Z</updated>
     
@@ -493,14 +493,14 @@ rust 写的&lt;/p&gt;
     
     
     
-    <category term="Network" scheme="https://jjppp.github.io/tags/Network/"/>
+    <category term="Network" scheme="http://example.com/tags/Network/"/>
     
   </entry>
   
   <entry>
     <title>Network05 Link</title>
-    <link href="https://jjppp.github.io/2023/02/15/Network05-Link/"/>
-    <id>https://jjppp.github.io/2023/02/15/Network05-Link/</id>
+    <link href="http://example.com/2023/02/15/Network05-Link/"/>
+    <id>http://example.com/2023/02/15/Network05-Link/</id>
     <published>2023-02-15T12:26:46.000Z</published>
     <updated>2023-02-16T11:50:02.811Z</updated>
     
@@ -518,7 +518,7 @@ rust 写的&lt;/p&gt;
     
     
     
-    <category term="Network" scheme="https://jjppp.github.io/tags/Network/"/>
+    <category term="Network" scheme="http://example.com/tags/Network/"/>
     
   </entry>
   
