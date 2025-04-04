@@ -8,10 +8,13 @@
   <meta name="author" content="jpwang" />
   <meta name="description" content="Young, Simple &amp; Naive" />
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      JVM exception handlers 
+      
+      
+      |
     
      jjppp
   </title>
@@ -116,281 +119,221 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="数理逻辑01 命题逻辑">
-        <div class="time-m-d">2022-01-20</div>
-        <div class="title">
-          <a href="/2022/01/20/Logic01-%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91/">
-            
-              
-                <span>数理逻辑01 命题逻辑</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">JVM exception handlers</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="更新时间"></i>
+          2025-04-05 00:09:58
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/JVM/" title="JVM">
+                    <b>#</b> JVM
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="大二上躺平经验">
-        <div class="time-m-d">2022-01-11</div>
-        <div class="title">
-          <a href="/2022/01/11/%E5%A4%A7%E4%BA%8C%E4%B8%8A%E8%BA%BA%E5%B9%B3%E7%BB%8F%E9%AA%8C/">
-            
-              
-                <span>大二上躺平经验</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>又涨姿势了</p>
+<p>最近在研究一个 Java
+静态分析框架的异常分析算法。异常分析大概可以分成两个部分：方法内的异常分析，以及跨方法的异常分析。</p>
+<h2 id="方法内异常分析">方法内异常分析</h2>
+<p>简单来说就是基于（bytecode）语法的语法分析。Java
+程序中的异常是这么一回事：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> <span class="op">&#123;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">throw</span> <span class="kw">new</span> <span class="fu">ExceptionA</span><span class="op">(</span><span class="kw">...</span><span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span> <span class="cf">catch</span> <span class="op">(</span>ExceptionB e<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<p>在 <code>try</code> block
+中出现的异常会由内向外寻找，直到找到第一个能够匹配上抛出异常的类型的
+<code>catch</code> block，然后进行控制流的跳转。</p>
+<p>不难发现这样的结构是可以嵌套的，所有的 <code>try</code> block
+会构成一棵树。</p>
+<p>观察这个分析框架里的算法，它是这么写的（有简化）：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> eh <span class="kw">in</span> getAllExceptionsHandlers():</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> stmt <span class="kw">in</span> getAllStmts():</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> stmt <span class="kw">in</span> eh.tryBlock:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            catchers[stmt].append(eh)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stmt <span class="kw">in</span> getAllStmts():</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    exceptions <span class="op">=</span> getExceptionsThrownAt(stmt)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> eh <span class="kw">in</span> catchers.get(stmt):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Filter out those exceptions that can be handled by handler eh</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        exceptions <span class="op">=</span> <span class="bu">filter</span>(<span class="kw">lambda</span> x: <span class="kw">not</span> eh.catch.catches(x), exceptions)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> exceptions.empty():</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># These exceptions will be thrown out of the method</span></span></code></pre></div>
+<p>看着没什么问题，这里的 <code>catchers.get(stmt)</code>
+实际上是一个有序的列表，这意味着此处对于 <code>catch</code> block
+的搜索是按照某种固定的顺序进行的。</p>
+<p>这个顺序从哪里来？答案在<a
+target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jvms/se12/html/jvms-3.html#jvms-3.12">这里</a>。和前面铺垫的不同，JVM
+实际上并没有嵌套的异常处理结构，因此 JVM
+中对于异常的处理并不是在做某种树形结构上的搜索。相反，JVMS
+强硬地规定了编译后的文件应当包含一个有序的 exception handler
+列表，这个表中的顺序就代表了<strong>所有</strong>异常发生时，查找
+<code>catch</code> block
+的搜索顺序。用树形结构的视角看，实际上就是选取了一个固定的树上遍历顺序（一个比较直接的顺序是后序遍历）。</p>
+<p>那么这是否就说明“管辖”同一语句的两个 exception handler 作为
+<code>catch</code> block
+的区间必然存在包含关系呢？答案也是否定的。<code>dacapo2006</code>
+benchmark 中的 <code>eclipse-deps.jar</code>
+就存在这样的情况。我观察后发现这些不包含的情况（存在 handler
+<code>eh1</code> 和 <code>eh2</code>，使得既不
+<code>eh1 in eh2</code>，也不
+<code>eh2 in eh2</code>）通常是存在一个原本的 handler
+<code>EH</code>，在编译或者优化的过程中
+<code>EH = eh2 + eh3 + ...</code> 被分成了多个连续的区间，而
+<code>eh1</code> 和 <code>EH</code> 是存在着包含关系的。</p>
+<h2 id="跨方法异常分析">跨方法异常分析</h2>
+<p>TBD</p>
+
       </div>
-    
-      <div class="post-item" title="PA4 附加关卡">
-        <div class="time-m-d">2022-01-11</div>
-        <div class="title">
-          <a href="/2022/01/11/PA4-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>PA4 附加关卡</span>
-              
+              <a href="/2025/03/15/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BATA%E7%9A%84/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="更新时间"></i>
+              2025-04-05 00:09:58
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="标签"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/JVM/" title="JVM">
+                        <b>#</b> JVM
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="密码学07 OWF&HC">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/Crypto07-OWF-HC/">
-            
-              
-                <span>密码学07 OWF&HC</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%86%85%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90"><span class="toc-text">方法内异常分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E6%96%B9%E6%B3%95%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90"><span class="toc-text">跨方法异常分析</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="密码学06 HASH">
-        <div class="time-m-d">2021-12-21</div>
-        <div class="title">
-          <a href="/2021/12/21/Crypto06-HASH/">
-            
-              
-                <span>密码学06 HASH</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学05 MAC">
-        <div class="time-m-d">2021-12-20</div>
-        <div class="title">
-          <a href="/2021/12/20/Crypto05-MAC/">
-            
-              
-                <span>密码学05 MAC</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA3 附加关卡">
-        <div class="time-m-d">2021-12-11</div>
-        <div class="title">
-          <a href="/2021/12/11/PA3-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA3 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA2 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA2-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA2 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="PA1 附加关卡">
-        <div class="time-m-d">2021-12-01</div>
-        <div class="title">
-          <a href="/2021/12/01/PA1-%E9%99%84%E5%8A%A0%E5%85%B3%E5%8D%A1/">
-            
-              
-                <span>PA1 附加关卡</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义05 Semantics">
-        <div class="time-m-d">2021-11-07</div>
-        <div class="title">
-          <a href="/2021/11/07/Semantics05-Semantics/">
-            
-              
-                <span>形式语义05 Semantics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学04 PRG&PRF">
-        <div class="time-m-d">2021-10-19</div>
-        <div class="title">
-          <a href="/2021/10/19/Crypto04-PRG-PRF/">
-            
-              
-                <span>密码学04 PRG&PRF</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义04 Types">
-        <div class="time-m-d">2021-10-05</div>
-        <div class="title">
-          <a href="/2021/10/05/Semantics04-Types/">
-            
-              
-                <span>形式语义04 Types</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学03 Computational">
-        <div class="time-m-d">2021-09-27</div>
-        <div class="title">
-          <a href="/2021/09/27/Crypto03-Computational/">
-            
-              
-                <span>密码学03 Computational</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义03 Lambda">
-        <div class="time-m-d">2021-09-16</div>
-        <div class="title">
-          <a href="/2021/09/16/Semantics03-Lambda/">
-            
-              
-                <span>形式语义03 Lambda</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学02 Perfect">
-        <div class="time-m-d">2021-09-15</div>
-        <div class="title">
-          <a href="/2021/09/15/Crypto02-Perfect/">
-            
-              
-                <span>密码学02 Perfect</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义01 Intro">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/Semantics01-Intro/">
-            
-              
-                <span>形式语义01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="形式语义02 Math">
-        <div class="time-m-d">2021-09-09</div>
-        <div class="title">
-          <a href="/2021/09/09/Semantics02-Math/">
-            
-              
-                <span>形式语义02 Math</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="密码学01 Intro">
-        <div class="time-m-d">2021-09-02</div>
-        <div class="title">
-          <a href="/2021/09/02/Crypto01-Intro/">
-            
-              
-                <span>密码学01 Intro</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Compiler03 语法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/Compiler03-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>Compiler03 语法分析</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Compiler02 词法分析">
-        <div class="time-m-d">2021-09-01</div>
-        <div class="title">
-          <a href="/2021/09/01/Compiler02-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
-            
-              
-                <span>Compiler02 词法分析</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Q8q82ykDfbCKbcs94fM4J7Y7-gzGzoHsz',
+        appKey: '11q17qeyEiLeiMWxGw7qjtKR',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/4/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">5 / 7</span>
-    
-      <a href="/page/6/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -656,6 +599,16 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

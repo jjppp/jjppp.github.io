@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-15T15:28:24.422Z</updated>
+  <updated>2025-04-04T16:34:38.560Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JVM exception handlers</title>
+    <link href="http://example.com/2025/04/05/JVM-exception-handlers/"/>
+    <id>http://example.com/2025/04/05/JVM-exception-handlers/</id>
+    <published>2025-04-04T16:09:58.000Z</published>
+    <updated>2025-04-04T16:34:38.560Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;又涨姿势了&lt;/p&gt;
+&lt;p&gt;最近在研究一个 Java
+静态分析框架的异常分析算法。异常分析大概可以分成两个部分：方法内的异常分析，以及跨方法的异常分析。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="JVM" scheme="http://example.com/tags/JVM/"/>
+    
+  </entry>
   
   <entry>
     <title>我是如何成为TA的</title>
@@ -486,31 +512,6 @@ rust 写的&lt;/p&gt;
         
     <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
 &lt;p&gt;无线局域网的特征：&lt;/p&gt;
-&lt;ol</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Network" scheme="http://example.com/tags/Network/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Network05 Link</title>
-    <link href="http://example.com/2023/02/15/Network05-Link/"/>
-    <id>http://example.com/2023/02/15/Network05-Link/</id>
-    <published>2023-02-15T12:26:46.000Z</published>
-    <updated>2023-02-16T11:50:02.811Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
-&lt;p&gt;链路层的意义是补全网络层剩下要做的事情，主要有两种类型：&lt;/p&gt;
 &lt;ol</summary>
         
       
