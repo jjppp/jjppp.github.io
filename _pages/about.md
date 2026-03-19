@@ -19,7 +19,7 @@ Education
 
 Publication
 ======
-- **\(\lambda_V\)** The Essence of Verilog: A Tractable and Tested Operational Semantics for Verilog
-  Qinlin Chen; Nairen Zhang; **Jinpeng Wang**; Tian Tan; Chang Xu; Xiaoxing Ma; Yue Li
+- **$$\lambda_V$$** The Essence of Verilog: A Tractable and Tested Operational Semantics for Verilog
+  Qinlin Chen; Nairen Zhang; *Jinpeng Wang*; Tian Tan; Chang Xu; Xiaoxing Ma; Yue Li
 
   TL;DR: We developed a tractable operational semantics for Verilog, based on which we built an interpreter that allows us to better understand Verilog semantics.
