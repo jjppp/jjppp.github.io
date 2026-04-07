@@ -4,7 +4,7 @@ collection: teaching
 type: "Undergraduate course"
 permalink: /teaching/2024-fall-SICP
 venue: "Nanjing University, Computer Science"
-date: 2024 Fall
+date: 2024-09-01
 location: "Nanjing, China"
 ---
 
