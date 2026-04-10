@@ -19,6 +19,11 @@ Education
 
 Publication
 ======
+- **Qihe** Exploiting Sophisticated Static Analysis for Verilog
+  Qinlin Chen, Nairen Zhang, *Jinpeng Wang*, Jiacai Cui, Tian Tan, Xiaoxing Ma, Chang Xu, Jian Lv, Yue Li
+
+  TL;DR: We employed sophisticated static analysis to hardware for Verilog, based on a set of carefully designed fundamental and application analyses (Qihe).
+
 - **$$\lambda_V$$** The Essence of Verilog: A Tractable and Tested Operational Semantics for Verilog
   Qinlin Chen; Nairen Zhang; *Jinpeng Wang*; Tian Tan; Chang Xu; Xiaoxing Ma; Yue Li
 
