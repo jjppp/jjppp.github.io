@@ -1,0 +1,156 @@
+---
+title: Automata07 TS
+date: 2023-02-08 16:52:09
+tags: Automata
+---
+
+# Def
+
+Transition System 本质上是一个五元组 $\mathcal{A}=\left<S,S_0,T,\alpha,\beta\right>$，分别表示状态集、初始状态、转移集和端点函数。这里 $(\alpha(t),\beta(t))$ 表示转移 $t$ 的起点和重点，这么做的一个好处是 $T$ 可以任意多，并且两个状态间存在多个转移。
+
+当然本质上还是有限有向图。
+
+## Path
+
+一条路径是一个序列 $\Set{t_i}$，满足 $\forall i,\beta(t_i)=\alpha(t_{i+1})$，且 $\alpha(t_0)=S_0$。即首尾相连的一系列边。
+
+有了路径就能定义联通性，比较 fancy 的写法是 $\twoheadrightarrow\subseteq S\times S$ 是包含 $\alpha(T)\times\beta(T)$ 的传递闭包。那么一个状态 $s\in S$ 可达当且仅当 $S_0\twoheadrightarrow s$。
+
+规定 $T^+=\Set{\text{finite paths in $T$}}$，$T^\omega=\Set{\text{infinite paths in $T$}}$，容易将 $\alpha,\beta$ 拓展到 $T^+$ 上
+
+同时可以把连接操作拓展到路径上，即 $p_1\circ p_2$ 规定为两个序列的拼接。为了方便 $p_1$ 不能为无穷路径。
+
+## Terminal
+
+$\forall t\in S$ 都不存在 $s\twoheadrightarrow t$。即没有后继状态
+
+## Deadlock
+
+如果 $s$ 是 terminal 且 reachable，那么 $s$ 也叫死锁状态
+
+## Label
+
+可以多带一个 $\lambda:T\mapsto A$ 表示给转移加上名字，$A$ 就是名字集。
+
+## Trace
+
+给定一个路径 $p$，那么定义 $\text{trace}(p)=\text{map}(\lambda,p)$
+
+# Equivalence
+
+给定两个 TS $T_1,T_2$，我们可以寻找它们之间的若干``等价''关系。下面从强到弱给出。
+
+## Homomorphism
+
+定义为一对映射 $(f,g)$，其中 $f\colon S_1\mapsto S_2$，$g\colon T_1\mapsto T_2$
+
+满足：
+
+1. $f\circ \alpha_1=\alpha_2\circ g$
+2. $f\circ\beta_1=\beta_2\circ g$
+3. $f\circ\lambda_1=\lambda_2\circ g$
+
+如果 $(f,g)$ 恰好都是满射，那么称 $T_2$ 是 $T_1$ 的一个商（quotient）
+
+## Strong Isomorphism
+
+$(f,g)$ 均为双射
+
+强同构说明两个 TS 没有本质上的不同
+
+## Weak Isomorphism
+
+$(f,g)$ 定义在 reachable state 上。即 $T_1,T_2$ 删去不可达的点和边之后是 Strongly Isomorphic 的
+
+很显然强同构 implies 弱同构
+
+## Bisimulation
+
+存在关系 $\simeq\subseteq S_1\times S_2$ 满足
+
+1. $S_0\simeq S_1$
+2. $s_1\sim s_1'$ 且 $s_1\twoheadrightarrow s_2$ implies $s_2\simeq s_2'$ 且 $s_1'\twoheadrightarrow s_2'$
+3. $s_1\simeq s_1'$ 且 $s_1'\twoheadrightarrow s_2'$ implies $s_2\simeq s_2'$ 且 $s_1\twoheadrightarrow s_2$
+
+给一个例子
+
+![bisim](bisim.png)
+
+# Product
+
+定义两个 TS 的乘积为分别将状态、转移相乘。直接相乘叫做自由积 Free product
+
+可以给自由积加上限制 $I\subseteq \prod A_i$，表示只有 $I$ 中的转移才可以被触发。
+
+不难发现自由积定义出来的新 TS 默认所有转移是同时进行的。
+
+# Temporal logic
+
+本质上是一种带状态机结构的谓词逻辑，可以表达例如 "eventually true" 或者 "never true" 这样的句子。
+
+一般描述一个 TS $\mathcal{A}$ 的时候会用元组 $(\mathcal{A}, AP, L)$ 来表示，其中 $AP$ 表示原子命题，$L:S\to 2^{AP}$ 给每个状态标记上若干个原子命题，表示这个状态的性质。
+
+一个 trace 是 $\mathcal A$ 中状态的无穷序列 $w=\Set{s_i}_{i=0}^\infty$，定义 $w_k=s_k$，$w^k=\Set{s_i}_{i=k}^{\infty}$
+
+## LTL
+
+Linear Temporal Logic 要求 $\mathcal A$ 中的自动机是线性的。
+
+### Syntax
+
+主要是多了几个算子
+
+* $X$，ne**X**t
+* $U$，**U**ntil
+* $G$，**G**lobally 或者 Always
+* $F$，**F**inally
+* $R$，**R**elease
+
+### Semantics
+
+对于给定的 trace $w$
+
+* $w\models a\iff a\in w_0$ 
+
+* $w\models a\wedge b\iff w\models a\text{ and } w\models b$
+
+* $w\models Xa\iff w^1\models a$
+
+  即下一个状态满足。
+
+* $w\models aUb\iff \exists k, w^k\models b\text{ and } \forall i<k,w^i\models a$
+  即存在一个时刻 $b$ 满足，并且在 $b$ 满足之前 $a$ 都得持续满足。
+
+* $w\models Fa\iff w\models \text{true}Ua$
+  即存在一个时刻使得 $a$ 满足。
+
+* $w\models Ga \iff w\models \neg F\neg a$
+  即并不存在一个时刻使得 $a$ 满足
+  也就是说 $a$ 会在任意时刻满足
+
+* $w\models aRb\iff w\models\neg(\neg aU\neg b)$
+  即**并非**（$\neg a U\neg b$）
+
+  即并非（存在一个时刻满足 $\neg b$，且在 $\neg b$ 满足之前 $\neg a$ 一直满足）
+
+  即（不存在一个时刻满足 $\neg b$）或者（存在一个时刻满足 $\neg b$ 但是 $\neg b$ 满足之前 $\neg a$ 并非一直满足）
+
+  即（任意时刻都满足 $b$）或者（存在一个时刻不满足 $b$，但是 $b$ 不满足之前存在时刻满足 $a$）
+  
+  即在 $a$ 满足之前，$b$ 必然一直满足。如果 $a$ 一直不满足，那么 $b$ 将一直满足。
+  
+  （有一种 $U$ 逆转然后放松的感觉）
+
+## CTL
+
+
+
+### Syntax
+
+### Semantics
+
+## CTL*
+
+### Syntax
+
+### Semantics

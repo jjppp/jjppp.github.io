@@ -1,0 +1,205 @@
+---
+title: 计算方法05 图的代数性质
+tags: Numerical Method
+date: 2022-05-10 20:48:00
+excerpt: 感觉这部分穿插的有些怪
+---
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+
+
+upd：最后两节课突然就悟了，因为tcs组主要是做这个的...看了看感觉就是硬广，那就学着吧。
+
+
+# Courant-Fischer
+
+
+对于实对称矩阵 $A$，其最大特征值 $\lambda_\max(A)\geq \frac{x^\intercal Ax}{x^\intercal
+x}$，其中 $x^\intercal x\neq \textbf 0$
+
+
+# 图的代数性质
+
+
+即对于给定的图 $G$，通过观察 $G$ 的邻接矩阵/拉普拉斯矩阵的性质来获得某些 $G$ 的性质。
+
+
+## 邻接矩阵
+
+
+记为 $A$，规定 $A_{x,y}=[xy\in E(G)]$，其中 $[\cdot]$ 为指示函数。
+
+
+$A$ 还可以写成如下形式
+
+\begin{aligned}
+
+A=\sum_{xy\in E(G)} A^{(xy)}
+
+\end{aligned}
+
+其中 ${A^{(xy)} }_{x,y}=1$ 其余位置皆为 $0$。即一张图的邻接矩阵可以由所有的边的邻接矩阵拼起来。
+
+
+显然，对于无向图而言，$A^\intercal=A$
+
+
+### 特征值
+
+
+$\lambda_\max(A_G)\leq d_\max(G)$
+
+
+不妨设最大特征值为 $\lambda$，属于 $\lambda$ 的特征向量 $x$ 的绝对值最大的分量为 $x_i$（不妨设 $x_i>0$），那么有
+
+\begin{aligned}
+
+\lambda x_i=(\lambda x)_i=(Ax)_i=\sum_{j=1}^n A_{i,j}x_j\leq x_i\sum_{j=1}^n
+A_{i,j}=d(i)x_i \leq d_\max(G) x_i
+
+\end{aligned}
+
+$\lambda_\max(A_G)\geq d_{\text{avg} }(G)$
+
+
+只需要用到前置中的定理，令 $x=(\frac{1}{\sqrt{n} },\frac{1}{\sqrt{n} }\ldots
+\frac{1}{\sqrt{n} })^\intercal$ 即可。
+
+
+### 二分图
+
+
+若 $G$ 为二分图，则其邻接矩阵 $A$ 为
+
+
+1. 对称阵，$A^\intercal =A$。
+
+2. 分块矩阵，有 $\begin{bmatrix}0 & B \\ B^\intercal & 0\end{bmatrix}=A$。这是因为存在点集
+$V(G)$ 的划分 $\set{U,V}$ 使得 $V,U$ 的内部没有边，即邻接矩阵存在子矩阵为全 $0$ 矩阵。
+
+
+
+
+对于二分图，若 $\lambda$ 为邻接矩阵 $A$ 的 $k$ 重特征值，那么 $-\lambda$ 必然也为 $A$ 的 $k$ 重特征值。
+
+
+证明：
+
+
+不妨设属于 $\lambda$ 的特征向量为 $v=\begin{bmatrix}{x}\\{y}\end{bmatrix}$，那么有
+$Av=\lambda v$，即 $\left\{\begin{aligned}By&=\lambda x\\B^\intercal x&=\lambda
+y\end{aligned}\right.$
+
+
+此时构造 $v'=\begin{bmatrix}x\\-y\end{bmatrix}$，那么有
+$Av'=\begin{bmatrix}-By\\B^\intercal
+x\end{bmatrix}=-\lambda\begin{bmatrix}x\\-y\end{bmatrix}$，这说明 $v'$ 是属于特征值
+$-\lambda$ 的特征向量。
+
+
+当 $\lambda$ 重数为 $k$ 时，有 $k$ 个属于 $\lambda$ 的线性无关的特征向量，这 $k$ 个分别取反就得到了 $k$ 个属于
+$-\lambda$ 的特征向量。
+
+
+
+
+反之，若按顺序排布特征值 $\lambda_1,\lambda_2\ldots \lambda_n$，有 $\forall i,
+\lambda_i=-\lambda_{n-i+1}$ 成立，那么 $G$ 是二分图。
+
+
+证明：
+
+
+对于任意的奇数 $k$，有
+
+\begin{aligned}
+
+tr(A^k)=\sum_{i=1}^n {\lambda_i}^k=\frac12\sum_{i=1}^n \left({\lambda_i}^k +
+{\lambda_{n-i+1} }^k\right)=0
+
+\end{aligned}
+
+考虑 $(A^k)_{i,j}$，其组合含义为 $i,j$ 点对之间长度恰为奇数 $k$ 的路径数量。根据矩阵迹的定义又有：
+
+\begin{aligned}
+
+tr(A^k)=\sum_{i=1}^n (A^k)_{i,i}=0
+
+\end{aligned}
+
+由于 $A$ 所有元素非负，因此 $\forall i, (A^k)_{i,i}=0$，这说明对于任意奇数长度的圈，图 $G$
+中都不存在。这恰好是二分图的充要条件。
+
+
+## 拉普拉斯矩阵
+
+
+也叫调和矩阵，在矩阵树定理里面叫做基尔霍夫矩阵。
+
+
+规定 $L=D-A$，其中 $D=\text{diag}\{d_1,d_2\ldots d_n\}$ 是度数对角阵。
+
+
+
+
+对于边 $e=(x,y)$ 定义 $L_{e}$ 是 $L_e[x,y]=L_e[y,x]=1$，$L_e[x,x]=L_e[y,y]=-1$，其余为
+$0$ 的矩阵。那么有
+
+\begin{aligned}
+
+L=\sum_{e\in E(G)} L_e
+
+\end{aligned}
+
+类似 $A$，可以将 $L$ 视为所有边相加得到的图。这个形式对于 $L$ 的二次型非常有用，有如下形式：
+
+\begin{aligned}
+
+x^\intercal Lx=\sum_{e\in E(G)} x^\intercal L_e x=\sum_{e=(i,j)\in E(G)}
+(x_i-x_j)^2
+
+\end{aligned}
+
+由上式立刻得到 $L\succeq 0$ 为半正定矩阵，列举特征值将有 $0= \lambda_1\le \lambda_2\cdots
+\lambda_n$。
+
+
+### 特征值
+
+
+$\textbf 1$ 是 $L$ 的一个特征向量，对应特征值为 $0$。即 $L\textbf 1=\textbf 0$
+
+
+证明：拆开即得。
+
+
+
+
+$G$ 连通，当且仅当 $L$ 的特征值 $0$ 重数为 $1$。
+
+
+"$\Leftarrow$"：
+
+
+假设 $G$ 不连通，则 $L$ 可以写成 $\begin{bmatrix}B & 0 \\ 0 &
+C\end{bmatrix}$。注意到至少存在两个属于特征值 $0$ 的特征向量$\begin{bmatrix}\textbf 1\\
+\textbf0\end{bmatrix}$ 和$\begin{bmatrix}\textbf 0\\ \textbf1\end{bmatrix}$
+
+
+"$\Rightarrow$"：
+
+
+已知 $G$ 连通，那么取属于 $0$ 的特征值 $x$，有 $x^\intercal Lx=\sum_{(i,j)\in E(G)}
+(x_i-x_j)^2=0$。这说明 $\forall (i,j)\in E(G)$ 都有 $x_i=x_j$，由连通性立即得到
+$x=k\textbf1$，即重数为 $1$。
+
+
+结合半正定性立即有 $0=\lambda_1< \lambda_2\le \cdots \lambda_n$，也就是 $G$ 连通当且仅当
+$\lambda_2>0$
+
+
+
+
+
+
+剩下的咕咕咕

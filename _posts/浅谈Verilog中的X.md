@@ -1,0 +1,219 @@
+---
+title: 浅谈Verilog中的X
+date: 2024-01-30 22:17:08
+tags: Eureka Moments
+
+---
+
+打算做成一个系列，希望不要变成征讨檄文
+
+# 做个标题党
+
+> 不知从那里听来的……他认识一种值，名曰“X”，混沌所化，用if一算，就消释了……
+
+X的作用似乎很多，可以表示未知、don't care、注入错误，但许多仿真器不带X玩也可以足够流行（说的就是你，verilator）。作为一个比较独特的语言特性，X必然要硅农花费时间熟悉。这篇文章希望带你10分钟知道和X有关的一切。
+
+# X 是什么
+
+## 仿真
+
+> 天地浑沌如鸡子，盘古生其中。万八千岁，天地开辟，阳清为天，阴浊为地。
+
+知识告诉我们单纯的数字电路中只有0和1，实践告诉我们电路在刚上电（开机）的时候具有一些不确定性，这是电路物理特性决定的。
+
+在编程语言中表达这种初始值的不确定性一般有这么几种路子
+
+### UB派
+
+比如大家都喜欢的C
+
+> 未经初始化的变量的值是未定义的
+
+这句话中译中后是这样的
+
+> 如果变量 `v` 没有被初始化，那么 `v` 的值可能是 `0` 也可能是 `1`
+
+这么做的好处首先是简单，我们甚至不需要定义什么，只需要说它是未定义的
+
+### unknown派
+
+比如大家最后都在写的SQL
+
+> 未经初始化的变量的值是特殊值UNKNOWN
+
+这句话定义了除0, 1外的新值，UNKNOWN，并规定未初始化的变量将持有UNKNOWN
+
+敏锐的童鞋可能会问：引入了新的值，那么运算要怎么办呢？
+
+答案是传播UNKNOWN。简单来说，只要有一个操作数带了 UNKNOWN，那么结果就要体现出 UNKOWN
+
+
+
+显然，verilog 选择了 UNKNOWN。
+
+### 为什么
+
+我斗胆猜测了一下原因
+
+* verilog 最早是用来验证和仿真的语言，引入X可以方便验证（写断言/写性质）
+* 选择UB会引入额外的不确定性
+* X可以覆盖更多的情况，更加general
+
+## 综合
+
+> “不知道！”他似乎很不高兴，脸上还有怒色了。
+
+表达 do not care 的需求在手画电路图的工匠时代就已经产生了。某些综合工具会利用X的**仿真语义**，认为这代表了硅农在表示 do not care，进而做一些优化
+
+```verilog
+always_comb begin
+    if (sel) out = A;
+    else out = 1'bx;
+end
+```
+
+上面这个例子就可以被优化成
+
+```verilog
+assign out = A;
+```
+
+## 验证
+
+由于X在运算中会传播，因此X可以作为“污点”。当电路进入非法状态时，可以通过注入X来起警示作用。如果观察到了X，说明电路很可能出了问题
+
+```verilog
+always_comb begin
+    if (sanity_check_fail(current_state)) begin
+        next_state = 32'bx;
+    end else begin
+        // ...
+    end
+end
+```
+
+## 结论
+
+* X表示不确定的值——“0或1”
+* X不是仿真必须的——只是verilog选择了UNKOWN语义
+* X需要有配套的运算语义
+
+# X怎么样
+
+## X的语义
+
+因为X是一个抽象值，所以我们需要给X运算的语义
+
+定义 $\gamma(\texttt{X})=\{0,1\},\gamma(\texttt{0})=\{0\},\gamma(\texttt{1})=\{1\},\gamma(s)=\prod_{i}\gamma(s_i)$，我们称 $\gamma$ 是一个具体函数，它将抽象的比特串映射回可能的01比特串。例如 $\gamma(\texttt{01X0})=\{\texttt{0110$,$0100}\}$
+
+我们希望对于任意含X的比特$b_1,b_2$，应该有 $\gamma(b_1\oplus b_2)=\{c_1\oplus c_2\mid c_1\in\gamma(b_1),c_2\in\gamma(b_2)\}$
+
+这给出了理论上运算符精确性的极限，我们当然希望越接近这个极限越好。
+
+这里从语言标准里摘给几个运算让大家感受一下，可以验证哪些满足最优，哪些不满足
+
+### and
+
+```verilog
+initial begin
+    A = 3'bxxx;
+    B = 3'b01x;
+    $displayb(A & B); // 0xx
+end
+```
+
+可以发现标准还是做了一些bit操作的优化的，例如0&X=0，值的表扬
+
+### add
+
+```verilog
+initial begin
+    A = 3'b00x;
+    B = 3'b110;
+    $displayb(A + B); // xxx
+end
+```
+
+注意到无论A是000还是001，它和B作加法都不会影响高位，因此最好的结果应该是11X
+
+手册中规定只要有一位是X，那么加法的结果都将是X
+
+### array
+
+```verilog
+// store
+initial begin
+    for (i = 0; i < 256; i = i + 1)
+        arr[i] = 0;
+    arr[32'bx] = 114514;
+    for (i = 0; i < 256; i = i + 1)
+        $display(arr[i]); // 0
+end
+
+// load
+initial begin
+    for (i = 0; i < 256; i = i + 1)
+        arr[i] = 114514;
+    $display(arr[32'x]); // x
+end
+```
+
+手册规定：
+
+* store的index带X，则忽略这次store
+* load的index带X，则产生一个X
+
+严格来说，`arr[X]=val` 应当导致后续所有对 `arr` 的读取都产生X
+
+### condition
+
+```verilog
+always @* begin
+    if (sel) out = A;
+    else out = B; // (sel=X, A=0, B=1) -> 1
+end
+
+assign out = sel ? A : B; // (sel=X, A=0, B=1) -> X
+```
+
+这就是比较著名的 X-optimism，难以想象一个 fundamentally flawed implementation 竟然也能给一个这么积极的名字，大伙真是起名的大师
+
+### pessimism
+
+```verilog
+assign out = sel ? A : B; // (sel=X,A=1,B=1) -> 1
+assign out =(sel & A) | (~sel & B); // (sel=X,A=1,B=1) -> X
+```
+
+虽然二者功能等价，但在仿真时结果精度不一致，即使它们都完整地覆盖了所有可能的结果
+
+## 结论
+
+* X作为仿真抽象值，其上定义的运算并非最精确（某些情况下是具体语义的over approximation）
+* X作为仿真抽象值，其上定义的运算可能遗漏了具体执行时可能的结果（并非全都是safe approximation）
+
+# 想法
+
+开始夹带私货：假如要设计一个新的HDL，或者H别的什么L（说的就是你，chisel），我们要如何对待X？
+
+## 要不要 X
+
+不要
+
+我个人觉得 X 更像是 meta level 的东西。verilog之所以复杂，是因为它兼具仿真、综合、验证三种功能。
+
+把 X作为值放进标准里，定死的运算语义使得仿真器不能做精确优化；验证和仿真都用同一套语言让具体值和抽象值只能搅在一起；引入的X-optimism还会隐藏某些bug，得不偿失
+
+如果X作为了语言本身的一部分，那么任何针对X的分析都将变成 partial evaluation
+
+## 怎么描述不确定性
+
+UB人
+
+把描述不确定性交给 meta level 的工具，例如linter/formal checker/analyzer。仿真只负责处理01值，又快又好
+
+这也是目前verilator的思路。不过verilog仍然允许显式赋值X，因此verilator还需要打一个`x-assign`的补丁
+
+## 怎么解决X-optimism
+
+这其实是个抽象解释理论能解决的问题
