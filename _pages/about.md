@@ -15,8 +15,19 @@ Education
 - 2024.09 - present: Nanjing University, MSc in Computer Science.
 - 2020.09 - 2024.06: Nanjing University, Bsc in Information and Computing Science.
 
+Services
+======
+
+- Teaching Assistant: Structure and Implementation of Computer Programs (2025 Fall, 2026 Fall).
+
 Publication
 ======
+
+- **Valve** Heap Abstraction via Early-Confluent Object Merging for Pointer Analysis
+  *Jinpeng Wang*, Yufei Liang, Zhongsheng Zhan, Tian Tan, Yue Li
+
+  TL;DR: We made context-sensitive pointer analysis efficient (40x speedup on average) whith good precision (99.61% precision), from the perspective of heap abstraction.
+
 - **Qihe** Exploiting Sophisticated Static Analysis for Verilog
   Qinlin Chen, Nairen Zhang, *Jinpeng Wang*, Jiacai Cui, Tian Tan, Xiaoxing Ma, Chang Xu, Jian Lv, Yue Li
 
@@ -26,3 +37,8 @@ Publication
   Qinlin Chen; Nairen Zhang; *Jinpeng Wang*; Tian Tan; Chang Xu; Xiaoxing Ma; Yue Li
 
   TL;DR: We developed a tractable operational semantics for Verilog, based on which we built an interpreter that allows us to better understand Verilog semantics.
+
+Work Experience
+======
+
+- 2026.07 - present: DeepSeek (intern)
