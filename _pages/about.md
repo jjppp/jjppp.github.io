@@ -28,17 +28,20 @@ Work Experience
 Publication
 ======
 
-- **Valve** Heap Abstraction via Early-Confluent Object Merging for Pointer Analysis
-  *Jinpeng Wang*, Yufei Liang, Zhongsheng Zhan, Tian Tan, Yue Li
+- OOPSLA 2026, (**Valve**) _Heap Abstraction via Early-Confluent Object Merging for Pointer Analysis_
+
+  **Jinpeng Wang**, Yufei Liang, Zhongsheng Zhan, Tian Tan, Yue Li
 
   TL;DR: We reconsider object merging from the view of early flow confluence, making context-sensitive pointer analysis efficient (40x speedup on average) whith good precision (99.61% precision).
 
-- **Qihe** Exploiting Sophisticated Static Analysis for Verilog
-  Qinlin Chen, Nairen Zhang, *Jinpeng Wang*, Jiacai Cui, Tian Tan, Xiaoxing Ma, Chang Xu, Jian Lv, Yue Li
+- PLDI 2026, (**Qihe**) _Exploiting Sophisticated Static Analysis for Verilog_
+
+  Qinlin Chen, Nairen Zhang, **Jinpeng Wang**, Jiacai Cui, Tian Tan, Xiaoxing Ma, Chang Xu, Jian Lv, Yue Li
 
   TL;DR: We employed sophisticated static analysis to hardware for Verilog, based on a set of carefully designed fundamental and application analyses (Qihe).
 
-- **$$\lambda_V$$** The Essence of Verilog: A Tractable and Tested Operational Semantics for Verilog
-  Qinlin Chen; Nairen Zhang; *Jinpeng Wang*; Tian Tan; Chang Xu; Xiaoxing Ma; Yue Li
+- OOPSLA 2023, (**$$\lambda_V$$**) _The Essence of Verilog: A Tractable and Tested Operational Semantics for Verilog_
+
+  Qinlin Chen; Nairen Zhang; **Jinpeng Wang**; Tian Tan; Chang Xu; Xiaoxing Ma; Yue Li
 
   TL;DR: We developed a tractable operational semantics for Verilog, based on which we built an interpreter that allows us to better understand Verilog semantics.
