@@ -1,6 +1,7 @@
 ---
 title: 'CSAPP实验01 : datalab'
 date: 2021-01-14
+excerpt: '记录 CSAPP Data Lab 中整数与浮点位级运算题的解法。'
 permalink: /posts/2021/01/CSAPP实验01-datalab/
 tags:
   - CSAPP

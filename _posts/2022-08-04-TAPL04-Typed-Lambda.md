@@ -1,6 +1,7 @@
 ---
 title: TAPL04 Typed Lambda
 date: 2022-08-04
+excerpt: '介绍简单类型 Lambda 演算及类型唯一性、Progress 和 Preservation 定理。'
 permalink: /posts/2022/08/TAPL04-Typed-Lambda/
 tags:
   - TAPL

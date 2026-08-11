@@ -1,6 +1,7 @@
 ---
 title: Network06 Wireless
 date: 2023-02-15
+excerpt: '介绍无线局域网、隐藏终端、CDMA、802.11、CSMA/CA 与 RTS/CTS。'
 permalink: /posts/2023/02/Network06-Wireless/
 tags:
   - Network

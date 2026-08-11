@@ -1,6 +1,7 @@
 ---
 title: DB02 Relational
 date: 2024-01-23
+excerpt: '介绍关系模型、主键与外键，以及基本关系代数操作。'
 permalink: /posts/2024/01/DB02-Relational/
 tags:
   - Database

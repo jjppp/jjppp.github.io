@@ -1,6 +1,7 @@
 ---
 title: Automata06 Complexity
 date: 2022-12-08
+excerpt: '介绍可判定性、递归语言、P/NP/PSPACE/EXP 及复杂度规约。'
 permalink: /posts/2022/12/Automata06-Complexity/
 tags:
   - Automata

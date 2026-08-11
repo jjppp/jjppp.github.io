@@ -1,6 +1,7 @@
 ---
 title: Automata04 PDA
 date: 2022-11-09
+excerpt: '介绍下推自动机、接受方式、确定性及其与 CFG 的等价性。'
 permalink: /posts/2022/11/Automata04-PDA/
 tags:
   - Automata
@@ -103,4 +104,3 @@ $$
 3. $(r,YX)\in\delta(p,c,X)$，即压入一个 $Y$。我们枚举弹出当前 $X$ 之后的状态 $s$，引入产生式 $[pXq]\to c[rYs][sZq]$
 
 有这几个就足够了。最后还需要引入一个全新的初始变量 $S$，然后规定 $\forall p, S\to [q_0Z_0p]$
-

@@ -1,6 +1,7 @@
 ---
 title: 'cmm Compiler Design'
 date: 2023-01-28
+excerpt: '记录 Cmm 编译器的解析、AST、类型检查、数据流分析与优化设计。'
 permalink: /posts/2023/01/cmm-Design/
 tags:
   - Compiler

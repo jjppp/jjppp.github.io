@@ -1,6 +1,7 @@
 ---
 title: 密码学04 PRG&PRF
 date: 2021-10-19
+excerpt: '介绍伪随机生成器和伪随机函数，以及它们在多次加密中的应用。'
 permalink: /posts/2021/10/Crypto04-PRG-PRF/
 tags:
   - Cryptography

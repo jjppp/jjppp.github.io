@@ -1,6 +1,7 @@
 ---
 title: 密码学01 Intro
 date: 2021-09-02
+excerpt: '介绍密码学的安全目标、攻击模型、经典密码与可证明安全。'
 permalink: /posts/2021/09/Crypto01-Intro/
 tags:
   - Cryptography

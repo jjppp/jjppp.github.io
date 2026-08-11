@@ -1,6 +1,7 @@
 ---
 title: SA04 Abstract interpretation
 date: 2024-01-02
+excerpt: '介绍 Galois connection、soundness 与抽象解释的最优性。'
 permalink: /posts/2024/01/SA04-Abstract-interpretation/
 tags:
   - Static Analysis

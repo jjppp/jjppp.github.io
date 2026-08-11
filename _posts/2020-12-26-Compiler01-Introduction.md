@@ -1,6 +1,7 @@
 ---
 title: Compiler01 Introduction
 date: 2020-12-26
+excerpt: '介绍编译器流程、前后端结构及词法分析到代码生成的主要阶段。'
 permalink: /posts/2020/12/Compiler01-Introduction/
 tags:
   - Compiler

@@ -1,6 +1,7 @@
 ---
 title: Linguistics02 Phonetics
 date: 2022-10-17
+excerpt: '介绍 IPA、辅音和元音，以及发声部位和发声方式。'
 permalink: /posts/2022/10/Linguistics02-Phonetics/
 tags:
   - Linguistics

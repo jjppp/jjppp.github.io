@@ -1,6 +1,7 @@
 ---
 title: Automata01 FSM
 date: 2022-10-04
+excerpt: '介绍 DFA、NFA、ε-NFA 的定义、等价性与 DFA 最小化。'
 permalink: /posts/2022/10/Automata01-FSM/
 tags:
   - Automata

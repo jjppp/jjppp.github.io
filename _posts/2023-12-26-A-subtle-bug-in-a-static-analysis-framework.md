@@ -1,6 +1,7 @@
 ---
 title: A subtle bug in a static analysis framework
 date: 2023-12-26
+excerpt: '通过常量传播反例分析静态分析框架中的非单调性及其影响。'
 permalink: /posts/2023/12/A-subtle-bug-in-a-static-analysis-framework/
 tags:
   - Eureka Moments

@@ -1,6 +1,7 @@
 ---
 title: Network01 Intro
 date: 2022-08-14
+excerpt: '从分层、交换与接入方式介绍计算机网络和互联网基础。'
 permalink: /posts/2022/08/Network01-Intro/
 tags:
   - Network

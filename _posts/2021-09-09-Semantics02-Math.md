@@ -1,6 +1,7 @@
 ---
 title: 形式语义02 Math
 date: 2021-09-09
+excerpt: '用集合、函数与积和类型的形式化定义说明程序状态和类型构造。'
 permalink: /posts/2021/09/Semantics02-Math/
 tags:
   - Formal Semantics

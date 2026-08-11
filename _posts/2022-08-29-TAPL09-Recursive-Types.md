@@ -1,6 +1,7 @@
 ---
 title: TAPL09 Recursive Types
 date: 2022-08-29
+excerpt: '介绍递归类型、等递归与同构递归，以及归纳和余归纳不动点。'
 permalink: /posts/2022/08/TAPL09-Recursive-Types/
 tags:
   - TAPL

@@ -1,6 +1,7 @@
 ---
 title: 形式语义04 Types
 date: 2021-10-05
+excerpt: '介绍类型系统、类型安全及 STLC 的 Progress 与 Preservation 定理。'
 permalink: /posts/2021/10/Semantics04-Types/
 tags:
   - Formal Semantics

@@ -1,6 +1,7 @@
 ---
 title: 密码学07 OWF&HC
 date: 2021-12-21
+excerpt: '介绍单向函数、硬核谓词及其构造伪随机生成器的关系。'
 permalink: /posts/2021/12/Crypto07-OWF-HC/
 tags:
   - Cryptography

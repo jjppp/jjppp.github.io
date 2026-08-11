@@ -1,6 +1,7 @@
 ---
 title: Concurrency04 Promising
 date: 2022-11-07
+excerpt: '介绍 Promising Semantics 通过 promises 约束内存行为并避免 OOTA。'
 permalink: /posts/2022/11/Concurrency04-Promising/
 tags:
   - Concurrency

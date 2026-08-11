@@ -1,6 +1,7 @@
 ---
 title: 密码学03 Computational
 date: 2021-09-27
+excerpt: '介绍计算安全、可忽略函数、PPT 对手与私钥加密安全游戏。'
 permalink: /posts/2021/09/Crypto03-Computational/
 tags:
   - Cryptography

@@ -1,6 +1,7 @@
 ---
 title: Hello World!
 date: 2020-10-26
+excerpt: '记录进入大学后的新博客，以及通过写作记录成长的愿望。'
 permalink: /posts/2020/10/Hello-World/
 tags:
   - Eureka Moments

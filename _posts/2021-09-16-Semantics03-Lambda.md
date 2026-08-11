@@ -1,6 +1,7 @@
 ---
 title: 形式语义03 Lambda
 date: 2021-09-16
+excerpt: '系统介绍 Lambda 演算的替换、规约、合流性与递归编码。'
 permalink: /posts/2021/09/Semantics03-Lambda/
 tags:
   - Formal Semantics

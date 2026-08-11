@@ -1,6 +1,7 @@
 ---
 title: Linguistics01 Intro
 date: 2022-10-17
+excerpt: '介绍语言学的研究对象及语音、音系、形态、句法等分支。'
 permalink: /posts/2022/10/Linguistics01-Intro/
 tags:
   - Linguistics

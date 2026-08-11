@@ -1,6 +1,7 @@
 ---
 title: TAPL06 References
 date: 2022-08-27
+excerpt: '介绍可变引用、副作用、别名、存储位置及引用类型检查。'
 permalink: /posts/2022/08/TAPL06-References/
 tags:
   - TAPL
@@ -71,4 +72,3 @@ $$
 这种 store 上的循环依赖将导致 naive 的类型推导不终止
 
 一个更加简单的方法是给每个 location 标注类型，即所有被动态分配出来的内存都应当维护这段内存中的比特串应当被解释为什么。
-

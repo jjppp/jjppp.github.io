@@ -1,6 +1,7 @@
 ---
 title: Haskell Parser Combinator
 date: 2022-07-26
+excerpt: '用 Haskell 实现 Parser Combinator，介绍 Functor、Monad 与解析组合子。'
 permalink: /posts/2022/07/Haskell-Parser-Combinator/
 tags:
   - haskell

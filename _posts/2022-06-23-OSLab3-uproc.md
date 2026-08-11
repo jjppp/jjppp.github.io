@@ -1,6 +1,7 @@
 ---
 title: 操作系统 Lab3 uproc
 date: 2022-06-23
+excerpt: '记录用户进程实验中的地址空间、fork、进程管理与内核栈问题。'
 permalink: /posts/2022/06/OSLab3-uproc/
 tags:
   - Operating System

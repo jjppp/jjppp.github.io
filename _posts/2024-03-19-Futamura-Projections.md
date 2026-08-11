@@ -1,6 +1,7 @@
 ---
 title: Futamura Projections
 date: 2024-03-19
+excerpt: '介绍 Futamura 投影，以及特殊化器、编译器和元编译器的关系。'
 permalink: /posts/2024/03/Futamura-Projections/
 tags:
   - Eureka Moments

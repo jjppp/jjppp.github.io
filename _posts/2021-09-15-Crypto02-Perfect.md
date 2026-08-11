@@ -1,6 +1,7 @@
 ---
 title: 密码学02 Perfect
 date: 2021-09-15
+excerpt: '介绍完美保密、一次一密及其概率定义、证明与局限。'
 permalink: /posts/2021/09/Crypto02-Perfect/
 tags:
   - Cryptography

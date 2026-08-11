@@ -1,6 +1,7 @@
 ---
 title: TAPL07 Exceptions
 date: 2022-08-28
+excerpt: '介绍异常传播、捕获、携带信息及异常处理的类型规则。'
 permalink: /posts/2022/08/TAPL07-Exceptions/
 tags:
   - TAPL

@@ -1,6 +1,7 @@
 ---
 title: JVM exception handlers
 date: 2025-04-05
+excerpt: '分析 JVM 异常处理器顺序及 Java 静态分析中的方法内异常传播。'
 permalink: /posts/2025/04/JVM-exception-handlers/
 tags:
   - JVM

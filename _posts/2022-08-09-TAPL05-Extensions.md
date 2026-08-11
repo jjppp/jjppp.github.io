@@ -1,6 +1,7 @@
 ---
 title: TAPL05 Extensions
 date: 2022-08-09
+excerpt: '介绍为简单类型 Lambda 演算添加 Unit、Record、Variant、Exception 等语言构造。'
 permalink: /posts/2022/08/TAPL05-Extensions/
 tags:
   - TAPL
@@ -173,4 +174,3 @@ field 是数字时就退化为 tuple，长度为 2 则退化成 pair。
 
 
 # Exception
-

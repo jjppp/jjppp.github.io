@@ -1,6 +1,7 @@
 ---
 title: Network04 Network
 date: 2023-01-09
+excerpt: '介绍网络层、SDN、路由器、IP 编址、NAT 与路由算法。'
 permalink: /posts/2023/01/Network04-Network/
 tags:
   - Network

@@ -1,6 +1,7 @@
 ---
 title: Jane Street 挂经
 date: 2026-05-19
+excerpt: '记录 Jane Street 技术面试、onsite 面试题与未获录用的经历。'
 permalink: /posts/2026/05/Jane-Street-挂经/
 tags:
   - Eureka Moments

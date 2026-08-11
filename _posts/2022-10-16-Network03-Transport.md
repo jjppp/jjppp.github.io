@@ -1,6 +1,7 @@
 ---
 title: Network03 Transport
 date: 2022-10-16
+excerpt: '介绍 UDP、TCP、Socket、可靠传输及 ARQ 协议的基本机制。'
 permalink: /posts/2022/10/Network03-Transport/
 tags:
   - Network
@@ -76,6 +77,5 @@ tags:
 这里的协议状态也很简单，只需要在发送后等待 ACK，在获得 NAK 后重传并重新等待即可。
 
 ###
-
 
 

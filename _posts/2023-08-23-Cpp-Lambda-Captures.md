@@ -1,6 +1,7 @@
 ---
 title: Cpp Lambda Quirks
 date: 2023-08-23
+excerpt: '通过实例解释 C++ Lambda 捕获、静态变量与可变闭包的行为。'
 permalink: /posts/2023/08/Cpp-Lambda-Captures/
 tags:
   - Cpp

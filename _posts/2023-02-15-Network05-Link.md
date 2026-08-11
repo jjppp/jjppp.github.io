@@ -1,6 +1,7 @@
 ---
 title: Network05 Link
 date: 2023-02-15
+excerpt: '介绍链路层、校验码、共享介质协议、ARP、交换机与 VLAN。'
 permalink: /posts/2023/02/Network05-Link/
 tags:
   - Network

@@ -1,6 +1,7 @@
 ---
 title: Concurrency02 Operational
 date: 2022-09-25
+excerpt: '用操作语义描述并发系统中的 CPU、内存及 CAS、FAA 等操作。'
 permalink: /posts/2022/09/Concurrency02-Operational/
 tags:
   - Concurrency

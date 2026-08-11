@@ -1,6 +1,7 @@
 ---
 title: 形式语义05 Semantics
 date: 2021-11-07
+excerpt: '介绍操作语义及大小步、小步语义，用规则描述程序执行。'
 permalink: /posts/2021/11/Semantics05-Semantics/
 tags:
   - Formal Semantics

@@ -1,6 +1,7 @@
 ---
 title: Automata03 CFL
 date: 2022-11-09
+excerpt: '介绍上下文无关文法、推导、二义性及 Chomsky 范式。'
 permalink: /posts/2022/11/Automata03-CFL/
 tags:
   - Automata

@@ -1,6 +1,7 @@
 ---
 title: SA03 narrowing & widening
 date: 2023-11-29
+excerpt: '介绍 Widening 加速格上分析，以及 Narrowing 提升分析精度。'
 permalink: /posts/2023/11/SA03-narrowing-widening/
 tags:
   - Static Analysis

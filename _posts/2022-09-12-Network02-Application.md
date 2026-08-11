@@ -1,6 +1,7 @@
 ---
 title: Network02 Application
 date: 2022-09-12
+excerpt: '介绍网络应用、Socket、HTTP、DNS、P2P 与 CDN 等应用层主题。'
 permalink: /posts/2022/09/Network02-Application/
 tags:
   - Network

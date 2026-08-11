@@ -1,6 +1,7 @@
 ---
 title: Concurrency01 HMM
 date: 2022-09-25
+excerpt: '介绍弱内存模型、happens-before 关系与 Out-of-Thin-Air 行为。'
 permalink: /posts/2022/09/Concurrency01-HMM/
 tags:
   - Concurrency

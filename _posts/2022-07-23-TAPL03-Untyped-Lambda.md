@@ -1,6 +1,7 @@
 ---
 title: TAPL03 Untyped Lambda
 date: 2022-07-23
+excerpt: '介绍无类型 Lambda 演算、规约策略、代数数据类型与 De Bruijn 表示。'
 permalink: /posts/2022/07/TAPL03-Untyped-Lambda/
 tags:
   - TAPL

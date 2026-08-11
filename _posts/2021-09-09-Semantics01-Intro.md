@@ -1,6 +1,7 @@
 ---
 title: 形式语义01 Intro
 date: 2021-09-09
+excerpt: '介绍形式语义课程动机、程序性质证明及 Coq 形式化验证。'
 permalink: /posts/2021/09/Semantics01-Intro/
 tags:
   - Formal Semantics

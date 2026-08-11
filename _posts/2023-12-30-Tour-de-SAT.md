@@ -1,6 +1,7 @@
 ---
 title: Tour de SAT
 date: 2023-12-30
+excerpt: '介绍 SAT、CNF、Resolution、DPLL 及 SAT 求解器搜索策略。'
 permalink: /posts/2023/12/Tour-de-SAT/
 tags:
   - SAT

@@ -1,6 +1,7 @@
 ---
 title: TAPL08 Subtyping
 date: 2022-08-28
+excerpt: '介绍子类型关系、函数变型、引用类型及 coercion semantics。'
 permalink: /posts/2022/08/TAPL08-Subtyping/
 tags:
   - TAPL

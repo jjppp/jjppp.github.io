@@ -1,6 +1,7 @@
 ---
 title: Memory Models
 date: 2022-09-07
+excerpt: '介绍顺序一致性、TSO 及写缓冲导致的内存可见性问题。'
 permalink: /posts/2022/09/Memory-Model/
 tags:
   - Concurrency
