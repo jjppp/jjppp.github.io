@@ -32,7 +32,7 @@ Publication
 
   **Jinpeng Wang**, Yufei Liang, Zhongsheng Zhan, Tian Tan, Yue Li
 
-  TL;DR: We reconsider object merging from the view of early flow confluence, making context-sensitive pointer analysis efficient (40x speedup on average) whith good precision (99.61% precision).
+  TL;DR: We reconsider object merging from the view of early flow confluence, making context-sensitive pointer analysis efficient (40x speedup on average) with good precision (99.61% precision).
 
 - PLDI 2026, (**Qihe**) _Exploiting Sophisticated Static Analysis for Verilog_
 
