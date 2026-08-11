@@ -153,14 +153,52 @@
     height: auto;
   }
 
-  img {
-    max-width: 175px;
+  &--flip {
+    perspective: 800px;
+    outline: none;
+  }
+
+  &-card {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+
+    @include breakpoint($large) {
+      width: 175px;
+      height: 175px;
+    }
+  }
+
+  &--flip:hover &-card,
+  &--flip:focus-visible &-card {
+    transform: rotateY(180deg);
+  }
+
+  &-face {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 50%;
+    backface-visibility: hidden;
 
     @include breakpoint($large) {
       padding: 5px;
       border: 1px solid var(--global-border-color);
     }
+  }
+
+  &-face--back {
+    transform: rotateY(180deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .author__avatar-card {
+    transition: none;
   }
 }
 

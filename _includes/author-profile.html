@@ -6,11 +6,17 @@
 
 <div itemscope itemtype="http://schema.org/Person">
 
-  <div class="author__avatar">
+  <div class="author__avatar author__avatar--flip" tabindex="0" aria-label="Profile photo">
     {% if author.avatar contains "://" %}
-    	<img src="{{ author.avatar }}" alt="{{ author.name }}"  fetchpriority="high" />
+      <div class="author__avatar-card">
+        <img class="author__avatar-face author__avatar-face--front" src="{{ author.avatar }}" alt="{{ author.name }}" fetchpriority="high" />
+        {% if author.avatar_hover %}<img class="author__avatar-face author__avatar-face--back" src="{{ author.avatar_hover }}" alt="" aria-hidden="true" />{% endif %}
+      </div>
     {% else %}
-    	<img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" class="author__avatar" alt="{{ author.name }}"  fetchpriority="high" />
+      <div class="author__avatar-card">
+        <img class="author__avatar-face author__avatar-face--front" src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" alt="{{ author.name }}" fetchpriority="high" />
+        {% if author.avatar_hover %}<img class="author__avatar-face author__avatar-face--back" src="{{ author.avatar_hover | prepend: "/images/" | prepend: base_path }}" alt="" aria-hidden="true" />{% endif %}
+      </div>
     {% endif %}
   </div>
 
