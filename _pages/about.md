@@ -36,7 +36,7 @@ Publication
 
 - PLDI 2026, (**Qihe**) _Exploiting Sophisticated Static Analysis for Verilog_
 
-  Qinlin Chen, Nairen Zhang, **Jinpeng Wang**, Jiacai Cui, Tian Tan, Xiaoxing Ma, Chang Xu, Jian Lv, Yue Li
+  Qinlin Chen, Nairen Zhang, **Jinpeng Wang**, Jiacai Cui, Tian Tan, Xiaoxing Ma, Chang Xu, Jian Lu, Yue Li
 
   TL;DR: We employed sophisticated static analysis to hardware for Verilog, based on a set of carefully designed fundamental and application analyses (Qihe).
 
