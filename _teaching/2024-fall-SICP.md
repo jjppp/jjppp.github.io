@@ -1,5 +1,5 @@
 ---
-title: "Structure and Implementation of Computer Programs, TA"
+title: "Structure and Implementation of Computer Programs, 2024 Fall, TA"
 collection: teaching
 type: "Undergraduate course"
 permalink: /teaching/2024-fall-SICP
