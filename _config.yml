@@ -25,7 +25,8 @@ author:
   # Biographic information
   avatar           : "profile.png"
   avatar_hover     : "avatar.png"
-  name             : "Jinpeng Wang (王锦朋)"
+  name             : "Jinpeng Wang"
+  name_zh          : "王锦朋"
   pronouns         : "he/his"
   bio              : "Young, simple, and naive"
   location         : "Nanjing, China"
