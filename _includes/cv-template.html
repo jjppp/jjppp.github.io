@@ -100,29 +100,7 @@
   <!-- Work Experience -->
   <div class="cv-section">
     <h2>Work Experience</h2>
-    <ul class="cv-list">
-      {% for work in cv.work %}
-      <li class="cv-item">
-        <div class="cv-item-header">
-          <div class="cv-item-title">{{ work.position }}</div>
-          <div class="cv-item-date">{{ work.startDate }}{% if work.endDate %} - {{ work.endDate }}{% endif %}</div>
-        </div>
-        <div class="cv-item-content">
-          <div class="cv-item-subtitle">{{ work.company }}</div>
-          {% if work.summary %}
-          <div class="cv-item-detail">{{ work.summary }}</div>
-          {% endif %}
-          {% if work.highlights.size > 0 %}
-          <ul class="cv-highlights">
-            {% for highlight in work.highlights %}
-            <li>{{ highlight }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
+    {% include work-experience.html %}
   </div>
   {% endif %}
   

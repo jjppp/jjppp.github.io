@@ -27,7 +27,7 @@ Services
 Work Experience
 ======
 
-- 2026.07 - present: DeepSeek (intern)
+{% include work-experience.html %}
 
 Publications
 ======

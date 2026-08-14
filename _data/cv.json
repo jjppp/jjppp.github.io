@@ -30,7 +30,17 @@
       }
     ]
   },
-  "work": [],
+  "work": [
+    {
+      "company": "DeepSeek",
+      "position": "Intern",
+      "website": "",
+      "startDate": "2026.07",
+      "endDate": "present",
+      "summary": "",
+      "highlights": []
+    }
+  ],
   "education": [
     {
       "institution": "GitHub University",

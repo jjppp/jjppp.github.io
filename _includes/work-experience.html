@@ -1,0 +1,26 @@
+{% assign work = site.data.cv.work %}
+{% if work.size > 0 %}
+<ul class="cv-list">
+  {% for job in work %}
+  <li class="cv-item">
+    <div class="cv-item-header">
+      <div class="cv-item-title">{{ job.position }}</div>
+      <div class="cv-item-date">{{ job.startDate }}{% if job.endDate %} - {{ job.endDate }}{% endif %}</div>
+    </div>
+    <div class="cv-item-content">
+      <div class="cv-item-subtitle">{{ job.company }}</div>
+      {% if job.summary %}
+      <div class="cv-item-detail">{{ job.summary }}</div>
+      {% endif %}
+      {% if job.highlights.size > 0 %}
+      <ul class="cv-highlights">
+        {% for highlight in job.highlights %}
+        <li>{{ highlight }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
