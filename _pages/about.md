@@ -19,11 +19,6 @@ Education
 - 2024.09 - present: Nanjing University, MSc in Computer Science.
 - 2020.09 - 2024.06: Nanjing University, Bsc in Information and Computing Science.
 
-Services
-======
-
-- Teaching Assistant: Structure and Implementation of Computer Programs (2025 Fall, 2026 Fall).
-
 Work Experience
 ======
 
