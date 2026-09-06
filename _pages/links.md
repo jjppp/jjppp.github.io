@@ -9,4 +9,4 @@ author_profile: true
 - [RC](https://riverclouds.net)
 - [Charlie Jiang](https://chariri.moe)
 - [高先生](https://blog.gaocx.io)
-- [南京大学IT侠互助协会](https://itxia.nju.edu.cn)
+- [南京大学IT侠互助协会](https://itxia.nju.edu.cn/about)
