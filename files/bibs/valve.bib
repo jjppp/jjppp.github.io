@@ -1,0 +1,18 @@
+@article{valve,
+    author = {Wang, Jinpeng and Liang, Yufei and Zhan, Zhongsheng and Tan, Tian and Li, Yue},
+    title = {Heap Abstraction via Early-Confluent Object Merging for Pointer Analysis},
+    year = {2026},
+    issue_date = {October 2026},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    volume = {10},
+    number = {OOPSLA2},
+    url = {https://doi.org/10.1145/3839485},
+    doi = {10.1145/3839485},
+    abstract = {Heap abstraction critically affects both the efficiency and precision of pointer analysis for Java programs. By merging heap objects allocated at different program points, heap abstractions can significantly improve analysis efficiency, but often at the cost of precision. Mahjong, a state-of-the-art heap abstraction based on object merging, demonstrates that object merging can substantially improve the efficiency of pointer analysis while preserving precision for type-dependent clients; however, this client-specific guarantee limits its general applicability. In this work, we investigate how to improve the efficiency of pointer analysis through object merging, while preserving precision in a manner independent of any particular client. Our key insight is that, from the perspective of pointer analysis, many heap objects exhibit early flow confluence: they are allocated at different program points and then quickly propagate to the same pointers (variables or fields), after which they continue to flow together through the program. Merging such early-confluent objects has negligible impact on overall analysis precision. In contrast, merging objects that do not flow to the same pointers, or that converge only much later, can introduce substantial precision loss. Guided by this insight, we propose Valve, a new heap abstraction approach that efficiently identifies and merges early-confluent objects. Valve encodes the flow information needed for early-confluence detection as nondeterministic finite automata (NFAs) and approximates mergeability checking via an NFA-equivalence test, enabling efficient object merging while retaining high precision. We evaluate Valve on the largest benchmarks used in recent literature as well as modern large-scale Java applications, by integrating it with multiple state-of-the-art pointer-analysis techniques and directly comparing it with Mahjong. The results show that Valve achieves substantially higher precision than Mahjong for non-type-dependent clients, while maintaining comparable precision for type-dependent clients. At the same time, Valve delivers comparable or often better analysis efficiency across all evaluated cases. Overall, Valve, as a heap abstraction approach, significantly improves the efficiency of pointer analysis across several state-of-the-art techniques while maintaining high precision (99.61\% on average).},
+    journal = {Proc. ACM Program. Lang.},
+    month = oct,
+    articleno = {353},
+    numpages = {30},
+    keywords = {Heap Abstraction, Java, Pointer Analysis}
+}
