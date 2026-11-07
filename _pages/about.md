@@ -19,6 +19,11 @@ Education
 - 2024.09 - present: Nanjing University, MSc in Computer Science.
 - 2020.09 - 2024.06: Nanjing University, Bsc in Information and Computing Science.
 
+Honors & Awards
+======
+- Huatai Securities Science and Technology Scholarship.
+- Graduate Academic Scholarship, First Prize.
+
 Work Experience
 ======
 
