@@ -11,7 +11,7 @@ redirect_from:
 
 {% include base_path %}
 
-I am a second-year MSc student supervised by Prof. [Yue Li](https://cs.nju.edu.cn/yueli/) at [PASCAL Research Group](https://pascal-lab.net/), [Institute of Computer Software](https://ics.nju.edu.cn/), [Department of Computer Science and Technology](https://cs.nju.edu.cn/), [Nanjing University](https://www.nju.edu.cn).
+I am a third-year MSc student supervised by Prof. [Yue Li](https://cs.nju.edu.cn/yueli/) at [PASCAL Research Group](https://pascal-lab.net/), [Institute of Computer Software](https://ics.nju.edu.cn/), [Department of Computer Science and Technology](https://cs.nju.edu.cn/), [Nanjing University](https://www.nju.edu.cn).
 I am broadly interested in the theory and implementation of programming languages and static analysis.
 
 Education
