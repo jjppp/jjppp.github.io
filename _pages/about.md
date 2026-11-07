@@ -23,6 +23,7 @@ Honors & Awards
 ======
 - Huatai Securities Science and Technology Scholarship.
 - Graduate Academic Scholarship, First Prize.
+- Special Scholarship for Basic Disciplines under the Strengthening Basic Disciplines Plan.
 
 Work Experience
 ======
